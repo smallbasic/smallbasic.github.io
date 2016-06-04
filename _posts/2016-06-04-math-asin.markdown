@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "ASIN"
+categories: math
+---
+Math
+
+ASIN (x)
+
+Inverse sine.
+

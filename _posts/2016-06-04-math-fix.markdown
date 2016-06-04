@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "FIX"
+categories: math
+---
+Math
+
+FIX (x)
+
+Rounds x upwards to the nearest integer.
+

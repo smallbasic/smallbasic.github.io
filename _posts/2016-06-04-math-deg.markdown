@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "DEG"
+categories: math
+---
+Math
+
+DEG (x)
+
+Radians to degrees.
+

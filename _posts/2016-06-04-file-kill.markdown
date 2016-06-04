@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "KILL"
+categories: file
+---
+File
+
+KILL "file"
+
+Deletes the specified file.
+

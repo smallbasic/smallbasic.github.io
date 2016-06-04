@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "ACOS"
+categories: math
+---
+Math
+
+ACOS (x)
+
+Inverse cosine.
+

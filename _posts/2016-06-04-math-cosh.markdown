@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "COSH"
+categories: math
+---
+Math
+
+COSH (x)
+
+Cosine.
+

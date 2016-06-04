@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "ACOT"
+categories: math
+---
+Math
+
+ACOT (x)
+
+Inverse cotangent.
+

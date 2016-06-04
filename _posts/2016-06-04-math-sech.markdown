@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "SECH"
+categories: math
+---
+Math
+
+SECH (x)
+
+Secant.
+

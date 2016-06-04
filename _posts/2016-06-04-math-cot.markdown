@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "COT"
+categories: math
+---
+Math
+
+COT (x)
+
+Cotangent.
+

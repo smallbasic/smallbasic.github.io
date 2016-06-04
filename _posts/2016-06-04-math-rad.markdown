@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "RAD"
+categories: math
+---
+Math
+
+RAD (x)
+
+Degrees to radians.
+

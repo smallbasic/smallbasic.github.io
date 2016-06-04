@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "FRAC"
+categories: math
+---
+Math
+
+FRAC (x)
+
+Fractional part of x.
+

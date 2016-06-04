@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "CEIL"
+categories: math
+---
+Math
+
+CEIL (x)
+
+Smallest integral value not less than x.
+

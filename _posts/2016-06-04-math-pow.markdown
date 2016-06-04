@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "POW"
+categories: math
+---
+Math
+
+POW (x, y)
+
+x raised to power of y.
+

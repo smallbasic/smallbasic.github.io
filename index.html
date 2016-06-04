@@ -1,1 +1,43 @@
-SmallBASIC test page
+---
+layout: default
+---
+
+<div class="home">
+  <h1 class="page-heading">Console</h1>
+  {% for post in site.categories.console %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <h1 class="page-heading">Data</h1>
+  {% for post in site.categories.data %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <h1 class="page-heading">Date</h1>
+  {% for post in site.categories.date %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <h1 class="page-heading">File</h1>
+  {% for post in site.categories.file %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <h1 class="page-heading">Graphics</h1>
+  {% for post in site.categories.graphics %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <h1 class="page-heading">Language</h1>
+  {% for post in site.categories.language %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <h1 class="page-heading">Math</h1>
+  {% for post in site.categories.math %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <h1 class="page-heading">String</h1>
+  {% for post in site.categories.string %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <h1 class="page-heading">System</h1>
+  {% for post in site.categories.system %}
+  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% endfor %}
+  <br/>
+</div>

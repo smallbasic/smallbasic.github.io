@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "PI"
+categories: system
+---
+System
+
+PI
+
+Holds PI
+
+
+See: https://en.wikipedia.org/wiki/Pi

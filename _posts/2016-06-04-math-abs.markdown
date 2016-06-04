@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "ABS"
+categories: math
+---
+Math
+
+ABS (x)
+
+Returns the absolute value of x.
+

@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "SQR"
+categories: math
+---
+Math
+
+SQR (x)
+
+Square root of x.
+

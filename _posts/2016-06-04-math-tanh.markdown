@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "TANH"
+categories: math
+---
+Math
+
+TANH (x)
+
+Tangent.
+

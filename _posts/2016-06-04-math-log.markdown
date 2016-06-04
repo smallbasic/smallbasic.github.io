@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "LOG"
+categories: math
+---
+Math
+
+LOG (x)
+
+Returns the natural logarithm of x.
+

@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "SEC"
+categories: math
+---
+Math
+
+SEC (x)
+
+Secant.
+

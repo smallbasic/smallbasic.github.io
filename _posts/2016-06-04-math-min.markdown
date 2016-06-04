@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "MIN"
+categories: math
+---
+Math
+
+MIN (...)
+
+Minimum value of parameters. Parameters can be anything (arrays, ints, reals, strings).
+

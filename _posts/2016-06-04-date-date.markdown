@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "DATE"
+categories: date
+---
+Date
+
+DATE
+
+Returns the current date as string "DD/MM/YYYY".
+

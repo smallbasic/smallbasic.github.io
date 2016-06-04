@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "ATN"
+categories: math
+---
+Math
+
+ATN (x)
+
+Inverse tangent.
+

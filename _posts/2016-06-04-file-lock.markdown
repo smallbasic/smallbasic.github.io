@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "LOCK"
+categories: file
+---
+File
+
+LOCK
+
+Lock a record or an area (not yet implemented).
+

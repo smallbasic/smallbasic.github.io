@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "CSC"
+categories: math
+---
+Math
+
+CSC (x)
+
+Co secant.
+

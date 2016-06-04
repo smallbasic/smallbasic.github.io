@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "COTH"
+categories: math
+---
+Math
+
+COTH (x)
+
+Cotangent.
+

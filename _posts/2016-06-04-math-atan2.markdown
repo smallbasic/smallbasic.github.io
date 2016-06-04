@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "ATAN2"
+categories: math
+---
+Math
+
+ATAN2 (x, y)
+
+Inverse tangent (x,y).
+
