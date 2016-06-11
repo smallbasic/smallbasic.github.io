@@ -1,4 +1,5 @@
 ---
+permalink: /732
 layout: post
 title:  "FLOOR"
 categories: math

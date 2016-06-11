@@ -1,4 +1,5 @@
 ---
+permalink: /771
 layout: post
 title:  "ASC"
 categories: string

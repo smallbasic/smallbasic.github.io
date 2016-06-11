@@ -1,4 +1,5 @@
 ---
+permalink: /1015
 layout: post
 title:  "DEFINEKEY"
 categories: console

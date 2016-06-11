@@ -1,4 +1,5 @@
 ---
+permalink: /676
 layout: post
 title:  "XOR"
 categories: language

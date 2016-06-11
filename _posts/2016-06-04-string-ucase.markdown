@@ -1,4 +1,5 @@
 ---
+permalink: /803
 layout: post
 title:  "UCASE"
 categories: string

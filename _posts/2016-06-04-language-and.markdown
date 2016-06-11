@@ -1,4 +1,5 @@
 ---
+permalink: /662
 layout: post
 title:  "AND"
 categories: language

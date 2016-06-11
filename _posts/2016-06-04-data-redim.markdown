@@ -1,4 +1,5 @@
 ---
+permalink: /547
 layout: post
 title:  "REDIM"
 categories: data

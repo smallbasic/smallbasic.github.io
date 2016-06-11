@@ -1,4 +1,5 @@
 ---
+permalink: /764
 layout: post
 title:  "SUM"
 categories: math

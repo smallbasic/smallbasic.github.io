@@ -1,4 +1,5 @@
 ---
+permalink: /810
 layout: post
 title:  "RANDOMIZE"
 categories: system

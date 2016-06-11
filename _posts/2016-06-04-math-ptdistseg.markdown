@@ -1,4 +1,5 @@
 ---
+permalink: /745
 layout: post
 title:  "PTDISTSEG"
 categories: math

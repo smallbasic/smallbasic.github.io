@@ -1,4 +1,5 @@
 ---
+permalink: /650
 layout: post
 title:  "FI"
 categories: language

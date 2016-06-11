@@ -1,4 +1,5 @@
 ---
+permalink: /583
 layout: post
 title:  "BPUTC"
 categories: file

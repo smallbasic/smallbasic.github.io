@@ -1,4 +1,5 @@
 ---
+permalink: /1521
 layout: post
 title:  "COMMAND"
 categories: system

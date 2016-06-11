@@ -1,4 +1,5 @@
 ---
+permalink: /593
 layout: post
 title:  "MKDIR"
 categories: file

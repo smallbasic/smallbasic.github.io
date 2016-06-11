@@ -1,4 +1,5 @@
 ---
+permalink: /580
 layout: post
 title:  "ACCESS"
 categories: file

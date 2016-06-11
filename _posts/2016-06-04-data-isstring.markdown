@@ -1,4 +1,5 @@
 ---
+permalink: /560
 layout: post
 title:  "ISSTRING"
 categories: data

@@ -1,4 +1,5 @@
 ---
+permalink: /699
 layout: post
 title:  "M3ROTATE"
 categories: math

@@ -1,4 +1,5 @@
 ---
+permalink: /814
 layout: post
 title:  "TRON"
 categories: system

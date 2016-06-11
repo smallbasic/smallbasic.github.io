@@ -1,4 +1,5 @@
 ---
+permalink: /719
 layout: post
 title:  "ATANH"
 categories: math

@@ -1,4 +1,5 @@
 ---
+permalink: /668
 layout: post
 title:  "LIKE"
 categories: language

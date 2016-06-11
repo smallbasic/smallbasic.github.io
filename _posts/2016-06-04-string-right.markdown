@@ -1,4 +1,5 @@
 ---
+permalink: /791
 layout: post
 title:  "RIGHT"
 categories: string

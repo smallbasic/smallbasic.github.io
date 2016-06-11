@@ -1,4 +1,5 @@
 ---
+permalink: /717
 layout: post
 title:  "ATAN"
 categories: math

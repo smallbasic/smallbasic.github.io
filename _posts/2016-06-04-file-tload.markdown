@@ -1,4 +1,5 @@
 ---
+permalink: /598
 layout: post
 title:  "TLOAD"
 categories: file

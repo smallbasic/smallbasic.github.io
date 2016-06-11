@@ -1,4 +1,5 @@
 ---
+permalink: /532
 layout: post
 title:  "NOSOUND"
 categories: console

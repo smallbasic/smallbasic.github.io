@@ -1,4 +1,5 @@
 ---
+permalink: /636
 layout: post
 title:  "YPOS"
 categories: graphics

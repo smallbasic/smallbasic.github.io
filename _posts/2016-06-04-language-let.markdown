@@ -1,4 +1,5 @@
 ---
+permalink: /685
 layout: post
 title:  "LET"
 categories: language

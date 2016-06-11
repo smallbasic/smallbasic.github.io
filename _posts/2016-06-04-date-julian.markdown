@@ -1,4 +1,5 @@
 ---
+permalink: /577
 layout: post
 title:  "JULIAN"
 categories: date

@@ -1,4 +1,5 @@
 ---
+permalink: /605
 layout: post
 title:  "FILES"
 categories: file

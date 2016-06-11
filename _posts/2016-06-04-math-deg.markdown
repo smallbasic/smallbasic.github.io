@@ -1,4 +1,5 @@
 ---
+permalink: /728
 layout: post
 title:  "DEG"
 categories: math

@@ -1,4 +1,5 @@
 ---
+permalink: /729
 layout: post
 title:  "DETERM"
 categories: math

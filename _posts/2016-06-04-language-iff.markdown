@@ -1,4 +1,5 @@
 ---
+permalink: /638
 layout: post
 title:  "IFF"
 categories: language

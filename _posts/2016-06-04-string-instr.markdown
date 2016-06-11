@@ -1,4 +1,5 @@
 ---
+permalink: /781
 layout: post
 title:  "INSTR"
 categories: string

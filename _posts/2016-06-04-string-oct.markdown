@@ -1,4 +1,5 @@
 ---
+permalink: /789
 layout: post
 title:  "OCT"
 categories: string

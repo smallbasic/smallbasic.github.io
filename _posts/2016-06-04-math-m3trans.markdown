@@ -1,4 +1,5 @@
 ---
+permalink: /701
 layout: post
 title:  "M3TRANS"
 categories: math

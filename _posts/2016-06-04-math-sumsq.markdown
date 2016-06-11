@@ -1,4 +1,5 @@
 ---
+permalink: /765
 layout: post
 title:  "SUMSQ"
 categories: math

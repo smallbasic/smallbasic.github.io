@@ -1,4 +1,5 @@
 ---
+permalink: /796
 layout: post
 title:  "SPACE"
 categories: string

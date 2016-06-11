@@ -1,4 +1,5 @@
 ---
+permalink: /690
 layout: post
 title:  "RETURN"
 categories: language

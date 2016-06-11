@@ -1,4 +1,5 @@
 ---
+permalink: /758
 layout: post
 title:  "SINH"
 categories: math

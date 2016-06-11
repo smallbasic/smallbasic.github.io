@@ -1,4 +1,5 @@
 ---
+permalink: /698
 layout: post
 title:  "M3IDENT"
 categories: math

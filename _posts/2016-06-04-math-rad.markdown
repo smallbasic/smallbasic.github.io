@@ -1,4 +1,5 @@
 ---
+permalink: /747
 layout: post
 title:  "RAD"
 categories: math

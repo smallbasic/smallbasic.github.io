@@ -1,4 +1,5 @@
 ---
+permalink: /545
 layout: post
 title:  "JOIN"
 categories: string

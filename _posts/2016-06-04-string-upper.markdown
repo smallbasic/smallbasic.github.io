@@ -1,4 +1,5 @@
 ---
+permalink: /804
 layout: post
 title:  "UPPER"
 categories: string

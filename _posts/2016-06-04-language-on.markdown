@@ -1,4 +1,5 @@
 ---
+permalink: /686
 layout: post
 title:  "ON"
 categories: language

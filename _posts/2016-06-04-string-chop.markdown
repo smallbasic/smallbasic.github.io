@@ -1,4 +1,5 @@
 ---
+permalink: /775
 layout: post
 title:  "CHOP"
 categories: string

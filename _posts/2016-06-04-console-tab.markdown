@@ -1,4 +1,5 @@
 ---
+permalink: /540
 layout: post
 title:  "TAB"
 categories: console

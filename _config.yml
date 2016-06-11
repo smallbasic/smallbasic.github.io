@@ -12,3 +12,5 @@ github_username:  smallbasic
 
 # Build settings
 markdown: kramdown
+
+relative_permalinks: false

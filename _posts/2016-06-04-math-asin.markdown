@@ -1,4 +1,5 @@
 ---
+permalink: /715
 layout: post
 title:  "ASIN"
 categories: math

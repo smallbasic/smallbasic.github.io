@@ -1,4 +1,5 @@
 ---
+permalink: /627
 layout: post
 title:  "PEN"
 categories: graphics

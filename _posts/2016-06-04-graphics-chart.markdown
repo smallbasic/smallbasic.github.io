@@ -1,4 +1,5 @@
 ---
+permalink: /612
 layout: post
 title:  "CHART"
 categories: graphics

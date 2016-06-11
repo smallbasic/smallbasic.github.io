@@ -1,4 +1,5 @@
 ---
+permalink: /782
 layout: post
 title:  "LCASE"
 categories: string

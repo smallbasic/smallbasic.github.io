@@ -1,4 +1,5 @@
 ---
+permalink: /731
 layout: post
 title:  "FIX"
 categories: math

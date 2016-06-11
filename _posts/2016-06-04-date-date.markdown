@@ -1,4 +1,5 @@
 ---
+permalink: /575
 layout: post
 title:  "DATE"
 categories: date

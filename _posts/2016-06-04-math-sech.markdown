@@ -1,4 +1,5 @@
 ---
+permalink: /751
 layout: post
 title:  "SECH"
 categories: math

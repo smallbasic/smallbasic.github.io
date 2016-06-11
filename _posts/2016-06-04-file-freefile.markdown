@@ -1,4 +1,5 @@
 ---
+permalink: /607
 layout: post
 title:  "FREEFILE"
 categories: file

@@ -1,4 +1,5 @@
 ---
+permalink: /772
 layout: post
 title:  "BCS"
 categories: string

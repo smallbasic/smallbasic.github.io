@@ -1,4 +1,5 @@
 ---
+permalink: /779
 layout: post
 title:  "FORMAT"
 categories: string

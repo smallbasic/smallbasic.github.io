@@ -1,4 +1,5 @@
 ---
+permalink: /606
 layout: post
 title:  "FRE"
 categories: system

@@ -1,4 +1,5 @@
 ---
+permalink: /706
 layout: post
 title:  "ABSMIN"
 categories: math

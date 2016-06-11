@@ -1,4 +1,5 @@
 ---
+permalink: /661
 layout: post
 title:  "USE"
 categories: language

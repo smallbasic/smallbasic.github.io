@@ -1,4 +1,5 @@
 ---
+permalink: /561
 layout: post
 title:  "LBOUND"
 categories: data

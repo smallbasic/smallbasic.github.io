@@ -1,4 +1,5 @@
 ---
+permalink: /592
 layout: post
 title:  "LOCK"
 categories: file

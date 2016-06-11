@@ -1,4 +1,5 @@
 ---
+permalink: /726
 layout: post
 title:  "CSC"
 categories: math

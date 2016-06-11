@@ -1,4 +1,5 @@
 ---
+permalink: /695
 layout: post
 title:  "EXPRSEQ"
 categories: math

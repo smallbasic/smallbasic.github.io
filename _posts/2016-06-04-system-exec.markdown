@@ -1,4 +1,5 @@
 ---
+permalink: /1443
 layout: post
 title:  "EXEC"
 categories: system

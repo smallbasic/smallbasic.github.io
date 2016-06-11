@@ -1,4 +1,5 @@
 ---
+permalink: /629
 layout: post
 title:  "RGB"
 categories: graphics

@@ -1,4 +1,5 @@
 ---
+permalink: /555
 layout: post
 title:  "ISARRAY"
 categories: data

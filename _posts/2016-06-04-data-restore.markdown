@@ -1,4 +1,5 @@
 ---
+permalink: /572
 layout: post
 title:  "RESTORE"
 categories: data

@@ -1,4 +1,5 @@
 ---
+permalink: /536
 layout: post
 title:  "SOUND"
 categories: console

@@ -1,4 +1,5 @@
 ---
+permalink: /578
 layout: post
 title:  "TIME"
 categories: date

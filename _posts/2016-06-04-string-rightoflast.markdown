@@ -1,4 +1,5 @@
 ---
+permalink: /793
 layout: post
 title:  "RIGHTOFLAST"
 categories: string

@@ -1,4 +1,5 @@
 ---
+permalink: /812
 layout: post
 title:  "STKDUMP"
 categories: system

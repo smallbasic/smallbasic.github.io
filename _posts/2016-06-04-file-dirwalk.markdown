@@ -1,4 +1,5 @@
 ---
+permalink: /589
 layout: post
 title:  "DIRWALK"
 categories: file

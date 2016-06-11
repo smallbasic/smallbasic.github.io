@@ -1,4 +1,5 @@
 ---
+permalink: /673
 layout: post
 title:  "NOT"
 categories: language

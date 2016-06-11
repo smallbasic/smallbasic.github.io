@@ -1,4 +1,5 @@
 ---
+permalink: /619
 layout: post
 title:  "PAINT"
 categories: graphics

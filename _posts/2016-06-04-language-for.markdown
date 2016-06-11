@@ -1,4 +1,5 @@
 ---
+permalink: /680
 layout: post
 title:  "FOR"
 categories: language

@@ -1,4 +1,5 @@
 ---
+permalink: /798
 layout: post
 title:  "SQUEEZE"
 categories: string

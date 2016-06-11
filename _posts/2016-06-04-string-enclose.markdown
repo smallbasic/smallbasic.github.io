@@ -1,4 +1,5 @@
 ---
+permalink: /778
 layout: post
 title:  "ENCLOSE"
 categories: string

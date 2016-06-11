@@ -1,4 +1,5 @@
 ---
+permalink: /802
 layout: post
 title:  "TRIM"
 categories: string

@@ -1,4 +1,5 @@
 ---
+permalink: /787
 layout: post
 title:  "LTRIM"
 categories: string

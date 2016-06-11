@@ -1,4 +1,5 @@
 ---
+permalink: /608
 layout: post
 title:  "INPUT"
 categories: file

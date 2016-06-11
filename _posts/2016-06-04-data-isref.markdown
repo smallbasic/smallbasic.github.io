@@ -1,4 +1,5 @@
 ---
+permalink: /1431
 layout: post
 title:  "ISREF"
 categories: data

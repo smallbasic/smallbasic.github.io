@@ -1,4 +1,5 @@
 ---
+permalink: /596
 layout: post
 title:  "RMDIR"
 categories: file

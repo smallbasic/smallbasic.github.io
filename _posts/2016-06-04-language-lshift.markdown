@@ -1,4 +1,5 @@
 ---
+permalink: /1496
 layout: post
 title:  "LSHIFT"
 categories: language

@@ -1,4 +1,5 @@
 ---
+permalink: /640
 layout: post
 title:  "CASE"
 categories: language

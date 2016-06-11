@@ -1,4 +1,5 @@
 ---
+permalink: /1420
 layout: post
 title:  "TO"
 categories: language

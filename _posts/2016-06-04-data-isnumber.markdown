@@ -1,4 +1,5 @@
 ---
+permalink: /559
 layout: post
 title:  "ISNUMBER"
 categories: data

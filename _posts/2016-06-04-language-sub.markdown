@@ -1,4 +1,5 @@
 ---
+permalink: /657
 layout: post
 title:  "SUB"
 categories: language

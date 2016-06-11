@@ -1,4 +1,5 @@
 ---
+permalink: /634
 layout: post
 title:  "TXTW"
 categories: graphics

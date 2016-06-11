@@ -1,4 +1,5 @@
 ---
+permalink: /704
 layout: post
 title:  "ABS"
 categories: math

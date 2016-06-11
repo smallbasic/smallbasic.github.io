@@ -1,4 +1,5 @@
 ---
+permalink: /613
 layout: post
 title:  "CIRCLE"
 categories: graphics

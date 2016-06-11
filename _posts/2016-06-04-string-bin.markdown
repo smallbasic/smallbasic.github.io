@@ -1,4 +1,5 @@
 ---
+permalink: /773
 layout: post
 title:  "BIN"
 categories: string

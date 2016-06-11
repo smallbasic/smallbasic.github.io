@@ -1,4 +1,5 @@
 ---
+permalink: /700
 layout: post
 title:  "M3SCALE"
 categories: math

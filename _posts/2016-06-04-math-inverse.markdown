@@ -1,4 +1,5 @@
 ---
+permalink: /735
 layout: post
 title:  "INVERSE"
 categories: math

@@ -1,4 +1,5 @@
 ---
+permalink: /630
 layout: post
 title:  "RGBF"
 categories: graphics

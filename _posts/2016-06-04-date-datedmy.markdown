@@ -1,4 +1,5 @@
 ---
+permalink: /573
 layout: post
 title:  "DATEDMY"
 categories: date

@@ -1,4 +1,5 @@
 ---
+permalink: /786
 layout: post
 title:  "LOWER"
 categories: string

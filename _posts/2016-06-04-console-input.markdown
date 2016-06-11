@@ -1,4 +1,5 @@
 ---
+permalink: /527
 layout: post
 title:  "INPUT"
 categories: console

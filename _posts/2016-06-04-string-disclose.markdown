@@ -1,4 +1,5 @@
 ---
+permalink: /777
 layout: post
 title:  "DISCLOSE"
 categories: string

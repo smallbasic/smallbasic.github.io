@@ -1,4 +1,5 @@
 ---
+permalink: /655
 layout: post
 title:  "SELECT"
 categories: language

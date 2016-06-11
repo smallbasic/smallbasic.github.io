@@ -1,4 +1,5 @@
 ---
+permalink: /713
 layout: post
 title:  "ASEC"
 categories: math

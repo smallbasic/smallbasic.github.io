@@ -1,4 +1,5 @@
 ---
+permalink: /683
 layout: post
 title:  "IF"
 categories: language

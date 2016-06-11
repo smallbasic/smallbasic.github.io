@@ -1,4 +1,5 @@
 ---
+permalink: /752
 layout: post
 title:  "SEGCOS"
 categories: math

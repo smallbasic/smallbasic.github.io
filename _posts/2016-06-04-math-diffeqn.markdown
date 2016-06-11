@@ -1,4 +1,5 @@
 ---
+permalink: /694
 layout: post
 title:  "DIFFEQN"
 categories: math

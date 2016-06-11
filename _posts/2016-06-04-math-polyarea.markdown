@@ -1,4 +1,5 @@
 ---
+permalink: /741
 layout: post
 title:  "POLYAREA"
 categories: math

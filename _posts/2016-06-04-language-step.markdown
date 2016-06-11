@@ -1,4 +1,5 @@
 ---
+permalink: /1421
 layout: post
 title:  "STEP"
 categories: language

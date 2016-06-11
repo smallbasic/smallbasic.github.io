@@ -1,4 +1,5 @@
 ---
+permalink: /769
 layout: post
 title:  "SPLIT"
 categories: string

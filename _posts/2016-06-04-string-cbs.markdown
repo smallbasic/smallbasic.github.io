@@ -1,4 +1,5 @@
 ---
+permalink: /774
 layout: post
 title:  "CBS"
 categories: string

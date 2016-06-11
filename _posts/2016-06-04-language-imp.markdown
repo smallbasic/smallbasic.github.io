@@ -1,4 +1,5 @@
 ---
+permalink: /666
 layout: post
 title:  "IMP"
 categories: language

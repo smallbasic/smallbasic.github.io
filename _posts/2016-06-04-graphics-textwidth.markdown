@@ -1,4 +1,5 @@
 ---
+permalink: /632
 layout: post
 title:  "TEXTWIDTH"
 categories: graphics

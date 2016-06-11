@@ -1,4 +1,5 @@
 ---
+permalink: /543
 layout: post
 title:  "EMPTY"
 categories: data

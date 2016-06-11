@@ -1,4 +1,5 @@
 ---
+permalink: /809
 layout: post
 title:  "PAUSE"
 categories: system

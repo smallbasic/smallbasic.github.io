@@ -1,4 +1,5 @@
 ---
+permalink: /762
 layout: post
 title:  "STATSPREADP"
 categories: math

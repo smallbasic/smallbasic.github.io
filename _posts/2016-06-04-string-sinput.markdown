@@ -1,4 +1,5 @@
 ---
+permalink: /768
 layout: post
 title:  "SINPUT"
 categories: string

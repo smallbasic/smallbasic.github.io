@@ -1,4 +1,5 @@
 ---
+permalink: /723
 layout: post
 title:  "COSH"
 categories: math

@@ -1,4 +1,5 @@
 ---
+permalink: /1427
 layout: post
 title:  "END TRY"
 categories: language

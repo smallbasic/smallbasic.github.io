@@ -1,4 +1,5 @@
 ---
+permalink: /776
 layout: post
 title:  "CHR"
 categories: string

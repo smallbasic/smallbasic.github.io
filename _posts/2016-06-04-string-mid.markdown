@@ -1,4 +1,5 @@
 ---
+permalink: /788
 layout: post
 title:  "MID"
 categories: string

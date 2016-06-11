@@ -1,4 +1,5 @@
 ---
+permalink: /656
 layout: post
 title:  "STOP"
 categories: language

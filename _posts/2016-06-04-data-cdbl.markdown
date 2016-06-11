@@ -1,4 +1,5 @@
 ---
+permalink: /552
 layout: post
 title:  "CDBL"
 categories: data

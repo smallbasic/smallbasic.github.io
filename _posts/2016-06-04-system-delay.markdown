@@ -1,4 +1,5 @@
 ---
+permalink: /806
 layout: post
 title:  "DELAY"
 categories: system

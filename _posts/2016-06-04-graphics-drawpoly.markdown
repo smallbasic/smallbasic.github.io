@@ -1,4 +1,5 @@
 ---
+permalink: /616
 layout: post
 title:  "DRAWPOLY"
 categories: graphics

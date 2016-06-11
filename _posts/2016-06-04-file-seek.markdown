@@ -1,4 +1,5 @@
 ---
+permalink: /610
 layout: post
 title:  "SEEK"
 categories: file

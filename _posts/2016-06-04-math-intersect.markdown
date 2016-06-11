@@ -1,4 +1,5 @@
 ---
+permalink: /696
 layout: post
 title:  "INTERSECT"
 categories: math

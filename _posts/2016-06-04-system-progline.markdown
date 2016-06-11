@@ -1,4 +1,5 @@
 ---
+permalink: /817
 layout: post
 title:  "PROGLINE"
 categories: system

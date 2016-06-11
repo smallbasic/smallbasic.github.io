@@ -1,4 +1,5 @@
 ---
+permalink: /579
 layout: post
 title:  "WEEKDAY"
 categories: date

@@ -1,4 +1,5 @@
 ---
+permalink: /544
 layout: post
 title:  "INSERT"
 categories: data

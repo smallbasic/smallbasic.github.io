@@ -1,4 +1,5 @@
 ---
+permalink: /550
 layout: post
 title:  "SWAP"
 categories: data

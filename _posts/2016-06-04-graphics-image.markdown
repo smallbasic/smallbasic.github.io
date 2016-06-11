@@ -1,4 +1,5 @@
 ---
+permalink: /617
 layout: post
 title:  "IMAGE"
 categories: graphics

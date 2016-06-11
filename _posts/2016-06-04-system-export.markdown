@@ -1,4 +1,5 @@
 ---
+permalink: /1440
 layout: post
 title:  "EXPORT"
 categories: system

@@ -1,4 +1,5 @@
 ---
+permalink: /667
 layout: post
 title:  "IN"
 categories: language

@@ -1,4 +1,5 @@
 ---
+permalink: /571
 layout: post
 title:  "ERASE"
 categories: data

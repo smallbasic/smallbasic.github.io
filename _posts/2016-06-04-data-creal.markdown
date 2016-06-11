@@ -1,4 +1,5 @@
 ---
+permalink: /554
 layout: post
 title:  "CREAL"
 categories: data

@@ -1,4 +1,5 @@
 ---
+permalink: /674
 layout: post
 title:  "OR"
 categories: language

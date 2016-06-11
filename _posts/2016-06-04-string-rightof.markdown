@@ -1,4 +1,5 @@
 ---
+permalink: /792
 layout: post
 title:  "RIGHTOF"
 categories: string

@@ -1,4 +1,5 @@
 ---
+permalink: /757
 layout: post
 title:  "SIN"
 categories: math

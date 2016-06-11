@@ -1,4 +1,5 @@
 ---
+permalink: /639
 layout: post
 title:  "BYREF"
 categories: language

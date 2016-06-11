@@ -1,4 +1,5 @@
 ---
+permalink: /1429
 layout: post
 title:  "SHOWPAGE"
 categories: graphics

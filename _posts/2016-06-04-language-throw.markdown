@@ -1,4 +1,5 @@
 ---
+permalink: /1437
 layout: post
 title:  "THROW"
 categories: language

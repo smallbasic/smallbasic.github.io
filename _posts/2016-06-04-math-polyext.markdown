@@ -1,4 +1,5 @@
 ---
+permalink: /702
 layout: post
 title:  "POLYEXT"
 categories: math

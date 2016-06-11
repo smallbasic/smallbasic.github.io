@@ -1,4 +1,5 @@
 ---
+permalink: /584
 layout: post
 title:  "BSAVE"
 categories: file

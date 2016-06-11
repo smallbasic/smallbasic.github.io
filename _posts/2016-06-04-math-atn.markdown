@@ -1,4 +1,5 @@
 ---
+permalink: /720
 layout: post
 title:  "ATN"
 categories: math

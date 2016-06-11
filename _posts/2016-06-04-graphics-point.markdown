@@ -1,4 +1,5 @@
 ---
+permalink: /628
 layout: post
 title:  "POINT"
 categories: graphics

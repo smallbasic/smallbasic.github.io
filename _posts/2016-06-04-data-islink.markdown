@@ -1,4 +1,5 @@
 ---
+permalink: /558
 layout: post
 title:  "ISLINK"
 categories: data

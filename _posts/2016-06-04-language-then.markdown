@@ -1,4 +1,5 @@
 ---
+permalink: /658
 layout: post
 title:  "THEN"
 categories: language

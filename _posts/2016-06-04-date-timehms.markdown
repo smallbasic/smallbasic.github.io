@@ -1,4 +1,5 @@
 ---
+permalink: /574
 layout: post
 title:  "TIMEHMS"
 categories: date

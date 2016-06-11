@@ -1,4 +1,5 @@
 ---
+permalink: /689
 layout: post
 title:  "REPEAT"
 categories: language

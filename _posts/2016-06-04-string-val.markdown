@@ -1,4 +1,5 @@
 ---
+permalink: /805
 layout: post
 title:  "VAL"
 categories: string

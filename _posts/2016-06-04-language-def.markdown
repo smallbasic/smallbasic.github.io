@@ -1,4 +1,5 @@
 ---
+permalink: /641
 layout: post
 title:  "DEF"
 categories: language

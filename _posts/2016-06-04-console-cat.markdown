@@ -1,4 +1,5 @@
 ---
+permalink: /538
 layout: post
 title:  "CAT"
 categories: console

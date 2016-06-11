@@ -1,4 +1,5 @@
 ---
+permalink: /734
 layout: post
 title:  "INT"
 categories: math

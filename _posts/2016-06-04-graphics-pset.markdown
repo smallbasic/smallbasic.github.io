@@ -1,4 +1,5 @@
 ---
+permalink: /621
 layout: post
 title:  "PSET"
 categories: graphics

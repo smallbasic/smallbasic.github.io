@@ -1,4 +1,5 @@
 ---
+permalink: /756
 layout: post
 title:  "SGN"
 categories: math

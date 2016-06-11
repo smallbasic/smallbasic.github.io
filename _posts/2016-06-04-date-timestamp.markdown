@@ -1,4 +1,5 @@
 ---
+permalink: /1450
 layout: post
 title:  "TIMESTAMP"
 categories: date

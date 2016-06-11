@@ -1,4 +1,5 @@
 ---
+permalink: /582
 layout: post
 title:  "BLOAD"
 categories: file

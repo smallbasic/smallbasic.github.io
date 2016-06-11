@@ -1,4 +1,5 @@
 ---
+permalink: /646
 layout: post
 title:  "ENDIF"
 categories: language

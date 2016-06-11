@@ -1,4 +1,5 @@
 ---
+permalink: /642
 layout: post
 title:  "DO"
 categories: language

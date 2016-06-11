@@ -1,4 +1,5 @@
 ---
+permalink: /681
 layout: post
 title:  "GOSUB"
 categories: language

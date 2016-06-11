@@ -1,4 +1,5 @@
 ---
+permalink: /815
 layout: post
 title:  "ENV"
 categories: system

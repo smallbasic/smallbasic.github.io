@@ -1,4 +1,5 @@
 ---
+permalink: /801
 layout: post
 title:  "TRANSLATE"
 categories: string

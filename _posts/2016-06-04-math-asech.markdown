@@ -1,4 +1,5 @@
 ---
+permalink: /714
 layout: post
 title:  "ASECH"
 categories: math

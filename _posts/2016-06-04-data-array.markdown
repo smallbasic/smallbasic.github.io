@@ -1,4 +1,5 @@
 ---
+permalink: /1432
 layout: post
 title:  "ARRAY"
 categories: data

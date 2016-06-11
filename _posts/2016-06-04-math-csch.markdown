@@ -1,4 +1,5 @@
 ---
+permalink: /727
 layout: post
 title:  "CSCH"
 categories: math

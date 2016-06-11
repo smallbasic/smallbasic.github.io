@@ -1,4 +1,5 @@
 ---
+permalink: /611
 layout: post
 title:  "ARC"
 categories: graphics

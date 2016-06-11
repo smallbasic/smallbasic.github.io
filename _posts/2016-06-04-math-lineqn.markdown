@@ -1,4 +1,5 @@
 ---
+permalink: /736
 layout: post
 title:  "LINEQN"
 categories: math

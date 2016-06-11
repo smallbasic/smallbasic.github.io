@@ -1,4 +1,5 @@
 ---
+permalink: /521
 layout: post
 title:  "AT"
 categories: console

@@ -1,4 +1,5 @@
 ---
+permalink: /692
 layout: post
 title:  "WHILE"
 categories: language

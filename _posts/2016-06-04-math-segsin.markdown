@@ -1,4 +1,5 @@
 ---
+permalink: /754
 layout: post
 title:  "SEGSIN"
 categories: math

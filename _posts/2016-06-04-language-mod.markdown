@@ -1,4 +1,5 @@
 ---
+permalink: /670
 layout: post
 title:  "MOD"
 categories: language

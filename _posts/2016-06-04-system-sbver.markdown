@@ -1,4 +1,5 @@
 ---
+permalink: /1523
 layout: post
 title:  "SBVER"
 categories: system

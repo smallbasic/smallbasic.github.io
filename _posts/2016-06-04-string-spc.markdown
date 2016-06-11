@@ -1,4 +1,5 @@
 ---
+permalink: /797
 layout: post
 title:  "SPC"
 categories: string

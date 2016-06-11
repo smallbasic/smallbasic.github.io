@@ -1,4 +1,5 @@
 ---
+permalink: /529
 layout: post
 title:  "LINPUT"
 categories: console

@@ -1,4 +1,5 @@
 ---
+permalink: /567
 layout: post
 title:  "UBOUND"
 categories: data

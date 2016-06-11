@@ -1,4 +1,5 @@
 ---
+permalink: /609
 layout: post
 title:  "LOF"
 categories: file

@@ -1,4 +1,5 @@
 ---
+permalink: /748
 layout: post
 title:  "RND"
 categories: math

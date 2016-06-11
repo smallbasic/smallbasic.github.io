@@ -1,4 +1,5 @@
 ---
+permalink: /795
 layout: post
 title:  "RTRIM"
 categories: string

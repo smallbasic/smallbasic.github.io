@@ -1,4 +1,5 @@
 ---
+permalink: /691
 layout: post
 title:  "WEND"
 categories: language

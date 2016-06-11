@@ -1,4 +1,5 @@
 ---
+permalink: /684
 layout: post
 title:  "LABEL"
 categories: language

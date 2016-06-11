@@ -1,4 +1,5 @@
 ---
+permalink: /1448
 layout: post
 title:  "TICKS"
 categories: date

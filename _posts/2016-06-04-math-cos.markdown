@@ -1,4 +1,5 @@
 ---
+permalink: /722
 layout: post
 title:  "COS"
 categories: math

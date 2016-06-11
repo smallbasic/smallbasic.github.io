@@ -1,4 +1,5 @@
 ---
+permalink: /525
 layout: post
 title:  "FORM"
 categories: console

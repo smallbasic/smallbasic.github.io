@@ -1,4 +1,5 @@
 ---
+permalink: /697
 layout: post
 title:  "M3APPLY"
 categories: math

@@ -1,4 +1,5 @@
 ---
+permalink: /539
 layout: post
 title:  "INKEY"
 categories: console

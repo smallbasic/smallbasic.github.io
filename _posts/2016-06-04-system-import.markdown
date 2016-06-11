@@ -1,4 +1,5 @@
 ---
+permalink: /1441
 layout: post
 title:  "IMPORT"
 categories: system

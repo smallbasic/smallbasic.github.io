@@ -1,4 +1,5 @@
 ---
+permalink: /679
 layout: post
 title:  "END"
 categories: language

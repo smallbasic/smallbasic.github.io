@@ -1,4 +1,5 @@
 ---
+permalink: /766
 layout: post
 title:  "TAN"
 categories: math

@@ -1,4 +1,5 @@
 ---
+permalink: /1430
 layout: post
 title:  "ISMAP"
 categories: data

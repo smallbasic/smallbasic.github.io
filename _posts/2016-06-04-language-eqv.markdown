@@ -1,4 +1,5 @@
 ---
+permalink: /665
 layout: post
 title:  "EQV"
 categories: language

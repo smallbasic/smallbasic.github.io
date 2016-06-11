@@ -1,4 +1,5 @@
 ---
+permalink: /693
 layout: post
 title:  "DERIV"
 categories: math

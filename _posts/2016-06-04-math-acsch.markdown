@@ -1,4 +1,5 @@
 ---
+permalink: /712
 layout: post
 title:  "ACSCH"
 categories: math

@@ -1,4 +1,5 @@
 ---
+permalink: /784
 layout: post
 title:  "LEFTOF"
 categories: string

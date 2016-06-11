@@ -1,4 +1,5 @@
 ---
+permalink: /615
 layout: post
 title:  "DRAW"
 categories: graphics

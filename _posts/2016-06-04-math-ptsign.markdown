@@ -1,4 +1,5 @@
 ---
+permalink: /746
 layout: post
 title:  "PTSIGN"
 categories: math

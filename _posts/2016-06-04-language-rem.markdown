@@ -1,4 +1,5 @@
 ---
+permalink: /688
 layout: post
 title:  "REM"
 categories: language

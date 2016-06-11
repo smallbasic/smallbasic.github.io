@@ -1,4 +1,5 @@
 ---
+permalink: /682
 layout: post
 title:  "GOTO"
 categories: language

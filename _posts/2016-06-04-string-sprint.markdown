@@ -1,4 +1,5 @@
 ---
+permalink: /770
 layout: post
 title:  "SPRINT"
 categories: string

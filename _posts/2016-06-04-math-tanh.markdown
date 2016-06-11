@@ -1,4 +1,5 @@
 ---
+permalink: /767
 layout: post
 title:  "TANH"
 categories: math

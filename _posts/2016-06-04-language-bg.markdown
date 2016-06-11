@@ -1,4 +1,5 @@
 ---
+permalink: /1428
 layout: post
 title:  "BG"
 categories: language

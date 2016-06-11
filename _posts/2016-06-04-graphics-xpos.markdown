@@ -1,4 +1,5 @@
 ---
+permalink: /635
 layout: post
 title:  "XPOS"
 categories: graphics

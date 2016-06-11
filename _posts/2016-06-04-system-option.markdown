@@ -1,4 +1,5 @@
 ---
+permalink: /1442
 layout: post
 title:  "OPTION"
 categories: system

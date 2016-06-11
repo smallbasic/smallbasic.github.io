@@ -1,4 +1,5 @@
 ---
+permalink: /542
 layout: post
 title:  "DELETE"
 categories: data

@@ -1,4 +1,5 @@
 ---
+permalink: /790
 layout: post
 title:  "REPLACE"
 categories: string

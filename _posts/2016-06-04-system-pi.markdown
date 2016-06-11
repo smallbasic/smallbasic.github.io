@@ -1,4 +1,5 @@
 ---
+permalink: /1524
 layout: post
 title:  "PI"
 categories: system

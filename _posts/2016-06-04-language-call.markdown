@@ -1,4 +1,5 @@
 ---
+permalink: /637
 layout: post
 title:  "CALL"
 categories: language

@@ -1,4 +1,5 @@
 ---
+permalink: /663
 layout: post
 title:  "BAND"
 categories: language

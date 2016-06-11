@@ -1,4 +1,5 @@
 ---
+permalink: /672
 layout: post
 title:  "NOR"
 categories: language

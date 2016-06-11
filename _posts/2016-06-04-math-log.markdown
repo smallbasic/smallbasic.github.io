@@ -1,4 +1,5 @@
 ---
+permalink: /737
 layout: post
 title:  "LOG"
 categories: math

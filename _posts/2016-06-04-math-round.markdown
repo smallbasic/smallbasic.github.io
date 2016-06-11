@@ -1,4 +1,5 @@
 ---
+permalink: /749
 layout: post
 title:  "ROUND"
 categories: math

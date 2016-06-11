@@ -1,4 +1,5 @@
 ---
+permalink: /716
 layout: post
 title:  "ASINH"
 categories: math

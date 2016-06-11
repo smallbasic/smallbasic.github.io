@@ -1,4 +1,5 @@
 ---
+permalink: /535
 layout: post
 title:  "PRINT"
 categories: console

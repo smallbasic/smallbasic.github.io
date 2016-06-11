@@ -1,4 +1,5 @@
 ---
+permalink: /664
 layout: post
 title:  "BOR"
 categories: language

@@ -1,4 +1,5 @@
 ---
+permalink: /744
 layout: post
 title:  "PTDISTLN"
 categories: math

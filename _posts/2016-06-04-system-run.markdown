@@ -1,4 +1,5 @@
 ---
+permalink: /818
 layout: post
 title:  "RUN"
 categories: system

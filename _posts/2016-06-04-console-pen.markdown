@@ -1,4 +1,5 @@
 ---
+permalink: /533
 layout: post
 title:  "PEN"
 categories: console

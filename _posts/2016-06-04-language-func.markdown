@@ -1,4 +1,5 @@
 ---
+permalink: /651
 layout: post
 title:  "FUNC"
 categories: language

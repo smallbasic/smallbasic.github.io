@@ -1,4 +1,5 @@
 ---
+permalink: /624
 layout: post
 title:  "WINDOW"
 categories: graphics

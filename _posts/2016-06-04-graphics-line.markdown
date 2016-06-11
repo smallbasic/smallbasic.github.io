@@ -1,4 +1,5 @@
 ---
+permalink: /618
 layout: post
 title:  "LINE"
 categories: graphics

@@ -1,4 +1,5 @@
 ---
+permalink: /743
 layout: post
 title:  "POW"
 categories: math

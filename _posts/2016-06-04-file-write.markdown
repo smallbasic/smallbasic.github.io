@@ -1,4 +1,5 @@
 ---
+permalink: /600
 layout: post
 title:  "WRITE"
 categories: file

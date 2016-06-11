@@ -1,4 +1,5 @@
 ---
+permalink: /678
 layout: post
 title:  "CONST"
 categories: language

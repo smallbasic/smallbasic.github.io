@@ -1,4 +1,5 @@
 ---
+permalink: /587
 layout: post
 title:  "CLOSE"
 categories: file

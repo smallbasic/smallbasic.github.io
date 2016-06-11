@@ -1,4 +1,5 @@
 ---
+permalink: /1449
 layout: post
 title:  "TIMER"
 categories: date

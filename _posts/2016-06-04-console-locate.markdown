@@ -1,4 +1,5 @@
 ---
+permalink: /530
 layout: post
 title:  "LOCATE"
 categories: console

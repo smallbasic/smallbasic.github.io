@@ -1,4 +1,5 @@
 ---
+permalink: /780
 layout: post
 title:  "HEX"
 categories: string

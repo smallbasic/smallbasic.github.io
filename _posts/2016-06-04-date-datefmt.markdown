@@ -1,4 +1,5 @@
 ---
+permalink: /576
 layout: post
 title:  "DATEFMT"
 categories: date

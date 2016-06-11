@@ -1,4 +1,5 @@
 ---
+permalink: /1439
 layout: post
 title:  "CHAIN"
 categories: system

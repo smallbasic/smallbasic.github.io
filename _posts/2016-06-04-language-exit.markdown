@@ -1,4 +1,5 @@
 ---
+permalink: /648
 layout: post
 title:  "EXIT"
 categories: language

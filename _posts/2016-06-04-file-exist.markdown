@@ -1,4 +1,5 @@
 ---
+permalink: /604
 layout: post
 title:  "EXIST"
 categories: file

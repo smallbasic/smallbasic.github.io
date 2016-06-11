@@ -1,4 +1,5 @@
 ---
+permalink: /623
 layout: post
 title:  "VIEW"
 categories: graphics

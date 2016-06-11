@@ -1,4 +1,5 @@
 ---
+permalink: /614
 layout: post
 title:  "COLOR"
 categories: graphics

@@ -1,4 +1,5 @@
 ---
+permalink: /586
 layout: post
 title:  "CHMOD"
 categories: file

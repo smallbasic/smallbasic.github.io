@@ -1,4 +1,5 @@
 ---
+permalink: /534
 layout: post
 title:  "PLAY"
 categories: console

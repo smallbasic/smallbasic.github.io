@@ -1,4 +1,5 @@
 ---
+permalink: /707
 layout: post
 title:  "ACOS"
 categories: math

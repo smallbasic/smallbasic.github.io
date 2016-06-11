@@ -1,4 +1,5 @@
 ---
+permalink: /783
 layout: post
 title:  "LEFT"
 categories: string

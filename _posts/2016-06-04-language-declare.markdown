@@ -1,4 +1,5 @@
 ---
+permalink: /1419
 layout: post
 title:  "DECLARE"
 categories: language

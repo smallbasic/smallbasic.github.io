@@ -1,4 +1,5 @@
 ---
+permalink: /595
 layout: post
 title:  "RENAME"
 categories: file

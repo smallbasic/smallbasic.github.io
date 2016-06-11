@@ -1,4 +1,5 @@
 ---
+permalink: /1426
 layout: post
 title:  "CATCH"
 categories: language

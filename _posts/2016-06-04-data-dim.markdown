@@ -1,4 +1,5 @@
 ---
+permalink: /570
 layout: post
 title:  "DIM"
 categories: data

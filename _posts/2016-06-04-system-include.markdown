@@ -1,4 +1,5 @@
 ---
+permalink: /1462
 layout: post
 title:  "INCLUDE"
 categories: system

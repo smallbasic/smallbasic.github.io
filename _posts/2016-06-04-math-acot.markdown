@@ -1,4 +1,5 @@
 ---
+permalink: /709
 layout: post
 title:  "ACOT"
 categories: math

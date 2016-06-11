@@ -1,4 +1,5 @@
 ---
+permalink: /591
 layout: post
 title:  "KILL"
 categories: file

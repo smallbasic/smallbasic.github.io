@@ -1,4 +1,5 @@
 ---
+permalink: /602
 layout: post
 title:  "BGETC"
 categories: file

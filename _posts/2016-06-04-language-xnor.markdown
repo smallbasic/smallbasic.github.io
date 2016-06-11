@@ -1,4 +1,5 @@
 ---
+permalink: /675
 layout: post
 title:  "XNOR"
 categories: language

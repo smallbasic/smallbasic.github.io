@@ -1,4 +1,5 @@
 ---
+permalink: /739
 layout: post
 title:  "MAX"
 categories: math

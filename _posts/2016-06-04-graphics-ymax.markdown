@@ -1,4 +1,5 @@
 ---
+permalink: /1527
 layout: post
 title:  "YMAX"
 categories: graphics

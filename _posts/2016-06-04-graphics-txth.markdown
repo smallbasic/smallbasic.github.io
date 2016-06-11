@@ -1,4 +1,5 @@
 ---
+permalink: /633
 layout: post
 title:  "TXTH"
 categories: graphics

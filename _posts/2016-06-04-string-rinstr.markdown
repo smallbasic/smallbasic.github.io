@@ -1,4 +1,5 @@
 ---
+permalink: /794
 layout: post
 title:  "RINSTR"
 categories: string

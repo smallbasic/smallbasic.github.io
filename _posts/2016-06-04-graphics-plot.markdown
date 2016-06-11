@@ -1,4 +1,5 @@
 ---
+permalink: /620
 layout: post
 title:  "PLOT"
 categories: graphics

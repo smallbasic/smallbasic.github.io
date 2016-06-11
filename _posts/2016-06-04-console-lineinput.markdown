@@ -1,4 +1,5 @@
 ---
+permalink: /528
 layout: post
 title:  "LINEINPUT"
 categories: console

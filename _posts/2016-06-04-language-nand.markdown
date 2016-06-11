@@ -1,4 +1,5 @@
 ---
+permalink: /671
 layout: post
 title:  "NAND"
 categories: language

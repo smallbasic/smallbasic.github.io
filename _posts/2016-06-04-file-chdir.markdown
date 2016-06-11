@@ -1,4 +1,5 @@
 ---
+permalink: /585
 layout: post
 title:  "CHDIR"
 categories: file

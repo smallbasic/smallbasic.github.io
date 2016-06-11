@@ -1,4 +1,5 @@
 ---
+permalink: /1425
 layout: post
 title:  "TRY"
 categories: language

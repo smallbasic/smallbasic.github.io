@@ -1,4 +1,5 @@
 ---
+permalink: /653
 layout: post
 title:  "LOCAL"
 categories: language

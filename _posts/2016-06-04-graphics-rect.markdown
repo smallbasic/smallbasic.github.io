@@ -1,4 +1,5 @@
 ---
+permalink: /622
 layout: post
 title:  "RECT"
 categories: graphics

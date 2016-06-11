@@ -1,4 +1,5 @@
 ---
+permalink: /753
 layout: post
 title:  "SEGLEN"
 categories: math

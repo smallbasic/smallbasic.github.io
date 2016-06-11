@@ -1,4 +1,5 @@
 ---
+permalink: /1423
 layout: post
 title:  "USG"
 categories: language

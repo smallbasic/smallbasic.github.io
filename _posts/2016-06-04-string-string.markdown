@@ -1,4 +1,5 @@
 ---
+permalink: /800
 layout: post
 title:  "STRING"
 categories: string

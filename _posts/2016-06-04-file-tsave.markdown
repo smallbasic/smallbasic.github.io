@@ -1,4 +1,5 @@
 ---
+permalink: /599
 layout: post
 title:  "TSAVE"
 categories: file

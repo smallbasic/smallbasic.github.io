@@ -1,4 +1,5 @@
 ---
+permalink: /531
 layout: post
 title:  "LOGPRINT"
 categories: console
