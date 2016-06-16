@@ -23,7 +23,7 @@ image
 
 As far as I know FORM has replaced DOFORM. This example, since it is longer,  will be in the Code Demo section of the Code Library as well.
 Here is Chris code example of FORM's usage. As you can see, it requires knowledge of buttons and their properties. Also be forewarned this code will create the file: f.frm. I may have modified a few items playing with the code since Chris had posted it.
-```
+<pre>
 
 f.handleKeys = 0
 ' create some buttons
@@ -111,6 +111,6 @@ func HelloWorld
 ? "hello world"
 end
 
-```
+</pre>
 
 

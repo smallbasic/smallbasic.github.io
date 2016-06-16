@@ -11,16 +11,16 @@ WRITE #fileN; var1 [, ...]
 Store variables to a file as binary data.
 
 
-The READ/WRITE command set is used to store variables to a file as binary data.
-The common problem with INPUT/PRINT set is there are many conflicts with data.
-PRINT #1; "Hello, world"
-The above example only wrote one string and you want read it in one variable, but this is impossible for INPUT command to understand, because INPUT finds the separator comma, so it thinks there are two variables not one.
-So, now, you can store arrays, strings etc and what you write is what you will read the next time.
+<p>The READ/WRITE command set is used to store variables to a file as binary data.
+<p>The common problem with INPUT/PRINT set is there are many conflicts with data.
+<pre>PRINT #1; "Hello, world"
+<p>The above example only wrote one string and you want read it in one variable, but this is impossible for INPUT command to understand, because INPUT finds the separator comma, so it thinks there are two variables not one.
+<p>So, now, you can store arrays, strings etc and what you write is what you will read the next time.
 _The parameters can be variables ONLY._
 _Its very bad idea to mixed READ/WRITE commands with INPUT/PRINT commands in the same file._
 
 This is how to store numeric arrays into files, WRITE # and read them out again, READ #. The graphic example is longer but also useful as utility...
-```
+<pre>
 
 ' WRITE READ.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-03
 const secwide=200
@@ -86,10 +86,10 @@ sub drwsec(leftx,topy)
   next
 end 
 
-```
+</pre>
 
 
-```
+<pre>
 
 ' This demo sets properties of each tile in a matrix,
 ' then it stores the array in config file,
@@ -135,5 +135,5 @@ Close #1
 ? "Hide/Show [1/0] this tile: "; tile(10, 2, P_HIDE)
 Pause
 
-```
+</pre>
 

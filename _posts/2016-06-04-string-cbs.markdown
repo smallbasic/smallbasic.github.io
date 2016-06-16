@@ -10,7 +10,7 @@ CBS (s)
 
 Converts (C)-style strings to (B)ASIC-style (S)trings.
 
-```
+<pre>
 
 ' See 'C - Strings' (http://www.tutorialspoint.com/cprogramming/c_strings.htm)
 ' to learn about strings in C language.
@@ -40,5 +40,5 @@ Const SP = " <--> "
 ? "Hello \\x22World!\\x22"; SP; cs("Hello \\x22World!\\x22")  ' \\xhh char as hexadecimal number
 Pause 
 
-```
+</pre>
 

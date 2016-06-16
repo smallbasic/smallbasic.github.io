@@ -10,7 +10,7 @@ ARRAY [var | expr]
 
 Creates a ARRAY or MAP variable from the given string or expression
 
-```
+<pre>
 
 ' See also Article "New features" -> "User defined structures".
 Def uline(text) = Cat(2) + text + Cat(-2) ' Underline text
@@ -84,7 +84,7 @@ b.title = "Top-Left"
 ?:?:? " Press any key..."
 Pause
 
-```
+</pre>
 
 Thank you.
 Ah, new stuff!
@@ -114,13 +114,13 @@ Here I quote Chris from Home -- Forums -- Project help -- Tile Map Editor:
 <blockquote>
 ...
 If you click File / Export and save the output in JSON format, you can then use the output in a SmallBASIC program like this:
-```
+<pre>
 
 tload "map.json" , buffer, 1
 tiles= array(buffer)
 ? tiles.layers(0).data(0)
 
-```
+</pre>
 
 ...
 </blockquote>
@@ -129,7 +129,7 @@ That's useful but can it be applied to other ARRAY types? For example I can make
 I've copy this code from JSON Wikipedia, it seems like JSON supports more then one 
 dimension according to the example... 
 The following example shows a possible JSON representation describing a person:
-```
+<pre>
 
 {
   "firstName": "John",
@@ -160,7 +160,7 @@ The following example shows a possible JSON representation describing a person:
   "spouse": null
 }
 
-```
+</pre>
 
 This what Chris wrote at Home -- Forums -- Announcements (10/02/2014):
 <blockquote>
@@ -181,7 +181,7 @@ Home -- Forums -- Project help -- Tile Map Editor -- coffee first...
 It shows how easy is to save and load ordinary array with more than one dimension, by using the WRITE and READ keywords to save and load array variables in binary format.
 I am trying to make a dictionary with two columns as part of writing an assembler. I can SEARCH the first column and use (0,1) then (1,1) to look up the second column if I REDIM the array loaded from a file.
 But I cannot see a way to load the file with two dimensions.
-```
+<pre>
 
 REM SmallBASIC
 REM created: 03/04/2016
@@ -228,11 +228,11 @@ SEARCH i, "JEQ", r
 ? "jump   = ",i(0,r)
 ? "binary = ",i(1,r)
 
-```
+</pre>
 
 See:  Home -- Language reference -- File -- TLOAD -- How to convert TLOAD's array into nested array
 Thanks for your help but REDIM works for me.
-```
+<pre>
 
 ? "OPEN \\"dest\\" FOR INPUT AS #1"
 OPEN "dest" FOR INPUT AS #1

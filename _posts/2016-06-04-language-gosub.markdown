@@ -10,7 +10,7 @@ GOSUB label
 
 Causes program execution to branch to the specified label; when the RETURN command is encountered, execution branches to the command immediately following the most recent GOSUB command.
 
-```
+<pre>
 
 ' Note: using SUB instead of GOSUB is much more easy and modular.
   
@@ -37,5 +37,5 @@ Label routine1
   Print x
 Return
 
-```
+</pre>
 

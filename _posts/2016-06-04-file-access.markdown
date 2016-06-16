@@ -12,7 +12,7 @@ Returns the access rights of the file.
 
 
 * file - A string expression that follows OS file naming conventions.
-Returns file permissions as per chmod() and stat() system calls.
+<p>Returns file permissions as per chmod() and stat() system calls.
 The bits (in octal):
 |04000| set user ID on execution|
 |02000| set group ID on execution|

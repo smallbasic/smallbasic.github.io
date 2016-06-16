@@ -10,7 +10,7 @@ a NAND b
 
 Bitwise exclusive NOT AND.
 
-```
+<pre>
 
 ' Two's complement is the standard way of representing negative integers in binary. 
 ' The sign is changed by inverting all of the bits and adding one.
@@ -25,5 +25,5 @@ While True Do
   Print
 Wend
 
-```
+</pre>
 

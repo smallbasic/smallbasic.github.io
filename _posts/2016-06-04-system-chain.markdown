@@ -10,7 +10,7 @@ CHAIN source
 
 Compile and run the given source. Source can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process.
 
-```
+<pre>
 
 ' Note: CHAIN behaves like EVAL function in other languages.
 Option Base 1 ' (for 'IN' keyword which is 1-Based)
@@ -54,9 +54,9 @@ Color 15 ' print the return value from file
 ? " (Return value SB1 is: "; Env("SB1"); ")" ' (i is 6)
 Pause
 
-```
+</pre>
 
-```
+<pre>
 
 Const FILENAME = "demo.bas"
 ' Create demo bas file (could be any SmallBASIC file):
@@ -89,9 +89,9 @@ Color 7:  ? "I'm The Parent Program..."
 Color 15: ? "Child program returned value: "; Environ("SB1")
 Pause
 
-```
+</pre>
 
-```
+<pre>
 
 ' Dedicated to MGA.
 ' s is any legal SmallBASIC Math Expression as String, e.g. "1 + 2 / 4"
@@ -112,5 +112,5 @@ End Func
 ? eval("Rad((45 * 3) - 20) * 2")
 Pause
 
-```
+</pre>
 

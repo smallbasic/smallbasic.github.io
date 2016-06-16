@@ -12,7 +12,7 @@ Returns the position of the first occurrence of the string s2 into string s1 (st
 
 
 
-```
+<pre>
 
 ' INSTR oddity.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-08
 'this oddity was discovered with inkey failure to work as expected
@@ -36,5 +36,5 @@ pause
 if ink="X" then ? "Goodbye":end
 wend
 
-```
+</pre>
 

@@ -14,16 +14,16 @@ NOT and ! take only the right side argument:
 NOT b
 ! b
 It's wrong to think that the left side argument (a) is part of the result.
-And in some cases it leads to an error, for example: ```
+And in some cases it leads to an error, for example: <pre>
 PRINT  BIN(1 Not 1) ' <-- this is error
-```
+</pre>
 
 
 Binary operators work on 2 arguments a,b: +,-,*,/^ are all binary operators needing 2 arguments to do their thing.
 shian is saying NOT or ! is NOT Binary but Unary using only 1 argument located at right of NOT or !
 So it is very misleading to show a NOT b 
 If you actually try to print that you will get an error using (a not b) and gobbley-gook for ? a not b
-```
+<pre>
 
 'NOT is a Unary operator.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
 'it makes anything true > false = 0
@@ -39,7 +39,7 @@ a=20
 '? (a NOT b);" (a!b) should error because ! only works on b" '(EXPR): Missing ')'
 pause
 
-```
+</pre>
 
 Thanks shian, on my own I would never have noticed this.
 to be precise: NOT is not Bitwise operator, it is a logical operator.

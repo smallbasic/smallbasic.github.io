@@ -16,7 +16,7 @@ For example:
 10 PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
 20 PRINT CHR(27) + "[3mThis is italic" + CHR(27) + "[0m"
 30 PRINT CHR(27) + "[4mThis is underline"
-```
+<pre>
 
 ' display the ASCII and the extended tables:
 For n = 0 To 255
@@ -57,5 +57,5 @@ Data "dc4", "nak", "syn", "etb", "can" ' 20..24
 Data "em" , "eof", "esc", "fs" , "gs"  ' 25..29 
 Data "rs" , "us"  ' 30..31
 
-```
+</pre>
 

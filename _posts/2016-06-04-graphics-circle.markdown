@@ -10,7 +10,7 @@ CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]
 
 Draws a circle (or an ellipse if the aspect is specified).
 
-```
+<pre>
 
 ' Aspect ratio is relation between width-height of a circle,
 ' for example:
@@ -57,9 +57,9 @@ At CENTER(0) - (Txtw(TEXT) \\ 2), CENTER(1) - (Txth(TEXT) \\ 2)
 Color 15: Print TEXT;
 Pause
 
-```
+</pre>
 
-```
+<pre>
 
 'Another aspect or circle.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
 'with aspect it is not the same old circle
@@ -79,5 +79,5 @@ while 1
   if a=-.1 then dir=dir*-1
 wend
 
-```
+</pre>
 

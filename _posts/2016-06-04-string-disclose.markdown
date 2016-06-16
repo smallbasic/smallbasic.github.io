@@ -11,7 +11,7 @@ DISCLOSE (str[, pairs [, ignore-pairs]])
 Discloses a string.
 
 
-Default pairs and ignore pairs
+<p>Default pairs and ignore pairs
 table{border:1px solid black;padding:8px}.
 |First non white-space character|Check|Ignore|
 |"|""|''|

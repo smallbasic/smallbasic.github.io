@@ -19,7 +19,7 @@ First off, Trig lessons started in COS comments of this Language reference, chec
  pi/6 = 60   degrees 1/6 circle
 pi/12= 30   degree s 1/12 circle
 3rd, Here is a demo of cool stuff you can do with SIN and COS:
-```
+<pre>
 
 'Drawing spiral around point.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
 'using SIN and COS in a most common situation drawing at an angle from a point
@@ -56,21 +56,21 @@ next
 ?:? "press any to end..."
 pause
 
-```
+</pre>
 
 this is the crucial line:
-```
+<pre>
 
 line cx,cy step 10*(degree^.5)*cos(rad(degree)),10*(degree^.5)*sin(rad(degree)),rgb(0,0,degree\\360*128+127)
 
-```
+</pre>
 
 the multiple 10*(degree^.5) to both SIN and COS controls how far the extension of the line will be from point cx,cy "origin"
 here as the degrees increase so did the extension out which cause the spiral effect
 The COS calculation was used for x "the run" or horizontal component and the SIN calculation was used for y "the rise" or vertical component.
 This is really, really important to use and play with even if you don't understand all the details, the code will serve you well.
 Still I did my best to explain how this works, so it is a bit wordy... 
-```
+<pre>
 
 ' sin and cos use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-15
 '                    SIN and COS work as a team
@@ -138,7 +138,7 @@ while 1
 wend
 'you are just a few simple steps away from spinning these polygons!
 
-```
+</pre>
 
 Perfect.
 1. All elementary information in a single place. 
@@ -152,7 +152,7 @@ Can I get the length of an Arc in let's say millimetres? As if it was a regular 
 
 (arc length discussion picked up on forum)
 Here is graph of the three main Trig ratios:
-```
+<pre>
 
 ' sin-cos-tan.bas from FLTK samples
 cls
@@ -168,5 +168,5 @@ pset i,ymax/2-tan(i*2*pi/ymax)*ymax/4 color 12
 next
 pause
 
-```
+</pre>
 

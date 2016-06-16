@@ -26,7 +26,7 @@ IF expression1 [THEN]
     .
 ]
 ENDIF| FI
-Block-style IF.
+<p>Block-style IF.
 Causes SmallBASIC to make a decision based on the value of an expression.
 * expression  - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.
 * commands - One or more commands.
@@ -40,7 +40,7 @@ p.. THEN is optional, but if its defined it must be the last keyword on its
 line; if anything other than a comment follows on the same line with
 THEN, BASIC thinks it's reading a single-line IF/THEN/ELSE construct.
 IF blocks may be nested.
-x=1
+<pre>x=1
 IF x=1 THEN
     PRINT "true"
 ELSE
@@ -55,11 +55,11 @@ ELSE
     PRINT "false"
 FI
 *Single-line IF*
-IF expression THEN [num-label]|[command] [ELSE [num-label]|[command]]
-Causes SmallBASIC to make a decision based on the value of an expression.
+<pre>IF expression THEN [num-label]|[command] [ELSE [num-label]|[command]]
+<p>Causes SmallBASIC to make a decision based on the value of an expression.
 * expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.
 * command - Any legal command or a numeric label. If a number is specified, it is equivalent to a GOTO command with the specified numeric-label.
-' Single-line IF
+<pre>' Single-line IF
 x=1
 IF x=1 THEN PRINT "true" ELSE PRINT "false"
 ...

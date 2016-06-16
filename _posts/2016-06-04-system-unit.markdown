@@ -11,7 +11,7 @@ UNIT name
 Declares the source module as a unit. Units are a set of procedures, functions and/or variables that can be used by another program or unit.
 
 The UNIT file is strlib.bas:
-```
+<pre>
 
 ' File: strlib.bas
 ' ------------ 
@@ -62,10 +62,10 @@ Func Rset(s, b)
   Fi
 End
 
-```
+</pre>
 
 Demo file, demo.bas, which is using strlib.bas above:
-```
+<pre>
 
 ' Here we declare that this file is using another UNIT file.
 ' Note: The actual file name must be in lower case for Linux OS.
@@ -82,5 +82,5 @@ Locate 6, 30
 Print Strlib.Rset("-->>  ", 25)
 Pause
 
-```
+</pre>
 

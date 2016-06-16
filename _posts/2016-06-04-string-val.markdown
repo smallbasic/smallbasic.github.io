@@ -11,7 +11,7 @@ VAL (s)
 Returns the numeric value of string s.
 
 Here is an opportunity for enhancing SmallBASIC's function VAL, this EVAL is only beginning of what might be done.
-```
+<pre>
 
 ' VAL test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-05
 s1="123.234*4+1000/2"
@@ -43,7 +43,7 @@ func eval(numericexpressionstring)
   eval=e        '<=== normal people and usage might want this
 end
 
-```
+</pre>
 
 
 Math EVAL function = evaluates a string as though it were an expression and returns a result.

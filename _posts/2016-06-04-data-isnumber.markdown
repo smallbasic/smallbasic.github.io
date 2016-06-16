@@ -11,7 +11,7 @@ ISNUMBER (x)
 Returns true if x is a number (or it can be converted to a number).
 
 
-? ISNUMBER(12)          :REM true
+<pre>? ISNUMBER(12)          :REM true
 ? ISNUMBER("12")        :REM true
 ? ISNUMBER("12E+2")     :REM true
 ? ISNUMBER("abc")       :REM false

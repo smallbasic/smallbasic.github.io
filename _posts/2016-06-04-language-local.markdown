@@ -10,7 +10,7 @@ LOCAL
 
 Declare local variables inside a SUB or FUNC. Local variables no longer exist once the SUB or FUNC has returned.
 
-```
+<pre>
 
 ' LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
 'with the LOCAL keyword varaibles are treated separately 
@@ -34,9 +34,9 @@ local var
 var=1000
 return
 
-```
+</pre>
 
-```
+<pre>
 
 ' DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
 'can I use DEF locally in a sub without interfering with main variable or DEF names
@@ -52,5 +52,5 @@ sub mySub()
 ? "Hi, ";aboutMe
 end
 
-```
+</pre>
 

@@ -11,7 +11,7 @@ FORMAT (format, val)
 Returns a formated string.
 
 
-Numbers:
+<p>Numbers:
 * '#' Digit or space
 * 0 Digit or zero
 * ^ Stores a number in exponential format. Unlike QB's USING format this is a place-holder like #.
@@ -19,7 +19,7 @@ Numbers:
 * , Separator.
 * - Stores minus if the number is negative.
 * + Stores the sign of the number.
-Strings:
+<p>Strings:
 * & Stores a string expression without reformatting it.
 * ! Stores only the first character of a string expression.
 * \\\\  Stores only the first n + 2 characters of a string expression, where n is the number of spaces between the two backslashes. Unlike QB, there can be literals inside the \\ \\. These literals are inserted in the final string.
@@ -27,7 +27,7 @@ Strings:
 ? FORMAT("\\  - \\", "abcde") : REM prints "abc-de"
 
 PRINT USING and FORMAT use same or similar character codes, here are some practical examples of use, including the creating of a reusable Money function that returns a flexible length string for a money amount (dollars and cents format).
-```
+<pre>
 
 ' USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
 'PRINT USING is excellent for columns of numbers
@@ -72,7 +72,7 @@ func money(dollarsandcents) 'oh - numbers are saved
   money="$ "+trim(format("###,###,###,###,###,###.00",dollarsandcents))
 end
 
-```
+</pre>
 
 ' Must add extra space after '\\', if not there is an error:
 ? format("\\ _ \\", "abcde")   ' --> error missing ')'

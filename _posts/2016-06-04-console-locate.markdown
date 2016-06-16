@@ -10,7 +10,7 @@ LOCATE y, x
 
 Moves the console cursor to the specified position. x,y are in character cells.
 
-```
+<pre>
 
 ' calculate y and x in characters cells:
 Def lines = (Ymax + 1) \\ Txth("x")   ' maximum lines in window
@@ -52,9 +52,9 @@ While Inkey <> Chr(27)
   Endif
 Wend
 
-```
+</pre>
 
-```
+<pre>
 
 ' LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
 ' LOCATE row, column - sets the next print location on screen, rows down, columns across
@@ -81,5 +81,5 @@ FOR ASCnumber=30 to 129   'note ASC(32) = space so wont see anything in Table
 NEXT
 PAUSE
 
-```
+</pre>
 

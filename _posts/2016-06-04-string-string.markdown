@@ -10,7 +10,7 @@ STRING ( count [,start | s] )
 
 Creates a new string of count length.
 
-```
+<pre>
 
 Def rainbow = Floor((Rnd * 100) Mod 16) ' random text color 0 to 15
 ' parameters for printing a box:
@@ -41,11 +41,11 @@ While True Do
   Pause
 Wend
 
-```
+</pre>
 
 I wasted a day trying to figure what "Invalid parameter" was causing a Mastermind program from crashing under certain circumstances. 
 Turns out STRING can't handle a 0 value in first argument. It would have been nice if the program stopped on that statement instead all the other places it had.
-```
+<pre>
 
 'in this little example code does stop with cursor on the wrong line
 cows = 2
@@ -55,7 +55,7 @@ cows =0
 pause
 end
 
-```
+</pre>
 
 How to understand this syntax "STRING ( count [,start | s] )":
 ' start is an ASCII value of a string character:

@@ -12,7 +12,7 @@ Returns the value of a specified entry in the current environment table. If the 
 
 ENV can be used as SUB for setting or erasing Environment Variables (EV) and ENV can be used as a FUNCtion for returning a particular EV or the whole set of them into an array using:
 EVarray=ENV("") 
-```
+<pre>
 
 ' ENV test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-10
 'OK this works 
@@ -51,5 +51,5 @@ pause
 'yes, it was erased because when I ran same code a second time, it wasn't there THEN!
 ' so it didn't just LOOK erased from a bad call
 
-```
+</pre>
 

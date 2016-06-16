@@ -11,7 +11,7 @@ SEARCH A, key, BYREF ridx [USE cmpfunc]
 Scans an array for the key. If key is not found the SEARCH command returns (in ridx) the value. (LBOUND(A)-1). In default-base arrays that means -1. The cmpfunc (if its specified) it takes 2 vars to compare. It must return 0 if x = y; non-zero if x <> y.
 
 
-FUNC cmp(x,y)
+<pre>FUNC cmp(x,y)
   cmp=!(x=y)
 END
 ...

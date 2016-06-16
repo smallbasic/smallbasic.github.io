@@ -10,7 +10,7 @@ a XOR b
 
 Bitwise exclusive OR. Equivalent syntax to: a ~ b
 
-```
+<pre>
 
 ' return true if n is ASCII code of letter (A-Z|a-z); e.g. ? isAbc(Asc("z"))
 Def isAbc(n) = ((n >= 65 And n <= 90) Or (n >= 97 And n <= 122))
@@ -45,7 +45,7 @@ Repeat
   Pause
 Until s = ""
 
-```
+</pre>
 
 XOR is Not equivalent syntax to: a ~ b
 ~ is bitwise NOT, for example: ~b

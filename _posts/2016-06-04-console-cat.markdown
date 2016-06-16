@@ -11,9 +11,9 @@ CAT (x)
 Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline, -2 = underline-off, 3 = reverse, -3 = reverse-off.
 
 
-? cat(1);"Bold";cat(0)
+<pre>? cat(1);"Bold";cat(0)
 
-```
+<pre>
 
 ' Note: tested and works with SB 0.12.2 on Linux 64-bit.
 Color 14, 1
@@ -29,9 +29,9 @@ Color 14, 1
 ? Cat(2); Cat(3); "This is Underline & Reverse text (with default colors)"; Cat(0)
 Pause
 
-```
+</pre>
 
-```
+<pre>
 
 ' Note: tested and works with SB 0.12.2 on Linux 64-bit.
 ' See also Article "ESCAPE codes" for more codes.
@@ -63,9 +63,9 @@ Color 14 ' yellow text color
 ? reverse(uline("This is Underline & Reverse text (with default colors)"))
 Pause
 
-```
+</pre>
 
-```
+<pre>
 
 ' Note:
 ' * You may Include "csi_const.bas" file in another file to make your code more clear.
@@ -140,5 +140,5 @@ Const CSI_ALERTBOX = CSI + " A"  ' Displays an Alert Box
 Const CSI_KEYBOARD = CSI + " K"  ' Displays the Virtual Keyboard
 Const CSI_LABEL    = CSI + " L"  ' Displays a Label at the bottom of the screen
 
-```
+</pre>
 

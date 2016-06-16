@@ -14,7 +14,7 @@ Draws a chart of array values in the rectangular area x1,y1,x2,y2. Styles: 0 = s
 Const LINECHART = 1 
 Const BARCHART = 2
 
-```
+<pre>
 
 demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]
 Color 0, 15
@@ -32,5 +32,5 @@ For type = LINECHART To BARCHART Do ' 1 to 2
   Next 
 Next
 
-```
+</pre>
 

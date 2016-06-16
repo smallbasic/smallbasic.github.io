@@ -11,9 +11,9 @@ REPEAT ... UNTIL expr
 Begins the definition of a REPEAT/UNTIL loop.
 
 
-SmallBasic starts executing the commands between the REPEAT and UNTIL commands. When SmallBasic encounters the UNTIL command, it evaluates the expression parameter. If that parameter is zero (false), the process will be repeated; otherwise, execution continues at the next command.
-REPEAT/UNTIL loops may be nested to any level of complexity, but there must be an UNTIL for each REPEAT.
-C=1
+<p>SmallBasic starts executing the commands between the REPEAT and UNTIL commands. When SmallBasic encounters the UNTIL command, it evaluates the expression parameter. If that parameter is zero (false), the process will be repeated; otherwise, execution continues at the next command.
+<p>REPEAT/UNTIL loops may be nested to any level of complexity, but there must be an UNTIL for each REPEAT.
+<pre>C=1
 REPEAT
     PRINT C
     C=C+1

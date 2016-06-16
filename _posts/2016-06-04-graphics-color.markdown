@@ -10,7 +10,7 @@ COLOR foreground-color [, background-color]
 
 Specifies the foreground and background colors.
 
-```
+<pre>
 
 Print "0 to 15 colors available for printing text..."
 Print
@@ -25,10 +25,10 @@ For back = 0 To 7 Do
 Next
 Pause
 
-```
+</pre>
 
 
-```
+<pre>
 
 Print "Try color printing with some RGB shades"
 Print
@@ -44,10 +44,10 @@ For shade = 0 To 10
 Next
 Pause
 
-```
+</pre>
 
 Here is chart of the 16 QB colors and their numbers:
-```
+<pre>
 
 'QB color chart of 16 colors for 0 = black to 15 = bright white
 dy=ymax/16
@@ -57,11 +57,11 @@ for i=0 to 15
 next
 pause
 
-```
+</pre>
 
 SmallBASIC recognizes two color Systems RGB(red,green,blue) and QB colors 0-15 (3 systems if you count RGBF which is like RGB but instead of 0-255 for each of red, green blue in RGB, the RGBF uses scale 0-1 for each of red,green, blue).
 You may <strong>Include</strong> "color_const.bas" file in another file to make your code more clear.
-```
+<pre>
 
 ' demo - add these lines to another BAS file:
 ' ------------------------------------------
@@ -88,5 +88,5 @@ Const BRIGHT_MAGENTA = 13
 Const YELLOW       = 14
 Const BRIGHT_WHITE = 15
 
-```
+</pre>
 

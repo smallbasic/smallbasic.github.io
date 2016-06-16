@@ -12,7 +12,7 @@ Perform multiple tests on the expression. Offers a more concise syntax to writin
 
 (see also CASE and the alternate IF THEN ELIF ELSE FI structure)
 just one example:
-```
+<pre>
 
 x = 17
 select case x
@@ -26,13 +26,13 @@ case 16 to 20
 ? "x is between 16 and 20"
 end select
 
-```
+</pre>
 
 There are no error messages, but nothing is printed.
 It has been my experience that Select Case does not work well with ranges and multiple conditions.
 In my opinion, it is only helpful for single case items.
 Here is same code in at least a concise form as SELECT CASE using IF THEN ELIF ELSE FI code block structure:
-```
+<pre>
 
 x = 17
 if x<10 then
@@ -48,7 +48,7 @@ else
 fi
 pause
 
-```
+</pre>
 
 SELECT/CASE was originally intended for single values, but the multi-item syntax was recently added:
 case 13,14,15
@@ -58,7 +58,7 @@ case 16 to 20
 I think the 'is', '<' and 'to' symbols are being incorrectly evaluated as multi-term elements, so there is no error reported.
 The case item can be any expression that evaluates to a single term, for example:
 (this is example that Chris found later for work around to extend range in one case):
-```
+<pre>
 
 How about this:
 for x = 0 to 20
@@ -78,10 +78,10 @@ end select
 next x
 pause
 
-```
+</pre>
 
 This will work too for work around to add range to a CASE block:
-```
+<pre>
 
 const notlikelyever=-9999999.1234
 def ao(a,o,x)=iff(x>a and x<=o,x,notlikelyever)
@@ -106,5 +106,5 @@ for i=1 to 20
 next
 pause
 
-```
+</pre>
 

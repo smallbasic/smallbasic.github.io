@@ -11,7 +11,7 @@ DIRWALK directory [, wildcards] [USE ...]
 Walk through the specified directories. The user-defined function must returns zero to stop the process.
 
 
-FUNC PRNF(x)
+<pre>FUNC PRNF(x)
   ? x
   PRNF=TRUE
 END

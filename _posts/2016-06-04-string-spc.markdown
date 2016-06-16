@@ -11,7 +11,7 @@ SPC (n)
 Returns a string of n spaces.
 
 These are excellent for maintaining a fixed length string or buffer or record or refining screen output by inserting a specified amount of spaces in a string. This works well with LEFT and RIGHT keywords for Left Center or Right aligning text.
-```
+<pre>
 
 'here are right aligned numbers in 10 character length string between two single quote marks
 while 1
@@ -20,7 +20,7 @@ while 1
   pause
 wend
 
-```
+</pre>
 
 I think SPACE and SPC are both the same, see also SPACE.
 

@@ -26,7 +26,7 @@ Mouse specific:
 |14 - | true if the middle mouse button is pressed|
 PEN must be enabled prior to use of this function. Pen ON|OFF
 
-```
+<pre>
 
 Print "  Move and click the Pen or Mouse [press Esc to stop]..."
 Print 
@@ -47,7 +47,7 @@ While Inkey <> Chr(27) Do ' press Esc key to exit loop
   ? "Mouse Left,Middle,Right down: ", Pen(12), Pen(14), Pen(13);
 Wend 
 
-```
+</pre>
 
 DELAY say 20 ms saves CPU and battery in a loop like the above reply. 
 It also helps after a mouse click to not over report the same click again and again. Pen(0) probably helps too.
@@ -57,7 +57,7 @@ Delay 20 does not save much CPU;
 Maybe on another system the situation is different.
 I was reporting from Windows 7 experience last year. I got a number of complaints about CPU usage and so tested performance difference using delays (WAIT with SdlBasic code). They do seem to help reduce CPU levels when I checked performance monitors on my Windows 7-64 laptop Dual Core with AMD Radeon Graphics.
 It's true I am not a tech expert and there maybe a better way to wait for key press and/or mouse input. chrisws tried to show me something way back in 2015:
-```
+<pre>
 
 rem game loop example
 pen on
@@ -102,7 +102,7 @@ repeat
 until quit
 pen off
 
-```
+</pre>
 
 when I was trying to catch both mouse down and mouse up events. The printing of numbers was overwhelming and I could not make use of the code. Maybe you or someone can.
 from my experience, the best way to reduce CPU usage is related directly to "what you want your program to do". You can always design your program to behave different and more efficient after giving it a second thought; it's very subjective.

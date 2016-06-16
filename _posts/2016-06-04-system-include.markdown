@@ -12,16 +12,16 @@ Inserts code in the named file when the program is compiled.
 
 INCLUDE is not in the main list for the Language reference. But here it is, right after IMPORT under the System category!
 Here is part_1.bas, the first part of our long program:
-```
+<pre>
 
 ' "part_1.bas" demo file for INCLUDE keyword.
 Label startProgram
 Print "i is: "; i
 
-```
+</pre>
 
 Here is part_2.bas, the second (and startup) part of our long program:
-```
+<pre>
 
 ' "part_2.bas" demo file for INCLUDE keyword - This is the startup file
 ' to run the demo program.
@@ -51,5 +51,5 @@ i += 1
 If i <= 10 Then Goto startProgram ' startProgram label is in part_1.bas
 Pause
 
-```
+</pre>
 

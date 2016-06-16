@@ -22,7 +22,7 @@ ELSE
   ? "keyboard buffer is empty"
 FI
 
-```
+<pre>
 
 Option Base 1 ' (field 1, 2, 3...)
 ' key values (on my system):
@@ -112,13 +112,13 @@ While True Do
   End Select
 Wend
 
-```
+</pre>
 
 I have been a bit stuck with INKEY for some time. I started building a little TextBox editor over a year ago and got stuck on something with INKEY and moved on. As I recall INKEY was not returning unique key numbers but I forget which... posted sometime ago on this issue.
 Anyway, this demo is exactly the kind of thing I had in mind! Thank you shian!!!
 I wonder if text selecting is also possible, eg [ctrl+]shft+ home | end ?
 BTW is CAT working for anyone? I was testing it last night and couldn't get anything going (Windows 10-64 and SB 0.12.2).
-```
+<pre>
 
 ' Note:
 ' * You may Include "inkey_const.bas" file in another file to make your code more clear.
@@ -164,7 +164,7 @@ Const K_CLICK  = K_ESC + Chr(0xC0)  ' Left Mouse Button Click
 '   Fi
 ' Wend
 
-```
+</pre>
 
 Notes (I'm using SB 0.12.2 on Linux 64-bit):
 1. INKEY has internal delay that makes it behave not smoothly.
@@ -173,4 +173,4 @@ When the first character in the two character code is 27, the second character i
 As reported by Shian (thanks Shian!), there are a few problems with INKEY. I'll fix these in the next update. There is supposed to be a different first character code for SHIFT/ALT etc states.
 Also, INKEY needs to read from the system event queue to get the next keystroke. It currently does a pause for key, but I think it should actually block in the call to read the queue, that way when you type a key there would be no delay. Either way this doesn't work well for shooter type games, but there is a better way. Have a look at:
 https://github.com/smallbasic/SmallBASIC/blob/master/samples/distro-exam...
-This uses the DEFINEKEY command to register keystroke handlers for game keys. When you hit the game key, the registered FUNC will get called more or less immediately, somewhere inside the game main looI think this should work well in the space shooter (which is awesome by the way).
+This uses the DEFINEKEY command to register keystroke handlers for game keys. When you hit the game key, the registered FUNC will get called more or less immediately, somewhere inside the game main loo<p>I think this should work well in the space shooter (which is awesome by the way).

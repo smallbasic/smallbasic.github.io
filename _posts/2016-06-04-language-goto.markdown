@@ -10,7 +10,7 @@ GOTO label
 
 Causes program execution to branch to a specified position (label).
 
-```
+<pre>
 
 ' Note: GOTO is known to create "spaghetti code", i.e. winding code which is
 '       hard to follow, to understand, and to maintain.
@@ -37,7 +37,7 @@ Print
 Print "Out of loops now."
 Pause
 
-```
+</pre>
 
 GOTO loop jumping is surest way to stack overflow error!
 Modular coding and GOTO do not mix well. Use GOTO with extreme caution within code blocks if you must.

@@ -11,11 +11,11 @@ JULIAN (dmy| (d,m,y))
 Returns the Julian date. (dates must be greater than 1/1/100 AD).
 
 
-PRINT Julian(DATE)
+<pre>PRINT Julian(DATE)
 PRINT Julian(31, 12, 2001)
 
 Earlier this month I had done some code to calculate Oil Tank usage and used a ridiculously long and complex formula for calculating the number of days between two dates. I should have used the julian date function:
-```
+<pre>
 
 REM julian demo.bas 2016-02-28 SmallBASIC 0.12.2 [B+=MGA]
 'oh julian returns the number of days since 1/1/100
@@ -32,6 +32,6 @@ input "To test what julian returns, enter a date dd/mm/yyyy ";adate
 pause
 end
 
-```
+</pre>
 
 

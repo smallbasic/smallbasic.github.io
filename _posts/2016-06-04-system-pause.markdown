@@ -13,7 +13,7 @@ Pauses the execution for a specified length of time, or until user hit the keybo
 PAUSE n - n is optional number of secs, with or without n, PAUSE will wait for key press or mouse click (or the optional amount of secs) before executing next statement.
 BUT! be warned PAUSE may interfere with INKEY or PEN(3) events if they follow a PAUSE.
 PAUSE is the perfect choice for the PRINT "Hello World" classic first program. Now days, that screen wont stay up long enough to see without something like PAUSE to halt program execution (for the user to see the output screen).
-```
+<pre>
 
 'ribbons.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-24
 'new and improved update of SB and Bpf posts 2015-04-16 B+
@@ -30,5 +30,5 @@ while 1
   pause 8 '<=========== pause waits 8 secs or key press
 wend
 
-```
+</pre>
 

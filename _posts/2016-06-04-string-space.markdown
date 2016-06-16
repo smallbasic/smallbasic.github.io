@@ -10,7 +10,7 @@ SPACE (n)
 
 Returns a string of n spaces.
 
-```
+<pre>
 
 ' s is a string ("" or longer); l is length of buffer (0+);
 Def lset(s, l) = Left(s + Space(l), l) ' left justify text
@@ -31,5 +31,5 @@ While True Do
   Pause 
 Wend
 
-```
+</pre>
 
