@@ -1,4 +1,4 @@
-hconst webPath = "http://smallbasic.sourceforge.net/?q=export/code/"
+const webPath = "http://smallbasic.sourceforge.net/?q=export/code/"
 const lineSpacing = 1.25*txth("Q")
 
 func bn(node, name) 
