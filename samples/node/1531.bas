@@ -1,6 +1,7 @@
 
 ' Another look at Trig functions.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-05-01
 ' inspired by PeterMaria's simple code for Atan2 on Aurels' forum BasicPro
+' 2017-09-23 Modified to run again on Android
 
 ' Here is another effort in a continuing series to demystify Trig functions:
 
@@ -10,35 +11,21 @@
 ' angles to the horizontal line, lengths of the sides and hypotenuse of the right
 ' and the COS, SIN and TAN ratios
 
-sub drawXit
-  local c, i
-  'for mouse clicks 
-  'mx > mxborder=xmax-60
-  'my < myborder=30
-  c = rgb(190, 0, 0)
-  rect xmax - 60, 10 step 51, 21, 0 filled
-  rect xmax - 60, 10 step 50, 20, c filled
-  for i = 0 to 2
-    line xmax - 40 + i, 15, xmax - 33 + i, 25, 15
-    line xmax - 40 + i, 25, xmax - 33 + i, 15, 15
-  next i
-end
-
 sub ThickArc(xCenter, yCenter, arcRadius, dAngleStart, dAngleEnd, rThick)
-  local rAngle, rAngleStart, rAngleEnd, x1, y1, Stepper  
+  local rAngle, rAngleStart, rAngleEnd, x1, y1, Stepper
   'draws an Arc with center at xCenter, yCenter, radius from center is arcRadius
-  
+
   'for SmallBASIC angle 0 degrees is due East and angle increases clockwise towards South
-  
-  'THIS SUB IS SETUP TO DRAW AN ARC IN CLOCKWISE DIRECTION 
-  
+
+  'THIS SUB IS SETUP TO DRAW AN ARC IN CLOCKWISE DIRECTION
+
   'dAngleStart is where to start Angle in degrees
   ' so make the dAngleStart the first ray clockwise from 0 degrees that starts angle drawing clockwise
-  
+
   'dAngleEnd is where the arc ends going clockwise with positive degrees
   ' so if the arc end goes past 0 degrees clockwise from dAngleStart
   '  express the end angle as 360 + angle
-  
+
   'rThick is the radius of the many,many tiny circles this will draw to make the arc thick
   ' so if rThick = 2 the circles will have a radius of 2 pixels and arc will be 4 pixels thick
   if arcRadius < 1 then pset xCenter, yCenter : exit func
@@ -46,9 +33,9 @@ sub ThickArc(xCenter, yCenter, arcRadius, dAngleStart, dAngleEnd, rThick)
   if int(rthick) = 0 then Stepper = 1 / (arcRadius*pi) else Stepper = rThick / (arcRadius * pi / 2)
   for rAngle = rAngleStart to rAngleEnd step Stepper
     x1 = arcRadius * cos(rAngle) : y1 = arcRadius * sin(rAngle)
-    if int(rThick) < 1 then  
-      pset xCenter + x1, yCenter + y1 
-    else 
+    if int(rThick) < 1 then
+      pset xCenter + x1, yCenter + y1
+    else
       circle xCenter + x1, yCenter + y1, rThick filled
     fi
   next
@@ -56,10 +43,10 @@ end
 
 sub ThickLine(x1, y1, x2, y2, rThick)
   local length, stepx, stepy, dx, dy, i
-   
+
   'x1,y1 is one endpoint of line
   'x2,y2 is the other endpoint of the line
-  'rThick is the radius of the tiny circles that will be drawn 
+  'rThick is the radius of the tiny circles that will be drawn
   '   from one end point to the other to create the thick line
   'Yes, the line will then extend beyond the endpoints with circular ends.
 
@@ -74,7 +61,7 @@ sub ThickLine(x1, y1, x2, y2, rThick)
   end if
 end
 
-'============================== Main 
+'============================== Main
 const thick = 2
 const arc_radius = 100
 const hor_color = rgb(30,30,30)
@@ -86,38 +73,32 @@ const white = rgb(255,255,255)
 cx = xmax / 2 : cy = ymax / 2
 
 while 1
-  if asc(inkey) = 27 then end else pen on  'did user press esc to quit?
   cls
-  'draw eXit sign
-  drawXit
-  
+
   'draw horizontal through center of screen
   line 0, cy, xmax, cy, hor_color
-  
+
   'get mouse
   mx = pen(4) : my = pen(5)   'get mouse location
-  
-  'check if eXit was clicked, if so then end
-  if mx > xmax - 60 and my < 30 and pen(3) then end
-  
-  'draw our Color Coded Trig Triangle  
+
+  'draw our Color Coded Trig Triangle
   color cos_color
   ThickLine cx, cy, mx, cy, thick
   color sin_color
   ThickLine mx, cy, mx, my, thick
   color hyp_color
   ThickLine cx, cy, mx, my, thick
-  
+
   stepx = abs(cx - mx) : stepy = abs(cy - my)
   hyp = ( (stepx ^ 2 + stepy ^ 2) ^.5 )\1
-  
+
   'to draw angle need to do some math
   'dAng = mouse angle to 0 degrees due East
   ' other Angles:  StartA, EndA and reportA are for the Trig Ratios of triangle
   dAng = ( deg(atan( (my - cy) / (mx - cx) ) )+.5 ) \ 1
   if mx < cx then dAng = dAng + 180
   if my < cy and mx > cx then dAng = dAng + 360
-  if dAng <= 90 then 
+  if dAng <= 90 then
     startA = 0 : endA = dAng : reportA = dAng
   elif dAng <= 180
     startA = dAng : endA = 180 : reportA = 90 - (dAng - 90)
@@ -128,7 +109,7 @@ while 1
   fi
   color ang_color
   ThickArc cx, cy, arc_radius, startA, endA, thick
-  
+
   'report all numbers color coded
   color ang_color
   locate 0, 0 : ? "yellow Angle (degrees) ~ "; reportA
@@ -167,5 +148,5 @@ while 1
   fi
   showpage
   delay 100
-  pen off
 wend
+

@@ -1,48 +1,36 @@
+'Persian Carpet v2.bas for SmallBASIC 0.12.9 (B+=MGA)
+'modified from copy from Retrogamecoding link 2016-02-09
+' 2017-09-23 mod for brighter colors and centered
+' alas, some blank screens but much brighter!
 
-'Persian Carpet.bas for SmallBASIC 0.12.2 [B+=MGA] 2016-02-08
-'modified from copy from Retrogamecoding link 2016-02-08
-'modified some more for Code Library and On-line Samples
-REM BASIC Code: Persian Carpet Designs 
+' 2017-09-24 eliminate radial symmetry and most blank screens
+
+REM BASIC Code: Persian Carpet Designs
 REM A modification of original concept from Anne Burns
-REM Try colorborder=15, a=3
-colorborder=0:a=1
-while 1
-  'cls
-  'INPUT "Enter the border color, 1 - 15 (try 15): ", colorborder
-  'INPUT "Enter a value (try 3) > ", a
-  CLS
-  lft = 1
-  'rght=1025 'not symmetric
-  rght = 513
-  'rght=401
-  'rght=257
-  'rght=129
-  'rght=65
-  top = 1
-  'bot= 1025 'not symmetric
-  bot=513
-  'bot = 401
-  'bot= 257
-  'bot=129
-  'bot=65
-  LINE lft,top,rght,top,colorborder
-  LINE lft,bot,rght,bot,colorborder
-  LINE lft,top,lft,bot,colorborder
-  LINE rght,top,rght,bot,colorborder
-  DetermineColor lft, rght, top, bot, a
-  'next line no good for on-line samples
-  'at 50,600:? "colorboarder = ";colorborder;" a = ";a
-  showpage
-  delay 1000
-  a=a+1
-  if a>=16 then a=1:colorborder+=1
-  if colorborder>=16 then colorborder=0
-wEND
 
-REM Determine the color based on function f
+colorborder = 0 : a = 1
+xo = (xmax - 512) / 2 : yo = (ymax - 512) / 2
+while 1
+  CLS
+  lft = 1 + xo : rght = 513 + xo : top = 1 + yo: bot = 513 + yo
+  cb2 = rnd * 16 \ 1
+  LINE lft, top, rght, top, cb2
+  LINE lft, bot, rght, bot, cb2
+  LINE lft, top, lft, bot, colorborder
+  LINE rght, top, rght, bot, colorborder
+  DetermineColor lft, rght, top, bot, a
+  at 10, 10 : ? "colorboarder = ";colorborder;"  cb 2 = ";cb2;"  a = ";a
+  showpage
+  pause
+  a = a + 1
+  if a >= 16 then a = 1 : colorborder += 1
+  if colorborder >= 16 then colorborder = 0
+wend
+
+rem Determine the color based on function f
 sub DetermineColor(lft, rght, top, bot, a)
-  local c,middlerow,middlecol
-  IF (lft < rght - 1) THEN
+  local c, middlerow, middlecol
+  IF (lft < rght - 2) THEN
     c = f(lft, rght, top, bot, a)
     middlecol = int((lft + rght) / 2)
     middlerow = int((top + bot) / 2)
@@ -54,14 +42,13 @@ sub DetermineColor(lft, rght, top, bot, a)
     DetermineColor middlecol, rght, middlerow, bot, a
   else
     exit
-  END IF
-END
+  end if
+end
 
-REM When b=4, this function takes an average.
-FUNC f(lft, rght, top, bot, a)
-  local p,b
-  p = POINT(lft, top) + POINT(rght, top) + POINT(lft, bot) + POINT(rght, bot)
+func f(lft, rght, top, bot, a)
+  local p, b
+  p = point(lft, top) + POINT(rght, top) + POINT(lft, bot) + POINT(rght, bot)
   'Try values of b = 4 or b = 7
-  b=7
-  f = (p /b + a) MOD 16
-END
+  b = 60
+  f = int(p / b + a) mod 9 + 7
+end
