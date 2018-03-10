@@ -1,0 +1,6 @@
+### Math
+
+> STATMEANDEV (...)
+
+Mean deviation.
+

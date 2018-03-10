@@ -1,0 +1,6 @@
+### Math
+
+> SEC (x)
+
+Secant.
+

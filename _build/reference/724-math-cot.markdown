@@ -1,0 +1,6 @@
+### Math
+
+> COT (x)
+
+Cotangent.
+

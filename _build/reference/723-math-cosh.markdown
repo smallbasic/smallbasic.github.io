@@ -1,0 +1,6 @@
+### Math
+
+> COSH (x)
+
+Cosine.
+

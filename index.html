@@ -14,7 +14,8 @@ sections:
   
 <div class="home">
   <h1 class="page-heading">Console</h1>
-  {% for post in site.categories.console %}
+  {% assign sorted_console = (site.categories.console | sort: 'date') | reverse %}
+  {% for post in sorted_console %}
   <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
   {% endfor %}
   <h1 class="page-heading">Data</h1>

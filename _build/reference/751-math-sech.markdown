@@ -1,0 +1,6 @@
+### Math
+
+> SECH (x)
+
+Secant.
+

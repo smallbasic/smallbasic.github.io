@@ -93,7 +93,7 @@ sub go()
         android.tts_pitch(.8)
         android.speak("pull your self together laddie")
       endif
-      pause 2.5
+      pause 20
     endif
     cls
     show()

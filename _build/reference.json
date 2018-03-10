@@ -1,0 +1,2225 @@
+{
+    "Console": [
+        {
+            "help": "Moves the console cursor to the specified position. x,y are in pixels.",
+            "keyword": "AT",
+            "nodeID": "521",
+            "signature": "AT x, y",
+            "type": "command"
+        },
+        {
+            "help": "Generates a beep sound.",
+            "keyword": "BEEP",
+            "nodeID": "522",
+            "signature": "BEEP",
+            "type": "command"
+        },
+        {
+            "help": "Clears the screen.",
+            "keyword": "CLS",
+            "nodeID": "524",
+            "signature": "CLS ",
+            "type": "command"
+        },
+        {
+            "help": "Creates a form object from a MAP variable. This provides access to the following sub-commands: doEvents, close, refresh. The form MAP may contain the following properties: value, inputs, focus. Inputs is an array of MAP, each may contain the following properties: x, y, width, height, value, label, name, type, backgroundColor, color, visible, isExit, selectedIndex, length, noFocus, onclick",
+            "keyword": "FORM",
+            "nodeID": "525",
+            "signature": "FORM(map)",
+            "type": "command"
+        },
+        {
+            "help": "Reads from \"keyboard\" text and stores it in a variable.",
+            "keyword": "INPUT",
+            "nodeID": "527",
+            "signature": "INPUT [prompt,|;] var[, var [, ...]]",
+            "type": "command"
+        },
+        {
+            "help": "Reads a whole text line from file or console.",
+            "keyword": "LINEINPUT",
+            "nodeID": "528",
+            "signature": "LINEINPUT [#fileN] var",
+            "type": "command"
+        },
+        {
+            "help": "Reads a whole text line from file or console.",
+            "keyword": "LINPUT",
+            "nodeID": "529",
+            "signature": "LINPUT [#fileN] var",
+            "type": "command"
+        },
+        {
+            "help": "Moves the console cursor to the specified position. x,y are in character cells.",
+            "keyword": "LOCATE",
+            "nodeID": "530",
+            "signature": "LOCATE y, x",
+            "type": "command"
+        },
+        {
+            "help": "PRINT to the application logfile. The syntax is the same as command PRINT.",
+            "keyword": "LOGPRINT",
+            "nodeID": "531",
+            "signature": "LOGPRINT ...",
+            "type": "command"
+        },
+        {
+            "help": "Stop background sound and clear the sound queue.",
+            "keyword": "NOSOUND",
+            "nodeID": "532",
+            "signature": "NOSOUND",
+            "type": "command"
+        },
+        {
+            "help": "Enables/Disables the PEN/MOUSE mechanism.",
+            "keyword": "PEN",
+            "nodeID": "533",
+            "signature": "PEN ON|OFF",
+            "type": "command"
+        },
+        {
+            "help": "Play musical notes.",
+            "keyword": "PLAY",
+            "nodeID": "534",
+            "signature": "PLAY string",
+            "type": "command"
+        },
+        {
+            "help": "Display text or the value of an expression.",
+            "keyword": "PRINT",
+            "nodeID": "535",
+            "signature": "PRINT [USING [format];] [expr|str [,|; [expr|str]] ...",
+            "type": "command"
+        },
+        {
+            "help": "Plays a sound.",
+            "keyword": "SOUND",
+            "nodeID": "536",
+            "signature": "SOUND freq, dur_ms [, vol] [BG]",
+            "type": "command"
+        },
+        {
+            "help": "Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline, -2 = underline-off, 3 = reverse, -3 = reverse-off.",
+            "keyword": "CAT",
+            "nodeID": "538",
+            "signature": "CAT (x)",
+            "type": "function"
+        },
+        {
+            "help": "Binds a keystroke to a user defined function",
+            "keyword": "DEFINEKEY",
+            "nodeID": "1015",
+            "signature": "DEFINEKEY k,sub",
+            "type": "function"
+        },
+        {
+            "help": "Returns the last key-code in keyboard buffer, or an empty string if there are no keys. Special key-codes like the function-keys are returned as 2-byte string.",
+            "keyword": "INKEY",
+            "nodeID": "539",
+            "signature": "INKEY",
+            "type": "function"
+        },
+        {
+            "help": "Moves cursor position to the nth column.",
+            "keyword": "TAB",
+            "nodeID": "540",
+            "signature": "TAB (n)",
+            "type": "function"
+        }
+    ],
+    "Data": [
+        {
+            "help": "Inserts the values at the end of the specified array.",
+            "keyword": "APPEND",
+            "nodeID": "581",
+            "signature": "APPEND a, val [, val [, ...]]",
+            "type": "command"
+        },
+        {
+            "help": "Deletes 'count' elements at position 'idx' of array 'a'.",
+            "keyword": "DELETE",
+            "nodeID": "542",
+            "signature": "DELETE a, idx [, count]",
+            "type": "command"
+        },
+        {
+            "help": "Returns true if x is: a zero length array, an empty string, an integer or real with the value 0.",
+            "keyword": "EMPTY",
+            "nodeID": "543",
+            "signature": "EMPTY (x)",
+            "type": "command"
+        },
+        {
+            "help": "Inserts the values to the specified array at the position idx.",
+            "keyword": "INSERT",
+            "nodeID": "544",
+            "signature": "INSERT a, idx, val [, val [, ...]]]",
+            "type": "command"
+        },
+        {
+            "help": "Assigns values in DATA items to specified variables.",
+            "keyword": "READ",
+            "nodeID": "546",
+            "signature": "READ var[, var ...]",
+            "type": "command"
+        },
+        {
+            "help": "Same as DIM only the contents of x are preserved.",
+            "keyword": "REDIM",
+            "nodeID": "547",
+            "signature": "REDIM x",
+            "type": "command"
+        },
+        {
+            "help": "Scans an array for the key. If key is not found the SEARCH command returns (in ridx) the value. (LBOUND(A)-1). In default-base arrays that means -1. The cmpfunc (if its specified) it takes 2 vars to compare. It must return 0 if x = y; non-zero if x <> y.",
+            "keyword": "SEARCH",
+            "nodeID": "548",
+            "signature": "SEARCH A, key, BYREF ridx [USE cmpfunc]",
+            "type": "command"
+        },
+        {
+            "help": "Sorts an array. The cmpfunc if specified, takes 2 vars to compare and must return: -1 if x < y, +1 if x > y, 0 if x = y.",
+            "keyword": "SORT",
+            "nodeID": "549",
+            "signature": "SORT array [USE cmpfunc]",
+            "type": "command"
+        },
+        {
+            "help": "Exchanges the values of two variables. The parameters may be variables of any type.",
+            "keyword": "SWAP",
+            "nodeID": "550",
+            "signature": "SWAP a, b",
+            "type": "command"
+        },
+        {
+            "help": "Creates a ARRAY or MAP variable from the given string or expression",
+            "keyword": "ARRAY",
+            "nodeID": "1432",
+            "signature": "ARRAY [var | expr]",
+            "type": "function"
+        },
+        {
+            "help": "Convert x to 64b real number. Meaningless. Used for compatibility.",
+            "keyword": "CDBL",
+            "nodeID": "552",
+            "signature": "CDBL (x)",
+            "type": "function"
+        },
+        {
+            "help": "Converts x to 32b integer. Meaningless. Used for compatibility.",
+            "keyword": "CINT",
+            "nodeID": "553",
+            "signature": "CINT (x)",
+            "type": "function"
+        },
+        {
+            "help": "Convert x to 64b real number. Meaningless. Used for compatibility.",
+            "keyword": "CREAL",
+            "nodeID": "554",
+            "signature": "CREAL (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if x is an array.",
+            "keyword": "ISARRAY",
+            "nodeID": "555",
+            "signature": "ISARRAY (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if x is a directory.",
+            "keyword": "ISDIR",
+            "nodeID": "556",
+            "signature": "ISDIR (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if x is a regular file.",
+            "keyword": "ISFILE",
+            "nodeID": "557",
+            "signature": "ISFILE (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if x is a link.",
+            "keyword": "ISLINK",
+            "nodeID": "558",
+            "signature": "ISLINK (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if x is an MAP variable type. A MAP provides value-key pair access along with array or dotted notation. The MAP can be initialized from a String variable using the ARRAY command.",
+            "keyword": "ISMAP",
+            "nodeID": "1430",
+            "signature": "ISMAP (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if x is a number (or it can be converted to a number).",
+            "keyword": "ISNUMBER",
+            "nodeID": "559",
+            "signature": "ISNUMBER (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if x is a string (and cannot be converted to a number).",
+            "keyword": "ISSTRING",
+            "nodeID": "560",
+            "signature": "ISSTRING (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the lower bound of 'array'.",
+            "keyword": "LBOUND",
+            "nodeID": "561",
+            "signature": "LBOUND (array [, dim])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the length of the value contained in the variable.",
+            "keyword": "LEN",
+            "nodeID": "562",
+            "signature": "LEN(d)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the upper bound of 'array'.",
+            "keyword": "UBOUND",
+            "nodeID": "567",
+            "signature": "UBOUND (array [, dim])",
+            "type": "function"
+        },
+        {
+            "help": "Stores one or more constants, of any type, for subsequent access via READ command.",
+            "keyword": "DATA",
+            "nodeID": "569",
+            "signature": "DATA constant1 [,constant2]...",
+            "type": "statement"
+        },
+        {
+            "help": "Reserves storage space for an array.",
+            "keyword": "DIM",
+            "nodeID": "570",
+            "signature": "DIM var([lower TO] upper [, ...]) [, ...]",
+            "type": "statement"
+        },
+        {
+            "help": "Deallocates the memory used by the specified arrays or variables. After that these variables turned to simple integers with zero value.",
+            "keyword": "ERASE",
+            "nodeID": "571",
+            "signature": "ERASE var[, var[, ... var]]",
+            "type": "statement"
+        },
+        {
+            "help": "Specifies the position of the next data to be read.",
+            "keyword": "RESTORE",
+            "nodeID": "572",
+            "signature": "RESTORE label",
+            "type": "statement"
+        }
+    ],
+    "Date": [
+        {
+            "help": "Returns the day, month and the year as integers.",
+            "keyword": "DATEDMY",
+            "nodeID": "573",
+            "signature": "DATEDMY dmy| julian_date, BYREF d, BYREF m, BYREF y",
+            "type": "command"
+        },
+        {
+            "help": "Converts a time-value to hours, minutes and seconds integer values.",
+            "keyword": "TIMEHMS",
+            "nodeID": "574",
+            "signature": "TIMEHMS hms| timer, BYREF h, BYREF m, BYREF s",
+            "type": "command"
+        },
+        {
+            "help": "Returns the current date as string \"DD/MM/YYYY\".",
+            "keyword": "DATE",
+            "nodeID": "575",
+            "signature": "DATE",
+            "type": "function"
+        },
+        {
+            "help": "Returns formatted date string.",
+            "keyword": "DATEFMT",
+            "nodeID": "576",
+            "signature": "DATEFMT (format, dmy| (d,m,y)| julian_date)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the Julian date. (dates must be greater than 1/1/100 AD).",
+            "keyword": "JULIAN",
+            "nodeID": "577",
+            "signature": "JULIAN (dmy| (d,m,y))",
+            "type": "function"
+        },
+        {
+            "help": "Returns the number of milliseconds that have elapsed between successive calls.",
+            "keyword": "TICKS",
+            "nodeID": "1448",
+            "signature": "TICKS",
+            "type": "function"
+        },
+        {
+            "help": "Returns the current time as string \"HH:MM:SS\".",
+            "keyword": "TIME",
+            "nodeID": "578",
+            "signature": "TIME",
+            "type": "function"
+        },
+        {
+            "help": "Returns the number of seconds from midnight.",
+            "keyword": "TIMER",
+            "nodeID": "1449",
+            "signature": "TIMER",
+            "type": "function"
+        },
+        {
+            "help": "Returns the file last modified date and time.",
+            "keyword": "TIMESTAMP",
+            "nodeID": "1450",
+            "signature": "TIMESTAMP filename",
+            "type": "function"
+        },
+        {
+            "help": "Returns the day of the week (0 = Sunday).",
+            "keyword": "WEEKDAY",
+            "nodeID": "579",
+            "signature": "WEEKDAY (dmy| (d,m,y)| julian_date)",
+            "type": "function"
+        }
+    ],
+    "File": [
+        {
+            "help": "Returns the access rights of the file.",
+            "keyword": "ACCESS",
+            "nodeID": "580",
+            "signature": "ACCESS (file)",
+            "type": "command"
+        },
+        {
+            "help": "Loads a specified memory image file into memory.",
+            "keyword": "BLOAD",
+            "nodeID": "582",
+            "signature": "BLOAD filename[, address]",
+            "type": "command"
+        },
+        {
+            "help": "Writes a byte on file or device. (Binary mode).",
+            "keyword": "BPUTC",
+            "nodeID": "583",
+            "signature": "BPUTC# fileN; byte",
+            "type": "command"
+        },
+        {
+            "help": "Copies a specified portion of memory to a specified file.",
+            "keyword": "BSAVE",
+            "nodeID": "584",
+            "signature": "BSAVE filename, address, length",
+            "type": "command"
+        },
+        {
+            "help": "Changes the current working directory.",
+            "keyword": "CHDIR",
+            "nodeID": "585",
+            "signature": "CHDIR dir",
+            "type": "command"
+        },
+        {
+            "help": "Change permissions of a file. See also ACCESS.",
+            "keyword": "CHMOD",
+            "nodeID": "586",
+            "signature": "CHMOD file, mode",
+            "type": "command"
+        },
+        {
+            "help": "Close a file or device.",
+            "keyword": "CLOSE",
+            "nodeID": "587",
+            "signature": "CLOSE #fileN",
+            "type": "command"
+        },
+        {
+            "help": "Makes a copy of specified file to the 'newfile'.",
+            "keyword": "COPY",
+            "nodeID": "588",
+            "signature": "COPY \"file\", \"newfile\"",
+            "type": "command"
+        },
+        {
+            "help": "Walk through the specified directories. The user-defined function must returns zero to stop the process.",
+            "keyword": "DIRWALK",
+            "nodeID": "589",
+            "signature": "DIRWALK directory [, wildcards] [USE ...]",
+            "type": "command"
+        },
+        {
+            "help": "Reads data from file.",
+            "keyword": "INPUT",
+            "nodeID": "590",
+            "signature": "INPUT #fileN; var1 [,delim] [, var2 [,delim]] ...",
+            "type": "command"
+        },
+        {
+            "help": "Deletes the specified file.",
+            "keyword": "KILL",
+            "nodeID": "591",
+            "signature": "KILL \"file\"",
+            "type": "command"
+        },
+        {
+            "help": "Lock a record or an area (not yet implemented).",
+            "keyword": "LOCK",
+            "nodeID": "592",
+            "signature": "LOCK",
+            "type": "command"
+        },
+        {
+            "help": "Create a directory.",
+            "keyword": "MKDIR",
+            "nodeID": "593",
+            "signature": "MKDIR dir",
+            "type": "command"
+        },
+        {
+            "help": "Makes a file or device available for sequential input, sequential output.",
+            "keyword": "OPEN",
+            "nodeID": "594",
+            "signature": "OPEN file [FOR {INPUT|OUTPUT|APPEND}] AS #fileN",
+            "type": "command"
+        },
+        {
+            "help": "Renames the specified file.",
+            "keyword": "RENAME",
+            "nodeID": "595",
+            "signature": "RENAME \"file\", \"newname\"",
+            "type": "command"
+        },
+        {
+            "help": "Removes a directory.",
+            "keyword": "RMDIR",
+            "nodeID": "596",
+            "signature": "RMDIR dir",
+            "type": "command"
+        },
+        {
+            "help": "Sets file position for the next read/write.",
+            "keyword": "SEEK",
+            "nodeID": "597",
+            "signature": "SEEK #fileN; pos",
+            "type": "command"
+        },
+        {
+            "help": "Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.",
+            "keyword": "TLOAD",
+            "nodeID": "598",
+            "signature": "TLOAD file, BYREF var [, type]",
+            "type": "command"
+        },
+        {
+            "help": "Writes an array to a text file. Each array element is a text-line.",
+            "keyword": "TSAVE",
+            "nodeID": "599",
+            "signature": "TSAVE file, var",
+            "type": "command"
+        },
+        {
+            "help": "Store variables to a file as binary data.",
+            "keyword": "WRITE",
+            "nodeID": "600",
+            "signature": "WRITE #fileN; var1 [, ...]",
+            "type": "command"
+        },
+        {
+            "help": "Reads and returns a byte from file or device (Binary mode) .",
+            "keyword": "BGETC",
+            "nodeID": "602",
+            "signature": "BGETC (fileN)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if the file pointer is at end of the file. For COMx and SOCL VFS returns true if the connection is broken.",
+            "keyword": "EOF",
+            "nodeID": "603",
+            "signature": "EOF (fileN)",
+            "type": "function"
+        },
+        {
+            "help": "Returns true if file exists.",
+            "keyword": "EXIST",
+            "nodeID": "604",
+            "signature": "EXIST (file)",
+            "type": "function"
+        },
+        {
+            "help": "Returns an array with the filenames. If there are no files returns an empty array.",
+            "keyword": "FILES",
+            "nodeID": "605",
+            "signature": "FILES (wildcards)",
+            "type": "function"
+        },
+        {
+            "help": "Returns an unused file handle.",
+            "keyword": "FREEFILE",
+            "nodeID": "607",
+            "signature": "FREEFILE",
+            "type": "function"
+        },
+        {
+            "help": "Reads 'len' bytes from file or console (if fileN is omitted). This function does not convert the data or remove spaces.",
+            "keyword": "INPUT",
+            "nodeID": "608",
+            "signature": "INPUT (len [, fileN])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the length of file in bytes. For other devices, returns the number of available data.",
+            "keyword": "LOF",
+            "nodeID": "609",
+            "signature": "LOF (fileN)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the current file position.",
+            "keyword": "SEEK",
+            "nodeID": "610",
+            "signature": "SEEK (fileN)",
+            "type": "function"
+        }
+    ],
+    "Graphics": [
+        {
+            "help": "Draws an arc. astart, aend = first,last angle in radians.",
+            "keyword": "ARC",
+            "nodeID": "611",
+            "signature": "ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]",
+            "type": "command"
+        },
+        {
+            "help": "Draws a chart of array values in the rectangular area x1,y1,x2,y2. Styles: 0 = simple, 1 = with-marks, 2 = with ruler, 3 = with marks and ruler.",
+            "keyword": "CHART",
+            "nodeID": "612",
+            "signature": "CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]",
+            "type": "command"
+        },
+        {
+            "help": "Draws a circle (or an ellipse if the aspect is specified).",
+            "keyword": "CIRCLE",
+            "nodeID": "613",
+            "signature": "CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]",
+            "type": "command"
+        },
+        {
+            "help": "Specifies the foreground and background colors.",
+            "keyword": "COLOR",
+            "nodeID": "614",
+            "signature": "COLOR foreground-color [, background-color]",
+            "type": "command"
+        },
+        {
+            "help": "Draw lines as specified by the given directional commands. ",
+            "keyword": "DRAW",
+            "nodeID": "615",
+            "signature": "DRAW \"commands\"",
+            "type": "command"
+        },
+        {
+            "help": "Draws a polyline. ",
+            "keyword": "DRAWPOLY",
+            "nodeID": "616",
+            "signature": "DRAWPOLY array [,x-origin,y-origin [, scalef [, color]]] [COLOR color] [FILLED]",
+            "type": "command"
+        },
+        {
+            "help": "Creates a graphical image object providing access to the following sub-commands: show([x,y [,zindex [,opacity]]]), hide, save([x,y [,w,h]])",
+            "keyword": "IMAGE",
+            "nodeID": "617",
+            "signature": "IMAGE [#handle | fileName | http://path-to-file.png | image-var | array of pixmap data]",
+            "type": "command"
+        },
+        {
+            "help": "Draws a line.",
+            "keyword": "LINE",
+            "nodeID": "618",
+            "signature": "LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]",
+            "type": "command"
+        },
+        {
+            "help": "Fills an enclosed area on the graphics screen with a specific color. x,y = Screen coordinate (column, row) within the area that is to be filled.",
+            "keyword": "PAINT",
+            "nodeID": "619",
+            "signature": "PAINT [STEP] x, y [,fill-color [,border-color]]",
+            "type": "command"
+        },
+        {
+            "help": "Graph of f(x).",
+            "keyword": "PLOT",
+            "nodeID": "620",
+            "signature": "PLOT xmin, xmax USE f(x)",
+            "type": "command"
+        },
+        {
+            "help": "Draw a pixel.",
+            "keyword": "PSET",
+            "nodeID": "621",
+            "signature": "PSET [STEP] x,y [, color| COLOR color]",
+            "type": "command"
+        },
+        {
+            "help": "Draws a rectangular parallelogram.",
+            "keyword": "RECT",
+            "nodeID": "622",
+            "signature": "RECT [STEP] x,y [,|STEP x2,y2] [, color| COLOR color] [FILLED]",
+            "type": "command"
+        },
+        {
+            "help": "This command is used to display pending graphics operations allowing for smooth animations.",
+            "keyword": "SHOWPAGE",
+            "nodeID": "1429",
+            "signature": "SHOWPAGE",
+            "type": "command"
+        },
+        {
+            "help": "Defines a viewport. The viewport defined by VIEW is disabled by a VIEW command with no parameters.",
+            "keyword": "VIEW",
+            "nodeID": "623",
+            "signature": "VIEW [x1,y1,x2,y2 [,color [,border-color]]]",
+            "type": "command"
+        },
+        {
+            "help": "The WINDOW command allows you to redefine the corners of the display screen as a pair of \"world\" coordinates. WINDOW is also overloaded as a function, returning a system object providing access to the following sub-commands: graphicsScreen1, graphicsScreen2, textScreen, alert, ask, menu, message, showKeypad, insetTextScreen",
+            "keyword": "WINDOW",
+            "nodeID": "624",
+            "signature": "WINDOW [x1,y1,x2,y2]",
+            "type": "command"
+        },
+        {
+            "help": "Holds the screen width in pixels",
+            "keyword": "XMAX",
+            "nodeID": "1526",
+            "signature": "XMAX",
+            "type": "constant"
+        },
+        {
+            "help": "Holds the screen height in pixels.",
+            "keyword": "YMAX",
+            "nodeID": "1527",
+            "signature": "YMAX",
+            "type": "constant"
+        },
+        {
+            "help": "Returns the PEN/MOUSE data.",
+            "keyword": "PEN",
+            "nodeID": "627",
+            "signature": "PEN (0..14)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the color of the pixel at x,y.",
+            "keyword": "POINT",
+            "nodeID": "628",
+            "signature": "POINT (x [, y])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the RGB color codes for the specified values. Takes values 0..255 for each of the color.",
+            "keyword": "RGB",
+            "nodeID": "629",
+            "signature": "RGB (r, g, b)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the RGB color codes for the specified values. Takes values 0..1 for each of the color.",
+            "keyword": "RGBF",
+            "nodeID": "630",
+            "signature": "RGBF (r, g, b)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the text height of string s in pixels. See TXTH.",
+            "keyword": "TEXTHEIGHT",
+            "nodeID": "631",
+            "signature": "TEXTHEIGHT (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the text width of string s in pixels. See TXTW.",
+            "keyword": "TEXTWIDTH",
+            "nodeID": "632",
+            "signature": "TEXTWIDTH (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the text height of string s in pixels. See TEXTHEIGHT.",
+            "keyword": "TXTH",
+            "nodeID": "633",
+            "signature": "TXTH (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the text width of string s in pixels. See TEXTWIDTH.",
+            "keyword": "TXTW",
+            "nodeID": "634",
+            "signature": "TXTW (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the current X position of the cursor in \"characters\".",
+            "keyword": "XPOS",
+            "nodeID": "635",
+            "signature": "XPOS",
+            "type": "function"
+        },
+        {
+            "help": "Returns the current Y position of the cursor in \"characters\".",
+            "keyword": "YPOS",
+            "nodeID": "636",
+            "signature": "YPOS",
+            "type": "function"
+        }
+    ],
+    "Language": [
+        {
+            "help": "Invoke a sub or func by address pointer.",
+            "keyword": "CALL",
+            "nodeID": "637",
+            "signature": "CALL (fp)",
+            "type": "command"
+        },
+        {
+            "help": "The THROW command (previously known as RTE) is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program.",
+            "keyword": "THROW",
+            "nodeID": "1437",
+            "signature": "THROW [info [, ...]]",
+            "type": "command"
+        },
+        {
+            "help": "FALSE",
+            "keyword": "FALSE",
+            "nodeID": "1457",
+            "signature": "FALSE",
+            "type": "constant"
+        },
+        {
+            "help": "TRUE",
+            "keyword": "TRUE",
+            "nodeID": "1455",
+            "signature": "TRUE",
+            "type": "constant"
+        },
+        {
+            "help": "Inline version of IF. eg, animal = \"cat\": fur = IFF( animal = \"cat\", \"yes\", \"no\"): ? fur",
+            "keyword": "IFF",
+            "nodeID": "638",
+            "signature": "IFF expr",
+            "type": "function"
+        },
+        {
+            "help": "See: OPEN",
+            "keyword": "AS",
+            "nodeID": "1424",
+            "signature": "AS #fileN",
+            "type": "keyword"
+        },
+        {
+            "help": "Play sound in the background. This prevent the program from blocking while the sound plays.",
+            "keyword": "BG",
+            "nodeID": "1428",
+            "signature": "SOUND frq, dur [, vol] [BG]",
+            "type": "keyword"
+        },
+        {
+            "help": "Sub/func argument declaration. Changes to the variable will be passed back to the caller.  Equivalent syntax to the @ character.",
+            "keyword": "BYREF",
+            "nodeID": "639",
+            "signature": "BYREF",
+            "type": "keyword"
+        },
+        {
+            "help": "Branch condition for a SELECT statement.",
+            "keyword": "CASE",
+            "nodeID": "640",
+            "signature": "CASE expr",
+            "type": "keyword"
+        },
+        {
+            "help": "The CATCH statement is used to CATCH an run-time error. This is typically used with errors raised when calling a file system command that cannot be completed, for example attempting to open a non-existent file. The CATCH statement has two modes. You can supply a variable argument to store the error string. Alternatively you can supply an expression. When the raised error matches the (String) expression, the error will be caught. When using the expression mode, you can supply a succession of CATCH statements to handle various error messages separately.",
+            "keyword": "CATCH",
+            "nodeID": "1426",
+            "signature": "CATCH [var | expr]",
+            "type": "keyword"
+        },
+        {
+            "help": "Forward declare SUB or FUNC. Obsolete QB compatibility",
+            "keyword": "DECLARE",
+            "nodeID": "1419",
+            "signature": "DECLARE FUNC xxx",
+            "type": "keyword"
+        },
+        {
+            "help": "Defines a single line function. eg, DEF MySin(x) = SIN(x): ? MySin(pi/2)",
+            "keyword": "DEF",
+            "nodeID": "641",
+            "signature": "DEF name[(par1[,...])] = expression",
+            "type": "keyword"
+        },
+        {
+            "help": "FOR f IN files(\"*.txt\") DO PRINT f",
+            "keyword": "DO",
+            "nodeID": "642",
+            "signature": "DO",
+            "type": "keyword"
+        },
+        {
+            "help": "foo = 2: if foo==1: ? \"one\": ELIF foo==2: ? \"two\": fi",
+            "keyword": "ELIF",
+            "nodeID": "643",
+            "signature": "ELIF",
+            "type": "keyword"
+        },
+        {
+            "help": "foo = 2: if foo==1: ? \"one\": ELSE: ? \"not one\": fi",
+            "keyword": "ELSE",
+            "nodeID": "644",
+            "signature": "ELSE",
+            "type": "keyword"
+        },
+        {
+            "help": "foo = 2: if foo==1: ? \"one\": ELSEIF foo==2: ? \"two\": fi",
+            "keyword": "ELSEIF",
+            "nodeID": "645",
+            "signature": "ELSEIF",
+            "type": "keyword"
+        },
+        {
+            "help": "The END TRY statement marks the end of a TRY/CATCH block.",
+            "keyword": "END TRY",
+            "nodeID": "1427",
+            "signature": "END TRY",
+            "type": "keyword"
+        },
+        {
+            "help": "foo = 1: if foo==1: ? \"one\": ENDIF",
+            "keyword": "ENDIF",
+            "nodeID": "646",
+            "signature": "ENDIF",
+            "type": "keyword"
+        },
+        {
+            "help": "Exits a multi line function definition, a loop, or a subprogram. By default (if no parameter is specified) exits from last command block (loop, for-loop or routine).",
+            "keyword": "EXIT",
+            "nodeID": "648",
+            "signature": "EXIT [FOR|LOOP|SUB|FUNC]",
+            "type": "keyword"
+        },
+        {
+            "help": "Declares the end of an IF statement. Same as ENDIF.",
+            "keyword": "FI",
+            "nodeID": "650",
+            "signature": "FI",
+            "type": "keyword"
+        },
+        {
+            "help": "Declares a function. Return a value by assigning a 'variable' with the same name as the function.",
+            "keyword": "FUNC",
+            "nodeID": "651",
+            "signature": "FUNC foo (a, b)",
+            "type": "keyword"
+        },
+        {
+            "help": "Declare local variables inside a SUB or FUNC. Local variables no longer exist once the SUB or FUNC has returned.",
+            "keyword": "LOCAL",
+            "nodeID": "653",
+            "signature": "LOCAL",
+            "type": "keyword"
+        },
+        {
+            "help": "See FOR.",
+            "keyword": "NEXT",
+            "nodeID": "654",
+            "signature": "NEXT",
+            "type": "keyword"
+        },
+        {
+            "help": "Perform multiple tests on the expression. Offers a more concise syntax to writing successive IF tests.",
+            "keyword": "SELECT",
+            "nodeID": "655",
+            "signature": "SELECT CASE expr",
+            "type": "keyword"
+        },
+        {
+            "help": "Specifies the loop counter increment in a FOR loop",
+            "keyword": "STEP",
+            "nodeID": "1421",
+            "signature": "FOR t = 1 TO 10 STEP 2",
+            "type": "keyword"
+        },
+        {
+            "help": "Terminates execution of a program, closes all files opened by the program, and returns control to the operating system.",
+            "keyword": "STOP",
+            "nodeID": "656",
+            "signature": "STOP [error]",
+            "type": "keyword"
+        },
+        {
+            "help": "Declare a sub procedure. Sub's do not return a value but can return argument values when declared as BYREF.",
+            "keyword": "SUB",
+            "nodeID": "657",
+            "signature": "SUB foo (a, b)",
+            "type": "keyword"
+        },
+        {
+            "help": "foo = 1: if foo==1 THEN: ? \"one\": fi",
+            "keyword": "THEN",
+            "nodeID": "658",
+            "signature": "THEN",
+            "type": "keyword"
+        },
+        {
+            "help": "Specifies the loop counter end in a FOR loop",
+            "keyword": "TO",
+            "nodeID": "1420",
+            "signature": "FOR t = 1 TO 10",
+            "type": "keyword"
+        },
+        {
+            "help": "The TRY statement introduces a TRY/CATCH BLOCK",
+            "keyword": "TRY",
+            "nodeID": "1425",
+            "signature": "TRY",
+            "type": "keyword"
+        },
+        {
+            "help": "a = 0: repeat: a++: ? a: UNTIL a = 10",
+            "keyword": "UNTIL",
+            "nodeID": "660",
+            "signature": "UNTIL",
+            "type": "keyword"
+        },
+        {
+            "help": "Used with various commands for passing a user-defined expression. eg SPLIT s,\" \",v USE TRIM(x). Trim each element of v.",
+            "keyword": "USE",
+            "nodeID": "661",
+            "signature": "USE",
+            "type": "keyword"
+        },
+        {
+            "help": "Synonym for USING",
+            "keyword": "USG",
+            "nodeID": "1423",
+            "signature": "PRINT USG",
+            "type": "keyword"
+        },
+        {
+            "help": "See PRINT, SPRINT",
+            "keyword": "USING",
+            "nodeID": "1422",
+            "signature": "PRINT USING",
+            "type": "keyword"
+        },
+        {
+            "help": "Logical AND. Right side is not evaluated if left side evaluates to False.",
+            "keyword": "AND",
+            "nodeID": "662",
+            "signature": "a AND b",
+            "type": "operator"
+        },
+        {
+            "help": "Bitwise AND.",
+            "keyword": "BAND",
+            "nodeID": "663",
+            "signature": "a BAND b",
+            "type": "operator"
+        },
+        {
+            "help": "Bitwise OR.",
+            "keyword": "BOR",
+            "nodeID": "664",
+            "signature": "a BOR b",
+            "type": "operator"
+        },
+        {
+            "help": "Bitwise equivalence.",
+            "keyword": "EQV",
+            "nodeID": "665",
+            "signature": "a EQV b",
+            "type": "operator"
+        },
+        {
+            "help": "Used to perform a logical implication on two expressions.",
+            "keyword": "IMP",
+            "nodeID": "666",
+            "signature": "a IMP b",
+            "type": "operator"
+        },
+        {
+            "help": "Returns an index (1 Based) to the matching element when b is an array. Returns TRUE if the value is contained within b as a string.",
+            "keyword": "IN",
+            "nodeID": "667",
+            "signature": "a IN b",
+            "type": "operator"
+        },
+        {
+            "help": "Regular-expression operator. Compares the left part of the expression with the right side regex pattern.",
+            "keyword": "LIKE",
+            "nodeID": "668",
+            "signature": "a LIKE b",
+            "type": "operator"
+        },
+        {
+            "help": "Performs an arithmetic left shift on a bit pattern.",
+            "keyword": "LSHIFT",
+            "nodeID": "1496",
+            "signature": "result = LSHIFT number, amount",
+            "type": "operator"
+        },
+        {
+            "help": "Modulus.",
+            "keyword": "MDL",
+            "nodeID": "669",
+            "signature": "MDL",
+            "type": "operator"
+        },
+        {
+            "help": "Modulus. Equivalent syntax to the percent character, eg a % b",
+            "keyword": "MOD",
+            "nodeID": "670",
+            "signature": "a MOD b",
+            "type": "operator"
+        },
+        {
+            "help": "Bitwise exclusive NOT AND.",
+            "keyword": "NAND",
+            "nodeID": "671",
+            "signature": "a NAND b",
+            "type": "operator"
+        },
+        {
+            "help": "Bitwise NOT OR.",
+            "keyword": "NOR",
+            "nodeID": "672",
+            "signature": "a NOR b",
+            "type": "operator"
+        },
+        {
+            "help": "Invert expression result. Equivalent syntax to the exclamation character, eg a ! b",
+            "keyword": "NOT",
+            "nodeID": "673",
+            "signature": "a NOT b",
+            "type": "operator"
+        },
+        {
+            "help": "Logical OR. Right side is not evaluated if left side evaluates to True.",
+            "keyword": "OR",
+            "nodeID": "674",
+            "signature": "a OR b",
+            "type": "operator"
+        },
+        {
+            "help": "Performs an arithmetic right shift on a bit pattern.",
+            "keyword": "RSHIFT",
+            "nodeID": "1497",
+            "signature": "result = RSHIFT number, amount",
+            "type": "operator"
+        },
+        {
+            "help": "Bitwise exclusive NOT OR.",
+            "keyword": "XNOR",
+            "nodeID": "675",
+            "signature": "a XNOR b",
+            "type": "operator"
+        },
+        {
+            "help": "Bitwise exclusive OR. Equivalent syntax to: a ~ b",
+            "keyword": "XOR",
+            "nodeID": "676",
+            "signature": "a XOR b",
+            "type": "operator"
+        },
+        {
+            "help": "Declare a variable who's value does not change during program execution.",
+            "keyword": "CONST",
+            "nodeID": "678",
+            "signature": "CONST name = expr",
+            "type": "statement"
+        },
+        {
+            "help": "Declares the END of a SUB or FUNC.",
+            "keyword": "END",
+            "nodeID": "679",
+            "signature": "END",
+            "type": "statement"
+        },
+        {
+            "help": "Defines a FOR/NEXT loop. FOR counter = start TO end [STEP incr] ... NEXT.  FOR element IN array (or map) ... NEXT.",
+            "keyword": "FOR",
+            "nodeID": "680",
+            "signature": "FOR expr",
+            "type": "statement"
+        },
+        {
+            "help": "Causes program execution to branch to the specified label; when the RETURN command is encountered, execution branches to the command immediately following the most recent GOSUB command.",
+            "keyword": "GOSUB",
+            "nodeID": "681",
+            "signature": "GOSUB label",
+            "type": "statement"
+        },
+        {
+            "help": "Causes program execution to branch to a specified position (label).",
+            "keyword": "GOTO",
+            "nodeID": "682",
+            "signature": "GOTO label",
+            "type": "statement"
+        },
+        {
+            "help": "Tests the expression and IF it evaluates to a non-zero value program flow will resume after the following THEN statement.",
+            "keyword": "IF",
+            "nodeID": "683",
+            "signature": "IF expr",
+            "type": "statement"
+        },
+        {
+            "help": "Defines a label. A label marks a position in the code.",
+            "keyword": "LABEL",
+            "nodeID": "684",
+            "signature": "LABEL name",
+            "type": "statement"
+        },
+        {
+            "help": "Assigns a value to the variable.",
+            "keyword": "LET",
+            "nodeID": "685",
+            "signature": "LET var=expr",
+            "type": "statement"
+        },
+        {
+            "help": "Causes a branch to one of a list of labels.",
+            "keyword": "ON",
+            "nodeID": "686",
+            "signature": "ON GOTO|GOSUB label1 [, ..., labelN]",
+            "type": "statement"
+        },
+        {
+            "help": "Code comments. Comments can also be introduced using # and single quote character. ",
+            "keyword": "REM",
+            "nodeID": "688",
+            "signature": "REM comment",
+            "type": "statement"
+        },
+        {
+            "help": "Begins the definition of a REPEAT/UNTIL loop.",
+            "keyword": "REPEAT",
+            "nodeID": "689",
+            "signature": "REPEAT ... UNTIL expr",
+            "type": "statement"
+        },
+        {
+            "help": "Execution branches to the command immediately following the most recent GOSUB command.",
+            "keyword": "RETURN",
+            "nodeID": "690",
+            "signature": "RETURN",
+            "type": "statement"
+        },
+        {
+            "help": "Go back to the start of a WHILE statement.",
+            "keyword": "WEND",
+            "nodeID": "691",
+            "signature": "WEND",
+            "type": "statement"
+        },
+        {
+            "help": "Loop while a test condition evaluates to true.",
+            "keyword": "WHILE",
+            "nodeID": "692",
+            "signature": "WHILE expr",
+            "type": "statement"
+        }
+    ],
+    "Math": [
+        {
+            "help": "Calculation of derivative. errcode = 0 for success; otherwise calculation error. ",
+            "keyword": "DERIV",
+            "nodeID": "693",
+            "signature": "DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr",
+            "type": "command"
+        },
+        {
+            "help": "Differential equation - Runge-Kutta method. x0 = initial x,y, xf = x final. errcode = 0 for success; otherwise calculation error. yf = result.",
+            "keyword": "DIFFEQN",
+            "nodeID": "694",
+            "signature": "DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr",
+            "type": "command"
+        },
+        {
+            "help": "Returns an array with 'count' elements. Each element had the 'y' value of its position as it is returned by the expression.",
+            "keyword": "EXPRSEQ",
+            "nodeID": "695",
+            "signature": "EXPRSEQ BYREF array, xmin, xmax, count USE expression",
+            "type": "command"
+        },
+        {
+            "help": "Calculates the intersection of the two line segments A-B and C-D. Returns: Rx,Ry = cross.",
+            "keyword": "INTERSECT",
+            "nodeID": "696",
+            "signature": "INTERSECT Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, BYREF type, BYREF Rx, BYREF Ry",
+            "type": "command"
+        },
+        {
+            "help": "Apply matrix to poly-line.",
+            "keyword": "M3APPLY",
+            "nodeID": "697",
+            "signature": "M3APPLY m3x3, BYREF poly",
+            "type": "command"
+        },
+        {
+            "help": "Resets matrix (Identity).",
+            "keyword": "M3IDENT",
+            "nodeID": "698",
+            "signature": "M3IDENT BYREF m3x3",
+            "type": "command"
+        },
+        {
+            "help": "Rotate by angle with center x,y.",
+            "keyword": "M3ROTATE",
+            "nodeID": "699",
+            "signature": "M3ROTATE BYREF m3x3, angle [, x, y]",
+            "type": "command"
+        },
+        {
+            "help": "Scale matrix.",
+            "keyword": "M3SCALE",
+            "nodeID": "700",
+            "signature": "M3SCALE BYREF m3x3, x, y, Sx, Sy",
+            "type": "command"
+        },
+        {
+            "help": "Matrix translation.",
+            "keyword": "M3TRANS",
+            "nodeID": "701",
+            "signature": "M3TRANS BYREF m3x3, Tx, Ty",
+            "type": "command"
+        },
+        {
+            "help": "Returns the polyline's extents.",
+            "keyword": "POLYEXT",
+            "nodeID": "702",
+            "signature": "POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax",
+            "type": "command"
+        },
+        {
+            "help": "Roots of F(x).",
+            "keyword": "ROOT",
+            "nodeID": "703",
+            "signature": "ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr",
+            "type": "command"
+        },
+        {
+            "help": "Returns the absolute value of x.",
+            "keyword": "ABS",
+            "nodeID": "704",
+            "signature": "ABS (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the absolute max value of x.",
+            "keyword": "ABSMAX",
+            "nodeID": "705",
+            "signature": "ABSMAX (...)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the absolute min value of x.",
+            "keyword": "ABSMIN",
+            "nodeID": "706",
+            "signature": "ABSMIN (...)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse cosine.",
+            "keyword": "ACOS",
+            "nodeID": "707",
+            "signature": "ACOS (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse cosine.",
+            "keyword": "ACOSH",
+            "nodeID": "708",
+            "signature": "ACOSH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse cotangent.",
+            "keyword": "ACOT",
+            "nodeID": "709",
+            "signature": "ACOT (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse cotangent.",
+            "keyword": "ACOTH",
+            "nodeID": "710",
+            "signature": "ACOTH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse co secant.",
+            "keyword": "ACSC",
+            "nodeID": "711",
+            "signature": "ACSC (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse co secant.",
+            "keyword": "ACSCH",
+            "nodeID": "712",
+            "signature": "ACSCH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse secant.",
+            "keyword": "ASEC",
+            "nodeID": "713",
+            "signature": "ASEC (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse secant.",
+            "keyword": "ASECH",
+            "nodeID": "714",
+            "signature": "ASECH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse sine.",
+            "keyword": "ASIN",
+            "nodeID": "715",
+            "signature": "ASIN (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse sine.",
+            "keyword": "ASINH",
+            "nodeID": "716",
+            "signature": "ASINH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse tangent.",
+            "keyword": "ATAN",
+            "nodeID": "717",
+            "signature": "ATAN (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse tangent (x,y).",
+            "keyword": "ATAN2",
+            "nodeID": "718",
+            "signature": "ATAN2 (x, y)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse tangent.",
+            "keyword": "ATANH",
+            "nodeID": "719",
+            "signature": "ATANH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Inverse tangent.",
+            "keyword": "ATN",
+            "nodeID": "720",
+            "signature": "ATN (x)",
+            "type": "function"
+        },
+        {
+            "help": "Smallest integral value not less than x.",
+            "keyword": "CEIL",
+            "nodeID": "721",
+            "signature": "CEIL (x)",
+            "type": "function"
+        },
+        {
+            "help": "Cosine.",
+            "keyword": "COS",
+            "nodeID": "722",
+            "signature": "COS (x)",
+            "type": "function"
+        },
+        {
+            "help": "Cosine.",
+            "keyword": "COSH",
+            "nodeID": "723",
+            "signature": "COSH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Cotangent.",
+            "keyword": "COT",
+            "nodeID": "724",
+            "signature": "COT (x)",
+            "type": "function"
+        },
+        {
+            "help": "Cotangent.",
+            "keyword": "COTH",
+            "nodeID": "725",
+            "signature": "COTH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Co secant.",
+            "keyword": "CSC",
+            "nodeID": "726",
+            "signature": "CSC (x)",
+            "type": "function"
+        },
+        {
+            "help": "Co secant.",
+            "keyword": "CSCH",
+            "nodeID": "727",
+            "signature": "CSCH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Radians to degrees.",
+            "keyword": "DEG",
+            "nodeID": "728",
+            "signature": "DEG (x)",
+            "type": "function"
+        },
+        {
+            "help": "Determinant of A. toler = tolerance number. the absolute value of the lowest acceptable number. default = 0.",
+            "keyword": "DETERM",
+            "nodeID": "729",
+            "signature": "DETERM (A[, toler])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the value of e raised to the power of x.",
+            "keyword": "EXP",
+            "nodeID": "730",
+            "signature": "EXP (x)",
+            "type": "function"
+        },
+        {
+            "help": "Rounds x upwards to the nearest integer.",
+            "keyword": "FIX",
+            "nodeID": "731",
+            "signature": "FIX (x)",
+            "type": "function"
+        },
+        {
+            "help": "Largest integer value not greater than x.",
+            "keyword": "FLOOR",
+            "nodeID": "732",
+            "signature": "FLOOR (x)",
+            "type": "function"
+        },
+        {
+            "help": "Fractional part of x.",
+            "keyword": "FRAC",
+            "nodeID": "733",
+            "signature": "FRAC (x)",
+            "type": "function"
+        },
+        {
+            "help": "Rounds x downwards to the nearest integer.",
+            "keyword": "INT",
+            "nodeID": "734",
+            "signature": "INT (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the inverse matrix of A.",
+            "keyword": "INVERSE",
+            "nodeID": "735",
+            "signature": "INVERSE (A)",
+            "type": "function"
+        },
+        {
+            "help": "Returns an array with the values of the unknowns. This function solves equations using the Gauss-Jordan method.",
+            "keyword": "LINEQN",
+            "nodeID": "736",
+            "signature": "LINEQN (a, b [, toler])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the natural logarithm of x.",
+            "keyword": "LOG",
+            "nodeID": "737",
+            "signature": "LOG (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the base-10 logarithm of x.",
+            "keyword": "LOG10",
+            "nodeID": "738",
+            "signature": "LOG10 (x)",
+            "type": "function"
+        },
+        {
+            "help": "Maximum value of parameters. ",
+            "keyword": "MAX",
+            "nodeID": "739",
+            "signature": "MAX (...)",
+            "type": "function"
+        },
+        {
+            "help": "Minimum value of parameters. Parameters can be anything (arrays, ints, reals, strings).",
+            "keyword": "MIN",
+            "nodeID": "740",
+            "signature": "MIN (...)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the area of the polyline poly.",
+            "keyword": "POLYAREA",
+            "nodeID": "741",
+            "signature": "POLYAREA (poly)",
+            "type": "function"
+        },
+        {
+            "help": "Polycent.",
+            "keyword": "POLYCENT",
+            "nodeID": "742",
+            "signature": "POLYCENT",
+            "type": "function"
+        },
+        {
+            "help": "x raised to power of y.",
+            "keyword": "POW",
+            "nodeID": "743",
+            "signature": "POW (x, y)",
+            "type": "function"
+        },
+        {
+            "help": "Distance of point A from line B, C.",
+            "keyword": "PTDISTLN",
+            "nodeID": "744",
+            "signature": "PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)",
+            "type": "function"
+        },
+        {
+            "help": "Distance of point A from line segment B-C.",
+            "keyword": "PTDISTSEG",
+            "nodeID": "745",
+            "signature": "PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)",
+            "type": "function"
+        },
+        {
+            "help": "The sign of point Q from line segment A->B.",
+            "keyword": "PTSIGN",
+            "nodeID": "746",
+            "signature": "PTSIGN (Ax,Ay,Bx,By,Qx,Qy)",
+            "type": "function"
+        },
+        {
+            "help": "Degrees to radians.",
+            "keyword": "RAD",
+            "nodeID": "747",
+            "signature": "RAD (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns a random number from the range 0 to 1.",
+            "keyword": "RND",
+            "nodeID": "748",
+            "signature": "RND",
+            "type": "function"
+        },
+        {
+            "help": "Rounds the x to the nearest integer or number with 'decs' decimal digits.",
+            "keyword": "ROUND",
+            "nodeID": "749",
+            "signature": "ROUND (x [, decs])",
+            "type": "function"
+        },
+        {
+            "help": "Secant.",
+            "keyword": "SEC",
+            "nodeID": "750",
+            "signature": "SEC (x)",
+            "type": "function"
+        },
+        {
+            "help": "Secant.",
+            "keyword": "SECH",
+            "nodeID": "751",
+            "signature": "SECH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Cosine of 2 line segments (A->B, C->D).",
+            "keyword": "SEGCOS",
+            "nodeID": "752",
+            "signature": "SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)",
+            "type": "function"
+        },
+        {
+            "help": "Length of line segment.",
+            "keyword": "SEGLEN",
+            "nodeID": "753",
+            "signature": "SEGLEN (Ax,Ay,Bx,By)",
+            "type": "function"
+        },
+        {
+            "help": "Sinus of 2 line segments (A->B, C->D).",
+            "keyword": "SEGSIN",
+            "nodeID": "754",
+            "signature": "SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)",
+            "type": "function"
+        },
+        {
+            "help": "Returns an array with 'count' elements. Each element has the x value of its position.",
+            "keyword": "SEQ",
+            "nodeID": "755",
+            "signature": "SEQ (xmin, xmax, count)",
+            "type": "function"
+        },
+        {
+            "help": "Sign of x (+1 for positive, -1 for negative and 0 for zero).",
+            "keyword": "SGN",
+            "nodeID": "756",
+            "signature": "SGN (x)",
+            "type": "function"
+        },
+        {
+            "help": "Sine.",
+            "keyword": "SIN",
+            "nodeID": "757",
+            "signature": "SIN (x)",
+            "type": "function"
+        },
+        {
+            "help": "Sine.",
+            "keyword": "SINH",
+            "nodeID": "758",
+            "signature": "SINH (x)",
+            "type": "function"
+        },
+        {
+            "help": "Square root of x.",
+            "keyword": "SQR",
+            "nodeID": "759",
+            "signature": "SQR (x)",
+            "type": "function"
+        },
+        {
+            "help": "Arithmetical mean.",
+            "keyword": "STATMEAN",
+            "nodeID": "760",
+            "signature": "STATMEAN (...)",
+            "type": "function"
+        },
+        {
+            "help": "Mean deviation.",
+            "keyword": "STATMEANDEV",
+            "nodeID": "761",
+            "signature": "STATMEANDEV (...)",
+            "type": "function"
+        },
+        {
+            "help": "Sample spread.",
+            "keyword": "STATSPREADP",
+            "nodeID": "762",
+            "signature": "STATSPREADS (...)",
+            "type": "function"
+        },
+        {
+            "help": "Population spread.",
+            "keyword": "STATSPREADS",
+            "nodeID": "763",
+            "signature": "STATSPREADP (...)",
+            "type": "function"
+        },
+        {
+            "help": "Sum of value.",
+            "keyword": "SUM",
+            "nodeID": "764",
+            "signature": "SUM (...)",
+            "type": "function"
+        },
+        {
+            "help": "Sum of square value.",
+            "keyword": "SUMSQ",
+            "nodeID": "765",
+            "signature": "SUMSQ (...)",
+            "type": "function"
+        },
+        {
+            "help": "Tangent.",
+            "keyword": "TAN",
+            "nodeID": "766",
+            "signature": "TAN (x)",
+            "type": "function"
+        },
+        {
+            "help": "Tangent.",
+            "keyword": "TANH",
+            "nodeID": "767",
+            "signature": "TANH (x)",
+            "type": "function"
+        }
+    ],
+    "String": [
+        {
+            "help": "Returns the words of the specified string into array 'words'.",
+            "keyword": "JOIN",
+            "nodeID": "545",
+            "signature": "JOIN words(), delimiters, string",
+            "type": "command"
+        },
+        {
+            "help": "Splits the string 'src' into variables which are separated by delimiters.",
+            "keyword": "SINPUT",
+            "nodeID": "768",
+            "signature": "SINPUT src; var [, delim] [,var [, delim]] ...",
+            "type": "command"
+        },
+        {
+            "help": "Returns the words of the specified string into array 'words'.",
+            "keyword": "SPLIT",
+            "nodeID": "769",
+            "signature": "SPLIT string, delimiters, words() [, pairs] [USE expr]",
+            "type": "command"
+        },
+        {
+            "help": "Create formated string and storing it to var. See also: PRINT command.",
+            "keyword": "SPRINT",
+            "nodeID": "770",
+            "signature": "SPRINT var; [USING...;] ...",
+            "type": "command"
+        },
+        {
+            "help": "Returns the ASCII code of first character of the string s.",
+            "keyword": "ASC",
+            "nodeID": "771",
+            "signature": "ASC (s)",
+            "type": "function"
+        },
+        {
+            "help": "Converts (B)ASIC-style strings to (C)-style (S)trings.",
+            "keyword": "BCS",
+            "nodeID": "772",
+            "signature": "BCS (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the binary value of x as string.",
+            "keyword": "BIN",
+            "nodeID": "773",
+            "signature": "BIN (x)",
+            "type": "function"
+        },
+        {
+            "help": "Converts (C)-style strings to (B)ASIC-style (S)trings.",
+            "keyword": "CBS",
+            "nodeID": "774",
+            "signature": "CBS (s)",
+            "type": "function"
+        },
+        {
+            "help": "Chops off the last character of the string 'source' and returns the result.",
+            "keyword": "CHOP",
+            "nodeID": "775",
+            "signature": "CHOP (source)",
+            "type": "function"
+        },
+        {
+            "help": "Returns one-char string of character with ASCII code x.",
+            "keyword": "CHR",
+            "nodeID": "776",
+            "signature": "CHR (x)",
+            "type": "function"
+        },
+        {
+            "help": "Discloses a string.",
+            "keyword": "DISCLOSE",
+            "nodeID": "777",
+            "signature": "DISCLOSE (str[, pairs [, ignore-pairs]])",
+            "type": "function"
+        },
+        {
+            "help": "Encloses a string.",
+            "keyword": "ENCLOSE",
+            "nodeID": "778",
+            "signature": "ENCLOSE (str[, pair])",
+            "type": "function"
+        },
+        {
+            "help": "Returns a formated string.",
+            "keyword": "FORMAT",
+            "nodeID": "779",
+            "signature": "FORMAT (format, val)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the hexadecimal value of x as string.",
+            "keyword": "HEX",
+            "nodeID": "780",
+            "signature": "HEX (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the position of the first occurrence of the string s2 into string s1 (starting from the position 'start'). If there is no match, INSTR returns 0",
+            "keyword": "INSTR",
+            "nodeID": "781",
+            "signature": "INSTR ([start,] s1, s2)",
+            "type": "function"
+        },
+        {
+            "help": "Converts the string s to lower case.",
+            "keyword": "LCASE",
+            "nodeID": "782",
+            "signature": "LCASE (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the n number of leftmost chars of string s. if not specified n = 1.",
+            "keyword": "LEFT",
+            "nodeID": "783",
+            "signature": "LEFT (s [,n])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the left part of s1 at the position of the first occurrence of the string s2 into string s1.",
+            "keyword": "LEFTOF",
+            "nodeID": "784",
+            "signature": "LEFTOF (s1, s2)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the left part of s1 at the position of the last occurrence of the string s2 into string s1.",
+            "keyword": "LEFTOFLAST",
+            "nodeID": "785",
+            "signature": "LEFTOFLAST (s1, s2)",
+            "type": "function"
+        },
+        {
+            "help": "Converts the string s to lower case.",
+            "keyword": "LOWER",
+            "nodeID": "786",
+            "signature": "LOWER (s)",
+            "type": "function"
+        },
+        {
+            "help": "Removes leading white-spaces from string s.",
+            "keyword": "LTRIM",
+            "nodeID": "787",
+            "signature": "LTRIM (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the part (length) of the string s starting from 'start' position.",
+            "keyword": "MID",
+            "nodeID": "788",
+            "signature": "MID (s, start [,length])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the octal value of x as string.",
+            "keyword": "OCT",
+            "nodeID": "789",
+            "signature": "OCT (x)",
+            "type": "function"
+        },
+        {
+            "help": "Writes str into pos of source and returns the new string.",
+            "keyword": "REPLACE",
+            "nodeID": "790",
+            "signature": "REPLACE (source, pos, str [, len])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the n number of rightmost chars of string s. if not specified n = 1.",
+            "keyword": "RIGHT",
+            "nodeID": "791",
+            "signature": "RIGHT (s[,n])",
+            "type": "function"
+        },
+        {
+            "help": "Returns the right part of s1 at the position of the first occurrence of the string s2 into string s1.",
+            "keyword": "RIGHTOF",
+            "nodeID": "792",
+            "signature": "RIGHTOF (s1, s2)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the right part of s1 at the position of the last occurrence of the string s2 into string s1.",
+            "keyword": "RIGHTOFLAST",
+            "nodeID": "793",
+            "signature": "RIGHTOFLAST (s1, s2)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the position of the last occurrence of the string s2 into string s1 (starting from the position 'start').",
+            "keyword": "RINSTR",
+            "nodeID": "794",
+            "signature": "RINSTR ([start,] s1, s2)",
+            "type": "function"
+        },
+        {
+            "help": "Removes trailing white-spaces from string s.",
+            "keyword": "RTRIM",
+            "nodeID": "795",
+            "signature": "RTRIM (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns a string of n spaces.",
+            "keyword": "SPACE",
+            "nodeID": "796",
+            "signature": "SPACE (n)",
+            "type": "function"
+        },
+        {
+            "help": "Returns a string of n spaces.",
+            "keyword": "SPC",
+            "nodeID": "797",
+            "signature": "SPC (n)",
+            "type": "function"
+        },
+        {
+            "help": "Removes all leading, trailing and duplicated white-space.",
+            "keyword": "SQUEEZE",
+            "nodeID": "798",
+            "signature": "SQUEEZE (s)",
+            "type": "function"
+        },
+        {
+            "help": "Converts the number n into a string.",
+            "keyword": "STR",
+            "nodeID": "799",
+            "signature": "STR (n)",
+            "type": "function"
+        },
+        {
+            "help": "Creates a new string of count length.",
+            "keyword": "STRING",
+            "nodeID": "800",
+            "signature": "STRING ( count [,start | s] )",
+            "type": "function"
+        },
+        {
+            "help": "Translates all occurrences of the string 'what' found in source with the string 'with' and returns the new string.",
+            "keyword": "TRANSLATE",
+            "nodeID": "801",
+            "signature": "TRANSLATE (source, what [, with])",
+            "type": "function"
+        },
+        {
+            "help": "Removes all leading and trailing white-space.",
+            "keyword": "TRIM",
+            "nodeID": "802",
+            "signature": "TRIM(s)",
+            "type": "function"
+        },
+        {
+            "help": "Converts the string s to upper case.",
+            "keyword": "UCASE",
+            "nodeID": "803",
+            "signature": "UCASE (s)",
+            "type": "function"
+        },
+        {
+            "help": "Converts the string s to upper case.",
+            "keyword": "UPPER",
+            "nodeID": "804",
+            "signature": "UPPER (s)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the numeric value of string s.",
+            "keyword": "VAL",
+            "nodeID": "805",
+            "signature": "VAL (s)",
+            "type": "function"
+        }
+    ],
+    "System": [
+        {
+            "help": "Delay for a specified amount of milliseconds. Note 'delay' depends on the system clock.",
+            "keyword": "DELAY",
+            "nodeID": "806",
+            "signature": "DELAY ms",
+            "type": "command"
+        },
+        {
+            "help": "Adds a variable to or deletes a variable from the current environment variable-table.",
+            "keyword": "ENV",
+            "nodeID": "807",
+            "signature": "ENV expr",
+            "type": "command"
+        },
+        {
+            "help": "Pauses the execution for a specified length of time, or until user hit the keyboard.",
+            "keyword": "PAUSE",
+            "nodeID": "809",
+            "signature": "PAUSE [secs]",
+            "type": "command"
+        },
+        {
+            "help": "Seeds the random number generator.",
+            "keyword": "RANDOMIZE",
+            "nodeID": "810",
+            "signature": "RANDOMIZE [int]",
+            "type": "command"
+        },
+        {
+            "help": "Display internal execution stack.",
+            "keyword": "STKDUMP",
+            "nodeID": "812",
+            "signature": "STKDUMP",
+            "type": "command"
+        },
+        {
+            "help": "See TRON.",
+            "keyword": "TROFF",
+            "nodeID": "813",
+            "signature": "TROFF",
+            "type": "command"
+        },
+        {
+            "help": "When trace mechanism is ON, displays each line number as the program is executed.",
+            "keyword": "TRON",
+            "nodeID": "814",
+            "signature": "TRON",
+            "type": "command"
+        },
+        {
+            "help": "SmallBASIC startup command line options.",
+            "keyword": "COMMAND",
+            "nodeID": "1521",
+            "signature": "COMMAND",
+            "type": "constant"
+        },
+        {
+            "help": "Current working directory",
+            "keyword": "CWD",
+            "nodeID": "1522",
+            "signature": "CWD",
+            "type": "constant"
+        },
+        {
+            "help": "User HOME folder",
+            "keyword": "HOME",
+            "nodeID": "1525",
+            "signature": "HOME",
+            "type": "constant"
+        },
+        {
+            "help": "Holds the maximum value for an integer. The value depends on whether you are using a 32 or 64 bit build of SmallBASIC.",
+            "keyword": "MAXINT",
+            "nodeID": "1736",
+            "signature": "MAXINT",
+            "type": "constant"
+        },
+        {
+            "help": "NIL is used to mean 'not set' as distinct from having an INT set to 0",
+            "keyword": "NIL",
+            "nodeID": "1735",
+            "signature": "NIL",
+            "type": "constant"
+        },
+        {
+            "help": "Holds PI",
+            "keyword": "PI",
+            "nodeID": "1524",
+            "signature": "PI",
+            "type": "constant"
+        },
+        {
+            "help": "Version and build information",
+            "keyword": "SBVER",
+            "nodeID": "1523",
+            "signature": "SBVER",
+            "type": "constant"
+        },
+        {
+            "help": "Pseudo class instance variable",
+            "keyword": "SELF",
+            "nodeID": "1734",
+            "signature": "SELF",
+            "type": "constant"
+        },
+        {
+            "help": "Returns the value of a specified entry in the current environment table. If the parameter is empty (\"\") then returns an array of the environment variables (in var=value form).",
+            "keyword": "ENV",
+            "nodeID": "815",
+            "signature": "ENV expr",
+            "type": "function"
+        },
+        {
+            "help": "Returns system information. eg, 0 = free memory, ",
+            "keyword": "FRE",
+            "nodeID": "606",
+            "signature": "FRE (x)",
+            "type": "function"
+        },
+        {
+            "help": "Returns the current program line number.",
+            "keyword": "PROGLINE",
+            "nodeID": "817",
+            "signature": "PROGLINE",
+            "type": "function"
+        },
+        {
+            "help": "Loads a secondary copy of system's shell and, executes an program, or an shell command.",
+            "keyword": "RUN",
+            "nodeID": "818",
+            "signature": "RUN cmdstr",
+            "type": "function"
+        },
+        {
+            "help": "Transfers control to another operating system program.",
+            "keyword": "EXEC",
+            "nodeID": "1443",
+            "signature": "EXEC file",
+            "type": "keyword"
+        },
+        {
+            "help": "Export a SUB, FUNC or variable from a UNIT to be used by the unit consumer.",
+            "keyword": "EXPORT",
+            "nodeID": "1440",
+            "signature": "EXPORT thing",
+            "type": "keyword"
+        },
+        {
+            "help": "Import an exported UNIT variable, SUB or FUNC.",
+            "keyword": "IMPORT",
+            "nodeID": "1441",
+            "signature": "IMPORT",
+            "type": "keyword"
+        },
+        {
+            "help": "Declares the source module as a unit. Units are a set of procedures, functions and/or variables that can be used by another program or unit.",
+            "keyword": "UNIT",
+            "nodeID": "1446",
+            "signature": "UNIT name",
+            "type": "keyword"
+        },
+        {
+            "help": "Compile and run the given source. Source can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process.",
+            "keyword": "CHAIN",
+            "nodeID": "1439",
+            "signature": "CHAIN source",
+            "type": "statement"
+        },
+        {
+            "help": "Inserts code in the named file when the program is compiled. ",
+            "keyword": "INCLUDE",
+            "nodeID": "1462",
+            "signature": "INCLUDE source-file.bas",
+            "type": "statement"
+        },
+        {
+            "help": "Used to pass parameters to the run-time environment.",
+            "keyword": "OPTION",
+            "nodeID": "1442",
+            "signature": "OPTION keyword",
+            "type": "statement"
+        }
+    ]
+}

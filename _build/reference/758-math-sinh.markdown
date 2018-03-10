@@ -1,0 +1,6 @@
+### Math
+
+> SINH (x)
+
+Sine.
+

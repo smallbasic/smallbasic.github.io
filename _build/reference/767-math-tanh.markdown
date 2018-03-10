@@ -1,0 +1,6 @@
+### Math
+
+> TANH (x)
+
+Tangent.
+

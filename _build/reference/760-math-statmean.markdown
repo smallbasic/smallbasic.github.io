@@ -1,0 +1,6 @@
+### Math
+
+> STATMEAN (...)
+
+Arithmetical mean.
+
