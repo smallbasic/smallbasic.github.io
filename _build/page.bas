@@ -3,10 +3,13 @@ unit page
 export name
 export help
 export url
+export title
 
-print ">>>>>>>>>>"
-print command
+tload "page.json", s, 1
+dat = array(s)
+item = dat[command]
 
-name = "blah"
-help = "ff"
-url = "url"
+name = item.keyword
+help = item.help
+url = item.nodeId
+title = item.signature
