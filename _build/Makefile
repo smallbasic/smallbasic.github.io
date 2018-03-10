@@ -9,52 +9,43 @@
 #
 
 .SECONDARY :
-.PHONY : all clean
+.PHONY : all clean deploy
 
 # tools
-SBASIC = /home/chrisws/src/SmallBASIC/src/platform/console/sbasic
-PANDOC = /usr/bin/pandoc
+sbasic = /home/chrisws/src/SmallBASIC/src/platform/console/sbasic
+pandoc = /usr/bin/pandoc
 
 # variables
+mkdir = @mkdir -p $(dir $@)
 out = _out
-deploy= ../reference
 pandoc_options=--smart --to html5
-
-# dependencies
-MKDIR = @mkdir -p $(dir $@)
 bas = $(patsubst layouts/%.html, $(out)/%.bas, $(wildcard layouts/*.html))
-reference0 = $(wildcard reference/*.markdown)
-reference1 = $(patsubst reference/%.markdown, $(out)/reference1/%.html, $(reference0))
-reference2 = $(patsubst $(out)/reference1/%.html, $(out)/reference2/%.html, $(reference1))
-reference3 = $(patsubst $(out)/reference2/%.html, $(out)/reference3/%.html, $(reference2))
-reference = $(patsubst $(out)/reference3/%-*.html, $(deploy)/%.html, $(reference3))
+reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))
 
 # rules
-.page.json : reference.json
-	$(SBASIC) mkdata.bas > page.json
+.data: reference.json
+	@mkdir -p $(out)/data
+	$(sbasic) mkdata.bas
 
-$(out)/%.bas : layouts/%.html .page.json
-	$(MKDIR)
-	$(SBASIC) mkpage.bas $< > $@
+$(out)/%.bas: layouts/%.html .data
+	$(mkdir)
+	$(sbasic) mkpage.bas $< > $@
 
-$(out)/reference1/%.html : reference/%.markdown
-	$(MKDIR)
-	$(PANDOC) $(pandoc_options) -o $@ $<
+$(out)/reference1/%.html: reference/%.markdown
+	$(mkdir)
+	$(pandoc) $(pandoc_options) -o $@ $<
 
-$(out)/reference2/%.html : $(out)/reference1/%.html $(bas)
-	$(MKDIR)
-	$(SBASIC) $(out)/post.bas $< > $@
+$(out)/reference2/%.html: $(out)/reference1/%.html $(bas)
+	$(mkdir)
+	$(sbasic) $(out)/post.bas $< > $@
 
-$(out)/reference3/%.html : $(out)/reference2/%.html
-	$(MKDIR)
-	$(SBASIC) $(out)/html.bas $< > $@
+$(out)/reference3/%.html: $(out)/reference2/%.html
+	$(mkdir)
+	$(sbasic) $(out)/html.bas $< > $@
 
-$(deploy)/%.html : $(out)/reference3/%-*.html
-	$(MKDIR)
-	cp $< $@
-
-all : $(reference3)
+all: $(reference)
+	@mkdir -p ../reference
+	$(sbasic) deploy.bas
 
 clean:
-	rm -rf $(out) *.sbu page.json
-
+	rm -rf $(out) *.sbu

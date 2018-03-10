@@ -1,3 +1,7 @@
+rem
+rem exports the global site data
+rem
+
 unit site
 
 export title
