@@ -3,13 +3,13 @@
 #
 # 1. create reference markdown from drupal export
 # $ sbasic mkref.bas sb_ref.json markdown
-# 
-# 2. create reference.json from 
+#
+# 2. create reference.json from
 # $ sbasic mksite.bas
 #
 
 .SECONDARY :
-.PHONY : all clean bas 
+.PHONY : all clean bas
 
 # tools
 SBASIC = /home/chrisws/src/SmallBASIC/src/platform/console/sbasic
