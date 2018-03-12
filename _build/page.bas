@@ -14,13 +14,18 @@ filename = translate(filename, "/reference2/", "/data/")
 filename = translate(filename, ".html", ".json")
 
 if (not exist(filename)) then
-  throw "File does not exist:" + filename
+  item = ""
+  name = ""
+  help = ""
+  url = ""
+  title = ""
+else
+  tload filename, s, 1
+  item = array(s)
+  name = item.keyword
+  help = item.help
+  url = item.nodeId
+  title = item.signature
 endif
 
-tload filename, s, 1
-item = array(s)
-name = item.keyword
-help = item.help
-url = item.nodeId
-title = item.signature
 

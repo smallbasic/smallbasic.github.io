@@ -9,7 +9,7 @@
 #
 
 .SECONDARY :
-.PHONY : all clean deploy
+.PHONY : all clean
 
 # tools
 sbasic = /home/chrisws/src/SmallBASIC/src/platform/console/sbasic
@@ -46,6 +46,8 @@ $(out)/reference3/%.html: $(out)/reference2/%.html
 all: $(reference)
 	@mkdir -p ../reference
 	$(sbasic) deploy.bas
+	$(sbasic) $(out)/reference.bas > $(out)/reference.html
+	$(sbasic) $(out)/html.bas $(out)/reference.html > ../reference/index.html
 
 clean:
 	rm -rf $(out) *.sbu
