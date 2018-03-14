@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > M3ROTATE BYREF m3x3, angle [, x, y]
 

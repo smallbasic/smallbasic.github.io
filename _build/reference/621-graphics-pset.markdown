@@ -1,4 +1,4 @@
-### Graphics
+# Graphics
 
 > PSET [STEP] x,y [, color| COLOR color]
 

@@ -1,4 +1,4 @@
-### Date
+# Date
 
 > DATEFMT (format, dmy| (d,m,y)| julian_date)
 

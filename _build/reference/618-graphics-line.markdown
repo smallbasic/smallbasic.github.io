@@ -1,4 +1,4 @@
-### Graphics
+# Graphics
 
 > LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]
 

@@ -1,4 +1,4 @@
-### Graphics
+# Graphics
 
 > COLOR foreground-color [, background-color]
 

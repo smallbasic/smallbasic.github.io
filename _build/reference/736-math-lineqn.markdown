@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > LINEQN (a, b [, toler])
 

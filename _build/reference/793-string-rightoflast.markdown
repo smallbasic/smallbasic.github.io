@@ -1,4 +1,4 @@
-### String
+# String
 
 > RIGHTOFLAST (s1, s2)
 

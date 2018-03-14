@@ -84,6 +84,7 @@ code,kbd,pre,samp {
     background: #F1F1F1;
     border: 1px solid #E1E1E1;
     border-radius: 4px;
+    margin-top: 1em;
 }
 button,input,optgroup,select,textarea {
     color: inherit;
@@ -617,6 +618,11 @@ span.user {
         display: none;
     }
 }
-blockquote > p {
-    font-style: italic
+
+blockquote {
+    margin: 0px;
+    padding-left: 1em;
+    margin-bottom: 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;    
 }

@@ -1,4 +1,4 @@
-### Data
+# Data
 
 > ERASE var[, var[, ... var]]
 

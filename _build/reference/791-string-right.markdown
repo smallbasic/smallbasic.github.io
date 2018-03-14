@@ -1,4 +1,4 @@
-### String
+# String
 
 > RIGHT (s[,n])
 

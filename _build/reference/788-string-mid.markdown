@@ -1,4 +1,4 @@
-### String
+# String
 
 > MID (s, start [,length])
 

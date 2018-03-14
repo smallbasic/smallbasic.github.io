@@ -1,4 +1,4 @@
-### String
+# String
 
 > LEFTOFLAST (s1, s2)
 

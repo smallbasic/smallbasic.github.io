@@ -1,4 +1,4 @@
-### Graphics
+# Graphics
 
 > IMAGE [#handle | fileName | http://path-to-file.png | image-var | array of pixmap data]
 

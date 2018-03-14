@@ -1,4 +1,4 @@
-### Data
+# Data
 
 > ARRAY [var | expr]
 

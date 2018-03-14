@@ -1,4 +1,4 @@
-### Data
+# Data
 
 > UBOUND (array [, dim])
 

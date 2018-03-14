@@ -1,4 +1,4 @@
-### String
+# String
 
 > DISCLOSE (str[, pairs [, ignore-pairs]])
 

@@ -8,6 +8,7 @@ for package in ref
   num_items = len(ref[package]) - 1
   for i = 0 to num_items
     item = ref[package][i]
+    item.package = package
     filename = "_out/data/" + item.nodeId + "-" + lower(package) + "-" + lower(item.keyword) + ".json"
     filename = translate(filename, " ", "")
     buffer = str(item)

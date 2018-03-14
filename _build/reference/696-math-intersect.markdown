@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > INTERSECT Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, BYREF type, BYREF Rx, BYREF Ry
 

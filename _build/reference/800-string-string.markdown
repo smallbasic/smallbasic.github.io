@@ -1,4 +1,4 @@
-### String
+# String
 
 > STRING ( count [,start | s] )
 

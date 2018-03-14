@@ -1,4 +1,4 @@
-### Data
+# Data
 
 > LBOUND (array [, dim])
 

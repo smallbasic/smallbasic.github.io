@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr
 

@@ -1,4 +1,4 @@
-### Data
+# Data
 
 > DIM var([lower TO] upper [, ...]) [, ...]
 

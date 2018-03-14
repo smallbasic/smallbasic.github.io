@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax
 

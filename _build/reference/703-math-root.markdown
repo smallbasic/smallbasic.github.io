@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr
 

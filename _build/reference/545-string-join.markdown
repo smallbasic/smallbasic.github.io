@@ -1,4 +1,4 @@
-### String
+# String
 
 > JOIN words(), delimiters, string
 

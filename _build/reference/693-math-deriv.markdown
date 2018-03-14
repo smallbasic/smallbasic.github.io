@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
 

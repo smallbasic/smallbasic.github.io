@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > ACOT (x)
 

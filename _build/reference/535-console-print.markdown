@@ -1,4 +1,4 @@
-### Console
+# Console
 
 > PRINT [USING [format];] [expr|str [,|; [expr|str]] ...
 

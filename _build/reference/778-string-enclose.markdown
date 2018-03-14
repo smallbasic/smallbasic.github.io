@@ -1,4 +1,4 @@
-### String
+# String
 
 > ENCLOSE (str[, pair])
 

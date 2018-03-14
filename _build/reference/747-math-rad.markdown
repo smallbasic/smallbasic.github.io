@@ -1,4 +1,4 @@
-### Math
+# Math
 
 > RAD (x)
 
