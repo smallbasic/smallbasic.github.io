@@ -41,13 +41,13 @@ $(out)/reference2/%.html: $(out)/reference1/%.html $(bas)
 
 $(out)/reference3/%.html: $(out)/reference2/%.html
 	$(mkdir)
-	$(sbasic) $(out)/html.bas $< > $@
+	$(sbasic) $(out)/sitepage.bas $< > $@
 
 all: $(reference)
 	@mkdir -p ../reference
 	$(sbasic) deploy.bas
 	$(sbasic) $(out)/reference.bas > $(out)/reference.html
-	$(sbasic) $(out)/html.bas $(out)/reference.html > ../reference/index.html
+	$(sbasic) $(out)/sitepage.bas $(out)/reference.html > ../reference/index.html
 
 clean:
 	rm -rf $(out) *.sbu
