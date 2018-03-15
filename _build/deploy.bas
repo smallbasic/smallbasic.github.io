@@ -1,5 +1,5 @@
 rem
-rem creates reference/index.html and copies the generated html to the live site folder
+rem copies the generated reference html to the live site folder
 rem
 
 tload "reference.json", s, 1

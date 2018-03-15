@@ -1,0 +1,155 @@
+{%
+func cmpfunc(a, b)
+  return iff(a.keyword == b.keyword, 0, iff(a.keyword < b.keyword, -1, 1))
+end
+tload "reference.json", s, 1
+ref = array(s)
+sort ref["Console"] use cmpfunc(x,y)
+sort ref["Data"] use cmpfunc(x,y)
+sort ref["Date"] use cmpfunc(x,y)
+sort ref["File"] use cmpfunc(x,y)
+sort ref["Graphics"] use cmpfunc(x,y)
+sort ref["Language"] use cmpfunc(x,y)
+sort ref["Math"] use cmpfunc(x,y)
+sort ref["String"] use cmpfunc(x,y)
+sort ref["System"] use cmpfunc(x,y)
+%}
+
+<div class="article">
+  <h1>Language reference</h1>
+  <p class="roleNote">BASIC is a very simple language and it is a perfect tool for calculations or utilities.
+    Its name stands for (B)eginners (A)ll-purpose (S)ymbolic (I)nstruction (c)ode. It was developed by John
+    Kemeny and Thomas Kurtz at Dartmouth College during the middle of 1960, and was one of the most
+    popular languages for several decades.</p>
+  <h2>How to read the language reference syntax</h2>
+  <ul>
+    <li>Everything written inside of [] characters are optional values.</li>
+    <li>Everything written inside of { characters means you must select one of them.</li>
+    <li>The symbol | means OR.</li>
+    <li>The symbols ... mean you can repeat the previous syntax.</li>
+    <li>Keywords are written with capital letters.</li>
+    <li>Parameters are written with lower letters.</li>
+    <li>Keywords with suffix () are functions.</li>
+    <li>Parameters with suffix () are arrays.</li>
+  </ul>
+  <pre>
+    FOO     <- This is keyword
+    FOO()   <- This is function
+    foo     <- This is variable/parameter
+    foo()   <- This is array/parameter
+    {A|B}   <- This means that you must type A or B
+    [{A|B}] <- This means that you must use A or B or nothing
+  </pre>
+  <p>The following example means that you must give the first parameter (a) but you can use the second (x)
+    only if you want to. But if you want to use the (x) you must also separate it from (a) with a comma.</p>
+  <pre>FOO a[, x]</pre>
+  <p>The next example means that you must use the first parameter. You can also use second parameter
+    but you must separate it with ',' or ';'. You can also repeat the last syntax more times.</p>
+  <pre>FOO var [{,|;} var2 [...]]</pre>
+  <p>The following code demonstrates valid examples of this syntax:</p>
+  <pre>
+    bc. FOO a
+    FOO a, b
+    FOO a; b
+    FOO a, b; c
+    FOO a, b, c
+    FOO a; b; c, d; e, f, g
+  </pre>
+
+  <h2>You can find</h2>
+  <p>escape codes under Console or under Articles "Escape Codes"
+  ARRAY under Data, ISMAP under Data, ISREF under Data</p>
+
+  <p>bit color systems under Graphics
+  STEP under Graphics,  aspect under Graphics, FILLED under Graphics, QBcolors under COLOR under Graphics</p>
+
+  <p>"system variables" AKA built in coder constants under System eg, pi, xmax, ymax, cwd...
+  INCLUDE under System</p>
+
+  <p>Allot of information is under Articles > "Welcome to SmallBASIC":
+  operators eg ~ % ^ ! IN LIKE
+  special characters eg   [ , ;]  ARRAY definition << append to array
+  basic stuff about variables, subs and functions
+  aha! stuff on units, meta commands, options, pseudo operators</p>
+
+  <p>TRY CATCH THROW ENDTRY ... located in Language ref > Language unsorted list</p>
+
+  <br/>
+  <div class="contentsPanel">
+    <div class="contentsHeader">Contents</div>
+    <ul>
+      <li>
+        <span>Console</span>
+        <ul>
+          {% for post in ref["Console"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+      <li>
+        <span>Data</span>
+        <ul>
+          {% for post in ref["Data"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+      <li>
+        <span>Date</span>
+        <ul>
+          {% for post in ref["Date"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+      <li>
+        <span>File</span>
+        <ul>
+          {% for post in ref["File"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+      <li>
+        <span>Graphics</span>
+        <ul>
+          {% for post in ref["Graphics"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+      <li>
+        <span>Language</span>
+        <ul>
+          {% for post in ref["Language"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+      <li>
+        <span>Math</span>
+        <ul>
+          {% for post in ref["Math"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+      <li>
+        <span>String</span>
+        <ul>
+          {% for post in ref["String"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+      <li>
+        <span>System</span>
+        <ul>
+          {% for post in ref["System"] %}
+           <li><a title="{{post.help}}" href="reference/{{ post.nodeId }}.html">{{ post.keyword }}</a></li>
+          {% next post %}
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

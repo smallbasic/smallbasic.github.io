@@ -20,6 +20,7 @@ mkdir = @mkdir -p $(dir $@)
 out = _out
 pandoc_options=--smart --to html5
 bas = $(patsubst layouts/%.html, $(out)/%.bas, $(wildcard layouts/*.html))
+pages = $(patsubst pages/%.html, $(out)/pages/%.bas, $(wildcard pages/*.html))
 reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))
 
 # rules
@@ -43,11 +44,17 @@ $(out)/reference3/%.html: $(out)/reference2/%.html
 	$(mkdir)
 	$(sbasic) $(out)/sitepage.bas $< > $@
 
-all: $(reference)
+$(out)/pages/%.bas: pages/%.html .data
+	@mkdir -p $(out)/pages
+	@mkdir -p $(out)/html/pages
+	$(sbasic) mkpage.bas $< > $@
+	$(sbasic) $@ > $(out)/$<
+	$(sbasic) $(out)/sitepage.bas $(out)/$< > $(out)/html/$<
+
+all: $(reference) $(pages)
 	@mkdir -p ../reference
 	$(sbasic) deploy.bas
-	$(sbasic) $(out)/reference.bas > $(out)/reference.html
-	$(sbasic) $(out)/sitepage.bas $(out)/reference.html > ../reference/index.html
+	@cp $(out)/html/pages/*.html ../
 
 clean:
 	rm -rf $(out) *.sbu
