@@ -20,7 +20,7 @@ mkdir = @mkdir -p $(dir $@)
 out = _out
 pandoc_options=--smart --to html5
 bas = $(patsubst layouts/%.html, $(out)/%.bas, $(wildcard layouts/*.html))
-pages = $(patsubst pages/%.html, $(out)/pages/%.bas, $(wildcard pages/*.html))
+pages = $(patsubst pages/%.markdown, $(out)/pages4/%.html, $(wildcard pages/*.markdown))
 reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))
 
 # rules
@@ -38,23 +38,36 @@ $(out)/reference1/%.html: reference/%.markdown
 
 $(out)/reference2/%.html: $(out)/reference1/%.html $(bas)
 	$(mkdir)
-	$(sbasic) $(out)/post.bas $< > $@
+	$(sbasic) $(out)/reference.bas $< > $@
 
 $(out)/reference3/%.html: $(out)/reference2/%.html
 	$(mkdir)
 	$(sbasic) $(out)/sitepage.bas $< > $@
 
-$(out)/pages/%.bas: pages/%.html .data
-	@mkdir -p $(out)/pages
-	@mkdir -p $(out)/html/pages
+$(out)/pages/%.html: pages/%.markdown
+	$(mkdir)
+	$(pandoc) $(pandoc_options) -o $@ $<
+
+$(out)/pages/%.bas: $(out)/pages/%.html $(bas)
+	$(mkdir)
 	$(sbasic) mkpage.bas $< > $@
-	$(sbasic) $@ > $(out)/$<
-	$(sbasic) $(out)/sitepage.bas $(out)/$< > $(out)/html/$<
+
+$(out)/pages2/%.html: $(out)/pages/%.bas
+	$(mkdir)
+	$(sbasic) $< > $@
+
+$(out)/pages3/%.html: $(out)/pages2/%.html
+	$(mkdir)
+	$(sbasic) $(out)/article.bas $< > $@
+
+$(out)/pages4/%.html: $(out)/pages3/%.html
+	$(mkdir)
+	$(sbasic) $(out)/sitepage.bas $< > $@
 
 all: $(reference) $(pages)
 	@mkdir -p ../reference
 	$(sbasic) deploy.bas
-	@cp $(out)/html/pages/*.html ../
+	@cp $(out)/pages4/*.html ../
 
 clean:
 	rm -rf $(out) *.sbu
