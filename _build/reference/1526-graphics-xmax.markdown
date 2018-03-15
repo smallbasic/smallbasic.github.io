@@ -1,4 +1,4 @@
-# Graphics
+# XMAX
 
 > XMAX
 

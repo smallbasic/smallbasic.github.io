@@ -1,4 +1,4 @@
-# Language
+# CASE
 
 > CASE expr
 

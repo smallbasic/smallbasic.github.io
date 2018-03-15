@@ -1,4 +1,4 @@
-# Math
+# M3TRANS
 
 > M3TRANS BYREF m3x3, Tx, Ty
 

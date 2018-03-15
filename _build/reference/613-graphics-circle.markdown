@@ -1,4 +1,4 @@
-# Graphics
+# CIRCLE
 
 > CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]
 

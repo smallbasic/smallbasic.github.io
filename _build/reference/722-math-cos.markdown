@@ -1,4 +1,4 @@
-# Math
+# COS
 
 > COS (x)
 

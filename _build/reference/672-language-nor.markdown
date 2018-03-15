@@ -1,4 +1,4 @@
-# Language
+# NOR
 
 > a NOR b
 

@@ -1,4 +1,4 @@
-# Math
+# PTDISTSEG
 
 > PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)
 

@@ -1,4 +1,4 @@
-# Math
+# POW
 
 > POW (x, y)
 

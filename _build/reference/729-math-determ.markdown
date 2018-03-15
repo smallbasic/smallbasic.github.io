@@ -1,4 +1,4 @@
-# Math
+# DETERM
 
 > DETERM (A[, toler])
 

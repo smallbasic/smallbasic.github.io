@@ -1,3 +1,35 @@
 <div class="article">
   {{ content }}
+  <div class="lavenderBox">
+    <div class="header">{{ page.package }}</div>
+    <div class="linklist">
+      {% tload "_out/data/" + lower(page.package) + ".json", s, 1
+         items = array(s)
+         func cmpfunc(a, b)
+           return iff(a[0] == b[0], 0, iff(a[0] < b[0], -1, 1))
+         end
+         sort items use cmpfunc(x,y)
+         for next_item in items
+      %}
+      <a href="/reference/{{ next_item[1] }}.html">{{ next_item[0] }} </a>&nbsp;
+      {% next next_item %}
+    </div>
+    <div class="subtitle">
+      If there is insufficient information on this page and you wish learn more about {{ page.name }},
+      please send an email to smallbasic@gmail.com. You can help to improve information about
+      {{ page.name }} by submitting a pull request, click View Source for details. Note, an offline
+      language reference text file is also avialable - see the Download section.
+    </div>
+  </div>
+  <div class="categories">
+    <a href="/reference/521.html">Console </a>
+    <a href="/reference/581.html">Data </a>
+    <a href="/reference/575.html">Date </a>
+    <a href="/reference/580.html">File </a>
+    <a href="/reference/611.html">Graphics </a>
+    <a href="/reference/662.html">Language </a>
+    <a href="/reference/704.html">Math </a>
+    <a href="/reference/771.html">String </a>
+    <a href="/reference/1439.html">System </a>
+  </div>
 </div>

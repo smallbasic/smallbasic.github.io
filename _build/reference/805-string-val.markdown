@@ -1,4 +1,4 @@
-# String
+# VAL
 
 > VAL (s)
 

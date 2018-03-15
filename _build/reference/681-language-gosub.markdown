@@ -1,4 +1,4 @@
-# Language
+# GOSUB
 
 > GOSUB label
 

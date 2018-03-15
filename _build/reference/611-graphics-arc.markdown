@@ -1,4 +1,4 @@
-# Graphics
+# ARC
 
 > ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]
 

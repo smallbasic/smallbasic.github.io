@@ -1,4 +1,4 @@
-# Graphics
+# CHART
 
 > CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]
 

@@ -1,4 +1,4 @@
-# Language
+# FUNC
 
 > FUNC foo (a, b)
 

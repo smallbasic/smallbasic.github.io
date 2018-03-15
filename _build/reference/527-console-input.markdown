@@ -1,4 +1,4 @@
-# Console
+# INPUT
 
 > INPUT [prompt,|;] var[, var [, ...]]
 

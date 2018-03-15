@@ -1,4 +1,4 @@
-# Graphics
+# PEN
 
 > PEN (0..14)
 

@@ -1,4 +1,4 @@
-# Date
+# WEEKDAY
 
 > WEEKDAY (dmy| (d,m,y)| julian_date)
 

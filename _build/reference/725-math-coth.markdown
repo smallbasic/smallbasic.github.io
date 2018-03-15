@@ -1,4 +1,4 @@
-# Math
+# COTH
 
 > COTH (x)
 

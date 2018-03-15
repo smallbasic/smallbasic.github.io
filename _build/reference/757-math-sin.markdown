@@ -1,4 +1,4 @@
-# Math
+# SIN
 
 > SIN (x)
 

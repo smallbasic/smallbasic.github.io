@@ -1,4 +1,4 @@
-# Graphics
+# TEXTHEIGHT
 
 > TEXTHEIGHT (s)
 

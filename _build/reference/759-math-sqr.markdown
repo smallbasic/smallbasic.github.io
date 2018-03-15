@@ -1,4 +1,4 @@
-# Math
+# SQR
 
 > SQR (x)
 

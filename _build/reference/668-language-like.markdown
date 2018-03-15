@@ -1,4 +1,4 @@
-# Language
+# LIKE
 
 > a LIKE b
 

@@ -1,4 +1,4 @@
-# Math
+# ASECH
 
 > ASECH (x)
 

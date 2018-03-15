@@ -1,4 +1,4 @@
-# Data
+# ISNUMBER
 
 > ISNUMBER (x)
 

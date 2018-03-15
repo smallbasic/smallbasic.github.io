@@ -1,4 +1,4 @@
-# Math
+# ACOTH
 
 > ACOTH (x)
 

@@ -1,4 +1,4 @@
-# Language
+# DEF
 
 > DEF name[(par1[,...])] = expression
 

@@ -1,4 +1,4 @@
-# Language
+# EXIT
 
 > EXIT [FOR|LOOP|SUB|FUNC]
 

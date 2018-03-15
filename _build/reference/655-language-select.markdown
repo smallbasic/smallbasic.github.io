@@ -1,4 +1,4 @@
-# Language
+# SELECT
 
 > SELECT CASE expr
 

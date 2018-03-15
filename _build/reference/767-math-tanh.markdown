@@ -1,4 +1,4 @@
-# Math
+# TANH
 
 > TANH (x)
 

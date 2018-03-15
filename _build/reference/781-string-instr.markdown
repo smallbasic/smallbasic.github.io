@@ -1,4 +1,4 @@
-# String
+# INSTR
 
 > INSTR ([start,] s1, s2)
 

@@ -1,4 +1,4 @@
-# String
+# LTRIM
 
 > LTRIM (s)
 

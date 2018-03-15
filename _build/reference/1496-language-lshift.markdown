@@ -1,4 +1,4 @@
-# Language
+# LSHIFT
 
 > result = LSHIFT number, amount
 

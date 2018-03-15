@@ -1,4 +1,4 @@
-# File
+# INPUT
 
 > INPUT #fileN; var1 [,delim] [, var2 [,delim]] ...
 

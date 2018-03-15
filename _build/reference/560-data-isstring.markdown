@@ -1,4 +1,4 @@
-# Data
+# ISSTRING
 
 > ISSTRING (x)
 

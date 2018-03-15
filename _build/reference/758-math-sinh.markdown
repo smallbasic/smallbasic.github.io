@@ -1,4 +1,4 @@
-# Math
+# SINH
 
 > SINH (x)
 

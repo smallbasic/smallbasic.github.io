@@ -1,4 +1,4 @@
-# Math
+# ASIN
 
 > ASIN (x)
 

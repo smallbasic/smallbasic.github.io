@@ -1,4 +1,4 @@
-# Math
+# ACOS
 
 > ACOS (x)
 

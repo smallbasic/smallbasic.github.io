@@ -1,4 +1,4 @@
-# File
+# INPUT
 
 > INPUT (len [, fileN])
 

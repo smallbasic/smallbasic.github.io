@@ -1,4 +1,4 @@
-# Math
+# ASINH
 
 > ASINH (x)
 

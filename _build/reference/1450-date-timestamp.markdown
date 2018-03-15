@@ -1,4 +1,4 @@
-# Date
+# TIMESTAMP
 
 > TIMESTAMP filename
 

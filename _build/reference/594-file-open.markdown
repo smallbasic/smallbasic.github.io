@@ -1,4 +1,4 @@
-# File
+# OPEN
 
 > OPEN file [FOR {INPUT|OUTPUT|APPEND}] AS #fileN
 

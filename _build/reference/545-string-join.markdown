@@ -1,4 +1,4 @@
-# String
+# JOIN
 
 > JOIN words(), delimiters, string
 

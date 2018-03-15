@@ -1,4 +1,4 @@
-# Graphics
+# RGB
 
 > RGB (r, g, b)
 

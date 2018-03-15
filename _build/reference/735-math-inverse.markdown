@@ -1,4 +1,4 @@
-# Math
+# INVERSE
 
 > INVERSE (A)
 

@@ -1,4 +1,4 @@
-# Language
+# CONST
 
 > CONST name = expr
 

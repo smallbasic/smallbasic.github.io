@@ -1,4 +1,4 @@
-# Graphics
+# DRAWPOLY
 
 > DRAWPOLY array [,x-origin,y-origin [, scalef [, color]]] [COLOR color] [FILLED]
 

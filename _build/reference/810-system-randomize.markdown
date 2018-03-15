@@ -1,4 +1,4 @@
-# System
+# RANDOMIZE
 
 > RANDOMIZE [int]
 

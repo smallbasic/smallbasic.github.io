@@ -1,4 +1,4 @@
-# Data
+# INSERT
 
 > INSERT a, idx, val [, val [, ...]]]
 

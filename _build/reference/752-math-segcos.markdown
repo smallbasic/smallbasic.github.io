@@ -1,4 +1,4 @@
-# Math
+# SEGCOS
 
 > SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 

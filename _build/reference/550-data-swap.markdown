@@ -1,4 +1,4 @@
-# Data
+# SWAP
 
 > SWAP a, b
 

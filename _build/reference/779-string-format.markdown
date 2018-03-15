@@ -1,4 +1,4 @@
-# String
+# FORMAT
 
 > FORMAT (format, val)
 

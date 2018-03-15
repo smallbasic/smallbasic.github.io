@@ -1,4 +1,4 @@
-# Console
+# DEFINEKEY
 
 > DEFINEKEY k,sub
 

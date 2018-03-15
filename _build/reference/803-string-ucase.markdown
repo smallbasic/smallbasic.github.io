@@ -1,4 +1,4 @@
-# String
+# UCASE
 
 > UCASE (s)
 

@@ -1,4 +1,4 @@
-# String
+# TRANSLATE
 
 > TRANSLATE (source, what [, with])
 

@@ -1,4 +1,4 @@
-# Math
+# PTSIGN
 
 > PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
 

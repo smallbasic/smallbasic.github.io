@@ -1,4 +1,4 @@
-# Math
+# SEC
 
 > SEC (x)
 

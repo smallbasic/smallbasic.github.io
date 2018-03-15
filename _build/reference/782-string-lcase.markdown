@@ -1,4 +1,4 @@
-# String
+# LCASE
 
 > LCASE (s)
 

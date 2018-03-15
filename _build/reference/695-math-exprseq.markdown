@@ -1,4 +1,4 @@
-# Math
+# EXPRSEQ
 
 > EXPRSEQ BYREF array, xmin, xmax, count USE expression
 

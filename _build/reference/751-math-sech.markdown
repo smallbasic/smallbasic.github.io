@@ -1,4 +1,4 @@
-# Math
+# SECH
 
 > SECH (x)
 

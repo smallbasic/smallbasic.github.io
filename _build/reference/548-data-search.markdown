@@ -1,4 +1,4 @@
-# Data
+# SEARCH
 
 > SEARCH A, key, BYREF ridx [USE cmpfunc]
 

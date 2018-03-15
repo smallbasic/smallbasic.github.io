@@ -1,4 +1,4 @@
-# String
+# TRIM
 
 > TRIM(s)
 

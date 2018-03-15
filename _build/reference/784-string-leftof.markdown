@@ -1,4 +1,4 @@
-# String
+# LEFTOF
 
 > LEFTOF (s1, s2)
 

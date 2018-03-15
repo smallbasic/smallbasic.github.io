@@ -23,7 +23,7 @@ bas = $(patsubst layouts/%.html, $(out)/%.bas, $(wildcard layouts/*.html))
 reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))
 
 # rules
-.data: reference.json
+.data: reference.json page.bas site.bas mkdata.bas
 	@mkdir -p $(out)/data
 	$(sbasic) mkdata.bas
 

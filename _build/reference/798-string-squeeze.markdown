@@ -1,4 +1,4 @@
-# String
+# SQUEEZE
 
 > SQUEEZE (s)
 

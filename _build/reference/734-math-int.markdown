@@ -1,4 +1,4 @@
-# Math
+# INT
 
 > INT (x)
 

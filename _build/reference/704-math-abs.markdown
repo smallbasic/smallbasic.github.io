@@ -1,4 +1,4 @@
-# Math
+# ABS
 
 > ABS (x)
 

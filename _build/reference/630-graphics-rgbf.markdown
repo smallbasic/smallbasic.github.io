@@ -1,4 +1,4 @@
-# Graphics
+# RGBF
 
 > RGBF (r, g, b)
 

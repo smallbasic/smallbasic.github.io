@@ -1,4 +1,4 @@
-# Math
+# COSH
 
 > COSH (x)
 

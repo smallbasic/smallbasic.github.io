@@ -1,4 +1,4 @@
-# Language
+# WHILE
 
 > WHILE expr
 

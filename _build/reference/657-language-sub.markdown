@@ -1,4 +1,4 @@
-# Language
+# SUB
 
 > SUB foo (a, b)
 

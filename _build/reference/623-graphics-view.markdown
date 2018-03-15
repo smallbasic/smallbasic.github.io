@@ -1,4 +1,4 @@
-# Graphics
+# VIEW
 
 > VIEW [x1,y1,x2,y2 [,color [,border-color]]]
 

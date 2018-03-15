@@ -1,4 +1,4 @@
-# String
+# RINSTR
 
 > RINSTR ([start,] s1, s2)
 

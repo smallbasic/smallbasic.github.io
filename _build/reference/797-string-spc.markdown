@@ -1,4 +1,4 @@
-# String
+# SPC
 
 > SPC (n)
 

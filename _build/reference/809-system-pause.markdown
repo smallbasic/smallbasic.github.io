@@ -1,4 +1,4 @@
-# System
+# PAUSE
 
 > PAUSE [secs]
 

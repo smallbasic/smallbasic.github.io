@@ -1,4 +1,4 @@
-# Graphics
+# PLOT
 
 > PLOT xmin, xmax USE f(x)
 

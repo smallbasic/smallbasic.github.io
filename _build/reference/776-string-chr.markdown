@@ -1,4 +1,4 @@
-# String
+# CHR
 
 > CHR (x)
 

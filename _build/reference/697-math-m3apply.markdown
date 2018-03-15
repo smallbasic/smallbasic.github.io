@@ -1,4 +1,4 @@
-# Math
+# M3APPLY
 
 > M3APPLY m3x3, BYREF poly
 

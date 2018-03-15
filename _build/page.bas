@@ -10,6 +10,8 @@ export url
 export title
 export sourceurl
 export changesurl
+export lastedit
+export package
 
 filename = translate(command, "/reference1/", "/data/")
 filename = translate(filename, "/reference2/", "/data/")
@@ -23,6 +25,8 @@ if (not exist(filename)) then
   title = ""
   sourceurl = ""
   changesurl = ""
+  lastedit = date()
+  package = ""
 else
   tload filename, s, 1
   item = array(s)
@@ -30,10 +34,12 @@ else
   help = item.help
   url = item.nodeId
   title = item.signature
+  package = item.package
   filepath = item.nodeId + "-" + lower(item.package) + "-" + lower(item.keyword) + ".markdown"
-  filepath = "_build/reference/" + translate(filepath, " ", "")
-  sourceurl = "https://github.com/smallbasic/smallbasic.github.io/blob/master/" + filepath
-  changesurl = "https://github.com/smallbasic/smallbasic.github.io/commits/master/" + filepath
+  filepath = "reference/" + translate(filepath, " ", "")
+  lastedit = run("git log -1 --format=\"%aD - %ar\" -- " + filepath)
+  sourceurl = "https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/" + filepath
+  changesurl = "https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/" + filepath
 endif
 
 

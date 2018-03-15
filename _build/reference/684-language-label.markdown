@@ -1,4 +1,4 @@
-# Language
+# LABEL
 
 > LABEL name
 

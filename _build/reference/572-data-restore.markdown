@@ -1,4 +1,4 @@
-# Data
+# RESTORE
 
 > RESTORE label
 

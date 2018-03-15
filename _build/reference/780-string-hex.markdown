@@ -1,4 +1,4 @@
-# String
+# HEX
 
 > HEX (x)
 

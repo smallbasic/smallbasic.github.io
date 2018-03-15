@@ -1,4 +1,4 @@
-# Math
+# POLYAREA
 
 > POLYAREA (poly)
 

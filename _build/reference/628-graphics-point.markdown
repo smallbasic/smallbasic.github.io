@@ -1,4 +1,4 @@
-# Graphics
+# POINT
 
 > POINT (x [, y])
 

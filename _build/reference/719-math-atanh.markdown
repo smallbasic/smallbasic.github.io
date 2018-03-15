@@ -1,4 +1,4 @@
-# Math
+# ATANH
 
 > ATANH (x)
 

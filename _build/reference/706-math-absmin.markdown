@@ -1,4 +1,4 @@
-# Math
+# ABSMIN
 
 > ABSMIN (...)
 

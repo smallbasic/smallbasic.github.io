@@ -1,4 +1,4 @@
-# Math
+# ATAN2
 
 > ATAN2 (x, y)
 

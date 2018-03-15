@@ -1,4 +1,4 @@
-# Math
+# ACSCH
 
 > ACSCH (x)
 

@@ -1,4 +1,4 @@
-# String
+# RIGHTOF
 
 > RIGHTOF (s1, s2)
 

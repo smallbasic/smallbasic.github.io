@@ -1,4 +1,4 @@
-# Math
+# LOG
 
 > LOG (x)
 

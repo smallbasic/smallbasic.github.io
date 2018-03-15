@@ -1,4 +1,4 @@
-# Language
+# RSHIFT
 
 > result = RSHIFT number, amount
 

@@ -1,4 +1,4 @@
-# File
+# DIRWALK
 
 > DIRWALK directory [, wildcards] [USE ...]
 

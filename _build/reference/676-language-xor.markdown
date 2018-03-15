@@ -1,4 +1,4 @@
-# Language
+# XOR
 
 > a XOR b
 

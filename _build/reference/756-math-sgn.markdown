@@ -1,4 +1,4 @@
-# Math
+# SGN
 
 > SGN (x)
 

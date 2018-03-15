@@ -1,4 +1,4 @@
-# Console
+# PEN
 
 > PEN ON|OFF
 

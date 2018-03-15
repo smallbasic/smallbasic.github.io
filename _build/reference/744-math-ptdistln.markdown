@@ -1,4 +1,4 @@
-# Math
+# PTDISTLN
 
 > PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
 

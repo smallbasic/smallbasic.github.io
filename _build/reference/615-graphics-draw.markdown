@@ -1,4 +1,4 @@
-# Graphics
+# DRAW
 
 > DRAW "commands"
 

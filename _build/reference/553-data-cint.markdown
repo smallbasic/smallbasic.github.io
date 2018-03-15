@@ -1,4 +1,4 @@
-# Data
+# CINT
 
 > CINT (x)
 

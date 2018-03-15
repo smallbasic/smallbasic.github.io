@@ -1,4 +1,4 @@
-# Console
+# LOCATE
 
 > LOCATE y, x
 

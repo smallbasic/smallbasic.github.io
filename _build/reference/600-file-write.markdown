@@ -1,4 +1,4 @@
-# File
+# WRITE
 
 > WRITE #fileN; var1 [, ...]
 

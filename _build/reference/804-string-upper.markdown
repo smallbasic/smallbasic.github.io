@@ -1,4 +1,4 @@
-# String
+# UPPER
 
 > UPPER (s)
 

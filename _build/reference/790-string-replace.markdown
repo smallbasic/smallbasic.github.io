@@ -1,4 +1,4 @@
-# String
+# REPLACE
 
 > REPLACE (source, pos, str [, len])
 

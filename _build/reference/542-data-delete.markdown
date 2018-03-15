@@ -1,4 +1,4 @@
-# Data
+# DELETE
 
 > DELETE a, idx [, count]
 

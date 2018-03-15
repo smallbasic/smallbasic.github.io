@@ -1,4 +1,4 @@
-# Math
+# COT
 
 > COT (x)
 

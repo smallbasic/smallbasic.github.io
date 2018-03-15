@@ -1,4 +1,4 @@
-# Math
+# SEGLEN
 
 > SEGLEN (Ax,Ay,Bx,By)
 

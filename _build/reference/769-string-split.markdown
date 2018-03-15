@@ -1,4 +1,4 @@
-# String
+# SPLIT
 
 > SPLIT string, delimiters, words() [, pairs] [USE expr]
 

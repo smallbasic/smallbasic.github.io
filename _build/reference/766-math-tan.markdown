@@ -1,4 +1,4 @@
-# Math
+# TAN
 
 > TAN (x)
 

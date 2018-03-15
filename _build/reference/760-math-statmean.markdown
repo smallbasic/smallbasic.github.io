@@ -1,4 +1,4 @@
-# Math
+# STATMEAN
 
 > STATMEAN (...)
 

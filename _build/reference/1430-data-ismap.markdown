@@ -1,4 +1,4 @@
-# Data
+# ISMAP
 
 > ISMAP (x)
 

@@ -1,4 +1,4 @@
-# String
+# LOWER
 
 > LOWER (s)
 

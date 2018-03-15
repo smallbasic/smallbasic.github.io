@@ -1,4 +1,4 @@
-# Date
+# TIMEHMS
 
 > TIMEHMS hms| timer, BYREF h, BYREF m, BYREF s
 

@@ -1,4 +1,4 @@
-# Language
+# IMP
 
 > a IMP b
 

@@ -1,4 +1,4 @@
-# Math
+# SEGSIN
 
 > SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 

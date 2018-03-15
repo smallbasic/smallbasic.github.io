@@ -1,4 +1,4 @@
-# Data
+# ISARRAY
 
 > ISARRAY (x)
 

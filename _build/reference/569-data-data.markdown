@@ -1,4 +1,4 @@
-# Data
+# DATA
 
 > DATA constant1 [,constant2]...
 

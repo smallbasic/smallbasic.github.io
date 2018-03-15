@@ -1,4 +1,4 @@
-# Math
+# CEIL
 
 > CEIL (x)
 

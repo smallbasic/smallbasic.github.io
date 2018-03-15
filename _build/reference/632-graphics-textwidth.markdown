@@ -1,4 +1,4 @@
-# Graphics
+# TEXTWIDTH
 
 > TEXTWIDTH (s)
 

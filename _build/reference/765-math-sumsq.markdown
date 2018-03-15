@@ -1,4 +1,4 @@
-# Math
+# SUMSQ
 
 > SUMSQ (...)
 

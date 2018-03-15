@@ -1,4 +1,4 @@
-# File
+# COPY
 
 > COPY "file", "newfile"
 

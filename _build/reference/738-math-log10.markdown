@@ -1,4 +1,4 @@
-# Math
+# LOG10
 
 > LOG10 (x)
 

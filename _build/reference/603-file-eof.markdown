@@ -1,4 +1,4 @@
-# File
+# EOF
 
 > EOF (fileN)
 

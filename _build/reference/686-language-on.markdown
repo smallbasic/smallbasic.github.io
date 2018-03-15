@@ -1,4 +1,4 @@
-# Language
+# ON
 
 > ON GOTO|GOSUB label1 [, ..., labelN]
 

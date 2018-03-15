@@ -1,4 +1,4 @@
-# Math
+# FLOOR
 
 > FLOOR (x)
 

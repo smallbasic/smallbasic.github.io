@@ -1,4 +1,4 @@
-# File
+# RMDIR
 
 > RMDIR dir
 

@@ -1,4 +1,4 @@
-# Math
+# SEQ
 
 > SEQ (xmin, xmax, count)
 

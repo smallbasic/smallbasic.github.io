@@ -1,4 +1,4 @@
-# Language
+# GOTO
 
 > GOTO label
 

@@ -1,4 +1,4 @@
-# String
+# BIN
 
 > BIN (x)
 

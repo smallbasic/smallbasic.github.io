@@ -1,4 +1,4 @@
-# String
+# STR
 
 > STR (n)
 

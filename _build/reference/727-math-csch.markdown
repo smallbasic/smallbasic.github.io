@@ -1,4 +1,4 @@
-# Math
+# CSCH
 
 > CSCH (x)
 

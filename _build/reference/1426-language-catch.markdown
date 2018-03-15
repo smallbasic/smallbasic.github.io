@@ -1,4 +1,4 @@
-# Language
+# CATCH
 
 > CATCH [var | expr]
 

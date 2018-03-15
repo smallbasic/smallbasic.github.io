@@ -1,4 +1,4 @@
-# Data
+# SORT
 
 > SORT array [USE cmpfunc]
 

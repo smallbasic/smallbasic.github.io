@@ -1,4 +1,4 @@
-# Console
+# LINEINPUT
 
 > LINEINPUT [#fileN] var
 

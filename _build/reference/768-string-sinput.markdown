@@ -1,4 +1,4 @@
-# String
+# SINPUT
 
 > SINPUT src; var [, delim] [,var [, delim]] ...
 

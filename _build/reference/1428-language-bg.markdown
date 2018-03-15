@@ -1,4 +1,4 @@
-# Language
+# BG
 
 > SOUND frq, dur [, vol] [BG]
 

@@ -1,4 +1,4 @@
-# Math
+# ACOSH
 
 > ACOSH (x)
 

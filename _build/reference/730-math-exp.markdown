@@ -1,4 +1,4 @@
-# Math
+# EXP
 
 > EXP (x)
 

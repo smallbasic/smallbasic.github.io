@@ -1,4 +1,4 @@
-# Console
+# SOUND
 
 > SOUND freq, dur_ms [, vol] [BG]
 

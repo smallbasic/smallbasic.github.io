@@ -1,4 +1,4 @@
-# Math
+# ATAN
 
 > ATAN (x)
 

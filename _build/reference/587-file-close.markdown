@@ -1,4 +1,4 @@
-# File
+# CLOSE
 
 > CLOSE #fileN
 

@@ -1,4 +1,4 @@
-# Console
+# PLAY
 
 > PLAY string
 

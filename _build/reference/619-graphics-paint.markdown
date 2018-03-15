@@ -1,4 +1,4 @@
-# Graphics
+# PAINT
 
 > PAINT [STEP] x, y [,fill-color [,border-color]]
 

@@ -1,4 +1,4 @@
-# Language
+# XNOR
 
 > a XNOR b
 
