@@ -10,6 +10,7 @@
          end
          sort items use cmpfunc(x,y)
          for next_item in items
+           if (next_item[0] == page.name) then next_item[0] = "<strong>" + next_item[0] + "</strong>"
       %}
       <a href="/reference/{{ next_item[1] }}.html">{{ next_item[0] }} </a>&nbsp;
       {% next next_item %}
