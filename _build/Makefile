@@ -66,8 +66,9 @@ $(out)/pages4/%.html: $(out)/pages3/%.html
 
 all: $(reference) $(pages)
 	@mkdir -p ../reference
+	@mkdir -p ../pages
 	$(sbasic) deploy.bas
-	@cp $(out)/pages4/*.html ../
+	@cp $(out)/pages4/*.html ../pages
 
 clean:
 	rm -rf $(out) *.sbu

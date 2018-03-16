@@ -13,33 +13,45 @@ export changesurl
 export lastedit
 export package
 
-filename = translate(command, "/reference1/", "/data/")
-filename = translate(filename, "/reference2/", "/data/")
-filename = translate(filename, ".html", ".json")
+githost = "https://github.com/smallbasic/smallbasic.github.io"
 
-if (not exist(filename)) then
+jsonFile = translate(command, "/reference1/", "/data/")
+jsonFile = translate(jsonFile, "/reference2/", "/data/")
+jsonFile = translate(jsonFile, ".html", ".json")
+sourcefile = ""
+
+if (not exist(jsonFile)) then
+  rem regular page
+  pagename = translate(command,  "pages1", "")
+  pagename = translate(pagename, "pages2", "")
+  pagename = translate(pagename, "pages3", "")
+  pagename = translate(pagename, "pages4", "")
+  pagename = translate(pagename, "pages", "")
+  pagename = translate(pagename, "_out", "")
+  pagename = translate(pagename, "/", "")
+  pagename = translate(pagename, ".html", "")
+
   item = ""
-  name = ""
-  help = ""
-  url = ""
-  title = ""
-  sourceurl = ""
-  changesurl = ""
-  lastedit = date()
+  name = pagename
+  help = "SmallBASIC | One more basic"
+  url = "/" + pagename + ".html"
+  title = pagename
   package = ""
+  sourcefile = "pages/" + pagename + ".markdown"
 else
-  tload filename, s, 1
+  rem reference page
+  tload jsonFile, s, 1
   item = array(s)
   name = item.keyword
   help = item.help
   url = item.nodeId
   title = item.signature
   package = item.package
-  filepath = item.nodeId + "-" + lower(item.package) + "-" + lower(item.keyword) + ".markdown"
-  filepath = "reference/" + translate(filepath, " ", "")
-  lastedit = run("git log -1 --format=\"%cD by %cn\" -- " + filepath)
-  sourceurl = "https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/" + filepath
-  changesurl = "https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/" + filepath
+  sourcefile = item.nodeId + "-" + lower(item.package) + "-" + lower(item.keyword) + ".markdown"
+  sourcefile = "reference/" + translate(sourcefile, " ", "")
 endif
 
+lastedit = run("git log -1 --format=\"%cD by %cn\" -- " + sourcefile)
+sourceurl = githost + "/blob/master/_build/" + sourcefile
+changesurl = githost + "/commits/master/_build/" + sourcefile
 

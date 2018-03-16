@@ -67,6 +67,10 @@ sub process(filename)
       if (instr(code, "include ") == 1) then
         process("includes/" + rightof(code, "include "))
       else
+        rem revert pandoc created entities
+        code = translate(code, "&lt;", "<")
+        code = translate(code, "&gt;", ">")
+        code = translate(code, "&quot;", "\"")
         print code
       endif
       sIndex = c2 + 2
