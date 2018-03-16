@@ -9,7 +9,8 @@ Returns the length of the value contained in the variable.
 * If x is an array, returns the number of the elements.
 * If x is an number, returns the length of the STR(x).
 
-<pre>
+
+~~~
 
 ' format text lines
 Def set(text, var) = Left(text + Space(60), 60) + Len(var)  
@@ -54,14 +55,15 @@ var = Array("{x:1, y:3, down:[{x:4, y:7}, {x:6, y:9}]}")
 ? set("var = Array(\\"{x:1, y:3, down:[{x:4, y:7}, {x:6, y:9}]}\\")", var)
 Pause
 
-</pre>
+~~~
 
 I added integer to list (50), and got  len = 2
 Now I wonder if Floats change according to precision needed.
 Now I wonder if integers change too...
 Append quick experiment:
 Oh, I guess it's the length of the number as STR'd up to 17 ...then it floats?
-<pre>
+
+~~~
 
 ' Len(number) = Len(Str(number))...
 ' but IEEE format for float and big numbers is hard to predict...
@@ -74,7 +76,7 @@ Oh, I guess it's the length of the number as STR'd up to 17 ...then it floats?
 ? Str(99999999999999.888888888888888) ' 99999999999999.890625
 ? Str(1.999999E+302)        ' 1.999999E+302
 
-</pre>
+~~~
 
 Yes, I think it is the len of the string in exponent format when the number is too long to store as string without exponent notation.
 I was doing long integers and it was matching len(STR number) and when switched to e format it was still the len of the number as string only with e format (very much shorter).

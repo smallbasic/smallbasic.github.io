@@ -9,7 +9,8 @@ As of SmallBASIC version 0.12.6:
 2. UNIT name on Linux system is no longer case sensitive (which makes life easier for Linux users).
 
 The UNIT file is strlib.bas:
-<pre>
+
+~~~
 
 ' File: strlib.bas
 ' ------------ 
@@ -60,10 +61,11 @@ Func Rset(s, b)
   Fi
 End
 
-</pre>
+~~~
 
 Demo file, demo.bas, which is using strlib.bas above:
-<pre>
+
+~~~
 
 ' Here we declare that this file is using another UNIT file.
 ' Note: The actual file name must be in lower case for Linux OS.
@@ -80,7 +82,7 @@ Locate 6, 30
 Print Strlib.Rset("-->>  ", 25)
 Pause
 
-</pre>
+~~~
 
 1. While UNIT can be used as a collection of sub-routines for your own
    program, UNIT is particularly useful for creating a general-purpose
@@ -92,9 +94,10 @@ Pause
    For example: 
    Imagine that the internal routine "PRINT" will use a new syntax in 
    future version of SmallBASIC, something like:
-   <pre>
+   
+~~~
 PRINT [fileN,] x, y, color, "string"  ' the "new" syntax
-</pre>
+~~~
 
    In this case many older programs will not work with the new version
    of SmallBASIC.
@@ -108,9 +111,10 @@ PRINT [fileN,] x, y, color, "string"  ' the "new" syntax
    
    "Unit Name", Version major.minor.revision, Release_Date
    
-   For example: <pre>
+   For example: 
+~~~
 REM Unit "StrLib" Version 1.15.11, 20/3/2016
-</pre>
+~~~
 
      
    <strong>major number:</strong> is increased when there are significant jumps in functionality such as changing the framework which could cause incompatibility with interfacing programs.
@@ -128,41 +132,47 @@ REM Unit "StrLib" Version 1.15.11, 20/3/2016
    
    Instead of using a fixed syntax for sub routines, such as:
    
-   <pre>
+   
+~~~
 ZipText(string, method, fileName)
-</pre>
+~~~
 
    
    Use a single object parameter which has a default value of 0:
    
-   <pre>
+   
+~~~
 ZipText(x)
-</pre>
+~~~
 
    
    Now, in version 1.0.0 for example, x might have this syntax as an array:
    
-   <pre>
+   
+~~~
 x is [string, method, fileName] ' Version 1.0.0
-</pre>
+~~~
 
    
    And in some future version, x might have another syntax, such as:
    
-   <pre>
+   
+~~~
 x is [string, method, fileName, format] ' Version 1.1.0
-</pre>
+~~~
 
    Or...
-   <pre>
+   
+~~~
 x is [string, fileName] ' Version 1.14.5
-</pre>
+~~~
 
    Etc.
    
-   The <pre>
+   The 
+~~~
 ZipText(x)
-</pre>
+~~~
  routine will verify the number of arguments
    and/or their type (array, string, etc) and execute the correct code for this
    version's-syntax.

@@ -4,7 +4,8 @@
 
 Modulus. Equivalent syntax to the percent character, eg a % b
 
-<pre>
+
+~~~
 
 ' LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
 ' LOCATE row, column - sets the next print location on screen, rows down, columns across
@@ -34,9 +35,10 @@ FOR ASCnumber=30 to 129   'note ASC(32) = space so wont see anything in Table
 NEXT
 PAUSE
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' more MOD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
 ' n MOD m - returns the remainder of n divided by m, if 0 then m divides n perfectly
@@ -72,5 +74,5 @@ NEXT
 ?:?"O=one is neither prime nor not" '  ?:?"..." print blank line first
 PAUSE
 
-</pre>
+~~~
 

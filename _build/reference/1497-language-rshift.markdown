@@ -6,7 +6,8 @@ Performs an arithmetic right shift on a bit pattern.
 
 
 
-<pre>
+
+~~~
 
 ' Tested on 32-bit system (I'm not sure yet about the result on 64-bit system);
 ' On 32-bit system RSHIFT cannot manipulate correctly bit-31 (leftmost bit).
@@ -27,5 +28,5 @@ x = x Rshift 29         ' The two lower (11) bits are lost
 ? Bin(x)
 ? x                      ' x is 3
 
-</pre>
+~~~
 

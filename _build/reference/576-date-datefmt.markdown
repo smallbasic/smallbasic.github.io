@@ -16,6 +16,6 @@ Format:
 |MMMM|  full month name|
 |YY|  2-digit year (2K)|
 |YYYY|  4-digit year|
-<pre>PRINT DATEFMT("ddd dd, mm/yy", "23/11/2001")
+> PRINT DATEFMT("ddd dd, mm/yy", "23/11/2001")
 REM prints "Fri 23, 11/01"
 

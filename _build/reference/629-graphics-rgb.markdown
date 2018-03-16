@@ -5,10 +5,11 @@
 Returns the RGB color codes for the specified values. Takes values 0..255 for each of the color.
 
 
-<p>The return value is a negative 24bit value to by used by drawing functions.
+The return value is a negative 24bit value to by used by drawing functions.
 
 See also <a href=http://www.w3schools.com/colors/default.asp>Colors Tutorial</a>.
-<pre>
+
+~~~
 
 Def txt(t) = "     " + t + "     "
 For c = 0x00 to 0xFF ' 0 to 255 in hexadecimal
@@ -28,9 +29,10 @@ For c = 0x00 to 0xFF ' 0 to 255 in hexadecimal
   Delay 20
 Next 
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
 REM Purpose:   Standard CSS (HTML) Color Values By color names;
@@ -250,18 +252,19 @@ Const SlateGray      = -7372944  ' Rgb(0x70, 0x80, 0x90) ' 0x708090
 Const DarkSlateGray  = -3100495  ' Rgb(0x2F, 0x4F, 0x4F) ' 0x2F4F4F
 Const Black          = 0         ' Rgb(0x00, 0x00, 0x00) ' 0x000000
 
-</pre>
+~~~
 
 RGB does convert into integers all but 255 +   ( < 256)
 'this is why you can't use x = rnd * 256 as an RGB argument
 'because you are sure to get something over 255 but under 256
 'maybe (rnd * 256) \\ 1   (yes OK)
-<pre>
+
+~~~
 
 OK = rgb((255.0001)\\1, 255, 0)
 color OK, 0 ' <=== yes OK
 myError = rgb(255.00001, 255, 255)
 color myError, 0  '<=== Invalid parameter
 
-</pre>
+~~~
 

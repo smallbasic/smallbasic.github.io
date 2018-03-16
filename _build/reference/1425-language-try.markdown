@@ -8,7 +8,8 @@ The TRY statement introduces a TRY/CATCH BLOCK
 
 Note:
 If this demo program crashes... then run it again. It seems that TRY / CATCH block might be unstable within a function or sub... (?)
-<pre>
+
+~~~
 
 ' See also: Home -- Articles -- TRY / CATCH
 Const FILE_NAME = "try demo.tmp" ' -- DON'T use existing file for demo.
@@ -73,5 +74,5 @@ If fn Then
 Fi
 Pause
 
-</pre>
+~~~
 

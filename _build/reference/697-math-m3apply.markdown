@@ -32,8 +32,8 @@ Apply matrix to poly-line.
 |  s  c  0  0| = rotation on z
 |  0  0  1  0|
 |  0  0  0  1|
-<p>Any change to matrix will combined with its previous value.
-<pre>DIM poly(24)
+Any change to matrix will combined with its previous value.
+> DIM poly(24)
 DIM M(2,2)
 ...
 M3IDENT M

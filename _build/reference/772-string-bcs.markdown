@@ -4,7 +4,8 @@
 
 Converts (B)ASIC-style strings to (C)-style (S)trings.
 
-<pre>
+
+~~~
 
 ' Note: BCS allows to save special formatting characters as a regular text (or
 '       you could directly use C-Style formatting without using BCS at all).
@@ -71,5 +72,5 @@ Pause
 ' \\t\\tAnd again! text in English;
 ' \\t\\tThat's it.\\0This text is hidden from C ... :)
 
-</pre>
+~~~
 

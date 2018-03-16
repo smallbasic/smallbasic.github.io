@@ -12,7 +12,8 @@ REM another comment
 ...
 # one more comment
 
-<pre>
+
+~~~
 
 ' Few ways to comment your code in SmallBASIC:
 ' This is the most easy way to add a comment:
@@ -107,5 +108,5 @@ REM "Curlie borealis.bas" code example taken from:
 REM http://smallbasic.sourceforge.net/?q=comment/1184#comment-1184
 REM Without explicit permission from MGA...
 
-</pre>
+~~~
 

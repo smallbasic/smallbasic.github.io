@@ -4,7 +4,8 @@
 
 Regular-expression operator. Compares the left part of the expression with the right side regex pattern.
 
-<pre>
+
+~~~
 
 ' From  Home -- Articles -- Welcome to SmallBASIC -- The operator LIKE :
 ' LIKE is a regular-expression operator. It is compares the left part of the
@@ -58,5 +59,5 @@ If link Like "*http*://?*.?*" Then
 Fi
 Pause
 
-</pre>
+~~~
 

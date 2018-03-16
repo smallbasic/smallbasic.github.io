@@ -4,7 +4,8 @@
 
 Transfers control to another operating system program.
 
-<pre>
+
+~~~
 
 Const IS_LINUX = (Left(HOME, 1) = "/")  ' Check if it's Linux system
 Const IS_WINDOWS = Not IS_LINUX
@@ -51,7 +52,7 @@ End Select
 ? "Done.";
 Pause
 
-</pre>
+~~~
 
 Apparently, RUN/EXEC have bugs in SmallBASIC version 0.12.2...:
 chrisws replied on Sun, 04/24/2016 - 00:29 http://smallbasic.sourceforge.net/?q=comment/1187#comment-1187

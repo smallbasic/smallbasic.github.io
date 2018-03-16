@@ -11,11 +11,11 @@ Display text or the value of an expression.
 | ;| Carriage return/line feed suppressed after printing.|
 | ,| Carriage return/line feed suppressed after printing.|
 *PRINT USING*
-<p>Print USING uses the FORMAT() function to display numbers and strings. Unlike FORMAT it can also include literals.
+Print USING uses the FORMAT() function to display numbers and strings. Unlike FORMAT it can also include literals.
 * [_] - Print next character as a literal. The combination _#, for example, allows you to include a number sign as a literal in your numeric format.
 * [other] Characters other than the foregoing may be included as literals in the format string.
 p.. When a PRINT USING command is executed the format will remains on the memory until a new format is passed. Calling a PRINT USING without a new format specified the PRINT will use the format of previous call.
-<pre>PRINT USING "##: #,###,##0.00";
+> PRINT USING "##: #,###,##0.00";
 FOR i=0 TO 20
     PRINT USING; i+1, A(i)
 NEXT
@@ -24,7 +24,8 @@ PRINT USING "Total ###,##0 of \\ \\"; number, "bytes"
 The symbol ? can be used instead of keyword PRINT You can use 'USG' instead of 'USING'.
 
 quote: <strong>It's all in the punctuation at the end of a print statement</strong>
-<pre>
+
+~~~
 
 REM 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
 'It's all in the punctuation at the end of a print statement
@@ -48,10 +49,11 @@ next
 ? "... this line needs to be finsihed."
 pause
 
-</pre>
+~~~
 
 To gain even more control of where your next PRINT statement will end up on screen checkout the older LOCATE keyword and the more modern method of using AT.
-<pre>
+
+~~~
 
 ' PRINT can also print to an open file or device (not only to console).
 ' Note: new-line (or line-break) character(s) is different on each system:
@@ -81,5 +83,5 @@ Wend
 Close #1
 Pause
 
-</pre>
+~~~
 

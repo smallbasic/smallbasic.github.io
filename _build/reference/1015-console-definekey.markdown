@@ -12,7 +12,8 @@ sub moveLeft
 end
 defineKey 0xFF04, moveLeft
 Refer to keymap.h in the SVN repository for key definitions. TODO: create a keys.bas unit for key constants
-<pre>
+
+~~~
 
 ' DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
 'remember Etch-A-Sketch?
@@ -78,9 +79,10 @@ sub quit
   stop
 end
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' Note:
 ' * You may Include "definekey_const.bas" file in another file to make your code more clear.
@@ -169,5 +171,5 @@ Const DK_MK_WHEEL   = 0xFFC4
 Const DK_MK_FIRST   = DK_MK_PUSH
 Const DK_MK_LAST    = DK_MK_WHEEL
 
-</pre>
+~~~
 

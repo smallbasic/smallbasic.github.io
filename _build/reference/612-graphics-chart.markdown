@@ -8,7 +8,8 @@ Draws a chart of array values in the rectangular area x1,y1,x2,y2. Styles: 0 = s
 Const LINECHART = 1 
 Const BARCHART = 2
 
-<pre>
+
+~~~
 
 Const LINE_CHART = 1
 Const BAR_CHART  = 2
@@ -27,5 +28,5 @@ For type = LINE_CHART To BAR_CHART ' 1 to 2
   Next style
 Next type
 
-</pre>
+~~~
 

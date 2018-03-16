@@ -5,7 +5,7 @@
 Scans an array for the key. If key is not found the SEARCH command returns (in ridx) the value. (LBOUND(A)-1). In default-base arrays that means -1. The cmpfunc (if its specified) it takes 2 vars to compare. It must return 0 if x = y; non-zero if x <> y.
 
 
-<pre>FUNC cmp(x,y)
+> FUNC cmp(x,y)
   cmp=!(x=y)
 END
 ...
@@ -17,7 +17,8 @@ SEARCH A, 4, r USE cmp(x,y)
 PRINT r:REM prints 1
 PRINT A(r): REM prints 4
 
-<pre>
+
+~~~
 
 ' Note: I'm not sure yet about a practical use for [USE cmpfunc] syntax...
 Def q(text) = Enclose(text) ' Enclose text with quotation marks, ""
@@ -47,9 +48,10 @@ title "Use IN to find index of matching element in array (Always Base 1):"
 ? " 12     In a: ";            12  In a
 Pause
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 Option Base 1
 ' x is the current array element of search;
@@ -81,5 +83,5 @@ Fi
 ? "New array created on search: "; new_a
 Pause
 
-</pre>
+~~~
 

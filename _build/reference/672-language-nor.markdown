@@ -4,7 +4,8 @@
 
 Bitwise NOT OR.
 
-<pre>
+
+~~~
 
 ' Bnot inverts all bits in n (it's very useful for inverting a mask).
 Def Bnot(n) = n Nor n
@@ -37,5 +38,5 @@ While True Do
   Pause
 Wend
 
-</pre>
+~~~
 

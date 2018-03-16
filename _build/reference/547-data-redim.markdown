@@ -4,7 +4,8 @@
 
 Same as DIM only the contents of x are preserved.
 
-<pre>
+
+~~~
 
 ' inspired by Bambi56...
 Option Base 1 ' Start arrays at 1 (not 0)
@@ -40,7 +41,7 @@ For l = 1 To TOTAL_LINES
 Next row
 Pause
 
-</pre>
+~~~
 
 I never would have guessed you could TLOAD an OPENed file and Bambi56 used the file number from OPEN to do the TLOAD.
 Very interesting...

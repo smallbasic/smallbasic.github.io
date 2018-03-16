@@ -5,7 +5,7 @@
 Discloses a string.
 
 
-<p>Default pairs and ignore pairs
+Default pairs and ignore pairs
 table{border:1px solid black;padding:8px}.
 |First non white-space character|Check|Ignore|
 |"|""|''|

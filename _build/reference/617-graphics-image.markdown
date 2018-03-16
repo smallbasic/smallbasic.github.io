@@ -4,7 +4,8 @@
 
 Creates a graphical image object providing access to the following sub-commands: show([x,y [,zindex [,opacity]]]), hide, save([x,y [,w,h]])
 
-<pre>
+
+~~~
 
 ' Note: tested with SmallBASIC version 0.12.6 for Linux.
 
@@ -79,9 +80,10 @@ Close #1
 i4.Show(600, 20)             ' Show loaded image (x, y)
 Pause
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' Note: tested with SmallBASIC version 0.12.6 for Linux.
 ' Notes: 
@@ -131,9 +133,10 @@ i = Image(a)                 ' Convert the 2-D array (y, x) of pixels to image
 i.Show(350, 230)             ' Show the image (fast) at location (x, y)
 Pause
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' Note: tested with SmallBASIC version 0.12.6 for Linux.
 ' Notes:
@@ -198,9 +201,10 @@ Pause
 ' example above) and rows (height 4 in the example above), 
 ' e.g. 2 + 2 + 4 = 8 lines.
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' Note: tested with SmallBASIC version 0.12.6 for Linux.
 Color 7, 1: Cls              ' (for recognizing transparency color)
@@ -288,13 +292,14 @@ Data "..oo...oo..oo....oo.."
 Data "...ooooo...ooooooo..."
 Data "....................."
 
-</pre>
+~~~
 
 I'm curious as to the zindex parameter.
 I'm going to assume that the zindex refers to the 'depth' or 'layer' of the image. What is the range of zindex?
 J
 ps: By the way, great examples... cool.
-<pre>
+
+~~~
 
 ' Note: tested with SmallBASIC version 0.12.6 for Linux.
 ' Dedicated to johnno56
@@ -353,12 +358,13 @@ For layer = 1 To 9
   Pause
 Next layer
 
-</pre>
+~~~
 
 Does SB have a dedicated transparency color (ie: rgb(255,0,255) )?
 I was only asking, because in the example, the 'corners' of the sprite can be seen when overlapping other sprites. If it does use a dedicated colour, how would that be coded?
 J
-<pre>
+
+~~~
 
 REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
 REM Purpose:   A Base64 Encoder/Decoder UNIT.
@@ -547,13 +553,14 @@ Func Decode_Base64(s)
   Decode_Base64 = Out
 End Func
 
-</pre>
+~~~
 
 I don't know (guess not, but can't be sure).
 But you may create a PNG image + transparency color with an external image editor, 
 and then you may also decode it as a Base64 PNG string (to store it within the source code).
 Another useful option is to use XPM image format (See Part-3 above) with transparency color, instead of color number you just write NONE, like this:
-<pre>
+
+~~~
 a << "x c NONE"  ' Character "x" is transparency color
-</pre>
+~~~
 

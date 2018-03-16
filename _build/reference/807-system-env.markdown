@@ -6,7 +6,8 @@ Adds a variable to or deletes a variable from the current environment variable-t
 
 ENV can be used as SUB for setting or erasing Environment Variables (EV) and ENV can be used as a FUNCtion for returning a particular EV or the whole set of them into an array using:
 EVarray=ENV("")
-<pre>
+
+~~~
 
 ' ENV test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-10
 'OK this works
@@ -45,33 +46,37 @@ pause
 'yes, it was erased because when I ran same code a second time, it wasn't there THEN!
 ' so it didn't just LOOK erased from a bad call
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 ENV "myEV1="
-</pre>
+~~~
  does not erase the variable on Linux...
 On Linux I could only erase the variable from a terminal:
-<pre>
+
+~~~
 unset $myEV1
-</pre>
+~~~
 
 In general:
 1. 
 Never use names which are already used by the system or another process, such as "PATH", "HOME", "PWD", etc.
 You can check which variable names are already used, from SmallBASIC:
-<pre>
+
+~~~
 ? Environ("")
-</pre>
+~~~
 
 2. 
 Use short and unique names, such as: "SB1", SB2" or "SBv1", "SBv2", etc.
 It will keep the environment-variables-table readable, and will save space in the table.
 3.
 Don't create more variables then you need. Reuse any variable which is not used.
-i.e. if "SB1" is unused anymore, then reuse it: <pre>
+i.e. if "SB1" is unused anymore, then reuse it: 
+~~~
 Environ "SB1=5"
-</pre>
+~~~
 .
 Again, it keeps the environment-variables-table readable, and saves space in the table.
 4. 

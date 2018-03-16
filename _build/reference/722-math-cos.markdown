@@ -4,7 +4,8 @@
 
 Cosine.
 
-<pre>
+
+~~~
 
 'TRIG lesson one.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12
 'note: the lines in the diagram have been thickened to help see and identify the color
@@ -100,10 +101,11 @@ at 0,0
 pause
 wend
 
-</pre>
+~~~
 
 At an angle around a given point, SIN and COS and radius (or distance) can locate the absolute screen x,y coordinate:
-<pre>
+
+~~~
 
 ''' Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
 ''' ah finally got diagramed analysis built into single quote commented code!!!
@@ -151,5 +153,5 @@ sub legend
   ?"SIN(yellow) = opp/hyp =  blue/red, red is radius of circle
 end 
 
-</pre>
+~~~
 

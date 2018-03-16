@@ -5,7 +5,8 @@
 Returns the ASCII code of first character of the string s.
 
 Also see CHR
-<pre>
+
+~~~
 
 ' LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
 ' LOCATE row, column - sets the next print location on screen, rows down, columns across
@@ -35,5 +36,5 @@ FOR ASCnumber=30 to 129   'note ASC(32) = space so wont see anything in Table
 NEXT
 PAUSE
 
-</pre>
+~~~
 

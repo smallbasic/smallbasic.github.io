@@ -9,7 +9,8 @@ Encloses a string.
 ' Result: (abc)
 
 ENCLOSE defaults to double quotes if the [pair] option is not used.
-<pre>
+
+~~~
 
 test=10
 myStr="myStr"
@@ -17,5 +18,5 @@ myStr="myStr"
 ? enclose(myStr)
 pause
 
-</pre>
+~~~
 

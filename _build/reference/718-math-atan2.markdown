@@ -4,7 +4,8 @@
 
 Inverse tangent (x,y).
 
-<pre>
+
+~~~
 
 'Both atan(n) and atan2(y, x) return an angle measured in radians.
 'The return measure is from -pi to pi. In demo below it is converted
@@ -37,5 +38,5 @@ while asc(inkey) <> 27
   delay 10
 wend
 
-</pre>
+~~~
 

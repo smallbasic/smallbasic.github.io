@@ -20,7 +20,8 @@ DIM z()
 ...
 IF LEN(Z)=0 THE APPEND Z, "The first element"
 
-<pre>
+
+~~~
 
 Option Base 1 ' Set default lower bound of arrays to 1
 ? "Showing x,y,z elements of index 5:"
@@ -79,5 +80,5 @@ Next
 
 Pause
 
-</pre>
+~~~
 

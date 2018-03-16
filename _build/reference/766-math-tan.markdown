@@ -81,7 +81,8 @@ Thanks again.
 Edit: by SHORT DEMO I just mean few lines of code that illustrate how it's written in SmallBASiC, for creating the most simple shape... (you know, chunk by chunk... it's really a new world for me and maybe for some others).
 Like this? It would have been in 3 lines but it seems print usg needs it's own line
 TAN used in a short code example:
-<pre>
+
+~~~
 
 ' TAN use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
 for degrees = 0 to 360 step 15
@@ -94,7 +95,7 @@ for degrees = 0 to 360 step 15
 next
 ?:?"As the TANgent approaches 90 or 270 degrees the TANgent becomes 1/0 which is undefined."
 pause
-</pre>
+~~~
 
 I should make clear, TAN is not used directly for drawing on screen but indirectly it helps by calculating angles and lengths which is needed for drawing point to point or step drawing from last drawing x,y point.
 Yes, short example like this, or with one single shape on screen, is very very useful.
@@ -104,7 +105,8 @@ It's useful to give a short and clear examples, something like:
 Later, if I know how to draw one line with TAN, then I will be able to draw a 3D box (maybe..).
 Small chunks...
 TAN use again in a few lines of code but I have to try and explain what is going on or it would be void of meaning.
-<pre>
+
+~~~
 
 'Short TAN use.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
 'in the following example it is important to keep in mind
@@ -129,7 +131,7 @@ line x1,y1,x1+100,y1+100*TAN(RAD(60))  '<== HERE IS TAN
 arc x1,y1,100,0,2*pi/6,1,14 '14=color yellow
 pause
 
-</pre>
+~~~
 
 SUPREME; BRILLIANT; WELL DOCUMENTED; PRACTICAL; USEFUL; MERCIFUL, KNOCKS OUT. 
  

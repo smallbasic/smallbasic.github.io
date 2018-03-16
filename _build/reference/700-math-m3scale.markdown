@@ -5,7 +5,7 @@
 Scale matrix.
 
 
-<pre>| Sx  0  0|
+> | Sx  0  0|
 |  0 Sy  0|
 |  *  *  1|
 

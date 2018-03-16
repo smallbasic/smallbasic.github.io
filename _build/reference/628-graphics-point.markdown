@@ -5,12 +5,13 @@
 Returns the color of the pixel at x,y.
 
 
-<p>If the y argument is not specified, x specifies the following info-code:
+If the y argument is not specified, x specifies the following info-code:
 0 = returns the current X graphics position
 1 = returns the current Y graphics position
 
 This demonstrates saving a screen section and redrawing it at different places on screen, a tiling and a moving across the screen.
-<pre>
+
+~~~
 
 ' POINT demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-07
 for objects = 1 to 300
@@ -64,9 +65,10 @@ sub pour(xoff,yoff,xwidth,yheight)
   next
 end 
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' Note: POINT(x, y) returns the color of the pixel at x,y. But it's
 '       also possible to use POINT(0) and POINT(1) to return the current
@@ -104,5 +106,5 @@ For b = 7 To 1 Step -1   ' b = Background color
 Next
 Pause
 
-</pre>
+~~~
 

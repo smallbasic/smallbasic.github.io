@@ -5,7 +5,7 @@
 Draw lines as specified by the given directional commands. 
 
 
-<p>*Graphics Definition Language*
+*Graphics Definition Language*
 In the movement instructions below, n specifies a distance to move. The number of pixels moved is equal to n multiplied by the current scaling factor, which is set by the S command.
 |Un| Move up.|
 |Dn| Move down.|
@@ -29,19 +29,21 @@ INPUT "Who are you"; A$
 
 How does S command work? I just tried it in the DRAW example in first DRAW string and I get error: "DRAW: Command 'S' unsupported."
 This is how S command work in QBASIC (quote):
-<pre>
+
+~~~
 
 Sn  Determines the drawing scale by setting the length
      of a unit of cursor movement. The default n is 4,
      which is equivalent to 1 pixel.
 
-</pre>
+~~~
 
 So this should work just fine:
-<pre>
+
+~~~
 
 DRAW "S8L10U50E25F25"
 
-</pre>
+~~~
 
 But apparently S command is unsupported.

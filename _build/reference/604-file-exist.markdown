@@ -4,7 +4,8 @@
 
 Returns true if file exists.
 
-<pre>
+
+~~~
 
 ' Return nonexisting file or directory name (12 A..Z letters + extension)
 ' in the current directory; e.g. filename = tempfile("-me.tmp") 
@@ -26,5 +27,5 @@ Tload filename, b
 Pause
 Kill filename ' delete demo file
 
-</pre>
+~~~
 

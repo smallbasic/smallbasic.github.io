@@ -4,7 +4,8 @@
 
 Returns a random number from the range 0 to 1.
 
-<pre>
+
+~~~
 
 ' RND IFF and DEF.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-24
 ' RND - returns a number from 0 to almost 1
@@ -38,5 +39,5 @@ NEXT
 'result: pretty even spread between two numbers inclusive.
 PAUSE
 
-</pre>
+~~~
 

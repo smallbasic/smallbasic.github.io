@@ -5,7 +5,8 @@
 Defines a single line function. eg, DEF MySin(x) = SIN(x): ? MySin(pi/2)
 
 This might come in handy sometime.
-<pre>
+
+~~~
 
 ' RND - returns a number from 0 to almost 1
 ' DEF - one line function definition
@@ -29,9 +30,10 @@ NEXT
 'result: pretty even spread between two numbers inclusive.
 PAUSE
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
 'can I use DEF locally in a sub without interfering with main variable or DEF names
@@ -47,5 +49,5 @@ sub mySub()
 ? "Hi, ";aboutMe
 end
 
-</pre>
+~~~
 

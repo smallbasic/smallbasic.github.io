@@ -18,7 +18,7 @@ pandoc = /usr/bin/pandoc
 # variables
 mkdir = @mkdir -p $(dir $@)
 out = _out
-pandoc_options=--smart --to html5
+pandoc_options=--to html5
 bas = $(patsubst layouts/%.html, $(out)/%.bas, $(wildcard layouts/*.html))
 pages = $(patsubst pages/%.markdown, $(out)/pages4/%.html, $(wildcard pages/*.markdown))
 reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))

@@ -4,7 +4,8 @@
 
 Sets file position for the next read/write.
 
-<pre>
+
+~~~
 
 Const FILE = "RANDOM.TMP"
 Const RLEN = 50 ' record-length in bytes
@@ -40,5 +41,5 @@ Repeat
 Until Isstring(n)
 Close #1
 
-</pre>
+~~~
 

@@ -20,7 +20,8 @@ s="123456"
 ' Replace & insert
 ? replace(s,2,"RRI",2)
 
-<pre>
+
+~~~
 
 'replace test.bas 2016-02-26
 'function replace(source,pos,str [,len])     len of source is default
@@ -37,9 +38,10 @@ s="123456"
 ? replace(s,2,"RRI",2) 'returns 1RRI456
 pause
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' Helper to print the "name of color" with its color:
 Func colors(s)
@@ -86,5 +88,5 @@ Const BLANKS = Len_TEXT - Len(Translate(TEXT, " ", "")) ' number of blanks in TE
 ? lset("Create TEXT");               colors(Replace("", 1, TEXT))
 Pause
 
-</pre>
+~~~
 

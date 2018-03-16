@@ -5,7 +5,7 @@
 Returns the day of the week (0 = Sunday).
 
 
-<pre>PRINT WeekDay(DATE)
+> PRINT WeekDay(DATE)
 PRINT WeekDay(Julian(31, 12, 2001))
 PRINT WeekDay(31, 12, 2001)
 

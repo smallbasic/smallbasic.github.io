@@ -4,7 +4,8 @@
 
 Returns an index (1 Based) to the matching element when b is an array. Returns TRUE if the value is contained within b as a string.
 
-<pre>
+
+~~~
 
 ' IN language ref.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-01
 'IN may be used in a couple of ways:
@@ -23,9 +24,10 @@ for fl IN myFiles
 next
 pause
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' See also: Home -- Articles -- Welcome to SmallBASIC -- The operator IN
 
@@ -88,5 +90,5 @@ n = 10.5
 ? "n In 10.5 : "; n In 10.5
 Pause
 
-</pre>
+~~~
 

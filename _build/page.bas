@@ -37,7 +37,7 @@ else
   package = item.package
   filepath = item.nodeId + "-" + lower(item.package) + "-" + lower(item.keyword) + ".markdown"
   filepath = "reference/" + translate(filepath, " ", "")
-  lastedit = run("git log -1 --format=\"%aD\" -- " + filepath)
+  lastedit = run("git log -1 --format=\"%cD by %cn\" -- " + filepath)
   sourceurl = "https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/" + filepath
   changesurl = "https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/" + filepath
 endif

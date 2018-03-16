@@ -5,7 +5,7 @@
 Returns true if x is a number (or it can be converted to a number).
 
 
-<pre>? ISNUMBER(12)          :REM true
+> ? ISNUMBER(12)          :REM true
 ? ISNUMBER("12")        :REM true
 ? ISNUMBER("12E+2")     :REM true
 ? ISNUMBER("abc")       :REM false

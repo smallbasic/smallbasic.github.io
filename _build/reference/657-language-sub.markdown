@@ -4,7 +4,8 @@
 
 Declare a sub procedure. Sub's do not return a value but can return argument values when declared as BYREF.
 
-<pre>
+
+~~~
 
 ' Notes: Using SUB is much more easy and modular then using GOSUB.
 '        With SUB (and FUNC) you can divide your program into many logical and
@@ -54,5 +55,5 @@ Sub routine5(x)
   End Sub
 End Sub
 
-</pre>
+~~~
 

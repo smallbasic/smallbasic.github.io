@@ -5,9 +5,10 @@
 Returns the RGB color codes for the specified values. Takes values 0..1 for each of the color.
 
 
-<p>The return value is a negative 24bit value to by used by drawing functions.
+The return value is a negative 24bit value to by used by drawing functions.
 
-<pre>
+
+~~~
 
 ' gray() accepts the same values as Rgb(), i.e. 0..255:
 Func gray(r, g, b)
@@ -28,7 +29,7 @@ For i = 0 To 255 Step 15 Do
 Next
 Pause
 
-</pre>
+~~~
 
 Hi shian,
 I am curious why the percents are 30% red, 59% green, 11 % blue. I see that they have to add to 100%  but why not 33% on each of RGB. Is it something to do with green and yellow appearing lighter than the other colors and that yellow is created by mixing red and green. This calls for an experiment.
@@ -41,7 +42,8 @@ I just use the same formula of that interrupt. Therefore, the actual mystery rem
 I feel like Thomas Edison testing light bulbs only 995 to go!
 My findings according to my eye and Windows laptop coloring system reverses the percents for red and blue.
 Check it out:
-<pre>
+
+~~~
 
 ' gray() accepts the same values as Rgb(), i.e. 0..255:
 Func gray(r, g, b)
@@ -107,17 +109,19 @@ For i = 1 to 6
 Next
 Pause
 
-</pre>
+~~~
 
 Append: added to on-line samples, I switched back to original formula because on Android NOOK the blue IS lighter than red. In both versions, the red and purple are awful dark.
 Nice graphix..
 I guess that on BIOS screen text mode 3 or pixel mode 18 it looks much better.
-However, try to start from <pre>
+However, try to start from 
+~~~
 gray(50,50,255)
-</pre>
- instead of <pre>
+~~~
+ instead of 
+~~~
 gray(0,0,255)
-</pre>
+~~~
 .
 It might work better for modern SVGA modes with high resolution and LCD screens.
 I'm not aware of new formula for these kind of screens...

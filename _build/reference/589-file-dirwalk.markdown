@@ -5,14 +5,15 @@
 Walk through the specified directories. The user-defined function must returns zero to stop the process.
 
 
-<pre>FUNC PRNF(x)
+> FUNC PRNF(x)
   ? x
   PRNF=TRUE
 END
 ...
 DIRWALK "." USE PRNF(x)
 
-<pre>
+
+~~~
 
 ' Note: this demo is also a useful utility (version 2)
 
@@ -133,5 +134,5 @@ Sub search_word(dir, exclude_ext, word, cs)
   While Inkey <> Chr(8): Wend
 End Sub
 
-</pre>
+~~~
 

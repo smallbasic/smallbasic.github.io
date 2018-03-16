@@ -5,7 +5,8 @@
 Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.
 
 Both these methods load a string/text file into an array.
-<pre>
+
+~~~
 
 ' TLOAD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-04
 'with TLOAD you don't even have to dim your array to have it created
@@ -32,9 +33,10 @@ for ln = 0 to ubound(ia)
 next
 pause
 
-</pre>
+~~~
 
-<pre>
+
+~~~
 
 ' See also: Home -- Articles -- Welcome to SmallBASIC -- *Arrays and Matrices*
 Option Base 1 ' Start arrays at 1 (not 0)
@@ -67,5 +69,5 @@ For i = 1 To MAX_LINES
 Next
 Pause
 
-</pre>
+~~~
 

@@ -54,7 +54,8 @@ Logical AND. Right side is not evaluated if left side evaluates to False.
 '
 ' * Finally, debug your code on both 32-bit and 64-bit systems.
 
-<pre>
+
+~~~
 
 ? " < SmallBASIC - Truth Table > "
 ?
@@ -95,7 +96,7 @@ Next a
 ? " * Note: in SB 0.12.2 XNOR, EQV, IMP return wrong result (see bug report)."
 Pause
 
-</pre>
+~~~
 
 I am trying to figure out what Usg is and found out USING isn't listed either.
 Ah ha!
@@ -103,13 +104,15 @@ SB ref txt: <cite> The symbol ? can be used instead of keyword PRINT You can use
 I have not seen USING used in this way before, but I am a bit behind.
 shian, you must be working with assembler or electronic boards like Raspberry Pi (or both).
 I found another keyword which is not listed (I don't remember which); I found that keyword only through pressing F1 in SmallBASIC editor.
-I also found wrong/unclear syntax, such as <pre>
+I also found wrong/unclear syntax, such as 
+~~~
 a NOT b
-</pre>
+~~~
  in the reference.
-As far as I know and understand NOT takes only the right-side argument, i.e. <pre>
+As far as I know and understand NOT takes only the right-side argument, i.e. 
+~~~
 NOT expr
-</pre>
+~~~
 
 And I found lots and lots of partial descriptions as well, which may lead to frustration until you figure it out by your self...
 That's why I wish to write more short examples for each command, to clarify its use. But certainly, the terse description of each command is very intimidating for a novice user.
@@ -129,9 +132,10 @@ Unlike other popular languages, with 50,000 or more "members", i.e.  keywords, o
 5. See also (the actual keyword you were looking for...)
 Usually programmers dislike documentation; so this work should be done by another positive soul, who knows the language well enough, and with a bit of discipline and consistency in semantic. 
 The built-in help (F1) must be terse; yet the online help (F2) should include the above 5 sections, again, straight to the point and not too wordy.
-p.s. the SmallBASIC editor tells you that you "Cannot change a constant" when running <pre>
+p.s. the SmallBASIC editor tells you that you "Cannot change a constant" when running 
+~~~
 xmax = 4
-</pre>
+~~~
  which is great, yet built-in constants must be included in the language reference, since these are actually keywords (hopefully there aren't too many, in that case just add them to a separate section).
 
 
@@ -146,7 +150,8 @@ REM I'm using smallbasic_0.12.2, 32-bit and 64-bit versions for Linux.
 ' If you write a Bit Manipulation code, be aware that SmallBASIC is
 ' interpreting your code differnetly on 32-bit or 64-bit system:
 ' For example, run the following code on 32-bit and 64-bit systems:
-<pre>
+
+~~~
 
 ? "Assigning hexadecimal number to variable or constant:"
 n = 0xFFFFFFFF
@@ -181,7 +186,7 @@ n = 0xFFFFFFFF Band 0x7FFFFFFF
 ' On 64-bit system n is: 2147483647
 '
 
-</pre>
+~~~
 
 ' -----------
 ' The code above produces different results on 32-bit and 64-bit systems;

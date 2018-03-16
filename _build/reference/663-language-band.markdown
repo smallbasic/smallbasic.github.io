@@ -4,7 +4,8 @@
 
 Bitwise AND.
 
-<pre>
+
+~~~
 
 Def shl(n, c) = n * Pow(2, c) ' shift-left c bits in n
 Def shr(n, c) = n \\ Pow(2, c) ' shift-right c bits in n
@@ -27,5 +28,5 @@ p_year = p Band mask(12) ' packed in bits 0..11
 Print Using "The Unpacked date: 00/00/0000"; p_day, p_month, p_year;
 Pause
 
-</pre>
+~~~
 

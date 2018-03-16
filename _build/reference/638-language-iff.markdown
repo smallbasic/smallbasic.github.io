@@ -8,7 +8,8 @@ animal=IFF(HasFur=1,"Cat","Fish")
 or
 ? IFF(animal="cat"," has fur.", " might not have fur.")
 ?
-<pre>
+
+~~~
 
 ' RND - returns a number from 0 to almost 1
 ' IFF - IFF(conditional statement to evaluate, return this if evaluates true, returns this if evaluates false)
@@ -23,5 +24,5 @@ NEXT
 ?:?
 PAUSE
 
-</pre>
+~~~
 

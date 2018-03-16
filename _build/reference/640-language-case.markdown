@@ -4,7 +4,8 @@
 
 Branch condition for a SELECT statement.
 
-<pre>
+
+~~~
 
 ' * See also IF...THEN...ELSE keywords.
 ' * Currently CASE is not supporting QB style expressions (e.g. CASE IS > 1).
@@ -19,5 +20,5 @@ Case Else
   Print "Else: x = "; x
 End Select
 
-</pre>
+~~~
 

@@ -5,7 +5,8 @@
 Inverse tangent.
 
 Trig lesson two in TAN offers a lead in to this little demo:
-<pre>
+
+~~~
 
 ' pin the tail.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
 ' look how simple ATAN returns an angle from a ratio y/x 
@@ -34,5 +35,5 @@ color 15,0 'cause a screen scroll on purpose
 at 0,ymax-th: ? "The winner is "+str(winner)+" at "+str(windistance)+" press any..."
 pause
 
-</pre>
+~~~
 

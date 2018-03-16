@@ -5,12 +5,13 @@
 The WINDOW command allows you to redefine the corners of the display screen as a pair of "world" coordinates. WINDOW is also overloaded as a function, returning a system object providing access to the following sub-commands: graphicsScreen1, graphicsScreen2, textScreen, alert, ask, menu, message, showKeypad, insetTextScreen
 
 
-<p>The world space defined by WINDOW is disabled by a WINDOW command with no parameters.
+The world space defined by WINDOW is disabled by a WINDOW command with no parameters.
 
 This is a demo from http://smallbasic.sourceforge.net/?q=comment/1502#comment-1502
 It shows how to use the additional WINDOW sub-commands (It is not the traditional use of WINDOW [x1,y1,x2,y2] ).
 Tested with SmallBASIC version 0.12.6 (Linux).
-<pre>
+
+~~~
 
 ' create the window object, this provides access to a number of sub-commands
 w = window()
@@ -80,5 +81,5 @@ w.setFont(11, "px", 0,0)
 ? "press a key to end..."
 pause
 
-</pre>
+~~~
 
