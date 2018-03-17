@@ -51,7 +51,7 @@ else
   sourcefile = "reference/" + translate(sourcefile, " ", "")
 endif
 
-lastedit = run("git log -1 --format=\"%cD by %cn\" -- " + sourcefile)
+lastedit = run("git log -1 --format=\"%cD\" -- " + sourcefile)
 sourceurl = githost + "/blob/master/_build/" + sourcefile
 changesurl = githost + "/commits/master/_build/" + sourcefile
 
