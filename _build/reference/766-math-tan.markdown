@@ -6,27 +6,33 @@ Tangent.
 
 see COS for Trig lesson one
 see ATAN for a maybe fun demo involving TAN and ATAN
+
 Trigonometry lesson two.
 We will try this from a txt file instead.
+
 Review:
 Trigonometry is the study of right triangles, 
 those that have one 90 degree angle AKA Pi/2 in radians. 
 These right triangles are infinite in a rectilinear coordinate system
 with x,y referring to screen position in relation to an origin point (0,0).
+
 In SmallBASIC the y axis increases from top to bottom
 and in SmallBASIC the angle measures used for arguments to SIN
 and COS and the other Trig Angles are expected to be in radian
 measure as opposed to degree measure. 
+
 This is a standard conflict and source of confusion from what you might
 learn in math class and doing stuff on a computer. 
 For all triangles that have all 3 angles the same,
 their legs will have exactly the same ratios between themselves. 
+
 Feed a trig function an angle and it will return the special ratio
 between the sides of the triangle that is universal to all triangles
 that have the same equal angle measures.
 Feed the COS function an angle and it will return
 the universal ratio for the leg adjacent divided by the hypotenuse.
 ( Adjacent means next to or attached in the case of angles.)
+
 Some more information gained from study or right angles:
 The COS for one acute angle in a right triangle is 
 the SIN for the other acute angle.
@@ -35,11 +41,13 @@ SIN(RAD(45 degrees)) = COS(RAD(45 degrees)) = .7071...
 notice if that is squared =.5 exactly 1-COS(angle)^2=SIN(angle)^2
 As the angle size approaches 0, COS(angle) > 1 and SIN(angle) >0
 At angle = 0 you have more a line segment than a triangle.
+
 Similarly as angle approaches 90 degrees = Pi/2 radians,
 the COS(angle) ratio approaches> 0 and SIN(angle) >1 
 Trig functions are Unary Operators, they take one argument, 
 an angle expressed in Radians,
 and return to you the ratio of the triangle sides involved.
+
 The COS returns the ratio of the leg adjacent the angle 
 divided by the hypotenuse. adj/hyp
 The SIN function returns the leg opposite the angle fed the function 
@@ -47,18 +55,21 @@ divided by the hypotenuse. opp/hyp
 The third main trig function is TAN, tangent. opp/adj
 The TAN(angle in radians) returns 
 the ratio of the opp side divided by the adjacent side.
+
 In SmallBASIC this is very handy because side opposite/ side adjacent 
 is the same as y/x the same two items that define a point location! 
 Can you see what this means? 
 Does a chill of revelation run up and down your spine?
 Oh! that means for any point x,y on the screen,
 I can find the angle it is from the origin!
+
 It is the ATAN(y/x)
 We are almost ready now to play pin the tail on the donkey! Hang in there...
 The A before the TAN, the A before the SIN, COS... means ARC
 ATAN is pronounced ARC TANGENT
 ACOS is pronounced ARC COSINE
 ASIN is pronounced ARC SIN
+
 In each the ARC means The Angle whose Trig Ratio is: (ratio of two sides)
 so ATAN is the Angle whose TAN ratio is (opp leg lentgh/adj leg length)
 We feed ATAN a leg ratio argument and it tells what angle that ratio came from.
@@ -68,12 +79,13 @@ ATAN( ratio=opp/adj ) = an angle (in radians)
 DEG(ATAN(opp/adj) = an angle in degrees
 You can think or the A in front of TAN or COS or SIN as give me "An Angle"
 without the A you get side ratios.
-A donkey is mounted on the SmallBasic screen 
+
+A donkey is mounted on the SmallBASIC screen 
 so that it's tail should be pinned at 0,0 ....
 see ATAN for "pin the tail.bas"
-	
 
 This information is unavailable elsewhere.
+
 Wikipedia gives you formulas that look like ancient Egyptian glyph.
 Others, explain what is TAN - but don't even mention a single word about Arc TAN (as if there is absolutely no relation).
 This is really a valuable and practical information. (an extra VERY SHORT DEMO for this info would be even more astonishing).
@@ -95,6 +107,7 @@ for degrees = 0 to 360 step 15
 next
 ?:?"As the TANgent approaches 90 or 270 degrees the TANgent becomes 1/0 which is undefined."
 pause
+
 ~~~
 
 I should make clear, TAN is not used directly for drawing on screen but indirectly it helps by calculating angles and lengths which is needed for drawing point to point or step drawing from last drawing x,y point.
@@ -136,7 +149,7 @@ pause
 SUPREME; BRILLIANT; WELL DOCUMENTED; PRACTICAL; USEFUL; MERCIFUL, KNOCKS OUT. 
  
 And the final jump back spinning kick (AKA jump hook kick): 
-<strong>EVEN ME CAN UNDERSTAND IT AND PRACTICALLY USE IT !</strong> 
+EVEN ME CAN UNDERSTAND IT AND PRACTICALLY USE IT !> 
 I could never grasp those holy Aztec keywords... TAN, ASIN... and with H !!! ASINH... Mercy!.
   
 Please continue this way...
@@ -149,9 +162,10 @@ I drew your cube just by defining 4 points for one square face and then using th
 But I didn't stop there. I turned TAN(RAD(60) to TAN(RAD(angle) and put an angle increase in a loop and when...
 ... well, I spent the night bouncing and spinning and growing/shrinking the cube. ;)
 You certainly hit the spot.
-<cite>"... well, I spent the night bouncing and spinning and growing/shrinking the cube. ;)"</cite>
+"... well, I spent the night bouncing and spinning and growing/shrinking the cube. ;)">
 I know holistic therapist who cured other programmers...
 Look, I've made an example program for CIRCLE, using your TAN lesson! 
 But I only changed the TAN with SIN, and it works....
 Now please, repeat that same lesson of TAN - for SIN. So I'll understand why and how it works (just copy the TAN lesson "TAN use again" and update it to explain how SIN works).
 Thanks !
+

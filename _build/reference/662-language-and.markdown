@@ -100,7 +100,7 @@ Pause
 
 I am trying to figure out what Usg is and found out USING isn't listed either.
 Ah ha!
-SB ref txt: <cite> The symbol ? can be used instead of keyword PRINT You can use 'USG' instead of 'USING'. </cite>
+SB ref txt:  The symbol ? can be used instead of keyword PRINT You can use 'USG' instead of 'USING'. >
 I have not seen USING used in this way before, but I am a bit behind.
 shian, you must be working with assembler or electronic boards like Raspberry Pi (or both).
 I found another keyword which is not listed (I don't remember which); I found that keyword only through pressing F1 in SmallBASIC editor.
@@ -215,3 +215,4 @@ so bitwise operators are using 31-bit integers (which are Actually unsigned) Or 
 This internal solution is hidden from the users of the language, i.e. they continue to use the
 language as usual; but at the same time it solves lots of bit-level conflicts between 32-bit systems 
 and 64-bit systems.
+

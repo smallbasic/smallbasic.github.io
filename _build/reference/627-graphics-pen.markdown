@@ -6,18 +6,22 @@ Returns the PEN/MOUSE data.
 
 
 Values:
-|0 - | true (non zero) if there is a new pen or mouse event|
-|1 - | PEN: last pen down x; MOUSE: last mouse button down x|
-|2 - | Same as 1 for y|
-|3 - | true if the PEN is down; MOUSE: mouse left button is pressed|
-|4 - | PEN: last/current x, MOUSE: the current x position only if the left mouse button is pressed (like PEN is down)|
-|5 - | PEN(4) for y|
+---- ----------------------------------------------------- 
+0 -   true (non zero) if there is a new pen or mouse event
+1 -   PEN: last pen down x; MOUSE: last mouse button down x
+2 -   Same as 1 for y
+3 -   true if the PEN is down; MOUSE: mouse left button is pressed
+4 -   PEN: last/current x, MOUSE: the current x position only if the left mouse button is pressed (like PEN is down)
+5 -   PEN(4) for y
+---- ----------------------------------------------------- 
 Mouse specific:
-|10 - | current mouse x pos|
-|11 - | current mouse y pos|
-|12 - | true if the left mouse button is pressed|
-|13 - | true if the right mouse button is pressed|
-|14 - | true if the middle mouse button is pressed|
+----- -------------------- 
+10 -   current mouse x pos
+11 -   current mouse y pos
+12 -   true if the left mouse button is pressed
+13 -   true if the right mouse button is pressed
+14 -   true if the middle mouse button is pressed
+----- -------------------- 
 PEN must be enabled prior to use of this function. Pen ON|OFF
 
 
@@ -104,4 +108,5 @@ when I was trying to catch both mouse down and mouse up events. The printing of 
 from my experience, the best way to reduce CPU usage is related directly to "what you want your program to do". You can always design your program to behave different and more efficient after giving it a second thought; it's very subjective.
 Yet there ARE some commands that allow the system to do other things while your program is waiting for some input. In SmallBASIC I still don't know them, but in other languages (with a well written Language Reference) you got some keyword like Wait_Key, etc; Wait_Key will wait for the user to input a key, and in the meantime the system can do something else. But this must be documented by the author of the language.
 Whatever, reviewing our code again and again will pop up the correct logic for better performances, soon or later.
+
 

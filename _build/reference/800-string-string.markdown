@@ -60,3 +60,4 @@ x = STRING(2, ASC("Hello "))
 ' s is a string of any length:
 x = STRING(2, "Hello ") 
 ? x ' --> x is "Hello Hello " 
+

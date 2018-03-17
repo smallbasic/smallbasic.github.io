@@ -4,3 +4,4 @@
 
 Writes a byte on file or device. (Binary mode).
 
+

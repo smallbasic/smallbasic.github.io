@@ -13,3 +13,4 @@ CHMOD "myfile.bas", 0o666
 ' Make myfile available to anyone (execute/read/write)
 CHMOD "myfile.bas", 0o777
 
+

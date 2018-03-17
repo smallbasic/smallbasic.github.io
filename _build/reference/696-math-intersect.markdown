@@ -12,3 +12,4 @@ type = cross-type
 * 3 Parallel (many crosses)
 * 4 The cross is one of the line segments edges.
 
+

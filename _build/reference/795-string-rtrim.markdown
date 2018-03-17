@@ -4,3 +4,4 @@
 
 Removes trailing white-spaces from string s.
 
+

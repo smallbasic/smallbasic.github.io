@@ -50,7 +50,7 @@ Regular-expression operator. Compares the left part of the expression with the r
 ? "-[Hello]-" Like "\\-\\[?*\\]\\-" ' True
 ? Cbs("\\nFiles which start with Capital letter or _:\\n"); Files("[A-Z_]*")
 ? Cbs("\\nFiles which are NOT .bas or .BAS files:\\n"); Files("*[!.bas][!.BAS]")
-If "It <strong>wasn't</strong> me!" Like "*<[!/]?*>*</?*>*" Then
+If "It wasn't> me!" Like "*<[!/]?*>*</?*>*" Then
   ? Cbs("\\nTrue, someone is using HTML tag...!")
 Fi
 link = "See also: http://www.regular-expressions.info/examples.html for demos."
@@ -60,4 +60,5 @@ Fi
 Pause
 
 ~~~
+
 

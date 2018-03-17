@@ -15,3 +15,4 @@ Example:
              PRINT SGN("2 + 1")             ' Error
 See Also:    ABS, ABSMAX, ABSMIN, CINT
 thanks shian!
+

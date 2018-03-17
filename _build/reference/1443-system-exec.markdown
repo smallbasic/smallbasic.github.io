@@ -56,7 +56,7 @@ Pause
 
 Apparently, RUN/EXEC have bugs in SmallBASIC version 0.12.2...:
 chrisws replied on Sun, 04/24/2016 - 00:29 http://smallbasic.sourceforge.net/?q=comment/1187#comment-1187
-<blockquote>
+> 
 RUN/EXEC
 There are three modes:
 1. RUN(command) ' invoked as a COMMAND
@@ -65,4 +65,5 @@ With both of these, control returns to the .bas once system 'command' has comple
 3. EXEC(command) 'invoked as a COMMAND, control returns to the .bas immediately and the system command does it's own thing external to SmallBASIC.
 ...
 Note: In the android version you can use v=RUN to look at interesting things in the /proc file system.
-</blockqoute>
+
+

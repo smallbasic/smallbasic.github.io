@@ -83,3 +83,4 @@ Again, it keeps the environment-variables-table readable, and saves space in the
 On some systems the environment-variables-table is unique for each session (Linux for example) and this may be a bit confusing.
 5.
 Environment variables may or may not be case sensitive, i.e. "SB1" may be different then "sb1" on some systems (Linux for example).
+

@@ -80,3 +80,4 @@ end
 chrisws replied on Mon, 03/21/2016 - 07:16 Permalink
 Thanks for your report. This
 Thanks for your report. This will be fixed in the next update. Note the backslash character is used to escape double quotes in strings. As such you need to use double backslash to escape the escape
+

@@ -57,7 +57,7 @@ pause
 ~~~
 
 SmallBASIC recognizes two color Systems RGB(red,green,blue) and QB colors 0-15 (3 systems if you count RGBF which is like RGB but instead of 0-255 for each of red, green blue in RGB, the RGBF uses scale 0-1 for each of red,green, blue).
-You may <strong>Include</strong> "color_const.bas" file in another file to make your code more clear.
+You may Include> "color_const.bas" file in another file to make your code more clear.
 
 ~~~
 
@@ -87,4 +87,5 @@ Const YELLOW       = 14
 Const BRIGHT_WHITE = 15
 
 ~~~
+
 

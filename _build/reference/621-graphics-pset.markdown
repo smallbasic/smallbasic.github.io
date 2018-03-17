@@ -37,3 +37,4 @@ pause
 Here is PSET with QB red at center screen:
 PSET xmax/2,ymax/2,12 
 12 is QB red, 9 is blue, 14 is yellow, 7 dull white, 0 black, 8 is darker gray than 7 usually the colors get brighter
+

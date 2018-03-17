@@ -11,3 +11,4 @@ Calculation of derivative. errcode = 0 for success; otherwise calculation error.
 * errcode 0 for success; otherwise calculation error
 * result the result
 
+

@@ -45,3 +45,4 @@ Pause
 
 I never would have guessed you could TLOAD an OPENed file and Bambi56 used the file number from OPEN to do the TLOAD.
 Very interesting...
+

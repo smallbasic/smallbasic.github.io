@@ -12,3 +12,4 @@ PRINT "[";s;"]"
 displays:
 [/etc/temp/filename/ext]
 
+

@@ -6,3 +6,4 @@ Returns the position of the last occurrence of the string s2 into string s1 (sta
 
 
 If there is no match, RINSTR returns 0
+

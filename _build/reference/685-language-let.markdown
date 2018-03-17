@@ -14,3 +14,4 @@ z = "String data"   ' Assign string
 DIM v(4)
 z=v                 ' Assign array (z = clone of v)
 
+

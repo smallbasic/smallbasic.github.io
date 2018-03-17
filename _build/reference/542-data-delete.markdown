@@ -9,3 +9,4 @@ Deletes 'count' elements at position 'idx' of array 'a'.
 * idx - Position in the array.
 * count - The number of the elements to be deleted.
 
+

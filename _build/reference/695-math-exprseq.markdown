@@ -8,3 +8,4 @@ Returns an array with 'count' elements. Each element had the 'y' value of its po
 REM same as v=SEQ(0,1,11)
 EXPRSEQ v, 0, 1, 11 USE x
 
+

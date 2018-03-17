@@ -83,3 +83,4 @@ I was doing long integers and it was matching len(STR number) and when switched 
 https:support.microsoft.com*en-us*kb*42980
 (replace * with / to get the address)
 This article shows that it's not easy to convert IEEE floating-point binary numbers to decimal numbers.
+

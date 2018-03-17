@@ -45,3 +45,4 @@ NOT, which is logical not,
 Both are using only the right side expression: NOT(b), ~(b)
 NOT inverts the expression b (e.g. true --> false)
 ~  inverts each bit in b (e.g. 01011 --> 10100)
+

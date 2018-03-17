@@ -16,3 +16,4 @@ pause
 ~~~
 
 output: UPPER and UCASE do the same thing.
+

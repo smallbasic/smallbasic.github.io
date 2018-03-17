@@ -13,3 +13,4 @@ SPLIT "Sun Mon Tue Wed Thu Fri Sat", " ", wd
 today = "Today is " + wd(WEEKDAY(DATE)) + " " + DATE
 PRINT today
 
+

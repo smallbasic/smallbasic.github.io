@@ -9,3 +9,4 @@ Returns true if x is: a zero length array, an empty string, an integer or real w
 * If x is an integer or a real returns true if the x = 0.
 * If x is an array, returns true if x is a zero-length array (array without elements).
 
+

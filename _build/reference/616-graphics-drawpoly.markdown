@@ -6,3 +6,4 @@ Draws a polyline.
 
 
 If the array does not use points as element arrays, then even elements for x (starting from 0), odd elements for y
+

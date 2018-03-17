@@ -4,3 +4,4 @@
 
 Returns the polyline's extents.
 
+

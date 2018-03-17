@@ -47,3 +47,4 @@ In your large industrial programs how many times do use GOTO and are confident y
 I never use GOTO.
 The best code is always relative to schedule. At certain moment the program must be finished, and sometimes you know very well that you could do MUCH better work if only you had more time... life.
 
+

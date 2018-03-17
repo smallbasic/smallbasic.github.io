@@ -117,10 +117,10 @@ REM Unit "StrLib" Version 1.15.11, 20/3/2016
 ~~~
 
      
-   <strong>major number:</strong> is increased when there are significant jumps in functionality such as changing the framework which could cause incompatibility with interfacing programs.
-   <strong>minor number:</strong> is incremented when only minor features or significant fixes have been added.
+   major number:> is increased when there are significant jumps in functionality such as changing the framework which could cause incompatibility with interfacing programs.
+   minor number:> is incremented when only minor features or significant fixes have been added.
  
-   <strong>revision number:</strong> is incremented when minor bugs are fixed.
+   revision number:> is incremented when minor bugs are fixed.
    
    By assigning a version number, other users will know what to expect from the
    modified version. You should also add a short description of the changes 
@@ -182,9 +182,9 @@ ZipText(x)
    allow old programs to work as usual, and new programs to benefit from the
    new features.
    
-5. UNIT should Export <strong>only</strong> routines or constants (variables)
+5. UNIT should Export only> routines or constants (variables)
    which related to the specific use of that unit. 
-   For example, UNIT which offers string manipulation routines should <strong>only</strong> 
+   For example, UNIT which offers string manipulation routines should only> 
    Export string manipulation routines or string constants.
    
    If UNITs contain routines for many different uses, it is likely that two
@@ -199,3 +199,4 @@ There are more about UNITs (shared libraries), but the most important:
  When you write a UNIT to be used by others, try to be merciful... i.e.
  write clear and documented code, and make it easy for others to use your
  UNIT.
+

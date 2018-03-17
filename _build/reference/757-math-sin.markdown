@@ -144,7 +144,7 @@ Perfect.
 As far as I concerned: they may shut down Wikipedia right now. 
 Thanks!
 By the way... 
-Is it possible to <strong>accurately</strong> calculate the <strong>Length</strong> of an Arc (segment of an ellipse)?
+Is it possible to accurately> calculate the Length> of an Arc (segment of an ellipse)?
 Can I get the length of an Arc in let's say millimetres? As if it was a regular line?
 
 (arc length discussion picked up on forum)
@@ -167,4 +167,5 @@ next
 pause
 
 ~~~
+
 

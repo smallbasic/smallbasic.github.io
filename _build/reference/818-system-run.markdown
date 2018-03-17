@@ -57,7 +57,7 @@ Pause
 
 Apparently, RUN/EXEC have bugs in SmallBASIC version 0.12.2...:
 chrisws replied on Sun, 04/24/2016 - 00:29 http://smallbasic.sourceforge.net/?q=comment/1187#comment-1187
-<blockquote>
+> 
 RUN/EXEC
 There are three modes:
 1. RUN(command) ' invoked as a COMMAND
@@ -66,7 +66,7 @@ With both of these, control returns to the .bas once system 'command' has comple
 3. EXEC(command) 'invoked as a COMMAND, control returns to the .bas immediately and the system command does it's own thing external to SmallBASIC.
 ...
 Note: In the android version you can use v=RUN to look at interesting things in the /proc file system.
-</blockqoute>
+
 Windows 10 is having none of this. Starting with it thinking it should do the Linux branch in the first decision branch.
 But RUN won't even RUN "DIR > Directory.txt" (let alone give me a directory of DeskTop where I am at and running SB from.)
 Append: As a way to get OS, I just tried 
@@ -161,3 +161,4 @@ TLOAD test.tmp, lines: ? lines
 5. 
 Systems commands, especially on Linux, are very powerful, and can add lots of valuable features to a SmallBASIC program. With system commands you can configure the COM port, send email (Linux at least), get lots of information about the environment, etc, etc.
 But before you can actually use these features - you must learn how your system is working, and which commands are available (Read Ebook or a book to understand the basics).
+

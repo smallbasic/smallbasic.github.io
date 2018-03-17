@@ -106,7 +106,7 @@ To sum up: you don't need to use any term - you can simply say "variable".
 
 JSON is an open-standard format that uses human-readable text to transmit data objects consisting of attribute–value pairs. JSON is a language-independent data format.
 Here I quote Chris from Home -- Forums -- Project help -- Tile Map Editor:
-<blockquote>
+> 
 ...
 If you click File / Export and save the output in JSON format, you can then use the output in a SmallBASIC program like this:
 
@@ -119,7 +119,7 @@ tiles= array(buffer)
 ~~~
 
 ...
-</blockquote>
+
 These are good news, because it actually allows us to save and load arrays as regular text files in JSON format (which shares its vision with XML format).
 That's useful but can it be applied to other ARRAY types? For example I can make TLOAD and TSAVE work for a one dimensional array but I cannot see how to save or load an ordinary (non MAP) ARRAY with more than one dimension. Have you achieved this? Is it possible? Just wondering. Thanks.
 I've copy this code from JSON Wikipedia, it seems like JSON supports more then one 
@@ -160,7 +160,7 @@ The following example shows a possible JSON representation describing a person:
 ~~~
 
 This what Chris wrote at Home -- Forums -- Announcements (10/02/2014):
-<blockquote>
+> 
 ...
 SmallBASIC implementations: Any
 SmallBASIC version 0.11.16 for Ubuntu is now available.
@@ -169,7 +169,7 @@ Variables:
 The MAP variable type combines the features of previously separate "User Defined Structures" and "Associated Array" variables. The MAP provides value-key pair access along with array or dotted notation. The MAP can be initialized from a String variable using the ARRAY command. The ARRAY command supports JSON (Javascript object notation) syntax.
 The MAP can be converted back into a JSON string using the STR command. You can test whether a variable is a MAP using the ISMAP command.
 The ARRAY command can be used to process web services results. For example: https:raw.githubusercontent.com*smallbasic*SmallBASIC*master*samples*distro-examples*devio*google.bas
-</blockquote>
+
 I didn't have time to try anything, and I don't know if there is a function to convert between regular array and map array (is there?); 
 If there isn't any function, you can create one, JSON format looks a bit more friendly then XML format, so it must be easy.
 Sorry I didn't understand...
@@ -275,4 +275,7 @@ SEARCH i, "AM", r
 ? "r = ", r
 ? "destination = ",i(0,r)
 ? "binary      = ",i(1,r)
-<?code>
+
+~~~
+
+

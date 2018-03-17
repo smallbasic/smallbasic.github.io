@@ -11,3 +11,4 @@ Returns an array with the values of the unknowns. This function solves equations
 > |x| <= toler : x = 0
 The result is a matrix Nx1. The array is two-dimension array.
 
+

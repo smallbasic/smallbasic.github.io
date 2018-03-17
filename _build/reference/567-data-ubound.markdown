@@ -4,3 +4,4 @@
 
 Returns the upper bound of 'array'.
 
+

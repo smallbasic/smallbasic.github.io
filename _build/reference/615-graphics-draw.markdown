@@ -7,17 +7,19 @@ Draw lines as specified by the given directional commands.
 
 *Graphics Definition Language*
 In the movement instructions below, n specifies a distance to move. The number of pixels moved is equal to n multiplied by the current scaling factor, which is set by the S command.
-|Un| Move up.|
-|Dn| Move down.|
-|Ln| Move left.|
-|Rn| Move right.|
-|En| Move diagonally up and right.|
-|Fn| Move diagonally down and right.|
-|Gn| Move diagonally down and left.|
-|Hn| Move diagonally up and left.|
-|Mxy| Move to coordinate x,y. If x is preceded by a + or -, the movement is relative to the last point referenced.|
-|B| A prefix command. Next movement command moves but doesn't plot.|
-|N| A prefix command. Next movement command moves, but returns immediately to previous point.|
+-- --------- 
+Un  Move up.
+Dn  Move down.
+Ln  Move left.
+Rn  Move right.
+En  Move diagonally up and right.
+Fn  Move diagonally down and right.
+Gn  Move diagonally down and left.
+Hn  Move diagonally up and left.
+Mxy  Move to coordinate x,y. If x is preceded by a + or -, the movement is relative to the last point referenced.
+B  A prefix command. Next movement command moves but doesn't plot.
+N  A prefix command. Next movement command moves, but returns immediately to previous point.
+-- --------- 
 COLOR 9:PSET 80,80
 DRAW "R50D70L25U25L15D25NR15"
 DRAW "L10U50E25F25"
@@ -47,3 +49,4 @@ DRAW "S8L10U50E25F25"
 ~~~
 
 But apparently S command is unsupported.
+

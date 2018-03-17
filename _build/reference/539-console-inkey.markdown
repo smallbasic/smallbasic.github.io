@@ -211,3 +211,4 @@ https://github.com/smallbasic/SmallBASIC/blob/master/samples/distro-exam...
 This uses the DEFINEKEY command to register keystroke handlers for game keys. When you hit the game key, the registered FUNC will get called more or less immediately, somewhere inside the game main looI think this should work well in the space shooter (which is awesome by the way).
 Code for quick lookup of a key code:
 http://smallbasic.sourceforge.net/?q=node/1583
+

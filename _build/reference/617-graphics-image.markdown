@@ -564,3 +564,4 @@ Another useful option is to use XPM image format (See Part-3 above) with transpa
 a << "x c NONE"  ' Character "x" is transparency color
 ~~~
 
+

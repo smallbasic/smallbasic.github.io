@@ -11,3 +11,4 @@ Returns true if x is a string (and cannot be converted to a number).
 ? ISSTRING("abc")   :REM true
 ? ISSTRING("1+2")   :REM true
 
+

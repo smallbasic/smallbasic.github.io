@@ -47,3 +47,4 @@ rapideuphoria.com*math_eval_v1_1_0.zip
 It is straightforward to translate that Euphoria code into SmallBASIC code.
 EVAL must be around here somewhere, it is a classic. I thought I might find a version in TinyBASIC but I am too much into getting a turtle string to repeat to hunt for it at moment.
 The VAL command just converts a string to a number. For EVAL type functionality, the CHAIN command is somewhat similar.
+

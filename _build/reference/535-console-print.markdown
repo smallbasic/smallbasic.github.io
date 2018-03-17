@@ -6,10 +6,12 @@ Display text or the value of an expression.
 
 
 *PRINT SEPARATORS*
-| TAB(n)| Moves cursor position to the nth column.|
-| SPC(n)| Prints a number of spaces specified by n.|
-| ;| Carriage return/line feed suppressed after printing.|
-| ,| Carriage return/line feed suppressed after printing.|
+------- ----------------------------------------- 
+TAB(n)  Moves cursor position to the nth column.
+SPC(n)  Prints a number of spaces specified by n.
+;       Carriage return/line feed suppressed after printing.
+,       Carriage return/line feed suppressed after printing.
+------- ----------------------------------------- 
 *PRINT USING*
 Print USING uses the FORMAT() function to display numbers and strings. Unlike FORMAT it can also include literals.
 * [_] - Print next character as a literal. The combination _#, for example, allows you to include a number sign as a literal in your numeric format.
@@ -23,7 +25,7 @@ NEXT
 PRINT USING "Total ###,##0 of \\ \\"; number, "bytes"
 The symbol ? can be used instead of keyword PRINT You can use 'USG' instead of 'USING'.
 
-quote: <strong>It's all in the punctuation at the end of a print statement</strong>
+quote: It's all in the punctuation at the end of a print statement>
 
 ~~~
 
@@ -84,4 +86,5 @@ Close #1
 Pause
 
 ~~~
+
 

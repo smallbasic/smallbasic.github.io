@@ -4,6 +4,7 @@
 
 Binds a keystroke to a user defined function
 
+~~~
 
 sub moveLeft
    if (block.x > 0) then
@@ -11,7 +12,8 @@ sub moveLeft
    fi
 end
 defineKey 0xFF04, moveLeft
-Refer to keymap.h in the SVN repository for key definitions. TODO: create a keys.bas unit for key constants
+
+~~~
 
 ~~~
 
@@ -172,4 +174,5 @@ Const DK_MK_FIRST   = DK_MK_PUSH
 Const DK_MK_LAST    = DK_MK_WHEEL
 
 ~~~
+
 

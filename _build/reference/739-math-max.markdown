@@ -9,3 +9,4 @@ Maximum value of parameters.
 ? MIN(array(),2,3)
 ? MAX("abc","def")
 
+

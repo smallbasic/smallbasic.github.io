@@ -12,3 +12,4 @@ Returns true if x is a number (or it can be converted to a number).
 ? ISNUMBER("1+2")       :REM false
 ? ISNUMBER("int(2.4)")  :REM false
 
+

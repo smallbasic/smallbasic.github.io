@@ -125,3 +125,4 @@ gray(0,0,255)
 .
 It might work better for modern SVGA modes with high resolution and LCD screens.
 I'm not aware of new formula for these kind of screens...
+
