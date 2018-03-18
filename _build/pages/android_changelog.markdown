@@ -1,3 +1,8 @@
+## Android ChangeLog ##
+::: siteSub ::
+[Home](/pages/index.html) > [Articles](/pages/articles.html)
+:::
+
 **0.12.11 30 Dec, 2017**
 
 - Fix issue with image save() command to ensure resulting array has correct dimensions

@@ -27,6 +27,7 @@ if (not exist(jsonFile)) then
   pagename = translate(pagename, "pages3", "")
   pagename = translate(pagename, "pages4", "")
   pagename = translate(pagename, "pages", "")
+  pagename = translate(pagename, "scripts", "")
   pagename = translate(pagename, "_out", "")
   pagename = translate(pagename, "/", "")
   pagename = translate(pagename, ".html", "")
@@ -38,6 +39,9 @@ if (not exist(jsonFile)) then
   title = pagename
   package = ""
   sourcefile = "pages/" + pagename + ".markdown"
+  if (not exist(sourcefile)) then
+    sourcefile = "scripts/" + pagename + ".html"
+  endif
 else
   rem reference page
   tload jsonFile, s, 1

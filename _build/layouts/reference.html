@@ -1,4 +1,16 @@
 <div class="article">
+  <h1>{{ upper(page.name) }}</h1>
+  <blockquote>{{ page.title }}</blockquote>
+  <div class="siteSub">
+    <p><a href="/pages/index.html">Home</a> &gt; <a href="/pages/reference.html">Reference</a></p>
+  </div>
+  {% rem header left inside each markdown in case required for PDF generation %}
+  {%
+    eol = instr(content, chr(10))
+    eol = instr(eol + 1, content, chr(10))
+    eol = instr(eol + 1, content, chr(10))
+    content = mid(content, eol + 1)
+  %}
   {{ content }}
   <div class="lavenderBox">
     <div class="header">{{ page.package }}</div>

@@ -1,4 +1,35 @@
 <div class="article">
   <h1>Samples</h1>
-
+  {%
+  githost = "https://raw.githubusercontent.com/smallbasic/smallbasic.github.io"
+  sections = ["000 getting started",
+              "applications",
+              "business",
+              "easter calculators",
+              "games 1",
+              "games 2",
+              "geometry",
+              "graphics 1",
+              "graphics 2",
+              "graphics 3",
+              "mathematics",
+              "mechanics",
+              "physics",
+              "sound",
+              "system",
+              "units section",
+              "utilities" ]
+  for section in sections %}
+  <div class="lavenderBox">
+    <div class="header">{{ ucase(section) }}</div>
+    <div class="linklist">
+      {% for filename in files("../samples/" + section + "/*.bas") %}
+      <a target="_github" href="{{ githost }}/master/samples/{{ section + "/" + filename }}">{{ filename }} </a>&nbsp;
+      {% next filename %}
+    </div>
+  </div>
+  {% next section %}
+  <div class="categories">
+    <a href="https://github.com/smallbasic/smallbasic.github.io/archive/master.zip">Download all</a>
+  </div>
 </div>
