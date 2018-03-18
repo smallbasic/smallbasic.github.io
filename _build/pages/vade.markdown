@@ -1,5 +1,7 @@
 # Vademecum #
 
+> Author: Elmar Vogt, F&uuml;rth, GERMANY
+
 A *Vademecum* (lat. \>\>vade-me-cum\<\<, \>\>Come with me\<\<) is a
 small booklet on a subject, meant to be your handy companion. While not
 as exhaustive as a genuine reference manual, it is designed to let you
@@ -8,11 +10,17 @@ details and deprecated features of for the sake of brevity, as it aims
 to help you find your way around this elegant language in a friendly,
 trustworthy, and straightforward manner.
 
+::: contentsPanel ::
+::: contentsHeader ::
+Contents
+:::
+
 #. [Intro](/pages/vade_intro.html)
-#. [Control Flow](/pages/vade_control.html)
-#. [Data](/pages/vade_data.html)
-#. [Structure](/pages/vade_structure.html)
 #. [Syntax](/pages/vade_syntax.html)
+#. [Data](/pages/vade_data.html)
+#. [Control Flow](/pages/vade_control.html)
+#. [Structure](/pages/vade_structure.html)
+:::
 
 The process of preparing programs for a digital computer is especially
 attractive because it not only can be economically and scientifially

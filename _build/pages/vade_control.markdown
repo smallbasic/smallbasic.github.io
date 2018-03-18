@@ -1,10 +1,13 @@
 Control Flow
 ============
 
-\quick{In this section we'll describe a number of ways to establish
+> Author: Elmar Vogt, F&uuml;rth, GERMANY
+
+In this section we'll describe a number of ways to establish
 control flow in a \SB\ program, ie everything which keeps the program
 from simply executing line after line of code. It deals with conditional
-operations loops, and exceptions.}
+operations loops, and exceptions.
+
 Conditionals
 ------------
 
@@ -82,7 +85,7 @@ which may or may not help with the readability of your code.
 
 Finally, many programming languages offer a simplified syntax for
 testing a single variable (or expression) against a number of
-conditions, and  is no exception.
+conditions, and SmallBASIC is no exception.
 
 Here, such a clause is introduced with the two keywords , followed by a
 variable or expression. Then, a number of conditions will be tested with
@@ -219,7 +222,7 @@ to the index variable.
 
 When the number of times a loop is supposed to be executed is not known
 beforehand (for example, when reading lines from a file when the file
-length is unknown),  offers two different loop constructs:
+length is unknown), SmallBASIC offers two different loop constructs:
 
     while (expression)
         ...
@@ -262,7 +265,7 @@ In this case your loop should contain an statement (see below) to break
 out of the loop.
 
 This also serves to emulate a construct that would allow for a loop to
-be executed \>\>indefinitely\<\< which  doesn't feature genuinely.
+be executed \>\>indefinitely\<\< which SmallBASIC doesn't feature genuinely.
 
 #### Pathological Cases
 
@@ -283,7 +286,7 @@ the loop, like for example an statement:
 The keyword lets you exit immediately from the innermost loop it is
 found in. (This is equivalent to the \>\>C\<\< statement .) You can
 specify a qualifier with , namely one of , , , or , which will make
- leave the innermost surrounding structure of that type. ( includes and
+SmallBASIC leave the innermost surrounding structure of that type. ( includes and
 constructs.)
 
 Exceptions: 

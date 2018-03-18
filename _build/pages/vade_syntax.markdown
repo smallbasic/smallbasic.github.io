@@ -1,16 +1,16 @@
 Source Code Format
 ==================
 
-> Here you learn about the basics of BASIC, so to speak. This chapter deals with the way a \SB\ program composed.
+> Author: Elmar Vogt, F&uuml;rth, GERMANY
+
+Here you learn about the basics of BASIC, so to speak. This chapter deals with the way a SmallBASIC program composed.
 
 A program consists of a single source file. It is possible to include
 libraries from external source files with the Unit-mechanism (see ).
 
-Source files are simple text files. They can be written in **ASCII** or
-**UTF-8**.
+Source files are simple text files. They can be written in **ASCII** or **UTF-8**.
 
-The basic program component is a line of text, ending with or
-characters.[^1]
+The basic program component is a line of text, ending with or characters.[^1]
 
  is **case-insensitive**: The names and will always refer to the same
 variable or function. Likewise, keywords are case-insensitive: Both and

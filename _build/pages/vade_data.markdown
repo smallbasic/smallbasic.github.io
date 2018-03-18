@@ -1,11 +1,14 @@
 Data
 ====
 
-\quick{In this chapter, the Vademecum introduces you to the various ways
-\SB\ handles program data -- both simple variables and more complex
-structures.}
-A Note on Types [\[noteOnTypes\]]{#noteOnTypes label="noteOnTypes"}
--------------------------------------------------------------------
+> Author: Elmar Vogt, F&uuml;rth, GERMANY
+
+In this chapter, the Vademecum introduces you to the various ways
+SmallBASIC handles program data -- both simple variables and more complex
+structures.
+
+A Note on Types
+---------------
 
  is **dynamically typed language**[^1]. This means that one and the same
 variable can hold numerical values and strings at different times.

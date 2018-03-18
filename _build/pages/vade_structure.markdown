@@ -1,9 +1,12 @@
 Structuring a Program
 =====================
 
-\quick{This chapter will give you an overview about how you can avoid
+> Author: Elmar Vogt, F&uuml;rth, GERMANY
+
+This chapter will give you an overview about how you can avoid
 producing the notorious >>spaghetti code<<, and structure your program
-instead into blocks which are easier to debug and maintain.}
+instead into blocks which are easier to debug and maintain.
+
 Routines: Procedures and Functions
 ----------------------------------
 
