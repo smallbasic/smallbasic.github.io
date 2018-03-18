@@ -7,4 +7,5 @@
 #. [New features](/pages/features.html)
 #. [SDL](/pages/sdl.html)
 #. [TRY/CATCH](/pages/trycatch.html)
+#. [Vademecum](/pages/vade.html)
 

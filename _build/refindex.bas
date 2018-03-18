@@ -10,6 +10,7 @@ sub build(label_str, package)
 
   print ("<div class=\"article\">")
   print ("<h1>" + label_str + "</h1>")
+  print ("<blockquote>" + label_str + "</blockquote>")
   print ("<div class=\"siteSub\">")
   print ("<p><a href=\"/pages/index.html\">Home</a> &gt;")
   print ("<a href=\"/pages/reference.html\">Reference</a></p>")
