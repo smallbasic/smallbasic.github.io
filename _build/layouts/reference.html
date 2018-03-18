@@ -2,7 +2,11 @@
   <h1>{{ upper(page.name) }}</h1>
   <blockquote>{{ page.title }}</blockquote>
   <div class="siteSub">
-    <p><a href="/pages/index.html">Home</a> &gt; <a href="/pages/reference.html">Reference</a></p>
+    <p>
+      <a href="/pages/index.html">Home</a> &gt;
+      <a href="/pages/reference.html">Reference</a> &gt;
+      <a href="/pages/{{ lcase(page.package) }}.html">{{ page.package }}</a>
+    </p>
   </div>
   {% rem header left inside each markdown in case required for PDF generation %}
   {%
@@ -35,14 +39,14 @@
     </div>
   </div>
   <div class="categories">
-    <a href="/reference/521.html">Console </a>
-    <a href="/reference/581.html">Data </a>
-    <a href="/reference/575.html">Date </a>
-    <a href="/reference/580.html">File </a>
-    <a href="/reference/611.html">Graphics </a>
-    <a href="/reference/662.html">Language </a>
-    <a href="/reference/704.html">Math </a>
-    <a href="/reference/771.html">String </a>
-    <a href="/reference/1439.html">System </a>
+    <a href="/pages/console.html">Console </a>
+    <a href="/pages/data.html">Data </a>
+    <a href="/pages/date.html">Date </a>
+    <a href="/pages/file.html">File </a>
+    <a href="/pages/graphics.html">Graphics </a>
+    <a href="/pages/language.html">Language </a>
+    <a href="/pages/math.html">Math </a>
+    <a href="/pages/string.html">String </a>
+    <a href="/pages/system.html">System </a>
   </div>
 </div>

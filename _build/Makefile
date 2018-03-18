@@ -25,7 +25,7 @@ scripts = $(patsubst scripts/%.html, $(out)/scripts2/%.html, $(wildcard scripts/
 reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))
 
 # rules
-.data: reference.json page.bas site.bas mkdata.bas includes/header.html
+.data: reference.json page.bas site.bas mkdata.bas refindex.bas includes/header.html
 	@mkdir -p $(out)/data
 	$(sbasic) mkdata.bas
 

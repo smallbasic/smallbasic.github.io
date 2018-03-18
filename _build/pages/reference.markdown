@@ -11,15 +11,15 @@ popular languages for several decades.
 Contents
 :::
 
-#. [Console](/reference/521.html)
-#. [Data](/reference/581.html)
-#. [Date](/reference/575.html)
-#. [File](/reference/580.html)
-#. [Graphics](/reference/611.html)
-#. [Language](/reference/622.html)
-#. [Math](/reference/704.html)
-#. [String](/reference/771.html)
-#. [System](/reference/1439.html)
+#. [Console](/pages/console.html)
+#. [Data](/pages/data.html)
+#. [Date](/pages/date.html)
+#. [File](/pages/file.html)
+#. [Graphics](/pages/graphics.html)
+#. [Language](/pages/language.html)
+#. [Math](/pages/math.html)
+#. [String](/pages/string.html)
+#. [System](/pages/system.html)
 :::
 
 How to read the language reference syntax
