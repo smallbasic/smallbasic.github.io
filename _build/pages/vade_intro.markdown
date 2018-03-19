@@ -1,7 +1,11 @@
 A Quick and Painless Introduction
 =================================
 
-> Author: Elmar Vogt, F&uuml;rth, GERMANY
+> Written by Elmar Vogt, F&uuml;rth, GERMANY
+
+::: siteSub ::
+[Home](/pages/index.html) > [Vade](/pages/vade.html)
+:::
 
 This chapter is designed to give you an overview over SmallBASIC and
 lets you determine whether the language suits your needs.
@@ -9,13 +13,13 @@ lets you determine whether the language suits your needs.
 Two Words of Caution
 --------------------
 
--   This booklet is about the  programming language -- it's *not* an
+-   This booklet is about the SmallBASIC programming language -- it's *not* an
     introduction to programming in general. While not a lot of software
     background is expected from the reader, it is assumed that common
     programming concepts are already understood.[^1] Some knowledge in
-    programming languages like \>\>C\<\<, Pascal, or Ruby is useful.
+    programming languages like &raquo;C&laquo;, Pascal, or Ruby is useful.
 
--    is a language with a long and varied history. Some features which
+-   SmallBASIC is a language with a long and varied history. Some features which
     are still present in its code are no longer actively supported.
     These deprecated features may be removed in future releases, and, to
     keep the Vademecum concise, they will not be dealt with in this
@@ -24,14 +28,14 @@ Two Words of Caution
 Features, or: Is it for me?
 ---------------------------
 
- started life as something like an \>\>extended handheld calculator\<\<,
+SmallBASIC started life as something like an &raquo;extended handheld calculator&laquo;,
 designed for PIMs[^2] running the Palm OS. One release note read,
 It's not meant to be a full-fledged programming language, and it
 will never be. Please don't ask us to turn it into one.
 
 Some time has gone by since, and *Nicholas Christopoulos* and *Chris
 Warren-Smith*, the driving forces behind the project, have developed
-SmallBASIC into a dialect of the BASIC language which is neither \>\>small\<\< (in
+SmallBASIC into a dialect of the BASIC language which is neither &raquo;small&laquo; (in
 the sense of it's capabilities), nor does it share too much with classic
 BASIC dialects.[^3]
 
@@ -41,7 +45,7 @@ Today, some of SmallBASIC's features are:
     Android are supported.[^4]
 
 -   The language is pretty compact: The Debian installer for Linux, for
-    example, comes as a single file with ca. 600 kb.
+    example, comes as a single file with ca. 600 kb.
 
 -   SmallBASIC features a very comprehensive set of mathematical functions.
 
@@ -65,27 +69,19 @@ Resources
 Here you will find a few internet resources that might be helpful for
 you when you want to get more closely acquainted with :
 
--   <http://smallbasic.sourceforge.net/> is the central hub for
+-   <http://smallbasic.github.io/> is the central hub for
     information about SmallBASIC in general -- a good starting point for a user of
-    . It leads you to the download of the current SmallBASIC versions and provides
+    SmallBASIC. It leads you to the download of the current SmallBASIC versions and provides
     a lot of background information.
 
--   <http://sourceforge.net/projects/smallbasic/> hosts the source code
+-   <https://github.com/smallbasic/SmallBASIC/> hosts the source code
     and cutting-edge SmallBASIC releases -- most interesting if you want to
-    contribute to the further development of .
-
--   There is also a small forum on the sourceforge site:
-    <http://smallbasic.sourceforge.net/?q=forum> It doesn't carry very
-    much traffic, but is a good point to ask questions about SmallBASIC or make
-    suggestions.
+    contribute to the further development of SmallBASIC.
 
 -   <https://www.facebook.com/groups/12117250426/> and
     <https://www.facebook.com/pages/SmallBASIC/110997952286349> are two
-    Facebook groups dedicated to . (Both don't exactly swamp you with
+    Facebook groups dedicated to SmallBASIC. (Both don't exactly swamp you with
     traffic either.)
-
--   <http://forum.basicprogramm.org> is a generally good place to ask
-    questions around various BASIC programming languages.
 
 -   You can get directly in touch with the developing team of SmallBASIC through
     [e-mail](mailto:smallbasic@gmail.com).
@@ -96,7 +92,7 @@ Licenses
 -   SmallBASIC is released under the [GNU General Public License version 2.0
     (GPLv2)](http://www.gnu.org/licenses/old-licenses/gpl-2.0)
 
--   This document, the \>\>Vademecum\<\<, is released under the
+-   This document, the &raquo;Vademecum&laquo;, is released under the
     [Creative Commons License
     by-nc-nd](http://creativecommons.org/licenses/by-nc-nd/3.0/de/deed.en_GB).
     In short, this license means that you are free to reproduce and
@@ -104,23 +100,23 @@ Licenses
     you don't change the author's name (that's mine), and as long as the
     contents remain unchanged.
 
-[^1]: If you're struggling with terms like \>\>strings\<\<,
-    \>\>loops\<\<, or \>\>pointers\<\<, this booklet might not be for
+[^1]: If you're struggling with terms like &raquo;strings&laquo;,
+    &raquo;loops&laquo;, or &raquo;pointers&laquo;, this booklet might not be for
     you.
 
-[^2]: \>\>Personal Information Manager\<\< -- for you youngsters out
-    there, that's a smartphone without connectivity
+[^2]: &raquo;Personal Information Manager&laquo; -- for you youngsters out
+    there, that's a smartphone without connectivity.
 
 [^3]: On a completely unrelated tangent, I'm convinced that one of the
     reasons BASIC has become much less popular today than many of the
-    more strictly standardized languages like \>\>C\<\<, Python, or
+    more strictly standardized languages like &raquo;C&laquo;, Python, or
     Ruby, is that though there actually *is* a standard for the
     language, it never has really been implemented. Rather, every BASIC
     dialect shows its own strengths and shortcomings, and one never
     really knows what one gets when one toys with a new dialect. This is
     one of the charms of working with BASIC, but of course it makes
     maintaining or porting software written in that language a
-    nightmare.\
+    nightmare.
     Back to our scheduled programme.
 
 [^4]: Older ports for Palm OS, DOS, and several others are no longer

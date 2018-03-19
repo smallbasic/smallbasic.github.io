@@ -1,7 +1,11 @@
 Data
 ====
 
-> Author: Elmar Vogt, F&uuml;rth, GERMANY
+> Written by Elmar Vogt, F&uuml;rth, GERMANY
+
+::: siteSub ::
+[Home](/pages/index.html) > [Vade](/pages/vade.html)
+:::
 
 In this chapter, the Vademecum introduces you to the various ways
 SmallBASIC handles program data -- both simple variables and more complex
@@ -10,7 +14,7 @@ structures.
 A Note on Types
 ---------------
 
- is **dynamically typed language**[^1]. This means that one and the same
+SmallBASIC is **dynamically typed language**[^1]. This means that one and the same
 variable can hold numerical values and strings at different times.
 Furthermore, necessary conversions are done automatically on the fly,
 for example when a string is used as the parameter for a numerical
@@ -24,12 +28,12 @@ function:
     > -1
 
 While there are also functions for explicit conversions, per default
-conversions are done \>\>tacitly\<\< by the interpreter, without any
-provisions in the  program, and there are also no \>\>notifications\<\<
+conversions are done &raquo;tacitly&laquo; by the interpreter, without any
+provisions in the SmallBASIC program, and there are also no &raquo;notifications&laquo;
 when a type conversion occurs. Another consequence is that the kind of
 data contained in a variable (or the structure of a map, see ) is only
 determined at runtime.[^2] It is up to the programmer to ensure that his
-code will \>\>expect the unexpected\<\< and be able to cope with any
+code will &raquo;expect the unexpected&laquo; and be able to cope with any
 data it is fed with.
 
 Simple Variables
@@ -37,8 +41,8 @@ Simple Variables
 
 Simple variables **need not be declared**; they come into existance by
 their first appearance in the source code. If they are not created
-through an assignment, they will be initiated to the value \>\>$0$\<\<
-(or, equivalently, to the empty string \>\>\"\"\<\<. (This example
+through an assignment, they will be initiated to the value &raquo;$0$&laquo;
+(or, equivalently, to the empty string &raquo;\"\"&laquo;. (This example
 admittedly looks a little silly.)
 
 **Value assignment** is done with the operator: The value to the right
@@ -67,24 +71,24 @@ Historically, BASIC required the keyword before an assignment:
 
     let x=20
 
- offers you the option to use this syntax variant for compatibility
+SmallBASIC offers you the option to use this syntax variant for compatibility
 reasons (read: nostalgia), but it's deprecated.
 
 ### Numbers
 
 Many languages have different types for various flavours of numbers --
-signed or unsigned integers, reals, etc. --  In contrast,  only has a
+signed or unsigned integers, reals, etc. -- In contrast, SmallBASIC only has a
 single class of numbers.[^4]
 
- numbers can have absolute values roughly between $2.2\cdot
+SmallBASIC numbers can have absolute values roughly between $2.2\cdot
 10^{-208}$ (smaller values are considered $0$) and $1.8\cdot 10^{308}$
-(larger values raise a flag (for \>\>infinity\<\<).
+(larger values raise a flag (for &raquo;infinity&laquo;).
 
 ### Strings
 
 Strings are chains of one or several letters, used to represent words,
 sentences or complete texts. A string consisting of zero letters is
-called an \>\>empty\<\< string. (While I have a strong hunch that
+called an &raquo;empty&laquo; string. (While I have a strong hunch that
 strings are internally represented with UTF-8 unicode characters, it's
 probably safer to only assign ASCII letters to them.)
 
@@ -151,7 +155,7 @@ elements the highest index is $n-1$.
 Complex data structures
 -----------------------
 
-Beside simple variables and literals,  also offers the option of
+Beside simple variables and literals, SmallBASIC also offers the option of
 composing arbitrarily complex[^10] variable structures. These come in
 two flavours:
 
@@ -166,14 +170,14 @@ declared before use** with the statement.
 
     dim x
 
-Since (almost) all variables are handled dynamically in  and can change
+Since (almost) all variables are handled dynamically in SmallBASIC and can change
 their structure during their lifetime, it is neither necessary nor
 useful to define details or the size of the data structure at hand.
 
 ### Arrays [\[array\]]{#array label="array"}
 
 Arrays are the more simple way of agglomerating data into a single
-variable.  treats them much like the way other programming languages do.
+variable. SmallBASIC treats them much like the way other programming languages do.
 An array holds a number of variables which are accessed by means of the
 array name, and a numerical index, pretty much like a street address is
 a combination of the street's name, and a house number. To access an
@@ -200,7 +204,7 @@ will define to initially have $251$ members with indices $0..250$. This
 
 Array members can be erased from the array with . Note that if the $i$th
 member of an array is deleted, then all array members with higher
-indices \>\>move down\<\< one notch, ie the value of will now be in .
+indices &raquo;move down&laquo; one notch, ie the value of will now be in .
 
 Likewise, new array members can be appended to an array with the
 operator .[^11]
@@ -212,8 +216,8 @@ means that now will have $252$ members, and the new $252$nd member (with
 the index $251$) will have the value $132$.
 
 Arrays are not limited to being a chain of values. **Several array
-dimensions** can be defined to render arrays of \>\>rectangular\<\<,
-\>\>cubic\<\<, \>\>tesseractic\<\< or even higher dimensions:
+dimensions** can be defined to render arrays of &raquo;rectangular&laquo;,
+&raquo;cubic&laquo;, &raquo;tesseractic&laquo; or even higher dimensions:
 
     dim hoogla(10, 20, 10)
     hoogla(5, 9, 8)= "blubbdi"
@@ -231,12 +235,12 @@ requirements increase exponentially.
 ### Maps [\[map\]]{#map label="map"}
 
 Maps differ from arrays in two ways: Firstly, while arrays always have a
-linear or \>\>rectangular\<\< structure, **maps are \>\>data trees\<\<,
+linear or &raquo;rectangular&laquo; structure, **maps are &raquo;data trees&laquo;,
 where each map member can be a simple variable, an array or a complete
 map**. This structure can become extremely complex during the runtime of
 a program. As explained in , since there is no fixed type system, and
 hence no predetermined structure for any given map, this means that an
- program must \>\>anticipate all known unknowns\<\<.
+SmallBASIC program must &raquo;anticipate all known unknowns&laquo;.
 
 Secondly, map indices aren't limited to a consecutive list of integer
 numbers. Rather, **map members can be accessed by any simple variable --
@@ -246,7 +250,7 @@ not straightforward anymore to write a loop which will iterate over all
 map members, or determine the number of map elements. The concept is
 probably more easy to grasp when one doesn't think of maps as of
 traditional arrays, but to consider each member a pair of a
-\>\>value\<\<, which is stored in the map, and a \>\>key\<\< (the index)
+&raquo;value&laquo;, which is stored in the map, and a &raquo;key&laquo; (the index)
 by which it is accessed.
 
 These two features in combination with 's automatic conversion features
@@ -298,8 +302,8 @@ be escaped with backslashes inside the argument (ie, rather than simply
 
 A further neat feature is that maps of any complexity can be serialized
 with a simple command to a file. will not only display a single member,
-but will format the output as a JSON string. This means -- without going
-into too many details regarding file handling here -- that writing a
+but will format the output as a JSON string. This means -- without going
+into too many details regarding file handling here -- that writing a
 complete map to a file and loading it again at a later stage are simple
 three-liner tasks.
 
@@ -314,8 +318,8 @@ be a real value, or even a string:
 
     boogla("nuffda")= ...
 
-The second option uses the \>\>dot notation\<\< familiar from other
-languages like \>\>C\<\<, seperating the name from the member key with a
+The second option uses the &raquo;dot notation&laquo; familiar from other
+languages like &raquo;C&laquo;, seperating the name from the member key with a
 dot :
 
     boogla.nuffda= ...
@@ -323,7 +327,7 @@ dot :
 The two notations are for the most part equivalent, while the second
 alternative makes sure that you're accessing a map, not an array.
 
-For more complex maps with nested structures, you simply \>\>chain\<\<
+For more complex maps with nested structures, you simply &raquo;chain&laquo;
 your notations to access the lower-level members:
 
     boogla.nuffda.oingaboinga= ...
@@ -354,7 +358,7 @@ When accessing in the third line, in the first term , is replaced with
 its value by the interpreter, before looking the map member with that
 name up and returning the result, . In the second term , the interpreter
 looks for a member of with the key , can't find one, and tacitly creates
-a new one which is initialized with the value $0$.[^15]
+a new one which is initialized with the value $0$.[^15]
 
 This makes the parentheses notation particularly useful when you want to
 decide at runtime which map member you want to access: With dot
@@ -365,7 +369,7 @@ variable to determine which member to use in that instance.
 
 For both arrays and maps, will give you the number of elements in the
 structure. But note that this isn't the total number of elements, but
-only the number of elements in the \>\>top dimension\<\<.
+only the number of elements in the &raquo;top dimension&laquo;.
 
 For example, when initializing an array as
 
@@ -407,7 +411,7 @@ Likewise,
     x(z)= 3.14
     x << 99
 
-throws an error in the last line, namely \>\>index out of range\<\<. The
+throws an error in the last line, namely &raquo;index out of range&laquo;. The
 first use of forced it to become a map, but unfortunately, the appendix
 operator is only defined for arrays,[^16] hence the error.
 
@@ -417,18 +421,18 @@ Finally,
 
 looks tantalizingly like a definition for a two-dimensional array, but
 it actually is a map -- which you find out when you try to access it
-like an array; will cause an \>\>out of range\<\< error. Only will work.
+like an array; will cause an &raquo;out of range&laquo; error. Only will work.
 
-\absatz
-\quick{In a nutshell: Try to avoid arrays whenever possible. In the long
+In a nutshell: Try to avoid arrays whenever possible. In the long
 run, you're better off if you force your structures to be maps and
-treat them accordingly.}
-Pointers and References [\[referenceOperator\]]{#referenceOperator label="referenceOperator"}
----------------------------------------------------------------------------------------------
+treat them accordingly.
+
+Pointers and References
+-----------------------
 
 ### Referencing Variables
 
- also provide a reference operator. If you're familiar with \>\>C\<\<,
+SmallBASIC also provide a reference operator. If you're familiar with &raquo;C&laquo;,
 which is explicitly built around the notion of pointers and references,
 this concept will be nothing new for you. The essence is that the
 reference operator , applied to any variable, will not return the
@@ -464,7 +468,7 @@ the two variables is broken, and the variables go their seperate ways.
 So, as long as is a reference to , it will always reflect the current
 value of , but the opposite isn't true: Once 's value changes, it is a
 reference to no more. So, when applied **to simple variables, the
-reference operator works \>\>read-only\<\<.**[^18]
+reference operator works &raquo;read-only&laquo;.**[^18]
 
 The situation changes when is applied to a map, and a member of that map
 is overwritten:
@@ -477,9 +481,9 @@ is overwritten:
 
     > 99
 
-performs as expected, and is now a \>\>true\<\< copy of . The reason is
+performs as expected, and is now a &raquo;true&laquo; copy of . The reason is
 that the line doesn't assign a new value to , but to a member of , hence
-'s \>\>integrity\<\< remains unviolated. **With maps, the reference
+'s &raquo;integrity&laquo; remains unviolated. **With maps, the reference
 operator creates two-way equivalences.** Of course, when you assign a
 value to itself (rather than to a member of ), you will break that
 relationship like with a simple variable.
@@ -516,21 +520,21 @@ parameter list *must not* be in parentheses, while when you a function,
 it *must*.
 
 [^1]: sometimes also referred to somehow incorrectly as a
-    \>\>typeless\<\< language
+    &raquo;typeless&laquo; language
 
-[^2]: Contrast this behaviour to other languages like \>\>C\<\<, where a
+[^2]: Contrast this behaviour to other languages like &raquo;C&laquo;, where a
     strict type discipline is enforced.
 
 [^3]: The command used below is a shorthand for : It will display the
     current values of all the following literals or variables on the
     screen.
 
-[^4]: While  internally also represents numbers either as integers or,
+[^4]: While SmallBASIC internally also represents numbers either as integers or,
     if they carry fractions or exceed the limits for integers, as 64 bit
     reals, this is invisible to the user, since all conversions are done
     implicitly and automatically when required.
 
-[^5]: Even before that  tends to get too tediously slow for all
+[^5]: Even before that SmallBASIC tends to get too tediously slow for all
     practical purposes.
 
 [^6]: Obviously, if *both* operands are numbers, $+$ will perform a
@@ -546,7 +550,7 @@ it *must*.
 [^9]: The function returns the length of its string argument, in number
     of characters
 
-[^10]: \>\>Complex\<\< here denoting intricate constructs, not the
+[^10]: &raquo;Complex&laquo; here denoting intricate constructs, not the
     mathematical notion of complex numbers
 
 [^11]: Sorry for the ugly typography here.
@@ -558,7 +562,7 @@ it *must*.
     guarantee that this behaviour will be retained in future versions of
     .
 
-[^13]: \>\>JavaScript Object Notation\<\<, see eg
+[^13]: &raquo;JavaScript Object Notation&laquo;, see eg
     [Wikipedia](http://en.wikipedia.org/wiki/JSON) for details
 
 [^14]: Since it isn't necessary to declare map members before accessing
@@ -570,9 +574,9 @@ it *must*.
 [^16]: and it *can* only be defined for arrays, because what would be
     the key for the value appended, if the recipient was a map?
 
-[^17]: We've all been there ...
+[^17]: We've all been there...
 
-[^18]: and is in the words of its inventor, \>\>a bit useless\<\<
+[^18]: and is in the words of its inventor, &raquo;a bit useless&laquo;
 
 [^19]: If you think about it, only the latter case is really really
     useful.

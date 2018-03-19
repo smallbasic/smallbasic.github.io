@@ -1,10 +1,14 @@
 Control Flow
 ============
 
-> Author: Elmar Vogt, F&uuml;rth, GERMANY
+> Written by Elmar Vogt, F&uuml;rth, GERMANY
+
+::: siteSub ::
+[Home](/pages/index.html) > [Vade](/pages/vade.html)
+:::
 
 In this section we'll describe a number of ways to establish
-control flow in a \SB\ program, ie everything which keeps the program
+control flow in a SmallBASIC program, ie everything which keeps the program
 from simply executing line after line of code. It deals with conditional
 operations loops, and exceptions.
 
@@ -47,7 +51,7 @@ option, see .
 Several clauses can be nested. It's your resposibility to make sure than
 they are properly closed, especially when you're using many / branches.
 
-If your \>\>deserts are small\<\<,[^1] and you don't have to process
+If your &raquo;deserts are small&laquo;,[^1] and you don't have to process
 much code in your clause, then there is a single-line variation as well:
 
     if temp>30 then ? "Hot" else ? "Moderate"
@@ -59,8 +63,8 @@ code.
 
 ### 
 
-As with the single-line option above, there is also an \>\>inline\<\< if
-clause. \>\>C\<\< users will be reminded of the syntax used there. In ,
+As with the single-line option above, there is also an &raquo;inline&laquo; if
+clause. &raquo;C&laquo; users will be reminded of the syntax used there. In ,
 it is the keyword , followed by a list of three parameters. The first is
 the condition, the second the result of the clause in the case the
 condition is true, and the third the result otherwise. The following two
@@ -108,7 +112,7 @@ Note that, compared to other programming languages, there are several
 limitations to the construct:
 
 -   No required or even allowed. This makes it impossible to achieve
-    a \>\>fallthrough\<\< of several clauses (intentionally or
+    a &raquo;fallthrough&laquo; of several clauses (intentionally or
     accidentally).
 
 -   There is no way to compare for inequality (like -- this would be an
@@ -165,7 +169,7 @@ manipulation. This means that you can play tricks like:
 Since the expression is evaluated after each loop traverse, you can mess
 with that as well.
 
-The second \>\>flavour\<\< of is meant to deal with more complex arrays
+The second &raquo;flavour&laquo; of is meant to deal with more complex arrays
 and maps. It has a slightly different syntax:
 
     for i in z
@@ -178,7 +182,7 @@ value of is set to:
 
 -   , if is an array, or
 
--   the \>\>next\<\< key of , if it is a map.
+-   the &raquo;next&laquo; key of , if it is a map.
 
 In the case of a map, the map element can be accessed with .[^3]
 
@@ -265,12 +269,12 @@ In this case your loop should contain an statement (see below) to break
 out of the loop.
 
 This also serves to emulate a construct that would allow for a loop to
-be executed \>\>indefinitely\<\< which SmallBASIC doesn't feature genuinely.
+be executed &raquo;indefinitely&laquo; which SmallBASIC doesn't feature genuinely.
 
 #### Pathological Cases
 
 It's syntactically legal to omit the expressions for or completely. In
-this case the \>\>expression\<\< is always taken to evaluate to .
+this case the &raquo;expression&laquo; is always taken to evaluate to .
 
 With a loop this doesn't really make sense; the code inside the loop
 will simply never be executed. In a loop though the situation is
@@ -284,7 +288,7 @@ the loop, like for example an statement:
 ### 
 
 The keyword lets you exit immediately from the innermost loop it is
-found in. (This is equivalent to the \>\>C\<\< statement .) You can
+found in. (This is equivalent to the &raquo;C&laquo; statement .) You can
 specify a qualifier with , namely one of , , , or , which will make
 SmallBASIC leave the innermost surrounding structure of that type. ( includes and
 constructs.)
@@ -298,8 +302,8 @@ faulty program logic. Rather, exceptions are supposed to handle files
 not conforming to an expected format, hardware problems and the like.
 
 Formally, an exception block somewhat resembles a sequence. It consists
-of an outer \>\>bracket\<\< of and keywords, which delimites the
-\>\>regime\<\< of code to which the exception handling applies.[^4]
+of an outer &raquo;bracket&laquo; of and keywords, which delimites the
+&raquo;regime&laquo; of code to which the exception handling applies.[^4]
 Inside this bracket there are one or more sections, each of which
 applies to one particular error condition:
 
@@ -322,7 +326,7 @@ case, , and so on must be string expressions. Once an error is raised,
 these string expressions are compared to the error message associated
 with the error, and the first section which matches the error message
 will be executed,[^6] whereupon the section will be left and the
-\>\>regular\<\< surrounding code will be resumed. If none of the
+&raquo;regular&laquo; surrounding code will be resumed. If none of the
 expressions matches, program execution is resumed after , too.
 
 Your second option is to provide only a *single* . In this case, must be
@@ -332,7 +336,7 @@ section will then be executed, regardless of the exact nature of the
 error.
 
 The second option is thus preferrable if you either want to have a
-simple \>\>catch all\<\< which will deal with any imaginable error in a
+simple &raquo;catch all&laquo; which will deal with any imaginable error in a
 single sweep, or, at the other extreme, if the error conditions you
 expect to encounter are so confusing that you'd rather dedicate some
 more sophisticated code to them than simple string comparisons against
@@ -364,7 +368,7 @@ cause the program to abort.)
 
 [^4]: Obviously, in different sections of your code you may want to
     respond to the same error in different ways, thus there's no
-    \>\>global\<\< treatment.
+    &raquo;global&laquo; treatment.
 
 [^5]: if you'll pardon the pun
 

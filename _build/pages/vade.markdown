@@ -1,14 +1,13 @@
 # Vademecum #
 
-> Author: Elmar Vogt, F&uuml;rth, GERMANY
+> Written by Elmar Vogt, F&uuml;rth, GERMANY
 
-A *Vademecum* (lat. \>\>vade-me-cum\<\<, \>\>Come with me\<\<) is a
-small booklet on a subject, meant to be your handy companion. While not
-as exhaustive as a genuine reference manual, it is designed to let you
-quickly find information on a certain subject: This Vademecum omits some
-details and deprecated features of for the sake of brevity, as it aims
-to help you find your way around this elegant language in a friendly,
-trustworthy, and straightforward manner.
+A *Vademecum* is a small booklet on a subject, meant to be your handy companion.
+While not as exhaustive as a genuine reference manual, it is designed to let you
+quickly find information on a certain subject: This Vademecum omits some details
+and deprecated features of for the sake of brevity, as it aims to help you find
+your way around this elegant language in a friendly, trustworthy, and
+straightforward manner.
 
 ::: contentsPanel ::
 ::: contentsHeader ::
@@ -28,7 +27,7 @@ rewarding, it can also be an aesthetic experience much like composing
 poetry or music. -- [Donald F. Knuth]{.smallcaps}
 
 Code: A set of symbol whose primary purpose is to restrict
-comprehension. -- Webster's 3rd International Dictionary
+comprehension. -- [Webster's 3rd International Dictionary]{.smallcaps}
 
 The most amazing achievement of the computer software industry is its
 continuing cancellation of the steady and staggering gains made by the

@@ -1,7 +1,11 @@
 Source Code Format
 ==================
 
-> Author: Elmar Vogt, F&uuml;rth, GERMANY
+> Written by Elmar Vogt, F&uuml;rth, GERMANY
+
+::: siteSub ::
+[Home](/pages/index.html) > [Vade](/pages/vade.html)
+:::
 
 Here you learn about the basics of BASIC, so to speak. This chapter deals with the way a SmallBASIC program composed.
 
@@ -12,13 +16,12 @@ Source files are simple text files. They can be written in **ASCII** or **UTF-8*
 
 The basic program component is a line of text, ending with or characters.[^1]
 
- is **case-insensitive**: The names and will always refer to the same
+SmallBASIC is **case-insensitive**: The names and will always refer to the same
 variable or function. Likewise, keywords are case-insensitive: Both and
 are legal variants of the same command.
 
 **Whitespace** -- i.e., non-printing characters like spaces and tabs --
-is ignored in , except inside string literals where it is retained (see
-). [^2]
+is ignored in SmallBASIC, except inside string literals where it is retained. [^2]
 
     for a = 0 to 10
 
@@ -30,7 +33,7 @@ the above line were abbreviated to
     fora=0to10
 
 this would cause an error, because and wouldn't be recognized as
-keywords anymore. Rather,  would consider and to be variable names.[^3]
+keywords anymore. Rather, SmallBASIC would consider and to be variable names.[^3]
 
 Each program line contains one or more commands. Multiple commands on a
 line are **seperated by a colon** .
@@ -56,7 +59,7 @@ Numbers
 -------
 
 Numbers can be written in the usual manner, using either
-\>\>conventional\<\< or scientific notation. All of the following
+&raquo;conventional&laquo; or scientific notation. All of the following
 examples are legal numbers in :
 
     1, 0, -1, 1.2, -23232.5, 1.902e-50, -.423
@@ -90,7 +93,7 @@ String literals [\[stringLiterals\]]{#stringLiterals label="stringLiterals"}
 ----------------------------------------------------------------------------
 
 String literals are character sequences which are to be treated as
-program data \>\>as is\<\<, not as variable or keyword names. String
+program data &raquo;as is&laquo;, not as variable or keyword names. String
 literals are bracketed by double quotes .
 
     "This is a string literal"
@@ -109,7 +112,7 @@ re-opened on the subsequent line with the delimiter character:
 Identifiers
 ===========
 
-Identifiers -- \>\>names\<\< for variables and functions -- follow the
+Identifiers -- &raquo;names&laquo; for variables and functions -- follow the
 usual conventions:
 
 They consist of a letter or an underscore , followed by one or more of
@@ -134,7 +137,7 @@ Traditionally, in BASIC the **dollar sign** serves as a sigil to
 indicate that a name identifies a string variable, if used as the last
 character of the identifier (i.e., ).
 
-Since  is a typeless language (see below) where variables can hold
+Since SmallBASIC is a typeless language (see below) where variables can hold
 values of any type, such a sigil would be misleading, yet it has been
 retained for the sake of compatibility. It may be placed as the last
 character of an identifier only. Here it serves two distinguish between
@@ -146,11 +149,11 @@ Comments
 
 **Line comments** can be introduced in three ways:
 
--   With the keyword ,
+-   With the keyword,
 
--   With the apostrophe character ,
+-   With the apostrophe character,
 
--   With a hash sign .
+-   With a hash sign.
 
 Everything on the current line following the comment introduction will
 be ignored in program execution.
@@ -158,7 +161,7 @@ be ignored in program execution.
 If the keyword is used and it is preceded by other commands on the
 current line, it must be seperated from the previous commands by a colon
 If the hash sign is used, it must be the first character on the line.
-(See also the use of a hash sign in \>\>shebanging\<\< a script, )
+(See also the use of a hash sign in &raquo;shebanging&laquo; a script, )
 
     for a=0 to 10      ' this is a valid comment
        print a         : rem this also
