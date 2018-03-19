@@ -1,5 +1,4 @@
-
-contact page
+# Community
 
 <strong>Email:</strong>
 <a href="mailto:smallbasic@gmail.com">smallbasic@gmail.com</a>

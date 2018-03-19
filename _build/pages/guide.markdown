@@ -151,20 +151,20 @@ This special command is used to pass parameters to the SB-environment. There are
 
 ### Statement OPTION BASE lower-bound
 
-The @OPTION BASE@ statement sets the lowest allowable subscript of arrays to _lower-bound_. The default is zero. The @OPTION BASE@ statement can be used in any place in the source code but that is the wrong use of this except if we have a *good* reason. In most cases the @OPTION BASE@ must declared at first lines of the program before any @DIM@ declaration.
+The [OPTION BASE]{.code} statement sets the lowest allowable subscript of arrays to _lower-bound_. The default is zero. The [OPTION BASE]{.code} statement can be used in any place in the source code but that is the wrong use of this except if we have a *good* reason. In most cases the [OPTION BASE]{.code} must declared at first lines of the program before any [DIM]{.code} declaration.
 
-### Statement OPTION MATCH @PCRE [CASELESS]|SIMPLE@
+### Statement OPTION MATCH [PCRE [CASELESS]|SIMPLE]{.code}
 
-Sets as default matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple one. Matching-algorithm is used in @LIKE@ and @FILES@.
+Sets as default matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple one. Matching-algorithm is used in [LIKE]{.code} and [FILES]{.code}.
 PRCE works only in systems with this library and it must be linked with. Also, there is no extra code on compiler which means that SB compiles the pattern every time it is used.
 
 ### Compile-Time
 
 ### Statement OPTION PREDEF parameter
 
-Sets parameters of the compiler. Where @parameter@
+Sets parameters of the compiler. Where [parameter]{.code}
 * QUIET Sets the quiet flag (-q option)
-* COMMAND cmdstr Sets the @COMMAND$@ string to @var@ (useful for debug reasons)
+* COMMAND cmdstr Sets the [COMMAND$]{.code} string to [var]{.code} (useful for debug reasons)
 * GRMODE [widthxheight[xbpp]] Sets the graphics mode flag (-g option) or sets the preferred screen resolution. Example: (Clie HiRes)
 
 ~~~
@@ -196,6 +196,7 @@ A = [11, 12; 21, 22; 31, 32]
 ```
 
 That creates the array
+
 --- ----
 11  12
 21  22
@@ -397,7 +398,7 @@ END
 On functions you must use the function's name to return the value. That is, the function-name acts like a variable and it is the function's returned value.
 The parameters are 'by value' by default. Passing parameters by value means the executor makes a copy of the parameter to stack. The value in caller's code will not be changed.
 
-Use @BYREF@ keyword for passing parameters 'by reference'. Passing parameters by reference means the executor push the pointer of variable into the stack. The value in caller's code will be the changed.
+Use [BYREF]{.code} keyword for passing parameters 'by reference'. Passing parameters by reference means the executor push the pointer of variable into the stack. The value in caller's code will be the changed.
 
 ```
 ' Passing 'x' by value
@@ -416,7 +417,7 @@ F x
 ? x:REM displays 1
 ```
 
-You can use the symbol @ instead of @BYREF@. There is no difference between @ and @BYREF@.
+You can use the symbol @ instead of [BYREF]{.code}. There is no difference between @ and [BYREF]{.code}.
 
 ```
  SUB F(@@x)
@@ -433,7 +434,11 @@ declare func f(x)
 func f(x)
 ...
 end
-Use the @LOCAL@ keyword for local variables. @LOCAL@ creates variables (dynamic) at routine's code.
+```
+
+Use the [LOCAL]{.code} keyword for local variables. [LOCAL]{.code} creates variables (dynamic) at routine's code.
+
+```
 SUB MYPROC
   LOCAL N:REM LOCAL VAR
   N=2
@@ -445,7 +450,7 @@ MYPROC
 ```
 
 You can send arrays as parameters.
-When using arrays as parameters its better to use them as @BYREF@; otherwise their data will be duplicated in memory space.
+When using arrays as parameters its better to use them as [BYREF]{.code}; otherwise their data will be duplicated in memory space.
 
 ```
 SUB FBR(BYREF tbl)
@@ -479,13 +484,18 @@ v=fill(v)
 
 ### Single-line Functions
 
-There is also an alternative @FUNC/DEF@ syntax (single-line functions). This is actually a macro for compatibility with the BASIC's DEF FN command, but quite useful.
+There is also an alternative [FUNC DEF]{.code} syntax (single-line functions). This is actually a macro for compatibility with the BASIC's DEF FN command, but quite useful.
+
+```
 FUNC name[(par1[,...])] = expression
 or
 DEF name[(par1[,...])] = expression
 DEF MySin(x) = SIN(x)
 ? MySin(pi/2)
+```
+
 *Nested procedures and functions*
+
 One nice feature, are the nested procedures/functions. The nested procedures/functions are visible only inside the "parent" procedure/function.
 There is no way to access a global procedure with the same name of a local.
 
@@ -513,13 +523,14 @@ END
 ### Units
 
 Units are a set of procedures, functions and/or variables that can be used by another SB program or SB unit. The main section of the unit (commands out of procedure or function bodies) is the initialization code.
-A unit declared by the use of @UNIT@ keyword.
+
+A unit declared by the use of [UNIT]{.code} keyword.
 
 ```
 UNIT MyUnit
 ```
 
-The functions, procedure or variables which we want to be visible to another programs must be declared with the @EXPORT@ keyword.
+The functions, procedure or variables which we want to be visible to another programs must be declared with the [EXPORT]{.code} keyword.
 
 ```
 UNIT MyUnit
@@ -530,8 +541,10 @@ FUNC MyF(x)
 END
 ```
 
-Keep file-name and unit-name the same. That helps the SB to automatically recompile the required units when it is needed. To link a program with a unit we use the @IMPORT@ keyword.
+Keep file-name and unit-name the same. That helps the SB to automatically recompile the required units when it is needed. To link a program with a unit we use the [IMPORT]{.code} keyword.
+
 > IMPORT MyUnit
+
 To access a member of a unit we must use the unit-name, a point and the name of the member.
 
 ```
@@ -623,8 +636,8 @@ FOR i=1 TO 10
 NEXT
 ```
 
-In this example, the result is a real mess, because the @var{i@ of the main loop will always (except the first time) have the value 6!
-This problem can be solved if we use the @ LOCAL@ keyword to declare the @var@ in the function body.
+In this example, the result is a real mess, because the [var i]{.code} of the main loop will always (except the first time) have the value 6!
+This problem can be solved if we use the [LOCAL]{.code} keyword to declare the [var]{.code} in the function body.
 
 ```
 FUNC F(x)
@@ -675,13 +688,4 @@ NEXT
 
 Of course, it is much faster too.
 
-------------------------------------------------------
-Many parts of QuickBasic or QBASIC are written in assembly; other parts in C.
-This is the reason that OPTION BASE 0 is the default; and that TRUE = -1.
-Assembly is more efficient then C. And in assembly bitwise calculation is very fast.
-Any sequence of bits or bytes or disk/memory address starts natively at 0; so using OPTION BASE 0 for arrays is more efficient then OPTION BASE 1.
-And bitwise NOT(0) is equal -1, so it is more efficient then 1. 
-20 years ago speed and efficiency were critical, so it was really stupid to use 1 as TRUE and OPTION BASE 1 as default. 
-But for the user it's easy to think about the first element of a sequence as 1, second as 2, etc, (as well as to use positive number instead of negative).   
-This way or another: CONSISTENCY is a key point which makes your code work.
 

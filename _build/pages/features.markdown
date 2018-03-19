@@ -1,4 +1,6 @@
-SmallBASIC has a number of new features intended to broaden its appeal as a general purpose scripting language.
+# New features
+
+> SmallBASIC has a number of new features intended to broaden its appeal as a general purpose scripting language (Note - Written in 2008).
 
 ## Local variable declaration and assignment ##
 
@@ -146,7 +148,7 @@ b = " and this is another string
 
 ## Double equals ##
 
-BASIC traditionally uses a single equals symbol for assignment and comparison, for example: 
+BASIC traditionally uses a single equals symbol for assignment and comparison, for example:
 
 ```
 a = "cat"

@@ -76,7 +76,7 @@ hr {
 pre {
     overflow: auto;
 }
-kbd,pre,samp {
+.code,kbd,pre,samp {
     font-family: monospace, monospace;
     margin: 0 .2rem;
     padding: 0 .2rem;
@@ -145,9 +145,6 @@ optgroup {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-}
-td,th {
-    padding: 0;
 }
 html {
     color: #222;
@@ -632,4 +629,18 @@ blockquote {
 }
 .smallcaps {
     font-variant: small-caps;
+}
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #E1E1E1;
+}
+th:first-child,
+td:first-child {
+    padding-left: 0;
+}
+th:last-child,
+td:last-child {
+    padding-right: 0;
 }

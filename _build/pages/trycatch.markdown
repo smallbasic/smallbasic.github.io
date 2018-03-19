@@ -1,10 +1,10 @@
-**Summary**
+# Try/Catch
 
-TRY/CATCH is used to trap errors allowing a program to recover without having to be restarted.
+> TRY/CATCH is used to trap errors allowing a program to recover without having to be restarted.
 
 **TRY**
 
-The TRY statement introduces a TRY/CATCH __BLOCK.__
+The TRY statement introduces a TRY/CATCH block.
 
 **CATCH [var | expr]**
 
@@ -24,17 +24,19 @@ The THROW command (previously known as __RTE__) is used to initiate a catch-able
  
 **Example**
 
-@try@
-@ open "com2000:" AS #1@
-@catch err@
-@  ? "in catch: open failed";err@
-@end try@
+```
+try
+ open "com2000:" AS #1
+catch err
+  ? "in catch: open failed";err
+end try
+```
 
 **Try/Catch in other languages**
 
-"C++":http://www.cplusplus.com/doc/tutorial/exceptions
-"Javascript":https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
-"Visual Basic":http://msdn.microsoft.com/en-AU/library/fk6t46tz.aspx
+- [C++](http://www.cplusplus.com/doc/tutorial/exceptions)
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)
+- [Visual Basic](http://msdn.microsoft.com/en-AU/library/fk6t46tz.aspx)
 
 **History**
 
