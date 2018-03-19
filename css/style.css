@@ -76,6 +76,9 @@ hr {
 pre {
     overflow: auto;
 }
+code {
+    background: #F1F1F1;
+}
 .code,kbd,pre,samp {
     font-family: monospace, monospace;
     margin: 0 .2rem;

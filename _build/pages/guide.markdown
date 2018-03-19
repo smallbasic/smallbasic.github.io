@@ -6,7 +6,9 @@
 
 * All user variables (include arrays) are 'Variant'. That means the data-type is invisible to user.
 * Arrays are always dynamic, even if you had declared their size, with dynamic size and type of elements.
+
 However, SmallBASIC uses, internally, 4 data-types
+
 * Integer  (32bit)
 * Real     (64bit)
 * String   (<32KB on 16bit / 2GB on 32bit)
