@@ -2,7 +2,40 @@
 
 > SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for everyday calculations, scripts and prototypes. SmallBASIC includes trigonometric, matrices and algebra functions, a built in IDE, a powerful string library, system, sound, and graphic commands along with structured programming syntax.
 
-### Constants and Variables
+::: articleRight ::
+::: articleRightInner ::
+Contents
+:::
+
+* [Constants and Variables](#Constants)
+* [Variable names](#Variable)
+* [About the dollar-symbol](#About)
+* [Integers](#Integers)
+* [Reals](#Reals)
+* [Strings](#Strings)
+* [Constants](#Constants)
+* [System Variables](#System)
+* [Operators](#Operators)
+* [Special Characters](#Special)
+* [Statement OPTION keyword](#Statement)
+* [Run-Time](#Run)
+* [Statement OPTION BASE](#Statement)
+* [Statement OPTION MATCH](#Statement)
+* [Compile-Time](#Compile)
+* [Statement OPTION PREDEF](#Statement)
+* [Meta-commands](#Meta)
+* [The operator LIKE](#operator)
+* [Single-line Functions](#Single)
+* [Units](#Units)
+* [The pseudo-operators](#pseudo)
+* [The USE keyword](#use)
+* [The DO keyword](#do)
+* [Using LOCAL variables](#Using)
+* [Loops and variables](#Loops)
+
+:::
+
+### Constants and Variables {#Constants}
 
 * All user variables (include arrays) are 'Variant'. That means the data-type is invisible to user.
 * Arrays are always dynamic, even if you had declared their size, with dynamic size and type of elements.
@@ -16,16 +49,20 @@ However, SmallBASIC uses, internally, 4 data-types
 
 Conversions between those types are performed internally. In any case there are functions for the user to do it manually.
 
-### Variable names
+### Variable names {#Variable}
 
-Variable names can use any alphanumeric characters, extended characters (ASCII codes 128-255 for non-English languages) the symbol '_', and the symbol '$'. The first character of the name cannot be a digit nor a '$'.
+Variable names can use any alphanumeric characters, extended characters (ASCII codes 128-255 for non-English languages) the symbol '_', and the symbol&nbsp;'$'. The first character of the name cannot be a digit nor&nbsp;'$'.
 
-### About the dollar-symbol
+### About the dollar-symbol {#About}
 
 The symbol '$' is supported for compatibility. Since in SmallBASIC there are no data-types its use is meaningless.
+
 The dollar in function names will be ignored.
+
 The dollar in variable names will be count as part of the name (that means v and v$ are two different variables). It can be used only as the last character of the name, and only one allowed.
+
 The dollar in system variables names will be ignore it (that means COMMAND and COMMAND$ is the same)
+
 Example of variable names:
 
 ```
@@ -33,7 +70,7 @@ abc, a_c, _bc, ab2c, abc$ -> valid names
 1cd, a$b, $abc            -> invalid names
 ```
 
-### Integers
+### Integers {#Integers}
 
 This is the default data type. You can declare integers in decimal, hexadecimal, octal and binary form.
 
@@ -47,7 +84,7 @@ x = 0b111 ' Binary form 1
 x = &b111 ' Binary form 2
 ```
 
-### Reals
+### Reals {#Reals}
 
 Any number which out-bounds the limits or an 'integer' or had decimal digits will be converted automatically to real.
 
@@ -57,13 +94,16 @@ x = 1.2
 ```
 
 Reals can be also written by using scientific notation. 1E+2 or 1E-+2, 5E--2, 2.6E-0.25, etc
-*Strings*
+
+### Strings {#Strings}
+
 Strings may be appended to one another using the + operator.
+
 ```
 b = "Hello, " + "world!"
 ```
 
-### Constants
+### Constants {#Constants}
 
 Constant variables can be declared by using the keyword CONST.
 
@@ -71,66 +111,59 @@ Constant variables can be declared by using the keyword CONST.
 CONST my_pi = 3.14
 ```
 
-### System Variables
+### System Variables {#System}
 
 System variables, are constant variables for the programmer. Those variables get values or modified at run-time by the SB's subsystem.
-* OSNAME Operating System name
-* OSVER Operating System Version (0xAABBCC (A=major, B=minor, C=patch))
+
 * SBVER SmallBASIC Version (0xAABBCC)
 * PI 3.14..
 * XMAX Graphics display, maximum x (width-1)
 * YMAX Graphics display, maximum y (height-1) value
-* BPP Graphics display: bits per pixel (color resolution)
-* VIDADR Video RAM address (only on specific drivers)
 * CWD Current Working Directory
 * HOME User's home directory
 * COMMAND Command-line parameters
 * TRUE The value 1
 * FALSE The value 0
-*Operators*
+
+### Operators {#Operators}
+
 Sorted by priority
 
---- ------------ 
-( )  Parenthesis
-   
-+, -  Unary
-~   bitwise NOT
+--------- ------------
+( )       Parenthesis
++, -      Unary
+~         bitwise NOT
 NOT or !  Logical NOT  (NOT false = true)
-   
-^   Exponentiation
-   
+^         Exponentiation
 *, /, \\  Multiplication, Division, Integer Division
 % or MOD  Reminder (QB compatible: a=int(a), b=int(b), a-b*(a/b))
-MDL  Modulus  (a%b+b*(sgn(a)<>sgn(b)))
-   
-+, -  Addition/Concatenation, Subtraction
-   
-=   Equal
+MDL       Modulus  (a%b+b*(sgn(a)<>sgn(b)))
++, -      Addition/Concatenation, Subtraction
+=         Equal
 <> or !=  Not Equal
->,    <  Less Than, Greater Than
+>,    <   Less Than, Greater Than
 =>,   =<  Less or Equal, Greater or Equal
 >=,   <=  Less or Equal, Greater or Equal
-IN  belongs to ... (see "The IN operator")
-LIKE  Regular expression match (see "The LIKE operator")
-   
-AND or &&  Logical AND
+IN        belongs to ... (see "The IN operator")
+LIKE      Regular expression match (see "The LIKE operator")
+AND or && Logical AND
 OR  or    Logical OR
-BAND or &  bitwise AND
+BAND or & bitwise AND
 BOR  or   bitwise OR
-EQV  bitwise EQV
-IMP  bitwise IMP
-XOR  bitwise XOR
-NAND  bitwise NAND
-NOR  bitwise NOR
-XNOR  bitwise XNOR
---- ------------ 
+EQV       bitwise EQV
+IMP       bitwise IMP
+XOR       bitwise XOR
+NAND      bitwise NAND
+NOR       bitwise NOR
+XNOR      bitwise XNOR
+--------- ------------
 
-### Special Characters
+### Special Characters {#Special}
 
--------- ----------------------------------------------- 
-&h or 0x  Prefix for hexadecimal constant (0x1F,   &h3C)
-&o or 0o  Prefix for octal constant       (0o33,   &o33)
-&b or 0b  Prefix for binary constant      (0b1010, &b1110)
+-------- -----------------------------------------------
+&h or 0x Prefix for hexadecimal constant (0x1F,   &h3C)
+&o or 0o Prefix for octal constant       (0o33,   &o33)
+&b or 0b Prefix for binary constant      (0b1010, &b1110)
 [,;]     Array definition (function ARRAY())                    ($1)
 <<       Appends to an array (command APPEND)                   ($1)
 ++       Increase a value by 1 (x = x + 1)                      ($1)
@@ -141,30 +174,32 @@ p=       Another LET macro (x = x p ...). Where p any character of -+/\\*^%&
 #        Meta-command (if its the first character of the line) or prefix for file handle
 @        The 'at' symbol can by used instead of BYREF          ($1)
 '        Remarks
--------- ----------------------------------------------- 
+-------- -----------------------------------------------
 
 _Pseudo operators_. These operators are replaced by compiler with a command or an expression.
 
-### Statement OPTION keyword parameters
+### Statement OPTION keyword parameters {#Statement}
 
 This special command is used to pass parameters to the SB-environment. There are two styles for that, the run-time (like BASE) which can change the value at run-time, and the compile-time (like PREDEF) which used only in compile-time and the value cannot be changed on run-time.
 
-### Run-Time
+### *Run-Time* {#Run}
 
-### Statement OPTION BASE lower-bound
+### Statement OPTION BASE lower-bound {#Statement}
 
 The [OPTION BASE]{.code} statement sets the lowest allowable subscript of arrays to _lower-bound_. The default is zero. The [OPTION BASE]{.code} statement can be used in any place in the source code but that is the wrong use of this except if we have a *good* reason. In most cases the [OPTION BASE]{.code} must declared at first lines of the program before any [DIM]{.code} declaration.
 
-### Statement OPTION MATCH [PCRE [CASELESS]|SIMPLE]{.code}
+### Statement OPTION MATCH [PCRE [CASELESS]|SIMPLE]{.code} {#Statement}
 
 Sets as default matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple one. Matching-algorithm is used in [LIKE]{.code} and [FILES]{.code}.
+
 PRCE works only in systems with this library and it must be linked with. Also, there is no extra code on compiler which means that SB compiles the pattern every time it is used.
 
-### Compile-Time
+### *Compile-Time* {#Compile}
 
-### Statement OPTION PREDEF parameter
+### Statement OPTION PREDEF parameter {#Statement}
 
 Sets parameters of the compiler. Where [parameter]{.code}
+
 * QUIET Sets the quiet flag (-q option)
 * COMMAND cmdstr Sets the [COMMAND$]{.code} string to [var]{.code} (useful for debug reasons)
 * GRMODE [widthxheight[xbpp]] Sets the graphics mode flag (-g option) or sets the preferred screen resolution. Example: (Clie HiRes)
@@ -176,16 +211,24 @@ OPTION PREDEF GRMODE 320x320x16
 * TEXTMODE Sets the text mode flag (-g- option)
 * CSTR Sets as default string style the C-style special character encoding ('\\')
 
-### Meta-commands
+### Meta-commands {#Meta}
 
 #!...
+
 Used by Unix to make source runs as a script executable
+
 #sec: section-name
+
 Used internally to store the section name. Sections names are used at limited OSes like PalmOS for multiple 32kB source code sections.
+
 #inc: file
+
 Used to include a SmallBASIC source file into the current BASIC code
+
 #unit-path: path
+
 Used to setup additional directories for searching for unit-files This meta does nothing more than to setting up the environment variable SB_UNIT_PATH. Directories on Unix must separated by ':', and on DOS/Windows by ';'
+
 Examples
 
 ```
@@ -199,13 +242,14 @@ A = [11, 12; 21, 22; 31, 32]
 
 That creates the array
 
---- ----
-11  12
-21  22
-31  32
---- ----
+-- --
+11 12
+21 22
+31 32
+-- --
 
 The comma used to separate column items; the semi-colon used to separate rows. Values between columns can be omitted.
+
 ```
 A = [ ; ; 1, 2 ; 3, 4, 5]
 ```
@@ -239,6 +283,7 @@ A2 = -A
 ```
 
 Multiplication:
+
 ```
 A = [1, 2; 3, 4]: B = [5 ; 6]
 C = A * B
@@ -246,12 +291,14 @@ D = 0.8 * A
 ```
 
 Inverse:
+
 ```
 A = [ 1, -1, 1; 2, -1, 2; 3, 2, -1]
 ? INVERSE(A)
 ```
 
 Gauss-Jordan:
+
 ```
 ? "Solve this:"
 ? "  5x - 2y + 3z = -2"
@@ -267,15 +314,18 @@ C = LinEqn(A, B)
 There is a problem with 1 dimension arrays, because 1-dim arrays does not specify how SmallBASIC must see them.
 
 DIM A(3)
+
 ------ ----
 1 2 3
 ------ ----
+
 or
--- 
+
+--
 1
 2
 3
--- 
+--
 
 And because this is not the same thing. (ex. for multiplication) So the default is columns
 DIM A(3) ' or A(1,3)
@@ -288,11 +338,11 @@ For vertical arrays you must declare it as 2-dim arrays Nx1
 
 DIM A(3,1)
 
--- 
+--
 1
 2
 3
--- 
+--
 
 Nested arrays are allowed
 
@@ -343,18 +393,18 @@ print 12 in "234567"    :REM FALSE
 print 12 in "341256"    :REM TRUE
 ```
 
-### The operator LIKE
+### The operator LIKE {#operator}
 
 LIKE is a regular-expression operator. It is compares the left part of the expression with the pattern (right part). Since the original regular expression code is too big (for handhelds), I use only a subset of it, based on an excellent old stuff by J. Kercheval (match.c, public-domain, 1991). But there is an option to use PCRE (Perl-Compatible Regular Expression library) on systems that is supported (Linux); (see OPTION).
 
 The same code is used for filenames (FILES(), DIRWALK) too. In the pattern string:
 
------- -------------------------------------------------- 
+------ --------------------------------------------------
 *      matches any sequence of characters (zero or more)
 ?      matches any character
 [SET]  matches any character in the specified set,
 [!SET] or [^SET]  matches any character not in the specified set.
------- -------------------------------------------------- 
+------ --------------------------------------------------
 
 A set is composed of characters or ranges; a range looks like character hyphen character (as in 0-9 or A-Z). [0-9a-zA-Z_] is the minimal set of characters allowed in the [..] pattern construct.
 To suppress the special syntactic significance of any of `[]*?!^-\\', and match the character exactly, precede it with a `\\'.
@@ -484,7 +534,7 @@ DIM v()
 v=fill(v)
 ```
 
-### Single-line Functions
+### Single-line Functions {#Single}
 
 There is also an alternative [FUNC DEF]{.code} syntax (single-line functions). This is actually a macro for compatibility with the BASIC's DEF FN command, but quite useful.
 
@@ -522,7 +572,7 @@ f = x + f1(pi) + f3 : REM OK
 END
 ```
 
-### Units
+### Units {#Units}
 
 Units are a set of procedures, functions and/or variables that can be used by another SB program or SB unit. The main section of the unit (commands out of procedure or function bodies) is the initialization code.
 
@@ -545,7 +595,9 @@ END
 
 Keep file-name and unit-name the same. That helps the SB to automatically recompile the required units when it is needed. To link a program with a unit we use the [IMPORT]{.code} keyword.
 
-> IMPORT MyUnit
+```
+IMPORT MyUnit
+```
 
 To access a member of a unit we must use the unit-name, a point and the name of the member.
 
@@ -575,7 +627,7 @@ PRINT MyUnit.V
 PRINT MyUnit.F(2)
 ```
 
-### The pseudo-operators
+### The pseudo-operators {#pseudo}
 
 ++/--/p=
 The ++ and -- operators are used to increase or decrease the value of a
@@ -600,7 +652,7 @@ y = x ++ ' ERROR
 z = (y+=4)+5 ' ALSO ERROR
 ```
 
-### The USE keyword
+### The USE keyword {#use}
 
 This keyword is used on specific commands to passing a user-defined expression.
 
@@ -611,7 +663,7 @@ SPLIT s," ",v USE TRIM(x)
 In that example, every element of V() will be 'trimmed'.
 Use the x variable to specify the parameter of the expression. If the expression needs more parameter, you can use also the names y and z
 
-### The DO keyword
+### The DO keyword {#do}
 
 This keyword is used to declare single-line commands. It can be used with WHILE and FOR-family commands.
 
@@ -623,7 +675,7 @@ WHILE i < 4 DO i ++
 
 Also, it can be used by IF command (instead of THEN), but is not suggested.
 
-### Using LOCAL variables
+### Using LOCAL variables {#Using}
 
 When a variable is not declared it is by default a global variable. A usual problem is that name may be used again in a function or procedure.
 
@@ -655,7 +707,7 @@ NEXT
 
 It is good to declare all local variables on the top of the function. For compatibility reasons, the func./proc. variables are not declared as 'local' by default. That it is WRONG but as I said ... compatibility.
 
-### Loops and variables
+### Loops and variables {#Loops}
 
 When we write loops it is much better to initialize the counters on the top of the loop instead of the top of the program or nowhere.
 

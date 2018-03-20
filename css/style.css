@@ -88,6 +88,8 @@ code {
     border: 1px solid #E1E1E1;
     border-radius: 4px;
     margin-top: 1em;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 button,input,optgroup,select,textarea {
     color: inherit;
@@ -624,26 +626,29 @@ blockquote {
     padding-left: 1em;
     margin-bottom: 1em;
     color: #6a737d;
-    border-left: 0.25em solid #dfe2e5;    
+    border-left: 0.25em solid #dfe2e5;
 }
 .article ul {
     list-style-type: disc;
     padding-left: 1.5em;
 }
+
 .smallcaps {
     font-variant: small-caps;
 }
+
 th,
 td {
-    padding: 12px 15px;
+    padding: 4px 4px;
     text-align: left;
-    border-bottom: 1px solid #E1E1E1;
+    border: 1px solid #E1E1E1;
 }
-th:first-child,
-td:first-child {
-    padding-left: 0;
+
+tr.odd {
+    background-color: #f2f2f2;
 }
-th:last-child,
-td:last-child {
-    padding-right: 0;
+
+ul,
+table {
+    font-size: 95%;
 }
