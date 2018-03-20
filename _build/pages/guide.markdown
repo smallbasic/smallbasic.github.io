@@ -7,7 +7,7 @@
 Contents
 :::
 
-* [Constants and Variables](#Constants)
+* [Constants and Variables](#ConstantsVariables)
 * [Variable names](#Variable)
 * [About the dollar-symbol](#About)
 * [Integers](#Integers)
@@ -17,12 +17,12 @@ Contents
 * [System Variables](#System)
 * [Operators](#Operators)
 * [Special Characters](#Special)
-* [Statement OPTION keyword](#Statement)
+* [Statement OPTION keyword](#Statement1)
 * [Run-Time](#Run)
-* [Statement OPTION BASE](#Statement)
-* [Statement OPTION MATCH](#Statement)
+* [Statement OPTION BASE](#Statement2)
+* [Statement OPTION MATCH](#Statement3)
 * [Compile-Time](#Compile)
-* [Statement OPTION PREDEF](#Statement)
+* [Statement OPTION PREDEF](#Statement4)
 * [Meta-commands](#Meta)
 * [The operator LIKE](#operator)
 * [Single-line Functions](#Single)
@@ -35,7 +35,7 @@ Contents
 
 :::
 
-### Constants and Variables {#Constants}
+### Constants and Variables {#ConstantsVariables}
 
 * All user variables (include arrays) are 'Variant'. That means the data-type is invisible to user.
 * Arrays are always dynamic, even if you had declared their size, with dynamic size and type of elements.
@@ -178,17 +178,17 @@ p=       Another LET macro (x = x p ...). Where p any character of -+/\\*^%&
 
 _Pseudo operators_. These operators are replaced by compiler with a command or an expression.
 
-### Statement OPTION keyword parameters {#Statement}
+### Statement OPTION keyword parameters {#Statement1}
 
 This special command is used to pass parameters to the SB-environment. There are two styles for that, the run-time (like BASE) which can change the value at run-time, and the compile-time (like PREDEF) which used only in compile-time and the value cannot be changed on run-time.
 
 ### *Run-Time* {#Run}
 
-### Statement OPTION BASE lower-bound {#Statement}
+### Statement OPTION BASE lower-bound {#Statement2}
 
 The [OPTION BASE]{.code} statement sets the lowest allowable subscript of arrays to _lower-bound_. The default is zero. The [OPTION BASE]{.code} statement can be used in any place in the source code but that is the wrong use of this except if we have a *good* reason. In most cases the [OPTION BASE]{.code} must declared at first lines of the program before any [DIM]{.code} declaration.
 
-### Statement OPTION MATCH [PCRE [CASELESS]|SIMPLE]{.code} {#Statement}
+### Statement OPTION MATCH [PCRE [CASELESS]|SIMPLE]{.code} {#Statement3}
 
 Sets as default matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple one. Matching-algorithm is used in [LIKE]{.code} and [FILES]{.code}.
 
@@ -196,7 +196,7 @@ PRCE works only in systems with this library and it must be linked with. Also, t
 
 ### *Compile-Time* {#Compile}
 
-### Statement OPTION PREDEF parameter {#Statement}
+### Statement OPTION PREDEF parameter {#Statement4}
 
 Sets parameters of the compiler. Where [parameter]{.code}
 

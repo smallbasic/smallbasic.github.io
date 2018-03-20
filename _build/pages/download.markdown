@@ -1,44 +1,42 @@
-download page
+# Download
 
+> Download SmallBASIC
 
-::: articleRight ::
-::: articleRightInner ::
-Contents
-:::
+## Android
 
-* [Console](/reference/521.html)
-* [Data](/reference/581.html)
-* [Date](/reference/575.html)
-* [File](/reference/580.html)
-* [Graphics](/reference/611.html)
-* [Language](/reference/622.html)
-* [Math](/reference/704.html)
-* [String](/reference/771.html)
-* [System](/reference/1438.html)
+[Google play](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}
 
-:::
+## Windows
 
-    <a href="https://sourceforge.net/projects/smallbasic/files/latest/download">
-      <img alt="Download SmallBASIC" src="https://img.shields.io/sourceforge/dm/smallbasic.svg" />
-    </a>    
+[0.12.12](https://sourceforge.net/projects/smallbasic/files/Windows/0.12.12/smallbasic_0.12.12.zip){target="_blank"}
 
+## Linux
 
-p. *Android*
+- [Ubuntu 64 bit - 0.12.12](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.12/smallbasic_0.12.12_amd64.deb){target="_blank"}
+- [Ubuntu 32 bit - 0.12.9](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.9/smallbasic_0.12.9_i386.deb){target="_blank"}
+- [Raspberry PI - 0.12.6](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.6/smallbasic_0.12.6_armhf.deb){target="_blank"}
 
-bq. "Google play":https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic
+## Nokia Internet Tablet
 
-p. *Windows*
+[Nokia N770/N800](http://downloads.sourceforge.net/smallbasic/sbasic_0.9.7.2_armel.deb){target="_blank"}
 
-bq. "0.12.12":https://sourceforge.net/projects/smallbasic/files/Windows/0.12.12/smallbasic_0.12.12.zip
+## PalmOS
 
-p. *Linux*
+[PalmOS5](http://downloads.sourceforge.net/smallbasic/SmallBASIC-PalmOS5-0.8.2b.zip){target="_blank"}
 
-bq. "Ubuntu 64 bit - 0.12.12":http://sourceforge.net/projects/smallbasic/files/Linux/0.12.12/smallbasic_0.12.12_amd64.deb
-"Ubuntu 32 bit - 0.12.9":http://sourceforge.net/projects/smallbasic/files/Linux/0.12.9/smallbasic_0.12.9_i386.deb
-"Raspberry PI - 0.12.6":http://sourceforge.net/projects/smallbasic/files/Linux/0.12.6/smallbasic_0.12.6_armhf.deb
+## eBookman
 
-p. *Nokia Internet Tablet*
+[EBM](http://downloads.sourceforge.net/smallbasic/SmallBASIC_ebm_092j.zip){target="_blank"}
 
-bq. "Nokia N770/N800":http://downloads.sourceforge.net/smallbasic/sbasic_0.9.7.2_armel.deb
+## Source code
 
-p. *PalmOS*
+[Github](https://github.com/smallbasic/SmallBASIC){target="_blank"}
+
+## Other releases
+
+[SourceForge Project page](http://sourceforge.net/project/showfiles.php?group_id=22348){target="_blank"}
+
+## Language Reference
+
+[Offline help text](http://sourceforge.net/projects/smallbasic/files/Language%20Reference/sbref_v2.txt/download){target="_blank"}
+
