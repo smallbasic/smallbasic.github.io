@@ -493,3 +493,1151 @@ Compiler:
 - Renamed command "#UNIT-PATH:" to "UNITPATH"
 - Renamed command "#INC:" to "INCLUDE"
 - Fixed/implemented INCLUDE command.
+
+2014-07-07
+	Update SDL to use SDL2 and common widget
+
+2014-06-14
+	Fix crash evaluating "a \\ b"
+	Fix INPUT command in FLTK for scrolled display
+
+2014-06-11
+	Android changes:
+	- Run by URL/QrCode.
+	- Implemented BEEP/SOUND
+	- Screen layout adjusts when virtual keypad displayed
+
+2014-04-20
+	Released Windows version 0.11.5
+
+2013-12-30
+	Fix android display clip handling
+	Fix android import from IDE
+	Console is now a graphics screen
+	Replace battery drain error with console warning
+
+2013-12-18
+	Android version 0.11.4
+	Built with android NDK for huge performance increase
+	Web service for remote file edit/run
+	Can now launch .bas files from Android file browser
+	Added program restart command
+
+2013-02-09
+	Added support for empty parentheses in sub/func calls
+
+2012-12-18
+	AT and PEN now work with WINDOW based coordinates. This will allow programs written
+	for PalmOS to appear correctly on modern mobile screen resolutions.
+
+2012-12-09
+	Released 0.11.2 android version to google play
+	Added the ability to change the font size
+
+2012-12-01
+	Released 0.11.1 android version to google play
+
+2012-09-25
+	MoSync port nearing completion
+
+2012-07-29
+	Fixed a bug with nested case statements
+
+2011-04-14
+	Removed POKE and BCOPY. These never really worked correcly
+	and would be fairly insecure in the web model if they did.
+
+2011-03-19
+	QT port started
+
+2011-01-22
+	Fix compilation errors (fltk build) for 64bit ubuntu
+
+2010-12-15
+	Fix for floating point display (tracker 3136093) issue
+	found with printing 1/1000
+
+2010-07-31
+	Fix for PAUSE cmd (tracker 1651503) to pause correct length of
+	time - Case was	mostly already fixed in 0.10.7.
+
+2010-06-19
+	Fix form TEXT command to use correct integer datatype
+	Fix misc issues with const char* uncovered with new gcc
+	Fix duplicate prompt whe INPUT command used in text mode
+
+2010-05-15
+	Version 0.10.7 was released
+
+2010-05-07
+	updated window title display
+
+2010-05-01
+	inkey now returns shifted keys
+	added DOFORM option return on a key event
+	updated calc to use the keyboard
+
+2010-04-28
+	fix for windows socket handling
+	cleanup code for display of break message
+
+2010-04-19
+	Added new sample programs, tetris and sokoban
+	Fix to make plugins work with files containing dos file line endings
+	Added select-all command.
+	Run-selection now works with logprint mode.
+	Fixed run startup mode on linux
+	Added ctrl+f1 help mode
+	Fix for executor cleanup crash when breaking from invalid call to sub
+	Included missing tdestroy function for MingW build (fix for memory leak under windows)
+        Programs now run with cwd set to the .bas filename
+	Updated help for doform and button commands
+	Fix for display of list and label form button types after their variable contents have changed
+	Fixed a problem with SELECT/CASE with complex program usage (tracker id 1683450)
+	Fix for -v command line arg when passed w/out another arg
+	Fix for PolyLine crash when invalid args passed
+	Pass focus to MainWindow when closing the form to ensure inkey gets updated
+	Prevent default window key processing when keys passed into basic program
+	Esc key returns focus to editor when command or browser widget has focus
+	Added simple stack trace as part of runtime error message
+	New hot-key - ctrl+e to focus the editor
+	New editor keystrokes - ctrl+b toggle break-to-line, ctrl+t toggle log-print, ctrl+w toggle hide-ide
+	Cls command does nothing in non-interactive mode
+	Fix for regression with returning and passing UDS values
+	DIRWALK now just logs an error (instead of terminating the program) when it encounters a folder that it cannot open
+	Added search examples option for keyword help
+	Fix for find and goto commands to work with readonly files
+	Show font selection menu using the target font.
+	Fix to allow help page link to a system file
+	Can now pass a url to the html command which opens in a real browser
+	Imlemented new code publish tool
+	Editor plugins now invoked in non-interactive mode
+	INPUT command now issues a prompt dialog when in non-interactive mode
+	Restore main window focus after closing color selection window
+	Updated getHomeDir() to use APPDATA env-var for windows
+	BAS_HOME var no longer contains trailing slash-char.
+
+2010-03-08
+	UDS and HASH types now work with FOR-IN and also return sensible
+	values when used with the LEN command. Fixed crash when converting
+	between UDS and HASH types.
+
+2010-03-07
+	Fixed a bug where hitting break from inside a SUB that had the
+	result being assigned to another variable would cause a crash
+
+2010-02-18
+	Updated saving and restoring many properties from config.txt
+	File open uses current buffer file path
+        Creates backup files
+	Fixed minor display issues with the File Open Widget
+
+2010-02-05
+	Updated the editor code browser
+
+2010-01-29
+	Added the DEFINEKEY command
+	Updated internal event handling to allow INKEY to function correctly without
+	excessive CPU usage
+
+2009-12-14
+	Version 0.10.6 released
+
+2009-11-27
+	Implemented TTY widget
+
+2009-11-06
+	final fix for matrix inverse bug
+
+2009-09-04
+	0.10.5 for windows released
+
+2009-08-23
+	Fix for desktop icon display (ALT+Tab) under X11 (ubuntu)
+
+2009-08-14
+	Fix for sub/func navigation tool to internally use line numbers in lieu of
+	label searching.
+
+2009-08-08
+	Reworked editor toobar so there is now a command selection and only one text
+	input field.
+
+2009-08-02
+	Updated calc.bas to work with the new DOFORM api
+	Fixes for the FLTK DOFORM API to allow the updated calc.bas to work reliably
+
+2009-07-28
+	Implemented editor colour selection in FLTK build.
+
+2009-07-26
+	Implemented editor font selection in FLTK build. Fixed memoryTest.bas sample
+
+2009-07-22
+	Implemented "ELSE IF" syntax
+
+2009-07-11
+	fltk - file widget displays sorted items
+
+2009-06-29
+	update variables to use 64 bits
+	fix for matrix inverse bug
+
+2009-06-13
+	updated form API in fltk version
+
+2009-04-13
+	incorporate agg into fltk version (reverted for now)
+
+2009-01-14
+	in osd_getpixel() for X11, offset x/y as getPixel is relative to the outer window
+	FileWidget allow input of a custom path
+
+2009-01-07
+	Updated FileWidget to allow relative paths for saveas. Updated to handle
+	readonly edit buffers. Fixed a few compiler warnings
+
+2008-11-26
+	FLTK 0.10.2 was released
+
+2008-11-23
+	FLTK: Fix for possible crash with html command used in plain window mode. Fix for
+	file widget for directory names with space characters.
+
+2008-11-16
+	FLTK: Fix for invalid values returned by PEN command.
+
+2008-10-26
+	FLTK: Fixed a few problems with find and replace. Implemented Rename Word command.
+
+2008-08-16
+	* released windows version 0.10.1
+
+2008-08-01
+	* passing length < 0 to MID no longer causes stackdump
+
+2008-07-17
+	* refactor FLTK to allow opening of multiple editors
+
+2008-07-05
+	* cleanup ansi codes from output in dev_null driver. fixed logprint command
+	* fixed "open for append"
+	* added FLTK -n non-interactive flag (prevents the gui from being displayed)
+
+2008-07-01
+	* Implemented program restart option in FLTK
+
+2008-06-28
+	* Updated to build FLTK version using MingW under Cygwin (see below).
+
+2008-06-26
+	* Added build support for MingW under Cygwin. This is simpler than installing
+	  Msys, simply install MingW to say c:\MinwG, then change your .bash_profile with:
+	  export PATH=/c/MinGW/bin:$PATH
+	  Then re-run configure (under cygwin bash) and a non-cygwin console version will
+	  be produced which can run under cmd.exe, explorer.exe etc.
+
+2008-06-20
+	* Can now supply program arguments on FLTK version command line:
+        sbasici -r t5.bas foo -or- sbasici t5.bas foo -or- ls | sbasic t5.bas --
+	also: echo foo | sbasic foo.bas --
+
+2008-06-06
+	* Implemented the ability to declare a local variable and assign a
+	  value to it on the same line, eg local foo = "foo"
+
+2008-06-04
+	* Fixed problem with trailing backslash in strings
+
+2008-06-01
+	* Add support for hash arrays (rainy day)
+
+2008-05-26
+	* Updated module building to use autotools
+	* Fix regression with console build
+	* Fix for expression if (foo.x)
+	* UDS copy operations now always as by reference
+	* Can now refer to UDS field within parenthesis
+	* Updated FLTK online help
+	* Fix support for composite expressions such as "ar.ch(0).foo"
+
+2008-05-24
+	* Updated SDL forms to work with guichan 0.8.1
+	* Fixed problem with FLTK HelpWidget displaying large pages
+
+2008-05-15
+	* Update FLTK forms implementation to be like the SDL implementation
+	* FLTK now correctly implements DELAY
+	* Updated help.bas help plugin to include an index
+
+2008-05-07
+	* FLTK: allow applications to set the window geometry using:
+	option predef grmode WxH
+
+2008-04-26
+	* Source code release for version 0.10.0
+
+2008-03-31
+	* Various fixes for FLTK build
+	* Implemented outside file change check in FLTK build
+	* Implemented file drop support in FLTK build
+	* Not being able to save an sbx file is no longer a fatal error
+	* runtime .bas files can now be read-only files.
+	* break command updates global last error string
+
+2008-03-15
+	* re-migrated code from cvs - this time with full history
+
+2007-12-31
+	* Fixed a problem in the SDL version with pressing ctrl+c
+	  while the "press any key to close" message was being displayed
+
+2007-12-02      version 0.9.9.0
+	* moved code to subversion
+	* see src/fltk/README.TXT for updated project indent settings
+
+2007-11-03	version 0.9.8.3
+	* refactored console_main
+	* added the ability to include a path component in a unit name, eg:
+	  import other.something.foo
+	  ? foo.my_var
+
+	  Then in the foo.bas file:
+
+	  Unit other.something.Foo
+	  export my_var
+
+	  The unit file should be saved in $UNITPATH/other/something.
+	  If not defined, $UNITPATH is inferred as the host program
+	  file directory.
+
+2007-10-10
+	* A runtime error is now created in lieu of crashing when you
+	  pass a value less than 0 to the LEFT and RIGHT string commands.
+	* The runtime error for LEFT,RIGHT,REPLACE,MID,INSTR,RINSTR now
+	  includes the invalid index in the message
+
+2007-08-31
+	* Fixed a problem referring to UDS fields from an array
+	  eg x = foo(0).x
+
+2007-08-18
+	* Fixed a problem with the short-circuit eval code causing
+	  incorrect true/false return IP's being calculated
+
+2007-08-02
+	* The IN operator when applied to arrays now returns
+	  the 1 based index position, eg:
+           a << "cat"
+           a << "dog"
+           ? "dog" in a 'prints 2
+
+2007-07-21
+	* Implemented experimental logical expression short-circuit evaluation
+
+2007-07-12
+	* (re) Implemented user defined structures
+	* AnsiWidget added to FLTK core package
+
+2007-06-23
+	* TSAVE now correctly closes the opened file
+
+2007-04-27
+	* Added GUI support to SDL version using guichan
+
+2007-04-19
+	* Implemented user defined structures
+	* Commited Attila Haraszti's SDL code and changes for configure.in
+	* Added syntax support for '=='
+
+2006-11-14
+	* Updated DATE and TIME error messages to provide extra information
+
+2006-10-23
+	* Added more info the index out of range runtime error message
+	* Fixed configure.in for cygwin build
+
+2006-08-19
+	* added "multiline" option to the TEXT command to support
+          the multiline edit control (GTK)
+	* fixed RINSTR command to work as advertised.
+	* TSAVE can now take a file number arg like TLOAD
+
+2006-08-16
+	* Fixed error message with unterminated strings in a sub or func.
+          complained about missing END instead of the missing " char
+	* Quoted strings no longer required the end quote char. A new line is
+          taken as the end of string.
+
+2006-08-12
+	* added support for func/sub pointer variables used with the
+	  call statement:
+
+          func foo(s)
+           foo="foo!"+s
+          end
+          sub bar
+            ? "in bar"
+          end
+          p = @foo
+          ? call(@foo, "#")
+          ? call(p, "%")
+          pb = @bar
+          call pb
+          call @bar
+
+ 	* USRCALL has been removed since it never worked and the above
+          is a better replacement (IMHO)
+
+2006-07-28
+	* updated chain command to take string or array	of string arguments in
+          lieu of a file name. After calling this command, the calling program
+	  now successfully resumes.
+	* added HAVE_C_MALLOC to replace complicated
+          memory routines with simple malloc/free calls
+	* added GRID+TAB button support to GTK build
+
+2006-05-27
+	* added form support to GTK build
+
+2006-05-27
+	* bc_store_string() now handles escaped double quotes
+
+2006-04-12
+	* updated sockcl_open() to handle server listen sockets
+
+
+
+VERSION 0.9.0
+
+
+2004-05-01: ndc
+	Human language depented files for messages and keywords.
+	The messages and the keywords can be easily translated to another language.
+	This is not suggested because that means incompatible source-code but it is very usefull for education purposes;
+	I believe that, the kids will work better if they are using their natural language
+	(and we are very sensitive on that matter).
+	I suggest to the "translators" to be very carefull, there is no mean on a word-to-word translation.
+
+2003-03-10: ndc
+	new c-modules: mod_gdbm, mod_mysql
+
+2003-03-09: ndc
+	fix: ptdistln, ptdistseg
+	new: POLYCENT (centroid of polygon)
+
+2003-02-24: ndc
+	END IF: keyword with space is supported now
+
+2003-01-24: ndc
+	FOR-IN: if the IN parameter is not an array (probably an empty variable) the FOR jumps to
+	--- the next command after 'NEXT'
+
+2002-10-12: ndc
+	Sort: fixed
+	Search/Sort: does not generate RTE anymore
+
+2002-10-10: ndc
+	units: SB libraries
+	new keywords: UNIT, IMPORT, EXPORT
+
+2002-10-06: ndc
+	doc: .texi and groff output added
+	--- ref.txt structure changed
+	update: str()
+	--- str(string) now allowed
+	new: BSS() - converts C-style strings to BASIC-style strings
+	new: CSS() - converts BASIC-style strings to C-style strings
+	--- some more compiler error-checking
+
+2002-10-01: ndc
+	several internal changes for easy development.
+	--- cxx_sb.hpp provides a new iterface to whole SB.
+	--- SB can compiled as a C or C++ library. That would
+	--- help a lot the IDEs developers. Main Makefile
+	--- splitted, it is working like main-menu now.
+	FLTK IDE added but not finished yet.
+	--- Actually that shows the power of the libsbasic.
+	--- It is very easy now to build IDE. Unfortunately
+	--- I am no friend of GUI, I've never tried Qt or GTK.
+	--- Anyway, soon, I'll rewrite the Win32 GUI version.
+
+2002-09-16: ndc
+	update: compiler speedup for PalmOS 3.5+
+	--- VMTs not used on 3.5+ (no actually needed)
+	new code: lopen_bridge.h
+	--- I rewrote the VMTs. The code was a mess. Several parts of SB
+	--- uses #def blocks just to do simple tasks with open/close command-set
+	--- So, I wrote a "driver" which cleans a lot of those parts by using
+	--- real std-c emu of functions open/close for PalmOS and VTOS.
+	update: new VMT
+	--- VMTs are now basic part of the system. Because of lopen_bridge.h is
+	--- easy portable too. In VMTs is stored a fake environment-variable table,
+	--- VMTs are used for memory swaping, and will be used as basic-level database.
+	update: PalmOS, On PalmOS 3.5+ the opt_safedraw (SDK3.5 draw functions) is
+	--- used by default on 3.5+.
+
+2002-09-11: ndc
+	update: PLAY "Q" clears sound queue
+	new: NOSOUND stops background sound and clears sound-queue
+	update: SOUND can plays on background
+	new: PLOT (graph of F(x))
+
+2002-09-01: ndc
+	fix: ON GOTO/GOSUB, values out of index
+
+2002-06-22: ndc
+	new: SEC/CSC/COT family functions
+
+2002-06-21: ndc
+	update: extra check for build-in functions without parameters
+
+2002-06-18: ndc
+	bug: RIGHTOFLAST() fixed
+	bug: palmos, 'keep-bytecode' code rewriten
+	--- CHAIN does not compile if it is not needed
+
+2002-06-07: ndc
+	bug: palmos, memo fs, open for APPEND now moves the pointer to the end
+	--- of the file's data.
+	bug: palmos, pdoc fs, open for APPEND now works, still does not
+	--- support read-only open.
+	new: palmos, battery-info support in FRE()
+
+2002-06-02: cws
+	new: ebm, added flush image escape to ansi driver \033[F.
+	--- This causes imgUpdate() to be called.
+	new: ebm, Sorted file names in File Dialog
+
+2002-05-25: cws
+	update: ebm, improved "Run" dialog
+	update: ebm, further improved ANSI text out performance
+
+2002-05-xx: ndc
+	documentation/doxygen format
+
+2002-05-12: ndc
+	update: default values for window/view cmds
+
+2002-05-12: cws
+	new: ebm, implemented FILES command - dev_create_file_list()
+	new: ebm, implemented COPY command - dev_fcopy()
+	new: ebm, implemented ENVIRONMENT command.
+	new: ebm, implemented FRE command - returns ebm memory and battery info (see help)
+	update: TLOAD speed optimize
+	update/new: ???, provided mechanism for sbasic programmers to provide an about box.
+	update: ebm, selecting the menu while running an application now pauses program
+	--- execution.
+	update: ebm, corrected behaviour with open file errors; now results in a
+	--- runtime error.
+	new: ebm, absolutely way cool on-line help!
+	new: ebm, removed the 2 pixel window border.
+	new: ebm, partial MMC file support; reading and listing files from sb code only.
+	--- MMC write is not yet implemented in the operating system.
+	new: ebm, updated command line editor. Entered commands are now sent directly
+	--- to the interpreter. You can tap and run simple one line programs
+	--- using the keyboard. Use : to separate program statements.
+	new: ebm, optional SmallBASIC.ini settings control creation of .sbx files
+	--- and enabling verbose compilation. settings are:
+	--- genexe=0
+	--- quiet=0
+	update: ebm, minor enhancements to ebjlib library
+	update: optimised ansi text out and window scrolling performance
+
+2002-05-05: ndc
+	new: bitmap-lib (basic internals), it needs more work
+
+2002-05-04: ndc
+	new: BLOAD,BSAVE,USRCALL
+	update: PalmOS power on/off button support
+	update: SDL default mode (see: README.UNIX)
+
+2002-04-19: ndc
+	new: low-level commands
+		MALLOC,PEEK(8,16,32),POKE(8,16,32),BCOPY,VADR
+	new: palmos, keyboard buffer dialog (press kb)
+		not good yet, but it works
+
+
+VERSION 0.8.2
+
+
+2002-04-14: ndc
+	?bug?: crash; wierd memodb records (size >32KB!!), thanks to Meino
+	bug: PalmOS, MOD's result was wrong
+
+2002-04-07: ndc
+	bug: memory overrun on scan.c:bc_get_var_id(), thanks to Meino
+	new: BGETC()/BPUTC (binary get/put bytes on a stream)
+
+
+VERSION 0.8.1
+
+
+2002-03-31: ndc
+	finish: OPTION-styles, new PREDEF QUITE,COMMAND
+	modify: system string-variables are now accepted with both names
+            (with or without $ suffix)
+	new option: -h[page][-command]
+
+2002-03-25: ndc
+	new operator: LIKE
+	new proc: DIRWALK
+	new func: CHOP()
+
+2002-02-27: ndc
+	bug fix: memo (palmos) open/write
+
+2002-02-22: ndc
+	bug fix: pdoc's garbages are now dead (for desktop)
+	update: setting backup-bit in user files and pdocs
+	update: IN operator priority changed to 'compare'
+	new: MDL operator (a%b+b*(sgn(a)<>sgn(b)))
+
+2002-02-??: Earle's port
+
+2002-02-??: Chris's port
+
+2002-01-28: ndc
+
+2002-01-28: ndc
+	bug fix: cat() on 16bit, thanks to Frantesik
+	very fast and small memory handles emulation (for 'limited' systems)
+
+2002-01-13: ndc
+	changes for porting: dev_getenv()/dev_putenv() at device.c
+	bug fix: env() function fixed, env command also fixed
+
+2002-01-04: ndc
+	bug fix: operators && and || was on different op-category...
+	bug fix: small memory leak on string->number convertion inside
+	--eval.c module. That causes PalmOS fatal error!!!
+
+
+VERSION 0.8.0
+
+
+2001-12-27: ndc
+	bug fix: memo vfs driver: deleted files, no null-char on read
+
+2001-12-??: ndc
+	new: split with pairs
+
+2001-12-11: ndc
+	new: IN operator (not the FOR-IN)
+	new: ISNUMER(), ISSTRING()
+	new: ENCLOSE(), DISCLOSE() (also, its part of SPLIT)
+	bug fix: memory leak (GOTO)
+	new: terminal driver (old code for command-line is removed)
+
+2001-12-10: ndc
+	new: DEF FN compatible command (single-line functions)
+	-- to support this, I made the DEF; an alias of FUNC
+	-- so, FUNC f(x) = sin(x)
+	-- and DEF  f(x) = sin(x)
+	-- is now acceptable
+	new: bitwise operators NAND,NOR,XNOR,EQV,IMP
+	-- it needs checks
+	new: parameter parser (RT)
+	update: FORMAT, console-codes (\e[nG)
+	new: RINSTR, SPRINT
+
+2001-12-08: ndc
+	linux: modules support (external C/C++ libraries)
+	new: true color is supported for modes >8bit
+	new: RGB() RGBF()
+	change: KILL does not create RTE if there is no file
+	-- It is very annoying on Linux
+	update: svga & sdl (colors, some minor bugs)
+	change: LOADLN/SAVELN changed to TLOAD,TSAVE
+	-- I don't want to use LOAD/SAVE, also,
+	-- I want common names, like BLOAD/BSAVE
+	change: &&, || = logical ops (like C)
+	new:    &, |, ~ = binary ops (like C)
+	new:	& = join code lines (like the \ on C)
+	change:	SB limits are changed
+
+2001-12-07: ndc
+	default name on Unices changed to sbasic instead of sbrun
+	update: everything is working on 32bits now
+	-- 16b version can be produced by using OS_ADDR16
+	-- For PalmOS users the 32b means less memory...
+	change: xmax, ymax returns now the width-1,height-1
+	-- its more logical
+
+2001-12-05: ndc
+	update: +/-INF and +/-0 for real-to-string (PRINT included)
+
+2001-12-03: ndc
+	update: PalmOS IDE: several changes, include auto-goto error-line
+	new: APPEND, DELETE, INSERT
+	new: PalmOS scripts (thanks to Frantisek Dufka)
+	change: ANSI console code for 'reset' does not
+	-- changes the font.
+
+2001-12-02: ndc
+	new: dev_gets() (INPUT)
+	-- On Palms: schedule=delete, phone=left, todo=right
+	-- possible problems with multibyte charsets,
+	-- var-font: minor problems with multiple lines
+	update: PSET,LINE,RECT,VIEW,WINDOW... graphics commands
+	changed: LOCATE coordinates starting from 1
+
+2001-12-01: ndc
+	new: SEARCH
+	new: CHMOD
+	update: compiler: PASS2 errors, more info
+
+2001-11-30: ndc
+	new: SQUEEZE()
+	some more compiler/RTL checks
+	new: ISARRAY()
+	new: ++ and -- pseudo-operators
+	bug fix: file size on Unix
+	new: COMMAND$ system variable
+	update: STOP/END parameter added
+
+2001-11-29: ndc
+	new: FORMAT, PRINT USING and new FTA function (print numbers)
+	alias: LINE INPUT (with space) is now acceptable
+	INTEGRAL keyword removed
+
+2001-11-28: ndc & bob
+	bug fix: EXIT inside function
+	new: ISDIR, ISFILE, ISLINK, ACCESS
+	new: IF function: IF(condition,true-value,false-value)
+	new: operator << (append to array)
+	new: REDIM (resizes an existing array. its works only for 1-dim arrays)
+
+2001-11-27: ndc & bob
+	changes: ROUND(-1.5) returns -2
+	changes: MOD (changed to fmod())
+	bug fix: INT, FIX - negative values
+	new: FRAC, CEIL, FLOOR
+	changes: scientific notation E supports xE{+|-}{praxis=+-*/\^}{y}
+	---valid: 1E1 (1*10^1), 1E-1 (1*10^-1), 1E--1 (1-1), 1E-/2 (1/2)
+	---invalid (nested E, complex expressions, variables): 1E-+2E--4, 1E-+int(2.2)
+	---if I write an eval() then it will do more things :)
+	new: LINEINPUT (new alias: LINP) works on console, too
+	bug fix: PAUSE n (after an key-interrupt; now clears keyboad-buffer)
+	bug fix: WEEKDAY
+	bug fix: STATs I was made some stupids things here, now it is working again
+	---(QB: DEF FNxxx - END, later will be added the inline DEF FN)
+
+
+## VERSION 0.7.1
+
+
+2001-11-24: ndc
+	changes: LINEQGJ (Gauss-Jordan) renamed to LINEQN
+	new: DIFFEQN
+
+2001-11-23: ndc
+	new: JULIAN(dmy_string | d, m, y)
+	new: DATEFMT(format, dmy_str | d, m, y | julian)
+	new: WEEKDAY(dmy_str | d, m, y | julian)
+	new: DATEMDY dmy_str | julian, byref d, byref m, byref y
+	new: ROOT
+	new: SORT (quick sort)
+
+2001-11-22: ndc
+	bug fix: Palm's ftostr(), round bug (59.9999999/60 was 0.1 instead of 1) (Thanks Bob :)
+	bug fix: Palm IDE: Goto line 1
+	bug fix: spaces on parameters (i.e. BYREF bug)
+	changes on SPLIT (spaces now counts as delimiters)
+	SPLIT supports the USE keyword
+	new: TRIM()
+	new: INTEGRAL
+
+2001-11-19: ndc
+	changes: COM ports 0-9 (COM1:,COM5:,etc)
+	PalmOS IDE: categories (edit, delete, rename)
+	PalmOS IDE: it does not delete the bytecode (Menu->Pref->Options)
+	PalmOS IDE: line numbers on editor
+	bug fix: VM (CALL_UDF) (4 bytes instead of 2)
+	new: DERIV
+
+2001-11-18: ndc
+	changes: DIM A(10):A=1 is valid now... (convertion from array to integer)
+	changes on LEN(), INPUT
+	bug fix: EMPTY()
+	bug fix: '_' its works again in the sub-routines names
+	new: DETERM(A[,tol])
+	new: LOADLN file, array
+	new: SAVELN file, array
+	bug fix: binary READ/WRITE commands
+	new: FOR var IN array - NEXT
+	command-line: quite flag (-q); No "* DONE *", no compiler messages
+	bug fix: Unix OS Name
+
+
+## VERSION 0.7.0a
+
+
+2001-11-07: ndc
+	PalmOS: crash with MemoDB deleted/locked records
+
+
+## VERSION 0.6.1-0.7.0
+
+
+2001-11-06: ndc
+	SB web-site: recovery...
+
+2001-11-05: ndc
+2001-11-04:
+	after hard-disk failure... recover and check
+	bug fix: WinXP: sound driver, SBPad forms background color
+
+2001-??-??: ndc
+2bit DOS (DJGPP)
+    --That means there needed one DPMI driver (under windows DPMI is supported).
+    --For clean DOS you can use one of delorie's DPMI (free) programs or other (read DJGPP's FAQ)
+    --CPU 80386 or newer is needed
+    --Long-filenames are supported only under windows (read also DJGPP's FAQ, especially for NT)
+    --NO TCP/IP
+
+    Statistical/generic functions are added: (thanks to Yannis Dondos (dondos@otenet.gr))
+	ABSMIN, ABSMAX, SUMSQ, SUM, STATMEANDEV, STATMEAN, STATSPREADS, STATSPREADP
+
+2001-08-09: ndc
+    RUN() function added (returns the stdout of the command)
+    HOME system variable added (user's directory)
+    CWD system variable added (current working directory)
+    CHDIR/MKDIR/RMDIR: only for non-palmos
+
+    SOCL FS: socket client (virtual file system) added
+    --This driver its not tested on PalmOS...
+    --Only OPEN,CLOSE,READ,WRITE,EOF() are implemented
+
+2001-08-08: ndc
+    READ/WRITE command set: binary read/write to a file (for variables)
+    bug fix: INSTR (caseless compare changed to case sensitive)
+    POINT(): 0,1 functions added (returns the current graphics X/Y position)
+
+    PalmOS IDE: import/export to/from PDOC
+    PalmOS IDE: import/export to/from Memo
+
+    PDOC FS:
+	--filesystem emulation for PDOC files. (use OPEN "PDOC:filename")
+	--Under non-palmos OSes, files PDoc_* are created in the current directory for emulation.
+    --These files are real compressed PDB/PDOC files (you can hotsync them)
+    --FILES() for PDOCFS: FILES("PDOC:*")
+    --PDOC FS opens and uncompress the file on OPEN; and compress the file on CLOSE
+
+    bug fix: memory leak on PRINT for files
+    bug fix: PalmOS IDE, UserFileViewer save file
+
+2001-08-06: ndc
+    MemoDB FS:
+	--filesystem emulation for memodb. (use OPEN "MEMO:memo-title")
+	--the memo-record size is limited to 4000-65 bytes (the 65 bytes are reserved for the 'filename' + \n)
+	--Under non-palmos OSes, files Memo_* are created in the current directory for emulation
+    --FILES() for MEMOFS: FILES("MEMO:*")
+
+    bug fix: FS auto-close files
+
+2001-08-05: ndc
+    RTE ... --- custom run-time-error (its working like PRINT command)
+    PROGLINE --- returns the current source-line number (user's program)
+    Unix: some /proc info are added
+    EMPTY(x) -- used for variables
+    FS: A lot of changes on file.c
+    --Actually FS is working with more clever way now. Its supports multiple fs-drivers with mount/umount logic.
+
+2001-08-04: ndc
+    Trying to support nested arrays.
+	--There are some problems with nested arrays.
+	--Nested arrays are not visible to SB compiler so
+	--SB does not stores optimized info for them.
+	--(in few cases arrays will copied more than once on memory)
+
+    console,file,log PRINT are using the same code for writting vars
+
+2001-08-01: ndc
+    PalmOS driver: some changes on the LOCATE
+    FILES(x)
+    LEN(x) now supports arrays too
+    ENVIRON str, ENVIRON$("var") --- (non-palmos) environment variables
+    SPC(x) --- alias of SPACE$(x)
+    REPLACE$(s1,pos,s2[,len])
+    LEFTOF$(s1,s2), LEFTOFLAST$(s1,s2)
+    RIGHTOF$(s1,s2), RIGHTOFLAST$(s1,s2)
+
+2001-07-31: ndc
+    PalmOS: stack increased by 4KB (that means -4KB for BASIC progs)
+    Fill for DRAWPOLY added (FILLED keyword)
+
+    new framebuffer driver
+    --I wrote a new one without using any library (8,15,16,24,32 color modes);
+	--its very stable in kernel 2.4.4 and its working very nice in console.
+	--So, this is the default driver for unix (instead of svgalib)
+	--note: scroll is slow
+
+    several fixes on SDL driver
+    bug fix: eval: "-"+40 now returns string "-40"
+    bug fix: OSS driver now checks if /dev/dsp is available
+
+    PalmOS IDE: 'restart' does not compile the source now
+
+2001-07-29: ndc
+    PalmOS driver: direct video-access (used instead of PalmOS APIs routines)
+    --its faster :)
+
+2001-07-25: ndc
+    JOIN array(), delim, dest-var
+    LINEQGJ(A,B[,toler])    (thanks to Yannis Dondos (dondos@otenet.gr)
+    Arrays ops: [col,col,...[; col,col...]]
+	define an array at code
+ex:
+	d=[1,2] ' 2
+	d=[1;2] ' 2x1
+	d=[11,12;21;cos(a)] ' 3x2
+	d=[1;21,2+2] ' 2x2
+	d=[1,2;3,4] ' 2x2
+
+    Matrices: (A-Z=arrays): A=2*B;B=-B;C=D*E;A=B+C;D=A-B
+ex:
+	a = [-3,  0; 2, -1]
+	b = [ 4, -2; 3,  5]
+	print a; " x "; b; " = "; a * b
+
+    new: PRINT displays arrays now
+    Bit-ops: BAND (AND), BOR (OR)
+
+2001-07-23: ndc
+	bug fix: RECT with out fill (diag. line)
+
+2001-06-03: ndc
+	bug fix: EXIT (REPEAT/UNTIL)
+	VIEW,WINDOW
+
+2001-06-01: ndc
+	vector graphics:
+		PTSIGN, PTDIST, PTDISTSEG, SEGLEN, SEGCOS, SEGSIN, INTERSECT
+		M3IDENT, M3ROTATE, M3SCALE, M3TRANS, M3APPLY
+		POLYEXT, POLYAREA
+	bug fix: SPLIT: empty strings
+
+2001-05-28: ndc
+	bug fix: PAUSE seconds
+	bug fix: var/label/proc names with '_'
+	bug fix: delete section
+	bug fix: &H prefix
+	EVAL's stack is dynamic now
+	Backup bit is enabled after copy/rename
+
+
+## VERSION 0.6.0
+
+
+2001-05-13: ndc
+	bug fix: v_set array copy
+	backup-bit is enabled when the source file is modified
+	Scientific notation added (both in code and in run-time (input))
+
+2001-05-07: ndc
+	#inc:file - #include for BASIC :)
+	Background sound
+	System events check changed (now works with ticks, checked every 50ms)
+
+2001-05-06: ndc
+	SPLIT str, del, v() - split text
+	COPY/RENAME filename, newfilename - added
+	ERASE array1, ... - destroy arrays
+	bug fix: multi-dim arrays (dim > 1; element 0 returns the correct ptr)
+	INPUT #N, ... - INPUT for files added
+	Memory optimization (I got ~6-10KB for executor)
+	Virtual Memory & Virtual Memory Tables (only for compiler; maybe later I'll add routines like VMDIM and VMLOCAL)
+	UserFile Viewer - users can view/edit their files (up to 32KB)
+	logfile support (LOGPRINT added for users)
+
+2001-05-03: ndc
+	INPUT$(len[,fileN]) - added
+	Serial I/O added (OPEN "COM1:")
+	EXIT [FOR|LOOP|SUB|FUNC] - added
+	pdb2bas & bas2pdb supports sections (up to 256 sections, up to 1MB text)
+	Arrays & vars with the same name does not supported any more
+	Assign arrays "DIM A(4):B()=A()"
+
+2001-05-02: ndc
+	SUB/FUNC code finshed
+	LOCAL keyword added (dynamic local variables)
+	DECLARE keyword added (declaration needed for multiple-sections, every section acts as module now)
+
+2001-05-01: ndc
+	bug fix: PLAY
+	PEN(3) now supported
+
+    These sound drivers does not working well. I just dont know anything about soundcards.
+	DSP sound driver for Linux, added
+	SDL sound driver...
+
+2001-04-29: ndc
+	PROC/FUNC - starting (todo: JMPs before & after, run-time code)
+	A lot of changes on compiler (I can't write real compiler, there are a lot memory problems)
+
+2001-04-16: ndc
+	bug-fix: WHILE/WEND nested blocks
+
+
+## VERSION 0.5.8
+
+2001-04-02: ndc
+	DRAWPOLY array() added
+	TRUE/FALSE system constants added
+	LINECHART,BARCHART system constants added
+	CHART added
+	SVGALIB - clipping is now enabled
+	a few syntax checks added
+
+2001-03-30: ndc
+	MAX/MIN added
+
+2001-03-18: ndc
+	bug fix: eq with doubles ((1=12/10) now returns false)
+		this is the FOR-NEXT problem with fps
+	bug fix: run-time error if the user had not allocate memory for arrays (DIM)
+
+
+## VERSION 0.5.7
+
+
+2001-03-10: ndc
+	Some minor bugs of multibyte charsets
+
+2001-03-09: ndc
+	Big5 charset support added - thanks to Daniel Yuan-Chih Lin (dan.lin@bigfoot.com)
+	Generic multibyte support added
+	bug fix: SOUND & BEEP volume
+
+
+## VERSION 0.5.6
+
+
+2001-03-03: ndc
+	SDL driver added
+	Win32 port
+
+2001-02-28: ndc
+	Basic FILE I/O
+
+2001-02-27: ndc
+	circle's code is beautiful now.
+
+2001-02-25: ndc
+	4bit gray-colors are supported now (PalmOS 3.30 only!)
+	8bit vga16 hi-colors are fixed
+	bug fix: STR$()
+	INPUT supports more variables
+
+2001-02-24: ndc
+	console supports more fonts now ("\e[8xm" x=0..7 for system fonts, "\e[9xm" x=0..4 for SB's fonts)
+	console supports colors
+		("\e[3xm" x=0..7 ANSI foreground colors)
+		("\e[4xm" x=0..7 ANSI background colors)
+	RUN command added
+	system variables (see: setsysvar_int|num|str)
+		OSVER	- OS version (ex: 0x350 for PalmOS 3.5)
+		OSNAME	- OS name
+		SBVER	- SmallBASIC version (ex: if sbver < &H506 then ? "RQ 0.5.6+")
+		PI      - 3.14..
+		XMAX,YMAX - graphics display maximum x & y
+		BPP     - bits per pixel
+	TXTW(s),TXTH(s) added (text font width & height)
+	X/Win driver added (it needs work, but you can see a preview)
+
+2001-02-22: ndc
+	SJIS (Japanese) charset support, thanks to Toshiya Fujii (araiguma@earthlink.net)
+	INPUT stores numeric values if the input-string is a number
+	new method for Palm's PEN events
+	new key codes (new keys FIND & CALC)
+	Arrays & common variables with the same names are acceptable now
+		I don't like it, but its needed (GWBASIC compatibility).
+	DATA skips its code, does not need the first RESTORE any more, strings (DATA) does needs quotes
+	bug fix: (\) integer division operator is now recognized
+	CIRCLE & ARC are working now, but the algorithms are bad. I think 'aspect' does not working well
+	DRAW added (not all commands) - UNTESTED
+	PLAY added - Someone must check the compatibility (QB).
+
+2001-02-20: ndc
+	STKDUMP	added
+	Several changes on IDE (like fastest scroll)
+
+2001-02-19: ndc
+	bug fix: IDE text field focus
+
+2001-02-16: ndc
+	bug fix: beam
+	More launch types are supported (useful for Launchers)
+	CAT(x) added, LOCATE y,x added
+	ON x GOTO ... and ON x GOSUB added ...	(warning: goto has problems with the stack)
+
+2001-02-14: ndc
+	Platform API
+	new method for expressions (ceval, eval modules)
+
+2001-02-12: ndc
+	Color support added
+
+
+## VERSION 0.5.5
+
+
+2001-02-11: ndc
+	decompiler (unix version, -s option)
+	Several bugs of pseudo-compiler are fixed
+	Pseudo-compiler: PASS2 supports GOTO shits (stack)
+	More QB compatibility support
+	New icons
+	v_add() auto type convertion changed (NUM has priority)
+	bug fix: INKEY & INPUT hardware keys codes (again?)
+
+2001-02-09: ndc
+	scan & brun: speed optimization ("little/big-endian" convertion code removed)
+	INLINE-IF added (nested inline-if does not suppored). Syntax: IF x THEN [numeric-label]|[...] [ELSE [numeric-label]|[...]]
+	?bug? fix: PEN(0) - (pen status) starts with status 0 (after a PEN ON command the PEN(0) was 1)
+	bug fix: READ/DATA with arrays
+	bug fix: code_getvarptr() fixed. Now we can use arrays without fear :)
+	bug fix: numeric labels without command next to it
+	bug fix: LET|CONST next to label (ERROR: LET IS KEYWORD)
+	bug fix: finaly the '$' is dead (I hope :). (That means LEFT(x,1) = LEFT$(x,1) but x$ <> x)
+	bug fix: console supports \r
+	bug fix: PAUSE command (it was removed!)
+
+2001-02-08: ndc
+	bug fix: BREAK for INPUT
+	Unix <-> win32 (u2d, d2u, mksmall) convertion utilities
+	C Headers & data-types changed;	Makefile, .rcp, README: minor changes; proc.h callback.h bcode.h: removed
+	SB small icon, thanks to Christian G. Hvltje
+
+2001-02-07: Gary A. Clark - clarkg@fireserve.net
+	bug fix: READing strings now works
+	bug fix: Crash when 'Save As' same file name (Rename did same)
+
+2001-02-06: 0.5.5 Gary A. Clark - clarkg@fireserve.net
+	Convert to SDK 3.5 using PalmCompatibility.h
+	bug fix: Hardware keys caused INKEY$ to always return nothing
+	bug fix: VAL(), OCT$(), MID$() and RTRIM$() now work correctly
+
+
+## VERSION 0.5.4a
+
+2001-02-04: 0.5.4a ndc
+	bug fix: last-line text without lf, thanks to Gary Clark
+	Hardware keys supported (keys: 0x101 (up) 0x102 (dn) 0x103 (#1) 0x104 (#2) 0x105 (#3) BREAK (#4))
+
+2001-02-04: 0.5.4 ndc
+	bug fix: PalmOS 3.1 fatal exception, Thanks to Christian G. Holtje
+	bug fix: PalmOS 3.1 WinDrawChar (displays garbage) changed to WinDrawChars
+	bug fix: BASIC file header (version & signature)
+	Save & Run (S&R) button (EDIT-FORM)
+	New utilities: pdb2bas & bas2pdb for unix console, win32 console & win32 GUI
+	PEN	support added (QB lightpen compatible)
+		PEN ON|OFF, x=PEN(y)
+			where y:0 = status
+					1 = pen-down x, 2 = pen-down y
+					3 = M$ shit (QBasic)
+					4 = current x, 5 = current y
+	DIM supports more variables now
+

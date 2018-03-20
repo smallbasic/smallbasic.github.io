@@ -1,16 +1,14 @@
 # Community
 
-<strong>Email:</strong>
-<a href="mailto:smallbasic@gmail.com">smallbasic@gmail.com</a>
+## Email:
+[smallbasic@gmail.com](mailto:smallbasic@gmail.com)
 
-<strong>Site Forums:</strong>
-http://smallbasic.sourceforge.net/?q=forum
+## Issues
+- [SmallBASIC](https://github.com/smallbasic/SmallBASIC/issues){target=new}
 
-<strong>Facebook:</strong>
-http://www.facebook.com/group.php?gid=12117250426
+## Forums
+- [The Joyful Programmer](http://thejoyfulprogrammer.com/qb64/forum/forumdisplay.php?fid=485&rndtime=1502602434764827061){target=_blank}
+- [Retrogamecoding and Basicprogramming Forum](http://retrogamecoding.org/board/){target=_blank}
 
-<strong>Active issue log:</strong>
-<a target=gh href=https://github.com/smallbasic/SmallBASIC/issues>GitHub</a>
-
-
-
+## Facebook
+- [Programming in SmallBASIC](http://www.facebook.com/group.php?gid=12117250426){target=_blank}

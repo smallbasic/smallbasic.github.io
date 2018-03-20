@@ -57,23 +57,17 @@ but you must separate it with ',' or ';'. You can also repeat the last syntax mo
 FOO var [{,|;} var2 [...]]
 ~~~
 
-You can find
-------------
+Searching this site
+----------------
 
-escape codes under Console or under Articles "Escape Codes"
-ARRAY under Data, ISMAP under Data, ISREF under Data
+You can find:
 
-bit color systems under Graphics
-STEP under Graphics,  aspect under Graphics, FILLED under Graphics, QBcolors under COLOR under Graphics
-
-"system variables" AKA built in coder constants under System eg, pi, xmax, ymax, cwd...
-INCLUDE under System
-
-Alot of information is under Articles > "Welcome to SmallBASIC"
-operators eg ~ % ^ ! IN LIKE
-special characters eg   [ , ;]  ARRAY definition << append to array
-basic stuff about variables, subs and functions
-aha! stuff on units, meta commands, options, pseudo operators
-
-TRY CATCH THROW ENDTRY ... located in Language ref > Language unsorted list
+- Escape codes under Console or under Articles "Escape Codes"
+- ARRAY under Data
+- ISMAP under Data
+- ISREF under Data
+- STEP under Graphics
+- aspect under Graphics
+- FILLED under Graphics
+- COLOR under Graphics
 
