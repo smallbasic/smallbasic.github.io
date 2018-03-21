@@ -4,14 +4,14 @@
 
 Walk through the specified directories. The user-defined function must returns zero to stop the process.
 
-
-> FUNC PRNF(x)
+```
+FUNC PRNF(x)
   ? x
   PRNF=TRUE
 END
 ...
 DIRWALK "." USE PRNF(x)
-
+```
 
 ~~~
 
@@ -38,7 +38,7 @@ search_word dir, exclude_ext, word, case_sensitive
 ' Purpose: return sorted array of directory files-list (including files in
 '          sub-directories, but not directory-names).
 ' Details: "dir" is the top directory to start search from (default = ".");
-'          "exclude_ext" is a Not case sensitive string of file-extension(s) 
+'          "exclude_ext" is a Not case sensitive string of file-extension(s)
 '          to exclude from list (default = ""), For example:
 '           "jpeg jpg zip z7 gif wav mp3" ' Space delimited extensions.
 ' Example:
@@ -47,10 +47,10 @@ search_word dir, exclude_ext, word, case_sensitive
 Func dir_list(dir, exclude_ext)
   Local a, ext
   ' Verify "dir" ("." is current directory):
-  dir = Trim(dir): If dir = "" Then dir = "."            ' 
+  dir = Trim(dir): If dir = "" Then dir = "."            '
   ' Exclude extension in Any case (for Windows):
-  ext = Enclose(Lcase(Squeeze(exclude_ext)), " ")     
-  
+  ext = Enclose(Lcase(Squeeze(exclude_ext)), " ")
+
   ' Make the dir list (DIRWALK):
   Func make_list(f)
     Local e                             ' File Extension (without ".")
@@ -93,7 +93,7 @@ Sub search_word(dir, exclude_ext, word, cs)
   For file In list
     Tload file, lines
     c_line = 0
-    
+
     ' Search in each line:
     For l In lines
       c_line++  ' Keep line # for [print the line]
