@@ -4,7 +4,7 @@
 
 Returns the last key-code in keyboard buffer, or an empty string if there are no keys. Special key-codes like the function-keys are returned as 2-byte string.
 
-
+```
 k=INKEY
 IF LEN(k)
   IF LEN(k)=2
@@ -15,7 +15,7 @@ IF LEN(k)
 ELSE
   ? "keyboard buffer is empty"
 FI
-
+```
 
 ~~~
 
@@ -205,10 +205,16 @@ Def CTRL_SHIFT(c) = CTRL_SHIFT_CHR + Lcase(c)  ' Ctrl+Shift+a, etc
 ~~~
 
 When the first character in the two character code is 27, the second character is a code for the given special key. You would need to inspect the SB source to work out the equivalent SmallBASIC key constants, but I'll have a look at generating a constants.bas file that you can include in your programs.
+
 As reported by Shian (thanks Shian!), there are a few problems with INKEY. I'll fix these in the next update. There is supposed to be a different first character code for SHIFT/ALT etc states.
+
 Also, INKEY needs to read from the system event queue to get the next keystroke. It currently does a pause for key, but I think it should actually block in the call to read the queue, that way when you type a key there would be no delay. Either way this doesn't work well for shooter type games, but there is a better way. Have a look at:
+
 https://github.com/smallbasic/SmallBASIC/blob/master/samples/distro-exam...
+
 This uses the DEFINEKEY command to register keystroke handlers for game keys. When you hit the game key, the registered FUNC will get called more or less immediately, somewhere inside the game main looI think this should work well in the space shooter (which is awesome by the way).
+
 Code for quick lookup of a key code:
+
 http://smallbasic.sourceforge.net/?q=node/1583
 

@@ -4,9 +4,10 @@
 
 Returns the Julian date. (dates must be greater than 1/1/100 AD).
 
-
-> PRINT Julian(DATE)
+```
+PRINT Julian(DATE)
 PRINT Julian(31, 12, 2001)
+```
 
 Earlier this month I had done some code to calculate Oil Tank usage and used a ridiculously long and complex formula for calculating the number of days between two dates. I should have used the julian date function:
 

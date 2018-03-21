@@ -4,8 +4,9 @@
 
 Reserves storage space for an array.
 
+The array will have (upper-lower)+1 elements. If `lower` is not specified, and `OPTION BASE` hasn't used, elements start at 0.
 
-The array will have (upper-lower)+1 elements. If @lower@ is not specified, and @OPTION BASE@ hasn't used, elements start at 0.
+```
 REM One dimension array of 7 elements, starting from 0
 DIM A(6)
 ...
@@ -19,7 +20,7 @@ REM Allocating zero-length arrays:
 DIM z()
 ...
 IF LEN(Z)=0 THE APPEND Z, "The first element"
-
+```
 
 ~~~
 

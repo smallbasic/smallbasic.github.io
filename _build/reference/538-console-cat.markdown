@@ -5,9 +5,6 @@
 Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline, -2 = underline-off, 3 = reverse, -3 = reverse-off.
 
 
-> ? cat(1);"Bold";cat(0)
-
-
 ~~~
 
 ' Note: tested and works with SB 0.12.2 on Linux 64-bit.
