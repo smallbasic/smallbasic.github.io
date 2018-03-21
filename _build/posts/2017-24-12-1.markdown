@@ -3,10 +3,12 @@
 > [Changelog](/pages/changelog.html)
 
 The main changes are:
+
 - Performance enhancements
 - Minor language and UI tweaks
 
 The windows zip includes some new samples:
+
 - "Voxel space" renderer
 see: <https://github.com/s-macke/VoxelSpace>
 
