@@ -4,31 +4,38 @@
 
 Display text or the value of an expression.
 
+**PRINT SEPARATORS**
 
-*PRINT SEPARATORS*
 ------- ----------------------------------------- 
 TAB(n)  Moves cursor position to the nth column.
 SPC(n)  Prints a number of spaces specified by n.
 ;       Carriage return/line feed suppressed after printing.
 ,       Carriage return/line feed suppressed after printing.
 ------- ----------------------------------------- 
-*PRINT USING*
+
+**PRINT USING**
+
 Print USING uses the FORMAT() function to display numbers and strings. Unlike FORMAT it can also include literals.
+
 * [_] - Print next character as a literal. The combination _#, for example, allows you to include a number sign as a literal in your numeric format.
 * [other] Characters other than the foregoing may be included as literals in the format string.
-p.. When a PRINT USING command is executed the format will remains on the memory until a new format is passed. Calling a PRINT USING without a new format specified the PRINT will use the format of previous call.
-> PRINT USING "##: #,###,##0.00";
+
+When a PRINT USING command is executed the format will remains on the memory until a new format is passed. Calling a PRINT USING without a new format specified the PRINT will use the format of previous call.
+
+```
+PRINT USING "##: #,###,##0.00";
 FOR i=0 TO 20
     PRINT USING; i+1, A(i)
 NEXT
 ....
 PRINT USING "Total ###,##0 of \\ \\"; number, "bytes"
+```
+
 The symbol ? can be used instead of keyword PRINT You can use 'USG' instead of 'USING'.
 
-quote: It's all in the punctuation at the end of a print statement>
+quote: **It's all in the punctuation at the end of a print statement**
 
 ~~~
-
 REM 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
 'It's all in the punctuation at the end of a print statement
 '1) no punctiation  = whole print lines CR=carriage return and LF=line feed, ready to go on next line

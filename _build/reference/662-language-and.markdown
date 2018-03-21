@@ -206,6 +206,7 @@ n = 0xFFFFFFFF Band 0x7FFFFFFF
 '    (not integers) for bitwise operators.
 '    In that case bit-31 would have been a regular bit (not sign bit).
 '    But integer manipulation is faster then double number manipulation.
+
 It's interesting...
 I know at least one language that solved this conflict internally:
 Instead of using 32-Bit signed integers, it uses virtual 31-Bit signed integers.
