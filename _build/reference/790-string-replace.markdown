@@ -4,8 +4,9 @@
 
 Writes str into pos of source and returns the new string.
 
-
 This function replaces only _len_ characters. The default value of _len_ is the length of _str_.
+
+```
 s="123456"
 ...
 ' Cut
@@ -19,10 +20,9 @@ s="123456"
 ...
 ' Replace & insert
 ? replace(s,2,"RRI",2)
-
+```
 
 ~~~
-
 'replace test.bas 2016-02-26
 'function replace(source,pos,str [,len])     len of source is default
 s="123456"
@@ -42,9 +42,8 @@ pause
 
 
 ~~~
-
 ' Helper to print the "name of color" with its color:
-Func colors(s)
+
   Const ESCS = Chr(27) + "["
   Const BG_BLACK = ESCS + "40m"
   Const BG_RED = ESCS + "41m"

@@ -34,17 +34,19 @@ func eval(numericexpressionstring)
       if i<>len(numericexpressionstring) then cmd=c
     end if
   next
-  'eval=str(e) '<=== I am setting up something for Turtle strings 
+  'eval=str(e) '<=== I am setting up something for Turtle strings
   eval=e        '<=== normal people and usage might want this
 end
 
 ~~~
 
-
 Math EVAL function = evaluates a string as though it were an expression and returns a result.
+
 I've written in Euphoria 4 correct math EVAL function, you can download it and see how it works, if you're really into it:
 rapideuphoria.com*math_eval_v1_1_0.zip
+
 It is straightforward to translate that Euphoria code into SmallBASIC code.
 EVAL must be around here somewhere, it is a classic. I thought I might find a version in TinyBASIC but I am too much into getting a turtle string to repeat to hunt for it at moment.
+
 The VAL command just converts a string to a number. For EVAL type functionality, the CHAIN command is somewhat similar.
 

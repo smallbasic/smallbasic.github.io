@@ -2,8 +2,6 @@
 
 > TAN (x)
 
-Tangent.
-
 see COS for Trig lesson one
 see ATAN for a maybe fun demo involving TAN and ATAN
 
@@ -11,20 +9,21 @@ Trigonometry lesson two.
 We will try this from a txt file instead.
 
 Review:
-Trigonometry is the study of right triangles, 
-those that have one 90 degree angle AKA Pi/2 in radians. 
+
+Trigonometry is the study of right triangles,
+those that have one 90 degree angle AKA Pi/2 in radians.
 These right triangles are infinite in a rectilinear coordinate system
 with x,y referring to screen position in relation to an origin point (0,0).
 
 In SmallBASIC the y axis increases from top to bottom
 and in SmallBASIC the angle measures used for arguments to SIN
 and COS and the other Trig Angles are expected to be in radian
-measure as opposed to degree measure. 
+measure as opposed to degree measure.
 
 This is a standard conflict and source of confusion from what you might
-learn in math class and doing stuff on a computer. 
+learn in math class and doing stuff on a computer.
 For all triangles that have all 3 angles the same,
-their legs will have exactly the same ratios between themselves. 
+their legs will have exactly the same ratios between themselves.
 
 Feed a trig function an angle and it will return the special ratio
 between the sides of the triangle that is universal to all triangles
@@ -34,31 +33,31 @@ the universal ratio for the leg adjacent divided by the hypotenuse.
 ( Adjacent means next to or attached in the case of angles.)
 
 Some more information gained from study or right angles:
-The COS for one acute angle in a right triangle is 
+The COS for one acute angle in a right triangle is
 the SIN for the other acute angle.
-For 45 degree angle (Pi/4 radians) the two legs are the same therefore 
-SIN(RAD(45 degrees)) = COS(RAD(45 degrees)) = .7071... 
+For 45 degree angle (Pi/4 radians) the two legs are the same therefore
+SIN(RAD(45 degrees)) = COS(RAD(45 degrees)) = .7071...
 notice if that is squared =.5 exactly 1-COS(angle)^2=SIN(angle)^2
 As the angle size approaches 0, COS(angle) > 1 and SIN(angle) >0
 At angle = 0 you have more a line segment than a triangle.
 
 Similarly as angle approaches 90 degrees = Pi/2 radians,
-the COS(angle) ratio approaches> 0 and SIN(angle) >1 
-Trig functions are Unary Operators, they take one argument, 
+the COS(angle) ratio approaches> 0 and SIN(angle) >1
+Trig functions are Unary Operators, they take one argument,
 an angle expressed in Radians,
 and return to you the ratio of the triangle sides involved.
 
-The COS returns the ratio of the leg adjacent the angle 
+The COS returns the ratio of the leg adjacent the angle
 divided by the hypotenuse. adj/hyp
-The SIN function returns the leg opposite the angle fed the function 
+The SIN function returns the leg opposite the angle fed the function
 divided by the hypotenuse. opp/hyp
 The third main trig function is TAN, tangent. opp/adj
-The TAN(angle in radians) returns 
+The TAN(angle in radians) returns
 the ratio of the opp side divided by the adjacent side.
 
-In SmallBASIC this is very handy because side opposite/ side adjacent 
-is the same as y/x the same two items that define a point location! 
-Can you see what this means? 
+In SmallBASIC this is very handy because side opposite/ side adjacent
+is the same as y/x the same two items that define a point location!
+Can you see what this means?
 Does a chill of revelation run up and down your spine?
 Oh! that means for any point x,y on the screen,
 I can find the angle it is from the origin!
@@ -80,7 +79,7 @@ DEG(ATAN(opp/adj) = an angle in degrees
 You can think or the A in front of TAN or COS or SIN as give me "An Angle"
 without the A you get side ratios.
 
-A donkey is mounted on the SmallBASIC screen 
+A donkey is mounted on the SmallBASIC screen
 so that it's tail should be pinned at 0,0 ....
 see ATAN for "pin the tail.bas"
 
@@ -95,7 +94,6 @@ Like this? It would have been in 3 lines but it seems print usg needs it's own l
 TAN used in a short code example:
 
 ~~~
-
 ' TAN use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
 for degrees = 0 to 360 step 15
 ? "For angle (degrees) = ";
@@ -111,16 +109,18 @@ pause
 ~~~
 
 I should make clear, TAN is not used directly for drawing on screen but indirectly it helps by calculating angles and lengths which is needed for drawing point to point or step drawing from last drawing x,y point.
+
 Yes, short example like this, or with one single shape on screen, is very very useful.
 For instance, I can show an example program of using bitwise XOR in calculating CRC-32 checksum, which is very useful code. But nobody will understand anything, because CRC-32 is complicated algorithm by itself. And it's very hard to understand how XOR is used in this algorithm unless you already very experienced with bit manipulation.
-It's useful to give a short and clear examples, something like: 
+
+It's useful to give a short and clear examples, something like:
 "How can I draw a line from point (x1,y1) to (x2,y2) using TAN."
 Later, if I know how to draw one line with TAN, then I will be able to draw a 3D box (maybe..).
 Small chunks...
+
 TAN use again in a few lines of code but I have to try and explain what is going on or it would be void of meaning.
 
 ~~~
-
 'Short TAN use.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
 'in the following example it is important to keep in mind
 'x,y when used in TAN are relative positions to x1,y1 and not
@@ -139,33 +139,35 @@ line x1,y1,x1+100,y1+100*TAN(RAD(60))  '<== HERE IS TAN
 'so here we used TAN to calculate the y change in height
 'from y1 to create a 60 angle from point x1,y1 and x2,y2 AND
 'AND make it so x2=100 more than x1
-'check draw arc at x1,y1 with 100 radius 
+'check draw arc at x1,y1 with 100 radius
 'for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect
 arc x1,y1,100,0,2*pi/6,1,14 '14=color yellow
 pause
-
 ~~~
 
-SUPREME; BRILLIANT; WELL DOCUMENTED; PRACTICAL; USEFUL; MERCIFUL, KNOCKS OUT. 
- 
-And the final jump back spinning kick (AKA jump hook kick): 
-EVEN ME CAN UNDERSTAND IT AND PRACTICALLY USE IT !> 
+SUPREME; BRILLIANT; WELL DOCUMENTED; PRACTICAL; USEFUL; MERCIFUL, KNOCKS OUT.
+
+And the final jump back spinning kick (AKA jump hook kick):
+EVEN ME CAN UNDERSTAND IT AND PRACTICALLY USE IT !>
 I could never grasp those holy Aztec keywords... TAN, ASIN... and with H !!! ASINH... Mercy!.
-  
+
 Please continue this way...
 Gravely.
---
+
 P.S. sorry for starting a new "comment" - my screen is so small that I cannot see the message by using "reply".
 
 I guess I hit the spot. :))
 I drew your cube just by defining 4 points for one square face and then using this code for the back 4 points.
+
 But I didn't stop there. I turned TAN(RAD(60) to TAN(RAD(angle) and put an angle increase in a loop and when...
 ... well, I spent the night bouncing and spinning and growing/shrinking the cube. ;)
+
 You certainly hit the spot.
 "... well, I spent the night bouncing and spinning and growing/shrinking the cube. ;)">
+
 I know holistic therapist who cured other programmers...
-Look, I've made an example program for CIRCLE, using your TAN lesson! 
+Look, I've made an example program for CIRCLE, using your TAN lesson!
 But I only changed the TAN with SIN, and it works....
 Now please, repeat that same lesson of TAN - for SIN. So I'll understand why and how it works (just copy the TAN lesson "TAN use again" and update it to explain how SIN works).
-Thanks !
+
 

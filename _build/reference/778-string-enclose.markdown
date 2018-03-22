@@ -4,9 +4,10 @@
 
 Encloses a string.
 
-
+```
 ? enclose("abc", "()")
 ' Result: (abc)
+```
 
 ENCLOSE defaults to double quotes if the [pair] option is not used.
 
