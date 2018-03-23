@@ -652,3 +652,9 @@ ul,
 table {
     font-size: 95%;
 }
+
+hr.menuSeparator {
+    margin-top: .5em;
+    margin-bottom: 0;
+    margin-right: 1em;
+}

@@ -90,6 +90,7 @@ all: $(reference) $(pages) $(posts) $(scripts)
 	@cp $(out)/pages3/*.html ../pages
 	@cp $(out)/posts3/*.html ../posts
 	@cp $(out)/scripts2/*.html ../pages
+	mv ../pages/index.html ../
 
 clean:
 	rm -rf $(out) *.sbu

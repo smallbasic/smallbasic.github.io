@@ -4,7 +4,7 @@ Source Code Format
 > Written by Elmar Vogt, F&uuml;rth, GERMANY
 
 ::: siteSub ::
-[Home](/pages/index.html) > [Vade](/pages/vade.html)
+[Home](/index.html) > [Vade](/pages/vade.html)
 :::
 
 Here you learn about the basics of BASIC, so to speak. This chapter deals with the way a SmallBASIC program composed.
