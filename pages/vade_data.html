@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | vade_data</title>
+  <meta name="description" content="SmallBASIC | One more basic">
+  <link rel="canonical" href="/vade_data.html">
+  <link rel="keywords" href="vade_data">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+</head>
+  <body>
+<div class="wrapAll clearfix">
+  <div class="sidebar">
+    <div class="logo">
+      <a href="/index.html"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+    </div>
+    <div class="navigation">
+      <h4>SmallBASIC</h4>
+      <ul>
+        <li><a href="/index.html">Main page</a></li>
+        <li><a href="/pages/download.html">Download</a></li>
+        <li><a href="/pages/reference.html">Language reference</a></li>
+        <li><a href="/pages/samples.html">Code library</a></li>
+      </ul>
+      <hr class="menuSeparator"/>
+      <ul>
+        <li><a href="/pages/articles.html">Artices</a></li>
+        <li><a href="/pages/community.html">Community</a></li>
+        <li><a href="/pages/changelog.html">ChangeLog</a></li>
+        <li><a href="/pages/screenshots.html">Screenshots</a></li>
+        <li><a href="/pages/links.html">Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsLeft">
+        <ul>
+          <li><a href="#" class="active">Article</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/issues">Talk</a></li>
+        </ul>
+      </div>
+      <div id="simpleSearch">
+        <div id="submitSearch"></div>
+        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
+              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="l" value="Visual Basic">
+          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+        </form>
+      </div>
+      <div class="tabsRight">
+        <ul>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/vade_data.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/vade_data.markdown">View history</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="article">
+<h1 id="data">Data</h1>
+<blockquote>
+<p>Written by Elmar Vogt, Fürth, GERMANY</p>
+</blockquote>
+<div class="siteSub">
+<p><a href="/index.html">Home</a> &gt; <a href="/pages/vade.html">Vade</a></p>
+</div>
+<p>In this chapter, the Vademecum introduces you to the various ways SmallBASIC handles program data – both simple variables and more complex structures.</p>
+<h2 id="a-note-on-types">A Note on Types</h2>
+<p>SmallBASIC is <strong>dynamically typed language</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. This means that one and the same variable can hold numerical values and strings at different times. Furthermore, necessary conversions are done automatically on the fly, for example when a string is used as the parameter for a numerical function:</p>
+<pre><code>x= &quot;3.141&quot;    &#39; string assignment
+y= cos(x)     &#39; no problem:
+&#39; x is automatically converted to a number
+print y
+
+&gt; -1</code></pre>
+<p>While there are also functions for explicit conversions, per default conversions are done »tacitly« by the interpreter, without any provisions in the SmallBASIC program, and there are also no »notifications« when a type conversion occurs. Another consequence is that the kind of data contained in a variable (or the structure of a map, see ) is only determined at runtime.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> It is up to the programmer to ensure that his code will »expect the unexpected« and be able to cope with any data it is fed with.</p>
+<h2 id="simple-variables">Simple Variables</h2>
+<p>Simple variables <strong>need not be declared</strong>; they come into existance by their first appearance in the source code. If they are not created through an assignment, they will be initiated to the value »$0$« (or, equivalently, to the empty string »&quot;&quot;«. (This example admittedly looks a little silly.)</p>
+<p><strong>Value assignment</strong> is done with the operator: The value to the right of it (which may be another variable, a literal, or a more complicated expression) is assigned to the variable on the left:<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<pre><code>x= 20
+y= 10
+z= x+y
+? z
+
+&gt;30
+
+a= &quot;Hello world&quot;
+? a
+
+Hello world
+
+&quot;Goodbye world&quot;= q</code></pre>
+<p>The last line will cause an error, since the operands are in the wrong order: It’s not possible to assign a variable like to a literal, only the other way around.</p>
+<p>Historically, BASIC required the keyword before an assignment:</p>
+<pre><code>let x=20</code></pre>
+<p>SmallBASIC offers you the option to use this syntax variant for compatibility reasons (read: nostalgia), but it’s deprecated.</p>
+<h3 id="numbers">Numbers</h3>
+<p>Many languages have different types for various flavours of numbers – signed or unsigned integers, reals, etc. – In contrast, SmallBASIC only has a single class of numbers.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>SmallBASIC numbers can have absolute values roughly between $2.2 10^{-208}$ (smaller values are considered $0$) and $1.810^{308}$ (larger values raise a flag (for »infinity«).</p>
+<h3 id="strings">Strings</h3>
+<p>Strings are chains of one or several letters, used to represent words, sentences or complete texts. A string consisting of zero letters is called an »empty« string. (While I have a strong hunch that strings are internally represented with UTF-8 unicode characters, it’s probably safer to only assign ASCII letters to them.)</p>
+<pre><code>my_name= &quot;Elmar Vogt&quot;
+? &quot;Hello, my name is &quot;, my_name
+
+&gt; Hello, my name is Elmar Vogt</code></pre>
+<p>Strings are dynamic objects in , meaning that they have no predefined length: In the course of a program, they can change their length arbitrarily, and there is no need to define a maximum length for them. A theoretical upper length limit is set at 2 billion characters.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<p><strong>String concatenation</strong> is done with the $+$ operator:</p>
+<pre><code>my_name= &quot;Elmar Vogt&quot;
+greeting= &quot;Hello, my name is &quot;
+welcome= greeting + name
+? welcome
+
+&gt; Hello, my name is Elmar Vogt</code></pre>
+<p>The $+$ operator combines the string operands to the left and to the right of it to a new, third string, the length of which is the sum of the individual strings’ lengths. If either the left or the right operand is a number – a literal or a variable –, then this operand will be converted to a string before the concatenation. For example, a variable with the value would be converted to a string of two characters, namely and .<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>The <strong>length</strong> of a string is simply the number of characters currently contained in the string:<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<pre><code>? len(&quot;Hello world&quot;)
+
+&gt; 11</code></pre>
+<p><strong>String indexing</strong> is done with the first character of a string being considere to be at position $1$:<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<pre><code>? mid(&quot;Help me&quot;, 4, 1)
+
+&gt; p</code></pre>
+<p>This also means that the index of the <em>last</em> character of a string is equivalent to its length:<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<pre><code>z= &quot;Help me&quot;
+? mid(z, len(z), 1)
+
+&gt; e</code></pre>
+<p>A loop designed to iterate over all characters in a string must thus look like this:</p>
+<pre><code>for i=1 to len(x)
+    ...
+next i</code></pre>
+<p>Note that this in contrast with the use of arrays (see below), where the first array element has the index $0$, and for an array with $n$ elements the highest index is $n-1$.</p>
+<h2 id="complex-data-structures">Complex data structures</h2>
+<p>Beside simple variables and literals, SmallBASIC also offers the option of composing arbitrarily complex<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> variable structures. These come in two flavours:</p>
+<p>Simple arrays (), and maps ().</p>
+<p>From ’s point of view, both are the same. Technically, arrays are simply a subset of possible maps, but to make it easier to grasp the concept, we’ll treat both as different entities for the moment.</p>
+<p>In contrast to simple variables, complex data structures <strong>must be declared before use</strong> with the statement.</p>
+<pre><code>dim x</code></pre>
+<p>Since (almost) all variables are handled dynamically in SmallBASIC and can change their structure during their lifetime, it is neither necessary nor useful to define details or the size of the data structure at hand.</p>
+<h3 id="arrays-array">Arrays <span id="array" label="array">[array]</span></h3>
+<p>Arrays are the more simple way of agglomerating data into a single variable. SmallBASIC treats them much like the way other programming languages do. An array holds a number of variables which are accessed by means of the array name, and a numerical index, pretty much like a street address is a combination of the street’s name, and a house number. To access an array member, its name is followed by the index in parentheses :</p>
+<pre><code>hoogla(i)= boogla(250)</code></pre>
+<p>will assign the value of ’s 250th member to the member of with the numberical index .</p>
+<p>Array members can be of <strong>mixed content</strong>, ie it’s perfectly okay for one member of an array to hold a number, and for a different member of the same array to hold a string.</p>
+<p>Arrays must be <strong>defined before use</strong>, and while they are dynamic and can change their size on the fly, room for an array member must be defined before it can be used, by using the statement along with a numerical value:</p>
+<pre><code>dim hoogla(250)</code></pre>
+<p>will define to initially have $251$ members with indices $0..250$. This <strong>array indexing</strong> contrasts with the indexing of strings.</p>
+<p>Array members can be erased from the array with . Note that if the $i$th member of an array is deleted, then all array members with higher indices »move down« one notch, ie the value of will now be in .</p>
+<p>Likewise, new array members can be appended to an array with the operator .<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<pre><code>dim hoogla(250)
+hoogla &lt;&lt; 132</code></pre>
+<p>means that now will have $252$ members, and the new $252$nd member (with the index $251$) will have the value $132$.</p>
+<p>Arrays are not limited to being a chain of values. <strong>Several array dimensions</strong> can be defined to render arrays of »rectangular«, »cubic«, »tesseractic« or even higher dimensions:</p>
+<pre><code>dim hoogla(10, 20, 10)
+hoogla(5, 9, 8)= &quot;blubbdi&quot;</code></pre>
+<p>will create an array with $11 21 11$ members, or access one particular member, resp. For obvious reasons, it’s not possible to members of such a higher-dimensional array in the abovementioned way. Likewise, using the appendix operator with a higher-dimensional array should be avoided.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+<p>The maximum array size is virtually unlimited. But note that with the introduction of new array dimensions, the space and performance requirements increase exponentially.</p>
+<h3 id="maps-map">Maps <span id="map" label="map">[map]</span></h3>
+<p>Maps differ from arrays in two ways: Firstly, while arrays always have a linear or »rectangular« structure, <strong>maps are »data trees«, where each map member can be a simple variable, an array or a complete map</strong>. This structure can become extremely complex during the runtime of a program. As explained in , since there is no fixed type system, and hence no predetermined structure for any given map, this means that an SmallBASIC program must »anticipate all known unknowns«.</p>
+<p>Secondly, map indices aren’t limited to a consecutive list of integer numbers. Rather, <strong>map members can be accessed by any simple variable – string, integer or real</strong>. This leads to subtle syntax differences when accessing them and has a number of other consequences. For example, it’s not straightforward anymore to write a loop which will iterate over all map members, or determine the number of map elements. The concept is probably more easy to grasp when one doesn’t think of maps as of traditional arrays, but to consider each member a pair of a »value«, which is stored in the map, and a »key« (the index) by which it is accessed.</p>
+<p>These two features in combination with ’s automatic conversion features lead to the fact that <strong>it is fairly easy to inadvertently convert an array into a map</strong>, a conversion from which there is no easy way back, and thus to create havoc at runtime.</p>
+<p><strong>Map initialisation</strong> can be done by in three ways: Either explicitly, by using the keyword <em>without</em> an array size (ie, simply is enough), through the keyword (see below), or implicitly by assigning the map members values by a sequence of comma-seperated values, enclosed in square brackets :</p>
+<pre><code>hoogla= [10, 9, 8, 7, 6, 1]</code></pre>
+<p>initialises a simple map with $6$ members with automatically generated indices from $0$ to $5$.</p>
+<p>To create more complex structures, each map member which is a map again must be enclosed in brackets. For example,</p>
+<pre><code>boogla= [1, 2, [4, 5, 6, 7], 2390023, [3.1415926, &quot;hoogla!&quot;], 99]</code></pre>
+<p>can be visualized in a structure like this:</p>
+<pre><code>1
+2
+4          5          6         7
+3.1415926  &quot;hoogla!&quot;
+99</code></pre>
+<p>To initialise a map in that way, it does <em>not</em> need to be defined with beforehand – actually, a square bracket initialisation will delete any variable with the same name that may have been existing before, and create a completely new one.</p>
+<p>Furthermore, the keyword can be used as an alternative way to initialize a map (though not an array, confusingly). Basically, what you do is that you pass your map members in the shape of a JSON-formatted string<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> to the function:</p>
+<pre><code>boogla= array(&quot;[1, 2, [4, 5, 6, 7], [3.1415926, \&quot;hoogla!\&quot;], 99]&quot;)</code></pre>
+<p>is equivalent to the map definition above. Be aware that you pass <em>all</em> map members to wrapped in a single string, rather than as individual elements. Likewise, if you use string variables in your map, these must be escaped with backslashes inside the argument (ie, rather than simply .</p>
+<p>A further neat feature is that maps of any complexity can be serialized with a simple command to a file. will not only display a single member, but will format the output as a JSON string. This means – without going into too many details regarding file handling here – that writing a complete map to a file and loading it again at a later stage are simple three-liner tasks.</p>
+<p><strong>Access to map members</strong> is possible through two different notations. The first one contains the key to the map member in parentheses after the map name:</p>
+<pre><code>boogla(3.1415926)= ...</code></pre>
+<p>which is similar to an array access, with the exception that the key may be a real value, or even a string:</p>
+<pre><code>boogla(&quot;nuffda&quot;)= ...</code></pre>
+<p>The second option uses the »dot notation« familiar from other languages like »C«, seperating the name from the member key with a dot :</p>
+<pre><code>boogla.nuffda= ...</code></pre>
+<p>The two notations are for the most part equivalent, while the second alternative makes sure that you’re accessing a map, not an array.</p>
+<p>For more complex maps with nested structures, you simply »chain« your notations to access the lower-level members:</p>
+<pre><code>boogla.nuffda.oingaboinga= ...</code></pre>
+<p>The notations can be mixed within a single variable access:</p>
+<pre><code>dim boogla
+z.tschaka= &quot;Hello, world!&quot;
+boogla(&quot;gloegk&quot;)= z
+? boogla.gloegk(&quot;tschaka&quot;)
+
+&gt; Hello, world!</code></pre>
+<p>But this is not recommended, because it is too easy to inadvertently mess up your dots and parentheses and accessing a non-existent map member.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<p>An interesting feature is that with the parentheses notation, a variable may be used as key, which isn’t possible with dot notation:</p>
+<pre><code>z.tschaka= &quot;Hello, world!&quot;
+target= &quot;tschaka&quot;
+? z(target), z.target
+
+&gt; Hello, world! 0</code></pre>
+<p>When accessing in the third line, in the first term , is replaced with its value by the interpreter, before looking the map member with that name up and returning the result, . In the second term , the interpreter looks for a member of with the key , can’t find one, and tacitly creates a new one which is initialized with the value $0$.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
+<p>This makes the parentheses notation particularly useful when you want to decide at runtime which map member you want to access: With dot notation, access is fixed, but with parentheses notation you can pass a variable to determine which member to use in that instance.</p>
+<h3 id="clen"><span id="cLen" label="cLen">[cLen]</span></h3>
+<p>For both arrays and maps, will give you the number of elements in the structure. But note that this isn’t the total number of elements, but only the number of elements in the »top dimension«.</p>
+<p>For example, when initializing an array as</p>
+<pre><code>boogla= [1, 2, [4, 5, 6, 7], 2390023, [3.1415926, &quot;hoogla!&quot;], 99]
+\end
+
+\Co{len(boogla)} will be $6$, as this is the number of first-dimension
+members, not 10, which would be the total number of elements.
+
+\subsection{Almost, but Not Quite the Same (Not a Rose by any other
+Name)}
+
+The \textbf{near-but-not-quite equivalency of maps and arrays} leads to
+interesting consequences, read: causes for unexpected trouble. For
+example, in the following code
+
+\begin{lstlisting}
+dim x
+dim z
+x(&quot;hello&quot;)= 10
+x(5)= 55
+z(5)= 10
+z(&quot;hello&quot;)= 55</code></pre>
+<p>the third and fourth line cause no errors, but the fifth one does. Why is this? The cause is, that after the command, and essentially are still shapeless somethings, but the first access with a string for an index forces to become a map (line 3). Accessing it <em>afterwards</em> with a numerical key is no problem at all. on the other hand is firstly accessed as an array (line 5), and this leads to problems, because neither has its size been defined, nor has the appendix operator been used.</p>
+<p>Likewise,</p>
+<pre><code>dim x
+
+z= &quot;hello&quot;
+x(z)= 3.14
+x &lt;&lt; 99</code></pre>
+<p>throws an error in the last line, namely »index out of range«. The first use of forced it to become a map, but unfortunately, the appendix operator is only defined for arrays,<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> hence the error.</p>
+<p>Finally,</p>
+<pre><code>zoogla= [[1, 2, 3], [10, 11, 12], [99, 98, 97]]</code></pre>
+<p>looks tantalizingly like a definition for a two-dimensional array, but it actually is a map – which you find out when you try to access it like an array; will cause an »out of range« error. Only will work.</p>
+<p>In a nutshell: Try to avoid arrays whenever possible. In the long run, you’re better off if you force your structures to be maps and treat them accordingly.</p>
+<h2 id="pointers-and-references">Pointers and References</h2>
+<h3 id="referencing-variables">Referencing Variables</h3>
+<p>SmallBASIC also provide a reference operator. If you’re familiar with »C«, which is explicitly built around the notion of pointers and references, this concept will be nothing new for you. The essence is that the reference operator , applied to any variable, will not return the variable’s <em>value</em>, but its <em>address</em>, ie its memory location. In other words, after</p>
+<pre><code>y= @x</code></pre>
+<p>and will point to the same variable, and changes made to will always be reflected by :</p>
+<pre><code>y= @x
+x= 10
+? y
+x= 20
+? x, y
+
+&gt; 10
+&gt; 20        20</code></pre>
+<p>Unfortunately, this is a somewhat <a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>, because the reverse isn’t true. Continue the above code:</p>
+<pre><code>...
+y= 50
+? x, y
+
+&gt; 20        50</code></pre>
+<p>What gives? When executing , the value $50$ is assigned to the variable , which from this point on no longer holds ’s address; the link between the two variables is broken, and the variables go their seperate ways. So, as long as is a reference to , it will always reflect the current value of , but the opposite isn’t true: Once ’s value changes, it is a reference to no more. So, when applied <strong>to simple variables, the reference operator works »read-only«.</strong><a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
+<p>The situation changes when is applied to a map, and a member of that map is overwritten:</p>
+<pre><code>dim boogla
+boogla(&quot;honk&quot;)= 20
+y= @boogla
+y.honk= 99
+? boogla.honk
+
+&gt; 99</code></pre>
+<p>performs as expected, and is now a »true« copy of . The reason is that the line doesn’t assign a new value to , but to a member of , hence ’s »integrity« remains unviolated. <strong>With maps, the reference operator creates two-way equivalences.</strong> Of course, when you assign a value to itself (rather than to a member of ), you will break that relationship like with a simple variable.</p>
+<p>Note that the use of the reference operator here differs slightly from that in passing parameters to subroutines (see ).</p>
+<h3 id="referencing-routines">Referencing Routines</h3>
+<p>The reference operator works not only on variables, but also on routines:</p>
+<pre><code>boogla= @honk
+zoogla= @buzz
+call boogla, 1, 2, 3
+call @honk, 4, 5, 6
+? call(zoogla, 5)
+
+sub honk(x, y, z)
+    print x*y*z
+end
+func buzz(x)
+    buzz= x*x
+end
+
+&gt; 6
+&gt; 120
+&gt; 25</code></pre>
+<p>The keyword is used to invoke a routine. It is followed by the reference to the routine, or a variable which holds the reference,<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>, and a comma-separated list of parameters. Note that if a procedure is ed, the parameter list <em>must not</em> be in parentheses, while when you a function, it <em>must</em>.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>sometimes also referred to somehow incorrectly as a »typeless« language<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Contrast this behaviour to other languages like »C«, where a strict type discipline is enforced.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>The command used below is a shorthand for : It will display the current values of all the following literals or variables on the screen.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>While SmallBASIC internally also represents numbers either as integers or, if they carry fractions or exceed the limits for integers, as 64 bit reals, this is invisible to the user, since all conversions are done implicitly and automatically when required.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Even before that SmallBASIC tends to get too tediously slow for all practical purposes.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>Obviously, if <em>both</em> operands are numbers, $+$ will perform a simple addition and assign the sum of both values to the variable on the left of the equality sign.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>The function returns the length of the following argument in brackets<a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>The function returns $z$ characters from the string $x$, beginning with the $y$th<a href="#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>The function returns the length of its string argument, in number of characters<a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>»Complex« here denoting intricate constructs, not the mathematical notion of complex numbers<a href="#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>Sorry for the ugly typography here.<a href="#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>While technically it works, it will actually transform the array into a <em>one-dimensional</em> array, arrange the previous values sequentially and finally append the new array member. But this is dark voodoo and should not be practiced. Besides, there is no guarantee that this behaviour will be retained in future versions of .<a href="#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>»JavaScript Object Notation«, see eg <a href="http://en.wikipedia.org/wiki/JSON">Wikipedia</a> for details<a href="#fnref13" class="footnote-back">↩</a></p></li>
+<li id="fn14"><p>Since it isn’t necessary to declare map members before accessing them, you will not get a warning in such a case and may spend many hours debugging.<a href="#fnref14" class="footnote-back">↩</a></p></li>
+<li id="fn15"><p>Wrap your heads around this, folks. It’s important.<a href="#fnref15" class="footnote-back">↩</a></p></li>
+<li id="fn16"><p>and it <em>can</em> only be defined for arrays, because what would be the key for the value appended, if the recipient was a map?<a href="#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn17"><p>We’ve all been there…<a href="#fnref17" class="footnote-back">↩</a></p></li>
+<li id="fn18"><p>and is in the words of its inventor, »a bit useless«<a href="#fnref18" class="footnote-back">↩</a></p></li>
+<li id="fn19"><p>If you think about it, only the latter case is really really useful.<a href="#fnref19" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+</div>
+    <div class="pagefooter">
+      This page was last edited on Sat, 24 Mar 2018 08:08:27 +1000
+ | Markdown processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
+      | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

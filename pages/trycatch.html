@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SmallBASIC | index</title>
+  <title>SmallBASIC | trycatch</title>
   <meta name="description" content="SmallBASIC | One more basic">
-  <link rel="canonical" href="/index.html">
-  <link rel="keywords" href="index">
+  <link rel="canonical" href="/trycatch.html">
+  <link rel="keywords" href="trycatch">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
 </head>
@@ -55,30 +55,43 @@
       </div>
       <div class="tabsRight">
         <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/index.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/index.markdown">View history</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/trycatch.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/trycatch.markdown">View history</a></li>
         </ul>
       </div>
     </div>
 <div class="article">
-<h1 id="welcome-to-smallbasic">Welcome to SmallBASIC</h1>
+<h1 id="trycatch">Try/Catch</h1>
 <blockquote>
-<p>one more basic</p>
+<p>TRY/CATCH is used to trap errors allowing a program to recover without having to be restarted.</p>
 </blockquote>
-<div class="articleRight">
-<div class="articleRightInner">
-<figure>
-<img src="/images/screenshots/c_hex.png" alt="Spiral" /><figcaption>Spiral</figcaption>
-</figure>
-</div>
-</div>
-<p>SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for everyday calculations, scripts and prototypes. SmallBASIC includes trigonometric, matrices and algebra functions, a built in IDE, a powerful string library, system, sound, and graphic commands along with structured programming syntax.</p>
-<p><a href="/pages/guide.html">Read more</a></p>
-<h2 id="smallbasic-version-0.12.10-has-been-released">SmallBASIC version 0.12.10 has been released</h2>
-<p><a href="/posts/2017-24-12-1.html">Read more</a></p>
+<p><strong>TRY</strong></p>
+<p>The TRY statement introduces a TRY/CATCH block.</p>
+<p><strong>CATCH [var | expr]</strong></p>
+<p>The CATCH statement is used to CATCH an run-time error. This is typically used with errors raised when calling a file system command that cannot be completed, for example attempting to open a non-existent file.</p>
+<p>The CATCH statement has two modes. You can supply a variable argument to store the error string. Alternatively you can supply an expression. When the raised error matches the (String) expression, the error will be caught.</p>
+<p>When using the expression mode, you can supply a succession of CATCH statements to handle various error messages separately.</p>
+<p><strong>END TRY</strong></p>
+<p>The <strong>END TRY</strong> statement marks the end of a TRY/CATCH block.</p>
+<p><strong>THROW</strong></p>
+<p>The THROW command (previously known as <strong>RTE</strong>) is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program.</p>
+<p><strong>Example</strong></p>
+<pre><code>try
+ open &quot;com2000:&quot; AS #1
+catch err
+  ? &quot;in catch: open failed&quot;;err
+end try</code></pre>
+<p><strong>Try/Catch in other languages</strong></p>
+<ul>
+<li><a href="http://www.cplusplus.com/doc/tutorial/exceptions">C++</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch">Javascript</a></li>
+<li><a href="http://msdn.microsoft.com/en-AU/library/fk6t46tz.aspx">Visual Basic</a></li>
+</ul>
+<p><strong>History</strong></p>
+<p>The TRY/CATCH mechanism was introduced in version 0.11.15.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 19:25:25 +1000
+      This page was last edited on Mon, 19 Mar 2018 20:30:08 +1000
  | Markdown processed with
       <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
       | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>

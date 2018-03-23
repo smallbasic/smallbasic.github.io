@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | TLOAD</title>
+  <meta name="description" content="Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.">
+  <link rel="canonical" href="598">
+  <link rel="keywords" href="TLOAD file, BYREF var [, type]">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+</head>
+  <body>
+<div class="wrapAll clearfix">
+  <div class="sidebar">
+    <div class="logo">
+      <a href="/index.html"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+    </div>
+    <div class="navigation">
+      <h4>SmallBASIC</h4>
+      <ul>
+        <li><a href="/index.html">Main page</a></li>
+        <li><a href="/pages/download.html">Download</a></li>
+        <li><a href="/pages/reference.html">Language reference</a></li>
+        <li><a href="/pages/samples.html">Code library</a></li>
+      </ul>
+      <hr class="menuSeparator"/>
+      <ul>
+        <li><a href="/pages/articles.html">Artices</a></li>
+        <li><a href="/pages/community.html">Community</a></li>
+        <li><a href="/pages/changelog.html">ChangeLog</a></li>
+        <li><a href="/pages/screenshots.html">Screenshots</a></li>
+        <li><a href="/pages/links.html">Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsLeft">
+        <ul>
+          <li><a href="#" class="active">Article</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/issues">Talk</a></li>
+        </ul>
+      </div>
+      <div id="simpleSearch">
+        <div id="submitSearch"></div>
+        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
+              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="l" value="Visual Basic">
+          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+        </form>
+      </div>
+      <div class="tabsRight">
+        <ul>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/598-file-tload.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/598-file-tload.markdown">View history</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="article">
+  <h1>TLOAD</h1>
+  <blockquote>TLOAD file, BYREF var [, type]</blockquote>
+  <div class="siteSub">
+    <p>
+      <a href="/pages/index.html">Home</a> &gt;
+      <a href="/pages/reference.html">Reference</a> &gt;
+      <a href="/pages/file.html">File</a>
+    </p>
+  </div>
+</blockquote>
+<p>Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.</p>
+<p>Both these methods load a string/text file into an array.</p>
+<pre><code>
+&#39; TLOAD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-04
+&#39;with TLOAD you don&#39;t even have to dim your array to have it created
+me=&quot;TLOAD.bas&quot;
+TLOAD me,ta    &#39;&lt;==== it&#39;s all done in one line!
+&#39;show me
+for ln = 0 to ubound(ta)
+  ? ln;&quot; &quot;;ta(ln)
+next
+?
+?&quot;compare TLOAD above to INPUT method below to load array&quot;
+?
+&#39;compare to this
+dim ia()
+open me for input as #1
+while not eof(1)
+  input #1, aline
+  ia &lt;&lt; aline
+wend
+close #1            &#39;&lt;=== this took 7 lines
+&#39;show me again
+for ln = 0 to ubound(ia)
+  ? ln;&quot; &quot;;ia(ln)
+next
+pause
+</code></pre>
+<pre><code>
+&#39; See also: Home -- Articles -- Welcome to SmallBASIC -- *Arrays and Matrices*
+Option Base 1 &#39; Start arrays at 1 (not 0)
+&#39; Save few text lines in demo file:
+s1 = &quot;xx_1 xx_2&quot;
+s2 = &quot;yy_1      yy_2  yy_3&quot;
+s3 = &quot;  zz_1   zz_2 &quot;
+s4 = &quot;JEQ&quot;
+Open &quot;demo.tmp&quot; For Output As #1
+ Print #1, s1
+ Print #1, s2
+ Print #1, s3
+ Print #1, s4
+Close #1
+&#39; Load demo file into 1-dimension array:
+Tload &quot;demo.tmp&quot;, lines, 0
+Const MAX_LINES = Ubound(lines)
+Const BLANK = &quot; &quot;
+&#39; Convert array to nested array and display it:
+For i = 1 To MAX_LINES
+  
+  &#39; Split array into words, i.e. nested array; space, &quot; &quot;, is the delimiter:
+  Split Squeeze(lines(i)), BLANK, lines(i)
+  ?
+  ? &quot;Line &quot;; i; &quot;:   &quot;; lines(i)
+  &#39; Print word for each column:
+  For w = 1 To Len(lines(i))
+    ?  &quot;Column &quot;; w; &quot;: &quot;; lines(i)(w) &#39; (i)(w) is a nested array...
+  Next
+Next
+Pause
+</code></pre>
+  <div class="lavenderBox">
+    <div class="header">File</div>
+    <div class="linklist">
+      <a href="/reference/580.html">ACCESS </a>&nbsp;
+      <a href="/reference/602.html">BGETC </a>&nbsp;
+      <a href="/reference/582.html">BLOAD </a>&nbsp;
+      <a href="/reference/583.html">BPUTC </a>&nbsp;
+      <a href="/reference/584.html">BSAVE </a>&nbsp;
+      <a href="/reference/585.html">CHDIR </a>&nbsp;
+      <a href="/reference/586.html">CHMOD </a>&nbsp;
+      <a href="/reference/587.html">CLOSE </a>&nbsp;
+      <a href="/reference/588.html">COPY </a>&nbsp;
+      <a href="/reference/589.html">DIRWALK </a>&nbsp;
+      <a href="/reference/603.html">EOF </a>&nbsp;
+      <a href="/reference/604.html">EXIST </a>&nbsp;
+      <a href="/reference/605.html">FILES </a>&nbsp;
+      <a href="/reference/607.html">FREEFILE </a>&nbsp;
+      <a href="/reference/590.html">INPUT </a>&nbsp;
+      <a href="/reference/608.html">INPUT </a>&nbsp;
+      <a href="/reference/591.html">KILL </a>&nbsp;
+      <a href="/reference/592.html">LOCK </a>&nbsp;
+      <a href="/reference/609.html">LOF </a>&nbsp;
+      <a href="/reference/593.html">MKDIR </a>&nbsp;
+      <a href="/reference/594.html">OPEN </a>&nbsp;
+      <a href="/reference/595.html">RENAME </a>&nbsp;
+      <a href="/reference/596.html">RMDIR </a>&nbsp;
+      <a href="/reference/597.html">SEEK </a>&nbsp;
+      <a href="/reference/610.html">SEEK </a>&nbsp;
+      <a href="/reference/598.html"><strong>TLOAD</strong> </a>&nbsp;
+      <a href="/reference/599.html">TSAVE </a>&nbsp;
+      <a href="/reference/600.html">WRITE </a>&nbsp;
+    </div>
+    <div class="subtitle">
+      If there is insufficient information on this page and you wish learn more about TLOAD,
+      please send an email to smallbasic@gmail.com. You can help to improve information about
+TLOAD by submitting a pull request, click View Source for details. Note, an offline
+      language reference text file is also avialable - see the Download section.
+    </div>
+  </div>
+  <div class="categories">
+    <a href="/pages/console.html">Console </a>
+    <a href="/pages/data.html">Data </a>
+    <a href="/pages/date.html">Date </a>
+    <a href="/pages/file.html">File </a>
+    <a href="/pages/graphics.html">Graphics </a>
+    <a href="/pages/language.html">Language </a>
+    <a href="/pages/math.html">Math </a>
+    <a href="/pages/string.html">String </a>
+    <a href="/pages/system.html">System </a>
+  </div>
+</div>
+    <div class="pagefooter">
+      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+ | Markdown processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
+      | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

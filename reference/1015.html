@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | DEFINEKEY</title>
+  <meta name="description" content="Binds a keystroke to a user defined function">
+  <link rel="canonical" href="1015">
+  <link rel="keywords" href="DEFINEKEY k,sub">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+</head>
+  <body>
+<div class="wrapAll clearfix">
+  <div class="sidebar">
+    <div class="logo">
+      <a href="/index.html"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+    </div>
+    <div class="navigation">
+      <h4>SmallBASIC</h4>
+      <ul>
+        <li><a href="/index.html">Main page</a></li>
+        <li><a href="/pages/download.html">Download</a></li>
+        <li><a href="/pages/reference.html">Language reference</a></li>
+        <li><a href="/pages/samples.html">Code library</a></li>
+      </ul>
+      <hr class="menuSeparator"/>
+      <ul>
+        <li><a href="/pages/articles.html">Artices</a></li>
+        <li><a href="/pages/community.html">Community</a></li>
+        <li><a href="/pages/changelog.html">ChangeLog</a></li>
+        <li><a href="/pages/screenshots.html">Screenshots</a></li>
+        <li><a href="/pages/links.html">Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsLeft">
+        <ul>
+          <li><a href="#" class="active">Article</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/issues">Talk</a></li>
+        </ul>
+      </div>
+      <div id="simpleSearch">
+        <div id="submitSearch"></div>
+        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
+              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="l" value="Visual Basic">
+          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+        </form>
+      </div>
+      <div class="tabsRight">
+        <ul>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/1015-console-definekey.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/1015-console-definekey.markdown">View history</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="article">
+  <h1>DEFINEKEY</h1>
+  <blockquote>DEFINEKEY k,sub</blockquote>
+  <div class="siteSub">
+    <p>
+      <a href="/pages/index.html">Home</a> &gt;
+      <a href="/pages/reference.html">Reference</a> &gt;
+      <a href="/pages/console.html">Console</a>
+    </p>
+  </div>
+</blockquote>
+<p>Binds a keystroke to a user defined function</p>
+<pre><code>
+sub moveLeft
+   if (block.x &gt; 0) then
+     moveBlock -1, 0
+   fi
+end
+defineKey 0xFF04, moveLeft
+</code></pre>
+<pre><code>
+&#39; DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
+&#39;remember Etch-A-Sketch?
+&#39;definekey key,sub
+&#39;example: 
+definekey 0xFF04, moveleft   &#39;press left arrow
+definekey 0xFF05, moveright  &#39;press right arrow
+definekey 0xFF09, moveup     &#39;press up arror
+definekey 0xFF0A, movedown   &#39;press down arrow
+definekey 99, togglecolor    &#39;press c for color toggle black (erase), blue, red, white
+definekey 115, togglestepper &#39;press s for stepper 1,5,10,50
+definekey 27, quit           &#39;press esc to quit
+colr=15
+stepper=1
+tx=xmax/2
+ty=ymax/2
+pset tx,ty,0
+while 1
+  color 0,0
+  locate 0,0:? spc(100)
+  color colr,0
+  locate 0,0
+  if colr=0 then color colr,15
+  ?&quot;tx= &quot;;tx;&quot; ty= &quot;;ty;&quot; c= &quot;;colr;&quot; s=&quot;;stepper;
+  if colr=0 then color colr,0
+  lc=(lc+1) mod 2
+  if lc then pset step 0,0,14 else pset step 0,0,0
+  delay 60
+wend
+sub moveleft
+  pset step 0,0
+  if tx-stepper&gt;=0 then tx-=stepper:line step -stepper,0 else beep
+end
+sub moveright
+  pset step 0,0
+  if tx+stepper&lt;=xmax then tx+=stepper:line step stepper,0 else beep
+end
+sub moveup
+  pset step 0,0
+  if ty-stepper&gt;=0 then ty-=stepper:line step 0,-stepper else beep
+end
+sub movedown
+  pset step 0,0
+  if ty+stepper&lt;=ymax then ty+=stepper:line step 0,stepper else beep
+end
+sub togglecolor
+  select case colr
+  case 0 : colr=9
+  case 9 : colr=12
+  case 12: colr=15
+  case 15: colr=0
+  end select
+end
+sub togglestepper
+  select case stepper
+  case 1 : stepper=5
+  case 5 : stepper=10
+  case 10: stepper=50
+  case 50: stepper=1
+  end select
+end
+sub quit
+  stop
+end
+</code></pre>
+<pre><code>
+&#39; Note:
+&#39; * You may Include &quot;definekey_const.bas&quot; file in another file to make your code more clear.
+&#39;
+&#39; * Created using SmallBASIC version 0.12.2 (on Linux Mint 17.3).
+&#39; * More keys might be included in future/other versions of SmallBASIC.
+&#39; * Values for DEFINEKEY cannot be used for INKEY.
+&#39; * I could not verify all keys (especially CTRL &amp; ALT seems not to work).
+&#39; * Key codes are from &quot;keymap.h&quot;: https://sourceforge.net/p/smallbasic/code/HEAD/tree/trunk/smallbasic/src/keymap.h
+&#39;
+&#39; Demo - add these lines to another BAS file:
+&#39; ------------------------------------------
+&#39;  Include &quot;definekey_const.bas&quot;
+&#39;
+&#39;  Definekey DK_LEFT, left_arrow
+&#39;
+&#39;  Sub left_arrow: i++: ? i; &quot; &quot;;
+&#39;  End Sub
+&#39;
+&#39;  ? &quot;Press Left-Arrow key, or Ctrl+B to stop...&quot;: Pause
+&#39;  While 1: Wend
+&#39; ------------------------------------------
+&#39; definekey_const.bas - DEFINEKEY key codes (keymap.h; 30/4/2010)
+&#39; Note: bind a regular character with &#39;DEFINEKEY Asc(&quot;a&quot;), sub&#39;
+Const IS_PALM_OS = (Left(OSNAME, 1) = &quot;P&quot;) &#39; Else is_UNIX / is_Windows
+&#39; PalmOS - H/W keys:
+Const DK_PALM_PGUP  = 0xFF01
+Const DK_PALM_PGDN  = 0xFF02
+Const DK_PALM_BTN1  = 0xFF03
+Const DK_PALM_BTN2  = 0xFF04
+Const DK_PALM_BTN3  = 0xFF05
+Const DK_PALM_BTN4  = 0xFF06
+Const DK_PALM_FIND  = 0xFF07
+Const DK_PALM_CALC  = 0xFF08
+Const DK_BREAK      = Iff(IS_PALM_OS, DK_PALM_BTN4, 0x3) &#39; MemoPad, Ctrl+C
+Const DK_DELETE     = 127 &#39; (in keymap.h: DELETE = 8,  BACKSPACE = 127)
+Const DK_BACKSPACE  = 8
+Const DK_TAB        = 9
+Const DK_ENTER      = 13  &#39; 13 is CR (in keymap.h: ENTER = &#39;\\n&#39;)
+&#39; Common with Handhelds (0xFF00 to 0xFF0F):
+Const DK_PGUP       = 0xFF01
+Const DK_PRIOR      = DK_PGUP
+Const DK_PGDN       = 0xFF02
+Const DK_NEXT       = DK_PGDN
+Const DK_LEFT       = 0xFF04
+Const DK_RIGHT      = 0xFF05
+Const DK_UP         = 0xFF09
+Const DK_DN         = 0xFF0A
+Const DK_DOWN       = DK_DN
+&#39; Common on PCs (0xFF10 to 0xFF1F):
+Const DK_INSERT     = 0xFF10
+Const DK_HOME       = 0xFF11
+Const DK_END        = 0xFF12
+&#39; Other application keys:
+Const DK_MENU       = 0xFF1F
+&#39; Function keys (16 codes), e.g. Definekey DK_FUNC(1):
+Def DK_FUNC(x)      = 0xFFF0 + x   &#39; -- Verified with 1-12 (F1-F12)
+Def DK_SFUNC(x)     = 0xFFE0 + x   &#39; ( ...is it for F13-F16 ? )
+&#39; Control keys, e.g. Definekey DK_CTRL(ASC(&quot;R&quot;)):
+Def DK_CTRL(x)      = x - 64   &#39; x must be a capital character
+&#39; Alt keys, e.g. Definekey DK_ALT(ASC(&quot;r&quot;)):
+Def DK_ALT(x)       = 0xFF20 + (x - Iff(x &gt;= 97, 57, 31))
+&#39; Keypad:
+Const DK_KP_DIV     = 0xFFDA
+Const DK_KP_MUL     = 0xFFDB
+Const DK_KP_MINUS   = 0xFFDC
+Const DK_KP_PLUS    = 0xFFDD
+Const DK_KP_ENTER   = 0xFFDE
+Const DK_KP_HOME    = 0xFFD7
+Const DK_KP_UP      = 0xFFD8
+Const DK_KP_PGUP    = 0xFFD9
+Const DK_KP_LEFT    = 0xFFD4
+Const DK_KP_CENTER  = 0xFFD5
+Const DK_KP_RIGHT   = 0xFFD6
+Const DK_KP_END     = 0xFFD1
+Const DK_KP_DOWN    = 0xFFD2
+Const DK_KP_PGDN    = 0xFFD3
+Const DK_KP_INS     = 0xFFD0
+Const DK_KP_DEL     = 0xFFDF
+&#39; Mouse:
+Const DK_MK_PUSH    = 0xFFC0
+Const DK_MK_DRAG    = 0xFFC1
+Const DK_MK_MOVE    = 0xFFC2
+Const DK_MK_RELEASE = 0xFFC3
+Const DK_MK_WHEEL   = 0xFFC4
+Const DK_MK_FIRST   = DK_MK_PUSH
+Const DK_MK_LAST    = DK_MK_WHEEL
+</code></pre>
+  <div class="lavenderBox">
+    <div class="header">Console</div>
+    <div class="linklist">
+      <a href="/reference/521.html">AT </a>&nbsp;
+      <a href="/reference/522.html">BEEP </a>&nbsp;
+      <a href="/reference/538.html">CAT </a>&nbsp;
+      <a href="/reference/524.html">CLS </a>&nbsp;
+      <a href="/reference/1015.html"><strong>DEFINEKEY</strong> </a>&nbsp;
+      <a href="/reference/525.html">FORM </a>&nbsp;
+      <a href="/reference/539.html">INKEY </a>&nbsp;
+      <a href="/reference/527.html">INPUT </a>&nbsp;
+      <a href="/reference/528.html">LINEINPUT </a>&nbsp;
+      <a href="/reference/529.html">LINPUT </a>&nbsp;
+      <a href="/reference/530.html">LOCATE </a>&nbsp;
+      <a href="/reference/531.html">LOGPRINT </a>&nbsp;
+      <a href="/reference/532.html">NOSOUND </a>&nbsp;
+      <a href="/reference/533.html">PEN </a>&nbsp;
+      <a href="/reference/534.html">PLAY </a>&nbsp;
+      <a href="/reference/535.html">PRINT </a>&nbsp;
+      <a href="/reference/536.html">SOUND </a>&nbsp;
+      <a href="/reference/540.html">TAB </a>&nbsp;
+    </div>
+    <div class="subtitle">
+      If there is insufficient information on this page and you wish learn more about DEFINEKEY,
+      please send an email to smallbasic@gmail.com. You can help to improve information about
+DEFINEKEY by submitting a pull request, click View Source for details. Note, an offline
+      language reference text file is also avialable - see the Download section.
+    </div>
+  </div>
+  <div class="categories">
+    <a href="/pages/console.html">Console </a>
+    <a href="/pages/data.html">Data </a>
+    <a href="/pages/date.html">Date </a>
+    <a href="/pages/file.html">File </a>
+    <a href="/pages/graphics.html">Graphics </a>
+    <a href="/pages/language.html">Language </a>
+    <a href="/pages/math.html">Math </a>
+    <a href="/pages/string.html">String </a>
+    <a href="/pages/system.html">System </a>
+  </div>
+</div>
+    <div class="pagefooter">
+      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+ | Markdown processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
+      | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

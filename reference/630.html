@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | RGBF</title>
+  <meta name="description" content="Returns the RGB color codes for the specified values. Takes values 0..1 for each of the color.">
+  <link rel="canonical" href="630">
+  <link rel="keywords" href="RGBF (r, g, b)">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+</head>
+  <body>
+<div class="wrapAll clearfix">
+  <div class="sidebar">
+    <div class="logo">
+      <a href="/index.html"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+    </div>
+    <div class="navigation">
+      <h4>SmallBASIC</h4>
+      <ul>
+        <li><a href="/index.html">Main page</a></li>
+        <li><a href="/pages/download.html">Download</a></li>
+        <li><a href="/pages/reference.html">Language reference</a></li>
+        <li><a href="/pages/samples.html">Code library</a></li>
+      </ul>
+      <hr class="menuSeparator"/>
+      <ul>
+        <li><a href="/pages/articles.html">Artices</a></li>
+        <li><a href="/pages/community.html">Community</a></li>
+        <li><a href="/pages/changelog.html">ChangeLog</a></li>
+        <li><a href="/pages/screenshots.html">Screenshots</a></li>
+        <li><a href="/pages/links.html">Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsLeft">
+        <ul>
+          <li><a href="#" class="active">Article</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/issues">Talk</a></li>
+        </ul>
+      </div>
+      <div id="simpleSearch">
+        <div id="submitSearch"></div>
+        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
+              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="l" value="Visual Basic">
+          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+        </form>
+      </div>
+      <div class="tabsRight">
+        <ul>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/630-graphics-rgbf.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/630-graphics-rgbf.markdown">View history</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="article">
+  <h1>RGBF</h1>
+  <blockquote>RGBF (r, g, b)</blockquote>
+  <div class="siteSub">
+    <p>
+      <a href="/pages/index.html">Home</a> &gt;
+      <a href="/pages/reference.html">Reference</a> &gt;
+      <a href="/pages/graphics.html">Graphics</a>
+    </p>
+  </div>
+</blockquote>
+<p>Returns the RGB color codes for the specified values. Takes values 0..1 for each of the color.</p>
+<p>The return value is a negative 24bit value to by used by drawing functions.</p>
+<pre><code>&#39; gray() accepts the same values as Rgb(), i.e. 0..255:
+Func gray(r, g, b)
+  Local Const RGBF_SCALE = 1 / 255
+  Local n
+
+  n = Sum(r * 0.30, g * 0.59, b * 0.11) &#39; gray=(30% red + 59% green + 11% blue)
+  n *= RGBF_SCALE &#39; scale 0..255 palette to 0..1 (for Rgbf)
+  gray = Rgbf(n, n, n)
+End
+
+Print &quot;An example for printing colors in gray-scale:&quot;
+Print
+For i = 0 To 255 Step 15 Do
+  r = 90: g = i: b = i
+  Color   Rgb(r, g, b): Print &quot; Color -&gt; &quot;;
+  Color gray(r, g, b): Print &quot; in Gray  &quot;
+Next
+Pause</code></pre>
+<p>Hi shian, I am curious why the percents are 30% red, 59% green, 11 % blue. I see that they have to add to 100% but why not 33% on each of RGB. Is it something to do with green and yellow appearing lighter than the other colors and that yellow is created by mixing red and green. This calls for an experiment. Hi MGA, This is simply how the BIOS Interrupt 0x10, Function 0x10, Subfunction 0x1B, sets gray-scale values for the 256 colors palette, in MCGA and VGA monitors. I just use the same formula of that interrupt. Therefore, the actual mystery remains unsolved. But that’s the formula I use to program for DOS.</p>
+<p>I feel like Thomas Edison testing light bulbs only 995 to go! My findings according to my eye and Windows laptop coloring system reverses the percents for red and blue. Check it out:</p>
+<pre><code>
+&#39; gray() accepts the same values as Rgb(), i.e. 0..255:
+Func gray(r, g, b)
+  Local Const RGBF_SCALE = 1 / 255
+  Local n
+
+  n = Sum(r * 0.30, g * 0.59, b * 0.11) &#39; gray=(30% red + 59% green + 11% blue)
+  &#39; original yes on my screen blue is way too dark
+
+  &#39;n = Sum(r * 0.4, g * 0.4, b * 0.2)
+  &#39;1st experiment yes on my screen this is better but blue still too dark and red and purple  not enough
+
+  &#39;n = Sum(r * 0.3, g * 0.4, b * 0.3)
+  &#39;2nd experiment  well red green  blue are the same almost blue still doesn&#39;t look bright enough
+
+  &#39;n = Sum(r * 0.33, g * 0.34, b * 0.33)
+  &#39;3rd No green too dark
+
+  &#39;n = Sum(r * 0.25, g * 0.4, b * 0.35)
+  &#39;4th  more darker red lighter blue nice purple, green still too dark
+
+  &#39;n = Sum(r * 0.15, g * 0.55, b * 0.3)
+  &#39;5th yeah here !!!! it kind of reverses red/blue in original (Windows laptop)
+
+  n *= RGBF_SCALE &#39; scale 0..255 palette to 0..1 (for Rgbf)
+
+  gray = Rgbf(n, n, n)
+End
+sub ball(x,y,cx)
+   local r,sc,start, ym2
+   ym2=ymax*.75
+   sc=32/radi:start=int(32/sc)-2
+   for r=start to 0 step -1
+      if cx =&quot;R&quot; then
+         circle x,y,r,1,rgb(255-6*r*sc,0,0) filled
+         circle x,ym2,r,1,gray(255-6*r*sc,0,0) filled
+      elif cx=&quot;B&quot;
+         circle x,y,r,1,rgb(0,0,255-6*r*sc) filled
+         circle x,ym2,r,1,gray(0,0,255-6*r*sc) filled
+      elif cx=&quot;G&quot;
+         circle x,y,r,1,rgb(0,220-6*r*sc,0) filled
+         circle x,ym2,r,1,gray(0,220-6*r*sc,0) filled
+      elif cx=&quot;O&quot;
+         circle x,y,r,1,rgb(255-3*r*sc,150-3*r*sc,0) filled
+         circle x,ym2,r,1,gray(255-3*r*sc,150-3*r*sc,0) filled
+      elif cx=&quot;Y&quot;
+         circle x,y,r,1,rgb(255-4*r*sc,255-4*r*sc,0) filled
+         circle x,ym2,r,1,gray(255-4*r*sc,255-4*r*sc,0) filled
+      elif cx=&quot;P&quot;
+         circle x,y,r,1,rgb(255-7*r*sc,0,130-2*r*sc) filled
+         circle x,ym2,r,1,gray(255-6*r*sc,0,0) filled
+       fi
+   next
+end
+
+radi=xmax/7/2-2
+Print &quot;An example gray-scale graphics:&quot;
+Print
+For i = 1 to 6
+  cc=mid(&quot;RGBYOP&quot;,i,1)
+  bx=xmax/7*i
+  ball bx,.25*ymax,cc
+Next
+Pause
+</code></pre>
+<p>Append: added to on-line samples, I switched back to original formula because on Android NOOK the blue IS lighter than red. In both versions, the red and purple are awful dark. Nice graphix.. I guess that on BIOS screen text mode 3 or pixel mode 18 it looks much better. However, try to start from</p>
+<pre><code>gray(50,50,255)</code></pre>
+<p>instead of</p>
+<pre><code>gray(0,0,255)</code></pre>
+<p>It might work better for modern SVGA modes with high resolution and LCD screens. I’m not aware of new formula for these kind of screens…</p>
+  <div class="lavenderBox">
+    <div class="header">Graphics</div>
+    <div class="linklist">
+      <a href="/reference/611.html">ARC </a>&nbsp;
+      <a href="/reference/612.html">CHART </a>&nbsp;
+      <a href="/reference/613.html">CIRCLE </a>&nbsp;
+      <a href="/reference/614.html">COLOR </a>&nbsp;
+      <a href="/reference/615.html">DRAW </a>&nbsp;
+      <a href="/reference/616.html">DRAWPOLY </a>&nbsp;
+      <a href="/reference/617.html">IMAGE </a>&nbsp;
+      <a href="/reference/618.html">LINE </a>&nbsp;
+      <a href="/reference/619.html">PAINT </a>&nbsp;
+      <a href="/reference/627.html">PEN </a>&nbsp;
+      <a href="/reference/620.html">PLOT </a>&nbsp;
+      <a href="/reference/628.html">POINT </a>&nbsp;
+      <a href="/reference/621.html">PSET </a>&nbsp;
+      <a href="/reference/622.html">RECT </a>&nbsp;
+      <a href="/reference/629.html">RGB </a>&nbsp;
+      <a href="/reference/630.html"><strong>RGBF</strong> </a>&nbsp;
+      <a href="/reference/1429.html">SHOWPAGE </a>&nbsp;
+      <a href="/reference/631.html">TEXTHEIGHT </a>&nbsp;
+      <a href="/reference/632.html">TEXTWIDTH </a>&nbsp;
+      <a href="/reference/633.html">TXTH </a>&nbsp;
+      <a href="/reference/634.html">TXTW </a>&nbsp;
+      <a href="/reference/623.html">VIEW </a>&nbsp;
+      <a href="/reference/624.html">WINDOW </a>&nbsp;
+      <a href="/reference/1526.html">XMAX </a>&nbsp;
+      <a href="/reference/635.html">XPOS </a>&nbsp;
+      <a href="/reference/1527.html">YMAX </a>&nbsp;
+      <a href="/reference/636.html">YPOS </a>&nbsp;
+    </div>
+    <div class="subtitle">
+      If there is insufficient information on this page and you wish learn more about RGBF,
+      please send an email to smallbasic@gmail.com. You can help to improve information about
+RGBF by submitting a pull request, click View Source for details. Note, an offline
+      language reference text file is also avialable - see the Download section.
+    </div>
+  </div>
+  <div class="categories">
+    <a href="/pages/console.html">Console </a>
+    <a href="/pages/data.html">Data </a>
+    <a href="/pages/date.html">Date </a>
+    <a href="/pages/file.html">File </a>
+    <a href="/pages/graphics.html">Graphics </a>
+    <a href="/pages/language.html">Language </a>
+    <a href="/pages/math.html">Math </a>
+    <a href="/pages/string.html">String </a>
+    <a href="/pages/system.html">System </a>
+  </div>
+</div>
+    <div class="pagefooter">
+      This page was last edited on Thu, 22 Mar 2018 07:05:30 +1000
+ | Markdown processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
+      | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

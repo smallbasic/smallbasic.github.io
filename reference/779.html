@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | FORMAT</title>
+  <meta name="description" content="Returns a formated string.">
+  <link rel="canonical" href="779">
+  <link rel="keywords" href="FORMAT (format, val)">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+</head>
+  <body>
+<div class="wrapAll clearfix">
+  <div class="sidebar">
+    <div class="logo">
+      <a href="/index.html"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+    </div>
+    <div class="navigation">
+      <h4>SmallBASIC</h4>
+      <ul>
+        <li><a href="/index.html">Main page</a></li>
+        <li><a href="/pages/download.html">Download</a></li>
+        <li><a href="/pages/reference.html">Language reference</a></li>
+        <li><a href="/pages/samples.html">Code library</a></li>
+      </ul>
+      <hr class="menuSeparator"/>
+      <ul>
+        <li><a href="/pages/articles.html">Artices</a></li>
+        <li><a href="/pages/community.html">Community</a></li>
+        <li><a href="/pages/changelog.html">ChangeLog</a></li>
+        <li><a href="/pages/screenshots.html">Screenshots</a></li>
+        <li><a href="/pages/links.html">Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsLeft">
+        <ul>
+          <li><a href="#" class="active">Article</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/issues">Talk</a></li>
+        </ul>
+      </div>
+      <div id="simpleSearch">
+        <div id="submitSearch"></div>
+        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
+              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="l" value="Visual Basic">
+          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+        </form>
+      </div>
+      <div class="tabsRight">
+        <ul>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/779-string-format.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/779-string-format.markdown">View history</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="article">
+  <h1>FORMAT</h1>
+  <blockquote>FORMAT (format, val)</blockquote>
+  <div class="siteSub">
+    <p>
+      <a href="/pages/index.html">Home</a> &gt;
+      <a href="/pages/reference.html">Reference</a> &gt;
+      <a href="/pages/string.html">String</a>
+    </p>
+  </div>
+</blockquote>
+<p>Returns a formated string.</p>
+<p>Numbers:</p>
+<ul>
+<li>‘#’ Digit or space</li>
+<li>0 Digit or zero</li>
+<li>^ Stores a number in exponential format. Unlike QB’s USING format this is a place-holder like #.</li>
+<li>. The position of the decimal point.</li>
+<li>, Separator.</li>
+<li><code>-</code> Stores minus if the number is negative.</li>
+<li><code>+</code> Stores the sign of the number.</li>
+</ul>
+<p>Strings:</p>
+<ul>
+<li>&amp; Stores a string expression without reformatting it.</li>
+<li>! Stores only the first character of a string expression.</li>
+<li>\\ Stores only the first n + 2 characters of a string expression, where n is the number of spaces between the two backslashes.</li>
+</ul>
+<p>Unlike QB, there can be literals inside the \ \. These literals are inserted in the final string.</p>
+<pre><code>? FORMAT(&quot;#,##0&quot;, 1920.6) : REM prints 1,921
+? FORMAT(&quot;\\  - \\&quot;, &quot;abcde&quot;) : REM prints &quot;abc-de&quot;</code></pre>
+<p>PRINT USING and FORMAT use same or similar character codes, here are some practical examples of use, including the creating of a reusable Money function that returns a flexible length string for a money amount (dollars and cents format).</p>
+<pre><code>rem USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
+rem PRINT USING is excellent for columns of numbers
+
+columnformat=&quot;#,###,###.0000     &quot; &#39;&lt;=== oh it does spaces too!
+for i=1 to 50
+  print usg columnformat;rnd*10000000000/1000;
+  if i mod 5=0 then print &#39;&lt;== after printing 5 numbers on line use print to start next line
+next
+?:?
+&#39;A problem with PRINT USING is that it needs a whole statement to itself,
+&#39; unlike PRINT that can print a list of expressions in a single statement (with ; , or +)
+&#39; another problem with USING, # is that they are place holders which is nice
+&#39; for column of numbers but not in following:
+currency=&quot;$-###,###,###,###,###,###.00&quot;
+bignumber=&quot;###,###,###,###,###,###&quot;
+onetrillion=1000000000000
+workers=150000000
+? using currency;onetrillion;
+?&quot; divided by &quot;;
+? usg bignumber;workers;  &#39;&lt;=== usg is short for using
+?&quot; working people is &quot;;
+? usg currency;onetrillion/workers;
+?&quot; per working person.&quot;
+?:?
+&#39;Yuck! we need to trim things up, FORMAT works nicely with TRIM
+division=&quot;$ &quot;+trim(format(bignumber,onetrillion/workers))
+onetrillion1=&quot;$ &quot;+trim(format(bignumber,onetrillion))
+workers1=trim(format(bignumber,workers))
+? onetrillion1+&quot; divided by &quot;+workers1;&quot; working people is &quot;;division;&quot; per working person.&quot;
+?:?
+&#39;lets use what we learned here and make a reusable function: money
+? money(onetrillion);&quot; divided by &quot;;workers1;&quot; working people is &quot;+money(onetrillion/workers)+&quot; per working person.&quot;
+?:?
+&#39;test money in columns, dang we need to have the same length strings use RIGHT and SPACE
+for i=1 to 50
+  if rnd&gt;.5 then posneg=1 else posneg=-1
+  print right(space(15)+money(rnd*10000000000/1000*posneg),20);
+  if i mod 5=0 then print &#39;&lt;== after printing 5 numbers on line use print to start next line
+next
+pause
+func money(dollarsandcents) &#39;oh - numbers are saved
+  money=&quot;$ &quot;+trim(format(&quot;###,###,###,###,###,###.00&quot;,dollarsandcents))
+end</code></pre>
+<p>Must add extra space after ‘\’, if not there is an error:</p>
+<pre><code>? format(&quot;\\ _ \\&quot;, &quot;abcde&quot;)   &#39; --&gt; error missing &#39;)&#39;
+? format(&quot;\\ _ \\ &quot;, &quot;abcde&quot;)  &#39; --&gt; &quot;ab_cd &quot;
+? format(&quot;\\  _ \\ &quot;, &quot;abcde&quot;) &#39; --&gt; &quot;abc_de &quot;
+? Usg &quot;\\ _ \\&quot;; &quot;abcde&quot;   &#39; --&gt; error or prints nothing
+? Usg &quot;\\ _ \\ &quot;; &quot;abcde&quot;  &#39; --&gt; &quot;ab_cd &quot;
+? Usg &quot;\\  _ \\ &quot;; &quot;abcde&quot; &#39; --&gt; &quot;abc_de &quot;</code></pre>
+  <div class="lavenderBox">
+    <div class="header">String</div>
+    <div class="linklist">
+      <a href="/reference/771.html">ASC </a>&nbsp;
+      <a href="/reference/772.html">BCS </a>&nbsp;
+      <a href="/reference/773.html">BIN </a>&nbsp;
+      <a href="/reference/774.html">CBS </a>&nbsp;
+      <a href="/reference/775.html">CHOP </a>&nbsp;
+      <a href="/reference/776.html">CHR </a>&nbsp;
+      <a href="/reference/777.html">DISCLOSE </a>&nbsp;
+      <a href="/reference/778.html">ENCLOSE </a>&nbsp;
+      <a href="/reference/779.html"><strong>FORMAT</strong> </a>&nbsp;
+      <a href="/reference/780.html">HEX </a>&nbsp;
+      <a href="/reference/781.html">INSTR </a>&nbsp;
+      <a href="/reference/545.html">JOIN </a>&nbsp;
+      <a href="/reference/782.html">LCASE </a>&nbsp;
+      <a href="/reference/783.html">LEFT </a>&nbsp;
+      <a href="/reference/784.html">LEFTOF </a>&nbsp;
+      <a href="/reference/785.html">LEFTOFLAST </a>&nbsp;
+      <a href="/reference/786.html">LOWER </a>&nbsp;
+      <a href="/reference/787.html">LTRIM </a>&nbsp;
+      <a href="/reference/788.html">MID </a>&nbsp;
+      <a href="/reference/789.html">OCT </a>&nbsp;
+      <a href="/reference/790.html">REPLACE </a>&nbsp;
+      <a href="/reference/791.html">RIGHT </a>&nbsp;
+      <a href="/reference/792.html">RIGHTOF </a>&nbsp;
+      <a href="/reference/793.html">RIGHTOFLAST </a>&nbsp;
+      <a href="/reference/794.html">RINSTR </a>&nbsp;
+      <a href="/reference/795.html">RTRIM </a>&nbsp;
+      <a href="/reference/768.html">SINPUT </a>&nbsp;
+      <a href="/reference/796.html">SPACE </a>&nbsp;
+      <a href="/reference/797.html">SPC </a>&nbsp;
+      <a href="/reference/769.html">SPLIT </a>&nbsp;
+      <a href="/reference/770.html">SPRINT </a>&nbsp;
+      <a href="/reference/798.html">SQUEEZE </a>&nbsp;
+      <a href="/reference/799.html">STR </a>&nbsp;
+      <a href="/reference/800.html">STRING </a>&nbsp;
+      <a href="/reference/801.html">TRANSLATE </a>&nbsp;
+      <a href="/reference/802.html">TRIM </a>&nbsp;
+      <a href="/reference/803.html">UCASE </a>&nbsp;
+      <a href="/reference/804.html">UPPER </a>&nbsp;
+      <a href="/reference/805.html">VAL </a>&nbsp;
+    </div>
+    <div class="subtitle">
+      If there is insufficient information on this page and you wish learn more about FORMAT,
+      please send an email to smallbasic@gmail.com. You can help to improve information about
+FORMAT by submitting a pull request, click View Source for details. Note, an offline
+      language reference text file is also avialable - see the Download section.
+    </div>
+  </div>
+  <div class="categories">
+    <a href="/pages/console.html">Console </a>
+    <a href="/pages/data.html">Data </a>
+    <a href="/pages/date.html">Date </a>
+    <a href="/pages/file.html">File </a>
+    <a href="/pages/graphics.html">Graphics </a>
+    <a href="/pages/language.html">Language </a>
+    <a href="/pages/math.html">Math </a>
+    <a href="/pages/string.html">String </a>
+    <a href="/pages/system.html">System </a>
+  </div>
+</div>
+    <div class="pagefooter">
+      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+ | Markdown processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
+      | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

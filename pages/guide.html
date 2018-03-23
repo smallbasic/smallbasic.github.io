@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | guide</title>
+  <meta name="description" content="SmallBASIC | One more basic">
+  <link rel="canonical" href="/guide.html">
+  <link rel="keywords" href="guide">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+</head>
+  <body>
+<div class="wrapAll clearfix">
+  <div class="sidebar">
+    <div class="logo">
+      <a href="/index.html"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+    </div>
+    <div class="navigation">
+      <h4>SmallBASIC</h4>
+      <ul>
+        <li><a href="/index.html">Main page</a></li>
+        <li><a href="/pages/download.html">Download</a></li>
+        <li><a href="/pages/reference.html">Language reference</a></li>
+        <li><a href="/pages/samples.html">Code library</a></li>
+      </ul>
+      <hr class="menuSeparator"/>
+      <ul>
+        <li><a href="/pages/articles.html">Artices</a></li>
+        <li><a href="/pages/community.html">Community</a></li>
+        <li><a href="/pages/changelog.html">ChangeLog</a></li>
+        <li><a href="/pages/screenshots.html">Screenshots</a></li>
+        <li><a href="/pages/links.html">Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsLeft">
+        <ul>
+          <li><a href="#" class="active">Article</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/issues">Talk</a></li>
+        </ul>
+      </div>
+      <div id="simpleSearch">
+        <div id="submitSearch"></div>
+        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
+              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="l" value="Visual Basic">
+          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+        </form>
+      </div>
+      <div class="tabsRight">
+        <ul>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/guide.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/guide.markdown">View history</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="article">
+<h1 id="user-guide">User guide</h1>
+<blockquote>
+<p>SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for everyday calculations, scripts and prototypes. SmallBASIC includes trigonometric, matrices and algebra functions, a built in IDE, a powerful string library, system, sound, and graphic commands along with structured programming syntax.</p>
+</blockquote>
+<div class="articleRight">
+<div class="articleRightInner">
+<p>Contents</p>
+</div>
+<ul>
+<li><a href="#ConstantsVariables">Constants and Variables</a></li>
+<li><a href="#Variable">Variable names</a></li>
+<li><a href="#About">About the dollar-symbol</a></li>
+<li><a href="#Integers">Integers</a></li>
+<li><a href="#Reals">Reals</a></li>
+<li><a href="#Strings">Strings</a></li>
+<li><a href="#Constants">Constants</a></li>
+<li><a href="#System">System Variables</a></li>
+<li><a href="#Operators">Operators</a></li>
+<li><a href="#Special">Special Characters</a></li>
+<li><a href="#Statement1">Statement OPTION keyword</a></li>
+<li><a href="#Run">Run-Time</a></li>
+<li><a href="#Statement2">Statement OPTION BASE</a></li>
+<li><a href="#Statement3">Statement OPTION MATCH</a></li>
+<li><a href="#Compile">Compile-Time</a></li>
+<li><a href="#Statement4">Statement OPTION PREDEF</a></li>
+<li><a href="#Meta">Meta-commands</a></li>
+<li><a href="#operator">The operator LIKE</a></li>
+<li><a href="#Single">Single-line Functions</a></li>
+<li><a href="#Units">Units</a></li>
+<li><a href="#pseudo">The pseudo-operators</a></li>
+<li><a href="#use">The USE keyword</a></li>
+<li><a href="#do">The DO keyword</a></li>
+<li><a href="#Using">Using LOCAL variables</a></li>
+<li><a href="#Loops">Loops and variables</a></li>
+</ul>
+</div>
+<h3 id="ConstantsVariables">Constants and Variables</h3>
+<ul>
+<li>All user variables (include arrays) are ‘Variant’. That means the data-type is invisible to user.</li>
+<li>Arrays are always dynamic, even if you had declared their size, with dynamic size and type of elements.</li>
+</ul>
+<p>However, SmallBASIC uses, internally, 4 data-types</p>
+<ul>
+<li>Integer (32bit)</li>
+<li>Real (64bit)</li>
+<li>String (&lt;32KB on 16bit / 2GB on 32bit)</li>
+<li>Array (~2970 elements on 16bit / ~50M elements on 32bit)</li>
+</ul>
+<p>Conversions between those types are performed internally. In any case there are functions for the user to do it manually.</p>
+<h3 id="Variable">Variable names</h3>
+<p>Variable names can use any alphanumeric characters, extended characters (ASCII codes 128-255 for non-English languages) the symbol ’_‘, and the symbol ’$‘. The first character of the name cannot be a digit nor ’$’.</p>
+<h3 id="About">About the dollar-symbol</h3>
+<p>The symbol ‘$’ is supported for compatibility. Since in SmallBASIC there are no data-types its use is meaningless.</p>
+<p>The dollar in function names will be ignored.</p>
+<p>The dollar in variable names will be count as part of the name (that means v and v$ are two different variables). It can be used only as the last character of the name, and only one allowed.</p>
+<p>The dollar in system variables names will be ignore it (that means COMMAND and COMMAND$ is the same)</p>
+<p>Example of variable names:</p>
+<pre><code>abc, a_c, _bc, ab2c, abc$ -&gt; valid names
+1cd, a$b, $abc            -&gt; invalid names</code></pre>
+<h3 id="Integers">Integers</h3>
+<p>This is the default data type. You can declare integers in decimal, hexadecimal, octal and binary form.</p>
+<pre><code>x = 256   &#39;
+x = 0x100 &#39; Hexadecimal form 1
+x = &amp;h100 &#39; Hexadecimal form 2
+x = 0o400 &#39; Octal form 1
+x = &amp;o400 &#39; Octal form 2
+x = 0b111 &#39; Binary form 1
+x = &amp;b111 &#39; Binary form 2</code></pre>
+<h3 id="Reals">Reals</h3>
+<p>Any number which out-bounds the limits or an ‘integer’ or had decimal digits will be converted automatically to real.</p>
+<pre><code>x = .25
+x = 1.2</code></pre>
+<p>Reals can be also written by using scientific notation. 1E+2 or 1E-+2, 5E–2, 2.6E-0.25, etc</p>
+<h3 id="Strings">Strings</h3>
+<p>Strings may be appended to one another using the + operator.</p>
+<pre><code>b = &quot;Hello, &quot; + &quot;world!&quot;</code></pre>
+<h3 id="Constants">Constants</h3>
+<p>Constant variables can be declared by using the keyword CONST.</p>
+<pre><code>CONST my_pi = 3.14</code></pre>
+<h3 id="System">System Variables</h3>
+<p>System variables, are constant variables for the programmer. Those variables get values or modified at run-time by the SB’s subsystem.</p>
+<ul>
+<li>SBVER SmallBASIC Version (0xAABBCC)</li>
+<li>PI 3.14..</li>
+<li>XMAX Graphics display, maximum x (width-1)</li>
+<li>YMAX Graphics display, maximum y (height-1) value</li>
+<li>CWD Current Working Directory</li>
+<li>HOME User’s home directory</li>
+<li>COMMAND Command-line parameters</li>
+<li>TRUE The value 1</li>
+<li>FALSE The value 0</li>
+</ul>
+<h3 id="Operators">Operators</h3>
+<p>Sorted by priority</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">( )</td>
+<td style="text-align: left;">Parenthesis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">+, -</td>
+<td style="text-align: left;">Unary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">~</td>
+<td style="text-align: left;">bitwise NOT</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NOT or !</td>
+<td style="text-align: left;">Logical NOT (NOT false = true)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">^</td>
+<td style="text-align: left;">Exponentiation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">*, /, \</td>
+<td style="text-align: left;">Multiplication, Division, Integer Division</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">% or MOD</td>
+<td style="text-align: left;">Reminder (QB compatible: a=int(a), b=int(b), a-b*(a/b))</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MDL</td>
+<td style="text-align: left;">Modulus (a%b+b*(sgn(a)&lt;&gt;sgn(b)))</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">+, -</td>
+<td style="text-align: left;">Addition/Concatenation, Subtraction</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">=</td>
+<td style="text-align: left;">Equal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;&gt; or !=</td>
+<td style="text-align: left;">Not Equal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&gt;, &lt;</td>
+<td style="text-align: left;">Less Than, Greater Than</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">=&gt;, =&lt;</td>
+<td style="text-align: left;">Less or Equal, Greater or Equal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&gt;=, &lt;=</td>
+<td style="text-align: left;">Less or Equal, Greater or Equal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IN</td>
+<td style="text-align: left;">belongs to … (see “The IN operator”)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LIKE</td>
+<td style="text-align: left;">Regular expression match (see “The LIKE operator”)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AND or &amp;&amp;</td>
+<td style="text-align: left;">Logical AND</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OR or</td>
+<td style="text-align: left;">Logical OR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BAND or &amp;</td>
+<td style="text-align: left;">bitwise AND</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BOR or</td>
+<td style="text-align: left;">bitwise OR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EQV</td>
+<td style="text-align: left;">bitwise EQV</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IMP</td>
+<td style="text-align: left;">bitwise IMP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">XOR</td>
+<td style="text-align: left;">bitwise XOR</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NAND</td>
+<td style="text-align: left;">bitwise NAND</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NOR</td>
+<td style="text-align: left;">bitwise NOR</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">XNOR</td>
+<td style="text-align: left;">bitwise XNOR</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Special">Special Characters</h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>&amp;h or 0x</td>
+<td style="text-align: left;">Prefix for hexadecimal constant (0x1F, &amp;h3C)</td>
+</tr>
+<tr class="even">
+<td>&amp;o or 0o</td>
+<td style="text-align: left;">Prefix for octal constant (0o33, &amp;o33)</td>
+</tr>
+<tr class="odd">
+<td>&amp;b or 0b</td>
+<td style="text-align: left;">Prefix for binary constant (0b1010, &amp;b1110)</td>
+</tr>
+<tr class="even">
+<td>[,;]</td>
+<td style="text-align: left;">Array definition (function ARRAY()) ($1)</td>
+</tr>
+<tr class="odd">
+<td>&lt;&lt;</td>
+<td style="text-align: left;">Appends to an array (command APPEND) ($1)</td>
+</tr>
+<tr class="even">
+<td>++</td>
+<td style="text-align: left;">Increase a value by 1 (x = x + 1) ($1)</td>
+</tr>
+<tr class="odd">
+<td>–</td>
+<td style="text-align: left;">Decrease a value by 1 (x = x - 1) ($1)</td>
+</tr>
+<tr class="even">
+<td>p=</td>
+<td style="text-align: left;">Another LET macro (x = x p …). Where p any character of -+/\*^%&amp;</td>
+</tr>
+<tr class="odd">
+<td>:</td>
+<td style="text-align: left;">Separates commands typed on the same line</td>
+</tr>
+<tr class="even">
+<td>&amp;</td>
+<td style="text-align: left;">Join code lines (if its the last character of the line). The result line its must not exceed the max. line size.</td>
+</tr>
+<tr class="odd">
+<td>#</td>
+<td style="text-align: left;">Meta-command (if its the first character of the line) or prefix for file handle</td>
+</tr>
+<tr class="even">
+<td>@</td>
+<td style="text-align: left;">The ‘at’ symbol can by used instead of BYREF ($1)</td>
+</tr>
+<tr class="odd">
+<td>’</td>
+<td style="text-align: left;">Remarks</td>
+</tr>
+</tbody>
+</table>
+<p><em>Pseudo operators</em>. These operators are replaced by compiler with a command or an expression.</p>
+<h3 id="Statement1">Statement OPTION keyword parameters</h3>
+<p>This special command is used to pass parameters to the SB-environment. There are two styles for that, the run-time (like BASE) which can change the value at run-time, and the compile-time (like PREDEF) which used only in compile-time and the value cannot be changed on run-time.</p>
+<h3 id="Run"><em>Run-Time</em></h3>
+<h3 id="Statement2">Statement OPTION BASE lower-bound</h3>
+<p>The <span class="code">OPTION BASE</span> statement sets the lowest allowable subscript of arrays to <em>lower-bound</em>. The default is zero. The <span class="code">OPTION BASE</span> statement can be used in any place in the source code but that is the wrong use of this except if we have a <em>good</em> reason. In most cases the <span class="code">OPTION BASE</span> must declared at first lines of the program before any <span class="code">DIM</span> declaration.</p>
+<h3 id="Statement3">Statement OPTION MATCH <span class="code">PCRE [CASELESS]|SIMPLE</span></h3>
+<p>Sets as default matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple one. Matching-algorithm is used in <span class="code">LIKE</span> and <span class="code">FILES</span>.</p>
+<p>PRCE works only in systems with this library and it must be linked with. Also, there is no extra code on compiler which means that SB compiles the pattern every time it is used.</p>
+<h3 id="Compile"><em>Compile-Time</em></h3>
+<h3 id="Statement4">Statement OPTION PREDEF parameter</h3>
+<p>Sets parameters of the compiler. Where <span class="code">parameter</span></p>
+<ul>
+<li>QUIET Sets the quiet flag (-q option)</li>
+<li>COMMAND cmdstr Sets the <span class="code">COMMAND$</span> string to <span class="code">var</span> (useful for debug reasons)</li>
+<li>GRMODE [widthxheight[xbpp]] Sets the graphics mode flag (-g option) or sets the preferred screen resolution. Example: (Clie HiRes)</li>
+</ul>
+<pre><code>OPTION PREDEF GRMODE 320x320x16</code></pre>
+<ul>
+<li>TEXTMODE Sets the text mode flag (-g- option)</li>
+<li>CSTR Sets as default string style the C-style special character encoding (‘\’)</li>
+</ul>
+<h3 id="Meta">Meta-commands</h3>
+<p>#!…</p>
+<p>Used by Unix to make source runs as a script executable</p>
+<p>#sec: section-name</p>
+<p>Used internally to store the section name. Sections names are used at limited OSes like PalmOS for multiple 32kB source code sections.</p>
+<p>#inc: file</p>
+<p>Used to include a SmallBASIC source file into the current BASIC code</p>
+<p>#unit-path: path</p>
+<p>Used to setup additional directories for searching for unit-files This meta does nothing more than to setting up the environment variable SB_UNIT_PATH. Directories on Unix must separated by ‘:’, and on DOS/Windows by ‘;’</p>
+<p>Examples</p>
+<pre><code>#inc:&quot;mylib.bas&quot;
+...
+MyLibProc &quot;Hi&quot;
+*Arrays and Matrices*
+Define a 3x2 matrix
+A = [11, 12; 21, 22; 31, 32]</code></pre>
+<p>That creates the array</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>11</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td>22</td>
+</tr>
+<tr class="odd">
+<td>31</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+<p>The comma used to separate column items; the semi-colon used to separate rows. Values between columns can be omitted.</p>
+<pre><code>A = [ ; ; 1, 2 ; 3, 4, 5]</code></pre>
+<p>This creates the array</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>Supported operators: Add/sub:</p>
+<pre><code>B = [1, 2; 3, 4]: C = [5, 6; 7, 8]
+A = B + C
+C = A - B</code></pre>
+<p>Equal:</p>
+<pre><code>bool=(A=B)</code></pre>
+<p>Unary:</p>
+<pre><code>A2 = -A</code></pre>
+<p>Multiplication:</p>
+<pre><code>A = [1, 2; 3, 4]: B = [5 ; 6]
+C = A * B
+D = 0.8 * A</code></pre>
+<p>Inverse:</p>
+<pre><code>A = [ 1, -1, 1; 2, -1, 2; 3, 2, -1]
+? INVERSE(A)</code></pre>
+<p>Gauss-Jordan:</p>
+<pre><code>? &quot;Solve this:&quot;
+? &quot;  5x - 2y + 3z = -2&quot;
+? &quot; -2x + 7y + 5z =  7&quot;
+? &quot;  3x + 5y + 6z =  9&quot;
+?
+A = [ 5, -2, 3; -2, 7, 5; 3, 5, 6]
+B = [ -2; 7; 9]
+C = LinEqn(A, B)
+? &quot;[x;y;z] = &quot;; C</code></pre>
+<p>There is a problem with 1 dimension arrays, because 1-dim arrays does not specify how SmallBASIC must see them.</p>
+<p>DIM A(3)</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1 2 3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>or</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+</tr>
+</tbody>
+</table>
+<p>And because this is not the same thing. (ex. for multiplication) So the default is columns DIM A(3) ’ or A(1,3)</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>For vertical arrays you must declare it as 2-dim arrays Nx1</p>
+<p>DIM A(3,1)</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+</tr>
+</tbody>
+</table>
+<p>Nested arrays are allowed</p>
+<pre><code>A = [[1,2] , [3,4]]
+B = [1, 2, 3]
+C = [4, 5]
+B(2) = C
+print B</code></pre>
+<p>This will be printed</p>
+<pre><code>[1, 2, [4, 5], 3]</code></pre>
+<p>You can access them by using a second (or third, etc) pair of parenthesis.</p>
+<pre><code>B(2)(1) = 16
+print B(2)(1)</code></pre>
+<p>Result: 16</p>
+<p><em>The operator IN</em></p>
+<p>IN operator is used to compare if the left-value belongs to right-value.</p>
+<pre><code>&#39; Using it with arrays
+print 1 in [2,3]        :REM FALSE
+print 1 in [1,2]        :REM TRUE
+print &quot;b&quot; in [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] :REM TRUE
+...
+&#39; Using it with strings
+print &quot;na&quot; in &quot;abcde&quot;   :REM FALSE
+print &quot;cd&quot; in &quot;abcde&quot;   :REM TRUE
+...
+&#39; Using it with number (true only if left = right)
+print 11 in 21          :REM FALSE
+print 11 in 11          :REM TRUE
+...
+&#39; special case
+&#39; auto-convert integers/reals
+print 12 in &quot;234567&quot;    :REM FALSE
+print 12 in &quot;341256&quot;    :REM TRUE</code></pre>
+<h3 id="operator">The operator LIKE</h3>
+<p>LIKE is a regular-expression operator. It is compares the left part of the expression with the pattern (right part). Since the original regular expression code is too big (for handhelds), I use only a subset of it, based on an excellent old stuff by J. Kercheval (match.c, public-domain, 1991). But there is an option to use PCRE (Perl-Compatible Regular Expression library) on systems that is supported (Linux); (see OPTION).</p>
+<p>The same code is used for filenames (FILES(), DIRWALK) too. In the pattern string:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">matches any sequence of characters (zero or more)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">matches any character</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">[SET]</td>
+<td style="text-align: left;">matches any character in the specified set,</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">[!SET]</td>
+<td style="text-align: left;">or [^SET] matches any character not in the specified set.</td>
+</tr>
+</tbody>
+</table>
+<p>A set is composed of characters or ranges; a range looks like character hyphen character (as in 0-9 or A-Z). [0-9a-zA-Z_] is the minimal set of characters allowed in the [..] pattern construct. To suppress the special syntactic significance of any of <code>[]*?!^-\\', and match the character exactly, precede it with a</code>\’.</p>
+<pre><code>? &quot;Hello&quot; LIKE &quot;*[oO]&quot; : REM TRUE
+? &quot;Hello&quot; LIKE &quot;He??o&quot; : REM TRUE
+? &quot;Hello&quot; LIKE &quot;hello&quot; : REM FALSE
+? &quot;Hello&quot; LIKE &quot;[Hh]*&quot; : REM TRUE</code></pre>
+<p><em>The pseudo-operator &lt;&lt;</em></p>
+<p>This operator can be used to append elements to an array.</p>
+<pre><code>A &lt;&lt; 1
+A &lt;&lt; 2
+A &lt;&lt; 3
+? A(1)</code></pre>
+<p><em>Syntax of procedure (SUB) statements</em></p>
+<pre><code> SUB name [([BYREF] par1 [, ...[BYREF] parN)]]
+  [LOCAL var[, var[, ...]]]
+  [EXIT SUB]
+  ...
+END</code></pre>
+<p><em>Syntax of function (FUNC) statements</em></p>
+<pre><code>FUNC name[([BYREF] par1 [, ...[BYREF] parN)]]
+  [LOCAL var[, var[, ...]]]
+  [EXIT FUNC]
+  ...
+  name=return-value
+END</code></pre>
+<p>On functions you must use the function’s name to return the value. That is, the function-name acts like a variable and it is the function’s returned value. The parameters are ‘by value’ by default. Passing parameters by value means the executor makes a copy of the parameter to stack. The value in caller’s code will not be changed.</p>
+<p>Use <span class="code">BYREF</span> keyword for passing parameters ‘by reference’. Passing parameters by reference means the executor push the pointer of variable into the stack. The value in caller’s code will be the changed.</p>
+<pre><code>&#39; Passing &#39;x&#39; by value
+SUB F(x)
+  x=1
+END
+x=2
+F x
+? x:REM displays 2
+&gt; &#39; Passing &#39;x&#39; by reference
+SUB F(BYREF x)
+  x=1
+END
+x=2
+F x
+? x:REM displays 1</code></pre>
+<p>You can use the symbol @ instead of <span class="code">BYREF</span>. There is no difference between @ and <span class="code">BYREF</span>.</p>
+<pre><code> SUB F(@@x)
+  x=1
+END</code></pre>
+<p>On a multi-section (PalmOS) applications sub/funcs needs declaration on the main section.</p>
+<pre><code>sec:Main
+declare func f(x)
+#sec:another section
+func f(x)
+...
+end</code></pre>
+<p>Use the <span class="code">LOCAL</span> keyword for local variables. <span class="code">LOCAL</span> creates variables (dynamic) at routine’s code.</p>
+<pre><code>SUB MYPROC
+  LOCAL N:REM LOCAL VAR
+  N=2
+  ? N:REM displays 2
+END
+N=1:REM GLOBAL VAR
+MYPROC
+? N:REM displays 1</code></pre>
+<p>You can send arrays as parameters. When using arrays as parameters its better to use them as <span class="code">BYREF</span>; otherwise their data will be duplicated in memory space.</p>
+<pre><code>SUB FBR(BYREF tbl)
+  ? FRE(0)
+  ...
+END
+SUB FBV(tbl)
+  ? FRE(0)
+  ...
+END
+&#39; MAIN
+DIM dt(128)
+...
+? FRE(0)
+FBR dt
+? FRE(0)
+FBV dt
+? FRE(0)
+Passing &amp; returning arrays, using local arrays.
+func fill(a)
+  local b, i
+  dim b(16)
+  for i=0 to 16
+    b(i)=16-a(i)
+  next
+  fill=b
+end
+DIM v()
+v=fill(v)</code></pre>
+<h3 id="Single">Single-line Functions</h3>
+<p>There is also an alternative <span class="code">FUNC DEF</span> syntax (single-line functions). This is actually a macro for compatibility with the BASIC’s DEF FN command, but quite useful.</p>
+<pre><code>FUNC name[(par1[,...])] = expression
+or
+DEF name[(par1[,...])] = expression
+DEF MySin(x) = SIN(x)
+? MySin(pi/2)</code></pre>
+<p><em>Nested procedures and functions</em></p>
+<p>One nice feature, are the nested procedures/functions. The nested procedures/functions are visible only inside the “parent” procedure/function. There is no way to access a global procedure with the same name of a local.</p>
+<pre><code>FUNC f(x)
+    Rem Function: F/F1()
+    FUNC f1(x)
+        Rem Function: F/F1/F2()
+        FUNC f2(x)
+            f2=cos(x)
+        END
+        f1 = f2(x)/4
+    END
+    Rem Function: F/F3()
+    FUNC f3
+        f3=f1(pi/2)
+    END
+REM
+? f1(pi) : REM OK
+? f2(pi) : REM ERROR
+f = x + f1(pi) + f3 : REM OK
+END</code></pre>
+<h3 id="Units">Units</h3>
+<p>Units are a set of procedures, functions and/or variables that can be used by another SB program or SB unit. The main section of the unit (commands out of procedure or function bodies) is the initialization code.</p>
+<p>A unit declared by the use of <span class="code">UNIT</span> keyword.</p>
+<pre><code>UNIT MyUnit</code></pre>
+<p>The functions, procedure or variables which we want to be visible to another programs must be declared with the <span class="code">EXPORT</span> keyword.</p>
+<pre><code>UNIT MyUnit
+EXPORT MyF
+...
+FUNC MyF(x)
+...
+END</code></pre>
+<p>Keep file-name and unit-name the same. That helps the SB to automatically recompile the required units when it is needed. To link a program with a unit we use the <span class="code">IMPORT</span> keyword.</p>
+<pre><code>IMPORT MyUnit</code></pre>
+<p>To access a member of a unit we must use the unit-name, a point and the name of the member.</p>
+<pre><code>IMPORT MyUnit
+...
+PRINT MyUnit.MyF(1/1.6)
+Full example:
+file my_unit.bas:
+UNIT MyUnit
+EXPORT F, V
+REM a shared function
+FUNC F(x)
+    F = x*x
+END
+REM a non-shared function
+FUNC I(x)
+    I = x+x
+END
+REM Initialization code
+V=&quot;I am a shared variable&quot;
+L=&quot;I am invisible to the application&quot;
+PRINT &quot;Unit &#39;MyUnit&#39; initialized :)&quot;
+file my_app.bas:
+IMPORT MyUnit
+PRINT MyUnit.V
+PRINT MyUnit.F(2)</code></pre>
+<h3 id="pseudo">The pseudo-operators</h3>
+<p>++/–/p= The ++ and – operators are used to increase or decrease the value of a variable by 1.</p>
+<pre><code>x = 4
+x ++ : REM x &lt;- x + 1 = 5
+x -- : REM x &lt;- x - 1 = 4</code></pre>
+<p>The generic p= operators are used as in C Where p any character of -+/\*^%&amp;|</p>
+<pre><code>x += 4 : REM x &lt;- x + 4
+x *= 4 : REM x &lt;- x * 4</code></pre>
+<p>All these pseudo-operators are not allowed inside of expressions</p>
+<pre><code>y = x ++ &#39; ERROR
+z = (y+=4)+5 &#39; ALSO ERROR</code></pre>
+<h3 id="use">The USE keyword</h3>
+<p>This keyword is used on specific commands to passing a user-defined expression.</p>
+<pre><code>SPLIT s,&quot; &quot;,v USE TRIM(x)</code></pre>
+<p>In that example, every element of V() will be ‘trimmed’. Use the x variable to specify the parameter of the expression. If the expression needs more parameter, you can use also the names y and z</p>
+<h3 id="do">The DO keyword</h3>
+<p>This keyword is used to declare single-line commands. It can be used with WHILE and FOR-family commands.</p>
+<pre><code>FOR f IN files(&quot;*.txt&quot;) DO PRINT f
+...
+WHILE i &lt; 4 DO i ++</code></pre>
+<p>Also, it can be used by IF command (instead of THEN), but is not suggested.</p>
+<h3 id="Using">Using LOCAL variables</h3>
+<p>When a variable is not declared it is by default a global variable. A usual problem is that name may be used again in a function or procedure.</p>
+<pre><code>FUNC F(x)
+  FOR i=1 TO 6
+    ...
+  NEXT
+END
+FOR i=1 TO 10
+  PRINT F(i)
+NEXT</code></pre>
+<p>In this example, the result is a real mess, because the <span class="code">var i</span> of the main loop will always (except the first time) have the value 6! This problem can be solved if we use the <span class="code">LOCAL</span> keyword to declare the <span class="code">var</span> in the function body.</p>
+<pre><code>FUNC F(x)
+  LOCAL i
+  FOR i=1 TO 6
+    ...
+  NEXT
+END
+FOR i=1 TO 10
+  PRINT F(i)
+NEXT</code></pre>
+<p>It is good to declare all local variables on the top of the function. For compatibility reasons, the func./proc. variables are not declared as ‘local’ by default. That it is WRONG but as I said … compatibility.</p>
+<h3 id="Loops">Loops and variables</h3>
+<p>When we write loops it is much better to initialize the counters on the top of the loop instead of the top of the program or nowhere.</p>
+<pre><code>i = 0
+REPEAT
+  ...
+  i = i + 1
+UNTIL i &gt; 10</code></pre>
+<p>p.. Initializing variables at the top of the loop can make code more readable.</p>
+<h2 id="loops-and-expressions">Loops and expressions</h2>
+<pre><code>FOR-like (loops) commands evaluate both the &quot;destination&quot; and the exit-expression every time.
+FOR i=0 TO LEN(FILES(&quot;*.txt&quot;))-1
+    PRINT i
+NEXT</code></pre>
+<p>In that example the ‘destination’ is the LEN(FILES(“*.txt“))-1 For each value of i the destination will be evaluated. That is WRONG but it is supported by BASIC and many other languages. So, it is much better to be rewritten as</p>
+<pre><code>idest=LEN(FILES(&quot;*.txt&quot;))-1
+FOR i=0 TO idest
+    PRINT i
+NEXT</code></pre>
+<p>Of course, it is much faster too.</p>
+</div>
+    <div class="pagefooter">
+      This page was last edited on Tue, 20 Mar 2018 20:01:10 +1000
+ | Markdown processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
+      | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

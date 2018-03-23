@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | vade_structure</title>
+  <meta name="description" content="SmallBASIC | One more basic">
+  <link rel="canonical" href="/vade_structure.html">
+  <link rel="keywords" href="vade_structure">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+</head>
+  <body>
+<div class="wrapAll clearfix">
+  <div class="sidebar">
+    <div class="logo">
+      <a href="/index.html"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+    </div>
+    <div class="navigation">
+      <h4>SmallBASIC</h4>
+      <ul>
+        <li><a href="/index.html">Main page</a></li>
+        <li><a href="/pages/download.html">Download</a></li>
+        <li><a href="/pages/reference.html">Language reference</a></li>
+        <li><a href="/pages/samples.html">Code library</a></li>
+      </ul>
+      <hr class="menuSeparator"/>
+      <ul>
+        <li><a href="/pages/articles.html">Artices</a></li>
+        <li><a href="/pages/community.html">Community</a></li>
+        <li><a href="/pages/changelog.html">ChangeLog</a></li>
+        <li><a href="/pages/screenshots.html">Screenshots</a></li>
+        <li><a href="/pages/links.html">Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsLeft">
+        <ul>
+          <li><a href="#" class="active">Article</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/issues">Talk</a></li>
+        </ul>
+      </div>
+      <div id="simpleSearch">
+        <div id="submitSearch"></div>
+        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
+              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="l" value="Visual Basic">
+          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+        </form>
+      </div>
+      <div class="tabsRight">
+        <ul>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/vade_structure.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/vade_structure.markdown">View history</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="article">
+<h1 id="structuring-a-program">Structuring a Program</h1>
+<blockquote>
+<p>Written by Elmar Vogt, Fürth, GERMANY</p>
+</blockquote>
+<div class="siteSub">
+<p><a href="/index.html">Home</a> &gt; <a href="/pages/vade.html">Vade</a></p>
+</div>
+<p>This chapter will give you an overview about how you can avoid producing the notorious »spaghetti code«, and structure your program instead into blocks which are easier to debug and maintain.</p>
+<h2 id="routines-procedures-and-functions">Routines: Procedures and Functions</h2>
+<p>Routines (also called »subroutines«) are blocks of code set apart from the main code. This can be done for a variety of reasons, for example simply to break down a complex task into individual stages which are more readily analyzed and maintained. Another reason is reusability; if the program needs to perform the same task in several stages, it’s more economical to write the code once and reuse it as is necessary.</p>
+<p>Routines come in two flavours: »Procedures« and »functions«. Syntactically, in SmallBASIC procedures and functions are almost equivalent. The only difference is that a function returns a value when called, whereas procedures do not. <strong>A function can only return a single variable</strong>, but this may be an arbitrarily complex map. If you need to manipulate more than a single value, you can also pass parameters by reference, see below.</p>
+<h3 id="definition">Definition</h3>
+<p>Procedures and functions are defined by embracing a block of code between the or keyword, resp., at the beginning followed by the routine’s name, and at the end of the block. Parameters are defined as a comma-separated list of variables following the routine name in parentheses:</p>
+<pre><code>sub x(hoogla, boogla)
+    ...
+end
+
+func y(arg1, arg2, arg3)
+    ...
+    y= arg1+arg2
+    ...
+end</code></pre>
+<p>For a function, the <strong>return value</strong> is determined by assigning an expression to a variable with the same name as the function, in the example above in the line .</p>
+<p>Note that this is in contrast with most other BASIC dialects which use the keyword instead. There, also makes the interpreter exit the routine and return control to the calling code immediately. Not so in : Here, <strong><em>all code</em> up to the keyword is executed</strong>, with all side effects it may generate.</p>
+<p>Routines may be <strong>defined anywhere</strong> in your code; they don’t need to be defined before they are invoked.</p>
+<h3 id="arguments">Arguments</h3>
+<p>Arguments<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> are passed to a procedure or a function when invoking it as a list of comma-separated variables and constants following the routine name. When invoking a procedure, the parentheses are optional, note though that you use this feature at your own risk. <strong>Parameter lists in the definition and the call must match</strong> in the number of arguments.</p>
+<pre><code>y(10, 20)
+...
+sub y(arg1, arg2, arg3)
+    ...
+end</code></pre>
+<p>is not legal.</p>
+<p>Calling a function and <strong>not using the return value</strong> is no problem:</p>
+<pre><code>y(10, 20)
+...
+func y(arg1, arg2)
+    y= arg1*arg2
+end</code></pre>
+<p>will cause no error. The return value is simply discarded. In contrast, calling a procedure <em>in lieu</em> of a function will confuse the interpreter:</p>
+<pre><code>my_result= x(10, 20)
+...
+sub x(hoogla, boogla)
+    ...
+end</code></pre>
+<p>creates an error.</p>
+<h3 id="variable-scope">Variable Scope</h3>
+<p>Routines help with the modularization of code by »encapsulating« the data, which means that routines have only access to a sub-set of all variables defined in the program. Most importantly, routines can’t read or write variables defined in other routines. Hence it’s impossible that they would accidentally overwrite other variables. Likewise the routines also maintain their own »household« of variables accessible only to them.</p>
+<p>The keyword is used to define variables »attached« to a routine. The variables come into existance the minute the routine is invoked, and they’re deleted again as soon as the routine is terminated. If a local variable (or a routine parameter) has the same name as variable previously defined (in the main program or a routine which called the current routine), the previous instance is »shadowed«, and the routine will access the local variable instead, until the current routine is left again. A local variable will also be visible to a routine which is called from the routine where the local was defined.</p>
+<p>The following code may explain the behaviour. It differs in important details from that of other programming languages and BASIC dialects:</p>
+<pre><code>nagaqk= 100
+zoogla= 200
+gluck
+? &quot;In main:&quot;, nagaqk, zoogla
+
+sub gluck
+  local nagaqk
+  nagaqk= 30
+  zoogla= 200
+  boogla
+  ? &quot;In gluck:&quot;, nagaqk, zoogla
+end
+
+sub boogla
+  ? &quot;In boogla:&quot;, nagaqk, zoogla
+  nagaqk= 15
+  zoogla= 99
+end
+
+&gt; In boogla:    30      200
+&gt; In gluck:     15      99
+&gt; In main:      100 99</code></pre>
+<p>Let’s have a look at what is actually happening here. First, the global variables and are defined and assigned the values $100$ and $200$, resp. Next, is invoked and defines a local variable which »shadows« the global variable of the same name. Thus, the value $30$ is assigned to the local instance of , not to the global one. As opposed to that, there only is one instance of , and the value $200$ is written to that.</p>
+<p>Next, is called, which has access to all the »knowledge« has. When the old values of and are overwritten, this happens again to the local copy of , but to the global instance of . Had defined its own local copy of , <em>that</em> copy would have been overwritten rather than ’s.</p>
+<p>The writing done in is still »felt« in when control returns there. But when is left, its local instance of is deleted and the original instance (defined globally) returns to the surface unscathed. Note that for there only ever was a single instance. Had had its own instance of , the results would also have been different.</p>
+<p>Note that local variables can be defined anywhere in the routine. But if you access a variable before it’s defined as local, you will actually create a new <em>global</em> variable first:</p>
+<pre><code>sub hoogla
+    zoot= 100
+
+    local zoot
+    zoot= 10
+    ? zoot
+end hoogla
+
+&gt; 10</code></pre>
+<p>This creates (or overwrites) a global variable with the name and the value $100$, then creates a local variable with the same name, assigns it the value $10$, and then destroys the local copy at the end of the procedure, while the global copy still lives on.</p>
+<p>Routines can <strong>recurse</strong>, ie invoke themselves again before they’re finished.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Every time a new instance of the routine is called, it will also create a new set of parameters and local variables, while the old set is »put aside« and only restored when the execution of the current routine level is finished.</p>
+<pre><code>hoogla
+
+sub hoogla
+  local zoogla
+  
+  level= level+1
+  zoogla= level
+  if level&lt;5 then
+    hoogla
+  endif
+  ? zoogla
+end
+
+&gt; 5
+&gt; 4
+&gt; 3
+&gt; 2
+&gt; 1</code></pre>
+<p>The definitions of <strong>routines may be »nested«</strong>, ie one routine (the »child«) may be defined within the code block of another (the »parent«).<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Whether you define a routine inside or outside another routine has little bearing on the variables household of the child routine. But the child routine is only visible from inside the parent routine and its »siblings«. To any code outside the parent routine, the child will be invisible:</p>
+<pre><code>hoogla
+
+child1
+
+sub hoogla
+  local zoogla
+
+  child2
+  sub child1
+    ? &quot;Here I am&quot;
+  end
+  
+  sub child2
+   child1
+    ? &quot;I&#39;m here, too&quot;
+  end
+end</code></pre>
+<p>causes an error in the third line, because is invisible outside . The rest of the code will be executed fine if you comment out the third line.</p>
+<p>SmallBASIC provides nothing in the way of <strong>static variables</strong>, ie local routine variables which maintain their value between two subsequent calls of the routine.</p>
+<h3 id="passing-parameters">Passing Parameters</h3>
+<p>Per default, parameters are passed to procedures and functions <strong>»by value«</strong>, which means that copies of the arguments are created for the routine. Changing these copies will have no effect on the variable in the calling code; both instances are independent of each other. This is true <strong>even for maps and arrays</strong>. This behaviour comes with a certain penalty, namely when you work with complex maps and do a lot of recursion. In this case, the interpreter is busy with copying lots of data which will also require a lot of memory.</p>
+<p>To avoid this, you can require in the definition of a routine that some parameters will be passed »by reference«. In this case, no local copy will be created, but the routine will work on the same data as the calling code does: Changes to the value of a parameter are propagated to the caller. To employ passing by reference, the respective parameters in the routine definition must each be preceded with the keyword , or the reference operator :</p>
+<pre><code>bunga= 10
+chaka= 20
+
+hoogla(bunga, chaka)
+? bunga, chaka
+
+sub hoogla(zoogla, byref boing)
+  zoogla= 99
+  boing= 101
+end
+
+&gt; 10, 101</code></pre>
+<p>Besides reducing CPU power and memory required, passing parameters by reference has the additional effect that a routine can write on the parameters passed. This enables you to write procedures which change more than one global variable at a time. Bear in mind that the <em>calling code</em> has no way to »see« whether it passes a variable by value or by reference; the behaviour is completely in the hand of the <em>called routine</em>.</p>
+<p>Notice that this behaviour is subtly different from the use of the reference operator with a regular variable, see . You can (for obvious reasons) not apply the reference operator inside the routine’s code to a parameter or a local variable.</p>
+<h3 id="one-line-functions">One-line Functions</h3>
+<p>Sometime the code required for a function is short and neatly fits into one line. In this case, SmallBASIC provides a more concise syntax for function definitions, namely with the keyword :</p>
+<pre><code>def hoogla(x)= sin(x)*cos(x)
+
+func zoogla(x)
+    zoogla= sin(x)*cos(x)
+end</code></pre>
+<p>Both definitions above for and are equivalent.</p>
+<p>This does not work for procedures.</p>
+<h2 id="modules">Modules</h2>
+<p>To modularize your code above the level of routines, SmallBASIC offers the option to include other source files, and to create libraries of »units«.</p>
+<h3 id="file-inclusion">File Inclusion</h3>
+<p>In its most simple form, SmallBASIC lets you import other source files into the current file at runtime:</p>
+<pre><code>include &quot;bunga.bas&quot;</code></pre>
+<p>in the code will make the contents of the file available to the file currently running in the interpreter. »First level« code <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> in (will be executed immediately.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> If the included file contains a routine with the same name as one defined in the »mother« file, an error occurs; the old version of the routine is <em>not</em> replaced.</p>
+<p>Think of it as a simple copy-paste operation.</p>
+<h3 id="units">Units</h3>
+<p>»Units« are a more sophisticated concept in SmallBASIC which allows the creation of genuine program libraries with their own namespace and well-defined interfaces.</p>
+<p>Units are kept in seperate source files; each file contains exactly one unit which bears the same name as the file <em>sans</em> the extension.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<pre><code>file hoogla.bas:
+...
+unit hoogla
+...
+export zoogla, boogla
+zoogla= &quot;Hello world!&quot;
+
+sub boogla(name)
+    print &quot;Goodybe&quot;, name, &quot;!&quot;
+end</code></pre>
+<p>Inside the unit file, you can write code as you would in any source file, and define variables (simple and composite) and routines (procedures and functions). All of these variables and routines are local to the unit file, unless they’re defined to be public with the keyword .</p>
+<p>First level code is executed when the library is loaded, but it takes place in a separate namespace, ie a variable called in the unit file will not conflict with a variable with the same name in the mother file; they’re two seperate entities.</p>
+<p>To use a unit, it must be first be compiled into bytecode. You can do so from the IDE, or use the command line:</p>
+<pre><code>sbasici hoogla.bas</code></pre>
+<p>which creates a file . This must be repeated after updates to the unit file. Then it can be loaded with the keyword in the mother file which is to use the library. From this moment on, all ed variables and routines are available to the mother file. Their name there is a combination of the unit name, a dot and the variable or routine’s »proper« name. With the above code segment from you get:</p>
+<pre><code>file ragaqk.bas:
+
+import hoogla
+? hoogla.zoogla
+hoogla.boogla(&quot;Clint&quot;)
+
+&gt; Hello world!
+&gt; Goodbye,  Clint   !</code></pre>
+<p>It should be painfully obvious that a unit can’t import itself again.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Most times a disctinction between »arguments« and »parameters« is made in computer literature, but we’ll treat both as synonyms.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>At least, they can do so to a reasonable degree of levels.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Don’t confuse the terminology here with child and parent processes/threads.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>ie, code outside any routines<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>It is an interesting experiment to create such an -file during program runtime and import it then. Effectively, such a program would »bootstrap« itself. Not for the faint at heart.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>I was informed that this isn’t <em>strictly</em> true, but you can cause great confusion in the IDE if you don’t stick to that convention.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+</div>
+    <div class="pagefooter">
+      This page was last edited on Sat, 24 Mar 2018 08:08:27 +1000
+ | Markdown processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
+      | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

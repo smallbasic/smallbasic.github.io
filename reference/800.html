@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | STRING</title>
+  <meta name="description" content="Creates a new string of count length.">
+  <link rel="canonical" href="800">
+  <link rel="keywords" href="STRING ( count [,start | s] )">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+</head>
+  <body>
+<div class="wrapAll clearfix">
+  <div class="sidebar">
+    <div class="logo">
+      <a href="/index.html"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+    </div>
+    <div class="navigation">
+      <h4>SmallBASIC</h4>
+      <ul>
+        <li><a href="/index.html">Main page</a></li>
+        <li><a href="/pages/download.html">Download</a></li>
+        <li><a href="/pages/reference.html">Language reference</a></li>
+        <li><a href="/pages/samples.html">Code library</a></li>
+      </ul>
+      <hr class="menuSeparator"/>
+      <ul>
+        <li><a href="/pages/articles.html">Artices</a></li>
+        <li><a href="/pages/community.html">Community</a></li>
+        <li><a href="/pages/changelog.html">ChangeLog</a></li>
+        <li><a href="/pages/screenshots.html">Screenshots</a></li>
+        <li><a href="/pages/links.html">Links</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsLeft">
+        <ul>
+          <li><a href="#" class="active">Article</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/issues">Talk</a></li>
+        </ul>
+      </div>
+      <div id="simpleSearch">
+        <div id="submitSearch"></div>
+        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
+              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
+          <input type="hidden" class="js-site-search-type-field" name="type">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="l" value="Visual Basic">
+          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+        </form>
+      </div>
+      <div class="tabsRight">
+        <ul>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/800-string-string.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/800-string-string.markdown">View history</a></li>
+        </ul>
+      </div>
+    </div>
+<div class="article">
+  <h1>STRING</h1>
+  <blockquote>STRING ( count [,start | s] )</blockquote>
+  <div class="siteSub">
+    <p>
+      <a href="/pages/index.html">Home</a> &gt;
+      <a href="/pages/reference.html">Reference</a> &gt;
+      <a href="/pages/string.html">String</a>
+    </p>
+  </div>
+</blockquote>
+<p>Creates a new string of count length.</p>
+<pre><code>
+Def rainbow = Floor((Rnd * 100) Mod 16) &#39; random text color 0 to 15
+&#39; parameters for printing a box:
+Const ROW = 2
+Const COLUMN = 1
+Const HEIGHT = 8
+Const WIDTH = 9
+
+While True Do
+  Color 7, 0: Cls
+  Input &quot;Enter 1 to 5 character(s) [Enter empty to stop]&quot;; c
+  c = Left(Str(c), 5) &#39; 12 -&gt; &quot;12&quot;; 0 -&gt; &quot;0&quot;,  etc
+  If Empty(c) Then &#39; c is &quot;&quot;?
+    Stop
+  Endif
+
+  &#39; print box top line:
+  Color rainbow: Locate ROW, COLUMN: Print String(WIDTH, c);
+  &#39; print box vertical lines:
+  v_lines = c + Space((WIDTH - 2) * Len(c)) + c
+  For r = ROW + 1 To ROW + HEIGHT - 2 Do
+    Color rainbow: Locate r, COLUMN: Print v_lines;
+  Next
+  &#39; print box down line:
+  Color rainbow: Locate ROW + HEIGHT - 1, COLUMN: Print string(WIDTH, c);
+
+  Color 7: Locate ROW + HEIGHT + 2, COLUMN: Print &quot;Press any key...&quot;;
+  Pause
+Wend
+</code></pre>
+<p>I wasted a day trying to figure what “Invalid parameter” was causing a Mastermind program from crashing under certain circumstances. Turns out STRING can’t handle a 0 value in first argument. It would have been nice if the program stopped on that statement instead all the other places it had.</p>
+<pre><code>
+&#39;in this little example code does stop with cursor on the wrong line
+cows = 2
+? string(3,&quot;Bulls&quot;)+string(cows,&quot;Cows&quot;) &#39;returns BullsBullsBullsCowsCows
+cows =0
+? string(3,&quot;Bulls&quot;)+string(cows,&quot;Cows&quot;) &#39;Error: &quot;Invalid parameter&quot;
+pause
+end
+</code></pre>
+<p>How to understand this syntax “STRING ( count [,start | s] )”:</p>
+<pre><code>&#39; start is an ASCII value of a string character:
+x = STRING(2, ASC(&quot;Hello &quot;))
+? x &#39; --&gt; x is &quot;HH&quot;
+&#39; s is a string of any length:
+x = STRING(2, &quot;Hello &quot;)
+? x &#39; --&gt; x is &quot;Hello Hello &quot;</code></pre>
+  <div class="lavenderBox">
+    <div class="header">String</div>
+    <div class="linklist">
+      <a href="/reference/771.html">ASC </a>&nbsp;
+      <a href="/reference/772.html">BCS </a>&nbsp;
+      <a href="/reference/773.html">BIN </a>&nbsp;
+      <a href="/reference/774.html">CBS </a>&nbsp;
+      <a href="/reference/775.html">CHOP </a>&nbsp;
+      <a href="/reference/776.html">CHR </a>&nbsp;
+      <a href="/reference/777.html">DISCLOSE </a>&nbsp;
+      <a href="/reference/778.html">ENCLOSE </a>&nbsp;
+      <a href="/reference/779.html">FORMAT </a>&nbsp;
+      <a href="/reference/780.html">HEX </a>&nbsp;
+      <a href="/reference/781.html">INSTR </a>&nbsp;
+      <a href="/reference/545.html">JOIN </a>&nbsp;
+      <a href="/reference/782.html">LCASE </a>&nbsp;
+      <a href="/reference/783.html">LEFT </a>&nbsp;
+      <a href="/reference/784.html">LEFTOF </a>&nbsp;
+      <a href="/reference/785.html">LEFTOFLAST </a>&nbsp;
+      <a href="/reference/786.html">LOWER </a>&nbsp;
+      <a href="/reference/787.html">LTRIM </a>&nbsp;
+      <a href="/reference/788.html">MID </a>&nbsp;
+      <a href="/reference/789.html">OCT </a>&nbsp;
+      <a href="/reference/790.html">REPLACE </a>&nbsp;
+      <a href="/reference/791.html">RIGHT </a>&nbsp;
+      <a href="/reference/792.html">RIGHTOF </a>&nbsp;
+      <a href="/reference/793.html">RIGHTOFLAST </a>&nbsp;
+      <a href="/reference/794.html">RINSTR </a>&nbsp;
+      <a href="/reference/795.html">RTRIM </a>&nbsp;
+      <a href="/reference/768.html">SINPUT </a>&nbsp;
+      <a href="/reference/796.html">SPACE </a>&nbsp;
+      <a href="/reference/797.html">SPC </a>&nbsp;
+      <a href="/reference/769.html">SPLIT </a>&nbsp;
+      <a href="/reference/770.html">SPRINT </a>&nbsp;
+      <a href="/reference/798.html">SQUEEZE </a>&nbsp;
+      <a href="/reference/799.html">STR </a>&nbsp;
+      <a href="/reference/800.html"><strong>STRING</strong> </a>&nbsp;
+      <a href="/reference/801.html">TRANSLATE </a>&nbsp;
+      <a href="/reference/802.html">TRIM </a>&nbsp;
+      <a href="/reference/803.html">UCASE </a>&nbsp;
+      <a href="/reference/804.html">UPPER </a>&nbsp;
+      <a href="/reference/805.html">VAL </a>&nbsp;
+    </div>
+    <div class="subtitle">
+      If there is insufficient information on this page and you wish learn more about STRING,
+      please send an email to smallbasic@gmail.com. You can help to improve information about
+STRING by submitting a pull request, click View Source for details. Note, an offline
+      language reference text file is also avialable - see the Download section.
+    </div>
+  </div>
+  <div class="categories">
+    <a href="/pages/console.html">Console </a>
+    <a href="/pages/data.html">Data </a>
+    <a href="/pages/date.html">Date </a>
+    <a href="/pages/file.html">File </a>
+    <a href="/pages/graphics.html">Graphics </a>
+    <a href="/pages/language.html">Language </a>
+    <a href="/pages/math.html">Math </a>
+    <a href="/pages/string.html">String </a>
+    <a href="/pages/system.html">System </a>
+  </div>
+</div>
+    <div class="pagefooter">
+      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+ | Markdown processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_new" rel="nofollow">pandoc 2.1.2</a>
+      | Template by <a href="http://html5-templates.com/" target="_new" rel="nofollow">HTML5 Templates</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>
