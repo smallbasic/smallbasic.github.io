@@ -12,6 +12,7 @@
 - [David A. Wheeler's Suggestions for PalmOS PDA Users](http://www.dwheeler.com/palm-suggest.html){target=_blank}
 - [PalmOS-hosted programming languages](http://www.ibm.com/developerworks/linux/library/l-palmos2.html?dwzone=linux#h7879){target=_blank}
 - [PC Advisor](http://www.pcadvisor.co.uk/how-to/software/3307979/how-program-software/){target=_blank}
+- [Learn X in Y minutes](https://learnxinyminutes.com/docs/smallbasic/){target=_blank}
 
 ## External documentation
 
