@@ -89,12 +89,10 @@ you when you want to get more closely acquainted with :
 Licenses
 --------
 
--   SmallBASIC is released under the [GNU General Public License version 2.0
-    (GPLv2)](http://www.gnu.org/licenses/old-licenses/gpl-2.0)
+-   SmallBASIC is released under the [GNU General Public License version 2.0 (GPLv2)](http://www.gnu.org/licenses/old-licenses/gpl-2.0)
 
 -   This document, the &raquo;Vademecum&laquo;, is released under the
-    [Creative Commons License
-    by-nc-nd](http://creativecommons.org/licenses/by-nc-nd/3.0/de/deed.en_GB).
+    [Creative Commons License by-nc-nd](http://creativecommons.org/licenses/by-nc-nd/3.0/de/deed.en_GB).
     In short, this license means that you are free to reproduce and
     distribute this document in any non-commercial manner, as long as
     you don't change the author's name (that's mine), and as long as the

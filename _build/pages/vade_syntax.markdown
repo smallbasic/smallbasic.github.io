@@ -27,7 +27,7 @@ is ignored in SmallBASIC, except inside string literals where it is retained. [^
 
     for a=0to 10
 
-But note that the ommission of whitespace can lead to parsing errors: If
+But note that the omission of whitespace can lead to parsing errors: If
 the above line were abbreviated to
 
     fora=0to10
@@ -36,7 +36,7 @@ this would cause an error, because and wouldn't be recognized as
 keywords anymore. Rather, SmallBASIC would consider and to be variable names.[^3]
 
 Each program line contains one or more commands. Multiple commands on a
-line are **seperated by a colon** .
+line are **separated by a colon**.
 
     print "Hello world!"
     print "Wonderful day."
@@ -60,41 +60,30 @@ Numbers
 
 Numbers can be written in the usual manner, using either
 &raquo;conventional&laquo; or scientific notation. All of the following
-examples are legal numbers in :
+examples are legal numbers in:
 
     1, 0, -1, 1.2, -23232.5, 1.902e-50, -.423
 
-As is shown in the last example, numbers with an absolute value $<1$
-need not be preceded with .
+As is shown in the last example, numbers with an absolute value `<1` need not be preceded with `0`.
 
 Integer numbers can also be represented in hexadecimal, octal and binary
 notation with various prefixes:
 
-hexadecimal
+**hexadecimal**: `&h, 0h, &x, or 0x`
 
-:   : , , , or
+**octal**: `&o or 0o`
 
-octal
-
-:   : or )
-
-binary
-
-:   : (or )
-
-<!-- -->
+**binary**: `&b or 0b`
 
     &hAFFE0815, &o4242, &b100101011
     0hAFFE0815, 0o4242, 0b100101011
 
-/\* limits for numbers? \*/
-
-String literals [\[stringLiterals\]]{#stringLiterals label="stringLiterals"}
-----------------------------------------------------------------------------
+String literals
+---------------
 
 String literals are character sequences which are to be treated as
 program data &raquo;as is&laquo;, not as variable or keyword names. String
-literals are bracketed by double quotes .
+literals are bracketed by double quotes.
 
     "This is a string literal"
     this will be considered as a sequence of keywords
@@ -133,12 +122,12 @@ Identifiers can have virtually unlimited length. All characters are
 significant in resolving an identifier (ie, to determine whether two
 identifiers refer to the same variable.)[^4]
 
-Traditionally, in BASIC the **dollar sign** serves as a sigil to
+Traditionally, in BASIC the **dollar sign** serves as a signal to
 indicate that a name identifies a string variable, if used as the last
-character of the identifier (i.e., ).
+character of the identifier (i.e., `my_name$`).
 
 Since SmallBASIC is a typeless language (see below) where variables can hold
-values of any type, such a sigil would be misleading, yet it has been
+values of any type, such a signal would be misleading, yet it has been
 retained for the sake of compatibility. It may be placed as the last
 character of an identifier only. Here it serves two distinguish between
 identifiers ( and are two different identifiers), but has otherwise no
@@ -159,7 +148,7 @@ Everything on the current line following the comment introduction will
 be ignored in program execution.
 
 If the keyword is used and it is preceded by other commands on the
-current line, it must be seperated from the previous commands by a colon
+current line, it must be separated from the previous commands by a colon
 If the hash sign is used, it must be the first character on the line.
 (See also the use of a hash sign in &raquo;shebanging&laquo; a script, )
 

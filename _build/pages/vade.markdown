@@ -22,7 +22,7 @@ Contents
 :::
 
 The process of preparing programs for a digital computer is especially
-attractive because it not only can be economically and scientifially
+attractive because it not only can be economically and scientifically
 rewarding, it can also be an aesthetic experience much like composing
 poetry or music. -- [Donald F. Knuth]{.smallcaps}
 

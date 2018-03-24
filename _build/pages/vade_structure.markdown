@@ -108,7 +108,7 @@ also maintain their own &raquo;household&laquo; of variables accessible only
 to them.
 
 The keyword is used to define variables &raquo;attached&laquo; to a routine.
-The variables come into existance the minute the routine is invoked, and
+The variables come into existence the minute the routine is invoked, and
 they're deleted again as soon as the routine is terminated. If a local
 variable (or a routine parameter) has the same name as variable
 previously defined (in the main program or a routine which called the
@@ -144,11 +144,11 @@ details from that of other programming languages and BASIC dialects:
     > In main:      100 99
 
 Let's have a look at what is actually happening here. First, the global
-variables and are defined and assigned the values $100$ and $200$, resp.
+variables and are defined and assigned the values `100` and `200`, resp.
 Next, is invoked and defines a local variable which &raquo;shadows&laquo; the
-global variable of the same name. Thus, the value $30$ is assigned to
+global variable of the same name. Thus, the value `30` is assigned to
 the local instance of , not to the global one. As opposed to that, there
-only is one instance of , and the value $200$ is written to that.
+only is one instance of , and the value `200` is written to that.
 
 Next, is called, which has access to all the &raquo;knowledge&laquo; has. When
 the old values of and are overwritten, this happens again to the local
@@ -176,8 +176,8 @@ create a new *global* variable first:
     > 10
 
 This creates (or overwrites) a global variable with the name and the
-value $100$, then creates a local variable with the same name, assigns
-it the value $10$, and then destroys the local copy at the end of the
+value `100`, then creates a local variable with the same name, assigns
+it the value `10`, and then destroys the local copy at the end of the
 procedure, while the global copy still lives on.
 
 Routines can **recurse**, ie invoke themselves again before they're
@@ -327,7 +327,7 @@ Think of it as a simple copy-paste operation.
 creation of genuine program libraries with their own namespace and
 well-defined interfaces.
 
-Units are kept in seperate source files; each file contains exactly one
+Units are kept in separate source files; each file contains exactly one
 unit which bears the same name as the file *sans* the extension.[^6]
 
     file hoogla.bas:
@@ -338,7 +338,7 @@ unit which bears the same name as the file *sans* the extension.[^6]
     zoogla= "Hello world!"
 
     sub boogla(name)
-        print "Goodybe", name, "!"
+        print "Goodbye", name, "!"
     end
 
 Inside the unit file, you can write code as you would in any source
@@ -350,7 +350,7 @@ keyword .
 First level code is executed when the library is loaded, but it takes
 place in a separate namespace, ie a variable called in the unit file
 will not conflict with a variable with the same name in the mother file;
-they're two seperate entities.
+they're two separate entities.
 
 To use a unit, it must be first be compiled into bytecode. You can do so
 from the IDE, or use the command line:
@@ -375,7 +375,7 @@ With the above code segment from you get:
 
 It should be painfully obvious that a unit can't import itself again.
 
-[^1]: Most times a disctinction between &raquo;arguments&laquo; and
+[^1]: Most times a distinction between &raquo;arguments&laquo; and
     &raquo;parameters&laquo; is made in computer literature, but we'll treat
     both as synonyms.
 

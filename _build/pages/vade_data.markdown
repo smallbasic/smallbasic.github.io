@@ -39,9 +39,9 @@ data it is fed with.
 Simple Variables
 ----------------
 
-Simple variables **need not be declared**; they come into existance by
+Simple variables **need not be declared**; they come into existence by
 their first appearance in the source code. If they are not created
-through an assignment, they will be initiated to the value &raquo;$0$&laquo;
+through an assignment, they will be initiated to the value &raquo;`0`&laquo;
 (or, equivalently, to the empty string &raquo;\"\"&laquo;. (This example
 admittedly looks a little silly.)
 
@@ -80,16 +80,12 @@ Many languages have different types for various flavours of numbers --
 signed or unsigned integers, reals, etc. -- In contrast, SmallBASIC only has a
 single class of numbers.[^4]
 
-SmallBASIC numbers can have absolute values roughly between $2.2\cdot
-10^{-208}$ (smaller values are considered $0$) and $1.8\cdot 10^{308}$
-(larger values raise a flag (for &raquo;infinity&laquo;).
-
 ### Strings
 
 Strings are chains of one or several letters, used to represent words,
 sentences or complete texts. A string consisting of zero letters is
 called an &raquo;empty&laquo; string. (While I have a strong hunch that
-strings are internally represented with UTF-8 unicode characters, it's
+strings are internally represented with UTF-8 Unicode characters, it's
 probably safer to only assign ASCII letters to them.)
 
     my_name= "Elmar Vogt"
@@ -102,7 +98,7 @@ length: In the course of a program, they can change their length
 arbitrarily, and there is no need to define a maximum length for them. A
 theoretical upper length limit is set at 2 billion characters.[^5]
 
-**String concatenation** is done with the $+$ operator:
+**String concatenation** is done with the `+` operator:
 
     my_name= "Elmar Vogt"
     greeting= "Hello, my name is "
@@ -111,7 +107,7 @@ theoretical upper length limit is set at 2 billion characters.[^5]
 
     > Hello, my name is Elmar Vogt
 
-The $+$ operator combines the string operands to the left and to the
+The `+` operator combines the string operands to the left and to the
 right of it to a new, third string, the length of which is the sum of
 the individual strings' lengths. If either the left or the right operand
 is a number -- a literal or a variable --, then this operand will be
@@ -127,7 +123,7 @@ contained in the string:[^7]
     > 11
 
 **String indexing** is done with the first character of a string being
-considere to be at position $1$:[^8]
+considered to be at position `1`:[^8]
 
     ? mid("Help me", 4, 1)
 
@@ -149,8 +145,8 @@ look like this:
     next i
 
 Note that this in contrast with the use of arrays (see below), where the
-first array element has the index $0$, and for an array with $n$
-elements the highest index is $n-1$.
+first array element has the index `0`, and for an array with `n`
+elements the highest index is `n-1`.
 
 Complex data structures
 -----------------------
@@ -186,7 +182,7 @@ array member, its name is followed by the index in parentheses :
     hoogla(i)= boogla(250)
 
 will assign the value of 's 250th member to the member of with the
-numberical index .
+numerical index .
 
 Array members can be of **mixed content**, ie it's perfectly okay for
 one member of an array to hold a number, and for a different member of
@@ -199,10 +195,10 @@ numerical value:
 
     dim hoogla(250)
 
-will define to initially have $251$ members with indices $0..250$. This
+will define to initially have `251` members with indices `0..250`. This
 **array indexing** contrasts with the indexing of strings.
 
-Array members can be erased from the array with . Note that if the $i$th
+Array members can be erased from the array with . Note that if the `i`th
 member of an array is deleted, then all array members with higher
 indices &raquo;move down&laquo; one notch, ie the value of will now be in .
 
@@ -212,8 +208,8 @@ operator .[^11]
     dim hoogla(250)
     hoogla << 132
 
-means that now will have $252$ members, and the new $252$nd member (with
-the index $251$) will have the value $132$.
+means that now will have `252` members, and the new `252`nd member (with
+the index `251`) will have the value `132`.
 
 Arrays are not limited to being a chain of values. **Several array
 dimensions** can be defined to render arrays of &raquo;rectangular&laquo;,
@@ -222,9 +218,9 @@ dimensions** can be defined to render arrays of &raquo;rectangular&laquo;,
     dim hoogla(10, 20, 10)
     hoogla(5, 9, 8)= "blubbdi"
 
-will create an array with $11 \times 21 \times 11$ members, or access
+will create an array with `11 \times 21 \times 11` members, or access
 one particular member, resp. For obvious reasons, it's not possible to
-members of such a higher-dimensional array in the abovementioned way.
+members of such a higher-dimensional array in the above mentioned way.
 Likewise, using the appendix operator with a higher-dimensional array
 should be avoided.[^12]
 
@@ -232,7 +228,7 @@ The maximum array size is virtually unlimited. But note that with the
 introduction of new array dimensions, the space and performance
 requirements increase exponentially.
 
-### Maps [\[map\]]{#map label="map"}
+### Maps
 
 Maps differ from arrays in two ways: Firstly, while arrays always have a
 linear or &raquo;rectangular&laquo; structure, **maps are &raquo;data trees&laquo;,
@@ -261,13 +257,13 @@ and thus to create havoc at runtime.
 **Map initialisation** can be done by in three ways: Either explicitly,
 by using the keyword *without* an array size (ie, simply is enough),
 through the keyword (see below), or implicitly by assigning the map
-members values by a sequence of comma-seperated values, enclosed in
+members values by a sequence of comma-separated values, enclosed in
 square brackets :
 
     hoogla= [10, 9, 8, 7, 6, 1]
 
-initialises a simple map with $6$ members with automatically generated
-indices from $0$ to $5$.
+initialises a simple map with `6` members with automatically generated
+indices from `0` to `5`.
 
 To create more complex structures, each map member which is a map again
 must be enclosed in brackets. For example,
@@ -319,7 +315,7 @@ be a real value, or even a string:
     boogla("nuffda")= ...
 
 The second option uses the &raquo;dot notation&laquo; familiar from other
-languages like &raquo;C&laquo;, seperating the name from the member key with a
+languages like &raquo;C&laquo;, separating the name from the member key with a
 dot :
 
     boogla.nuffda= ...
@@ -358,14 +354,12 @@ When accessing in the third line, in the first term , is replaced with
 its value by the interpreter, before looking the map member with that
 name up and returning the result, . In the second term , the interpreter
 looks for a member of with the key , can't find one, and tacitly creates
-a new one which is initialized with the value $0$.[^15]
+a new one which is initialized with the value `0`.[^15]
 
 This makes the parentheses notation particularly useful when you want to
 decide at runtime which map member you want to access: With dot
 notation, access is fixed, but with parentheses notation you can pass a
 variable to determine which member to use in that instance.
-
-###  [\[cLen\]]{#cLen label="cLen"}
 
 For both arrays and maps, will give you the number of elements in the
 structure. But note that this isn't the total number of elements, but
@@ -374,19 +368,16 @@ only the number of elements in the &raquo;top dimension&laquo;.
 For example, when initializing an array as
 
     boogla= [1, 2, [4, 5, 6, 7], 2390023, [3.1415926, "hoogla!"], 99]
-    \end
 
-    \Co{len(boogla)} will be $6$, as this is the number of first-dimension
-    members, not 10, which would be the total number of elements.
+    'boogla will be 6, as this is the number of first-dimension
+    'members, not 10, which would be the total number of elements.
 
-    \subsection{Almost, but Not Quite the Same (Not a Rose by any other
-    Name)}
+    'Almost, but Not Quite the Same (Not a Rose by any other Name
 
-    The \textbf{near-but-not-quite equivalency of maps and arrays} leads to
-    interesting consequences, read: causes for unexpected trouble. For
-    example, in the following code
+    'The near-but-not-quite equivalency of maps and arrays leads to
+    'interesting consequences, read: causes for unexpected trouble. For
+    'example, in the following code
 
-    \begin{lstlisting}
     dim x
     dim z
     x("hello")= 10
@@ -462,7 +453,7 @@ Continue the above code:
 
     > 20        50
 
-What gives? When executing , the value $50$ is assigned to the variable
+What gives? When executing , the value `50` is assigned to the variable
 , which from this point on no longer holds 's address; the link between
 the two variables is broken, and the variables go their seperate ways.
 So, as long as is a reference to , it will always reflect the current
@@ -537,15 +528,15 @@ it *must*.
 [^5]: Even before that SmallBASIC tends to get too tediously slow for all
     practical purposes.
 
-[^6]: Obviously, if *both* operands are numbers, $+$ will perform a
+[^6]: Obviously, if *both* operands are numbers, `+` will perform a
     simple addition and assign the sum of both values to the variable on
     the left of the equality sign.
 
 [^7]: The function returns the length of the following argument in
     brackets
 
-[^8]: The function returns $z$ characters from the string $x$, beginning
-    with the $y$th
+[^8]: The function returns `z` characters from the string `x`, beginning
+    with the `y`th
 
 [^9]: The function returns the length of its string argument, in number
     of characters

@@ -48,7 +48,7 @@ they don't need to refer to the same variable. If you want to test a
 single value against several possible outcomes, is probably a better
 option, see .
 
-Several clauses can be nested. It's your resposibility to make sure than
+Several clauses can be nested. It's your responsibility to make sure than
 they are properly closed, especially when you're using many / branches.
 
 If your &raquo;deserts are small&laquo;,[^1] and you don't have to process
@@ -112,7 +112,7 @@ Note that, compared to other programming languages, there are several
 limitations to the construct:
 
 -   No required or even allowed. This makes it impossible to achieve
-    a &raquo;fallthrough&laquo; of several clauses (intentionally or
+    a &raquo;fall through&laquo; of several clauses (intentionally or
     accidentally).
 
 -   There is no way to compare for inequality (like -- this would be an
@@ -137,14 +137,14 @@ other programming languages:
 
 The keyword and the subsequent increment (which can be any expression,
 not necessarily only a variable) are optional; if they're missing, the
-increment is set to $1$. There is no need to add to the keyword the name
+increment is set to `1`. There is no need to add to the keyword the name
 of the loop variable.[^2]
 
 The index loop variable will be set to the initial value , and the code
 inside the loop executed at least once. Upon reaching the corresponding
 statement, the index is compared to the limit given after the keyword.
 If the index is smaller or equal to , the index is incremented by the ,
-if this is provided, or by $1$), and the loop is traversed once more.
+if this is provided, or by `1`), and the loop is traversed once more.
 (If is negative, the situation is obviously reversed.)
 
 This means that to traverse through a complete array (assuming it uses
@@ -241,8 +241,8 @@ repeated until an expression will be fulfilled. Note two important
 differences though:
 
 -   In a loop, the loop is executed as long as the expression is *true*
-    (ie, unequal to $0$), whereas a loop is executed as long as the
-    expression is *false*, or $0$.
+    (ie, unequal to `0`), whereas a loop is executed as long as the
+    expression is *false*, or `0`.
 
 -   In a loop, the test for the expression is performed at the
     *beginning* of the loop, but in a loop, the expression test takes
@@ -297,7 +297,7 @@ Exceptions:
 ------------
 
 Exceptions provide a fairly comfortable way to catch runtime errors
-occuring unexpectedly in your program. Of course, they can't help with
+occurring unexpectedly in your program. Of course, they can't help with
 faulty program logic. Rather, exceptions are supposed to handle files
 not conforming to an expected format, hardware problems and the like.
 
@@ -335,7 +335,7 @@ to this variable (provided any error occured at all). The corresponding
 section will then be executed, regardless of the exact nature of the
 error.
 
-The second option is thus preferrable if you either want to have a
+The second option is thus preferable if you either want to have a
 simple &raquo;catch all&laquo; which will deal with any imaginable error in a
 single sweep, or, at the other extreme, if the error conditions you
 expect to encounter are so confusing that you'd rather dedicate some

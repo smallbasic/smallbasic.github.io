@@ -109,7 +109,7 @@ end</code></pre>
 <p>creates an error.</p>
 <h3 id="variable-scope">Variable Scope</h3>
 <p>Routines help with the modularization of code by »encapsulating« the data, which means that routines have only access to a sub-set of all variables defined in the program. Most importantly, routines can’t read or write variables defined in other routines. Hence it’s impossible that they would accidentally overwrite other variables. Likewise the routines also maintain their own »household« of variables accessible only to them.</p>
-<p>The keyword is used to define variables »attached« to a routine. The variables come into existance the minute the routine is invoked, and they’re deleted again as soon as the routine is terminated. If a local variable (or a routine parameter) has the same name as variable previously defined (in the main program or a routine which called the current routine), the previous instance is »shadowed«, and the routine will access the local variable instead, until the current routine is left again. A local variable will also be visible to a routine which is called from the routine where the local was defined.</p>
+<p>The keyword is used to define variables »attached« to a routine. The variables come into existence the minute the routine is invoked, and they’re deleted again as soon as the routine is terminated. If a local variable (or a routine parameter) has the same name as variable previously defined (in the main program or a routine which called the current routine), the previous instance is »shadowed«, and the routine will access the local variable instead, until the current routine is left again. A local variable will also be visible to a routine which is called from the routine where the local was defined.</p>
 <p>The following code may explain the behaviour. It differs in important details from that of other programming languages and BASIC dialects:</p>
 <pre><code>nagaqk= 100
 zoogla= 200
@@ -133,7 +133,7 @@ end
 &gt; In boogla:    30      200
 &gt; In gluck:     15      99
 &gt; In main:      100 99</code></pre>
-<p>Let’s have a look at what is actually happening here. First, the global variables and are defined and assigned the values $100$ and $200$, resp. Next, is invoked and defines a local variable which »shadows« the global variable of the same name. Thus, the value $30$ is assigned to the local instance of , not to the global one. As opposed to that, there only is one instance of , and the value $200$ is written to that.</p>
+<p>Let’s have a look at what is actually happening here. First, the global variables and are defined and assigned the values <code>100</code> and <code>200</code>, resp. Next, is invoked and defines a local variable which »shadows« the global variable of the same name. Thus, the value <code>30</code> is assigned to the local instance of , not to the global one. As opposed to that, there only is one instance of , and the value <code>200</code> is written to that.</p>
 <p>Next, is called, which has access to all the »knowledge« has. When the old values of and are overwritten, this happens again to the local copy of , but to the global instance of . Had defined its own local copy of , <em>that</em> copy would have been overwritten rather than ’s.</p>
 <p>The writing done in is still »felt« in when control returns there. But when is left, its local instance of is deleted and the original instance (defined globally) returns to the surface unscathed. Note that for there only ever was a single instance. Had had its own instance of , the results would also have been different.</p>
 <p>Note that local variables can be defined anywhere in the routine. But if you access a variable before it’s defined as local, you will actually create a new <em>global</em> variable first:</p>
@@ -146,7 +146,7 @@ end
 end hoogla
 
 &gt; 10</code></pre>
-<p>This creates (or overwrites) a global variable with the name and the value $100$, then creates a local variable with the same name, assigns it the value $10$, and then destroys the local copy at the end of the procedure, while the global copy still lives on.</p>
+<p>This creates (or overwrites) a global variable with the name and the value <code>100</code>, then creates a local variable with the same name, assigns it the value <code>10</code>, and then destroys the local copy at the end of the procedure, while the global copy still lives on.</p>
 <p>Routines can <strong>recurse</strong>, ie invoke themselves again before they’re finished.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Every time a new instance of the routine is called, it will also create a new set of parameters and local variables, while the old set is »put aside« and only restored when the execution of the current routine level is finished.</p>
 <pre><code>hoogla
 
@@ -221,7 +221,7 @@ end</code></pre>
 <p>Think of it as a simple copy-paste operation.</p>
 <h3 id="units">Units</h3>
 <p>»Units« are a more sophisticated concept in SmallBASIC which allows the creation of genuine program libraries with their own namespace and well-defined interfaces.</p>
-<p>Units are kept in seperate source files; each file contains exactly one unit which bears the same name as the file <em>sans</em> the extension.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>Units are kept in separate source files; each file contains exactly one unit which bears the same name as the file <em>sans</em> the extension.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
 <pre><code>file hoogla.bas:
 ...
 unit hoogla
@@ -230,10 +230,10 @@ export zoogla, boogla
 zoogla= &quot;Hello world!&quot;
 
 sub boogla(name)
-    print &quot;Goodybe&quot;, name, &quot;!&quot;
+    print &quot;Goodbye&quot;, name, &quot;!&quot;
 end</code></pre>
 <p>Inside the unit file, you can write code as you would in any source file, and define variables (simple and composite) and routines (procedures and functions). All of these variables and routines are local to the unit file, unless they’re defined to be public with the keyword .</p>
-<p>First level code is executed when the library is loaded, but it takes place in a separate namespace, ie a variable called in the unit file will not conflict with a variable with the same name in the mother file; they’re two seperate entities.</p>
+<p>First level code is executed when the library is loaded, but it takes place in a separate namespace, ie a variable called in the unit file will not conflict with a variable with the same name in the mother file; they’re two separate entities.</p>
 <p>To use a unit, it must be first be compiled into bytecode. You can do so from the IDE, or use the command line:</p>
 <pre><code>sbasici hoogla.bas</code></pre>
 <p>which creates a file . This must be repeated after updates to the unit file. Then it can be loaded with the keyword in the mother file which is to use the library. From this moment on, all ed variables and routines are available to the mother file. Their name there is a combination of the unit name, a dot and the variable or routine’s »proper« name. With the above code segment from you get:</p>
@@ -249,7 +249,7 @@ hoogla.boogla(&quot;Clint&quot;)
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Most times a disctinction between »arguments« and »parameters« is made in computer literature, but we’ll treat both as synonyms.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Most times a distinction between »arguments« and »parameters« is made in computer literature, but we’ll treat both as synonyms.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 <li id="fn2"><p>At least, they can do so to a reasonable degree of levels.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 <li id="fn3"><p>Don’t confuse the terminology here with child and parent processes/threads.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 <li id="fn4"><p>ie, code outside any routines<a href="#fnref4" class="footnote-back">↩</a></p></li>
