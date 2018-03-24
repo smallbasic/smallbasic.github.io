@@ -4,7 +4,7 @@ Data
 > Written by Elmar Vogt, F&uuml;rth, GERMANY
 
 ::: siteSub ::
-[Home](/index.html) > [Vade](/pages/vade.html)
+[Home](/) > [Vade](/pages/vade.html)
 :::
 
 In this chapter, the Vademecum introduces you to the various ways

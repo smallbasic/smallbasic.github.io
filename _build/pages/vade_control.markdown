@@ -4,7 +4,7 @@ Control Flow
 > Written by Elmar Vogt, F&uuml;rth, GERMANY
 
 ::: siteSub ::
-[Home](/index.html) > [Vade](/pages/vade.html)
+[Home](/) > [Vade](/pages/vade.html)
 :::
 
 In this section we'll describe a number of ways to establish

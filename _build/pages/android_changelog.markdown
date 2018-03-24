@@ -1,6 +1,6 @@
 ## Android ChangeLog ##
 ::: siteSub ::
-[Home](/index.html) > [Articles](/pages/articles.html)
+[Home](/) > [Articles](/pages/articles.html)
 :::
 
 **0.12.11 30 Dec, 2017**

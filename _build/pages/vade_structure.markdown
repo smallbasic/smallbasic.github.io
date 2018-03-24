@@ -4,7 +4,7 @@ Structuring a Program
 > Written by Elmar Vogt, F&uuml;rth, GERMANY
 
 ::: siteSub ::
-[Home](/index.html) > [Vade](/pages/vade.html)
+[Home](/) > [Vade](/pages/vade.html)
 :::
 
 This chapter will give you an overview about how you can avoid

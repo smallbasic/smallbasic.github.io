@@ -4,7 +4,7 @@ A Quick and Painless Introduction
 > Written by Elmar Vogt, F&uuml;rth, GERMANY
 
 ::: siteSub ::
-[Home](/index.html) > [Vade](/pages/vade.html)
+[Home](/) > [Vade](/pages/vade.html)
 :::
 
 This chapter is designed to give you an overview over SmallBASIC and
