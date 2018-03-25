@@ -9,7 +9,7 @@
 #
 
 .SECONDARY :
-.PHONY : all clean
+.PHONY : all clean spell
 
 # tools
 sbasic = /home/chrisws/src/SmallBASIC/src/platform/console/sbasic
@@ -98,3 +98,7 @@ all: $(reference) $(pages) $(posts) $(scripts)
 
 clean:
 	rm -rf $(out) *.sbu
+
+spell:
+	@enchant -l pages/*.markdown | sort | uniq | diff pages.dict -
+	@enchant -l reference/*.markdown | sort | uniq | diff reference.dict -

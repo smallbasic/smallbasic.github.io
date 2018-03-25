@@ -178,6 +178,6 @@ There are no provision for **block comments**.
     keywords.
 
 [^4]: This is in contrast to many older BASICs. The *Commodore BASIC*
-    shipped with the honorable C64, for example, allowed identifiers of
+    shipped with the honourable C64, for example, allowed identifiers of
     arbitrary length, but used only the first two letters for
     resolution: and were considered to refer to the same variable.
