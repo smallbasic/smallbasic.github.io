@@ -86,11 +86,15 @@ all: $(reference) $(pages) $(posts) $(scripts)
 	@mkdir -p ../reference
 	@mkdir -p ../pages
 	@mkdir -p ../posts
-	$(sbasic) deploy.bas
+	@$(sbasic) deploy.bas
 	@cp $(out)/pages3/*.html ../pages
 	@cp $(out)/posts3/*.html ../posts
 	@cp $(out)/scripts2/*.html ../pages
-	mv ../pages/index.html ../
+	@mv ../pages/index.html ../
+	@cp layouts/index.html ../pages
+	@cp layouts/index.html ../posts
+	@cp layouts/index.html ../samples
+	@cp layouts/index.html ../reference
 
 clean:
 	rm -rf $(out) *.sbu
