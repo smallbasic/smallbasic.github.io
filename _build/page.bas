@@ -21,12 +21,13 @@ jsonFile = translate(jsonFile, ".html", ".json")
 sourcefile = ""
 
 if (not exist(jsonFile)) then
-  rem regular page
-  pagename = translate(command,  "pages1", "")
-  pagename = translate(pagename, "pages2", "")
+  rem non reference page, could be either "pages", "scripts" or "posts"
+  pagename = translate(command,  "pages2", "")
   pagename = translate(pagename, "pages3", "")
-  pagename = translate(pagename, "pages4", "")
   pagename = translate(pagename, "pages", "")
+  pagename = translate(pagename, "posts2", "")
+  pagename = translate(pagename, "posts3", "")
+  pagename = translate(pagename, "posts", "")
   pagename = translate(pagename, "scripts", "")
   pagename = translate(pagename, "_out", "")
   pagename = translate(pagename, "/", "")
@@ -41,6 +42,9 @@ if (not exist(jsonFile)) then
   sourcefile = "pages/" + pagename + ".markdown"
   if (not exist(sourcefile)) then
     sourcefile = "scripts/" + pagename + ".html"
+    if (not exist(sourcefile)) then
+      sourcefile = "posts/" + pagename + ".markdown"
+    endif
   endif
 else
   rem reference page
