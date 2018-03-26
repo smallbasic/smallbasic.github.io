@@ -605,14 +605,20 @@ span.user {
 }
 @media screen and (max-width: 550px) {
     .sidebar {
-        width: 6em;
+        width: 5em;
         padding: 3px 0.5em 10px 0.5em;
     }
     .mainsection {
-        margin: 0 0 0 7em;
+        margin: 0 0 0 5.2em;
     }
     .contentsPanel {
         width: auto;
+    }
+    .logo img {
+        display: none;
+    }
+    .navigation > h4 {
+        font-size: .7em;
     }
 }
 @media screen and (max-width: 400px) {
