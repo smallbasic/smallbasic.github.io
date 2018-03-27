@@ -8,34 +8,34 @@ Structuring a Program
 :::
 
 This chapter will give you an overview about how you can avoid
-producing the notorious &raquo;spaghetti code&laquo;, and structure your program
+producing the notorious ~spaghetti\ code~, and structure your program
 instead into blocks which are easier to debug and maintain.
 
 Routines: Procedures and Functions
 ----------------------------------
 
-Routines (also called &raquo;subroutines&laquo;) are blocks of code set apart
+Routines (also called ~subroutines~) are blocks of code set apart
 from the main code. This can be done for a variety of reasons, for
 example simply to break down a complex task into individual stages which
 are more readily analyzed and maintained. Another reason is reusability;
 if the program needs to perform the same task in several stages, it's
 more economical to write the code once and reuse it as is necessary.
 
-Routines come in two flavours: &raquo;Procedures&laquo; and &raquo;functions&laquo;.
-Syntactically, in SmallBASIC procedures and functions are almost equivalent. The
-only difference is that a function returns a value when called, whereas
-procedures do not. **A function can only return a single variable**, but
-this may be an arbitrarily complex map. If you need to manipulate more
-than a single value, you can also pass parameters by reference, see
-below.
+Routines come in two flavours: ~Procedures~ and ~functions~.
+Syntactically, in SmallBASIC procedures and functions are almost
+equivalent. The only difference is that a function returns a value when
+called, whereas procedures do not. **A function can only return a single
+variable**, but this may be an arbitrarily complex map. If you need to
+manipulate more than a single value, you can also pass parameters by
+reference, see below.
 
 ### Definition
 
 Procedures and functions are defined by embracing a block of code
-between the or keyword, resp., at the beginning followed by the
-routine's name, and at the end of the block. Parameters are defined as a
-comma-separated list of variables following the routine name in
-parentheses:
+between the ~sub~ or ~func~ keyword, resp., at the beginning
+followed by the routine's name, and ~end~ at the end of the block.
+Parameters are defined as a comma-separated list of variables following
+the routine name in parentheses:
 
     sub x(hoogla, boogla)
         ...
@@ -49,13 +49,13 @@ parentheses:
 
 For a function, the **return value** is determined by assigning an
 expression to a variable with the same name as the function, in the
-example above in the line .
+example above in the line ~y=\ arg1+arg2~.
 
 Note that this is in contrast with most other BASIC dialects which use
-the keyword instead. There, also makes the interpreter exit the routine
-and return control to the calling code immediately. Not so in : Here,
-***all code* up to the keyword is executed**, with all side effects it
-may generate.
+the keyword ~return~ instead. There, ~return~ also makes the
+interpreter exit the routine and return control to the calling code
+immediately. Not so in : Here, ***all code* up to the ~end~
+keyword is executed**, with all side effects it may generate.
 
 Routines may be **defined anywhere** in your code; they don't need to be
 defined before they are invoked.
@@ -99,23 +99,24 @@ creates an error.
 
 ### Variable Scope
 
-Routines help with the modularization of code by &raquo;encapsulating&laquo;
+Routines help with the modularization of code by ~encapsulating~
 the data, which means that routines have only access to a sub-set of all
 variables defined in the program. Most importantly, routines can't read
 or write variables defined in other routines. Hence it's impossible that
 they would accidentally overwrite other variables. Likewise the routines
-also maintain their own &raquo;household&laquo; of variables accessible only
+also maintain their own ~household~ of variables accessible only
 to them.
 
-The keyword is used to define variables &raquo;attached&laquo; to a routine.
-The variables come into existence the minute the routine is invoked, and
-they're deleted again as soon as the routine is terminated. If a local
-variable (or a routine parameter) has the same name as variable
-previously defined (in the main program or a routine which called the
-current routine), the previous instance is &raquo;shadowed&laquo;, and the
-routine will access the local variable instead, until the current
-routine is left again. A local variable will also be visible to a
-routine which is called from the routine where the local was defined.
+The keyword ~local~ is used to define variables ~attached~
+to a routine. The variables come into existance the minute the routine
+is invoked, and they're deleted again as soon as the routine is
+terminated. If a local variable (or a routine parameter) has the same
+name as variable previously defined (in the main program or a routine
+which called the current routine), the previous instance is
+~shadowed~, and the routine will access the local variable
+instead, until the current routine is left again. A local variable will
+also be visible to a routine which is called from the routine where the
+local was defined.
 
 The following code may explain the behaviour. It differs in important
 details from that of other programming languages and BASIC dialects:
@@ -144,22 +145,29 @@ details from that of other programming languages and BASIC dialects:
     > In main:      100 99
 
 Let's have a look at what is actually happening here. First, the global
-variables and are defined and assigned the values `100` and `200`, resp.
-Next, is invoked and defines a local variable which &raquo;shadows&laquo; the
-global variable of the same name. Thus, the value `30` is assigned to
-the local instance of , not to the global one. As opposed to that, there
-only is one instance of , and the value `200` is written to that.
+variables ~nagaqk~ and ~zoogla~ are defined and assigned the
+values ~100~ and ~200~, resp. Next, ~gluck~ is invoked and defines
+a local variable ~nagaqk~ which ~shadows~ the global
+variable of the same name. Thus, the value ~30~ is assigned to the local
+instance of ~nagaqk~, not to the global one. As opposed to that,
+there only is one instance of ~zoogla~, and the value ~200~ is
+written to that.
 
-Next, is called, which has access to all the &raquo;knowledge&laquo; has. When
-the old values of and are overwritten, this happens again to the local
-copy of , but to the global instance of . Had defined its own local copy
-of , *that* copy would have been overwritten rather than 's.
+Next, ~boogla~ is called, which has access to all the
+~knowledge~ ~gluck~ has. When the old values of
+~nagaqk~ and ~zoogla~ are overwritten, this happens again to
+the local copy of ~nagaqk~, but to the global instance of
+~zoogla~. Had ~boogla~ defined its own local copy of
+~nagaqk~, *that* copy would have been overwritten rather than
+~gluck~'s.
 
-The writing done in is still &raquo;felt&laquo; in when control returns there.
-But when is left, its local instance of is deleted and the original
+The writing done in ~boogla~ is still ~felt~ in
+~gluck~ when control returns there. But when ~boogla~ is
+left, its local instance of ~nagaqk~ is deleted and the original
 instance (defined globally) returns to the surface unscathed. Note that
-for there only ever was a single instance. Had had its own instance of ,
-the results would also have been different.
+for ~zoogla~ there only ever was a single instance. Had
+~boogla~ had its own instance of ~nagaqk~, the results would
+also have been different.
 
 Note that local variables can be defined anywhere in the routine. But if
 you access a variable before it's defined as local, you will actually
@@ -175,15 +183,15 @@ create a new *global* variable first:
 
     > 10
 
-This creates (or overwrites) a global variable with the name and the
-value `100`, then creates a local variable with the same name, assigns
-it the value `10`, and then destroys the local copy at the end of the
-procedure, while the global copy still lives on.
+This creates (or overwrites) a global variable with the name
+~zoot~ and the value ~100~, then creates a local variable with the
+same name, assigns it the value ~10~, and then destroys the local copy
+at the end of the procedure, while the global copy still lives on.
 
 Routines can **recurse**, ie invoke themselves again before they're
 finished.[^2] Every time a new instance of the routine is called, it
 will also create a new set of parameters and local variables, while the
-old set is &raquo;put aside&laquo; and only restored when the execution of the
+old set is ~put\ aside~ and only restored when the execution of the
 current routine level is finished.
 
     hoogla
@@ -205,12 +213,12 @@ current routine level is finished.
     > 2
     > 1
 
-The definitions of **routines may be &raquo;nested&laquo;**, ie one routine
-(the &raquo;child&laquo;) may be defined within the code block of another (the
-&raquo;parent&laquo;).[^3] Whether you define a routine inside or outside
+The definitions of **routines may be ~nested~**, ie one routine
+(the ~child~) may be defined within the code block of another (the
+~parent~).[^3] Whether you define a routine inside or outside
 another routine has little bearing on the variables household of the
 child routine. But the child routine is only visible from inside the
-parent routine and its &raquo;siblings&laquo;. To any code outside the parent
+parent routine and its ~siblings~. To any code outside the parent
 routine, the child will be invisible:
 
     hoogla
@@ -231,18 +239,18 @@ routine, the child will be invisible:
       end
     end
 
-causes an error in the third line, because is invisible outside . The
-rest of the code will be executed fine if you comment out the third
-line.
+causes an error in the third line, because ~child1~ is invisible
+outside ~hoogla~. The rest of the code will be executed fine if
+you comment out the third line.
 
-SmallBASIC provides nothing in the way of **static variables**, ie local routine
-variables which maintain their value between two subsequent calls of the
-routine.
+SmallBASIC provides nothing in the way of **static variables**, ie local
+routine variables which maintain their value between two subsequent
+calls of the routine.
 
 ### Passing Parameters
 
-Per default, parameters are passed to procedures and functions **&raquo;by
-value&laquo;**, which means that copies of the arguments are created for
+Per default, parameters are passed to procedures and functions **~by
+value~**, which means that copies of the arguments are created for
 the routine. Changing these copies will have no effect on the variable
 in the calling code; both instances are independent of each other. This
 is true **even for maps and arrays**. This behaviour comes with a
@@ -251,7 +259,7 @@ recursion. In this case, the interpreter is busy with copying lots of
 data which will also require a lot of memory.
 
 To avoid this, you can require in the definition of a routine that some
-parameters will be passed &raquo;by reference&laquo;. In this case, no local
+parameters will be passed ~by\ reference~. In this case, no local
 copy will be created, but the routine will work on the same data as the
 calling code does: Changes to the value of a parameter are propagated to
 the caller. To employ passing by reference, the respective parameters in
@@ -275,12 +283,12 @@ Besides reducing CPU power and memory required, passing parameters by
 reference has the additional effect that a routine can write on the
 parameters passed. This enables you to write procedures which change
 more than one global variable at a time. Bear in mind that the *calling
-code* has no way to &raquo;see&laquo; whether it passes a variable by value or
+code* has no way to ~see~ whether it passes a variable by value or
 by reference; the behaviour is completely in the hand of the *called
 routine*.
 
 Notice that this behaviour is subtly different from the use of the
-reference operator with a regular variable, see . You can (for obvious
+reference operator with a regular variable. You can (for obvious
 reasons) not apply the reference operator inside the routine's code to a
 parameter or a local variable.
 
@@ -288,7 +296,7 @@ parameter or a local variable.
 
 Sometime the code required for a function is short and neatly fits into
 one line. In this case, SmallBASIC provides a more concise syntax for function
-definitions, namely with the keyword :
+definitions, namely with the keyword:
 
     def hoogla(x)= sin(x)*cos(x)
 
@@ -296,15 +304,17 @@ definitions, namely with the keyword :
         zoogla= sin(x)*cos(x)
     end
 
-Both definitions above for and are equivalent.
+Both definitions above for ~hoogla~ and ~zoogla~ are
+equivalent.
 
 This does not work for procedures.
 
 Modules
 -------
 
-To modularize your code above the level of routines, SmallBASIC offers the option
-to include other source files, and to create libraries of &raquo;units&laquo;.
+To modularize your code above the level of routines, SmallBASIC offers
+the option to include other source files, and to create libraries of
+~units~.
 
 ### File Inclusion
 
@@ -313,22 +323,24 @@ current file at runtime:
 
     include "bunga.bas"
 
-in the code will make the contents of the file available to the file
-currently running in the interpreter. &raquo;First level&laquo; code [^4] in
-(will be executed immediately.[^5] If the included file contains a
-routine with the same name as one defined in the &raquo;mother&laquo; file, an
-error occurs; the old version of the routine is *not* replaced.
+in the code will make the contents of the file ~bunga.bas~
+available to the file currently running in the interpreter. ~First
+level~ code [^4] in ~bunga.bas~ (will be executed
+immediately.[^5] If the included file contains a routine with the same
+name as one defined in the ~mother~ file, an error occurs; the old
+version of the routine is *not* replaced.
 
 Think of it as a simple copy-paste operation.
 
 ### Units
 
-&raquo;Units&laquo; are a more sophisticated concept in SmallBASIC which allows the
-creation of genuine program libraries with their own namespace and
-well-defined interfaces.
+~Units~ are a more sophisticated concept in SmallBASIC which
+allows the creation of genuine program libraries with their own
+namespace and well-defined interfaces.
 
 Units are kept in separate source files; each file contains exactly one
-unit which bears the same name as the file *sans* the extension.[^6]
+unit which bears the same name as the file *sans* the ~.bas~
+extension.[^6]
 
     file hoogla.bas:
     ...
@@ -345,10 +357,10 @@ Inside the unit file, you can write code as you would in any source
 file, and define variables (simple and composite) and routines
 (procedures and functions). All of these variables and routines are
 local to the unit file, unless they're defined to be public with the
-keyword .
+keyword ~export~.
 
 First level code is executed when the library is loaded, but it takes
-place in a separate namespace, ie a variable called in the unit file
+place in a separate namespace, ie a variable called ~chaka~ in the unit file
 will not conflict with a variable with the same name in the mother file;
 they're two separate entities.
 
@@ -357,12 +369,13 @@ from the IDE, or use the command line:
 
     sbasici hoogla.bas
 
-which creates a file . This must be repeated after updates to the unit
-file. Then it can be loaded with the keyword in the mother file which is
-to use the library. From this moment on, all ed variables and routines
-are available to the mother file. Their name there is a combination of
-the unit name, a dot and the variable or routine's &raquo;proper&laquo; name.
-With the above code segment from you get:
+which creates a file ~hoogla.sbu~. This must be repeated after
+updates to the unit file. Then it can be loaded with the keyword
+~import~ in the mother file which is to use the library. From this
+moment on, all ~export~ed variables and routines are available to
+the mother file. Their name there is a combination of the unit name, a
+dot ~.~ and the variable or routine's ~proper~ name. With
+the above code segment from ~hoogla.bas~ you get:
 
     file ragaqk.bas:
 
@@ -375,8 +388,8 @@ With the above code segment from you get:
 
 It should be painfully obvious that a unit can't import itself again.
 
-[^1]: Most times a distinction between &raquo;arguments&laquo; and
-    &raquo;parameters&laquo; is made in computer literature, but we'll treat
+[^1]: Most times a distinction between ~arguments~ and
+    ~parameters~ is made in computer literature, but we'll treat
     both as synonyms.
 
 [^2]: At least, they can do so to a reasonable degree of levels.
@@ -386,9 +399,10 @@ It should be painfully obvious that a unit can't import itself again.
 
 [^4]: ie, code outside any routines
 
-[^5]: It is an interesting experiment to create such an -file during
-    program runtime and import it then. Effectively, such a program
-    would &raquo;bootstrap&laquo; itself. Not for the faint at heart.
+[^5]: It is an interesting experiment to create such an
+    ~include~-file during program runtime and import it then.
+    Effectively, such a program would ~bootstrap~ itself. Not for
+    the faint at heart.
 
 [^6]: I was informed that this isn't *strictly* true, but you can cause
     great confusion in the IDE if you don't stick to that convention.

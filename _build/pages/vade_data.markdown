@@ -28,26 +28,26 @@ function:
     > -1
 
 While there are also functions for explicit conversions, per default
-conversions are done &raquo;tacitly&laquo; by the interpreter, without any
-provisions in the SmallBASIC program, and there are also no &raquo;notifications&laquo;
-when a type conversion occurs. Another consequence is that the kind of
-data contained in a variable (or the structure of a map, see ) is only
-determined at runtime.[^2] It is up to the programmer to ensure that his
-code will &raquo;expect the unexpected&laquo; and be able to cope with any
-data it is fed with.
+conversions are done ~tacitly~ by the interpreter, without any
+provisions in the SmallBASIC program, and there are also no
+~notifications~ when a type conversion occurs. Another consequence
+is that the kind of data contained in a variable (or the structure of a
+map) is only determined at runtime.[^2] It is up to the programmer
+to ensure that his code will ~expect\ the\ unexpected~ and be able
+to cope with any data it is fed with.
 
 Simple Variables
 ----------------
 
 Simple variables **need not be declared**; they come into existence by
 their first appearance in the source code. If they are not created
-through an assignment, they will be initiated to the value &raquo;`0`&laquo;
-(or, equivalently, to the empty string &raquo;\"\"&laquo;. (This example
-admittedly looks a little silly.)
+through an assignment, they will be initiated to the value ~0~
+(or, equivalently, to the empty string ~\"\"~ (This example
+admittedly looks a little silly).
 
-**Value assignment** is done with the operator: The value to the right
-of it (which may be another variable, a literal, or a more complicated
-expression) is assigned to the variable on the left:[^3]
+**Value assignment** is done with the ~=~ operator: The value to
+the right of it (which may be another variable, a literal, or a more
+complicated expression) is assigned to the variable on the left:[^3]
 
     x= 20
     y= 10
@@ -64,10 +64,11 @@ expression) is assigned to the variable on the left:[^3]
     "Goodbye world"= q
 
 The last line will cause an error, since the operands are in the wrong
-order: It's not possible to assign a variable like to a literal, only
-the other way around.
+order: It's not possible to assign a variable like ~q~ to a
+literal, only the other way around.
 
-Historically, BASIC required the keyword before an assignment:
+Historically, BASIC required the keyword ~let~ before an
+assignment:
 
     let x=20
 
@@ -84,8 +85,8 @@ single class of numbers.[^4]
 
 Strings are chains of one or several letters, used to represent words,
 sentences or complete texts. A string consisting of zero letters is
-called an &raquo;empty&laquo; string. (While I have a strong hunch that
-strings are internally represented with UTF-8 Unicode characters, it's
+called an ~empty~ string. (While I have a strong hunch that
+strings are internally represented with UTF-8 unicode characters, it's
 probably safer to only assign ASCII letters to them.)
 
     my_name= "Elmar Vogt"
@@ -112,8 +113,8 @@ right of it to a new, third string, the length of which is the sum of
 the individual strings' lengths. If either the left or the right operand
 is a number -- a literal or a variable --, then this operand will be
 converted to a string before the concatenation. For example, a variable
-with the value would be converted to a string of two characters, namely
-and .[^6]
+with the value ~42~ would be converted to a string of two
+characters, namely ~4~ and ~2~.[^6]
 
 The **length** of a string is simply the number of characters currently
 contained in the string:[^7]
@@ -137,8 +138,8 @@ equivalent to its length:[^9]
 
     > e
 
-A loop designed to iterate over all characters in a string must thus
-look like this:
+A loop designed to iterate over all characters in a string ~x~
+must thus look like this:
 
     for i=1 to len(x)
         ...
@@ -162,7 +163,7 @@ a subset of possible maps, but to make it easier to grasp the concept,
 we'll treat both as different entities for the moment.
 
 In contrast to simple variables, complex data structures **must be
-declared before use** with the statement.
+declared before use** with the ~dim~ statement.
 
     dim x
 
@@ -173,16 +174,17 @@ useful to define details or the size of the data structure at hand.
 ### Arrays [\[array\]]{#array label="array"}
 
 Arrays are the more simple way of agglomerating data into a single
-variable. SmallBASIC treats them much like the way other programming languages do.
-An array holds a number of variables which are accessed by means of the
-array name, and a numerical index, pretty much like a street address is
-a combination of the street's name, and a house number. To access an
-array member, its name is followed by the index in parentheses :
+variable. SmallBASIC treats them much like the way other programming
+languages do. An array holds a number of variables which are accessed by
+means of the array name, and a numerical index, pretty much like a
+street address is a combination of the street's name, and a house
+number. To access an array member, its name is followed by the index in
+parentheses ~()~:
 
     hoogla(i)= boogla(250)
 
-will assign the value of 's 250th member to the member of with the
-numerical index .
+will assign the value of ~boogla~'s 250th member to the member of
+~hoogla~ with the numerical index ~i~.
 
 Array members can be of **mixed content**, ie it's perfectly okay for
 one member of an array to hold a number, and for a different member of
@@ -190,38 +192,40 @@ the same array to hold a string.
 
 Arrays must be **defined before use**, and while they are dynamic and
 can change their size on the fly, room for an array member must be
-defined before it can be used, by using the statement along with a
-numerical value:
+defined before it can be used, by using the ~dim~ statement along
+with a numerical value:
 
     dim hoogla(250)
 
-will define to initially have `251` members with indices `0..250`. This
-**array indexing** contrasts with the indexing of strings.
+will define ~hoogla~ to initially have ~251~ members with indices
+~0..250~. This **array indexing** contrasts with the indexing of
+strings.
 
-Array members can be erased from the array with . Note that if the `i`th
-member of an array is deleted, then all array members with higher
-indices &raquo;move down&laquo; one notch, ie the value of will now be in .
+Array members can be erased from the array with ~delete~. Note
+that if the `i`th member of an array is deleted, then all array members
+with higher indices ~move\ down~ one notch, ie the value of
+~x(n)~ will now be in ~x(n-1)~.
 
 Likewise, new array members can be appended to an array with the
-operator .[^11]
+operator ~<<~.[^11]
 
     dim hoogla(250)
     hoogla << 132
 
-means that now will have `252` members, and the new `252`nd member (with
-the index `251`) will have the value `132`.
+means that now ~hoogla~ will have ~252~ members, and the new
+~252~nd member (with the index ~251~) will have the value ~132~.
 
 Arrays are not limited to being a chain of values. **Several array
-dimensions** can be defined to render arrays of &raquo;rectangular&laquo;,
-&raquo;cubic&laquo;, &raquo;tesseractic&laquo; or even higher dimensions:
+dimensions** can be defined to render arrays of ~rectangular~,
+~cubic~, ~tesseractic~ or even higher dimensions:
 
     dim hoogla(10, 20, 10)
     hoogla(5, 9, 8)= "blubbdi"
 
-will create an array with `11 \times 21 \times 11` members, or access
+will create an array with `11 X 21 X 11` members, or access
 one particular member, resp. For obvious reasons, it's not possible to
-members of such a higher-dimensional array in the above mentioned way.
-Likewise, using the appendix operator with a higher-dimensional array
+~delete~ members of such a higher-dimensional array in the above mentioned way.
+Likewise, using the appendix ~<<~ operator with a higher-dimensional array
 should be avoided.[^12]
 
 The maximum array size is virtually unlimited. But note that with the
@@ -231,12 +235,12 @@ requirements increase exponentially.
 ### Maps
 
 Maps differ from arrays in two ways: Firstly, while arrays always have a
-linear or &raquo;rectangular&laquo; structure, **maps are &raquo;data trees&laquo;,
+linear or ~rectangular~ structure, **maps are ~data\ trees~,
 where each map member can be a simple variable, an array or a complete
 map**. This structure can become extremely complex during the runtime of
 a program. As explained in , since there is no fixed type system, and
 hence no predetermined structure for any given map, this means that an
-SmallBASIC program must &raquo;anticipate all known unknowns&laquo;.
+SmallBASIC program must ~anticipate\ all\ known\ unknowns~.
 
 Secondly, map indices aren't limited to a consecutive list of integer
 numbers. Rather, **map members can be accessed by any simple variable --
@@ -246,7 +250,7 @@ not straightforward anymore to write a loop which will iterate over all
 map members, or determine the number of map elements. The concept is
 probably more easy to grasp when one doesn't think of maps as of
 traditional arrays, but to consider each member a pair of a
-&raquo;value&laquo;, which is stored in the map, and a &raquo;key&laquo; (the index)
+~value~, which is stored in the map, and a ~key~ (the index)
 by which it is accessed.
 
 These two features in combination with 's automatic conversion features
@@ -255,15 +259,15 @@ array into a map**, a conversion from which there is no easy way back,
 and thus to create havoc at runtime.
 
 **Map initialisation** can be done by in three ways: Either explicitly,
-by using the keyword *without* an array size (ie, simply is enough),
-through the keyword (see below), or implicitly by assigning the map
-members values by a sequence of comma-separated values, enclosed in
-square brackets :
+by using the ~dim~ keyword *without* an array size (ie, simply
+~dim\ x~ is enough), through the ~array~ keyword (see below),
+or implicitly by assigning the map members values by a sequence of
+comma-separated values, enclosed in square brackets ~\[\]~:
 
     hoogla= [10, 9, 8, 7, 6, 1]
 
-initialises a simple map with `6` members with automatically generated
-indices from `0` to `5`.
+initialises a simple map ~hoogla~ with ~6~ members with
+automatically generated indices from ~0~ to ~5~.
 
 To create more complex structures, each map member which is a map again
 must be enclosed in brackets. For example,
@@ -279,29 +283,29 @@ can be visualized in a structure like this:
     99
 
 To initialise a map in that way, it does *not* need to be defined with
-beforehand -- actually, a square bracket initialisation will delete any
-variable with the same name that may have been existing before, and
-create a completely new one.
+~dim~ beforehand -- actually, a square bracket initialisation will
+delete any variable with the same name that may have been existing
+before, and create a completely new one.
 
-Furthermore, the keyword can be used as an alternative way to initialize
-a map (though not an array, confusingly). Basically, what you do is that
-you pass your map members in the shape of a JSON-formatted string[^13]
-to the function:
+Furthermore, the ~array~ keyword can be used as an alternative way
+to initialize a map (though not an array, confusingly). Basically, what
+you do is that you pass your map members in the shape of a
+JSON-formatted string[^13] to the ~array~ function:
 
     boogla= array("[1, 2, [4, 5, 6, 7], [3.1415926, \"hoogla!\"], 99]")
 
 is equivalent to the map definition above. Be aware that you pass *all*
-map members to wrapped in a single string, rather than as individual
-elements. Likewise, if you use string variables in your map, these must
-be escaped with backslashes inside the argument (ie, rather than simply
-.
+map members to ~array~ wrapped in a single string, rather than as
+individual elements. Likewise, if you use string variables in your map,
+these must be escaped with backslashes inside the ~array~ argument
+(ie, ~\\\"hoogla\\\"~ rather than simply ~\"hoogla\"~.
 
 A further neat feature is that maps of any complexity can be serialized
-with a simple command to a file. will not only display a single member,
-but will format the output as a JSON string. This means -- without going
-into too many details regarding file handling here -- that writing a
-complete map to a file and loading it again at a later stage are simple
-three-liner tasks.
+with a simple ~print~ command to a file. ~Print~ will not
+only display a single member, but will format the output as a JSON
+string. This means -- without going into too many details regarding file
+handling here -- that writing a complete map to a file and loading it
+again at a later stage are simple three-liner tasks.
 
 **Access to map members** is possible through two different notations.
 The first one contains the key to the map member in parentheses after
@@ -314,16 +318,16 @@ be a real value, or even a string:
 
     boogla("nuffda")= ...
 
-The second option uses the &raquo;dot notation&laquo; familiar from other
-languages like &raquo;C&laquo;, separating the name from the member key with a
-dot :
+The second option uses the ~dot\ notation~ familiar from other
+languages like ~C~, seperating the name from the member key with a
+dot ~.~:
 
     boogla.nuffda= ...
 
 The two notations are for the most part equivalent, while the second
 alternative makes sure that you're accessing a map, not an array.
 
-For more complex maps with nested structures, you simply &raquo;chain&laquo;
+For more complex maps with nested structures, you simply ~chain~
 your notations to access the lower-level members:
 
     boogla.nuffda.oingaboinga= ...
@@ -350,20 +354,22 @@ may be used as key, which isn't possible with dot notation:
 
     > Hello, world! 0
 
-When accessing in the third line, in the first term , is replaced with
-its value by the interpreter, before looking the map member with that
-name up and returning the result, . In the second term , the interpreter
-looks for a member of with the key , can't find one, and tacitly creates
-a new one which is initialized with the value `0`.[^15]
+When accessing ~z~ in the third line, in the first term
+~z(target)~, ~target~ is replaced with its value
+~tschaka~ by the interpreter, before looking the map member with
+that name up and returning the result, ~\"Hello,\ world!\"~. In the
+second term ~z.target~, the interpreter looks for a member of
+~z~ with the key ~target~, can't find one, and tacitly
+creates a new one which is initialized with the value ~0~.[^15]
 
 This makes the parentheses notation particularly useful when you want to
 decide at runtime which map member you want to access: With dot
 notation, access is fixed, but with parentheses notation you can pass a
 variable to determine which member to use in that instance.
 
-For both arrays and maps, will give you the number of elements in the
+For both arrays and maps, `len(x)` will give you the number of elements in the
 structure. But note that this isn't the total number of elements, but
-only the number of elements in the &raquo;top dimension&laquo;.
+only the number of elements in the ~top\ dimension~.
 
 For example, when initializing an array as
 
@@ -386,13 +392,13 @@ For example, when initializing an array as
     z("hello")= 55
 
 the third and fourth line cause no errors, but the fifth one does. Why
-is this? The cause is, that after the command, and essentially are still
-shapeless somethings, but the first access with a string for an index
-forces to become a map (line 3). Accessing it *afterwards* with a
-numerical key is no problem at all. on the other hand is firstly
-accessed as an array (line 5), and this leads to problems, because
-neither has its size been defined, nor has the appendix operator been
-used.
+is this? The cause is, that after the ~dim~ command, ~x~ and
+~z~ essentially are still shapeless somethings, but the first
+access with a string for an index forces ~x~ to become a map (line
+3). Accessing it *afterwards* with a numerical key is no problem at all.
+~z~ on the other hand is firstly accessed as an array (line 5),
+and this leads to problems, because neither has its size been defined,
+nor has the appendix operator been used.
 
 Likewise,
 
@@ -402,9 +408,9 @@ Likewise,
     x(z)= 3.14
     x << 99
 
-throws an error in the last line, namely &raquo;index out of range&laquo;. The
-first use of forced it to become a map, but unfortunately, the appendix
-operator is only defined for arrays,[^16] hence the error.
+throws an error in the last line, namely ~index\ out\ of\ range~. The
+first use of ~x~ forced it to become a map, but unfortunately, the
+appendix operator is only defined for arrays,[^16] hence the error.
 
 Finally,
 
@@ -412,80 +418,19 @@ Finally,
 
 looks tantalizingly like a definition for a two-dimensional array, but
 it actually is a map -- which you find out when you try to access it
-like an array; will cause an &raquo;out of range&laquo; error. Only will work.
+like an array; ~zoogla(2,\ 2)~ will cause an ~out\ of\ range~
+error. Only ~zoogla(2)(2)~ will work.
 
 In a nutshell: Try to avoid arrays whenever possible. In the long
 run, you're better off if you force your structures to be maps and
 treat them accordingly.
 
-Pointers and References
------------------------
-
-### Referencing Variables
-
-SmallBASIC also provide a reference operator. If you're familiar with &raquo;C&laquo;,
-which is explicitly built around the notion of pointers and references,
-this concept will be nothing new for you. The essence is that the
-reference operator , applied to any variable, will not return the
-variable's *value*, but its *address*, ie its memory location. In other
-words, after
-
-    y= @x
-
-and will point to the same variable, and changes made to will always be
-reflected by :
-
-    y= @x
-    x= 10
-    ? y
-    x= 20
-    ? x, y
-
-    > 10
-    > 20        20
-
-Unfortunately, this is a somewhat [^17], because the reverse isn't true.
-Continue the above code:
-
-    ...
-    y= 50
-    ? x, y
-
-    > 20        50
-
-What gives? When executing , the value `50` is assigned to the variable
-, which from this point on no longer holds 's address; the link between
-the two variables is broken, and the variables go their seperate ways.
-So, as long as is a reference to , it will always reflect the current
-value of , but the opposite isn't true: Once 's value changes, it is a
-reference to no more. So, when applied **to simple variables, the
-reference operator works &raquo;read-only&laquo;.**[^18]
-
-The situation changes when is applied to a map, and a member of that map
-is overwritten:
-
-    dim boogla
-    boogla("honk")= 20
-    y= @boogla
-    y.honk= 99
-    ? boogla.honk
-
-    > 99
-
-performs as expected, and is now a &raquo;true&laquo; copy of . The reason is
-that the line doesn't assign a new value to , but to a member of , hence
-'s &raquo;integrity&laquo; remains unviolated. **With maps, the reference
-operator creates two-way equivalences.** Of course, when you assign a
-value to itself (rather than to a member of ), you will break that
-relationship like with a simple variable.
-
-Note that the use of the reference operator here differs slightly from
-that in passing parameters to subroutines (see ).
+References
+----------
 
 ### Referencing Routines
 
-The reference operator works not only on variables, but also on
-routines:
+The reference operator works on routines:
 
     boogla= @honk
     zoogla= @buzz
@@ -506,24 +451,24 @@ routines:
 
 The keyword is used to invoke a routine. It is followed by the reference
 to the routine, or a variable which holds the reference,[^19], and a
-comma-separated list of parameters. Note that if a procedure is ed, the
-parameter list *must not* be in parentheses, while when you a function,
+comma-separated list of parameters. Note that if a procedure is ~call~ed, the
+parameter list *must not* be in parentheses, while when you ~call~ a function,
 it *must*.
 
 [^1]: sometimes also referred to somehow incorrectly as a
-    &raquo;typeless&laquo; language
+    ~typeless~ language
 
-[^2]: Contrast this behaviour to other languages like &raquo;C&laquo;, where a
+[^2]: Contrast this behaviour to other languages like ~C~, where a
     strict type discipline is enforced.
 
-[^3]: The command used below is a shorthand for : It will display the
-    current values of all the following literals or variables on the
-    screen.
+[^3]: The command ~?~ used below is a shorthand for ~print~:
+    It will display the current values of all the following literals or
+    variables on the screen.
 
-[^4]: While SmallBASIC internally also represents numbers either as integers or,
-    if they carry fractions or exceed the limits for integers, as 64 bit
-    reals, this is invisible to the user, since all conversions are done
-    implicitly and automatically when required.
+[^4]: While SmallBASIC internally also represents numbers either as
+    integers or, if they carry fractions or exceed the limits for
+    integers, as 64 bit reals, this is invisible to the user, since all
+    conversions are done implicitly and automatically when required.
 
 [^5]: Even before that SmallBASIC tends to get too tediously slow for all
     practical purposes.
@@ -532,16 +477,16 @@ it *must*.
     simple addition and assign the sum of both values to the variable on
     the left of the equality sign.
 
-[^7]: The function returns the length of the following argument in
-    brackets
+[^7]: The function ~len()~ returns the length of the following
+    argument in brackets
 
-[^8]: The function returns `z` characters from the string `x`, beginning
-    with the `y`th
+[^8]: The function ~mid(x,\ y,\ z)~ returns ~z~ characters from the
+    string ~x~, beginning with the ~y~th
 
-[^9]: The function returns the length of its string argument, in number
-    of characters
+[^9]: The function ~len()~ returns the length of its string
+    argument, in number of characters
 
-[^10]: &raquo;Complex&laquo; here denoting intricate constructs, not the
+[^10]: ~Complex~ here denoting intricate constructs, not the
     mathematical notion of complex numbers
 
 [^11]: Sorry for the ugly typography here.
@@ -553,7 +498,7 @@ it *must*.
     guarantee that this behaviour will be retained in future versions of
     .
 
-[^13]: &raquo;JavaScript Object Notation&laquo;, see eg
+[^13]: ~JavaScript\ Object\ Notation~, see eg
     [Wikipedia](http://en.wikipedia.org/wiki/JSON) for details
 
 [^14]: Since it isn't necessary to declare map members before accessing
@@ -567,7 +512,7 @@ it *must*.
 
 [^17]: We've all been there...
 
-[^18]: and is in the words of its inventor, &raquo;a bit useless&laquo;
+[^18]: and is in the words of its inventor, ~a bit useless~
 
 [^19]: If you think about it, only the latter case is really really
     useful.

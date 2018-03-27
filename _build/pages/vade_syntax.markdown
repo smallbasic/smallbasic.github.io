@@ -59,12 +59,12 @@ Numbers
 -------
 
 Numbers can be written in the usual manner, using either
-`conventional~ or scientific notation. All of the following
+~conventional~ or scientific notation. All of the following
 examples are legal numbers in:
 
     1, 0, -1, 1.2, -23232.5, 1.902e-50, -.423
 
-As is shown in the last example, numbers with an absolute value ~<\1~ need not be preceded with ~0~.
+As is shown in the last example, numbers with an absolute value ~<1~ need not be preceded with ~0~.
 
 Integer numbers can also be represented in hexadecimal, octal and binary
 notation with various prefixes:
@@ -82,7 +82,7 @@ String literals
 ---------------
 
 String literals are character sequences which are to be treated as
-program data ~as is~, not as variable or keyword names. String
+program data ~as\ is~, not as variable or keyword names. String
 literals are bracketed by double quotes ~\"~.
 
     "This is a string literal"
