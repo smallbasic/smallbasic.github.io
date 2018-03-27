@@ -34,7 +34,7 @@ if (not exist(jsonFile)) then
   pagename = translate(pagename, ".html", "")
 
   item = ""
-  name = pagename
+  name = iff(pagename=="index", "one more basic", pagename)
   help = "SmallBASIC | One more basic"
   url = "/" + pagename + ".html"
   title = pagename

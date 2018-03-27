@@ -1,7 +1,5 @@
 # Download
 
-> Download SmallBASIC
-
 ## Android
 
 [Google play](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}

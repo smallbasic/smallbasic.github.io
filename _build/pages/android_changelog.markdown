@@ -1,4 +1,6 @@
-## Android ChangeLog ##
+Android Changelog
+=================
+
 ::: siteSub ::
 [Home](/) > [Articles](/pages/articles.html)
 :::

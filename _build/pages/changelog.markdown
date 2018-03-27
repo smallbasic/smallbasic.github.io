@@ -1,3 +1,6 @@
+Changelog
+=========
+
 **0.12.12 (4 Feb 2018)**
 
 - Fix issue with creating 6D arrays
