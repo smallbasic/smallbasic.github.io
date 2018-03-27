@@ -48,16 +48,13 @@ small {
     font-size: 80%;
 }
 sub,sup {
-    font-size: 75%;
     line-height: 0;
     position: relative;
     vertical-align: baseline;
 }
 sup {
+    font-size: 75%;
     top: -0.5em;
-}
-sub {
-    bottom: -0.25em;
 }
 img {
     border: 0;
@@ -663,4 +660,17 @@ hr.menuSeparator {
     margin-top: .5em;
     margin-bottom: 0;
     margin-right: 1em;
+}
+
+sub {
+    font-family: monospace, monospace;
+    font-size: 1em;
+}
+
+sub:before {
+    content: "\00bb";
+}
+
+sub:after {
+    content: "\00ab";
 }

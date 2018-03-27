@@ -69,70 +69,70 @@
 <p><a href="/">Home</a> &gt; <a href="/pages/vade.html">Vade</a></p>
 </div>
 <p>Here you learn about the basics of BASIC, so to speak. This chapter deals with the way a SmallBASIC program composed.</p>
-<p>A program consists of a single source file. It is possible to include libraries from external source files with the Unit-mechanism (see ).</p>
+<p>A program consists of a single source file. It is possible to include libraries from external source files with the Unit-mechanism.</p>
 <p>Source files are simple text files. They can be written in <strong>ASCII</strong> or <strong>UTF-8</strong>.</p>
-<p>The basic program component is a line of text, ending with or characters.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>SmallBASIC is <strong>case-insensitive</strong>: The names and will always refer to the same variable or function. Likewise, keywords are case-insensitive: Both and are legal variants of the same command.</p>
+<p>The basic program component is a line of text, ending with <sub>CR</sub> or <sub>LF/CR</sub> characters.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>SmallBASIC is <strong>case-insensitive</strong>: The names <code>myvar</code> and <code>MyVar</code> will always refer to the same variable or function. Likewise, keywords are case-insensitive: Both <code>print</code> and <code>PRINT</code> are legal variants of the same command.</p>
 <p><strong>Whitespace</strong> – i.e., non-printing characters like spaces and tabs – is ignored in SmallBASIC, except inside string literals where it is retained. <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <pre><code>for a = 0 to 10
 
 for a=0to 10</code></pre>
 <p>But note that the omission of whitespace can lead to parsing errors: If the above line were abbreviated to</p>
 <pre><code>fora=0to10</code></pre>
-<p>this would cause an error, because and wouldn’t be recognized as keywords anymore. Rather, SmallBASIC would consider and to be variable names.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
-<p>Each program line contains one or more commands. Multiple commands on a line are <strong>separated by a colon</strong>.</p>
+<p>this would cause an error, because <code>for</code> and <code>to</code> wouldn’t be recognized as keywords anymore. Rather, SmallBASIC would consider <code>fora</code> and <code>to10</code> to be variable names.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>Each program line contains one or more commands. Multiple commands on a line are <strong>separated by a colon</strong> <sub>:</sub>.</p>
 <pre><code>print &quot;Hello world!&quot;
 print &quot;Wonderful day.&quot;
 
 print &quot;Hello world!&quot; : print &quot;Wonderful day.&quot;</code></pre>
-<p><strong>Line continuation</strong>: If the ampersand is the last character on a line, then the interpreter will assume that the current command extends to the next line as well.</p>
+<p><strong>Line continuation</strong>: If the ampersand <sub>&amp;</sub> is the last character on a line, then the interpreter will assume that the current command extends to the next line as well.</p>
 <pre><code>X = 245 * 198 - sqr(5)
 
 X = 245 * 198 &amp;
         - sqr(5)</code></pre>
 <h1 id="literals">Literals</h1>
 <h2 id="numbers">Numbers</h2>
-<p>Numbers can be written in the usual manner, using either »conventional« or scientific notation. All of the following examples are legal numbers in:</p>
+<p>Numbers can be written in the usual manner, using either `conventional~ or scientific notation. All of the following examples are legal numbers in:</p>
 <pre><code>1, 0, -1, 1.2, -23232.5, 1.902e-50, -.423</code></pre>
-<p>As is shown in the last example, numbers with an absolute value <code>&lt;1</code> need not be preceded with <code>0</code>.</p>
+<p>As is shown in the last example, numbers with an absolute value <sub>&lt;\1</sub> need not be preceded with <sub>0</sub>.</p>
 <p>Integer numbers can also be represented in hexadecimal, octal and binary notation with various prefixes:</p>
-<p><strong>hexadecimal</strong>: <code>&amp;h, 0h, &amp;x, or 0x</code></p>
-<p><strong>octal</strong>: <code>&amp;o or 0o</code></p>
-<p><strong>binary</strong>: <code>&amp;b or 0b</code></p>
+<p><strong>hexadecimal</strong>: <sub>&amp;h</sub>, <sub>0h</sub>, <sub>&amp;x</sub>, or <sub>0x</sub></p>
+<p><strong>octal</strong>: <sub>&amp;o</sub> or <sub>0o</sub></p>
+<p><strong>binary</strong>: <sub>&amp;b</sub> (or <sub>0b</sub>)</p>
 <pre><code>&amp;hAFFE0815, &amp;o4242, &amp;b100101011
 0hAFFE0815, 0o4242, 0b100101011</code></pre>
 <h2 id="string-literals">String literals</h2>
-<p>String literals are character sequences which are to be treated as program data »as is«, not as variable or keyword names. String literals are bracketed by double quotes.</p>
+<p>String literals are character sequences which are to be treated as program data ~as is~, not as variable or keyword names. String literals are bracketed by double quotes <sub>&quot;</sub>.</p>
 <pre><code>&quot;This is a string literal&quot;
 this will be considered as a sequence of keywords</code></pre>
-<p>Note that when a string literal is to be extended across more than one line, it must be properly closed before the continuation ampersand and re-opened on the subsequent line with the delimiter character:</p>
+<p>Note that when a string literal is to be extended across more than one line, it must be properly closed before the continuation ampersand and re-opened on the subsequent line with the <sub>&quot;</sub> delimiter character:</p>
 <pre><code>print &quot;Hello &amp;
         world!&quot;     &#39; error
 
 print &quot;Hello &quot; &amp;
         &quot;world!&quot;        &#39; correct</code></pre>
 <h1 id="identifiers">Identifiers</h1>
-<p>Identifiers – »names« for variables and functions – follow the usual conventions:</p>
-<p>They consist of a letter or an underscore , followed by one or more of the following:</p>
+<p>Identifiers – <sub>names</sub> for variables and functions – follow the usual conventions:</p>
+<p>They consist of a letter or an underscore <sub>_</sub>, followed by one or more of the following:</p>
 <ul>
 <li><p>other letters</p></li>
-<li><p>digits ( – )</p></li>
-<li><p>the underscore</p></li>
-<li><p>the dollar sign (only as the last character of the identifier, see below)</p></li>
+<li><p>digits (<sub>0</sub> – <sub>9</sub>)</p></li>
+<li><p>the underscore <sub>_</sub></p></li>
+<li><p>the dollar sign <sub>$</sub> (only as the last character of the identifier, see below)</p></li>
 </ul>
-<p>A single underscore is a legal complete identifier.</p>
+<p>A single underscore <sub>_</sub> is a legal complete identifier.</p>
 <p>Identifiers can have virtually unlimited length. All characters are significant in resolving an identifier (ie, to determine whether two identifiers refer to the same variable.)<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
-<p>Traditionally, in BASIC the <strong>dollar sign</strong> serves as a signal to indicate that a name identifies a string variable, if used as the last character of the identifier (i.e., <code>my_name$</code>).</p>
-<p>Since SmallBASIC is a typeless language (see below) where variables can hold values of any type, such a signal would be misleading, yet it has been retained for the sake of compatibility. It may be placed as the last character of an identifier only. Here it serves two distinguish between identifiers ( and are two different identifiers), but has otherwise no function.</p>
+<p>Traditionally, in BASIC the <strong>dollar sign</strong> <code>$</code> serves as a signal to indicate that a name identifies a string variable, if used as the last character of the identifier (i.e., <code>my_name$</code>).</p>
+<p>Since SmallBASIC is a typeless language (see below) where variables can hold values of any type, such a signal would be misleading, yet it has been retained for the sake of compatibility. It may be placed as the last character of an identifier only. Here it serves two distinguish between identifiers (<code>harry</code> and <code>harry$</code> are two different identifiers), but has otherwise no function.</p>
 <h1 id="comments">Comments</h1>
 <p><strong>Line comments</strong> can be introduced in three ways:</p>
 <ul>
-<li><p>With the keyword,</p></li>
-<li><p>With the apostrophe character,</p></li>
-<li><p>With a hash sign.</p></li>
+<li><p>With the keyword <code>rem</code>,</p></li>
+<li><p>With the apostrophe character <sub>’</sub>,</p></li>
+<li><p>With a hash sign <sub>#</sub>.</p></li>
 </ul>
 <p>Everything on the current line following the comment introduction will be ignored in program execution.</p>
-<p>If the keyword is used and it is preceded by other commands on the current line, it must be separated from the previous commands by a colon If the hash sign is used, it must be the first character on the line. (See also the use of a hash sign in »shebanging« a script, )</p>
+<p>If the <code>rem</code> keyword is used and it is preceded by other commands on the current line, it must be separated from the previous commands by a colon <sub>:</sub> If the hash sign is used, it must be the first character on the line.</p>
 <pre><code>for a=0 to 10      &#39; this is a valid comment
    print a         : rem this also
 # this is a whole line commented out
@@ -140,15 +140,15 @@ next a
 rem the last comment
 
 print &quot;Hello world!&quot;   rem vain commenting attempt</code></pre>
-<p>The in the last line above will cause an error, because it needs to be preceded with a colon .</p>
+<p>The <code>rem</code> in the last line above will cause an error, because it needs to be preceded with a colon <sub>:</sub>.</p>
 <p>There are no provision for <strong>block comments</strong>.</p>
 <section class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p>Don’t worry about this, your operating system will handle it right. It may only every be an issue if you use source files written in one OS and then transferred to a different one.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>All listings in the vademecum follow the same convention and show the source code as you would have typed it in in the IDE. If a line in the listing begins with a greater-than sign , this indicates a response of the program printed on your screen.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>All listings in the vademecum follow the same convention and show the source code as you would have typed it in in the IDE. If a line in the listing begins with a greater-than sign <sub>&gt;</sub>, this indicates a response of the program printed on your screen.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 <li id="fn3"><p>As a rule of thumb, it’s advisable to always leave spaces around keywords.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>This is in contrast to many older BASICs. The <em>Commodore BASIC</em> shipped with the honourable C64, for example, allowed identifiers of arbitrary length, but used only the first two letters for resolution: and were considered to refer to the same variable.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>This is in contrast to many older BASICs. The <em>Commodore BASIC</em> shipped with the honourable C64, for example, allowed identifiers of arbitrary length, but used only the first two letters for resolution: <code>hoogla</code> and <code>hooray</code> were considered to refer to the same variable.<a href="#fnref4" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 </div>
