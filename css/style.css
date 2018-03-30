@@ -611,7 +611,7 @@ span.user {
     .contentsPanel {
         width: auto;
     }
-    .logo img {
+    .logo img, div.articleRight {
         display: none;
     }
     .navigation > h4 {
