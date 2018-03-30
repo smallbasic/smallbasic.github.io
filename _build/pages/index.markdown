@@ -6,18 +6,15 @@
 ::: articleRightInner ::
 
 ```
-You aboard the Lunar Lander about to leave the spacecraft.
+You aboard the Lunar Lander about
+to leave the spacecraft.
 Ready for detachment
 -- COUNTDOWN --
-10 ...
-3
-2
-1
-0
+10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 You have left the spacecraft.
 Try to land with velocity less than 5 m/sec.
-        Meter readings
-        --------------
+   Meter readings
+   --------------
 Fuel (gal):
 500
 Landing velocity (m/sec):

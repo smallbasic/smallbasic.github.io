@@ -87,6 +87,7 @@ code {
     margin-top: 1em;
     word-break: break-all;
     word-wrap: break-word;
+    text-align: left;
 }
 button,input,optgroup,select,textarea {
     color: inherit;
