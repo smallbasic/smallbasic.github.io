@@ -1,0 +1,10 @@
+# Web site updated
+
+The previous Drupal based has been retired due to:
+
+- Never ending security issues, for example [SA-CORE-2018-002](https://www.drupal.org/sa-core-2018-002){target=_blank}
+- Unreliable hosting provided by [sourceforge](https://mobile.twitter.com/sfnet_ops){target=_blank}
+- etc...
+
+Please let me know if there's something on the old site you still want access to.
+

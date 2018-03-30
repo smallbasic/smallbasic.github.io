@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SmallBASIC | escape</title>
+  <title>SmallBASIC | 2018-29-03</title>
   <meta name="description" content="SmallBASIC | One more basic">
-  <link rel="canonical" href="/escape.html">
-  <link rel="keywords" href="escape">
+  <link rel="canonical" href="/2018-29-03.html">
+  <link rel="keywords" href="2018-29-03">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
 </head>
@@ -55,52 +55,23 @@
       </div>
       <div class="tabsRight">
         <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/escape.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/escape.markdown">View history</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/posts/2018-29-03.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/posts/2018-29-03.markdown">View history</a></li>
         </ul>
       </div>
     </div>
 <div class="article">
-<h1 id="escape-codes">Escape codes</h1>
-<p>SmallBASIC supports a number of escape codes for controlling the display. The codes allow you to set foreground and background colors, change the font and also set underline and inverse text display.</p>
-<p>The escape codes are based on <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes</a>. SmallBASIC also support a number of additional codes which are not part of the standard.</p>
-<p>Escape sequences start with the characters ESC (ASCII 27d / 1Bh / 033o ) and [ (left bracket). This sequence is called CSI for “Control Sequence Introducer”.</p>
-<p>The supported standard codes are:</p>
-<pre><code>  \a      beep
-  \t      tab (20 px)
-  \r      return
-  \n      next line
-  \xC     clear screen (new page)
-  \e[K    clear to end of line
-  \e[nG   move to column n
-  \e[s    save cursor position
-  \e[u    restore cursor position
-  \e[0m   reset all attributes to their defaults
-  \e[1m   set bold on
-  \e[3m   set italic on
-  \e[4m   set underline on
-  \e[7m   reverse video
-  \e[21m  set bold off
-  \e[21m  set italic off
-  \e[24m  set underline off
-  \e[27m  set reverse off
-  \e[nm   n colors - 30..37 foreground, 40..47 background</code></pre>
-<p>Useful non-standard codes include:</p>
-<pre><code>  \003    end of text (flush buffer)
-  \m      scroll to the top
-  \&lt;1     select backscreen 1
-  \&lt;2     select backscreen 2
-  \&gt;1     select frontscreen 1
-  \&lt;2     select frontscreen 2</code></pre>
-<p>The CHR command is useful for obtaining and printing the escape character (ASCII 27)</p>
-<p>For example:</p>
-<pre><code>10 PRINT CHR(27) + &quot;[1mTHIS IS BOLD&quot; + CHR(27) + &quot;[0m&quot;
-20 PRINT CHR(27) + &quot;[3mThis is italic&quot;  + CHR(27) + &quot;[0m&quot;
-30 PRINT CHR(27) + &quot;[4mThis is underline&quot;</code></pre>
+<h1 id="web-site-updated">Web site updated</h1>
+<p>The previous Drupal based has been retired due to:</p>
+<ul>
+<li>Never ending security issues, for example <a href="https://www.drupal.org/sa-core-2018-002" target="_blank">SA-CORE-2018-002</a></li>
+<li>Unreliable hosting provided by <a href="https://mobile.twitter.com/sfnet_ops" target="_blank">sourceforge</a></li>
+<li>etc…</li>
+</ul>
+<p>Please let me know if there’s something on the old site you still want access to.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Mon, 19 Mar 2018 20:30:08 +1000
- |
+      This page was last edited on  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
       <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.1.2</a>
