@@ -25,7 +25,7 @@ How much fuel will you use?
 ?
 ```
 
-[LANDER.BAS](https://www.ioccc.org/1990/LANDER.BAS)
+[LANDER.BAS](https://www.ioccc.org/1990/LANDER.BAS){target=_blank}
 
 :::
 :::
