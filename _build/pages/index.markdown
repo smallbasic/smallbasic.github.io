@@ -6,26 +6,26 @@
 ::: articleRightInner ::
 
 ```
-You aboard the Lunar Lander about
-to leave the spacecraft.
-Ready for detachment
--- COUNTDOWN --
-10, 9, 8, 7, 6, 5, 4, 3, 2, 1
-You have left the spacecraft.
-Try to land with velocity less than 5 m/sec.
-   Meter readings
-   --------------
-Fuel (gal):
-500
-Landing velocity (m/sec):
-70
-Height (m):
-1000
-How much fuel will you use?
-?
+**************************
+ELIZA
+CREATIVE COMPUTING
+MORRISTOWN, NEW JERSEY
+
+ADAPTED FOR IBM PC BY
+PATRICIA DANIELSON AND
+    PAUL HASHFIELD
+
+PLEASE DON''T USE COMMAS
+OR PERIODS IN YOUR INPUTS
+*************************
+
+
+
+HI! I''M ELIZA. WHAT''S YOUR PROBLEM?
+? 
 ```
 
-[LANDER.BAS](https://www.ioccc.org/1990/LANDER.BAS){target=_blank}
+[eliza.bas](https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/applications/Eliza.bas){target=_blank}
 
 :::
 :::
@@ -33,6 +33,11 @@ How much fuel will you use?
 SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for everyday calculations, scripts and prototypes. SmallBASIC includes trigonometric, matrices and algebra functions, a built in IDE, a powerful string library, system, sound, and graphic commands along with structured programming syntax.
 
 [Read more](/pages/guide.html)
+
+![](images/lander.png "Lander")
+
+[Samples](/pages/samples.html)
+
 
 ## Web site updated
 

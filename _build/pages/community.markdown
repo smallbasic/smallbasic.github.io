@@ -1,7 +1,7 @@
 # Community
 
 ## Forums
-- [Sourceforge](https://sourceforge.net/p/smallbasic/forum)
+- [Sourceforge](https://sourceforge.net/p/smallbasic/forum){target=_blank}
 - [Google+](https://plus.google.com/communities/108008143866282026044){target=_blank}
 - [The Joyful Programmer](http://thejoyfulprogrammer.com/qb64/forum/forumdisplay.php?fid=485&rndtime=1502602434764827061){target=_blank}
 - [Retrogamecoding and Basicprogramming Forum](http://retrogamecoding.org/board/){target=_blank}
