@@ -34,6 +34,10 @@ SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for ever
 
 [Read more](/pages/guide.html)
 
+## New forum options
+
+[Read more](/posts/2018-17-06.html)
+
 ![](images/lander.png "Lander")
 
 [Samples](/pages/samples.html)

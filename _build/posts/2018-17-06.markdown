@@ -1,0 +1,12 @@
+# New forum options
+
+Here's a couple of new forum options that will hopefully make up for the loss of the previous drupal based forum on sourceforge.
+
+- [Google groups](https://groups.google.com/forum/#!forum/sbasic){target=_blank}
+- [Sourceforge Mailing List](https://sourceforge.net/projects/smallbasic/lists/smallbasic-public){target=_blank}
+
+I'm not sure whether google groups is any better than google+ but it looks a bit more useful. The sourceforge mailing list was actually setup a long time ago but I'd forgotten about it. There's no spam in there so that looks promising. I'll change the "Talk" link to point to which ever of these shows some usage.
+
+
+
+
