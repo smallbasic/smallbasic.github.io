@@ -48,7 +48,7 @@
       <div class="tabsLeft">
         <ul>
           <li><a href="#" class="active">Article</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/SmallBASIC/issues">Talk</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/sbasic">Forum</a></li>
         </ul>
       </div>
       <div id="simpleSearch">
@@ -114,13 +114,42 @@ sbasicg --font=&quot;Liberation Mono&quot;</code></pre>
 [Ctrl] + [up-arrow] Line up scrolled display
 [Ctrl] + [down-arrow] Line down scrolled display
 [Ctrl] + [p] Screen dump</code></pre>
+<h2 id="how-to-help-design-a-better-looking-editor-color-theme">How to help design a better looking editor color theme</h2>
+<p>There are a number of color themes available in the text editor. You can switch between themes by pressing ALT+t while editing a file. When SmallBASIC starts, the last theme is read from the settings.txt file (under %APPDATA%/SmallBASIC in windows and ~/.config/SmallBASIC in linux) and when it exits the current settings are written back to the file.</p>
+<p>The steps below should give just enough functionality to help design a better looking theme. Sorry, it’s a bit of a convoluted process.</p>
+<ol type="1">
+<li>Start SmallBASIC, then click to edit a .bas file, then press ALT+t four times. You are now looking at the modifiable theme.</li>
+<li>Exit SmallBASIC (Alt+f4).</li>
+<li>Copy settings.txt into a separate file (say settings.new), then open settings.new in a programming editor in linux: $ cd ~/.config/SmallBASIC $ cp settings.txt settings.new</li>
+<li>Repeat: Make any changes to the hex values (see below) in settings.new, copy settings.new to settings.txt, and then restart SmallBASIC to inspect the changes. in linux: $ cp settings.new settings.txt &amp;&amp; sbasicg -e foo.bas</li>
+<li>Once you have something looking fantastic, email me your settings and I’ll include them in the next release.</li>
+</ol>
+<p>— settings.txt — 529,173,640,480,100,0,1,0 c8cedb,a7aebc,484f5f,a7aebc,a7aebc,00bb00,2e3436,888a85,000000,4d483b,000000,2b313a,0083f8,ff9d00,31ccac,c679dd,0083f8 …</p>
+<p>Offsets for the above color hex values</p>
+<pre><code>0 - color
+1 - selection_color
+2 - number_color
+3 - number_selection_color
+4 - cursor_color
+5 - syntax_comments
+6 - background
+7 - selection_background
+8 - number_selection_background
+9 - cursor_background
+10 - match_background
+11 - row_cursor
+12 - syntax_text
+13 - syntax_command
+14 - syntax_statement
+15 - syntax_digit
+16 - row_marker</code></pre>
 </div>
     <div class="pagefooter">
       This page was last edited on Mon, 19 Mar 2018 20:30:08 +1000
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.1.2</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.2.1</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

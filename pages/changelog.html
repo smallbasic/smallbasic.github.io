@@ -48,7 +48,7 @@
       <div class="tabsLeft">
         <ul>
           <li><a href="#" class="active">Article</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/SmallBASIC/issues">Talk</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/sbasic">Forum</a></li>
         </ul>
       </div>
       <div id="simpleSearch">
@@ -664,7 +664,7 @@ w.showKeypad()</code></pre>
 <p>2001-12-27: ndc bug fix: memo vfs driver: deleted files, no null-char on read</p>
 <p>2001-12-??: ndc new: split with pairs</p>
 <p>2001-12-11: ndc new: IN operator (not the FOR-IN) new: ISNUMER(), ISSTRING() new: ENCLOSE(), DISCLOSE() (also, its part of SPLIT) bug fix: memory leak (GOTO) new: terminal driver (old code for command-line is removed)</p>
-<p>2001-12-10: ndc new: DEF FN compatible command (single-line functions) – to support this, I made the DEF; an alias of FUNC – so, FUNC f(x) = sin(x) – and DEF f(x) = sin(x) – is now acceptable new: bitwise operators NAND,NOR,XNOR,EQV,IMP – it needs checks new: parameter parser (RT) update: FORMAT, console-codes () new: LOADLN file, array new: SAVELN file, array bug fix: binary READ/WRITE commands new: FOR var IN array - NEXT command-line: quite flag (-q); No “* DONE *“, no compiler messages bug fix: Unix OS Name</p>
+<p>2001-12-10: ndc new: DEF FN compatible command (single-line functions) – to support this, I made the DEF; an alias of FUNC – so, FUNC f(x) = sin(x) – and DEF f(x) = sin(x) – is now acceptable new: bitwise operators NAND,NOR,XNOR,EQV,IMP – it needs checks new: parameter parser (RT) update: FORMAT, console-codes () new: LOADLN file, array new: SAVELN file, array bug fix: binary READ/WRITE commands new: FOR var IN array - NEXT command-line: quite flag (-q); No &quot;* DONE *&quot;, no compiler messages bug fix: Unix OS Name</p>
 <h2 id="version-0.7.0a">VERSION 0.7.0a</h2>
 <p>2001-11-07: ndc PalmOS: crash with MemoDB deleted/locked records</p>
 <h2 id="version-0.6.1-0.7.0">VERSION 0.6.1-0.7.0</h2>
@@ -690,7 +690,7 @@ PDOC FS:
 
 bug fix: memory leak on PRINT for files
 bug fix: PalmOS IDE, UserFileViewer save file</code></pre>
-<p>2001-08-06: ndc MemoDB FS: –filesystem emulation for memodb. (use OPEN “MEMO:memo-title”) –the memo-record size is limited to 4000-65 bytes (the 65 bytes are reserved for the ‘filename’ + ) –Under non-palmos OSes, files Memo_* are created in the current directory for emulation –FILES() for MEMOFS: FILES(“MEMO:*“)</p>
+<p>2001-08-06: ndc MemoDB FS: –filesystem emulation for memodb. (use OPEN “MEMO:memo-title”) –the memo-record size is limited to 4000-65 bytes (the 65 bytes are reserved for the ‘filename’ + ) –Under non-palmos OSes, files Memo_* are created in the current directory for emulation –FILES() for MEMOFS: FILES(&quot;MEMO:*&quot;)</p>
 <pre><code>bug fix: FS auto-close files</code></pre>
 <p>2001-08-05: ndc RTE … — custom run-time-error (its working like PRINT command) PROGLINE — returns the current source-line number (user’s program) Unix: some /proc info are added EMPTY(x) – used for variables FS: A lot of changes on file.c –Actually FS is working with more clever way now. Its supports multiple fs-drivers with mount/umount logic.</p>
 <p>2001-08-04: ndc Trying to support nested arrays. –There are some problems with nested arrays. –Nested arrays are not visible to SB compiler so –SB does not stores optimized info for them. –(in few cases arrays will copied more than once on memory)</p>
@@ -709,9 +709,9 @@ bug fix: OSS driver now checks if /dev/dsp is available
 
 PalmOS IDE: &#39;restart&#39; does not compile the source now</code></pre>
 <p>2001-07-29: ndc PalmOS driver: direct video-access (used instead of PalmOS APIs routines) –its faster :)</p>
-<p>2001-07-25: ndc JOIN array(), delim, dest-var LINEQGJ(A,B[,toler]) (thanks to Yannis Dondos (dondos@otenet.gr) Arrays ops: [col,col,…[; col,col…]] define an array at code ex: d=[1,2] ‘2 d=[1;2]’ 2x1 d=[11,12;21;cos(a)] ‘3x2 d=[1;21,2+2]’ 2x2 d=[1,2;3,4] ’ 2x2</p>
+<p>2001-07-25: ndc JOIN array(), delim, dest-var LINEQGJ(A,B[,toler]) (thanks to Yannis Dondos (dondos@otenet.gr) Arrays ops: [col,col,…[; col,col…]] define an array at code ex: d=[1,2] ’ 2 d=[1;2] ’ 2x1 d=[11,12;21;cos(a)] ’ 3x2 d=[1;21,2+2] ’ 2x2 d=[1,2;3,4] ’ 2x2</p>
 <pre><code>Matrices: (A-Z=arrays): A=2*B;B=-B;C=D*E;A=B+C;D=A-B</code></pre>
-<p>ex: a = [-3, 0; 2, -1] b = [ 4, -2; 3, 5] print a; &quot; x “; b;” = “; a * b</p>
+<p>ex: a = [-3, 0; 2, -1] b = [ 4, -2; 3, 5] print a; &quot; x “; b;” = &quot;; a * b</p>
 <pre><code>new: PRINT displays arrays now
 Bit-ops: BAND (AND), BOR (OR)</code></pre>
 <p>2001-07-23: ndc bug fix: RECT with out fill (diag. line)</p>
@@ -742,7 +742,7 @@ SDL sound driver...</code></pre>
 <p>2001-02-28: ndc Basic FILE I/O</p>
 <p>2001-02-27: ndc circle’s code is beautiful now.</p>
 <p>2001-02-25: ndc 4bit gray-colors are supported now (PalmOS 3.30 only!) 8bit vga16 hi-colors are fixed bug fix: STR$() INPUT supports more variables</p>
-<p>2001-02-24: ndc console supports more fonts now (“|[…] [ELSE [numeric-label]|[…]] ?bug? fix: PEN(0) - (pen status) starts with status 0 (after a PEN ON command the PEN(0) was 1) bug fix: READ/DATA with arrays bug fix: code_getvarptr() fixed. Now we can use arrays without fear :) bug fix: numeric labels without command next to it bug fix: LET|CONST next to label (ERROR: LET IS KEYWORD) bug fix: finaly the ‘$’ is dead (I hope :). (That means LEFT(x,1) = LEFT$(x,1) but x$ &lt;&gt; x) bug fix: console supports  bug fix: PAUSE command (it was removed!)</p>
+<p>2001-02-24: ndc console supports more fonts now (&quot;|[…] [ELSE [numeric-label]|[…]] ?bug? fix: PEN(0) - (pen status) starts with status 0 (after a PEN ON command the PEN(0) was 1) bug fix: READ/DATA with arrays bug fix: code_getvarptr() fixed. Now we can use arrays without fear :) bug fix: numeric labels without command next to it bug fix: LET|CONST next to label (ERROR: LET IS KEYWORD) bug fix: finaly the ‘$’ is dead (I hope :). (That means LEFT(x,1) = LEFT$(x,1) but x$ &lt;&gt; x) bug fix: console supports  bug fix: PAUSE command (it was removed!)</p>
 <p>2001-02-08: ndc bug fix: BREAK for INPUT Unix &lt;-&gt; win32 (u2d, d2u, mksmall) convertion utilities C Headers &amp; data-types changed; Makefile, .rcp, README: minor changes; proc.h callback.h bcode.h: removed SB small icon, thanks to Christian G. Hvltje</p>
 <p>2001-02-07: Gary A. Clark - clarkg@fireserve.net bug fix: READing strings now works bug fix: Crash when ‘Save As’ same file name (Rename did same)</p>
 <p>2001-02-06: 0.5.5 Gary A. Clark - clarkg@fireserve.net Convert to SDK 3.5 using PalmCompatibility.h bug fix: Hardware keys caused INKEY$ to always return nothing bug fix: VAL(), OCT$(), MID$() and RTRIM$() now work correctly</p>
@@ -755,7 +755,7 @@ SDL sound driver...</code></pre>
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.1.2</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.2.1</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

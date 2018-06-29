@@ -48,7 +48,7 @@
       <div class="tabsLeft">
         <ul>
           <li><a href="#" class="active">Article</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/SmallBASIC/issues">Talk</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/sbasic">Forum</a></li>
         </ul>
       </div>
       <div id="simpleSearch">
@@ -127,7 +127,7 @@ End Select
 ? &quot;Done...&quot;;
 Pause
 </code></pre>
-<p>Apparently, RUN/EXEC have bugs in SmallBASIC version 0.12.2…: chrisws replied on Sun, 04/24/2016 - 00:29 http://smallbasic.sourceforge.net/?q=comment/1187#comment-1187 &gt; RUN/EXEC There are three modes: 1. RUN(command) ‘invoked as a COMMAND 2. v=RUN(command) ’invoked as a FUNC, returning the results of the sub process With both of these, control returns to the .bas once system ’command’ has completed. 3. EXEC(command) ’invoked as a COMMAND, control returns to the .bas immediately and the system command does it’s own thing external to SmallBASIC. … Note: In the android version you can use v=RUN to look at interesting things in the /proc file system.</p>
+<p>Apparently, RUN/EXEC have bugs in SmallBASIC version 0.12.2…: chrisws replied on Sun, 04/24/2016 - 00:29 http://smallbasic.sourceforge.net/?q=comment/1187#comment-1187 &gt; RUN/EXEC There are three modes: 1. RUN(command) ’ invoked as a COMMAND 2. v=RUN(command) ‘invoked as a FUNC, returning the results of the sub process With both of these, control returns to the .bas once system ’command’ has completed. 3. EXEC(command) ’invoked as a COMMAND, control returns to the .bas immediately and the system command does it’s own thing external to SmallBASIC. … Note: In the android version you can use v=RUN to look at interesting things in the /proc file system.</p>
 <p>Windows 10 is having none of this. Starting with it thinking it should do the Linux branch in the first decision branch. But RUN won’t even RUN “DIR &gt; Directory.txt” (let alone give me a directory of DeskTop where I am at and running SB from.) Append: As a way to get OS, I just tried ? OSNAME and learned my Operating System is SDL ??? something is wrong also my SB version number is 0.12.1 but About menu says 0.12.2, I believe About menu. In general: 1. The search path for running a command (executable file) is defined in the “PATH” environment variable (unless full path to the executable is supplied). In Windows, the current directory will be searched before the directories specified in the PATH variable (but not on Linux).</p>
 <pre><code>
 Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;) &#39; check if it&#39;s Linux system
@@ -238,7 +238,7 @@ RUN by submitting a pull request, click View Source for details. Note, an offlin
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.1.2</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.2.1</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>
