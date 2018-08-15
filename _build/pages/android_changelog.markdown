@@ -5,6 +5,16 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.13 15 Aug 2018**
+
+- Editor now uses solarized dark colour theme
+- Fixed an issue with the IMAGE command
+- The build now targets the latest android version
+- Updated path handling to remove hard coded /sdcard paths
+- Updated the build system to use android studio
+- Fix trailing spaces with LOCAL command when terminated with comma
+- Fix TLOAD input error handling
+
 **0.12.11 30 Dec, 2017**
 
 - Fix issue with image save() command to ensure resulting array has correct dimensions
