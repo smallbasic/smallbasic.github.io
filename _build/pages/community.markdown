@@ -2,7 +2,7 @@
 
 ## Forums
 - [Google groups](https://groups.google.com/forum/#!forum/sbasic){target=_blank}
-- [Retrogamecoding and Basicprogramming Forum](http://retrogamecoding.org/board/){target=_blank}
+- [Google+](https://plus.google.com/communities/108008143866282026044){target=_blank}
 
 ## Issues
 - [GitHub](https://github.com/smallbasic/SmallBASIC/issues){target=new}
@@ -10,3 +10,4 @@
 
 ## Email
 - [smallbasic@gmail.com](mailto:smallbasic@gmail.com)
+- [Mailing List](https://sourceforge.net/projects/smallbasic/lists/smallbasic-public)
