@@ -6,7 +6,7 @@
 
 ## Windows
 
-[0.12.12](https://sourceforge.net/projects/smallbasic/files/Windows/0.12.12/smallbasic_0.12.12.zip){target="_blank"}
+[0.12.13](https://sourceforge.net/projects/smallbasic/files/Windows/0.12.13/smallbasic_0.12.13.zip){target="_blank"}
 
 ## Linux
 

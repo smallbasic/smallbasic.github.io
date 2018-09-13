@@ -34,14 +34,13 @@ SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for ever
 
 [Read more](/pages/guide.html)
 
-## New forum options
+## SmallBASIC version 0.12.13 has been released
 
-[Read more](/posts/2018-17-06.html)
+[Read more](/posts/2018-09-13.html)
 
 ![](images/lsystem.png "Fun with lsystems")
 
 [Samples](/pages/samples.html)
-
 
 ## Web site updated
 

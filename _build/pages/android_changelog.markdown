@@ -5,6 +5,11 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.13.1 (13 September 2018)**
+
+- Fix problem with SEQ command
+- Add limited support embedded octal values in strings
+
 **0.12.13 15 Aug 2018**
 
 - Editor now uses solarized dark colour theme
