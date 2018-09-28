@@ -18,10 +18,11 @@
 
 - [Dartmouth BASIC spec circa 1964](http://www.bitsavers.org/pdf/dartmouth/BASIC_Oct64.pdf){target=_blank}
 
-## Small Basic
+## What about the other "SmallBASIC?"
 
-- [The other smallbasic](http://msdn.microsoft.com/en-us/beginner/ff384239.aspx){target=_blank}
-- [Translator - experimental](http://sb-translator.appspot.com/){target=_blank}
+We noticed there's another version of [SmallBASIC](http://smallbasic.com/faq.aspx){target=_blank}. Other than the naming coincidence, our version of SmallBASIC doesn't have anything to do with this other version.
+ 
+- [Small Basic to SmallBASIC translator - experimental](http://sb-translator.appspot.com/){target=_blank}
 
 ## ECMA-55
 
