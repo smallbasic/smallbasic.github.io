@@ -8,4 +8,4 @@
 - [New features](/pages/features.html)
 - [SDL](/pages/sdl.html)
 - [TRY/CATCH](/pages/trycatch.html)
-- [Network communications](/pages/network.html)
+- [Network programming](/pages/network.html)

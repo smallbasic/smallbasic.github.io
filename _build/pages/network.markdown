@@ -1,5 +1,5 @@
-Network communications
-======================
+Network programming
+===================
 
 > Accessing the network in SmallBASIC
 
