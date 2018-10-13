@@ -5,6 +5,12 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.14.1 (14 October 2018)**
+
+- Fix crash when passing zero as format argument to DATEFMT
+- Fix display issue with logo on about page
+- Minor runtime optimization
+
 **0.12.14 (28 September 2018)**
 
 - Fix error message when command "LINE INPUT" attempts to read a non open file
