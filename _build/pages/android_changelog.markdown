@@ -5,6 +5,12 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.14.2 (16 November 2018)**
+
+- Fix navigation when network access down then available
+- Changed UI display from black to be a slightly lighter onyx color.
+- Update help tip in scratch window
+
 **0.12.14.1 (14 October 2018)**
 
 - Fix crash when passing zero as format argument to DATEFMT

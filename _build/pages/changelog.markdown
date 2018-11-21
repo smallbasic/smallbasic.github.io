@@ -1,6 +1,16 @@
 Changelog
 =========
 
+**0.12.14 (18 October 2018)**
+
+- Changed UI display from black to be a slightly lighter onyx color.
+- Implemented embedding octal codes to allow: print "\033[1mBold\033[0m"
+- Fix crash when passing zero as format argument to DATEFMT
+- Fix crash when attempting to load an image from a failed network connection
+- Fix error message when command "LINE INPUT" attempts to read a non open file
+- Fix navigation when network access down then available
+- Minor runtime optimization
+
 **0.12.13 (13 September 2018)**
 
 - Added F8 key live edit mode
