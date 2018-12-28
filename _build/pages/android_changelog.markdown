@@ -5,6 +5,12 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.15 (29 December 2018)**
+
+- Fix crash when using GOTO with a non-existent label
+- Fix crash in editor when double tapping empty document
+- Fix menu display on chromebook and other devices
+
 **0.12.14.2 (16 November 2018)**
 
 - Fix navigation when network access down then available
