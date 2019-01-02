@@ -9,7 +9,7 @@ The system menu is accessed by the "three vertical dots" button in the bottom ri
 
 ![](/images/android_menu1.png "System Menu button")
 
-The displayed items depend on whether the file browser, code editor or a running program is active.
+The items displayed depend on whether the file browser, code editor or a running program is active.
 
 ![](/images/android_menu2.png "System Menu")
 
