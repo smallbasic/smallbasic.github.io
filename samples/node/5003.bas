@@ -3,17 +3,20 @@ REM created: 30/12/2018
 REM Classic marooned sailors, coconuts and monkey problem.
 
 print "Five proud but cynical explorers went into the jungle to pick coconuts. 
-
 print
+
 print "They worked all day and returned to their camp, putting all the coconuts into one big pile."
-
 print
-print "During the night, one explorer awoke, went to the pile of coconuts, divided it into five equal piles,  he gave the one remaining coconut to a monkey. He hid his pile in the jungle and pushed the other four piles back into one big pile. He went back to bed."
 
+print "During the night, one explorer awoke, went to the pile of coconuts, divided it into five equal piles, he gave the one remaining coconut to a monkey. He hid his pile in the jungle and pushed the other four piles back into one big pile. He went back to bed."
 print
-print "Each hour later in the night, the other four cynical explorers did the same as the first explorer.  In the light of day all the explorers stared at the obviously smaller pile of coconuts from the day before, but each was too proud to admit what they had done during the night."
 
+print "Each hour later in the night, the other four cynical explorers did the same as the first explorer.
 print
+
+print "In the light of day all the explorers stared at the obviously smaller pile of coconuts from the day before, but each was too proud to admit what they had done during the night."
+print
+
 print" So, they divided the coconuts evenly once again and went on their merry way. What is the minimum number of coconuts the explorers had to pick?"
 
 pause
