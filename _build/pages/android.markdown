@@ -15,7 +15,7 @@ The displayed items depend on whether the file browser, code editor or a running
 
 When the file browser is active you should see an "Editor" item followed by either [ON] or [OFF]. If it shows "OFF" then press the item to switch it to "ON".
 
-Before you start editing a program you should navigate to the "SmallBASIC" folder. You can get there by pressing "[Go Up]" until you hit the root level  "/". You should then see an entry for "SmallBASIC". If there's not enough room to display the entire text it might appear as something like "storage/emulated/0/SmallBAS~".
+Before you start editing a program you should navigate to the "SmallBASIC" folder. You can get there by pressing "[Go Up]" until you hit the root level  "/". You should then see an entry for "SmallBASIC". If there's not enough room to display the entire text it might appear as something like "storage/emulated/0/SmallBAS~". You may need to accept a permission request to allow access to this folder when you first launch SmallBASIC for the first time. Also make sure you **do not** select the internal "net.sourceforge.smallbasic" folder since this could be overwritten in a future SmallBASIC update.
 
 ![](/images/android_navigate.png "System Menu")
 
@@ -27,7 +27,7 @@ Your new file should be listed in the file browser. Press the file name link. Yo
 
 Start typing out your program. When you are ready to test your program, press the system menu button then select "Run".
 
-In the help screen, the ">" characters on the left are buttons to expand (or contract) the help item contents. In the editor, the line number display also functions as a scrollbar.
+In the help screen, the ">" characters on the left are buttons to expand (or contract) the help item contents. In the editor, the line number display also functions as a scrollbar. If you want to write a quick experimental program you can use the "[Scratch]" option to bypass the above file name setup steps.
 
 ![](/images/android_scroll.png "System Menu")
 
