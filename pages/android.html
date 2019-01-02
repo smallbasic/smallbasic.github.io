@@ -75,8 +75,24 @@
 <div class="article">
 <h1 id="android">Android</h1>
 <blockquote>
-<p>Using Location, Sensor and Text to speech services. Applies to version 0.12.8 (and above)</p>
+<p>SmallBASIC for Android guide</p>
 </blockquote>
+<h2 id="getting-started">Getting started</h2>
+<p>The system menu is accessed by the “three vertical dots” button in the bottom right corner of the screen.</p>
+<p><img src="/images/android_menu1.png" title="System Menu button" /></p>
+<p>The displayed items depend on whether the file browser, code editor or a running program is active.</p>
+<p><img src="/images/android_menu2.png" title="System Menu" /></p>
+<p>When the file browser is active you should see an “Editor” item followed by either [ON] or [OFF]. If it shows “OFF” then press the item to switch it to “ON”.</p>
+<p>Before you start editing a program you should navigate to the “SmallBASIC” folder. You can get there by pressing “[Go Up]” until you hit the root level “/”. You should then see an entry for “SmallBASIC”. If there’s not enough room to display the entire text it might appear as something like “storage/emulated/0/SmallBAS~”.</p>
+<p><img src="/images/android_navigate.png" title="System Menu" /></p>
+<p>Now press the “[File]” link in the top left corner of the screen. This will take you to the file manager. From here you can enter a file name then press “[New]” to create it. Now press “[&lt;&lt;]” to exit the file manager.</p>
+<p><img src="/images/android_create_file.png" title="System Menu" /></p>
+<p>Your new file should be listed in the file browser. Press the file name link. You should finally see the program editor. If the keypad does not appear, press the system menu button and select “Show Keypad”. For best results you may need to install a separate keyboard. “AnySoftKeyboard”, “Hacker’s Key” and “GBoard” all seem to work well.</p>
+<p>Start typing out your program. When you are ready to test your program, press the system menu button then select “Run”.</p>
+<p>In the help screen, the “&gt;” characters on the left are buttons to expand (or contract) the help item contents. In the editor, the line number display also functions as a scrollbar.</p>
+<p><img src="/images/android_scroll.png" title="System Menu" /></p>
+<p>All of the above UI elements are written in SmallBASIC, see <a href="https://github.com/smallbasic/SmallBASIC/blob/master/src/platform/android/app/src/main/assets/main.bas">main.bas</a></p>
+<h2 id="using-location-sensor-and-text-to-speech-services.">Using Location, Sensor and Text to speech services.</h2>
 <p>To use the following services, your program must start with the following two lines:</p>
 <pre><code>option predef load modules
 import android</code></pre>
@@ -183,7 +199,7 @@ android.sensor_on(n)</code></pre>
 <li>Scan the QRCode in the separate decoder program.</li>
 <li>Click okay to launch SmallBASIC and the encoded program.</li>
 </ul>
-<p>Note: the tool to convert source code to QR codes is here: https://github.com/smallbasic/SmallBASIC/tree/master/web/qrcode</p>
+<p>Note: the tool to convert source code to QR codes is here: <a href="https://github.com/smallbasic/SmallBASIC/tree/master/web/qrcode">qrcode</a></p>
 <h2 id="playing-music">Playing music</h2>
 <p>PLAY(“file:///sdcard/VoiceRecorder/recordings/hello.mp3”)</p>
 <p>Use the PLAY command with the prefix “file://” to play an audio track. For supported formats, see:</p>

@@ -1,7 +1,39 @@
 Android
 =======
 
-> Using Location, Sensor and Text to speech services. Applies to version 0.12.8 (and above)
+> SmallBASIC for Android guide
+
+## Getting started
+
+The system menu is accessed by the "three vertical dots" button in the bottom right corner of the screen.
+
+![](/images/android_menu1.png "System Menu button")
+
+The displayed items depend on whether the file browser, code editor or a running program is active.
+
+![](/images/android_menu2.png "System Menu")
+
+When the file browser is active you should see an "Editor" item followed by either [ON] or [OFF]. If it shows "OFF" then press the item to switch it to "ON".
+
+Before you start editing a program you should navigate to the "SmallBASIC" folder. You can get there by pressing "[Go Up]" until you hit the root level  "/". You should then see an entry for "SmallBASIC". If there's not enough room to display the entire text it might appear as something like "storage/emulated/0/SmallBAS~".
+
+![](/images/android_navigate.png "System Menu")
+
+Now press the "[File]" link in the top left corner of the screen. This will take you to the file manager. From here you can enter a file name then press "[New]" to create it. Now press "[<<]" to exit the file manager.
+
+![](/images/android_create_file.png "System Menu")
+
+Your new file should be listed in the file browser. Press the file name link. You should finally see the program editor. If the keypad does not appear, press the system menu button and select "Show Keypad". For best results you may need to install a separate keyboard. "AnySoftKeyboard", "Hacker's Key" and "GBoard" all seem to work well.
+
+Start typing out your program. When you are ready to test your program, press the system menu button then select "Run".
+
+In the help screen, the ">" characters on the left are buttons to expand (or contract) the help item contents. In the editor, the line number display also functions as a scrollbar.
+
+![](/images/android_scroll.png "System Menu")
+
+All of the above UI elements are written in SmallBASIC, see [main.bas](https://github.com/smallbasic/SmallBASIC/blob/master/src/platform/android/app/src/main/assets/main.bas)
+
+## Using Location, Sensor and Text to speech services.
 
 To use the following services, your program must start with the following two lines:
 
@@ -175,7 +207,7 @@ Performs text to speech (default is ENGLISH).
 - Scan the QRCode in the separate decoder program.
 - Click okay to launch SmallBASIC and the encoded program.
 
-Note: the tool to convert source code to QR codes is here: https://github.com/smallbasic/SmallBASIC/tree/master/web/qrcode
+Note: the tool to convert source code to QR codes is here: [qrcode](https://github.com/smallbasic/SmallBASIC/tree/master/web/qrcode)
 
 ## Playing music
 
