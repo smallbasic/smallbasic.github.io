@@ -5,6 +5,11 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.15.1 (21 January 2019)**
+
+- Fix setup screen colour display
+- Show link to android page in about screen
+
 **0.12.15 (29 December 2018)**
 
 - Fix crash when using GOTO with a non-existent label
