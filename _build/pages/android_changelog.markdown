@@ -5,6 +5,11 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.15.2 (17 February 2019)**
+
+- Fix crash with SOUND when passing negative duration
+- Implement SOUND playing in the foreground
+
 **0.12.15.1 (21 January 2019)**
 
 - Fix setup screen colour display
