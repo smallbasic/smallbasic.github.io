@@ -5,6 +5,12 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.15.3 (3 March 2019)**
+
+- Fix issue with POINT returning incorrect values
+- Fix to make the editor status bar less intrusive
+- Fix crash entering c,v in edit control mode
+
 **0.12.15.2 (17 February 2019)**
 
 - Fix crash with SOUND when passing negative duration
