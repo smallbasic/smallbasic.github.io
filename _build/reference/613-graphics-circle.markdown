@@ -4,7 +4,6 @@
 
 Draws a circle (or an ellipse if the aspect is specified).
 
-
 ~~~
 
 ' Aspect ratio is relation between width-height of a circle,
@@ -77,4 +76,11 @@ wend
 
 ~~~
 
+By default line drawing using anti-aliasing. For details, see: [Xiaolin Wu's line algorithm](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm){target=_blank}
+
+To turn off anti-aliasing, add this to the start of your program:
+
+```
+ option predef antialias off
+```
 
