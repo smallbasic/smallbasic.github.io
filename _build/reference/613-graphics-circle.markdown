@@ -76,7 +76,7 @@ wend
 
 ~~~
 
-By default line drawing using anti-aliasing. For details, see: [Xiaolin Wu's line algorithm](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm){target=_blank}
+By default CIRCLE draws with anti-aliasing. For details, see: [Fast, Antialiased Circles and Ellipses](https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/){target=_blank}
 
 To turn off anti-aliasing, add this to the start of your program:
 
