@@ -2,13 +2,114 @@
 
 > IMAGE [#handle | fileName | http://path-to-file.png | image-var | array of pixmap data]
 
-Creates a graphical image object providing access to the following sub-commands: show([x,y [,zindex [,opacity]]]), hide, save([x,y [,w,h]])
+The IMAGE statement provides access to extended support for image manipulation. There are two supported image formats: PNG and XPM (see below).
+
+### Image access
+
+Create via open file handle
+
+```
+Open "circle.png" For Output As #1
+i = Image(#1)
+```
+
+Create via file name
+
+```
+i = Image("circle.png")
+```
 
 
-~~~
+Create via URL (note only works with HTTP not HTTPS)
 
-' Note: tested with SmallBASIC version 0.12.6 for Linux.
+```
+i = Image("http://pngimg.com/uploads/tesla_car/tesla_car_PNG26.png")
+```
 
+Create via screen scrape (x, y, width, height)
+
+```
+i = Image(10, 10, 100, 100)
+```
+
+Create via another image variable
+
+```
+k = Image(...)
+i = Image(k)
+```
+
+Create via 2D array
+
+```
+dim a(100, 200)
+For y = 0 To Ubound(a, 1)
+  For x = 0 To Ubound(a, 2)
+    r += 5: g += 10: b += 15
+    a(y, x) = rgb(r%255, g%255,b%255)
+  Next
+Next
+i = Image(a)
+```
+
+
+Create via array of [X_PixMap](https://en.wikipedia.org/wiki/X_PixMap) data
+
+```
+im << "16 18 4 1"
+im << "@ c #547B43"
+im << "  c #ffffff"
+im << "+ c none"
+im << "x c #ff0000"
+im << "@@@@@@@+++++++++"
+im << "@    @++++++++++"
+im << "@   @+++++++++++"
+im << "@   @++@++++++++"
+im << "@    @@+++++++++"
+im << "@     @+++@+++++"
+im << "@     @++@@++++@"
+im << "@ xxx  @@  @++@@"
+im << "@  xxx    xx@@ @"
+im << "@   xxx  xxx   @"
+im << "@    xxxxxx    @"
+im << "@     xxxx     @"
+im << "@    xxxxxx    @"
+im << "@   xxx  xxx   @"
+im << "@  xxx    xxx  @"
+im << "@ xxx      xxx @"
+im << "@              @"
+im << "@@@@@@@@@@@@@@@@"
+i = Image(im)
+```
+
+### Show command
+
+zIndex controls whether the image will be displayed over or under another image. Images with higher zIndex values are drawn over the top of images with lower zIndex values. Opacity controls whether to display the image as solid or semi-transparent. Opacity values range from 1-100, with higher opacity values making the image less transparent. The default is 100 resulting in a solid image.
+
+```
+i.show([x,y [,zindex [,opacity]]])
+```
+
+### Hide command
+
+The hide command hides the image from display
+
+```
+ i.hide()
+```
+
+### Save command
+
+The save command saves the image data into the given file handle, file name or array
+
+```
+dim png
+i.save(png)
+```
+
+### Example 1
+
+```
 Const CSI_EL = Chr(27) + "[K"  ' EL - Erase in Line (clear to end of line).
 Sub title(txt) 
   Locate 0, 0: Color 7, 0: ? CSI_EL; txt;
@@ -80,17 +181,17 @@ Close #1
 i4.Show(600, 20)             ' Show loaded image (x, y)
 Pause
 
-~~~
+```
 
+### Example 2
 
-~~~
+```
 
-' Note: tested with SmallBASIC version 0.12.6 for Linux.
 ' Notes: 
 ' 1. Using POINT and PSET is a much slower option then using:
 '    i = IMAGE(x, y, width, height) and i.Show(x, y) - (See Part-1).
 '
-' 2. The 2-D array that holds the image, a(y, x), must be equilateral, e.g.
+    ' 2. The 2-D array that holds the image, a(y, x), must be equilateral, e.g.
 '    a(2 To 6, 1 To 5), etc; Using a(1 To 5, 1 To 6), for example, is wrong.
 '
 ' 3. It's possible to use POINT or RGB commands (alpha is not supported 
@@ -133,12 +234,12 @@ i = Image(a)                 ' Convert the 2-D array (y, x) of pixels to image
 i.Show(350, 230)             ' Show the image (fast) at location (x, y)
 Pause
 
-~~~
+```
 
+### Example 3
 
-~~~
+```
 
-' Note: tested with SmallBASIC version 0.12.6 for Linux.
 ' Notes:
 ' 1. You may load an existing XPM image file, the same way you load PNG image
 '    file; Or you may store the XPM data within the source code (DATA keyword
@@ -201,12 +302,12 @@ Pause
 ' example above) and rows (height 4 in the example above), 
 ' e.g. 2 + 2 + 4 = 8 lines.
 
-~~~
+```
 
+### Example 4
 
-~~~
+```
 
-' Note: tested with SmallBASIC version 0.12.6 for Linux.
 Color 7, 1: Cls              ' (for recognizing transparency color)
 ' --- [1]
 Restore Demo_XPM_Image       ' Create a demo XPM image array
@@ -291,17 +392,12 @@ Data ".......oo..oo....oo.."
 Data "..oo...oo..oo....oo.."
 Data "...ooooo...ooooooo..."
 Data "....................."
+```
 
-~~~
+### Example 5
 
-I'm curious as to the zindex parameter.
-I'm going to assume that the zindex refers to the 'depth' or 'layer' of the image. What is the range of zindex?
-J
-ps: By the way, great examples... cool.
+```
 
-~~~
-
-' Note: tested with SmallBASIC version 0.12.6 for Linux.
 ' Dedicated to johnno56
 
 Const CSI_EL = Chr(27) + "[K"  ' EL - Erase in Line (clear to end of line).
@@ -358,15 +454,12 @@ For layer = 1 To 9
   Pause
 Next layer
 
-~~~
+```
 
-Does SB have a dedicated transparency color (ie: rgb(255,0,255) )?
-I was only asking, because in the example, the 'corners' of the sprite can be seen when overlapping other sprites. If it does use a dedicated colour, how would that be coded?
-J
+### Base64 decoder for example 4
 
-~~~
+```
 
-REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
 REM Purpose:   A Base64 Encoder/Decoder UNIT.
 REM File name: base64.bas
 REM Unit name: base64
@@ -394,8 +487,6 @@ REM Author:    Christian d'Heureuse; shian (See License below)
 '
 
 ' -- Start Demo code --- --- --- --- --- --- --- --- --- --- ---
-'
-' ' ( See also: http://smallbasic.sourceforge.net/?q=comment/1398#comment-1398 )
 '
 ' Import base64                  ' (Import from another .bas file)
 '
@@ -552,16 +643,168 @@ Func Decode_Base64(s)
   Wend
   Decode_Base64 = Out
 End Func
+```
 
-~~~
-
-I don't know (guess not, but can't be sure).
-But you may create a PNG image + transparency color with an external image editor, 
-and then you may also decode it as a Base64 PNG string (to store it within the source code).
+You may create a PNG image + transparency color with an external image editor, and then you may also decode it as a Base64 PNG string (to store it within the source code).
 Another useful option is to use XPM image format (See Part-3 above) with transparency color, instead of color number you just write NONE, like this:
 
-~~~
+```
 a << "x c NONE"  ' Character "x" is transparency color
-~~~
+```
 
+### Command line example
+
+The following creates a plist file and composite sprite sheet which can be used with cocos2d development
+
+```
+const backgnd = 0xFF5A5D39
+const shadow = 0xFF080c08
+
+const alpha = 0x5a5d39
+const alphaShadow = 0x80080c08
+
+dim tileset
+tileset << ["eating e0000.png",       13]
+tileset << ["eating n0000.png",       13]
+tileset << ["eating ne0000.png",      13]
+tileset << ["eating nw0000.png",      13]
+tileset << ["eating s0000.png",       13]
+tileset << ["eating se0000.png",      13]
+tileset << ["eating sw0000.png",      13]
+tileset << ["eating w0000.png",       13]
+tileset << ["headshaking e0000.png",  11]
+tileset << ["headshaking n0000.png",  11]
+tileset << ["headshaking ne0000.png", 11]
+tileset << ["headshaking nw0000.png", 11]
+tileset << ["headshaking s0000.png",  11]
+tileset << ["headshaking se0000.png", 11]
+tileset << ["headshaking sw0000.png", 11]
+tileset << ["headshaking w0000.png",  11]
+tileset << ["running e0000.png",      11]
+tileset << ["running n0000.png",      11]
+tileset << ["running ne0000.png",     11]
+tileset << ["running nw0000.png",     11]
+tileset << ["running s0000.png",      11]
+tileset << ["running se0000.png",     11]
+tileset << ["running sw0000.png",     11]
+tileset << ["running w0000.png",      11]
+tileset << ["stopped0000.png",         7]
+tileset << ["walking e0000.png",      11]
+tileset << ["walking n0000.png",      11]
+tileset << ["walking ne0000.png",     11]
+tileset << ["walking nw0000.png",     11]
+tileset << ["walking s0000.png",      11]
+tileset << ["walking se0000.png",     11]
+tileset << ["walking sw0000.png",     11]
+tileset << ["walking w0000.png",      11]
+
+func colorToAlpha(x)
+  if (x == backgnd) then return alpha
+  if (x == shadow) then return alphaShadow
+  return x
+end
+
+sub print_include()
+  local j, pattern, count, out, varname
+  out << "#pragma once"
+  for j = 0 to len(tileset) - 1
+    x = 0
+    y = 0
+    [pattern, count] = tileset[j]
+    varname = translate(pattern, "0000.png", "")
+    varname = translate(varname, " ", "_")
+    varname = upper(varname)
+    pattern = translate(pattern, "0000", "%04d")
+    out << "const char *" + varname + "_PNG = \"" + pattern + "\";"
+    out << "const int   " + varname + "_PNG_SIZE = " + count + ";"
+  next j
+  tsave "Classes/horse.h", out
+end
+
+sub print_plist(byref images)
+  local plist, i
+
+  dim plist
+  plist << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+  plist << "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">"
+  plist << "<plist version=\"1.0\">"
+  plist << "<dict>"
+  plist << "  <key>texture</key>"
+  plist << "    <dict>"
+  plist << "      <key>width</key>"
+  plist << "      <integer>" + w + "</integer>"
+  plist << "      <key>height</key>"
+  plist << "      <integer>" + h + "</integer>"
+  plist << "    </dict>"
+  plist << "    <key>frames</key>"
+  plist << "    <dict>"
+  for i = 0 to len(images) - 1
+    png = images[i]
+    plist << "      <key>" + png.name + "</key>"
+    plist << "      <dict>"
+    plist << "        <key>x</key>"
+    plist << "        <integer>" + png.x + "</integer>"
+    plist << "        <key>y</key>"
+    plist << "        <integer>" + png.y + "</integer>"
+    plist << "        <key>width</key>"
+    plist << "        <integer>" + png.width + "</integer>"
+    plist << "        <key>height</key>"
+    plist << "        <integer>" + png.height + "</integer>"
+    plist << "        <key>offsetX</key>"
+    plist << "        <real>0</real>"
+    plist << "        <key>offsetY</key>"
+    plist << "        <real>0</real>"
+    plist << "        <key>originalWidth</key>"
+    plist << "        <integer>" + png.width + "</integer>"
+    plist << "        <key>originalHeight</key>"
+    plist << "        <integer>" + png.height + "</integer>"
+    plist << "      </dict>"
+  next i
+  plist << "    </dict>"
+  plist << "  </dict>
+  plist << "</plist>
+  tsave "Resources/horse.plist", plist
+  tsave "linux-build/bin/Debug/MobileCup/Resources/horse.plist", plist
+end
+
+sub main(byref tileset)
+  local i, j, x, y, pattern, count, images, composite, width, height
+  dim images
+
+  width = 0
+  height = 0
+
+  for j = 0 to len(tileset) - 1
+    x = 0
+    y = 0
+    [pattern, count] = tileset[j]
+    for i = 0 to count
+      png = image("images/horse/" + format(pattern, i))
+      png.clip(5, 5, 5, 5)
+      png.filter(use colorToAlpha(x))
+      png.name = format(pattern, i)
+      png.x = x
+      png.y = height
+      x += png.width + 1
+      y = iff(png.height > y, png.height, y)
+      images << png
+    next i
+    width = iff(x > width, x, width)
+    height += y
+  next j
+
+  composite = image(width, height)
+  for i = 0 to len(images) - 1
+    png = images[i]
+    composite.paste(png, png.x, png.y)
+  next i
+
+  composite.save("Resources/horse.png")
+  composite.save("linux-build/bin/Debug/MobileCup/Resources/horse.png")
+  print_plist(images)
+  print_include()
+end
+
+main(tileset)
+```
 
