@@ -141,6 +141,19 @@ i = Image(im)</code></pre>
 <p>The save command saves the image data into the given file handle, file name or array</p>
 <pre><code>dim png
 i.save(png)</code></pre>
+<h3 id="clip-command-console-version-only">Clip command (console version only)</h3>
+<p>Reduces the size of the image.</p>
+<pre><code>png.clip(left, top, right, bottom)</code></pre>
+<h3 id="filter-command-console-version-only">Filter command (console version only)</h3>
+<p>Calls the supplied callback function on each pixel</p>
+<pre><code>func colorToAlpha(x)
+  return x
+end
+png.filter(use colorToAlpha(x))</code></pre>
+<h3 id="paste-command-console-version-only">Paste command (console version only)</h3>
+<p>Paste the given image into this image at the given x, y location</p>
+<pre><code>png2 = Image(w, h)
+png2.paste(png1, x, y)</code></pre>
 <h3 id="example-1">Example 1</h3>
 <pre><code>Const CSI_EL = Chr(27) + &quot;[K&quot;  &#39; EL - Erase in Line (clear to end of line).
 Sub title(txt) 
@@ -153,7 +166,7 @@ Pset 100, 100
 Circle Step 0, 0, 50 Color 7 Filled
 Circle Step 0, 0, 35 Color 1 Filled
 text = &quot;Hello&quot;
-At Point(0) - Txtw(text) \\ 2, Point(1) - (Txth(&quot;.&quot;) \\ 2)
+At Point(0) - Txtw(text) \ 2, Point(1) - (Txth(&quot;.&quot;) \ 2)
 Color 14, 1: Print text;
 Pause
 
@@ -236,7 +249,7 @@ Pset 100, 100
 Circle Step 0, 0, 50 Color 7 Filled
 Circle Step 0, 0, 35 Color 1 Filled
 text = &quot;Hello&quot;
-At Point(0) - Txtw(text) \\ 2, Point(1) - (Txth(&quot;.&quot;) \\ 2)
+At Point(0) - Txtw(text) \ 2, Point(1) - (Txth(&quot;.&quot;) \ 2)
 Color 14, 1: Print text;
 Pause
 
@@ -427,7 +440,7 @@ Pset 100, 100
 Circle Step 0, 0, 50 Color 7 Filled
 Circle Step 0, 0, 35 Color 1 Filled
 text = &quot;Hello&quot;
-At Point(0) - Txtw(text) \\ 2, Point(1) - (Txth(&quot;.&quot;) \\ 2)
+At Point(0) - Txtw(text) \ 2, Point(1) - (Txth(&quot;.&quot;) \ 2)
 Color 14, 1: Print text;
 Pause
 
@@ -585,8 +598,8 @@ Func Encode_Base64(InData)
   Fi
 
   If ILen = 0 Then Encode_Base64 = &quot;&quot;: Exit Func
-  ODataLen = (ILen * 4 + 2) \\ 3   &#39; Output length without padding
-  OLen = ((ILen + 2) \\ 3) * 4     &#39; Output length including padding
+  ODataLen = (ILen * 4 + 2) \ 3   &#39; Output length without padding
+  OLen = ((ILen + 2) \ 3) * 4     &#39; Output length including padding
   Dim Out(0 To OLen - 1)
   ip0 = LBound(InData)
   &#39; Encode base64 bytes array (See Wikipedia for this...):
@@ -594,9 +607,9 @@ Func Encode_Base64(InData)
     i0 = InData(ip0 + ip): ip++
     If ip &lt; ILen Then i1 = InData(ip0 + ip): ip++ Else i1 = 0
     If ip &lt; ILen Then i2 = InData(ip0 + ip): ip++ Else i2 = 0
-    o0 = i0 \\ 4
-    o1 = ((i0 Band 3) * 0x10) Bor (i1 \\ 0x10)
-    o2 = ((i1 Band 0xF) * 4)  Bor (i2 \\ 0x40)
+    o0 = i0 \ 4
+    o1 = ((i0 Band 3) * 0x10) Bor (i1 \ 0x10)
+    o2 = ((i1 Band 0xF) * 4)  Bor (i2 \ 0x40)
     o3 = i2 Band 0x3F
     Out(op) = Map1(o0): op++
     Out(op) = Map1(o1): op++
@@ -628,7 +641,7 @@ Func Decode_Base64(s)
     If IBuf(ILen - 1) &lt;&gt; 61 Then Exit Loop  &#39; 61 is Asc(&quot;=&quot;)
     ILen--
   Wend
-  OLen = (ILen * 3) \\ 4
+  OLen = (ILen * 3) \ 4
   Dim Out(0 To OLen - 1)  &#39; 1-D bytes array
   &#39; Decode base64 bytes array (See Wikipedia for this...):
   While ip &lt; ILen
@@ -646,8 +659,8 @@ Func Decode_Base64(s)
     If b0 &gt; 63 Or b1 &gt; 63 Or b2 &gt; 63 Or b3 &gt; 63 Then
       Throw &quot;Illegal character in Base64 encoded data.&quot;  &#39; Data error
     Fi
-    o0 = (b0 * 4) Bor (b1 \\ 0x10)
-    o1 = ((b1 Band 0xF) * 0x10) Bor (b2 \\ 4)
+    o0 = (b0 * 4) Bor (b1 \ 0x10)
+    o1 = ((b1 Band 0xF) * 0x10) Bor (b2 \ 4)
     o2 = ((b2 Band 3) * 0x40) Bor b3
     Out(op) = o0: op++
     If op &lt; OLen Then Out(op) = o1: op++
@@ -657,7 +670,7 @@ Func Decode_Base64(s)
 End Func</code></pre>
 <p>You may create a PNG image + transparency color with an external image editor, and then you may also decode it as a Base64 PNG string (to store it within the source code). Another useful option is to use XPM image format (See Part-3 above) with transparency color, instead of color number you just write NONE, like this:</p>
 <pre><code>a &lt;&lt; &quot;x c NONE&quot;  &#39; Character &quot;x&quot; is transparency color</code></pre>
-<h3 id="command-line-example">Command line example</h3>
+<h3 id="console-version-example">Console version example</h3>
 <p>The following creates a plist file and composite sprite sheet which can be used with cocos2d development</p>
 <pre><code>const backgnd = 0xFF5A5D39
 const shadow = 0xFF080c08
@@ -859,7 +872,7 @@ IMAGE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Wed, 6 Mar 2019 21:32:04 +1000
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

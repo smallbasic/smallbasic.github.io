@@ -107,6 +107,34 @@ dim png
 i.save(png)
 ```
 
+### Clip command (console version only)
+
+Reduces the size of the image.
+
+```
+png.clip(left, top, right, bottom)
+```
+
+### Filter command (console version only)
+
+Calls the supplied callback function on each pixel
+
+```
+func colorToAlpha(x)
+  return x
+end
+png.filter(use colorToAlpha(x))
+```
+
+### Paste command (console version only)
+
+Paste the given image into this image at the given x, y location
+
+```
+png2 = Image(w, h)
+png2.paste(png1, x, y)
+```
+
 ### Example 1
 
 ```
@@ -121,7 +149,7 @@ Pset 100, 100
 Circle Step 0, 0, 50 Color 7 Filled
 Circle Step 0, 0, 35 Color 1 Filled
 text = "Hello"
-At Point(0) - Txtw(text) \\ 2, Point(1) - (Txth(".") \\ 2)
+At Point(0) - Txtw(text) \ 2, Point(1) - (Txth(".") \ 2)
 Color 14, 1: Print text;
 Pause
 
@@ -208,7 +236,7 @@ Pset 100, 100
 Circle Step 0, 0, 50 Color 7 Filled
 Circle Step 0, 0, 35 Color 1 Filled
 text = "Hello"
-At Point(0) - Txtw(text) \\ 2, Point(1) - (Txth(".") \\ 2)
+At Point(0) - Txtw(text) \ 2, Point(1) - (Txth(".") \ 2)
 Color 14, 1: Print text;
 Pause
 
@@ -411,7 +439,7 @@ Pset 100, 100
 Circle Step 0, 0, 50 Color 7 Filled
 Circle Step 0, 0, 35 Color 1 Filled
 text = "Hello"
-At Point(0) - Txtw(text) \\ 2, Point(1) - (Txth(".") \\ 2)
+At Point(0) - Txtw(text) \ 2, Point(1) - (Txth(".") \ 2)
 Color 14, 1: Print text;
 Pause
 
@@ -573,8 +601,8 @@ Func Encode_Base64(InData)
   Fi
 
   If ILen = 0 Then Encode_Base64 = "": Exit Func
-  ODataLen = (ILen * 4 + 2) \\ 3   ' Output length without padding
-  OLen = ((ILen + 2) \\ 3) * 4     ' Output length including padding
+  ODataLen = (ILen * 4 + 2) \ 3   ' Output length without padding
+  OLen = ((ILen + 2) \ 3) * 4     ' Output length including padding
   Dim Out(0 To OLen - 1)
   ip0 = LBound(InData)
   ' Encode base64 bytes array (See Wikipedia for this...):
@@ -582,9 +610,9 @@ Func Encode_Base64(InData)
     i0 = InData(ip0 + ip): ip++
     If ip < ILen Then i1 = InData(ip0 + ip): ip++ Else i1 = 0
     If ip < ILen Then i2 = InData(ip0 + ip): ip++ Else i2 = 0
-    o0 = i0 \\ 4
-    o1 = ((i0 Band 3) * 0x10) Bor (i1 \\ 0x10)
-    o2 = ((i1 Band 0xF) * 4)  Bor (i2 \\ 0x40)
+    o0 = i0 \ 4
+    o1 = ((i0 Band 3) * 0x10) Bor (i1 \ 0x10)
+    o2 = ((i1 Band 0xF) * 4)  Bor (i2 \ 0x40)
     o3 = i2 Band 0x3F
     Out(op) = Map1(o0): op++
     Out(op) = Map1(o1): op++
@@ -616,7 +644,7 @@ Func Decode_Base64(s)
     If IBuf(ILen - 1) <> 61 Then Exit Loop  ' 61 is Asc("=")
     ILen--
   Wend
-  OLen = (ILen * 3) \\ 4
+  OLen = (ILen * 3) \ 4
   Dim Out(0 To OLen - 1)  ' 1-D bytes array
   ' Decode base64 bytes array (See Wikipedia for this...):
   While ip < ILen
@@ -634,8 +662,8 @@ Func Decode_Base64(s)
     If b0 > 63 Or b1 > 63 Or b2 > 63 Or b3 > 63 Then
       Throw "Illegal character in Base64 encoded data."  ' Data error
     Fi
-    o0 = (b0 * 4) Bor (b1 \\ 0x10)
-    o1 = ((b1 Band 0xF) * 0x10) Bor (b2 \\ 4)
+    o0 = (b0 * 4) Bor (b1 \ 0x10)
+    o1 = ((b1 Band 0xF) * 0x10) Bor (b2 \ 4)
     o2 = ((b2 Band 3) * 0x40) Bor b3
     Out(op) = o0: op++
     If op < OLen Then Out(op) = o1: op++
@@ -652,7 +680,7 @@ Another useful option is to use XPM image format (See Part-3 above) with transpa
 a << "x c NONE"  ' Character "x" is transparency color
 ```
 
-### Command line example
+### Console version example
 
 The following creates a plist file and composite sprite sheet which can be used with cocos2d development
 
