@@ -1,0 +1,14 @@
+# Cool new sample program, news on progress
+
+## Sample program by Miguel A. MAroto
+
+"Finally I finish the routine to print characters in different sizes with SmallBASIC, but not only that, now you can use this routine to draw characters in different attributes, as BOLD (two levels), UNDERSCORE, VERTICAL TEXT, MOVING TEXT, COLOR TEXT, SEPARATION TEXT, and of course, SCALED TEXT."
+
+See: [PRINTA_OKOK.bas](https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics%204/PRINTA_OKOK.bas){target=_blank}
+
+![](/posts/2019-06-02_10-48.png "PRINTA_OKOK")
+
+## FLTK version
+
+I've been working on bringing the old FLTK version back to life. This will be based on their current development version 1.4.x. 
+It was previously based on the older version 2.0 which has been long abandoned. The effort has mostly involved prepending either "Fl::" or "FL_" to *everything*. 

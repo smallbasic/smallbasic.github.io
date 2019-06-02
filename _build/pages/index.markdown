@@ -34,6 +34,10 @@ SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for ever
 
 [Read more](/pages/guide.html)
 
+## Cool new sample program, news on progress
+
+[Read more](/posts/2019-06-02.html)
+
 ## SmallBASIC version 0.12.14 has been released
 
 [Read more](/pages/changelog.html)
