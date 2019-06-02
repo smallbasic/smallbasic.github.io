@@ -1,6 +1,6 @@
 # Cool new sample program, news on progress
 
-## Sample program by Miguel A. MAroto
+## Sample program by Miguel A. Maroto
 
 "Finally I finish the routine to print characters in different sizes with SmallBASIC, but not only that, now you can use this routine to draw characters in different attributes, as BOLD (two levels), UNDERSCORE, VERTICAL TEXT, MOVING TEXT, COLOR TEXT, SEPARATION TEXT, and of course, SCALED TEXT."
 
