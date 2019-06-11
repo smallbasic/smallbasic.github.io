@@ -1,0 +1,28 @@
+<h1 id="instr">INSTR</h1>
+<blockquote>
+<p>INSTR ([start,] s1, s2)</p>
+</blockquote>
+<p>Returns the position of the first occurrence of the string s2 into string s1 (starting from the position ‘start’). If there is no match, INSTR returns 0</p>
+<pre><code>
+&#39; INSTR oddity.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-08
+&#39;this oddity was discovered with inkey failure to work as expected
+?instr(&quot;ABCD&quot;,&quot;&quot;)    &#39;aha! returns 1
+pause
+&#39;end
+&#39;I am trying to figure out why the following code wont work, it&#39;s because instr(&quot;anything&quot;,&quot;&quot;)=1
+while 1
+s=&quot; x=exit n=nice r=random g=globe&quot;
+at (xmax-txtw(s))\\2,0:?s
+repeat 
+  ink=inkey
+  ink=upper(ink)
+  delay 20
+&#39;until ink=&quot;X&quot; or ink=&quot;Q&quot; or ink=&quot;N&quot; or ink=&quot;R&quot; or ink=&quot;G&quot; &#39;&lt;= this works great!
+until instr(&quot;XQNRG&quot;,ink)&gt;0 &#39;&lt;==== this refuses to work right
+cls
+at 0,3*txth(&quot;Q&quot;):? &quot;You pressed &#39;&quot;;ink;&quot;&#39;&quot;
+? &quot; instr XQNRG,ink  &#39;&quot;;instr(&quot;XQNRG&quot;,ink);&quot;&#39;  press any...&quot;
+pause
+if ink=&quot;X&quot; then ? &quot;Goodbye&quot;:end
+wend
+</code></pre>

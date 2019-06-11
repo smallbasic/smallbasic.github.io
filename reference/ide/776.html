@@ -1,0 +1,45 @@
+<h1 id="chr">CHR</h1>
+<blockquote>
+<p>CHR (x)</p>
+</blockquote>
+<p>Returns one-char string of character with ASCII code x.</p>
+<p>The CHR command is useful for obtaining and printing the escape character (ASCII 27) For example:</p>
+<pre><code>10 PRINT CHR(27) + &quot;[1mTHIS IS BOLD&quot; + CHR(27) + &quot;[0m&quot;
+20 PRINT CHR(27) + &quot;[3mThis is italic&quot; + CHR(27) + &quot;[0m&quot;
+30 PRINT CHR(27) + &quot;[4mThis is underline&quot;</code></pre>
+<pre><code>rem display the ASCII and the extended tables
+For n = 0 To 255
+  If n = 0 Then
+    Color 15, 0: Locate 1, 1
+    Print &quot;Standard 7-bit ASCII table (character codes 0 - 127):&quot;;
+  Elseif n = 128 Then
+    Pause
+    Color 15, 0: Cls: Locate 1, 1
+    Print &quot;Nonstandard 8-bit Extended table (character codes 128 - 255):&quot;;
+  Endif
+  If n &lt;= 31 Then &#39; control characters (e.g. new-line, tab, etc).
+    Read c
+  Elseif n = 32 Then &#39; regular space (invisible...)
+    c = &quot;sp&quot;
+  Elseif n = 127 Then &#39; lonesome control character &quot;del&quot;
+    c = &quot;del&quot;
+  Else
+    c = Chr(n) &#39; ASCII code --&gt; character
+  Endif
+  Locate (n Mod 16) + 3, (((n \\ 16) Mod 8) * 9) + 1
+
+  Color 7: Print Using &quot;000 &quot;; n; &#39; ASCII code
+  Color 14: Print c; &#39; ASCII (or ANSI) character
+Next
+Color 7, 0: Print: Print
+Print &quot; * Nonstandard characters might look different on another system.&quot;
+Pause
+End
+&#39; nonprintable control characters (ASCII codes 0..31):
+Data &quot;nul&quot;, &quot;soh&quot;, &quot;stx&quot;, &quot;etx&quot;, &quot;eot&quot; &#39; 0..4
+Data &quot;enq&quot;, &quot;ack&quot;, &quot;bel&quot;, &quot;bs&quot; , &quot;tab&quot; &#39; 5..9
+Data &quot;lf&quot; , &quot;vt&quot; , &quot;np&quot; , &quot;cr&quot; , &quot;so&quot;  &#39; 10..14
+Data &quot;si&quot; , &quot;dle&quot;, &quot;dc1&quot;, &quot;dc2&quot;, &quot;dc3&quot; &#39; 15..19
+Data &quot;dc4&quot;, &quot;nak&quot;, &quot;syn&quot;, &quot;etb&quot;, &quot;can&quot; &#39; 20..24
+Data &quot;em&quot; , &quot;eof&quot;, &quot;esc&quot;, &quot;fs&quot; , &quot;gs&quot;  &#39; 25..29
+Data &quot;rs&quot; , &quot;us&quot;  &#39; 30..31</code></pre>

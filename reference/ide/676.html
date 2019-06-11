@@ -1,0 +1,44 @@
+<h1 id="xor">XOR</h1>
+<blockquote>
+<p>a XOR b</p>
+</blockquote>
+<p>Bitwise exclusive OR. Equivalent syntax to: a ~ b</p>
+<pre><code>
+&#39; return true if n is ASCII code of letter (A-Z|a-z); e.g. ? isAbc(Asc(&quot;z&quot;))
+Def isAbc(n) = ((n &gt;= 65 And n &lt;= 90) Or (n &gt;= 97 And n &lt;= 122))
+
+&#39; change case of string s; mode is -1, 0, 1 (lower, invert, upper). 
+Func ccase(s, mode)
+  Local i, n
+  
+  For i = 1 To Len(s)
+    n = Asc(Mid(s, i, 1))
+    If isAbc(n) Then
+      Select Case mode
+        Case -1: n = n Bor  0b00100000 &#39; set bit-5 to lower case
+        Case  0: n = n Xor  0b00100000 &#39; invert bit-5 to invert case
+        Case  1: n = n Band 0b11011111 &#39; reset bit-5 to upper case 
+      End Select
+      s = Replace(s, i, Chr(n))
+    Endif
+  Next
+  ccase = s
+End
+
+&#39; run demo:
+Repeat
+  Cls
+  Input &quot;Enter a string (Enter empty to stop): &quot;, s
+  
+  Print
+  Print &quot;  Upper case: &quot;; ccase(s, 1)
+  Print &quot;  Lower case: &quot;; ccase(s, -1)
+  Print &quot; Invert case: &quot;; ccase(s, 0)
+  Pause
+Until s = &quot;&quot;
+</code></pre>
+<dl>
+<dt>XOR is Not equivalent syntax to: a ~ b</dt>
+<dd>is bitwise NOT, for example: ~b
+</dd>
+</dl>

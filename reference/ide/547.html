@@ -1,0 +1,41 @@
+<h1 id="redim">REDIM</h1>
+<blockquote>
+<p>REDIM x</p>
+</blockquote>
+<p>Same as DIM only the contents of x are preserved.</p>
+<pre><code>
+&#39; inspired by Bambi56...
+Option Base 1 &#39; Start arrays at 1 (not 0)
+Const FILENAME = &quot;One hell of a REDIM.tmp&quot; 
+&#39; Save 6 lines in demo file:
+Open FILENAME For Output As #1
+ ? #1, &quot;one&quot;
+ ? #1, &quot;two&quot;
+ ? #1, &quot;three&quot;
+ ? #1, 1
+ ? #1, 2
+ ? #1, 3; &#39; (Using ; to avoid an extra empty line).
+Close #1
+&#39; Load 6 lines from demo file:
+Tload FILENAME, lines
+Color 15
+? &quot;One hell of a REDIM...&quot;
+Color 7
+&#39; Print lines before redim:
+?
+? &quot;lines before REDIM: &quot;; lines
+?
+&#39; Redim lines into two columns:
+Const TOTAL_LINES = Len(lines) \\ 2
+Redim lines(1 To 2, 1 To TOTAL_LINES)
+&#39; Print lines after redim:
+? &quot;lines after REDIM:  &quot;; lines
+?
+For l = 1 To TOTAL_LINES
+  ? lines(1, l);      &#39; First column
+  Locate Ypos, 15 
+  ? lines(2, l)       &#39; Second column
+Next row
+Pause
+</code></pre>
+<p>I never would have guessed you could TLOAD an OPENed file and Bambi56 used the file number from OPEN to do the TLOAD. Very interesting…</p>

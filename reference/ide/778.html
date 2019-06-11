@@ -1,0 +1,15 @@
+<h1 id="enclose">ENCLOSE</h1>
+<blockquote>
+<p>ENCLOSE (str[, pair])</p>
+</blockquote>
+<p>Encloses a string.</p>
+<pre><code>? enclose(&quot;abc&quot;, &quot;()&quot;)
+&#39; Result: (abc)</code></pre>
+<p>ENCLOSE defaults to double quotes if the [pair] option is not used.</p>
+<pre><code>
+test=10
+myStr=&quot;myStr&quot;
+? enclose(test)
+? enclose(myStr)
+pause
+</code></pre>

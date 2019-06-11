@@ -1,0 +1,12 @@
+<h1 id="label">LABEL</h1>
+<blockquote>
+<p>LABEL name</p>
+</blockquote>
+<p>Defines a label. A label marks a position in the code.</p>
+<p>There are two kinds of labels, ‘numeric’ and ‘alphanumeric’. Unlike ‘alphanumeric’ labels, ‘Numeric’ labels do not require the keyword <code>LABEL</code></p>
+<pre><code>1000 ? &quot;Hello&quot;
+...
+LABEL AlphaLabel: ? &quot;Hello&quot;
+...
+GOTO 1000
+GOTO AlphaLabel</code></pre>

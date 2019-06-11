@@ -1,0 +1,20 @@
+<h1 id="command">COMMAND</h1>
+<blockquote>
+<p>COMMAND</p>
+</blockquote>
+<p>SmallBASIC startup command line options.</p>
+<p>SDL version (GUI):&gt; Running the following line from the command line:</p>
+<pre><code>sbasicg -r test.bas &quot;abc xyz fileName&quot;</code></pre>
+<p>When “test.bas” is:</p>
+<pre><code>
+?  COMMAND
+Pause
+</code></pre>
+<p>Will print “abc xyz fileName” Note: Run ~~~ sbasicg -e test.bas ~~~ to enable ‘Edit’ mode again.&gt; Non-graphical console version (cygwin or linux):&gt; (Download from: https://github.com/smallbasic/SmallBASIC) (Build the source, then run: ./SmallBASIC/src/platform/unix/sbasic) Running the following line from the command line:</p>
+<pre><code>sbasic test.bas &quot;abc xyz fileName&quot;</code></pre>
+<p>When “test.bas” is:</p>
+<pre><code>
+?  COMMAND
+&#39; if you add PAUSE keyword then press Ctrl+C to return to command prompt.
+</code></pre>
+<p>Will print “abc xyz fileName”</p>

@@ -1,0 +1,25 @@
+<h1 id="not">NOT</h1>
+<blockquote>
+<p>a NOT b</p>
+</blockquote>
+<p>Invert expression result. Equivalent syntax to the exclamation character, eg a ! b</p>
+<p>NOT and ! take only the right side argument: NOT b ! b It’s wrong to think that the left side argument (a) is part of the result. And in some cases it leads to an error, for example:</p>
+<pre><code>PRINT  BIN(1 Not 1) &#39; &lt;-- this is error</code></pre>
+<p>Binary operators work on 2 arguments a,b: +,-,*,/^ are all binary operators needing 2 arguments to do their thing. shian is saying NOT or ! is NOT Binary but Unary using only 1 argument located at right of NOT or ! So it is very misleading to show a NOT b If you actually try to print that you will get an error using (a not b) and gobbley-gook for ? a not b</p>
+<pre><code>&#39;NOT is a Unary operator.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
+&#39;it makes anything true &gt; false = 0
+&#39;it makes the one false=0 &gt; true (and in SmallBASIC returns 1 as C developer would have it)
+? !true      &#39;returns 0
+? NOT false  &#39;returns 1
+b=45
+? b;&quot;=b&quot; &#39;45 of course
+? !b;&quot;=!b&quot;  &#39;&lt;===========  important one, normal use of ! or NOT output is 0
+a=20
+? a;&quot;=a&quot; &#39;20 of course
+&#39;uncomment next line to see error,
+&#39;? (a NOT b);&quot; (a!b) should error because ! only works on b&quot; &#39;(EXPR): Missing &#39;)&#39;
+pause
+</code></pre>
+<p>Thanks shian, on my own I would never have noticed this. to be precise: NOT is not Bitwise operator, it is a logical operator.</p>
+<p>There are two versions of NOT: NOT, which is logical not, ~, which is bitwise not.</p>
+<p>Both are using only the right side expression: NOT(b), ~(b) NOT inverts the expression b (e.g. true –&gt; false) ~ inverts each bit in b (e.g. 01011 –&gt; 10100)</p>

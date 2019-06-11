@@ -1,0 +1,54 @@
+<h1 id="sub">SUB</h1>
+<blockquote>
+<p>SUB foo (a, b)</p>
+</blockquote>
+<p>Declare a sub procedure. Sub’s do not return a value but can return argument values when declared as BYREF.</p>
+<pre><code>
+&#39; Notes: Using SUB is much more easy and modular then using GOSUB.
+&#39;        With SUB (and FUNC) you can divide your program into many logical and
+&#39;        independent blocks, instead of writing a long &quot;spaghetti code&quot;...
+&#39; See also: Home -- Articles -- Welcome to SmallBASIC -- 
+&#39;           Syntax of procedure (SUB) statements &amp; 
+&#39;           Syntax of function (FUNC) statements.
+x = 9
+routine1 x &#39; prints 9 (Passing &#39;x&#39; by value)
+Print x    &#39; prints 9
+routine2 x &#39; prints 9 (Passing &#39;x&#39; by reference)
+Print x    &#39; prints 10
+routine3 x &#39; prints 10 (Passing &#39;x&#39; by reference)
+Print x    &#39; prints 11 
+routine4 x &#39; prints 11 (Use the LOCAL keyword for local variables)
+Print x    &#39; prints 11
+routine5 x &#39; prints 100 (Passing &#39;x&#39; by value to nested procedures)
+Print x    &#39; prints 11
+Pause
+
+&#39; Passing &#39;x&#39; by value (default):
+Sub routine1(x)
+  Print x
+End Sub
+&#39; Passing &#39;x&#39; by reference (BYREF x):
+Sub routine2(Byref x)
+  Print x
+  x = 10
+End Sub
+&#39; Passing &#39;x&#39; by reference (@x is same as BYREF x):
+Sub routine3(@x)
+  Print x
+  x = 11
+End Sub
+&#39; Use the LOCAL keyword for local variables:
+Sub routine4(y)
+  Local x
+  Print y
+  x = 12
+End Sub
+&#39; Passing &#39;x&#39; by value to nested procedures:
+Sub routine5(x)
+  x = 100
+  routine6 x
+  Sub routine6(x)
+    Print x
+  End Sub
+End Sub
+</code></pre>

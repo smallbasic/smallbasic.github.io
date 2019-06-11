@@ -1,0 +1,199 @@
+<h1 id="inkey">INKEY</h1>
+<blockquote>
+<p>INKEY</p>
+</blockquote>
+<p>Returns the last key-code in keyboard buffer, or an empty string if there are no keys. Special key-codes like the function-keys are returned as 2-byte string.</p>
+<pre><code>k=INKEY
+IF LEN(k)
+  IF LEN(k)=2
+    ? &quot;H/W #&quot;+ASC(RIGHT(k,1))
+  ELSE
+    ? k; &quot; &quot;; ASC(k)
+  FI
+ELSE
+  ? &quot;keyboard buffer is empty&quot;
+FI</code></pre>
+<pre><code>
+&#39; Key values:
+Const K_BKSP   = Chr(0x08)  &#39; BackSpace
+Const K_TAB    = Chr(0x09)
+Const K_ENTER  = Chr(0x0D)
+Const K_ESC    = Chr(0x1B)  &#39; Escape
+Const K_DELETE = Chr(0x7F)
+Const K_PGUP   = K_ESC + Chr(0x01)  &#39; Page Up
+Const K_PGDN   = K_ESC + Chr(0x02)  &#39; Page Down
+Const K_LEFT   = K_ESC + Chr(0x04)  &#39; Arrow Left
+Const K_RIGHT  = K_ESC + Chr(0x05)  &#39; Arrow Right
+Const K_UP     = K_ESC + Chr(0x09)  &#39; Arrow Up
+Const K_DOWN   = K_ESC + Chr(0x0A)  &#39; Arrow Down
+Const K_INSERT = K_ESC + Chr(0x10)
+Const K_HOME   = K_ESC + Chr(0x11)
+Const K_END    = K_ESC + Chr(0x12)
+
+&#39; Edit string:
+Def edit_char(txt, pos, char, ins_mode) = Replace(txt, pos, char, ins_mode = 0)
+Def delete_char(txt, pos) = Replace(txt, pos, &quot;&quot;, 1)
+
+&#39; Initialize three demo fields:
+f_lbl = [&quot;First Name:&quot;, &quot;Last Name: &quot;, &quot;Your Hobby:&quot;] &#39; field label
+f_row = [3, 5, 7]     &#39; label row
+f_col = [1, 1, 1]     &#39; label column
+f_len = [10, 10, 20]  &#39; variable length
+f_var = [&quot;&quot;, &quot;&quot;, &quot;&quot;]  &#39; variable value
+
+&#39; Index of fields:
+Const MIN_IX = Lbound(f_lbl)
+Const MAX_IX = Ubound(f_lbl)
+ix = MIN_IX   &#39; Start on first field index
+ins_mode = 1  &#39; Start in insert character mode
+
+&#39; Main demo loop:
+While True
+  &#39; Update variables:
+  eol = Len(f_var(ix)) + 1                &#39; End Of Line
+  If pos &gt; eol Or pos &lt; 1 Then pos = eol  &#39; Adjust cursor pos on new field
+  &#39; Update screen:
+  For i = MIN_IX To MAX_IX
+    &#39; Print all fields:
+    s  = Cat(0) + f_lbl(i) + &quot; &quot;
+    s += Cat(3) + f_var(i) + Spc(f_len(i) - Len(f_var(i))) + &quot; &quot; &#39; + eol
+    Locate f_row(i), f_col(i)
+    Print s + Cat(0);
+    &#39; Print the cursor:
+    If i = ix Then
+      If Not ins_mode Then Color 15
+      Locate f_row(i), f_col(i) + Len(f_lbl(i)) + pos
+      Print Cat(2) + Mid(f_var(i) + &quot; &quot;, pos, 1); &#39; (+ &quot; &quot; for eol)
+    Fi
+  Next i
+  &#39; Update status line:
+  s = &quot;  (Esc=Stop)   |   &quot; + Iff(ins_mode, &quot;Insert &quot;, &quot;Replace&quot;) + Spc(3)
+  s += Format(&quot;| 00:&quot;, ix) + Iff(pos = eol, &quot;EOL&quot;, Format(&quot;000&quot;, pos)) + Spc(1)
+  Locate 0, 0: Print Cat(0) + Cat(3) + s;
+  Showpage &#39; SHOWPAGE makes INKEY works smoother (using SB 0.12.2)
+  &#39; Wait for a key:
+  Repeat: key = Inkey
+  Until key &lt;&gt; &quot;&quot;
+  &#39; Check key:
+  Select Case key
+  Case K_ESC:    Stop
+  Case K_INSERT: ins_mode = Not ins_mode
+  Case K_ENTER, K_TAB: ix++: If ix &gt; MAX_IX Then ix = MIN_IX
+  Case K_DOWN:   If ix &lt; MAX_IX Then ix++
+  Case K_UP:     If ix &gt; MIN_IX Then ix--
+  Case K_PGDN:   ix = MAX_IX
+  Case K_PGUP:   ix = MIN_IX
+  Case K_HOME:   pos = 1
+  Case K_END:    pos = eol
+  Case K_LEFT:   If pos &gt; 1   Then pos--
+  Case K_RIGHT:  If pos &lt; eol Then pos++
+  Case K_DELETE: If pos &lt; eol Then f_var(ix) = delete_char(f_var(ix), pos)
+  Case K_BKSP:   If pos &gt; 1   Then pos--: f_var(ix) = delete_char(f_var(ix), pos)
+  Case Else
+    If Len(key) = 1 And Asc(key) &gt;= 32 Then            &#39; Regular character?
+      ins = ins_mode And (Len(f_var(ix)) &lt; f_len(ix))  &#39; Insert mode
+      rep = (Not ins_mode) And (pos &lt;= f_len(ix))      &#39; Replace mode
+      If ins Or rep Then
+        f_var(ix) = edit_char(f_var(ix), pos, key, ins_mode)
+        pos++  &#39; Move cursor to next character
+      Fi
+    Fi
+  End Select
+Wend
+</code></pre>
+<p>I have been a bit stuck with INKEY for some time. I started building a little TextBox editor over a year ago and got stuck on something with INKEY and moved on. As I recall INKEY was not returning unique key numbers but I forget which… posted sometime ago on this issue. Anyway, this demo is exactly the kind of thing I had in mind! Thank you shian!!! I wonder if text selecting is also possible, eg [ctrl+]shft+ home | end ? BTW is CAT working for anyone? I was testing it last night and couldn’t get anything going (Windows 10-64 and SB 0.12.2).</p>
+<pre><code>
+REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
+REM Purpose:   Special key values returned by INKEY.
+REM            (Values returned by INKEY cannot be used for DEFINEKEY).
+REM File name: key.bas
+REM Unit name: key
+REM Version:   1.0.0  24/05/2016
+REM Author:    shian
+
+&#39; --- Start demo code ------------------------------------
+&#39;
+&#39;Import key
+&#39;
+&#39;? &quot;Press Escape to stop...&quot;
+&#39;Repeat: k = Inkey
+&#39;  Select Case k
+&#39;  Case Key.ENTER    : ? &quot;Key.ENTER&quot;
+&#39;  Case Key.TABK     : ? &quot;Key.TABK&quot;
+&#39;  Case Key.CLICK    : ? &quot;Key.CLICK&quot;
+&#39;  Case Key.FN(1)    : ? &quot;Key.FN(1)&quot;
+&#39;  Case Key.FN(12)   : ? &quot;Key.FN(12)&quot;
+&#39;  Case Key.CTRL(&quot;A&quot;): ? &quot;Key.CTRL(a)&quot;
+&#39;  Case Key.ALT(&quot;A&quot;) : ? &quot;Key.ALT(a)&quot;
+&#39;  Case Key.CTRL(Key.Enter) : ? &quot;Key.CTRL(Key.Enter)&quot;
+&#39;  Case Key.ALT(Key.Enter)  : ? &quot;Key.ALT(Key.Enter)&quot;
+&#39;  Case Key.SHIFT(Key.Enter): ? &quot;Key.SHIFT(Key.Enter)&quot;
+&#39;  End Select
+&#39;Until k = Key.ESC
+&#39;
+&#39; --- End demo code ------------------------------------
+
+Unit key
+
+&#39; Useful Constants:
+Export BKSP, TABK, ENTER, ESC, BLANK, DEL
+Export PGUP, PGDN, LEFTK, RIGHTK, UP, DOWN 
+Export INS, HOMEK, ENDK, CLICK
+&#39; Useful Functions:
+Export FN, CTRL, ALT, SHIFT
+Export CTRL_ALT, ALT_SHIFT, CTRL_SHIFT  &#39; (used by system)
+&#39; The left character of INKEY (Useful only for special cases):
+Export CTRL_CHR, ALT_CHR, SHIFT_CHR
+Export CTRL_ALT_CHR, ALT_SHIFT_CHR, CTRL_SHIFT_CHR
+
+Const CTRL_CHR       = Chr(0x01)    &#39; for Ctrl+Char
+Const ALT_CHR        = Chr(0x02)    &#39; for Alt+Char
+Const SHIFT_CHR      = Chr(0x03)    &#39; for Shift+Char
+Const CTRL_ALT_CHR   = Chr(0x04)    &#39; for Ctrl+Alt+Char   (used by system)
+Const ALT_SHIFT_CHR  = Chr(0x05)    &#39; for Alt+Shift+Char  (used by system)
+Const CTRL_SHIFT_CHR = Chr(0x06)    &#39; for Ctrl+Shift+Char (used by system)
+Const BKSP   = Chr(0x08)            &#39; BackSpace
+Const TABK   = Chr(0x09)            &#39; Tab key
+Const ENTER  = Chr(0x0D)
+Const ESC    = Chr(0x1B)            &#39; Escape
+Const BLANK  = Chr(0x20)            &#39; Space key
+Const DEL    = Chr(0x7F)            &#39; Delete
+Const PGUP   = ESC + Chr(0x01)      &#39; Page Up
+Const PGDN   = ESC + Chr(0x02)      &#39; Page Down
+Const LEFTK  = ESC + Chr(0x04)      &#39; Arrow Left key
+Const RIGHTK = ESC + Chr(0x05)      &#39; Arrow Right key
+Const UP     = ESC + Chr(0x09)      &#39; Arrow Up
+Const DOWN   = ESC + Chr(0x0A)      &#39; Arrow Down
+Const INS    = ESC + Chr(0x10)      &#39; Insert
+Const HOMEK  = ESC + Chr(0x11)      &#39; Home key
+Const ENDK   = ESC + Chr(0x12)      &#39; End key
+Const CLICK  = ESC + Chr(0xC0)      &#39; Left Mouse Button Click
+Def FN(n)    = ESC + Chr(0xF0 + n)  &#39; FN(1) is F1 (up to 12).
+Def CTRL(c)  = CTRL_CHR  + Lcase(c) &#39; Ctrl+a, Ctrl+Enter, etc
+Def ALT(c)   = ALT_CHR   + Lcase(c) &#39; Alt+a, Alt+Enter, etc
+Def SHIFT(c) = SHIFT_CHR + c        &#39; Shift+Enter, Shift+Tab, etc
+
+&#39; These are system shortcuts - so it&#39;s advisable NOT to use them at all!
+&#39; (however, it&#39;s possible to detect them when not used by the system).
+Def CTRL_ALT(c)   = CTRL_ALT_CHR   + Lcase(c)  &#39; Ctrl+Alt+a, etc
+Def ALT_SHIFT(c)  = ALT_SHIFT_CHR  + Lcase(c)  &#39; Alt+Shift+a, etc
+Def CTRL_SHIFT(c) = CTRL_SHIFT_CHR + Lcase(c)  &#39; Ctrl+Shift+a, etc
+
+&#39; &#39; Use this code to test and print key codes as hexa:
+&#39; &#39; --------------------------------------------------
+&#39; Print &quot;Press Ctrl+B to stop...&quot;
+&#39; While 1: k = Inkey: l = Len(k)
+&#39;   If l Then
+&#39;     ? &quot;0x&quot;; Right(&quot;00&quot; + Hex(Asc(k)), 2);
+&#39;     If l = 2 Then ? Right(&quot;00&quot; + Hex(Asc(Mid(k, 2))), 2);
+&#39;     Print
+&#39;   Fi
+&#39; Wend
+</code></pre>
+<p>When the first character in the two character code is 27, the second character is a code for the given special key. You would need to inspect the SB source to work out the equivalent SmallBASIC key constants, but I’ll have a look at generating a constants.bas file that you can include in your programs.</p>
+<p>As reported by Shian (thanks Shian!), there are a few problems with INKEY. I’ll fix these in the next update. There is supposed to be a different first character code for SHIFT/ALT etc states.</p>
+<p>Also, INKEY needs to read from the system event queue to get the next keystroke. It currently does a pause for key, but I think it should actually block in the call to read the queue, that way when you type a key there would be no delay. Either way this doesn’t work well for shooter type games, but there is a better way. Have a look at:</p>
+<p>https://github.com/smallbasic/SmallBASIC/blob/master/samples/distro-exam…</p>
+<p>This uses the DEFINEKEY command to register keystroke handlers for game keys. When you hit the game key, the registered FUNC will get called more or less immediately, somewhere inside the game main looI think this should work well in the space shooter (which is awesome by the way).</p>
+<p>Code for quick lookup of a key code:</p>
+<p>http://smallbasic.sourceforge.net/?q=node/1583</p>

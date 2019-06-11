@@ -1,0 +1,25 @@
+<h1 id="space">SPACE</h1>
+<blockquote>
+<p>SPACE (n)</p>
+</blockquote>
+<p>Returns a string of n spaces.</p>
+<pre><code>
+&#39; s is a string (&quot;&quot; or longer); l is length of buffer (0+);
+Def lset(s, l) = Left(s + Space(l), l) &#39; left justify text
+Def rset(s, l) = Right(Space(l) + s, l) &#39; right justify text
+Const buffer = 10 &#39; length of buffer
+While True Do
+  Color 7, 0: Cls
+  Print &quot;[ Using a buffer of &quot;; buffer; &quot; spaces ]&quot;
+  Print
+  Input &quot;Enter text into buffer (Enter &#39;S&#39; to stop): &quot;, text
+  IF text = &quot;S&quot; Or text = &quot;s&quot; Then
+    Stop
+  Endif
+  Color 7, 0: Locate 5, 0: Print &quot;Left justified:  &quot;;
+  Color 0, 7: Print lset(text, buffer);
+  Color 7, 0: Locate 7, 0: Print &quot;Right justified: &quot;;
+  Color 0, 7: Print rset(text, buffer);
+  Pause 
+Wend
+</code></pre>

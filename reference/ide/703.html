@@ -1,0 +1,18 @@
+<h1 id="root">ROOT</h1>
+<blockquote>
+<p>ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr</p>
+</blockquote>
+<p>Roots of F(x).</p>
+<ul>
+<li>low the lower limit</li>
+<li>high the upper limit</li>
+<li>segs the number of segments (spaces)</li>
+<li>maxerr tolerance (IF ABS(F(x)) &lt; maxerr THEN OK)</li>
+<li>errcode 0 for success; otherwise calculation error</li>
+<li>result the result</li>
+</ul>
+<pre><code>FUNC F(x)
+ F = SIN(x)
+END
+...
+ROOT 1, 5, 500, 0.00001, result, errcode USE F(x)</code></pre>

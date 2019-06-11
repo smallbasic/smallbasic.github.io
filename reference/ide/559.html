@@ -1,0 +1,11 @@
+<h1 id="isnumber">ISNUMBER</h1>
+<blockquote>
+<p>ISNUMBER (x)</p>
+</blockquote>
+<p>Returns true if x is a number (or it can be converted to a number).</p>
+<pre><code>? ISNUMBER(12)          :REM true
+? ISNUMBER(&quot;12&quot;)        :REM true
+? ISNUMBER(&quot;12E+2&quot;)     :REM true
+? ISNUMBER(&quot;abc&quot;)       :REM false
+? ISNUMBER(&quot;1+2&quot;)       :REM false
+? ISNUMBER(&quot;int(2.4)&quot;)  :REM false</code></pre>

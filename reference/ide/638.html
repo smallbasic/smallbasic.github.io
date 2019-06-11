@@ -1,0 +1,18 @@
+<h1 id="iff">IFF</h1>
+<blockquote>
+<p>IFF expr</p>
+</blockquote>
+<p>Inline version of IF. eg, <code>animal = &quot;cat&quot;: fur = IFF( animal = &quot;cat&quot;, &quot;yes&quot;, &quot;no&quot;): ? fur</code></p>
+<p><code>animal=IFF(HasFur=1,&quot;Cat&quot;,&quot;Fish&quot;)</code> or <code>? IFF(animal=&quot;cat&quot;,&quot; has fur.&quot;, &quot; might not have fur.&quot;)</code></p>
+<pre><code>&#39; RND - returns a number from 0 to almost 1
+&#39; IFF - IFF(conditional statement to evaluate, return this if evaluates true, returns this if evaluates false)
+FOR i=1 TO 20 &#39;need a random true/false, subst 0 or 1 (or -1)  ;)
+  ? IFF(rnd&lt;.5,&quot;True &quot;,&quot;False &quot;);   &#39;&lt;======================== RND and IFF
+next
+?:?
+FOR i=1 TO 10  &#39;need a random direction back and forth
+  dir=IFF(RND&lt;.5,-360*RND,360*RND)  &#39;&lt;======================== RND and IFF
+  ? USING &quot; ####.0000&quot;; dir;
+NEXT
+?:?
+PAUSE</code></pre>

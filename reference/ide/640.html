@@ -1,0 +1,19 @@
+<h1 id="case">CASE</h1>
+<blockquote>
+<p>CASE expr</p>
+</blockquote>
+<p>Branch condition for a SELECT statement.</p>
+<pre><code>
+&#39; * See also IF...THEN...ELSE keywords.
+&#39; * Currently CASE is not supporting QB style expressions (e.g. CASE IS &gt; 1).
+ 
+x = 0 &#39; try using different values for x, such as 1, 2, &quot;1&quot;, &quot;ABC&quot;, etc
+Select Case x
+Case 0: Print &quot;x = 0&quot;
+Case Len(&quot;a&quot;): Print &quot;x = 1&quot;
+Case 2, 3: Print &quot;x = 2 or x = 3&quot;
+Case 4, 5, 6: Print &quot;x &gt;= 4 and x &lt;= 6&quot;
+Case Else
+  Print &quot;Else: x = &quot;; x
+End Select
+</code></pre>

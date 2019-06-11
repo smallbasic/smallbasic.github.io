@@ -1,0 +1,13 @@
+<h1 id="line">LINE</h1>
+<blockquote>
+<p>LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]</p>
+</blockquote>
+<p>Draws a line.</p>
+<p>Example:</p>
+<pre><code>line 20,40,140,40 color 2
+line 20,80,140,80 color 2
+line 60,0,60,120 color 2
+line 100,0,100,120 color 2</code></pre>
+<p>By default LINE draws with anti-aliasing. For details, see: <a href="https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm" target="_blank">Xiaolin Wu’s line algorithm</a></p>
+<p>To turn off anti-aliasing, add this to the start of your program:</p>
+<pre><code> option predef antialias off</code></pre>

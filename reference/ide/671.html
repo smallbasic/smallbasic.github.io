@@ -1,0 +1,19 @@
+<h1 id="nand">NAND</h1>
+<blockquote>
+<p>a NAND b</p>
+</blockquote>
+<p>Bitwise exclusive NOT AND.</p>
+<pre><code>
+&#39; Two&#39;s complement is the standard way of representing negative integers in binary. 
+&#39; The sign is changed by inverting all of the bits and adding one.
+Def invsgn(n) = ((n Nand n) + 1) - Frac(n) &#39; invert the sign of n
+While True Do
+  Input &quot;Enter a number (Enter empty to stop) : &quot;, n
+  If Isstring(n) Then
+    Stop
+  Endif
+  
+  Print &quot;This is the number with inverted sign: &quot;; invsgn(n)
+  Print
+Wend
+</code></pre>

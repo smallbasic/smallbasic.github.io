@@ -1,0 +1,44 @@
+<h1 id="def">DEF</h1>
+<blockquote>
+<p>DEF name[(par1[,…])] = expression</p>
+</blockquote>
+<p>Defines a single line function. eg, DEF MySin(x) = SIN(x): ? MySin(pi/2)</p>
+<p>This might come in handy sometime.</p>
+<pre><code>
+&#39; RND - returns a number from 0 to almost 1
+&#39; DEF - one line function definition
+&#39;A function for random numbers (integers) between low and high (inclusive)
+&#39;here is that function
+DEF rand(lo,hi)=(RND*(hi-lo+1))\\1+lo &#39;&lt;======================= RND and DEF
+&#39;test the distribution of these numbers with 1000 trials
+low=1100:high=1150
+DIM a(low-1 TO high+1)
+FOR i=1 to 1000
+  index=rand(low,high)
+  a(index)++
+NEXT
+total=0
+FOR i=low-1 TO high+1
+  ? i;&quot;:&quot;;a(i);&quot;, &quot;;
+  total+=a(i)
+  IF i MOD 10=9 THEN ?
+NEXT
+?:? &quot;total trials=&quot;;total
+&#39;result: pretty even spread between two numbers inclusive.
+PAUSE
+</code></pre>
+<pre><code>
+&#39; DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
+&#39;can I use DEF locally in a sub without interfering with main variable or DEF names
+def aboutMe() = &quot;I am texting from main code.&quot;
+? &quot;Hi, &quot;;aboutMe
+mySub
+? &quot;Goodbye, &quot;;aboutMe
+pause
+sub mySub()
+  &#39;local def aboutMe() = &quot;I am texting from mySub.&quot; &#39;&lt;=== note: this did not work 
+  local aboutMe
+  def aboutMe() = &quot;I am texting from mySub.&quot;
+? &quot;Hi, &quot;;aboutMe
+end
+</code></pre>

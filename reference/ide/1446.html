@@ -1,0 +1,121 @@
+<h1 id="unit">UNIT</h1>
+<blockquote>
+<p>UNIT name</p>
+</blockquote>
+<p>Declares the source module as a unit. Units are a set of procedures, functions and/or variables that can be used by another program or unit.</p>
+<p>As of SmallBASIC version 0.12.6:</p>
+<ol>
+<li>UNIT supports ‘namespace’ (Namespaces allow reuse of same names in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both using a function with the same name, “Set”, but in different contexts).</li>
+<li>UNIT name on Linux system is no longer case sensitive (which makes life easier for Linux users).</li>
+</ol>
+<p>The UNIT file is strlib.bas:</p>
+<pre><code>
+&#39; File: strlib.bas
+&#39; ------------
+&#39; In this demo we are using UNIT to add more useful String commands to
+&#39; SmallBASIC, by carefully creating our own String-Library: strlib.bas
+&#39;
+&#39; This demo includes only two useful functions, Lset() and Rset(); You
+&#39; can add more useful functions, subs, constants - but make sure that
+&#39; they are all String commands (not Array, File, Data, etc).
+&#39;
+&#39; Write your code carefully and efficiently, because you will use these
+&#39; commands frequently in other projects. And don&#39;t forget to debug the
+&#39; code and to add clear documentation, for you and for others.
+&#39;
+&#39; See also Home--&gt;Article--&gt;Welcome to SmallBASIC--&gt;Units.
+&#39; ------------
+&#39;
+
+&#39; Here we declare that this file is a UNIT file.
+&#39; Note: Keep file-name and unit-name the same. That helps the SB to
+&#39;       automatically recompile the required units when it is needed (i.e.
+&#39;       to create strlib.sbu file).
+&#39;       The actual file name must be in lower case for Linux OS.
+Unit strlib &#39; (without .bas extension)
+&#39; Here we allow other SmallBASIC files to use some of our library keywords:
+Export Lset, Rset
+
+&#39; Left justify string s in buffer of length b.
+&#39; example: x = Lset(&quot; SmallBASIC &quot;, 15) &#39; --&gt; x is &quot; SmallBASIC    &quot;
+Func Lset(s, b)
+  Local l = Len(s)
+
+  If l &gt;= b Then
+    Lset = Left(s, b)
+  Else
+    Lset = s + Space(b - l)
+  Fi
+End
+&#39; Right justify string s in buffer of length b.
+&#39; example: x = Rset(&quot; SmallBASIC &quot;, 15) &#39; --&gt; x is &quot;    SmallBASIC &quot;
+Func Rset(s, b)
+  Local l = Len(s)
+
+  If l &gt;= b Then
+    Rset = Right(s, b)
+  Else
+    Rset = Space(b - l) + s
+  Fi
+End
+</code></pre>
+<p>Demo file, demo.bas, which is using strlib.bas above:</p>
+<pre><code>&#39; Here we declare that this file is using another UNIT file.
+&#39; Note: The actual file name must be in lower case for Linux OS.
+Import strlib &#39; (without .bas extension)
+&#39; Note: To access a member of a UNIT we must use the unit-name, a point
+&#39;       and the name of the member, e.g. Strlib.Lset(&quot;Hello&quot;, 10).
+&#39; demo:
+Color 14, 1
+Locate 4, 30
+Print Strlib.Lset(&quot;  --&gt;&gt;&quot;, 25)
+Locate 5, 30
+Print Strlib.Lset(Strlib.Rset(&quot;This way...&quot;, 18), 25)
+Locate 6, 30
+Print Strlib.Rset(&quot;--&gt;&gt;  &quot;, 25)
+Pause</code></pre>
+<ol>
+<li><p>While UNIT can be used as a collection of sub-routines for your own program, UNIT is particularly useful for creating a general-purpose library. General purpose library can be useful for many programs or projects, the same way the internal routine “PRINT” is useful for many programs, and not only for specific one.</p></li>
+<li><p>It is very important to keep the syntax of EXPORTed routines fixed. For example: Imagine that the internal routine “PRINT” will use a new syntax in future version of SmallBASIC, something like:</p></li>
+</ol>
+<pre><code>PRINT [fileN,] x, y, color, &quot;string&quot;  &#39; the &quot;new&quot; syntax</code></pre>
+<p>In this case many older programs will not work with the new version of SmallBASIC.</p>
+<p>The same way, when you create a UNIT to be used as a general-purpose library, you must keep the syntax of EXPORTed routines fixed, so old programs will continue to work well with newer versions of your UNIT.</p>
+<ol start="3" type="1">
+<li><p>If you modify an existing UNIT, you should assign to it a new version number. The easy way to maintain a <a href=https://en.wikipedia.org/wiki/Software_versioning> Software versioning</a> is like this:</p>
+<p>“Unit Name”, Version major.minor.revision, Release_Date</p>
+<p>For example:</p></li>
+</ol>
+<pre><code>REM Unit &quot;StrLib&quot; Version 1.15.11, 20/3/2016</code></pre>
+<p>major number:&gt; is increased when there are significant jumps in functionality such as changing the framework which could cause incompatibility with interfacing programs. minor number:&gt; is incremented when only minor features or significant fixes have been added.</p>
+<p>revision number:&gt; is incremented when minor bugs are fixed.</p>
+<p>By assigning a version number, other users will know what to expect from the modified version. You should also add a short description of the changes that you have made.</p>
+<ol start="4" type="1">
+<li><p>If your UNIT is quite advanced, and you expect it to work differently in future versions, you can use the following method which allows Old &amp; New programs to work with your unit correctly:</p>
+<p>Instead of using a fixed syntax for sub routines, such as:</p></li>
+</ol>
+<pre><code>ZipText(string, method, fileName)</code></pre>
+<p>Use a single object parameter which has a default value of 0:</p>
+<pre><code>ZipText(x)</code></pre>
+<p>Now, in version 1.0.0 for example, x might have this syntax as an array:</p>
+<pre><code>x is [string, method, fileName] &#39; Version 1.0.0</code></pre>
+<p>And in some future version, x might have another syntax, such as:</p>
+<pre><code>x is [string, method, fileName, format] &#39; Version 1.1.0</code></pre>
+<p>Or…</p>
+<pre><code>x is [string, fileName] &#39; Version 1.14.5</code></pre>
+<p>Etc.</p>
+<p>The</p>
+<pre><code>ZipText(x)</code></pre>
+<p>routine will verify the number of arguments and/or their type (array, string, etc) and execute the correct code for this version’s-syntax.</p>
+<p>This method is especially useful for maintaining a big project for a long time, which is going to offer more and more features in the future. It will allow old programs to work as usual, and new programs to benefit from the new features.</p>
+<ol>
+<li><p>UNIT should Export only&gt; routines or constants (variables) which related to the specific use of that unit. For example, UNIT which offers string manipulation routines should only&gt; Export string manipulation routines or string constants.</p>
+<p>If UNITs contain routines for many different uses, it is likely that two UNITs will have to IMPORT each other - and this is basically illogical.</p></li>
+<li><ul>
+<li>UNIT must be documented well, so other users can use it.</li>
+<li>UNIT should be efficient, because it should serves many other programs.</li>
+<li>Routines syntax should be consistent and standard, to be easy to use.</li>
+<li>UNIT is saved as Byte-Code (SBU), which is fast and does not include spaces, comments, etc. So feel free to add enough comments and spaces…</li>
+</ul></li>
+</ol>
+<p>There are more about UNITs (shared libraries), but the most important: When you write a UNIT to be used by others, try to be merciful… i.e. write clear and documented code, and make it easy for others to use your UNIT.</p>

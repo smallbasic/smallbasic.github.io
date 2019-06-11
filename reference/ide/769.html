@@ -1,0 +1,16 @@
+<h1 id="split">SPLIT</h1>
+<blockquote>
+<p>SPLIT string, delimiters, words() [, pairs] [USE expr]</p>
+</blockquote>
+<p>Returns the words of the specified string into array ‘words’.</p>
+<pre><code>s=&quot;/etc/temp/filename.ext&quot;
+SPLIT s, &quot;/.&quot;, v()
+FOR i=0 TO UBOUND(v)
+  PRINT i;&quot; [&quot;;v(i);&quot;]&quot;
+NEXT</code></pre>
+<p>displays:</p>
+<pre><code>0 []
+1 [etc]
+2 [temp]
+3 [filename]
+4 [ext]</code></pre>

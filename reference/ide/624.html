@@ -1,0 +1,76 @@
+<h1 id="window">WINDOW</h1>
+<blockquote>
+<p>WINDOW [x1,y1,x2,y2]</p>
+</blockquote>
+<p>The WINDOW command allows you to redefine the corners of the display screen as a pair of “world” coordinates. WINDOW is also overloaded as a function, returning a system object providing access to the following sub-commands: graphicsScreen1, graphicsScreen2, textScreen, alert, ask, menu, message, showKeypad, insetTextScreen</p>
+<p>The world space defined by WINDOW is disabled by a WINDOW command with no parameters.</p>
+<p>This is a demo from http://smallbasic.sourceforge.net/?q=comment/1502#comment-1502 It shows how to use the additional WINDOW sub-commands (It is not the traditional use of WINDOW [x1,y1,x2,y2] ). Tested with SmallBASIC version 0.12.6 (Linux).</p>
+<pre><code>
+&#39; create the window object, this provides access to a number of sub-commands
+w = window()
+&#39; select graphics mode screen 1 for output
+w.graphicsScreen1()
+for i = 0 to 10
+  print &quot;this is printed on screen 1&quot;
+next i
+w.message(&quot;[1] click to continue. &quot;)
+pause
+&#39; select graphics mode screen 1 for output
+w.graphicsScreen2()
+color 1,3
+cls
+print &quot;this is printed on screen 2&quot;
+w.message(&quot;[2] click to continue. &quot;)
+pause
+w.graphicsScreen1()
+print &quot;back to screen 1&quot;
+w.message(&quot;[3] click to continue. &quot;)
+pause
+&#39; select the text mode for output
+&#39; text mode can display more text but is slow 
+&#39; also this is currently broken and will cause a crash 
+&#39;w.textScreen()
+w.alert(&quot;This is an alert&quot;, &quot;title&quot;)
+w.ask(&quot;Yes or no?&quot;, &quot;Question&quot;)
+print &quot;your answer was &quot;; w.answer
+w.message(&quot;[4] click to continue. &quot;)
+pause
+w.menu(&quot;option1&quot;, &quot;option2&quot;, &quot;option3&quot;)
+&#39; weirdly the result is sent to the keyboard handler
+&#39; it should at least go to w.answer. also there is no option for placement
+select case asc(inkey)
+case 0
+  print &quot;one&quot;
+case 1
+  print &quot;two&quot;
+case 2
+  print &quot;three&quot;
+case else
+  print &quot;unk&quot;
+end select
+w.message(&quot;[5] click to continue. &quot;)
+pause
+&#39; this raises the virtual keypad on android
+w.showKeypad()
+&#39; set the font size 
+&#39; arg1 = size 
+&#39; arg2 = unit amount for size, &quot;px&quot; or &quot;em&quot;
+&#39;   px=  pixels
+&#39;   em= emphasis - this is a multiplication factor for the current size
+&#39; arg3= bold 1=on 0=off
+&#39; arg4= italic 1=on, 0=off
+&#39; this sets the font to be double in size with bold and italic
+&#39; using pixels is likely to give an unexpected result in android
+w.setFont(2, &quot;em&quot;, 1,1)
+cls
+? &quot;How does this look?&quot;
+w.insetTextScreen(5,10,90,90)
+for i = 0 to 200
+  ? &quot;This is in the text screen&quot;
+next i
+&#39; comment out the above cls to see the bug
+w.message(&quot;spot the bug  ?&quot;)
+w.setFont(11, &quot;px&quot;, 0,0)
+? &quot;press a key to end...&quot;
+pause
+</code></pre>

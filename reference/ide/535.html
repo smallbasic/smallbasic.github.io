@@ -1,0 +1,93 @@
+<h1 id="print">PRINT</h1>
+<blockquote>
+<p>PRINT [USING [format];] [expr|str [,|; [expr|str]] …</p>
+</blockquote>
+<p>Display text or the value of an expression.</p>
+<p><strong>PRINT SEPARATORS</strong></p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TAB(n)</td>
+<td style="text-align: left;">Moves cursor position to the nth column.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SPC(n)</td>
+<td style="text-align: left;">Prints a number of spaces specified by n.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">;</td>
+<td style="text-align: left;">Carriage return/line feed suppressed after printing.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">,</td>
+<td style="text-align: left;">Carriage return/line feed suppressed after printing.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PRINT USING</strong></p>
+<p>Print USING uses the FORMAT() function to display numbers and strings. Unlike FORMAT it can also include literals.</p>
+<ul>
+<li>[_] - Print next character as a literal. The combination _#, for example, allows you to include a number sign as a literal in your numeric format.</li>
+<li>[other] Characters other than the foregoing may be included as literals in the format string.</li>
+</ul>
+<p>When a PRINT USING command is executed the format will remains on the memory until a new format is passed. Calling a PRINT USING without a new format specified the PRINT will use the format of previous call.</p>
+<pre><code>PRINT USING &quot;##: #,###,##0.00&quot;;
+FOR i=0 TO 20
+    PRINT USING; i+1, A(i)
+NEXT
+....
+PRINT USING &quot;Total ###,##0 of \\ \\&quot;; number, &quot;bytes&quot;</code></pre>
+<p>The symbol ? can be used instead of keyword PRINT You can use ‘USG’ instead of ‘USING’.</p>
+<p>quote: <strong>It’s all in the punctuation at the end of a print statement</strong></p>
+<pre><code>REM 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
+&#39;It&#39;s all in the punctuation at the end of a print statement
+&#39;1) no punctiation  = whole print lines CR=carriage return and LF=line feed, ready to go on next line
+for i=1 to 5
+  print &quot;hello&quot;
+next
+?:? &#39;2 blank lines
+
+&#39;2) a comma which tabs to next avaiable tab column and will stay on same line until run out of coloumns
+for i=1 to 5
+  print &quot;hello&quot;,
+next
+? &quot;&amp; this will finish the hello, line.&quot;
+?:? &#39;the first ?=print will finish the print line, the 2 two are blank lines
+
+&#39;3) a semicolon (and space after hello)
+for i=1 to 5
+  print &quot;hello&quot;;&quot; &quot;;  &#39;or just print &quot;hello &quot;;
+next
+? &quot;... this line needs to be finsihed.&quot;
+pause
+</code></pre>
+<p>To gain even more control of where your next PRINT statement will end up on screen checkout the older LOCATE keyword and the more modern method of using AT.</p>
+<pre><code>
+&#39; PRINT can also print to an open file or device (not only to console).
+&#39; Note: new-line (or line-break) character(s) is different on each system:
+&#39;       Windows and DOS uses a pair of CR and LF characters to terminate lines. 
+&#39;       UNIX, Linux, FreeBSD and OS X uses a single LF character only. 
+&#39;       Classic Mac operating system uses a single CR character only.
+&#39;       * CR is CHR(13); LF is CHR(10).
+
+&#39; Print lines to demo file:
+Open &quot;PRINT.TMP&quot; For Output As #1
+Print #1, &quot;hello_1&quot; &#39; print [hello new-line]
+Print #1, &quot;Hello_2&quot;, &quot;Hello_3&quot;  &#39; print [hello tab hello new-line]
+Print #1, &quot;Hello_4&quot;; &quot;Hello_5&quot;; &#39; print [hello hello]
+Print #1, &#39; print [new-line]
+Print #1, &#39; print [new-line]
+Print #1, ; &#39; print [].
+Print #1, Using &quot;000 &amp;&quot;; 55, &quot;is my mailbox&quot; &#39; print [055... new-line]
+? #1, &quot;Hello_?&quot; &#39; print [Hello_? new-line]
+Close #1
+&#39; Load lines from demo file and print them to console:
+Open &quot;PRINT.TMP&quot; For Input As #1
+Color 0, 7
+While Not Eof(1) Do
+  Lineinput #1, s
+  Print s
+Wend
+Close #1
+Pause
+</code></pre>

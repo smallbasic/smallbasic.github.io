@@ -1,0 +1,9 @@
+<h1 id="sinput">SINPUT</h1>
+<blockquote>
+<p>SINPUT src; var [, delim] [,var [, delim]] …</p>
+</blockquote>
+<p>Splits the string ‘src’ into variables which are separated by delimiters.</p>
+<pre><code>SINPUT &quot;if x&gt;1 then y&quot;; vif, &quot; &quot;, vcond, &quot;then&quot;, vdo
+? vcond, vdo
+&#39; result=
+&#39; x&gt;1   y</code></pre>

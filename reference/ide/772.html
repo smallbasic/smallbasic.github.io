@@ -1,0 +1,71 @@
+<h1 id="bcs">BCS</h1>
+<blockquote>
+<p>BCS (s)</p>
+</blockquote>
+<p>Converts (B)ASIC-style strings to (C)-style (S)trings.</p>
+<pre><code>
+&#39; Note: BCS allows to save special formatting characters as a regular text (or
+&#39;       you could directly use C-Style formatting without using BCS at all).
+&#39; --- Formatting strings/characters/functions:
+&#39; &quot; and \\ are common to SB and C - so to avoid problems use C-Style directly:
+Const DQM = &quot;\\x22&quot; &#39; &quot; character as C-Style string (Double Quotation Mark)
+Const BKS = &quot;\\x5C&quot; &#39; \\ character as C-Style string (Back Slash)
+&#39; CHR(0) signals the End-Of-String in C-String (Null-Terminated-String):
+Const NTS = &quot;\\0&quot;   
+&#39; Special formating strings:
+Const CSI = Chr(27) + &quot;[&quot;      &#39; Control Sequence Introducer
+Const CSI_NORMAL = CSI + &quot;0m&quot;  &#39; Reset all terminal attributes
+Const CSI_YELLOW = CSI + &quot;33m&quot; &#39; Supported foreground colors (30m-37m)
+Const CSI_CYAN   = CSI + &quot;36m&quot;
+Const CSI_WHITE  = CSI + &quot;37m&quot;
+Const CSI_BOLD   = CSI + &quot;1m&quot;  &#39; = Cat(1)
+Const CSI_ULINE  = CSI + &quot;4m&quot;  &#39; = Cat(2)
+&#39; Special formating characters:
+Const C0_HT = Chr(9)           &#39; HT  - Horizontal Tabulation (tab) (-C- \\t)
+Const C0_LF = Chr(10)          &#39; LF  - Line Feed (-C- \\n)
+Const C0_FF = Chr(12)          &#39; FF  - Form Feed (clear screen) (-C- \\f)
+Const C0_CR = Chr(13)          &#39; CR  - Carriage Return (-C- \\r)
+Const C0_NL = C0_CR + C0_LF    &#39; CNL - Cursor Next Line (Windows style for \\n)
+Def tb(n) = String(n, C0_HT)   &#39; few tabs (HT)
+Def nl(n) = String(n, C0_NL)   &#39; few New lines (CNL)
+&#39; Headings text formats:
+Const NEW_PAGE = Bcs(CSI_NORMAL + C0_FF)
+Def H1(s) = Bcs(nl(2) + tb(5) + CSI_BOLD + CSI_WHITE + s + CSI_NORMAL + nl(1))
+Def H2(s) = Bcs(nl(1) + tb(1) + CSI_ULINE + CSI_YELLOW + s + CSI_NORMAL + nl(1))
+Def H3(s) = Bcs(nl(1) + tb(2) + CSI_ULINE + CSI_CYAN + s + CSI_NORMAL + nl(1))
+&#39; Normal text formats:
+Func T2(s) = Bcs(tb(1) + s)
+Func T3(s) = Bcs(tb(2) + s)
+
+&#39; --- Start demo:
+&#39; Convert some text to C-Style strings, and append to t array:
+t &lt;&lt; NEW_PAGE
+t &lt;&lt; H1(&quot;Main Title&quot;)
+t &lt;&lt; H2(&quot;Sub Title&quot;)
+t &lt;&lt; T2(&quot;Some &quot; + DQM + &quot;text&quot; + DQM + &quot; in English,&quot;)
+t &lt;&lt; T2(&quot;Some &quot; + BKS + &quot;more text&quot; + BKS + &quot; in English -&quot;)
+t &lt;&lt; T2(&quot;And even more text in English.&quot;)
+t &lt;&lt; H3(&quot;Sub-Sub Title&quot;)
+t &lt;&lt; T3(&quot;And again! text in English;&quot;)
+t &lt;&lt; T3(&quot;That&#39;s it.&quot; + NTS + &quot;This text is hidden from C ... :)&quot;)
+&#39; Save t array in a Regular text file (as C-Style strings):
+Tsave &quot;demo-doc.txt&quot;, t
+&#39; Load lines from text file into a array:
+Tload &quot;demo-doc.txt&quot;, a 
+&#39; Convert C-Style strings back to Basic-Style strings and print them:
+For i in a
+  ? Cbs(i)
+Next
+Pause
+&#39; &quot;demo-doc.txt&quot; file will contain these lines:
+&#39; ---------------------------------------------
+&#39; \\e[0m\\f
+&#39; \\r\\n\\r\\n\\t\\t\\t\\t\\t\\e[1m\\e[37mMain Title\\e[0m\\r\\n
+&#39; \\r\\n\\t\\e[4m\\e[33mSub Title\\e[0m\\r\\n
+&#39; \\tSome \\x22text\\x22 in English,
+&#39; \\tSome \\x5Cmore text\\x5C in English -
+&#39; \\tAnd even more text in English.
+&#39; \\r\\n\\t\\t\\e[4m\\e[36mSub-Sub Title\\e[0m\\r\\n
+&#39; \\t\\tAnd again! text in English;
+&#39; \\t\\tThat&#39;s it.\\0This text is hidden from C ... :)
+</code></pre>

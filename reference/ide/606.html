@@ -1,0 +1,94 @@
+<h1 id="fre">FRE</h1>
+<blockquote>
+<p>FRE (x)</p>
+</blockquote>
+<p>Returns system information. eg, 0 = free memory,</p>
+<p>Where x: QB-standard:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>0 f</td>
+<td style="text-align: left;">ree memory</td>
+</tr>
+<tr class="even">
+<td>-1</td>
+<td style="text-align: left;">largest block of integers</td>
+</tr>
+<tr class="odd">
+<td>-2</td>
+<td style="text-align: left;">free stack</td>
+</tr>
+<tr class="even">
+<td>-3</td>
+<td style="text-align: left;">largest free block</td>
+</tr>
+</tbody>
+</table>
+<p>Our standard (it is optional for now):</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">-10</td>
+<td style="text-align: left;">total physical memory</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-11</td>
+<td style="text-align: left;">used physical memory</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-12</td>
+<td style="text-align: left;">free physical memory</td>
+</tr>
+</tbody>
+</table>
+<p>Optional-set #1:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">-13</td>
+<td style="text-align: left;">shared memory size</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-14</td>
+<td style="text-align: left;">buffers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-15</td>
+<td style="text-align: left;">cached</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-16</td>
+<td style="text-align: left;">total virtual memory size</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-17</td>
+<td style="text-align: left;">used virtual memory</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-18</td>
+<td style="text-align: left;">free virtual memory</td>
+</tr>
+</tbody>
+</table>
+<p>Optional-set #2:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">-40</td>
+<td style="text-align: left;">battery voltage * 1000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-41</td>
+<td style="text-align: left;">battery percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-42</td>
+<td style="text-align: left;">critical voltage value (*1000)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-43</td>
+<td style="text-align: left;">warning voltage value (*1000)</td>
+</tr>
+</tbody>
+</table>
+<p>The optional values will return 0 if not supported.</p>

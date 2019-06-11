@@ -1,0 +1,14 @@
+<h1 id="self">SELF</h1>
+<blockquote>
+<p>SELF</p>
+</blockquote>
+<p>Pseudo class instance variable</p>
+<p>The SELF variable works with MAP variables. You can assign a reference to a FUNC or SUB to a MAP variable. When you call the SUB or FUNC the SELF variable provides access to values from the enclosing MAP variable. This provides pseudo class/object functionality.</p>
+<p>Note: ‘MAP’ is the name given to the dictionary/hashmap variable variant.</p>
+<p>Example:</p>
+<pre><code>SUB hello
+print &quot;hello &quot; + self.world
+END
+a.world=&quot;world&quot;
+a.foo=@hello
+a.foo()</code></pre>

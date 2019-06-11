@@ -1,0 +1,131 @@
+<h1 id="dirwalk">DIRWALK</h1>
+<blockquote>
+<p>DIRWALK directory [, wildcards] [USE …]</p>
+</blockquote>
+<p>Walk through the specified directories. The user-defined function must returns zero to stop the process.</p>
+<pre><code>FUNC PRNF(x)
+  ? x
+  PRNF=TRUE
+END
+...
+DIRWALK &quot;.&quot; USE PRNF(x)</code></pre>
+<pre><code>
+&#39; Note: this demo is also a useful utility (version 2)
+
+&#39; -------------------- Start of Demo search ---------------------
+&#39; &quot;.&quot; = Start search in current directory:
+dir = &quot;.&quot;
+&#39; Exclude some binary files to speed up search (it&#39;s not case sensitive):
+exclude_ext = &quot;jpeg jpg png gif mp3 mp4 zip 7z exe dat&quot;
+&#39; Search this &quot;string&quot;:
+word = &quot;FUNC &quot;
+&#39; 0 = Not case sensitive search; 1 = Case sensitive search:
+case_sensitive = 0
+&#39; Search it!
+search_word dir, exclude_ext, word, case_sensitive
+
+&#39; &#39; Demo only for dir_list():
+&#39; a = dir_list(dir, exclude_ext)
+&#39; For i In a Do ? i
+&#39; ? &quot; - Length of list: &quot;; Len(a)
+&#39; -------------------- End of Demo search ---------------------
+
+&#39; Purpose: return sorted array of directory files-list (including files in
+&#39;          sub-directories, but not directory-names).
+&#39; Details: &quot;dir&quot; is the top directory to start search from (default = &quot;.&quot;);
+&#39;          &quot;exclude_ext&quot; is a Not case sensitive string of file-extension(s)
+&#39;          to exclude from list (default = &quot;&quot;), For example:
+&#39;           &quot;jpeg jpg zip z7 gif wav mp3&quot; &#39; Space delimited extensions.
+&#39; Example:
+&#39;  a = dir_list(&quot;&quot;, &quot;&quot;)  &#39; a is all files in current dir (and its sub-dirs).
+&#39;  a = dir_list(&quot;..&quot;, &quot;bak zip&quot;) &#39; a is files in upper dir, exclude .bak .zip
+Func dir_list(dir, exclude_ext)
+  Local a, ext
+  &#39; Verify &quot;dir&quot; (&quot;.&quot; is current directory):
+  dir = Trim(dir): If dir = &quot;&quot; Then dir = &quot;.&quot;            &#39;
+  &#39; Exclude extension in Any case (for Windows):
+  ext = Enclose(Lcase(Squeeze(exclude_ext)), &quot; &quot;)
+
+  &#39; Make the dir list (DIRWALK):
+  Func make_list(f)
+    Local e                             &#39; File Extension (without &quot;.&quot;)
+    If Isfile(f) Then                   &#39; Don&#39;t add directory-names to list
+      e = Enclose(Lcase(Rightoflast(f, &quot;.&quot;)), &quot; &quot;)
+      If Not (e In ext) Then a &lt;&lt; f     &#39; Exclude extension? or append file
+    Fi
+    make_list = True                    &#39; (True = Continue to walk)
+  End Func
+  Dirwalk dir Use make_list(x)          &#39; (Note: parameter name must be &#39;x&#39;)
+  &#39; Sort dir list and ignore case (SORT):
+  Func no_case(x, y)
+    x = Lcase(x)
+    y = Lcase(y)
+    Select Case 1
+    Case x = y: no_case =  0
+    Case x &gt; y: no_case = +1
+    Case Else : no_case = -1
+    End Select
+  End Func
+  Sort a Use no_case(x, y)
+  dir_list = a
+End Func
+
+&#39; Purpose: search for a &quot;word&quot; in &quot;dir&quot; (and its sub-dirs), and print results.
+&#39; Details: for &quot;dir&quot; and &quot;exclude_ext&quot; details - See dir_list() function.
+&#39;          &quot;word&quot; is the string to search for.
+&#39;          &#39;cs&#39; is case sensitive search - True or False.
+Sub search_word(dir, exclude_ext, word, cs)
+  Local w, file, list, l, lines, p     &#39; For Searching
+  Local c_page, c_line                 &#39; Counters
+  Local t_lines, t_files, old_t_lines  &#39; Totals (for sum)
+  Local LINES_PER_PAGE, attr = 3
+  LINES_PER_PAGE = 10                 &#39; How many lines to print before pause?
+
+  list = dir_list(dir, exclude_ext)    &#39; Get the list of all files
+  w = Iff(cs, word, Ucase(word))       &#39; Case sensitive search?
+  ? Cat(0); Chr(12); Cat(attr);        &#39; Clear console attributes and screen
+  &#39; Load and search in each file:
+  For file In list
+    Tload file, lines
+    c_line = 0
+
+    &#39; Search in each line:
+    For l In lines
+      c_line++  &#39; Keep line # for [print the line]
+      &#39; Look for the word in this line:
+      If cs Then
+        p = Instr(l, w)
+      Else
+        p = Instr(Ucase(l), w)
+      Fi
+      &#39; If word found then print the line:
+      If p Then
+        ? Cat(2); file + &quot; [&quot; + c_line + &quot;]&quot;; Cat(-2); &quot; &quot;; Mid(l, p)
+        c_page++
+        If c_page = LINES_PER_PAGE Then c_page = 0: Pause
+        t_lines++  &#39; Keep total lines # for sum
+      Fi
+    Next l
+    If t_lines &gt; old_t_lines Then
+      old_t_lines = t_lines
+      attr = -attr: ? Cat(attr);  &#39; Change color on new file
+      t_files++                   &#39; Keep total files # for sum
+    Fi
+  Next file
+
+  &#39; Print sum:
+  If c_page &lt;&gt; 0 Then Pause
+  ? Cat(0)  &#39; Clear all console attributes
+  Color 15
+  ? &quot;- Search in: &quot;; Enclose(dir)
+  ? &quot;- Exclude file-extension(s): &quot;; Enclose(Squeeze(exclude_ext))
+  ? &quot;- Search &quot;; Iff(cs, &quot;IS&quot;, &quot;is NOT&quot;); &quot; case sensitive.&quot;
+  ? &quot;- Found &quot;; Enclose(word); &amp;
+  &quot; in &quot;; t_lines; &quot; lines, in &quot;; t_files; &quot; files &quot;; &amp;
+  &quot;(out of &quot;; Len(list); &quot; files).&quot;
+  ?
+  Color 7
+  ? &quot;Done. Press Backspace key...&quot;;
+  While Inkey &lt;&gt; Chr(8): Wend
+End Sub
+</code></pre>

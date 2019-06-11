@@ -1,0 +1,64 @@
+<h1 id="tload">TLOAD</h1>
+<blockquote>
+<p>TLOAD file, BYREF var [, type]</p>
+</blockquote>
+<p>Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.</p>
+<p>Both these methods load a string/text file into an array.</p>
+<pre><code>
+&#39; TLOAD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-04
+&#39;with TLOAD you don&#39;t even have to dim your array to have it created
+me=&quot;TLOAD.bas&quot;
+TLOAD me,ta    &#39;&lt;==== it&#39;s all done in one line!
+&#39;show me
+for ln = 0 to ubound(ta)
+  ? ln;&quot; &quot;;ta(ln)
+next
+?
+?&quot;compare TLOAD above to INPUT method below to load array&quot;
+?
+&#39;compare to this
+dim ia()
+open me for input as #1
+while not eof(1)
+  input #1, aline
+  ia &lt;&lt; aline
+wend
+close #1            &#39;&lt;=== this took 7 lines
+&#39;show me again
+for ln = 0 to ubound(ia)
+  ? ln;&quot; &quot;;ia(ln)
+next
+pause
+</code></pre>
+<pre><code>
+&#39; See also: Home -- Articles -- Welcome to SmallBASIC -- *Arrays and Matrices*
+Option Base 1 &#39; Start arrays at 1 (not 0)
+&#39; Save few text lines in demo file:
+s1 = &quot;xx_1 xx_2&quot;
+s2 = &quot;yy_1      yy_2  yy_3&quot;
+s3 = &quot;  zz_1   zz_2 &quot;
+s4 = &quot;JEQ&quot;
+Open &quot;demo.tmp&quot; For Output As #1
+ Print #1, s1
+ Print #1, s2
+ Print #1, s3
+ Print #1, s4
+Close #1
+&#39; Load demo file into 1-dimension array:
+Tload &quot;demo.tmp&quot;, lines, 0
+Const MAX_LINES = Ubound(lines)
+Const BLANK = &quot; &quot;
+&#39; Convert array to nested array and display it:
+For i = 1 To MAX_LINES
+  
+  &#39; Split array into words, i.e. nested array; space, &quot; &quot;, is the delimiter:
+  Split Squeeze(lines(i)), BLANK, lines(i)
+  ?
+  ? &quot;Line &quot;; i; &quot;:   &quot;; lines(i)
+  &#39; Print word for each column:
+  For w = 1 To Len(lines(i))
+    ?  &quot;Column &quot;; w; &quot;: &quot;; lines(i)(w) &#39; (i)(w) is a nested array...
+  Next
+Next
+Pause
+</code></pre>

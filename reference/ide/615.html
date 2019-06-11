@@ -1,0 +1,73 @@
+<h1 id="draw">DRAW</h1>
+<blockquote>
+<p>DRAW “commands”</p>
+</blockquote>
+<p>Draw lines as specified by the given directional commands.</p>
+<p><em>Graphics Definition Language</em> In the movement instructions below, n specifies a distance to move. The number of pixels moved is equal to n multiplied by the current scaling factor, which is set by the S command.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Un</td>
+<td style="text-align: left;">Move up.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dn</td>
+<td style="text-align: left;">Move down.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ln</td>
+<td style="text-align: left;">Move left.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rn</td>
+<td style="text-align: left;">Move right.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">En</td>
+<td style="text-align: left;">Move diagonally up and right.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fn</td>
+<td style="text-align: left;">Move diagonally down and right.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gn</td>
+<td style="text-align: left;">Move diagonally down and left.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hn</td>
+<td style="text-align: left;">Move diagonally up and left.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mxy</td>
+<td style="text-align: left;">Move to coordinate x,y. If x is preceded by a + or -, the movement is relative to the last point referenced.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">A prefix command. Next movement command moves but doesn’t plot.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">A prefix command. Next movement command moves, but returns immediately to previous point.</td>
+</tr>
+</tbody>
+</table>
+<pre><code>COLOR 9:PSET 80,80
+DRAW &quot;R50D70L25U25L15D25NR15&quot;
+DRAW &quot;L10U50E25F25&quot;
+PSET 118,105
+DRAW &quot;R8U16L16D16R8U10NR8U6&quot;
+COLOR 12:PSET 100,117
+INPUT &quot;Who are you&quot;; A$
+? &quot;Hello, &quot;;A$;&quot;!&quot;</code></pre>
+<p>How does S command work? I just tried it in the DRAW example in first DRAW string and I get error: “DRAW: Command ‘S’ unsupported.” This is how S command work in QBASIC (quote):</p>
+<pre><code>
+Sn  Determines the drawing scale by setting the length
+     of a unit of cursor movement. The default n is 4,
+     which is equivalent to 1 pixel.
+</code></pre>
+<p>So this should work just fine:</p>
+<pre><code>
+DRAW &quot;S8L10U50E25F25&quot;
+</code></pre>
+<p>But apparently S command is unsupported.</p>

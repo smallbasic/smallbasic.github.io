@@ -1,0 +1,44 @@
+<h1 id="env">ENV</h1>
+<blockquote>
+<p>ENV expr</p>
+</blockquote>
+<p>Returns the value of a specified entry in the current environment table. If the parameter is empty (&quot;&quot;) then returns an array of the environment variables (in var=value form).</p>
+<p>ENV can be used as SUB for setting or erasing Environment Variables (EV) and ENV can be used as a FUNCtion for returning a particular EV or the whole set of them into an array using: EVarray=ENV(&quot;&quot;)</p>
+<pre><code>
+&#39; ENV test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-10
+&#39;OK this works 
+&#39;OK this is supposed to return an array of my Environment variables
+EVS=ENV(&quot;&quot;)
+for e in EVS
+  ? e
+next
+?:? &quot;press any...&quot;
+pause
+&#39;wow it worked! I have a load of them...
+&#39;OK now try and set one of my own
+cls
+myEV1=&quot;This is a test of ENV.&quot;
+ENV &quot;myEV1=&quot;+myEV1
+&#39;did it get added to list?
+EVS=ENV(&quot;&quot;)
+for e in EVS
+  ? e
+next
+?:? &quot;press any...&quot;
+pause
+&#39;YES!
+&#39;OK let&#39;s see it 
+myEV1return=ENV(&quot;myEV1&quot;)
+cls
+? myEV1return
+?:? &quot;press any...&quot;
+pause
+&#39;now can we erase it?
+ENV &quot;myEV1=&quot;
+cls
+? &quot;myEV1 should be erased, it is now &#39;&quot;;ENV(&quot;myEV1&quot;);&quot;&#39;&quot;
+?:? &quot;Test of ENV is complete.&quot;
+pause
+&#39;yes, it was erased because when I ran same code a second time, it wasn&#39;t there THEN!
+&#39; so it didn&#39;t just LOOK erased from a bad call
+</code></pre>

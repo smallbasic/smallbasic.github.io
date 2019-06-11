@@ -1,0 +1,14 @@
+<h1 id="plot">PLOT</h1>
+<blockquote>
+<p>PLOT xmin, xmax USE f(x)</p>
+</blockquote>
+<p>Graph of f(x).</p>
+<p>PLOT 0, 2*PI USE SIN(x)</p>
+<p>Apparently we are now plotting with black dots as default on default black background, so need a COLOR call to see the dots.</p>
+<pre><code>
+&#39;plot test.bas from SmallBASIC ie PLOT minx, maxx, use f(x)
+color 0,15:cls  &#39;&lt;=========== plot use to work without need for this
+PLOT 0, 2*PI USE SIN(x)
+PLOT 0, 2*PI USE rnd*sin(x) &#39;&lt;==== this is cool!
+pause
+</code></pre>

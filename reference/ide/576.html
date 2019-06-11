@@ -1,0 +1,52 @@
+<h1 id="datefmt">DATEFMT</h1>
+<blockquote>
+<p>DATEFMT (format, dmy| (d,m,y)| julian_date)</p>
+</blockquote>
+<p>Returns formatted date string.</p>
+<p>Format:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">one or two digits of Day</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DD</td>
+<td style="text-align: left;">2-digit day</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DDD</td>
+<td style="text-align: left;">3-char day name</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DDDD</td>
+<td style="text-align: left;">full day name</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M</td>
+<td style="text-align: left;">1 or 2 digits of month</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MM</td>
+<td style="text-align: left;">2-digit month</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MMM</td>
+<td style="text-align: left;">3-char month name</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MMMM</td>
+<td style="text-align: left;">full month name</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">YY</td>
+<td style="text-align: left;">2-digit year (2K)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">YYYY</td>
+<td style="text-align: left;">4-digit year</td>
+</tr>
+</tbody>
+</table>
+<pre><code>PRINT DATEFMT(&quot;ddd dd, mm/yy&quot;, &quot;23/11/2001&quot;)
+REM prints &quot;Fri 23, 11/01&quot;</code></pre>

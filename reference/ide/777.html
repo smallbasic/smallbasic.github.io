@@ -1,0 +1,60 @@
+<h1 id="disclose">DISCLOSE</h1>
+<blockquote>
+<p>DISCLOSE (str[, pairs [, ignore-pairs]])</p>
+</blockquote>
+<p>Discloses a string.</p>
+<p>Default pairs and ignore pairs</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>First non white-space character</td>
+<td>Check</td>
+<td>Ignore</td>
+</tr>
+<tr class="even">
+<td>&quot;</td>
+<td>&quot;&quot;</td>
+<td>’’</td>
+</tr>
+<tr class="odd">
+<td>’</td>
+<td>’’</td>
+<td>&quot;&quot;</td>
+</tr>
+<tr class="even">
+<td>(</td>
+<td>()</td>
+<td>&quot;&quot;’’</td>
+</tr>
+<tr class="odd">
+<td>[</td>
+<td>[]</td>
+<td>&quot;&quot;’’</td>
+</tr>
+<tr class="even">
+<td>{</td>
+<td>{}</td>
+<td>&quot;&quot;’’</td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td>&lt;&gt;</td>
+<td>&quot;&quot;’’</td>
+</tr>
+<tr class="even">
+<td>&quot;</td>
+<td>&quot;&quot;</td>
+<td>’’</td>
+</tr>
+</tbody>
+</table>
+<pre><code>s = &quot;abc (abc)&quot;
+? s; tab(26); disclose(s, &quot;()&quot;)
+&#39; prints abc
+s = &quot;abc (a(bc))&quot;
+? s; tab(26); disclose(s, &quot;()&quot;); tab(40); disclose(disclose(s, &quot;()&quot;), &quot;()&quot;)
+&#39; prints a(bc), bc
+s = &quot;abc (a=&#39;(bc)&#39;)&quot;
+? s; tab(26); disclose(s, &quot;()&quot;, &quot;&#39;&#39;&quot;); tab(40); &amp;
+    disclose(disclose(s, &quot;()&quot;, &quot;&#39;&#39;&quot;), &quot;()&quot;, &quot;&#39;&#39;&quot;)
+&#39; prints a=&#39;(bc)&#39;, nothing</code></pre>

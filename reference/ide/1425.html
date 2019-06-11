@@ -1,0 +1,70 @@
+<h1 id="try">TRY</h1>
+<blockquote>
+<p>TRY</p>
+</blockquote>
+<p>The TRY statement introduces a TRY/CATCH BLOCK</p>
+<p>Note: If this demo program crashes… then run it again. It seems that TRY / CATCH block might be unstable within a function or sub… (?)</p>
+<pre><code>
+&#39; See also: Home -- Articles -- TRY / CATCH
+Const FILE_NAME = &quot;try demo.tmp&quot; &#39; -- DON&#39;T use existing file for demo.
+&#39; OPEN file or device safely:
+Func opens(filename, mode)
+  Local fn = Freefile
+  Try
+    Select Case Lcase(mode)
+    Case &quot;input&quot; : Open filename For Input  As #fn
+    Case &quot;output&quot;: Open filename For Output As #fn
+    Case &quot;append&quot;: Open filename For Append As #fn
+    Case Else: ? &quot;opens(): Bad open mode at line &quot; + Progline: Pause: Stop
+    End Select
+    opens = fn &#39; file opened, return file-handle (integer 1 to 256)
+  Catch err
+    ? err; &quot; &quot;;
+    opens = 0  &#39; cannot open file, return 0 (FALSE)
+  End Try
+End Func
+
+&#39; helper for demo:
+Func demo(demo_number, open_mode)
+  Local fn
+  Color 14
+  ?: ? Using &quot; Demo #: &quot;; demo_number;
+  Color 7
+  fn = opens(FILE_NAME, open_mode) &#39; Open file safely
+  If fn Then ? &quot;File-handle is: &quot;; fn; &quot; &quot;;
+  demo = fn &#39; return file-handle or 0 if error.
+End Func
+
+Kill FILE_NAME &#39; delete file before demo
+fn = demo(1, &quot;INPUT&quot;)
+If fn Then Close #fn
+fn = demo(2, &quot;OUTPUT&quot;)
+If fn Then
+  ? #fn, &quot;Demo 2 Works!&quot;
+  Close #fn
+Fi
+fn = demo(3, &quot;APPEND&quot;)
+If fn Then
+  ? #fn, &quot;Demo 3 Works!&quot;
+  Close #fn
+Fi
+fn = demo(4, &quot;APPEND&quot;)
+If fn Then
+  lines = [&quot;Demo 4 Works!&quot;]
+  Tsave #fn, lines
+  Close #fn
+Fi
+fn = demo(5, &quot;INPUT&quot;)
+If fn Then
+  Tload #fn, lines
+  ? lines;
+  Close #fn
+Fi
+fn = demo(6, &quot;INPUTX&quot;)
+If fn Then
+  Tload #fn, lines
+  ? lines;
+  Close #fn
+Fi
+Pause
+</code></pre>

@@ -1,0 +1,58 @@
+<h1 id="like">LIKE</h1>
+<blockquote>
+<p>a LIKE b</p>
+</blockquote>
+<p>Regular-expression operator. Compares the left part of the expression with the right side regex pattern.</p>
+<pre><code>
+&#39; From  Home -- Articles -- Welcome to SmallBASIC -- The operator LIKE :
+&#39; LIKE is a regular-expression operator. It is compares the left part of the
+&#39; expression with the pattern (right part).
+&#39;
+&#39; Since the original regular expression code is too big (for handhelds),
+&#39; I use only a subset of it, based on an excellent old stuff by J. Kercheval
+&#39; (match.c, public-domain, 1991).
+&#39; But there is an option to use PCRE (Perl-Compatible Regular Expression
+&#39; library) on systems that is supported (Linux); ( see OPTION:
+&#39;
+&#39;    Statement OPTION MATCH PCRE [CASELESS]|SIMPLE
+&#39;
+&#39;     Sets as default matching algorithm to (P)erl-(C)ompatible (R)egular
+&#39;     (E)xpressions library or back to simple one.
+&#39;     Matching-algorithm is used in LIKE and FILES.
+&#39;
+&#39;     PRCE works only in systems with this library and it must be linked with.
+&#39;     Also, there is no extra code on compiler which means that SB compiles
+&#39;     the pattern every time it is used. ).
+&#39;
+&#39; The same code is used for filenames (FILES, DIRWALK) too.
+&#39; In the pattern string:
+&#39;
+&#39;  *    matches any sequence of characters (zero or more)
+&#39;  ?    matches any character
+&#39;  [SET]    matches any character in the specified set,
+&#39;  [!SET] or [^SET]     matches any character not in the specified set.
+&#39;
+&#39; A set is composed of characters or ranges; a range looks like character
+&#39; hyphen character (as in 0-9 or A-Z). [0-9a-zA-Z_] is the minimal set of
+&#39; characters allowed in the [..] pattern construct.
+&#39;
+&#39; To suppress the special syntactic significance of any of &quot;[]*?!^-\\&quot;,
+&#39; and match the character exactly, precede it with a  &#39;\\&#39;.
+? &quot;Hello&quot; LIKE &quot;*[oO]&quot; : REM TRUE
+? &quot;Hello&quot; LIKE &quot;He??o&quot; : REM TRUE
+? &quot;Hello&quot; LIKE &quot;hello&quot; : REM FALSE
+? &quot;Hello&quot; LIKE &quot;[Hh]*&quot; : REM TRUE
+&#39; Few more...
+?
+? &quot;-[Hello]-&quot; Like &quot;\\-\\[?*\\]\\-&quot; &#39; True
+? Cbs(&quot;\\nFiles which start with Capital letter or _:\\n&quot;); Files(&quot;[A-Z_]*&quot;)
+? Cbs(&quot;\\nFiles which are NOT .bas or .BAS files:\\n&quot;); Files(&quot;*[!.bas][!.BAS]&quot;)
+If &quot;It wasn&#39;t&gt; me!&quot; Like &quot;*&lt;[!/]?*&gt;*&lt;/?*&gt;*&quot; Then
+  ? Cbs(&quot;\\nTrue, someone is using HTML tag...!&quot;)
+Fi
+link = &quot;See also: http://www.regular-expressions.info/examples.html for demos.&quot;
+If link Like &quot;*http*://?*.?*&quot; Then
+  ? Cbs(&quot;\\nTrue, someone is advertising on our site...!&quot;)
+Fi
+Pause
+</code></pre>

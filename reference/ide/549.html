@@ -1,0 +1,20 @@
+<h1 id="sort">SORT</h1>
+<blockquote>
+<p>SORT array [USE cmpfunc]</p>
+</blockquote>
+<p>Sorts an array. The cmpfunc if specified, takes 2 vars to compare and must return: -1 if x &lt; y, +1 if x &gt; y, 0 if x = y.</p>
+<pre><code>FUNC qscmp(x,y)
+IF x=y
+    qscmp=0
+ELIF x&gt;y
+    qscmp=1
+ELSE
+    qscmp=-1
+ENDIF
+END
+...
+DIM A(5)
+FOR i=0 TO 5
+    A(i)=RND
+NEXT
+SORT A USE qscmp(x,y)</code></pre>

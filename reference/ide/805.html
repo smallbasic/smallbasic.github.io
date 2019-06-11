@@ -1,0 +1,41 @@
+<h1 id="val">VAL</h1>
+<blockquote>
+<p>VAL (s)</p>
+</blockquote>
+<p>Returns the numeric value of string s.</p>
+<p>Here is an opportunity for enhancing SmallBASIC’s function VAL, this EVAL is only beginning of what might be done.</p>
+<pre><code>
+&#39; VAL test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-05
+s1=&quot;123.234*4+1000/2&quot;
+? val(s1)
+? eval(s1)
+pause
+func eval(numericexpressionstring)
+  &#39;working left to right, no parenthesis
+  e=0:cmd=&quot;+&quot;:ds=&quot;&quot;
+  for i=1 to len(numericexpressionstring)
+    c=mid(numericexpressionstring,i,1)
+    if instr(&quot;0123456789.&quot;,c) then ds=ds+c
+    if instr(&quot;+-*/&quot;,c) or i=len(numericexpressionstring) then
+      &#39;execute last cmd if one
+      if cmd&lt;&gt;&quot;&quot;  then
+        d=val(ds)
+        select case cmd
+        case &quot;+&quot;:e=e+d
+        case &quot;-&quot;:e=e-d
+        case &quot;*&quot;:e=e*d
+        case &quot;/&quot;:e=e/d
+        end select
+        ds=&quot;&quot;:cmd=&quot;&quot;
+      end if
+      if i&lt;&gt;len(numericexpressionstring) then cmd=c
+    end if
+  next
+  &#39;eval=str(e) &#39;&lt;=== I am setting up something for Turtle strings
+  eval=e        &#39;&lt;=== normal people and usage might want this
+end
+</code></pre>
+<p>Math EVAL function = evaluates a string as though it were an expression and returns a result.</p>
+<p>I’ve written in Euphoria 4 correct math EVAL function, you can download it and see how it works, if you’re really into it: rapideuphoria.com*math_eval_v1_1_0.zip</p>
+<p>It is straightforward to translate that Euphoria code into SmallBASIC code. EVAL must be around here somewhere, it is a classic. I thought I might find a version in TinyBASIC but I am too much into getting a turtle string to repeat to hunt for it at moment.</p>
+<p>The VAL command just converts a string to a number. For EVAL type functionality, the CHAIN command is somewhat similar.</p>

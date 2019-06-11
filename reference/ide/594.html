@@ -1,0 +1,27 @@
+<h1 id="open">OPEN</h1>
+<blockquote>
+<p>OPEN file [FOR {INPUT|OUTPUT|APPEND}] AS #fileN</p>
+</blockquote>
+<p>Makes a file or device available for sequential input, sequential output.</p>
+<ul>
+<li>file - A string expression that follows OS file naming conventions.</li>
+<li>fileN - A file-handle (integer 1 to 256).</li>
+</ul>
+<p>FOR</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>INPUT</td>
+<td>Sequential input</td>
+</tr>
+<tr class="even">
+<td>OUTPUT</td>
+<td>Sequential output</td>
+</tr>
+<tr class="odd">
+<td>APPEND</td>
+<td>Sequential output, beginning at current EOF</td>
+</tr>
+</tbody>
+</table>
+<p>The files are always opened as shared.</p>

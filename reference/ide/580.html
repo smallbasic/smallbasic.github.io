@@ -1,0 +1,65 @@
+<h1 id="access">ACCESS</h1>
+<blockquote>
+<p>ACCESS (file)</p>
+</blockquote>
+<p>Returns the access rights of the file.</p>
+<ul>
+<li>file - A string expression that follows OS file naming conventions.</li>
+</ul>
+<p>Returns file permissions as per chmod() and stat() system calls.</p>
+<p>The bits (in octal):</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>04000</td>
+<td style="text-align: right;">set user ID on execution</td>
+</tr>
+<tr class="even">
+<td>02000</td>
+<td style="text-align: right;">set group ID on execution</td>
+</tr>
+<tr class="odd">
+<td>01000</td>
+<td style="text-align: right;">sticky bit</td>
+</tr>
+<tr class="even">
+<td>00400</td>
+<td style="text-align: right;">read by owner</td>
+</tr>
+<tr class="odd">
+<td>00200</td>
+<td style="text-align: right;">write by owner</td>
+</tr>
+<tr class="even">
+<td>00100</td>
+<td style="text-align: right;">execute/search by owner</td>
+</tr>
+<tr class="odd">
+<td>00040</td>
+<td style="text-align: right;">read by group</td>
+</tr>
+<tr class="even">
+<td>00020</td>
+<td style="text-align: right;">write by group</td>
+</tr>
+<tr class="odd">
+<td>00010</td>
+<td style="text-align: right;">execute/search by group</td>
+</tr>
+<tr class="even">
+<td>00004</td>
+<td style="text-align: right;">read by others</td>
+</tr>
+<tr class="odd">
+<td>00002</td>
+<td style="text-align: right;">write by others</td>
+</tr>
+<tr class="even">
+<td>00001</td>
+<td style="text-align: right;">execute/search by others</td>
+</tr>
+</tbody>
+</table>
+<pre><code>IF ACCESS(&quot;/bin/sh&quot;) AND 0o4 THEN
+ PRINT &quot;I can read it!&quot;
+ENDIF</code></pre>

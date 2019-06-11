@@ -1,0 +1,43 @@
+<h1 id="local">LOCAL</h1>
+<blockquote>
+<p>LOCAL</p>
+</blockquote>
+<p>Declare local variables inside a SUB or FUNC. Local variables no longer exist once the SUB or FUNC has returned.</p>
+<pre><code>
+&#39; LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
+&#39;with the LOCAL keyword varaibles are treated separately 
+&#39;from those in main code with the same name even in a GOSUB
+var=1
+? &quot;var before GOSUB gs1000 &quot;;var
+GOSUB gs1000
+? &quot;var after return from GOSUB gs1000 &quot;;var
+?
+var=1
+? &quot;var before GOSUB LOCAL_gs1000 &quot;;var
+GOSUB LOCAL_gs1000
+? &quot;var after return from GOSUB LOCAL_gs1000 &quot;;var
+pause
+end
+label gs1000
+var=1000
+return
+label LOCAL_gs1000
+local var
+var=1000
+return
+</code></pre>
+<pre><code>
+&#39; DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
+&#39;can I use DEF locally in a sub without interfering with main variable or DEF names
+def aboutMe() = &quot;I am texting from main code.&quot;
+? &quot;Hi, &quot;;aboutMe
+mySub
+? &quot;Goodbye, &quot;;aboutMe
+pause
+sub mySub()
+  &#39;local def aboutMe() = &quot;I am texting from mySub.&quot; &#39;&lt;=== note: this did not work 
+  local aboutMe
+  def aboutMe() = &quot;I am texting from mySub.&quot;
+? &quot;Hi, &quot;;aboutMe
+end
+</code></pre>

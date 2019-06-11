@@ -1,0 +1,85 @@
+<h1 id="in">IN</h1>
+<blockquote>
+<p>a IN b</p>
+</blockquote>
+<p>Returns an index (1 Based) to the matching element when b is an array. Returns TRUE if the value is contained within b as a string.</p>
+<pre><code>
+&#39; IN language ref.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-01
+&#39;IN may be used in a couple of ways:
+&#39;1) It can be used to access elements of an array: FOR i IN array 
+&#39;   without needing to know upper or lower bounds of the array
+&#39;   FOR i IN array will cycle through all elements of array, i is variable for element
+&#39;   example to follow...
+&#39;2) It can be used to report whether a string is within a string
+&#39;   also in example...
+&#39;FILES(wildcard) - will create an array of files that have wildcard pattern
+&#39; myFiles=FILES(&quot;*.*&quot;)
+&#39; pathTXTFiles=FILES(path+&quot;/*.txt&quot;)
+myFiles=FILES(&quot;*.*&quot;)
+for fl IN myFiles
+  if &quot;.bas&quot; IN fl then ? fl
+next
+pause
+</code></pre>
+<pre><code>
+&#39; See also: Home -- Articles -- Welcome to SmallBASIC -- The operator IN
+
+&#39; IN keyword is 1-Based, so using &quot;Option Base 1&quot; makes code more consistent:
+Option Base 1
+Def q(text) = &quot; &quot; + Enclose(text) + &quot; &quot;  &#39; Enclose text with quotation marks, &quot;&quot;
+Def rev(text) = Cat(3) + text + Cat(-3)  &#39; reverse colors of text
+Sub title(text)
+  Color 14: Print text: Color 7  &#39; print title in color
+End Sub
+
+title &quot;Use IN to check if sub-string exists within string (see also INSTR):&quot;
+s = &quot;Hello 5&quot;
+? rev(&quot; s =&quot; + q(s))
+? q(&quot;ll&quot;) + &quot;In s? &quot;; &quot;ll&quot; In s,, &#39; (0=FALSE; 1=TRUE)
+? q(&quot;LL&quot;) + &quot;In s? &quot;; &quot;LL&quot; In s
+? q(&quot;l&quot;) + &quot; In s? &quot;;  &quot;l&quot; In s,,
+? &quot;  5   In s? &quot;;        5 In s
+
+title &quot;Use IN to return the index of matching element in array (1-Based):&quot;
+Dim a()
+a &lt;&lt; &quot;Hello&quot; &#39; append (&lt;&lt;) three elements to a array
+a &lt;&lt; &quot;World&quot;
+a &lt;&lt; 123
+&#39;a &lt;&lt; [4,&quot;x&quot;,6] &#39; nested array conflicts with the other types.
+? rev(&quot; a = &quot; + Str(a) + &quot; &quot;)
+? q(&quot;Hello&quot;) + &quot;In a: &quot;; &quot;Hello&quot; In a,,
+? q(&quot;ello&quot;) + &quot; In a: &quot;;  &quot;ello&quot; In a
+? q(&quot;HELLO&quot;) + &quot;In a: &quot;; &quot;HELLO&quot; In a,,
+? q(&quot;World&quot;) + &quot;In a: &quot;; &quot;World&quot; In a
+? &quot;  123    In a: &quot;;         123 In a,,
+? &quot;  12     In a: &quot;;         12  In a
+&#39;? &quot;[4,\\&quot;x\\&quot;,6] In a: &quot;; [4,&quot;x&quot;,6] In a &#39; (nested array)
+
+title &quot;Use IN to flatten multi-dimension array:&quot;
+a = [1, 2, 3; 4, 5, 6; 7, 8, 9, 10, 11; &quot;Hello&quot;, &quot;World&quot;]
+? rev(&quot; a = &quot; + Str(a) + &quot; &quot;)
+For i In a
+  ? i; &quot;, &quot;; &#39; i is used as pointer to a array element inside FOR loop
+Next
+?
+title &quot;Use IN to print nested arrays:&quot;
+a = [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10, 11], [&quot;Hello&quot;, &quot;World&quot;]]
+? rev(&quot; a = &quot; + Str(a) + &quot; &quot;)
+For i In a
+  ? i; &quot;, &quot;; &#39; i is used as pointer to a(i) inside FOR loop
+Next
+?
+title &quot;Use IN to print map array:&quot;
+a = Array(&quot;{x:100, y:300, point:Top-Left}&quot;)
+? rev(&quot; a = &quot; + Str(a) + &quot; &quot;)
+For i In a
+  ? i; &quot;:&quot;; a(i); &quot;, &quot;; &#39; i is used as pointer inside FOR loop
+Next
+?
+title &quot;Use IN to test equality of numbers:&quot;
+n = 10.5
+? rev(&quot; n = 10.5 &quot;)
+? &quot;n In 10   : &quot;; n In 10    &#39; (0=FALSE; 1=TRUE)
+? &quot;n In 10.5 : &quot;; n In 10.5
+Pause
+</code></pre>

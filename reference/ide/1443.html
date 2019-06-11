@@ -1,0 +1,55 @@
+<h1 id="exec">EXEC</h1>
+<blockquote>
+<p>EXEC file</p>
+</blockquote>
+<p>Transfers control to another operating system program.</p>
+<pre><code>
+Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;)  &#39; Check if it&#39;s Linux system
+Const IS_WINDOWS = Not IS_LINUX
+Const FILE_NAME = &quot;demo.bas&quot;  &#39; demo file name
+
+&#39; Print header before each mission:
+Sub header(text)
+  ? Cbs(&quot;\\n\\n&quot; + Cat(0) + Cat(3) + Enclose(text, &quot; &quot;) + Cat(0) + Chr(7))
+  Pause
+End Sub
+
+&#39; Create demo SmallBASIC file:
+code &lt;&lt; &quot;Color 15, 1: ? &quot; + Enclose(&quot;Hello World&quot;) + &quot;: Pause&quot; &#39; append line
+Tsave FILE_NAME, code
+
+&#39; CHAIN(source)
+&#39;
+&#39;  Compile and run the given source. Source can be a file name, a line of code
+&#39;  or an array of code. Use ENV to share variables with the parent process.
+header &quot;Press a key to Chain another SB program and return afterwards...&quot;
+Chain FILE_NAME &#39; Chain only executes another SmallBASIC code.
+
+&#39; RUN(command)     &#39; invoked as a COMMAND
+&#39; x = RUN(command) &#39; invoked as a FUNC, returning the results of the sub process
+&#39;
+&#39;  With both of these, control returns to the .bas once system &#39;command&#39;
+&#39;  has completed.
+header &quot;Press a key to Run another program and return afterwards...&quot;
+Select Case 1
+  Case IS_LINUX:   Run &quot;gedit &quot; + FILE_NAME
+  Case IS_WINDOWS: Run &quot;Notepad &quot; + FILE_NAME
+End Select
+? &quot;OK.&quot;
+
+&#39; EXEC(command)
+&#39;
+&#39;  Invoked as a COMMAND, control returns to the .bas immediately and the
+&#39;  system command does it&#39;s own thing external to SmallBASIC:
+header &quot;Press a key to Execute another program in the background...&quot;
+Select Case 1
+  Case IS_LINUX:   Exec &quot;gedit&quot;
+  Case IS_WINDOWS: Exec &quot;Notepad&quot;
+End Select
+? &quot;Done.&quot;;
+Pause
+</code></pre>
+<p>Apparently, RUN/EXEC have bugs in SmallBASIC version 0.12.2…:</p>
+<p>RUN/EXEC</p>
+<p>There are three modes: 1. RUN(command) ’ invoked as a COMMAND 2. v=RUN(command) ‘invoked as a FUNC, returning the results of the sub process With both of these, control returns to the .bas once system ’command’ has completed. 3. EXEC(command) ’invoked as a COMMAND, control returns to the .bas immediately and the system command does it’s own thing external to SmallBASIC.</p>
+<p>Note: In the android version you can use v=RUN to look at interesting things in the /proc file system.</p>

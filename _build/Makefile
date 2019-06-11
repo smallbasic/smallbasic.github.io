@@ -83,7 +83,7 @@ $(out)/scripts2/%.html: $(out)/scripts/%.html
 	$(sbasic) $(out)/sitepage.bas $< > $@
 
 all: $(reference) $(pages) $(posts) $(scripts)
-	@mkdir -p ../reference
+	@mkdir -p ../reference/ide
 	@mkdir -p ../pages
 	@mkdir -p ../posts
 	@$(sbasic) deploy.bas
@@ -95,6 +95,7 @@ all: $(reference) $(pages) $(posts) $(scripts)
 	@cp layouts/index.html ../posts
 	@cp layouts/index.html ../samples
 	@cp layouts/index.html ../reference
+	@cp layouts/index.html ../reference/ide
 
 clean:
 	rm -rf $(out) *.sbu

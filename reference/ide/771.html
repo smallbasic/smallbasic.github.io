@@ -1,0 +1,35 @@
+<h1 id="asc">ASC</h1>
+<blockquote>
+<p>ASC (s)</p>
+</blockquote>
+<p>Returns the ASCII code of first character of the string s.</p>
+<p>Also see CHR</p>
+<pre><code>
+&#39; LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
+&#39; LOCATE row, column - sets the next print location on screen, rows down, columns across
+&#39; a MOD b - returns the remainder of a/b as integer 0 to b-1
+&#39;           for example odd number n mod 2 returns 1, while even number n mod 2 returns 0
+&#39;           n mod 10 returns 0,1,2,3,4,5,6,7,8 or 9  we will use this is demo
+&#39; CHR - returns the CHaRracter for the ASC number, for demo we will print a chart of CHR for ASC numbers 32-128
+&#39; ASC(Character) - is a number code for a print characters, 32 is the code for a space
+&#39; ? - is shortcut for PRINT
+&#39; RIGHT(string,n) - returns right most n characters of string
+&#39; STR(n) - returns a number in string form
+&#39; : - code statement seperator often used with LOCATE row, column : ? string
+&#39; PAUSE optional-number-of-secs - waits for key press or mouse click and/or for a number seconds 
+&#39; so lets user decide how long to wait
+LOCATE 1,16 : ? &quot;ASC Table 30-129:&quot;  &#39; locate print spot, print title for our app
+FOR column=0 to 9 &#39;print a header, 10 numbers plus + (to add to row value)
+  LOCATE 2,column*5+4 : ? &quot;+&quot;;column
+NEXT
+FOR row=3 to 12
+  LOCATE row,0 : ? RIGHT(&quot; &quot;+STR(row*10)+&quot;:&quot;,4)
+NEXT
+&#39;main table
+FOR ASCnumber=30 to 129   &#39;note ASC(32) = space so wont see anything in Table
+  row=ASCnumber\\10 &#39; \\ rounds division down to integer
+  column=(ASCnumber MOD 10)*5+5  &#39;times 5 to space out the characters printed plus 5 for column labels
+  LOCATE row,column : ? CHR(ASCnumber)
+NEXT
+PAUSE
+</code></pre>

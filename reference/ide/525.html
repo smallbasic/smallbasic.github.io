@@ -1,0 +1,94 @@
+<h1 id="form">FORM</h1>
+<blockquote>
+<p>FORM(map)</p>
+</blockquote>
+<p>Creates a form object from a MAP variable. This provides access to the following sub-commands: doEvents, close, refresh. The form MAP may contain the following properties: value, inputs, focus. Inputs is an array of MAP, each may contain the following properties: x, y, width, height, value, label, name, type, backgroundColor, color, visible, isExit, selectedIndex, length, noFocus, onclick</p>
+<p>The type attribute can be one of the following: button label link tab listbox choice text image</p>
+<p>As far as I know FORM has replaced DOFORM. This example, since it is longer, will be in the Code Demo section of the Code Library as well. Here is Chris code example of FORM’s usage. As you can see, it requires knowledge of buttons and their properties. Also be forewarned this code will create the file: f.frm. I may have modified a few items playing with the code since Chris had posted it.</p>
+<pre><code>
+f.handleKeys = 0
+&#39; create some buttons
+button1.y = 120
+button1.label = &quot;Button1&quot;
+button1.value = &quot;valudofButton1&quot;
+button1.backgroundcolor = rgb(255,0,0)
+button1.onclick = HelloWorld &#39;this prints on load
+button2.x = -1
+button2.y = 120
+button2.label = &quot;Button2&quot;
+button2.value = &quot;valueofButton2&quot;
+button3.type = &quot;image&quot;
+button3.value = &quot;cats&quot;
+button3.x = -1
+button3.y = 120
+button3.background = 223344
+b4.type = &quot;choice&quot;
+b4.value = &quot;cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish&quot;
+b4.selectedIndex = 2
+b4.x = -1
+b4.y = 120
+b5.type = &quot;list&quot;
+b5.value = &quot;cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|end|lol&quot;
+b5.x = -1
+b5.y = 120
+b5.height = 120
+b6.type = &quot;text&quot;
+b6.value = &quot;cats&quot;
+b6.length=30
+b6.x = -1
+b6.y = 120
+b6.width = 50
+b6.noFocus = 0
+&#39; add buttons to the form
+f.inputs &lt;&lt; button1
+f.inputs &lt;&lt; button2
+f.inputs &lt;&lt; button3
+f.inputs &lt;&lt; b4
+f.inputs &lt;&lt; b5
+f.inputs &lt;&lt; b6
+f.backgroundcolor = &quot;green&quot;
+&#39; at this stage &#39;f&#39; is just a plain user defined structure (map)
+&#39; after calling FORM, &#39;f&#39; becomes a system form object with three special functions
+&#39; doEvents, close and refresh (see sokoban.bas for refresh)
+f = form(f)
+&#39; the string version of the form is JSON  (see https://en.wikipedia.org/wiki/JSON)
+TSAVE &quot;f.frm&quot;, f
+while 1
+  &#39; pump the system event queue
+  f.doEvents()
+  &#39; process the event
+  in$ = inkey
+  at 0,0
+  if len(in$)&gt;1 then
+    flag= asc(left(in$,1))
+    keychar =right(in$,1)
+  n= asc(keychar)
+    if (flag == 1)
+      ? &quot;Ctrl    : &quot;;keychar ; &quot;   &quot;
+    else if (flag == 2)
+      ? &quot;Alt    : &quot;; keychar
+    else if (flag == 3)
+      ? &quot;Ctrl+Alt: &quot;; keychar ; &quot;   &quot;
+    else
+      ? &quot;Arrow: &quot;; n ; &quot;   &quot;
+    end if
+  else
+    vkey = asc(in$)
+    if (vkey == 8) then
+      ? &quot;backspace!&quot;
+    else if (vkey == 127) then
+      ? &quot;delete !&quot;
+    else
+      ? &quot; key=           &quot;; in$; &quot; &quot;; vkey
+    endif
+endif
+if b6.value &lt;&gt; &quot;cats&quot; then ? b6.value
+  if (len(f.value) &gt; 0) then
+    print f.value; &quot;                  &quot;
+  end if
+wend
+f.close()
+func HelloWorld
+? &quot;hello world&quot;
+end
+</code></pre>

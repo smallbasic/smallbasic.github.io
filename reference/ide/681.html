@@ -1,0 +1,31 @@
+<h1 id="gosub">GOSUB</h1>
+<blockquote>
+<p>GOSUB label</p>
+</blockquote>
+<p>Causes program execution to branch to the specified label; when the RETURN command is encountered, execution branches to the command immediately following the most recent GOSUB command.</p>
+<pre><code>
+&#39; Note: using SUB instead of GOSUB is much more easy and modular.
+  
+x = 50
+Gosub routine1 &#39; prints 100
+Print x        &#39; prints 50
+routine2 x     &#39; prints -50
+Print x        &#39; prints 50
+&#39; Using GOSUB inside SUB:
+Sub routine2(x)
+  Gosub routine3
+  Exit Sub
+  
+Label routine3
+  x = -x
+  Print x      
+Return
+End Sub
+Pause
+End &#39; End of program
+&#39; Using GOSUB with LOCAL variables:
+Label routine1
+  Local x = 100
+  Print x
+Return
+</code></pre>

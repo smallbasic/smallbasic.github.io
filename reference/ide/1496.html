@@ -1,0 +1,22 @@
+<h1 id="lshift">LSHIFT</h1>
+<blockquote>
+<p>result = LSHIFT number, amount</p>
+</blockquote>
+<p>Performs an arithmetic left shift on a bit pattern.</p>
+<pre><code>
+&#39; Tested on 32-bit system (I&#39;m not sure yet about the result on 64-bit system):
+x = 1                 &#39; x = 1 (0b1)
+? Bin(x)
+?
+x = x Lshift 1        &#39; Shift-Left x by 1
+? Bin(x)
+x = x Lshift 30       &#39; Shift-Left x again by 30
+? Bin(x)
+?
+x = 1 Lshift 33        &#39; The same as: x = 1 Lshift (33 Mod 32)
+? Bin(x)
+?
+x = 0b1111 Lshift 30   &#39; The two upper bits are lost (on 32-bit system)
+? Bin(x)
+? x                    &#39; x is -1073741824  (on 32-bit system)
+</code></pre>

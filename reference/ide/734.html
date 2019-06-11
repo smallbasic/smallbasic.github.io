@@ -1,0 +1,26 @@
+<h1 id="int">INT</h1>
+<blockquote>
+<p>INT (x)</p>
+</blockquote>
+<p>Rounds x downwards to the nearest integer.</p>
+<p>I think /1 will convert a number to an integer in less keystrokes than INT, they both round down for positives and up for negatives. In other words, they both drop the fractional part of the number.</p>
+<pre><code>
+&#39;INT or alternate.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
+&#39;I think number\\1 is eqivalent to INT(number) in less keystrokes
+&#39; both of these convert a number to an integer and both round down to do it.
+for i = 1 to 20
+  &#39;which coin should I use
+  if rnd&lt;.5 then TF=int(rnd*2) else TF=rnd*2\\1
+  ? TF,
+  if TF then ? &quot;It is true now.&quot;; else ? &quot;Now it&#39;s false.&quot;;
+  ?spc(3)+&quot;press a key or click for next...&quot;
+next
+for i=0 to -10 step -1 &#39;they seem to behave the same for negatives too
+  test=i+rnd
+  ? &quot;test = &quot;;test
+  ? &quot;test\\1 &quot; ;test\\1
+  ? &quot;int(test) &quot;;int(test)
+  ?
+next
+pause
+</code></pre>

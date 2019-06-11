@@ -1,0 +1,10 @@
+<h1 id="isstring">ISSTRING</h1>
+<blockquote>
+<p>ISSTRING (x)</p>
+</blockquote>
+<p>Returns true if x is a string (and cannot be converted to a number).</p>
+<pre><code>? ISSTRING(12)      :REM false
+? ISSTRING(&quot;12&quot;)    :REM false
+? ISSTRING(&quot;12E+2&quot;) :REM false
+? ISSTRING(&quot;abc&quot;)   :REM true
+? ISSTRING(&quot;1+2&quot;)   :REM true</code></pre>
