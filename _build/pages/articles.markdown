@@ -7,5 +7,6 @@
 - [Escape codes](/pages/escape.html)
 - [New features](/pages/features.html)
 - [SDL](/pages/sdl.html)
+- [FLTK](/pages/fltk.html)
 - [TRY/CATCH](/pages/trycatch.html)
 - [Network programming](/pages/network.html)
