@@ -4,7 +4,6 @@
 
 Play musical notes.
 
-
 * A-G[-|+|#][nnn][.] Play note A..G, +|# is sharp, - is flat, . is multiplier 1.5
 * On Octave 0..6, < moves down one octave, > moves up one octave
 * Nnn Play note 0..84 (0 = pause)
