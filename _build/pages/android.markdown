@@ -221,3 +221,15 @@ Use the PLAY command with the prefix "file://" to play an audio track. For suppo
 
 [Android changelog](android_changelog.html)
 
+
+## Privacy Policy [](#privacy-policy)
+
+SmallBASIC uses external storage permissions allowing you to edit and save program code.
+
+The internet permission allows the OPEN statement to work with the HTTP prefix. It is also used with the "Online" link to load sample programs from http://smallbasic.github.io. 
+
+The listen service enabled in the setup screen allows program launching via the IDE or a Web Browser. This feature also relies on the internet permission.
+
+SmallBASIC uses the location permission allowing program code access to the device location.
+
+This Privacy Policy is effective as of 22/08/2019
