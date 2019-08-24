@@ -5,6 +5,13 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.16 (25 August 2019)**
+
+- Fix crash in ChromeOS when minimising
+- Fix crash in ChromeOS when starting a second instance
+- Fix crash using the Share command
+- Update Android SDK build tools to latest versions
+
 **0.12.15.3 (3 March 2019)**
 
 - Fix issue with POINT returning incorrect values
