@@ -224,7 +224,7 @@ Use the PLAY command with the prefix "file://" to play an audio track. For suppo
 
 ## Privacy Policy [](#privacy-policy)
 
-SmallBASIC uses external storage permissions allowing you to edit and save program code.
+SmallBASIC uses external storage permissions to allow editing of program code.
 
 The internet permission allows the OPEN statement to work with the HTTP prefix. It is also used with the "Online" link to load sample programs from http://smallbasic.github.io. 
 
