@@ -6,26 +6,25 @@
 ::: articleRightInner ::
 
 ```
-**************************
-ELIZA
-CREATIVE COMPUTING
-MORRISTOWN, NEW JERSEY
+What would you like to scramble
+(a string of 3 to 12 characters) ? SmallBASIC
+SmallBASIC
 
-ADAPTED FOR IBM PC BY
-PATRICIA DANIELSON AND
-    PAUL HASHFIELD
+SmallBASIC
+..........
+lIaCSSBlAm
 
-PLEASE DON''T USE COMMAS
-OR PERIODS IN YOUR INPUTS
-*************************
+again(y/n) ? n
+n
 
+another word(y/n) ? n
+n
 
-
-HI! I''M ELIZA. WHAT''S YOUR PROBLEM?
-? 
+Thank you for using 'scramble'.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-[eliza.bas](https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/applications/Eliza.bas){target=_blank}
+[scramble.bas](https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games%201/scramble.bas){target=_blank}
 
 :::
 :::
@@ -33,6 +32,10 @@ HI! I''M ELIZA. WHAT''S YOUR PROBLEM?
 SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for everyday calculations, scripts and prototypes. SmallBASIC includes trigonometric, matrices and algebra functions, a built in IDE, a powerful string library, system, sound, and graphic commands along with structured programming syntax.
 
 [Read more](/pages/guide.html)
+
+## New discussion forum
+
+The Retrogamecoding and Basicprogramming Forum is scheduled for closure on 4th of November 2019. A new forum has been created at www.syntaxbomb.com. Click the **Discuss** link above and join the discussion!
 
 ## Cool new sample program, news on progress
 
