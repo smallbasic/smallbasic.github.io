@@ -1,5 +1,9 @@
 # Community
 
+## Forum
+
+- [SyntaxBomb / Languages & Coding / SmallBASIC](https://www.syntaxbomb.com/index.php/board,54.0.html)
+
 ## Issues
 - [GitHub](https://github.com/smallbasic/SmallBASIC/issues){target=new}
 - [Sourceforge](https://sourceforge.net/p/smallbasic/_list/tickets?source=navbar)
