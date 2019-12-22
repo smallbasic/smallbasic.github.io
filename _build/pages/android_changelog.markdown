@@ -5,6 +5,11 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**0.12.17 (22 December 2019)**
+
+- Fix module access in newer android versions.
+- Fix edit label display
+
 **0.12.16 (25 August 2019)**
 
 - Fix crash in ChromeOS when minimising

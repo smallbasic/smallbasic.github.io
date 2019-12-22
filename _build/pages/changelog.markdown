@@ -1,6 +1,29 @@
 Changelog
 =========
 
+**0.12.17 (22 December 2019)**
+
+- COMMON: Implement select case by func. Issue #83
+- COMMON: fix dirwalk error handling
+- FLTK: version recreated for FLTK v1.4.0
+- SDL: add menu control key indicators
+- SDL: fix issue #81 - numlock handling
+- SDL: now uses miniaudio library for sound
+
+**0.12.15 / 0.12.16 (only released for Android) **
+
+- SDL: added -n command line option to run then not pause for back key
+- SDL: update editor find and replace
+- COMMON: Implemented - FOR character IN string
+- UI: ALT+F4 from edit/run now returns to edit
+- UI: avoid flicker from with ALT+F4 -e edit startup
+- UI: Edit enter now continues prior line comment
+- UI: added kill-word editor command (alt+d)
+- UI: added select-word editor command (alt+w)
+- UI: find command primed from editor selection
+- Fix crash when using GOTO with a non-existent label
+- Fix crash in editor when double tapping empty document
+
 **0.12.14 (18 October 2018)**
 
 - Changed UI display from black to be a slightly lighter onyx color.

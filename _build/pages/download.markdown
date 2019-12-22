@@ -6,11 +6,11 @@
 
 ## Windows
 
-[0.12.14](https://sourceforge.net/projects/smallbasic/files/Windows/0.12.14/smallbasic_0.12.14.zip){target="_blank"}
+[0.12.17](https://github.com/smallbasic/SmallBASIC/releases/download/0_12_17/smallbasic_0.12.17.zip){target="_blank"}
 
 ## Linux
 
-- [Ubuntu 64 bit - 0.12.14](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.14/smallbasic_0.12.14_amd64.deb){target="_blank"}
+- [Ubuntu 64 bit - 0.12.17](https://github.com/smallbasic/SmallBASIC/releases/download/0_12_17/smallbasic_0.12.17_amd64.deb){target="_blank"}
 - [Ubuntu 32 bit - 0.12.9](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.9/smallbasic_0.12.9_i386.deb){target="_blank"}
 - [Raspberry PI - 0.12.6](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.6/smallbasic_0.12.6_armhf.deb){target="_blank"}
 

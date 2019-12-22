@@ -33,6 +33,10 @@ SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for ever
 
 [Read more](/pages/guide.html)
 
+## SmallBASIC version 0.12.17 has been released
+
+For details see: https://github.com/smallbasic/SmallBASIC/releases/tag/0_12_17
+
 ## New discussion forum
 
 The Retrogamecoding and Basicprogramming Forum is scheduled for closure on 4th of November 2019. A new forum has been created at www.syntaxbomb.com. Click the **Discuss** link above and join the discussion!
