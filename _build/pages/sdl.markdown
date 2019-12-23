@@ -1,4 +1,30 @@
-# SDL
+# sbasicg (SDL)
+
+## Live mode
+
+Live mode uses a secondary output window to display the results of your program when ever you press save.
+
+To enter live mode, press the `F8` key from the file editor. Note the keystroke help window documents the `F8` key along with other supported functions.
+
+![](/images/press_f8.png "Press F8")
+
+Start making changes to your program, then press `Ctrl + s` to save your changes to the file. The program output will appear in the secondary window. The secondary window will run the program to completion. It then waits until the file has changed before restarting the program. Note if you press save while your program is waiting for user input, then changes will not yet appear.
+
+![](/images/press_save.png "Press Save")
+
+## Debugging
+
+sbasicg supports a limited form of interactive debugging. You can set a break-point by pressing `Ctrl + t` over the intended program line.  This also allows you to use the `Ctrl + g` keystroke to navigate between markers.
+
+![](/images/control_t.png "Set marker")
+
+Press the `F5` key to start the debugging session. This will cause a secondary output window to appear.
+
+![](/images/debug.png "Set marker")
+
+You can now press `F6` to step through program lines, or `F7` to continue. The program will either then run to completion or stop when encountering a marker line. A dump of variables and the current stack position appear in the right hand pane. Note this can become very messy with large programs limiting its usefulness. The alternative is to use the LOGPRINT command. This outputs to the DebugView app in Windows or to the bash console in Linux.
+
+![](/images/press_f6.png "Set marker")
 
 ## How to use better looking fonts in the Windows version
 

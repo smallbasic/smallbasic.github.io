@@ -73,7 +73,20 @@
       </div>
     </div>
 <div class="article">
-<h1 id="sdl">SDL</h1>
+<h1 id="sbasicg-sdl">sbasicg (SDL)</h1>
+<h2 id="live-mode">Live mode</h2>
+<p>Live mode uses a secondary output window to display the results of your program when ever you press save.</p>
+<p>To enter live mode, press the <code>F8</code> key from the file editor. Note the keystroke help window documents the <code>F8</code> key along with other supported functions.</p>
+<p><img src="/images/press_f8.png" title="Press F8" /></p>
+<p>Start making changes to your program, then press <code>Ctrl + s</code> to save your changes to the file. The program output will appear in the secondary window. The secondary window will run the program to completion. It then waits until the file has changed before restarting the program. Note if you press save while your program is waiting for user input, then changes will not yet appear.</p>
+<p><img src="/images/press_save.png" title="Press Save" /></p>
+<h2 id="debugging">Debugging</h2>
+<p>sbasicg supports a limited form of interactive debugging. You can set a break-point by pressing <code>Ctrl + t</code> over the intended program line. This also allows you to use the <code>Ctrl + g</code> keystroke to navigate between markers.</p>
+<p><img src="/images/control_t.png" title="Set marker" /></p>
+<p>Press the <code>F5</code> key to start the debugging session. This will cause a secondary output window to appear.</p>
+<p><img src="/images/debug.png" title="Set marker" /></p>
+<p>You can now press <code>F6</code> to step through program lines, or <code>F7</code> to continue. The program will either then run to completion or stop when encountering a marker line. A dump of variables and the current stack position appear in the right hand pane. Note this can become very messy with large programs limiting its usefulness. The alternative is to use the LOGPRINT command. This outputs to the DebugView app in Windows or to the bash console in Linux.</p>
+<p><img src="/images/press_f6.png" title="Set marker" /></p>
 <h2 id="how-to-use-better-looking-fonts-in-the-windows-version">How to use better looking fonts in the Windows version</h2>
 <ol type="1">
 <li>Envy font</li>
