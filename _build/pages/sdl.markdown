@@ -20,11 +20,11 @@ sbasicg supports a limited form of interactive debugging. You can set a break-po
 
 Press the `F5` key to start the debugging session. This will cause a secondary output window to appear.
 
-![](/images/debug.png "Set marker")
+![](/images/debug.png "Start debugging")
 
 You can now press `F6` to step through program lines, or `F7` to continue. The program will either then run to completion or stop when encountering a marker line. A dump of variables and the current stack position appear in the right hand pane. Note this can become very messy with large programs limiting its usefulness. The alternative is to use the LOGPRINT command. This outputs to the DebugView app in Windows or to the bash console in Linux.
 
-![](/images/press_f6.png "Set marker")
+![](/images/press_f6.png "Step through code")
 
 ## How to use better looking fonts in the Windows version
 
