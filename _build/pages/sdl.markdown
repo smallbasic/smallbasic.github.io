@@ -2,7 +2,7 @@
 
 ## Live mode
 
-Live mode uses a secondary output window to display the results of your program when ever you press save.
+Live mode uses a secondary output window to display the results of your program whenever you press save.
 
 To enter live mode, press the `F8` key from the file editor. Note the keystroke help window documents the `F8` key along with other supported functions.
 
