@@ -33,6 +33,10 @@ SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for ever
 
 [Read more](/pages/guide.html)
 
+## SmallBASIC version 0.12.18 has been released
+
+For details see: [release notes](https://github.com/smallbasic/SmallBASIC/releases/tag/0_12_18). Please report any issues to either the forum, email or github issues page.
+
 ## SmallBASIC version 0.12.17 has been released
 
 For details see: [release notes](https://github.com/smallbasic/SmallBASIC/releases/tag/0_12_17). The windows package includes sbasici.exe which is a recreation of the previous FLTK version. Please report any issues to either the forum, email or github issues page.

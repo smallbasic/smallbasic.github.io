@@ -6,7 +6,7 @@
 
 ## Windows
 
-[0.12.17](https://github.com/smallbasic/SmallBASIC/releases/download/0_12_17/smallbasic_0.12.17.zip){target="_blank"}
+[0.12.18](https://github.com/smallbasic/SmallBASIC/releases/download/0_12_18/smallbasic_0.12.18.zip){target="_blank"}
 
 ## Linux
 
