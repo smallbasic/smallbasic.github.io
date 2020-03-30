@@ -1,6 +1,13 @@
 Changelog
 =========
 
+**0.12.18 (28 March 2020) **
+
+- SDL: fix issue #81 - numlock handling
+- FLTK: added live editing menu item
+- COMMON: increase stack size to 1024
+- COMMON: Fix path for HOME constant
+
 **0.12.17 (22 December 2019)**
 
 - COMMON: Implement select case by func. Issue #83
