@@ -10,3 +10,8 @@
 - [FLTK](/pages/fltk.html)
 - [TRY/CATCH](/pages/trycatch.html)
 - [Network programming](/pages/network.html)
+
+## Programming SmallBASIC  by Gerard Thomas Lab&egrave;rnia
+
+- [English](/docs/smallbasic.en.pdf)
+- [Catalan](/docs/smallbasic.ca.pdf)
