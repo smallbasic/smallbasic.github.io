@@ -682,6 +682,6 @@ div.date > div {
 }
 
 div.date > div:before {
-  content: "\1f550";
+  content: "\1f558";
   padding-right: .5em;
 }
