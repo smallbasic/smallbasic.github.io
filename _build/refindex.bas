@@ -1,6 +1,7 @@
 unit refindex
 
 export build
+export build_all
 
 sub build(label_str, package)
   tload "reference.json", s, 1
@@ -29,3 +30,27 @@ sub build(label_str, package)
   next i
   print ("</ul></div></div>")
 end  
+
+sub build_all()
+  local s, i, j, keywords  
+  tload "reference.json", s, 1
+  local ref = array(s)
+
+  for i in ref
+    for j = 0 to len(ref[i]) - 1
+      keywords << [ref[i][j].keyword, ref[i][j].help, ref[i][j].nodeID]
+      print 
+    next j
+  next i
+
+  func cmpfunc(a, b)
+    return iff(a[0] == b[0], 0, iff(a[0] < b[0], -1, 1))
+  end
+
+  sort keywords use cmpfunc(x,y)
+
+  for i = 0 to len(keywords) - 1
+    print ("<a title=\"" + keywords[i][1] + "\" href=\"/reference/" + keywords[i][2] + ".html\">" + keywords[i][0] + "</a>&nbsp;")
+  next i  
+end  
+

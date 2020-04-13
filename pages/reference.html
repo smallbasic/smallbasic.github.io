@@ -59,67 +59,653 @@
       </div>
       <div class="tabsRight">
         <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/reference.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/reference.markdown">View history</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/scripts/reference.html">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/scripts/reference.html">View history</a></li>
         </ul>
       </div>
     </div>
 <div class="article">
-<h1 id="language-reference">Language reference</h1>
-<p>BASIC is a very simple language and it is a perfect tool for calculations or utilities. Its name stands for (B)eginners (A)ll-purpose (S)ymbolic (I)nstruction (c)ode. It was developed by John Kemeny and Thomas Kurtz at Dartmouth College during the middle of 1960, and was one of the most popular languages for several decades.</p>
-<div class="contentsPanel">
-<div class="contentsHeader">
-<p>Contents</p>
-</div>
-<ol>
-<li><a href="/pages/console.html">Console</a></li>
-<li><a href="/pages/data.html">Data</a></li>
-<li><a href="/pages/date.html">Date</a></li>
-<li><a href="/pages/file.html">File</a></li>
-<li><a href="/pages/graphics.html">Graphics</a></li>
-<li><a href="/pages/language.html">Language</a></li>
-<li><a href="/pages/math.html">Math</a></li>
-<li><a href="/pages/string.html">String</a></li>
-<li><a href="/pages/system.html">System</a></li>
-</ol>
-</div>
-<h2 id="how-to-read-the-language-reference-syntax">How to read the language reference syntax</h2>
-<ul>
-<li>Everything written inside of [] characters are optional values.</li>
-<li>Everything written inside of { characters means you must select one of them.</li>
-<li>The symbol | means OR.</li>
-<li>The symbols … mean you can repeat the previous syntax.</li>
-<li>Keywords are written with capital letters.</li>
-<li>Parameters are written with lower letters.</li>
-<li>Keywords with suffix () are functions.</li>
-<li>Parameters with suffix () are arrays.</li>
-</ul>
-<pre><code>FOO     &lt;- This is keyword
-FOO()   &lt;- This is function
-foo     &lt;- This is variable/parameter
-foo()   &lt;- This is array/parameter
-{A|B}   &lt;- This means that you must type A or B
-[{A|B}] &lt;- This means that you must use A or B or nothing</code></pre>
-<p>The following example means that you must give the first parameter (a) but you can use the second (x) only if you want to. But if you want to use the (x) you must also separate it from (a) with a comma.</p>
-<pre><code>FOO a[, x]</code></pre>
-<p>The next example means that you must use the first parameter. You can also use second parameter but you must separate it with ‘,’ or ‘;’. You can also repeat the last syntax more times.</p>
-<pre><code>FOO var [{,|;} var2 [...]]</code></pre>
-<h2 id="searching-this-site">Searching this site</h2>
-<p>You can find:</p>
-<ul>
-<li>Escape codes under Console or under Articles “Escape Codes”</li>
-<li>ARRAY under Data</li>
-<li>ISMAP under Data</li>
-<li>ISREF under Data</li>
-<li>STEP under Graphics</li>
-<li>aspect under Graphics</li>
-<li>FILLED under Graphics</li>
-<li>COLOR under Graphics</li>
-</ul>
+  <h1 id="language-reference">Language reference</h1>
+  <p>BASIC is a very simple language and it is a perfect tool for calculations or utilities. Its name stands for (B)eginners (A)ll-purpose (S)ymbolic (I)nstruction (c)ode. It was developed by John Kemeny and Thomas Kurtz at Dartmouth College during the middle of 1960, and was one of the most popular languages for several decades.</p>
+  <a href="/pages/reference_help.html">More...</a>
+  <div class="lavenderBox">
+    <div class="header">Keywords</div>
+    <div class="linklist">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a title="Returns the absolute value of x." href="/reference/704.html">ABS</a>&nbsp;
+<a title="Returns the absolute max value of x." href="/reference/705.html">ABSMAX</a>&nbsp;
+<a title="Returns the absolute min value of x." href="/reference/706.html">ABSMIN</a>&nbsp;
+<a title="Returns the access rights of the file." href="/reference/580.html">ACCESS</a>&nbsp;
+<a title="Inverse cosine." href="/reference/707.html">ACOS</a>&nbsp;
+<a title="Inverse cosine." href="/reference/708.html">ACOSH</a>&nbsp;
+<a title="Inverse cotangent." href="/reference/709.html">ACOT</a>&nbsp;
+<a title="Inverse cotangent." href="/reference/710.html">ACOTH</a>&nbsp;
+<a title="Inverse co secant." href="/reference/711.html">ACSC</a>&nbsp;
+<a title="Inverse co secant." href="/reference/712.html">ACSCH</a>&nbsp;
+<a title="Logical AND. Right side is not evaluated if left side evaluates to False." href="/reference/662.html">AND</a>&nbsp;
+<a title="Inserts the values at the end of the specified array." href="/reference/581.html">APPEND</a>&nbsp;
+<a title="Draws an arc. astart, aend = first,last angle in radians." href="/reference/611.html">ARC</a>&nbsp;
+<a title="Creates a ARRAY or MAP variable from the given string or expression" href="/reference/1432.html">ARRAY</a>&nbsp;
+<a title="See: OPEN" href="/reference/1424.html">AS</a>&nbsp;
+<a title="Returns the ASCII code of first character of the string s." href="/reference/771.html">ASC</a>&nbsp;
+<a title="Inverse secant." href="/reference/713.html">ASEC</a>&nbsp;
+<a title="Inverse secant." href="/reference/714.html">ASECH</a>&nbsp;
+<a title="Inverse sine." href="/reference/715.html">ASIN</a>&nbsp;
+<a title="Inverse sine." href="/reference/716.html">ASINH</a>&nbsp;
+<a title="Moves the console cursor to the specified position. x,y are in pixels." href="/reference/521.html">AT</a>&nbsp;
+<a title="Inverse tangent." href="/reference/717.html">ATAN</a>&nbsp;
+<a title="Inverse tangent (x,y)." href="/reference/718.html">ATAN2</a>&nbsp;
+<a title="Inverse tangent." href="/reference/719.html">ATANH</a>&nbsp;
+<a title="Inverse tangent." href="/reference/720.html">ATN</a>&nbsp;
+<a title="Bitwise AND." href="/reference/663.html">BAND</a>&nbsp;
+<a title="Converts (B)ASIC-style strings to (C)-style (S)trings." href="/reference/772.html">BCS</a>&nbsp;
+<a title="Generates a beep sound." href="/reference/522.html">BEEP</a>&nbsp;
+<a title="Play sound in the background. This prevent the program from blocking while the sound plays." href="/reference/1428.html">BG</a>&nbsp;
+<a title="Reads and returns a byte from file or device (Binary mode) ." href="/reference/602.html">BGETC</a>&nbsp;
+<a title="Returns the binary value of x as string." href="/reference/773.html">BIN</a>&nbsp;
+<a title="Loads a specified memory image file into memory." href="/reference/582.html">BLOAD</a>&nbsp;
+<a title="Bitwise OR." href="/reference/664.html">BOR</a>&nbsp;
+<a title="Writes a byte on file or device. (Binary mode)." href="/reference/583.html">BPUTC</a>&nbsp;
+<a title="Copies a specified portion of memory to a specified file." href="/reference/584.html">BSAVE</a>&nbsp;
+<a title="Sub/func argument declaration. Changes to the variable will be passed back to the caller.  Equivalent syntax to the @ character." href="/reference/639.html">BYREF</a>&nbsp;
+<a title="Invoke a sub or func by address pointer." href="/reference/637.html">CALL</a>&nbsp;
+<a title="Branch condition for a SELECT statement." href="/reference/640.html">CASE</a>&nbsp;
+<a title="Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline, -2 = underline-off, 3 = reverse, -3 = reverse-off." href="/reference/538.html">CAT</a>&nbsp;
+<a title="The CATCH statement is used to CATCH an run-time error. This is typically used with errors raised when calling a file system command that cannot be completed, for example attempting to open a non-existent file. The CATCH statement has two modes. You can supply a variable argument to store the error string. Alternatively you can supply an expression. When the raised error matches the (String) expression, the error will be caught. When using the expression mode, you can supply a succession of CATCH statements to handle various error messages separately." href="/reference/1426.html">CATCH</a>&nbsp;
+<a title="Converts (C)-style strings to (B)ASIC-style (S)trings." href="/reference/774.html">CBS</a>&nbsp;
+<a title="Convert x to 64b real number. Meaningless. Used for compatibility." href="/reference/552.html">CDBL</a>&nbsp;
+<a title="Smallest integral value not less than x." href="/reference/721.html">CEIL</a>&nbsp;
+<a title="Compile and run the given source. Source can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process." href="/reference/1439.html">CHAIN</a>&nbsp;
+<a title="Draws a chart of array values in the rectangular area x1,y1,x2,y2. Styles: 0 = simple, 1 = with-marks, 2 = with ruler, 3 = with marks and ruler." href="/reference/612.html">CHART</a>&nbsp;
+<a title="Changes the current working directory." href="/reference/585.html">CHDIR</a>&nbsp;
+<a title="Change permissions of a file. See also ACCESS." href="/reference/586.html">CHMOD</a>&nbsp;
+<a title="Chops off the last character of the string 'source' and returns the result." href="/reference/775.html">CHOP</a>&nbsp;
+<a title="Returns one-char string of character with ASCII code x." href="/reference/776.html">CHR</a>&nbsp;
+<a title="Converts x to 32b integer. Meaningless. Used for compatibility." href="/reference/553.html">CINT</a>&nbsp;
+<a title="Draws a circle (or an ellipse if the aspect is specified)." href="/reference/613.html">CIRCLE</a>&nbsp;
+<a title="Close a file or device." href="/reference/587.html">CLOSE</a>&nbsp;
+<a title="Clears the screen." href="/reference/524.html">CLS</a>&nbsp;
+<a title="Specifies the foreground and background colors." href="/reference/614.html">COLOR</a>&nbsp;
+<a title="SmallBASIC startup command line options." href="/reference/1521.html">COMMAND</a>&nbsp;
+<a title="Declare a variable who's value does not change during program execution." href="/reference/678.html">CONST</a>&nbsp;
+<a title="Makes a copy of specified file to the 'newfile'." href="/reference/588.html">COPY</a>&nbsp;
+<a title="Cosine." href="/reference/722.html">COS</a>&nbsp;
+<a title="Cosine." href="/reference/723.html">COSH</a>&nbsp;
+<a title="Cotangent." href="/reference/724.html">COT</a>&nbsp;
+<a title="Cotangent." href="/reference/725.html">COTH</a>&nbsp;
+<a title="Convert x to 64b real number. Meaningless. Used for compatibility." href="/reference/554.html">CREAL</a>&nbsp;
+<a title="Co secant." href="/reference/726.html">CSC</a>&nbsp;
+<a title="Co secant." href="/reference/727.html">CSCH</a>&nbsp;
+<a title="Current working directory" href="/reference/1522.html">CWD</a>&nbsp;
+<a title="Stores one or more constants, of any type, for subsequent access via READ command." href="/reference/569.html">DATA</a>&nbsp;
+<a title="Returns the current date as string \"DD/MM/YYYY\"." href="/reference/575.html">DATE</a>&nbsp;
+<a title="Returns the day, month and the year as integers." href="/reference/573.html">DATEDMY</a>&nbsp;
+<a title="Returns formatted date string." href="/reference/576.html">DATEFMT</a>&nbsp;
+<a title="Forward declare SUB or FUNC. Obsolete QB compatibility" href="/reference/1419.html">DECLARE</a>&nbsp;
+<a title="Defines a single line function. eg, DEF MySin(x) = SIN(x): ? MySin(pi/2)" href="/reference/641.html">DEF</a>&nbsp;
+<a title="Binds a keystroke to a user defined function" href="/reference/1015.html">DEFINEKEY</a>&nbsp;
+<a title="Radians to degrees." href="/reference/728.html">DEG</a>&nbsp;
+<a title="Delay for a specified amount of milliseconds. Note 'delay' depends on the system clock." href="/reference/806.html">DELAY</a>&nbsp;
+<a title="Deletes 'count' elements at position 'idx' of array 'a'." href="/reference/542.html">DELETE</a>&nbsp;
+<a title="Calculation of derivative. errcode = 0 for success; otherwise calculation error. " href="/reference/693.html">DERIV</a>&nbsp;
+<a title="Determinant of A. toler = tolerance number. the absolute value of the lowest acceptable number. default = 0." href="/reference/729.html">DETERM</a>&nbsp;
+<a title="Differential equation - Runge-Kutta method. x0 = initial x,y, xf = x final. errcode = 0 for success; otherwise calculation error. yf = result." href="/reference/694.html">DIFFEQN</a>&nbsp;
+<a title="Reserves storage space for an array." href="/reference/570.html">DIM</a>&nbsp;
+<a title="Walk through the specified directories. The user-defined function must returns zero to stop the process." href="/reference/589.html">DIRWALK</a>&nbsp;
+<a title="Discloses a string." href="/reference/777.html">DISCLOSE</a>&nbsp;
+<a title="FOR f IN files(\"*.txt\") DO PRINT f" href="/reference/642.html">DO</a>&nbsp;
+<a title="Draw lines as specified by the given directional commands. " href="/reference/615.html">DRAW</a>&nbsp;
+<a title="Draws a polyline. " href="/reference/616.html">DRAWPOLY</a>&nbsp;
+<a title="foo = 2: if foo==1: ? \"one\": ELIF foo==2: ? \"two\": fi" href="/reference/643.html">ELIF</a>&nbsp;
+<a title="foo = 2: if foo==1: ? \"one\": ELSE: ? \"not one\": fi" href="/reference/644.html">ELSE</a>&nbsp;
+<a title="foo = 2: if foo==1: ? \"one\": ELSEIF foo==2: ? \"two\": fi" href="/reference/645.html">ELSEIF</a>&nbsp;
+<a title="Returns true if x is: a zero length array, an empty string, an integer or real with the value 0." href="/reference/543.html">EMPTY</a>&nbsp;
+<a title="Encloses a string." href="/reference/778.html">ENCLOSE</a>&nbsp;
+<a title="Declares the END of a SUB or FUNC." href="/reference/679.html">END</a>&nbsp;
+<a title="The END TRY statement marks the end of a TRY/CATCH block." href="/reference/1427.html">END TRY</a>&nbsp;
+<a title="foo = 1: if foo==1: ? \"one\": ENDIF" href="/reference/646.html">ENDIF</a>&nbsp;
+<a title="Adds a variable to or deletes a variable from the current environment variable-table." href="/reference/807.html">ENV</a>&nbsp;
+<a title="Returns the value of a specified entry in the current environment table. If the parameter is empty (\"\") then returns an array of the environment variables (in var=value form)." href="/reference/815.html">ENV</a>&nbsp;
+<a title="Returns true if the file pointer is at end of the file. For COMx and SOCL VFS returns true if the connection is broken." href="/reference/603.html">EOF</a>&nbsp;
+<a title="Bitwise equivalence." href="/reference/665.html">EQV</a>&nbsp;
+<a title="Deallocates the memory used by the specified arrays or variables. After that these variables turned to simple integers with zero value." href="/reference/571.html">ERASE</a>&nbsp;
+<a title="Transfers control to another operating system program." href="/reference/1443.html">EXEC</a>&nbsp;
+<a title="Returns true if file exists." href="/reference/604.html">EXIST</a>&nbsp;
+<a title="Exits a multi line function definition, a loop, or a subprogram. By default (if no parameter is specified) exits from last command block (loop, for-loop or routine)." href="/reference/648.html">EXIT</a>&nbsp;
+<a title="Returns the value of e raised to the power of x." href="/reference/730.html">EXP</a>&nbsp;
+<a title="Export a SUB, FUNC or variable from a UNIT to be used by the unit consumer." href="/reference/1440.html">EXPORT</a>&nbsp;
+<a title="Returns an array with 'count' elements. Each element had the 'y' value of its position as it is returned by the expression." href="/reference/695.html">EXPRSEQ</a>&nbsp;
+<a title="FALSE" href="/reference/1457.html">FALSE</a>&nbsp;
+<a title="Declares the end of an IF statement. Same as ENDIF." href="/reference/650.html">FI</a>&nbsp;
+<a title="Returns an array with the filenames. If there are no files returns an empty array." href="/reference/605.html">FILES</a>&nbsp;
+<a title="Rounds x upwards to the nearest integer." href="/reference/731.html">FIX</a>&nbsp;
+<a title="Largest integer value not greater than x." href="/reference/732.html">FLOOR</a>&nbsp;
+<a title="Defines a FOR/NEXT loop. FOR counter = start TO end [STEP incr] ... NEXT.  FOR element IN array (or map) ... NEXT." href="/reference/680.html">FOR</a>&nbsp;
+<a title="Creates a form object from a MAP variable. This provides access to the following sub-commands: doEvents, close, refresh. The form MAP may contain the following properties: value, inputs, focus. Inputs is an array of MAP, each may contain the following properties: x, y, width, height, value, label, name, type, backgroundColor, color, visible, isExit, selectedIndex, length, noFocus, onclick" href="/reference/525.html">FORM</a>&nbsp;
+<a title="Returns a formated string." href="/reference/779.html">FORMAT</a>&nbsp;
+<a title="Fractional part of x." href="/reference/733.html">FRAC</a>&nbsp;
+<a title="Returns system information. eg, 0 = free memory, " href="/reference/606.html">FRE</a>&nbsp;
+<a title="Returns an unused file handle." href="/reference/607.html">FREEFILE</a>&nbsp;
+<a title="Declares a function. Return a value by assigning a 'variable' with the same name as the function." href="/reference/651.html">FUNC</a>&nbsp;
+<a title="Causes program execution to branch to the specified label; when the RETURN command is encountered, execution branches to the command immediately following the most recent GOSUB command." href="/reference/681.html">GOSUB</a>&nbsp;
+<a title="Causes program execution to branch to a specified position (label)." href="/reference/682.html">GOTO</a>&nbsp;
+<a title="Returns the hexadecimal value of x as string." href="/reference/780.html">HEX</a>&nbsp;
+<a title="User HOME folder" href="/reference/1525.html">HOME</a>&nbsp;
+<a title="Tests the expression and IF it evaluates to a non-zero value program flow will resume after the following THEN statement." href="/reference/683.html">IF</a>&nbsp;
+<a title="Inline version of IF. eg, animal = \"cat\": fur = IFF( animal = \"cat\", \"yes\", \"no\"): ? fur" href="/reference/638.html">IFF</a>&nbsp;
+<a title="Creates a graphical image object providing access to the following sub-commands: show([x,y [,zindex [,opacity]]]), hide, save([x,y [,w,h]])" href="/reference/617.html">IMAGE</a>&nbsp;
+<a title="Used to perform a logical implication on two expressions." href="/reference/666.html">IMP</a>&nbsp;
+<a title="Import an exported UNIT variable, SUB or FUNC." href="/reference/1441.html">IMPORT</a>&nbsp;
+<a title="Returns an index (1 Based) to the matching element when b is an array. Returns TRUE if the value is contained within b as a string." href="/reference/667.html">IN</a>&nbsp;
+<a title="Inserts code in the named file when the program is compiled. " href="/reference/1462.html">INCLUDE</a>&nbsp;
+<a title="Returns the last key-code in keyboard buffer, or an empty string if there are no keys. Special key-codes like the function-keys are returned as 2-byte string." href="/reference/539.html">INKEY</a>&nbsp;
+<a title="Reads data from file." href="/reference/590.html">INPUT</a>&nbsp;
+<a title="Reads 'len' bytes from file or console (if fileN is omitted). This function does not convert the data or remove spaces." href="/reference/608.html">INPUT</a>&nbsp;
+<a title="Reads from \"keyboard\" text and stores it in a variable." href="/reference/527.html">INPUT</a>&nbsp;
+<a title="Inserts the values to the specified array at the position idx." href="/reference/544.html">INSERT</a>&nbsp;
+<a title="Returns the position of the first occurrence of the string s2 into string s1 (starting from the position 'start'). If there is no match, INSTR returns 0" href="/reference/781.html">INSTR</a>&nbsp;
+<a title="Rounds x downwards to the nearest integer." href="/reference/734.html">INT</a>&nbsp;
+<a title="Calculates the intersection of the two line segments A-B and C-D. Returns: Rx,Ry = cross." href="/reference/696.html">INTERSECT</a>&nbsp;
+<a title="Returns the inverse matrix of A." href="/reference/735.html">INVERSE</a>&nbsp;
+<a title="Returns true if x is an array." href="/reference/555.html">ISARRAY</a>&nbsp;
+<a title="Returns true if x is a directory." href="/reference/556.html">ISDIR</a>&nbsp;
+<a title="Returns true if x is a regular file." href="/reference/557.html">ISFILE</a>&nbsp;
+<a title="Returns true if x is a link." href="/reference/558.html">ISLINK</a>&nbsp;
+<a title="Returns true if x is an MAP variable type. A MAP provides value-key pair access along with array or dotted notation. The MAP can be initialized from a String variable using the ARRAY command." href="/reference/1430.html">ISMAP</a>&nbsp;
+<a title="Returns true if x is a number (or it can be converted to a number)." href="/reference/559.html">ISNUMBER</a>&nbsp;
+<a title="Returns true if x is a string (and cannot be converted to a number)." href="/reference/560.html">ISSTRING</a>&nbsp;
+<a title="Returns the words of the specified string into array 'words'." href="/reference/545.html">JOIN</a>&nbsp;
+<a title="Returns the Julian date. (dates must be greater than 1/1/100 AD)." href="/reference/577.html">JULIAN</a>&nbsp;
+<a title="Deletes the specified file." href="/reference/591.html">KILL</a>&nbsp;
+<a title="Defines a label. A label marks a position in the code." href="/reference/684.html">LABEL</a>&nbsp;
+<a title="Returns the lower bound of 'array'." href="/reference/561.html">LBOUND</a>&nbsp;
+<a title="Converts the string s to lower case." href="/reference/782.html">LCASE</a>&nbsp;
+<a title="Returns the n number of leftmost chars of string s. if not specified n = 1." href="/reference/783.html">LEFT</a>&nbsp;
+<a title="Returns the left part of s1 at the position of the first occurrence of the string s2 into string s1." href="/reference/784.html">LEFTOF</a>&nbsp;
+<a title="Returns the left part of s1 at the position of the last occurrence of the string s2 into string s1." href="/reference/785.html">LEFTOFLAST</a>&nbsp;
+<a title="Returns the length of the value contained in the variable." href="/reference/562.html">LEN</a>&nbsp;
+<a title="Assigns a value to the variable." href="/reference/685.html">LET</a>&nbsp;
+<a title="Regular-expression operator. Compares the left part of the expression with the right side regex pattern." href="/reference/668.html">LIKE</a>&nbsp;
+<a title="Draws a line." href="/reference/618.html">LINE</a>&nbsp;
+<a title="Reads a whole text line from file or console." href="/reference/528.html">LINEINPUT</a>&nbsp;
+<a title="Returns an array with the values of the unknowns. This function solves equations using the Gauss-Jordan method." href="/reference/736.html">LINEQN</a>&nbsp;
+<a title="Reads a whole text line from file or console." href="/reference/529.html">LINPUT</a>&nbsp;
+<a title="Declare local variables inside a SUB or FUNC. Local variables no longer exist once the SUB or FUNC has returned." href="/reference/653.html">LOCAL</a>&nbsp;
+<a title="Moves the console cursor to the specified position. x,y are in character cells." href="/reference/530.html">LOCATE</a>&nbsp;
+<a title="Lock a record or an area (not yet implemented)." href="/reference/592.html">LOCK</a>&nbsp;
+<a title="Returns the length of file in bytes. For other devices, returns the number of available data." href="/reference/609.html">LOF</a>&nbsp;
+<a title="Returns the natural logarithm of x." href="/reference/737.html">LOG</a>&nbsp;
+<a title="Returns the base-10 logarithm of x." href="/reference/738.html">LOG10</a>&nbsp;
+<a title="PRINT to the application logfile. The syntax is the same as command PRINT." href="/reference/531.html">LOGPRINT</a>&nbsp;
+<a title="Converts the string s to lower case." href="/reference/786.html">LOWER</a>&nbsp;
+<a title="Performs an arithmetic left shift on a bit pattern." href="/reference/1496.html">LSHIFT</a>&nbsp;
+<a title="Removes leading white-spaces from string s." href="/reference/787.html">LTRIM</a>&nbsp;
+<a title="Apply matrix to poly-line." href="/reference/697.html">M3APPLY</a>&nbsp;
+<a title="Resets matrix (Identity)." href="/reference/698.html">M3IDENT</a>&nbsp;
+<a title="Rotate by angle with center x,y." href="/reference/699.html">M3ROTATE</a>&nbsp;
+<a title="Scale matrix." href="/reference/700.html">M3SCALE</a>&nbsp;
+<a title="Matrix translation." href="/reference/701.html">M3TRANS</a>&nbsp;
+<a title="Maximum value of parameters. " href="/reference/739.html">MAX</a>&nbsp;
+<a title="Holds the maximum value for an integer. The value depends on whether you are using a 32 or 64 bit build of SmallBASIC." href="/reference/1736.html">MAXINT</a>&nbsp;
+<a title="Modulus." href="/reference/669.html">MDL</a>&nbsp;
+<a title="Returns the part (length) of the string s starting from 'start' position." href="/reference/788.html">MID</a>&nbsp;
+<a title="Minimum value of parameters. Parameters can be anything (arrays, ints, reals, strings)." href="/reference/740.html">MIN</a>&nbsp;
+<a title="Create a directory." href="/reference/593.html">MKDIR</a>&nbsp;
+<a title="Modulus. Equivalent syntax to the percent character, eg a % b" href="/reference/670.html">MOD</a>&nbsp;
+<a title="Bitwise exclusive NOT AND." href="/reference/671.html">NAND</a>&nbsp;
+<a title="See FOR." href="/reference/654.html">NEXT</a>&nbsp;
+<a title="NIL is used to mean 'not set' as distinct from having an INT set to 0" href="/reference/1735.html">NIL</a>&nbsp;
+<a title="Bitwise NOT OR." href="/reference/672.html">NOR</a>&nbsp;
+<a title="Stop background sound and clear the sound queue." href="/reference/532.html">NOSOUND</a>&nbsp;
+<a title="Invert expression result. Equivalent syntax to the exclamation character, eg a ! b" href="/reference/673.html">NOT</a>&nbsp;
+<a title="Returns the octal value of x as string." href="/reference/789.html">OCT</a>&nbsp;
+<a title="Causes a branch to one of a list of labels." href="/reference/686.html">ON</a>&nbsp;
+<a title="Makes a file or device available for sequential input, sequential output." href="/reference/594.html">OPEN</a>&nbsp;
+<a title="Used to pass parameters to the run-time environment." href="/reference/1442.html">OPTION</a>&nbsp;
+<a title="Logical OR. Right side is not evaluated if left side evaluates to True." href="/reference/674.html">OR</a>&nbsp;
+<a title="Fills an enclosed area on the graphics screen with a specific color. x,y = Screen coordinate (column, row) within the area that is to be filled." href="/reference/619.html">PAINT</a>&nbsp;
+<a title="Pauses the execution for a specified length of time, or until user hit the keyboard." href="/reference/809.html">PAUSE</a>&nbsp;
+<a title="Returns the PEN/MOUSE data." href="/reference/627.html">PEN</a>&nbsp;
+<a title="Enables/Disables the PEN/MOUSE mechanism." href="/reference/533.html">PEN</a>&nbsp;
+<a title="Holds PI" href="/reference/1524.html">PI</a>&nbsp;
+<a title="Play musical notes." href="/reference/534.html">PLAY</a>&nbsp;
+<a title="Graph of f(x)." href="/reference/620.html">PLOT</a>&nbsp;
+<a title="Returns the color of the pixel at x,y." href="/reference/628.html">POINT</a>&nbsp;
+<a title="Returns the area of the polyline poly." href="/reference/741.html">POLYAREA</a>&nbsp;
+<a title="Polycent." href="/reference/742.html">POLYCENT</a>&nbsp;
+<a title="Returns the polyline's extents." href="/reference/702.html">POLYEXT</a>&nbsp;
+<a title="x raised to power of y." href="/reference/743.html">POW</a>&nbsp;
+<a title="Display text or the value of an expression." href="/reference/535.html">PRINT</a>&nbsp;
+<a title="Returns the current program line number." href="/reference/817.html">PROGLINE</a>&nbsp;
+<a title="Draw a pixel." href="/reference/621.html">PSET</a>&nbsp;
+<a title="Distance of point A from line B, C." href="/reference/744.html">PTDISTLN</a>&nbsp;
+<a title="Distance of point A from line segment B-C." href="/reference/745.html">PTDISTSEG</a>&nbsp;
+<a title="The sign of point Q from line segment A->B." href="/reference/746.html">PTSIGN</a>&nbsp;
+<a title="Degrees to radians." href="/reference/747.html">RAD</a>&nbsp;
+<a title="Seeds the random number generator." href="/reference/810.html">RANDOMIZE</a>&nbsp;
+<a title="Assigns values in DATA items to specified variables." href="/reference/546.html">READ</a>&nbsp;
+<a title="Draws a rectangular parallelogram." href="/reference/622.html">RECT</a>&nbsp;
+<a title="Same as DIM only the contents of x are preserved." href="/reference/547.html">REDIM</a>&nbsp;
+<a title="Code comments. Comments can also be introduced using # and single quote character. " href="/reference/688.html">REM</a>&nbsp;
+<a title="Renames the specified file." href="/reference/595.html">RENAME</a>&nbsp;
+<a title="Begins the definition of a REPEAT/UNTIL loop." href="/reference/689.html">REPEAT</a>&nbsp;
+<a title="Writes str into pos of source and returns the new string." href="/reference/790.html">REPLACE</a>&nbsp;
+<a title="Specifies the position of the next data to be read." href="/reference/572.html">RESTORE</a>&nbsp;
+<a title="Execution branches to the command immediately following the most recent GOSUB command." href="/reference/690.html">RETURN</a>&nbsp;
+<a title="Returns the RGB color codes for the specified values. Takes values 0..255 for each of the color." href="/reference/629.html">RGB</a>&nbsp;
+<a title="Returns the RGB color codes for the specified values. Takes values 0..1 for each of the color." href="/reference/630.html">RGBF</a>&nbsp;
+<a title="Returns the n number of rightmost chars of string s. if not specified n = 1." href="/reference/791.html">RIGHT</a>&nbsp;
+<a title="Returns the right part of s1 at the position of the first occurrence of the string s2 into string s1." href="/reference/792.html">RIGHTOF</a>&nbsp;
+<a title="Returns the right part of s1 at the position of the last occurrence of the string s2 into string s1." href="/reference/793.html">RIGHTOFLAST</a>&nbsp;
+<a title="Returns the position of the last occurrence of the string s2 into string s1 (starting from the position 'start')." href="/reference/794.html">RINSTR</a>&nbsp;
+<a title="Removes a directory." href="/reference/596.html">RMDIR</a>&nbsp;
+<a title="Returns a random number from the range 0 to 1." href="/reference/748.html">RND</a>&nbsp;
+<a title="Roots of F(x)." href="/reference/703.html">ROOT</a>&nbsp;
+<a title="Rounds the x to the nearest integer or number with 'decs' decimal digits." href="/reference/749.html">ROUND</a>&nbsp;
+<a title="Performs an arithmetic right shift on a bit pattern." href="/reference/1497.html">RSHIFT</a>&nbsp;
+<a title="Removes trailing white-spaces from string s." href="/reference/795.html">RTRIM</a>&nbsp;
+<a title="Loads a secondary copy of system's shell and, executes an program, or an shell command." href="/reference/818.html">RUN</a>&nbsp;
+<a title="Version and build information" href="/reference/1523.html">SBVER</a>&nbsp;
+<a title="Scans an array for the key. If key is not found the SEARCH command returns (in ridx) the value. (LBOUND(A)-1). In default-base arrays that means -1. The cmpfunc (if its specified) it takes 2 vars to compare. It must return 0 if x = y; non-zero if x <> y." href="/reference/548.html">SEARCH</a>&nbsp;
+<a title="Secant." href="/reference/750.html">SEC</a>&nbsp;
+<a title="Secant." href="/reference/751.html">SECH</a>&nbsp;
+<a title="Sets file position for the next read/write." href="/reference/597.html">SEEK</a>&nbsp;
+<a title="Returns the current file position." href="/reference/610.html">SEEK</a>&nbsp;
+<a title="Cosine of 2 line segments (A->B, C->D)." href="/reference/752.html">SEGCOS</a>&nbsp;
+<a title="Length of line segment." href="/reference/753.html">SEGLEN</a>&nbsp;
+<a title="Sinus of 2 line segments (A->B, C->D)." href="/reference/754.html">SEGSIN</a>&nbsp;
+<a title="Perform multiple tests on the expression. Offers a more concise syntax to writing successive IF tests." href="/reference/655.html">SELECT</a>&nbsp;
+<a title="Pseudo class instance variable" href="/reference/1734.html">SELF</a>&nbsp;
+<a title="Returns an array with 'count' elements. Each element has the x value of its position." href="/reference/755.html">SEQ</a>&nbsp;
+<a title="Sign of x (+1 for positive, -1 for negative and 0 for zero)." href="/reference/756.html">SGN</a>&nbsp;
+<a title="This command is used to display pending graphics operations allowing for smooth animations." href="/reference/1429.html">SHOWPAGE</a>&nbsp;
+<a title="Sine." href="/reference/757.html">SIN</a>&nbsp;
+<a title="Sine." href="/reference/758.html">SINH</a>&nbsp;
+<a title="Splits the string 'src' into variables which are separated by delimiters." href="/reference/768.html">SINPUT</a>&nbsp;
+<a title="Sorts an array. The cmpfunc if specified, takes 2 vars to compare and must return: -1 if x < y, +1 if x > y, 0 if x = y." href="/reference/549.html">SORT</a>&nbsp;
+<a title="Plays a sound." href="/reference/536.html">SOUND</a>&nbsp;
+<a title="Returns a string of n spaces." href="/reference/796.html">SPACE</a>&nbsp;
+<a title="Returns a string of n spaces." href="/reference/797.html">SPC</a>&nbsp;
+<a title="Returns the words of the specified string into array 'words'." href="/reference/769.html">SPLIT</a>&nbsp;
+<a title="Create formated string and storing it to var. See also: PRINT command." href="/reference/770.html">SPRINT</a>&nbsp;
+<a title="Square root of x." href="/reference/759.html">SQR</a>&nbsp;
+<a title="Removes all leading, trailing and duplicated white-space." href="/reference/798.html">SQUEEZE</a>&nbsp;
+<a title="Arithmetical mean." href="/reference/760.html">STATMEAN</a>&nbsp;
+<a title="Mean deviation." href="/reference/761.html">STATMEANDEV</a>&nbsp;
+<a title="Sample spread." href="/reference/762.html">STATSPREADP</a>&nbsp;
+<a title="Population spread." href="/reference/763.html">STATSPREADS</a>&nbsp;
+<a title="Specifies the loop counter increment in a FOR loop" href="/reference/1421.html">STEP</a>&nbsp;
+<a title="Display internal execution stack." href="/reference/812.html">STKDUMP</a>&nbsp;
+<a title="Terminates execution of a program, closes all files opened by the program, and returns control to the operating system." href="/reference/656.html">STOP</a>&nbsp;
+<a title="Converts the number n into a string." href="/reference/799.html">STR</a>&nbsp;
+<a title="Creates a new string of count length." href="/reference/800.html">STRING</a>&nbsp;
+<a title="Declare a sub procedure. Sub's do not return a value but can return argument values when declared as BYREF." href="/reference/657.html">SUB</a>&nbsp;
+<a title="Sum of value." href="/reference/764.html">SUM</a>&nbsp;
+<a title="Sum of square value." href="/reference/765.html">SUMSQ</a>&nbsp;
+<a title="Exchanges the values of two variables. The parameters may be variables of any type." href="/reference/550.html">SWAP</a>&nbsp;
+<a title="Moves cursor position to the nth column." href="/reference/540.html">TAB</a>&nbsp;
+<a title="Tangent." href="/reference/766.html">TAN</a>&nbsp;
+<a title="Tangent." href="/reference/767.html">TANH</a>&nbsp;
+<a title="Returns the text height of string s in pixels. See TXTH." href="/reference/631.html">TEXTHEIGHT</a>&nbsp;
+<a title="Returns the text width of string s in pixels. See TXTW." href="/reference/632.html">TEXTWIDTH</a>&nbsp;
+<a title="foo = 1: if foo==1 THEN: ? \"one\": fi" href="/reference/658.html">THEN</a>&nbsp;
+<a title="The THROW command (previously known as RTE) is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program." href="/reference/1437.html">THROW</a>&nbsp;
+<a title="Returns the number of milliseconds that have elapsed between successive calls." href="/reference/1448.html">TICKS</a>&nbsp;
+<a title="Returns the current time as string \"HH:MM:SS\"." href="/reference/578.html">TIME</a>&nbsp;
+<a title="Converts a time-value to hours, minutes and seconds integer values." href="/reference/574.html">TIMEHMS</a>&nbsp;
+<a title="Returns the number of seconds from midnight." href="/reference/1449.html">TIMER</a>&nbsp;
+<a title="Returns the file last modified date and time." href="/reference/1450.html">TIMESTAMP</a>&nbsp;
+<a title="Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string." href="/reference/598.html">TLOAD</a>&nbsp;
+<a title="Specifies the loop counter end in a FOR loop" href="/reference/1420.html">TO</a>&nbsp;
+<a title="Translates all occurrences of the string 'what' found in source with the string 'with' and returns the new string." href="/reference/801.html">TRANSLATE</a>&nbsp;
+<a title="Removes all leading and trailing white-space." href="/reference/802.html">TRIM</a>&nbsp;
+<a title="See TRON." href="/reference/813.html">TROFF</a>&nbsp;
+<a title="When trace mechanism is ON, displays each line number as the program is executed." href="/reference/814.html">TRON</a>&nbsp;
+<a title="TRUE" href="/reference/1455.html">TRUE</a>&nbsp;
+<a title="The TRY statement introduces a TRY/CATCH BLOCK" href="/reference/1425.html">TRY</a>&nbsp;
+<a title="Writes an array to a text file. Each array element is a text-line." href="/reference/599.html">TSAVE</a>&nbsp;
+<a title="Returns the text height of string s in pixels. See TEXTHEIGHT." href="/reference/633.html">TXTH</a>&nbsp;
+<a title="Returns the text width of string s in pixels. See TEXTWIDTH." href="/reference/634.html">TXTW</a>&nbsp;
+<a title="Returns the upper bound of 'array'." href="/reference/567.html">UBOUND</a>&nbsp;
+<a title="Converts the string s to upper case." href="/reference/803.html">UCASE</a>&nbsp;
+<a title="Declares the source module as a unit. Units are a set of procedures, functions and/or variables that can be used by another program or unit." href="/reference/1446.html">UNIT</a>&nbsp;
+<a title="a = 0: repeat: a++: ? a: UNTIL a = 10" href="/reference/660.html">UNTIL</a>&nbsp;
+<a title="Converts the string s to upper case." href="/reference/804.html">UPPER</a>&nbsp;
+<a title="Used with various commands for passing a user-defined expression. eg SPLIT s,\" \",v USE TRIM(x). Trim each element of v." href="/reference/661.html">USE</a>&nbsp;
+<a title="Synonym for USING" href="/reference/1423.html">USG</a>&nbsp;
+<a title="See PRINT, SPRINT" href="/reference/1422.html">USING</a>&nbsp;
+<a title="Returns the numeric value of string s." href="/reference/805.html">VAL</a>&nbsp;
+<a title="Defines a viewport. The viewport defined by VIEW is disabled by a VIEW command with no parameters." href="/reference/623.html">VIEW</a>&nbsp;
+<a title="Returns the day of the week (0 = Sunday)." href="/reference/579.html">WEEKDAY</a>&nbsp;
+<a title="Go back to the start of a WHILE statement." href="/reference/691.html">WEND</a>&nbsp;
+<a title="Loop while a test condition evaluates to true." href="/reference/692.html">WHILE</a>&nbsp;
+<a title="The WINDOW command allows you to redefine the corners of the display screen as a pair of \"world\" coordinates. WINDOW is also overloaded as a function, returning a system object providing access to the following sub-commands: graphicsScreen1, graphicsScreen2, textScreen, alert, ask, menu, message, showKeypad, insetTextScreen" href="/reference/624.html">WINDOW</a>&nbsp;
+<a title="Store variables to a file as binary data." href="/reference/600.html">WRITE</a>&nbsp;
+<a title="Holds the screen width in pixels" href="/reference/1526.html">XMAX</a>&nbsp;
+<a title="Bitwise exclusive NOT OR." href="/reference/675.html">XNOR</a>&nbsp;
+<a title="Bitwise exclusive OR. Equivalent syntax to: a ~ b" href="/reference/676.html">XOR</a>&nbsp;
+<a title="Returns the current X position of the cursor in \"characters\"." href="/reference/635.html">XPOS</a>&nbsp;
+<a title="Holds the screen height in pixels." href="/reference/1527.html">YMAX</a>&nbsp;
+<a title="Returns the current Y position of the cursor in \"characters\"." href="/reference/636.html">YPOS</a>&nbsp;
+    </div>
+  </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 07:07:04 +1000
- |
+      This page was last edited on  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
       <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.2.1</a>
