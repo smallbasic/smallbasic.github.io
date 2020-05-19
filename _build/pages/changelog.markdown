@@ -964,10 +964,9 @@ Compiler:
 	* updated sockcl_open() to handle server listen sockets
 
 
+**VERSION 0.9.0**
 
-VERSION 0.9.0
-
-
+```
 2004-05-01: ndc
 	Human language depented files for messages and keywords.
 	The messages and the keywords can be easily translated to another language.
@@ -1114,11 +1113,11 @@ VERSION 0.9.0
 		MALLOC,PEEK(8,16,32),POKE(8,16,32),BCOPY,VADR
 	new: palmos, keyboard buffer dialog (press kb)
 		not good yet, but it works
+```
 
+**VERSION 0.8.2**
 
-VERSION 0.8.2
-
-
+```
 2002-04-14: ndc
 	?bug?: crash; wierd memodb records (size >32KB!!), thanks to Meino
 	bug: PalmOS, MOD's result was wrong
@@ -1126,11 +1125,11 @@ VERSION 0.8.2
 2002-04-07: ndc
 	bug: memory overrun on scan.c:bc_get_var_id(), thanks to Meino
 	new: BGETC()/BPUTC (binary get/put bytes on a stream)
+```
 
+**VERSION 0.8.1**
 
-VERSION 0.8.1
-
-
+```
 2002-03-31: ndc
 	finish: OPTION-styles, new PREDEF QUITE,COMMAND
 	modify: system string-variables are now accepted with both names
@@ -1169,11 +1168,11 @@ VERSION 0.8.1
 	bug fix: operators && and || was on different op-category...
 	bug fix: small memory leak on string->number convertion inside
 	--eval.c module. That causes PalmOS fatal error!!!
+```
 
+**VERSION 0.8.0**
 
-VERSION 0.8.0
-
-
+```
 2001-12-27: ndc
 	bug fix: memo vfs driver: deleted files, no null-char on read
 
@@ -1280,11 +1279,11 @@ VERSION 0.8.0
 	bug fix: WEEKDAY
 	bug fix: STATs I was made some stupids things here, now it is working again
 	---(QB: DEF FNxxx - END, later will be added the inline DEF FN)
+```
 
+**VERSION 0.7.1**
 
-## VERSION 0.7.1
-
-
+```
 2001-11-24: ndc
 	changes: LINEQGJ (Gauss-Jordan) renamed to LINEQN
 	new: DIFFEQN
@@ -1326,18 +1325,18 @@ VERSION 0.8.0
 	new: FOR var IN array - NEXT
 	command-line: quite flag (-q); No "* DONE *", no compiler messages
 	bug fix: Unix OS Name
+```
 
+**VERSION 0.7.0a**
 
-## VERSION 0.7.0a
-
-
+```
 2001-11-07: ndc
 	PalmOS: crash with MemoDB deleted/locked records
+```
 
+**VERSION 0.6.1-0.7.0**
 
-## VERSION 0.6.1-0.7.0
-
-
+```
 2001-11-06: ndc
 	SB web-site: recovery...
 
@@ -1483,11 +1482,11 @@ ex:
 	bug fix: &H prefix
 	EVAL's stack is dynamic now
 	Backup bit is enabled after copy/rename
+```
 
+**VERSION 0.6.0**
 
-## VERSION 0.6.0
-
-
+```
 2001-05-13: ndc
 	bug fix: v_set array copy
 	backup-bit is enabled when the source file is modified
@@ -1536,10 +1535,11 @@ ex:
 
 2001-04-16: ndc
 	bug-fix: WHILE/WEND nested blocks
+```
 
+**VERSION 0.5.8**
 
-## VERSION 0.5.8
-
+```
 2001-04-02: ndc
 	DRAWPOLY array() added
 	TRUE/FALSE system constants added
@@ -1555,11 +1555,11 @@ ex:
 	bug fix: eq with doubles ((1=12/10) now returns false)
 		this is the FOR-NEXT problem with fps
 	bug fix: run-time error if the user had not allocate memory for arrays (DIM)
+```
 
+**VERSION 0.5.7**
 
-## VERSION 0.5.7
-
-
+```
 2001-03-10: ndc
 	Some minor bugs of multibyte charsets
 
@@ -1567,11 +1567,11 @@ ex:
 	Big5 charset support added - thanks to Daniel Yuan-Chih Lin (dan.lin@bigfoot.com)
 	Generic multibyte support added
 	bug fix: SOUND & BEEP volume
+```
 
+**VERSION 0.5.6**
 
-## VERSION 0.5.6
-
-
+```
 2001-03-03: ndc
 	SDL driver added
 	Win32 port
@@ -1636,11 +1636,11 @@ ex:
 
 2001-02-12: ndc
 	Color support added
+```
 
+**VERSION 0.5.5**
 
-## VERSION 0.5.5
-
-
+```
 2001-02-11: ndc
 	decompiler (unix version, -s option)
 	Several bugs of pseudo-compiler are fixed
@@ -1676,10 +1676,11 @@ ex:
 	Convert to SDK 3.5 using PalmCompatibility.h
 	bug fix: Hardware keys caused INKEY$ to always return nothing
 	bug fix: VAL(), OCT$(), MID$() and RTRIM$() now work correctly
+```
 
+**VERSION 0.5.4a**
 
-## VERSION 0.5.4a
-
+```
 2001-02-04: 0.5.4a ndc
 	bug fix: last-line text without lf, thanks to Gary Clark
 	Hardware keys supported (keys: 0x101 (up) 0x102 (dn) 0x103 (#1) 0x104 (#2) 0x105 (#3) BREAK (#4))
@@ -1697,4 +1698,4 @@ ex:
 					3 = M$ shit (QBasic)
 					4 = current x, 5 = current y
 	DIM supports more variables now
-
+```

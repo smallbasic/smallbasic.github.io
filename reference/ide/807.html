@@ -3,7 +3,7 @@
 <p>ENV expr</p>
 </blockquote>
 <p>Adds a variable to or deletes a variable from the current environment variable-table.</p>
-<p>ENV can be used as SUB for setting or erasing Environment Variables (EV) and ENV can be used as a FUNCtion for returning a particular EV or the whole set of them into an array using: EVarray=ENV(&quot;&quot;)</p>
+<p>ENV can be used as SUB for setting or erasing Environment Variables (EV) and ENV can be used as a FUNCtion for returning a particular EV or the whole set of them into an array using: EVarray=ENV("")</p>
 <pre><code>
 &#39; ENV test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-10
 &#39;OK this works
@@ -48,8 +48,8 @@ pause
 <p>In general: 1. Never use names which are already used by the system or another process, such as “PATH”, “HOME”, “PWD”, etc. You can check which variable names are already used, from SmallBASIC:</p>
 <pre><code>? Environ(&quot;&quot;)</code></pre>
 <ol start="2" type="1">
-<li>Use short and unique names, such as: “SB1”, SB2&quot; or “SBv1”, “SBv2”, etc. It will keep the environment-variables-table readable, and will save space in the table.</li>
+<li>Use short and unique names, such as: “SB1”, SB2" or “SBv1”, “SBv2”, etc. It will keep the environment-variables-table readable, and will save space in the table.</li>
 <li>Don’t create more variables then you need. Reuse any variable which is not used. i.e. if “SB1” is unused anymore, then reuse it:</li>
 </ol>
 <pre><code>Environ &quot;SB1=5&quot;</code></pre>
-<p>. Again, it keeps the environment-variables-table readable, and saves space in the table. 4. On some systems the environment-variables-table is unique for each session (Linux for example) and this may be a bit confusing. 5. Environment variables may or may not be case sensitive, i.e. “SB1” may be different then “sb1” on some systems (Linux for example).</p>
+<p>. Again, it keeps the environment-variables-table readable, and saves space in the table. 4. On some systems the environment-variables-table is unique for each session (Linux for example) and this may be a bit confusing. 5. Environment variables may or may not be case sensitive, i.e. “SB1” may be different then “sb1” on some systems (Linux for example).</p>

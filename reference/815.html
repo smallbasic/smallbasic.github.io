@@ -75,8 +75,8 @@
     </p>
   </div>
 </blockquote>
-<p>Returns the value of a specified entry in the current environment table. If the parameter is empty (&quot;&quot;) then returns an array of the environment variables (in var=value form).</p>
-<p>ENV can be used as SUB for setting or erasing Environment Variables (EV) and ENV can be used as a FUNCtion for returning a particular EV or the whole set of them into an array using: EVarray=ENV(&quot;&quot;)</p>
+<p>Returns the value of a specified entry in the current environment table. If the parameter is empty ("") then returns an array of the environment variables (in var=value form).</p>
+<p>ENV can be used as SUB for setting or erasing Environment Variables (EV) and ENV can be used as a FUNCtion for returning a particular EV or the whole set of them into an array using: EVarray=ENV("")</p>
 <pre><code>
 &#39; ENV test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-10
 &#39;OK this works 
@@ -115,6 +115,16 @@ pause
 &#39;yes, it was erased because when I ran same code a second time, it wasn&#39;t there THEN!
 &#39; so it didn&#39;t just LOOK erased from a bad call
 </code></pre>
+  <div class="lavenderBox">
+    <div class="header">Code samples using ENV</div>
+    <div class="linklist">
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/galgenmann.bas">galgenmann.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/lakeshore_demo.bas">lakeshore_demo.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/sphere.bas">sphere.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/clock.bas">clock.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/filemgr.bas">filemgr.bas </a>&nbsp;
+    </div>
+  </div>
   <div class="lavenderBox">
     <div class="header">System</div>
     <div class="linklist">
@@ -169,7 +179,7 @@ ENV by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.5</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

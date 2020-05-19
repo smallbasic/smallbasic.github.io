@@ -1,3 +1,4 @@
+{% githost = "https://raw.githubusercontent.com/smallbasic/smallbasic.samples" %}
 <div class="article">
   <h1>{{ upper(page.name) }}</h1>
   <blockquote>{{ page.title }}</blockquote>
@@ -16,6 +17,16 @@
     content = mid(content, eol + 1)
   %}
   {{ content }}
+  {% if (len(page.samples) > 0 && len(page.samples) < 40) then %}
+  <div class="lavenderBox">
+    <div class="header">Code samples using {{ page.name }}</div>
+    <div class="linklist">
+      {% for filename in page.samples %}
+      <a target="_github" href="{{ githost }}/master/{{ filename }}">{{ rightoflast(filename,"/") }} </a>&nbsp;
+      {% next filename %}
+    </div>
+  </div>
+  {% endif %}
   <div class="lavenderBox">
     <div class="header">{{ page.package }}</div>
     <div class="linklist">

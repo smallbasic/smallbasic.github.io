@@ -5,7 +5,7 @@
 <p>Logical AND. Right side is not evaluated if left side evaluates to False.</p>
 <p>The Sign-Bit Bug (part 2): Ways to workaround this bug:</p>
 <ol type="1">
-<li><p>It is Safe to manipulate the lower bits, 0 to 30. If your program don’t need to manipulate whole 32-bits of integer, then you can safely BAND numbers with 0x7FFFFFFF to create 31-bit unsigned integers (bit-31+ are cleared). But you must make sure when using math functions or bitwise NOT (~) that the sign bit (bit-31) always remains intact, i.e. = 0.</p></li>
+<li><p>It is Safe to manipulate the lower bits, 0 to 30. If your program don’t need to manipulate whole 32-bits of integer, then you can safely BAND numbers with 0x7FFFFFFF to create 31-bit unsigned integers (bit-31+ are cleared). But you must make sure when using math functions or bitwise NOT (~) that the sign bit (bit-31) always remains intact, i.e. = 0.</p></li>
 <li><p>A slower way, but safe, is to manipulate 32 bits using BIN() function. In this way you can temporarily convert a number to binary string of 32-bits, manipulate whole 32 bits using regular string manipulation, and then convert the binary string back to number, for example: assuming that BIN() returns 32-bits binary string (as it should):</p></li>
 </ol>
 <pre><code>s = Bin(number)         &#39; convert number to binary string

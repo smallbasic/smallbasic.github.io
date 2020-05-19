@@ -12,6 +12,7 @@ export sourceurl
 export changesurl
 export lastedit
 export package
+export samples
 
 githost = "https://github.com/smallbasic/smallbasic.github.io"
 
@@ -46,6 +47,7 @@ if (not exist(jsonFile)) then
       sourcefile = "posts/" + pagename + ".markdown"
     endif
   endif
+  samples = ""
 else
   rem reference page
   tload jsonFile, s, 1
@@ -55,6 +57,7 @@ else
   url = item.nodeId
   title = item.signature
   package = item.package
+  samples = item.samples
   sourcefile = item.nodeId + "-" + lower(item.package) + "-" + lower(item.keyword) + ".markdown"
   sourcefile = "reference/" + translate(sourcefile, " ", "")
 endif

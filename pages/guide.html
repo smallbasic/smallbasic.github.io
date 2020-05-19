@@ -736,7 +736,7 @@ UNTIL i &gt; 10</code></pre>
 FOR i=0 TO LEN(FILES(&quot;*.txt&quot;))-1
     PRINT i
 NEXT</code></pre>
-<p>In that example the ‘destination’ is the LEN(FILES(&quot;*.txt&quot;))-1 For each value of i the destination will be evaluated. That is WRONG but it is supported by BASIC and many other languages. So, it is much better to be rewritten as</p>
+<p>In that example the ‘destination’ is the LEN(FILES("*.txt"))-1 For each value of i the destination will be evaluated. That is WRONG but it is supported by BASIC and many other languages. So, it is much better to be rewritten as</p>
 <pre><code>idest=LEN(FILES(&quot;*.txt&quot;))-1
 FOR i=0 TO idest
     PRINT i
@@ -748,7 +748,7 @@ NEXT</code></pre>
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.5</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

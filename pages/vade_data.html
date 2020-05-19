@@ -83,7 +83,7 @@ print y
 &gt; -1</code></pre>
 <p>While there are also functions for explicit conversions, per default conversions are done <sub>tacitly</sub> by the interpreter, without any provisions in the SmallBASIC program, and there are also no <sub>notifications</sub> when a type conversion occurs. Another consequence is that the kind of data contained in a variable (or the structure of a map) is only determined at runtime.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> It is up to the programmer to ensure that his code will <sub>expect the unexpected</sub> and be able to cope with any data it is fed with.</p>
 <h2 id="simple-variables">Simple Variables</h2>
-<p>Simple variables <strong>need not be declared</strong>; they come into existence by their first appearance in the source code. If they are not created through an assignment, they will be initiated to the value <sub>0</sub> (or, equivalently, to the empty string <sub>&quot;&quot;</sub> (This example admittedly looks a little silly).</p>
+<p>Simple variables <strong>need not be declared</strong>; they come into existence by their first appearance in the source code. If they are not created through an assignment, they will be initiated to the value <sub>0</sub> (or, equivalently, to the empty string <sub>""</sub> (This example admittedly looks a little silly).</p>
 <p><strong>Value assignment</strong> is done with the <sub>=</sub> operator: The value to the right of it (which may be another variable, a literal, or a more complicated expression) is assigned to the variable on the left:<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 <pre><code>x= 20
 y= 10
@@ -180,7 +180,7 @@ hoogla(5, 9, 8)= &quot;blubbdi&quot;</code></pre>
 <p>To initialise a map in that way, it does <em>not</em> need to be defined with <sub>dim</sub> beforehand – actually, a square bracket initialisation will delete any variable with the same name that may have been existing before, and create a completely new one.</p>
 <p>Furthermore, the <sub>array</sub> keyword can be used as an alternative way to initialize a map (though not an array, confusingly). Basically, what you do is that you pass your map members in the shape of a JSON-formatted string<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> to the <sub>array</sub> function:</p>
 <pre><code>boogla= array(&quot;[1, 2, [4, 5, 6, 7], [3.1415926, \&quot;hoogla!\&quot;], 99]&quot;)</code></pre>
-<p>is equivalent to the map definition above. Be aware that you pass <em>all</em> map members to <sub>array</sub> wrapped in a single string, rather than as individual elements. Likewise, if you use string variables in your map, these must be escaped with backslashes inside the <sub>array</sub> argument (ie, <sub>\&quot;hoogla\&quot;</sub> rather than simply <sub>&quot;hoogla&quot;</sub>.</p>
+<p>is equivalent to the map definition above. Be aware that you pass <em>all</em> map members to <sub>array</sub> wrapped in a single string, rather than as individual elements. Likewise, if you use string variables in your map, these must be escaped with backslashes inside the <sub>array</sub> argument (ie, <sub>\"hoogla\"</sub> rather than simply <sub>"hoogla"</sub>.</p>
 <p>A further neat feature is that maps of any complexity can be serialized with a simple <sub>print</sub> command to a file. <sub>Print</sub> will not only display a single member, but will format the output as a JSON string. This means – without going into too many details regarding file handling here – that writing a complete map to a file and loading it again at a later stage are simple three-liner tasks.</p>
 <p><strong>Access to map members</strong> is possible through two different notations. The first one contains the key to the map member in parentheses after the map name:</p>
 <pre><code>boogla(3.1415926)= ...</code></pre>
@@ -205,7 +205,7 @@ target= &quot;tschaka&quot;
 ? z(target), z.target
 
 &gt; Hello, world! 0</code></pre>
-<p>When accessing <sub>z</sub> in the third line, in the first term <sub>z(target)</sub>, <sub>target</sub> is replaced with its value <sub>tschaka</sub> by the interpreter, before looking the map member with that name up and returning the result, <sub>&quot;Hello, world!&quot;</sub>. In the second term <sub>z.target</sub>, the interpreter looks for a member of <sub>z</sub> with the key <sub>target</sub>, can’t find one, and tacitly creates a new one which is initialized with the value <sub>0</sub>.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
+<p>When accessing <sub>z</sub> in the third line, in the first term <sub>z(target)</sub>, <sub>target</sub> is replaced with its value <sub>tschaka</sub> by the interpreter, before looking the map member with that name up and returning the result, <sub>"Hello, world!"</sub>. In the second term <sub>z.target</sub>, the interpreter looks for a member of <sub>z</sub> with the key <sub>target</sub>, can’t find one, and tacitly creates a new one which is initialized with the value <sub>0</sub>.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
 <p>This makes the parentheses notation particularly useful when you want to decide at runtime which map member you want to access: With dot notation, access is fixed, but with parentheses notation you can pass a variable to determine which member to use in that instance.</p>
 <p>For both arrays and maps, <code>len(x)</code> will give you the number of elements in the structure. But note that this isn’t the total number of elements, but only the number of elements in the <sub>top dimension</sub>.</p>
 <p>For example, when initializing an array as</p>
@@ -286,7 +286,7 @@ end
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.5</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>
