@@ -57,7 +57,7 @@ else
   url = item.nodeId
   title = item.signature
   package = item.package
-  samples = item.samples
+  samples = iff(isarray(item.samples), item.samples, [])
   sourcefile = item.nodeId + "-" + lower(item.package) + "-" + lower(item.keyword) + ".markdown"
   sourcefile = "reference/" + translate(sourcefile, " ", "")
 endif

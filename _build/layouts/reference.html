@@ -17,12 +17,14 @@
     content = mid(content, eol + 1)
   %}
   {{ content }}
-  {% if (len(page.samples) > 0 && len(page.samples) < 40) then %}
+  {% if (len(page.samples) > 0) then %}
   <div class="lavenderBox">
     <div class="header">Code samples using {{ page.name }}</div>
     <div class="linklist">
       {% for filename in page.samples %}
+      {%  count++: if (count < 30) then %}
       <a target="_github" href="{{ githost }}/master/{{ filename }}">{{ rightoflast(filename,"/") }} </a>&nbsp;
+      {%  endif %}
       {% next filename %}
     </div>
   </div>
