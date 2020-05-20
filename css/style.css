@@ -556,7 +556,6 @@ span.user {
   background: #ddddff;
 }
 .linklist a:after {
-  content: " · ";
   font-weight: bold;
 }
 .linklist a:last-child:after {
