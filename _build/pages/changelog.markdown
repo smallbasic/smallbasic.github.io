@@ -1,6 +1,18 @@
 Changelog
 =========
 
+**12.19 (16 July 2020) **
+
+- Fix ABSMIN/ABSMAX transposed #96
+- Fix crash when passing non-array to CHART
+- Fix image.save() to array destination
+- Fix INPUT crash #99
+- Implement DEFINEKEY undo #92
+- Implement colour themes
+- FLTK: Implement line numbers colours #93
+- SDL: Restore window size #95
+- SDL: Show icon in linux build
+
 **0.12.18 (28 March 2020) **
 
 - SDL: fix issue #81 - numlock handling

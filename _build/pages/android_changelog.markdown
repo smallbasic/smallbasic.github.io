@@ -5,6 +5,16 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.19 (16 July 2020)**
+
+- Fix usability issues with samsung mobiles
+- Fix ABSMIN/ABSMAX transposed #96
+- Fix crash when passing non-array to CHART
+- Fix image.save() to array destination
+- Fix INPUT crash #99
+- Implement DEFINEKEY undo #92
+- Implement colour themes
+
 **0.12.17 (22 December 2019)**
 
 - Fix module access in newer android versions.
