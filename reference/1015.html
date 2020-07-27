@@ -75,17 +75,17 @@
     </p>
   </div>
 </blockquote>
-<p>Binds a keystroke to a user defined function</p>
-<pre><code>
-sub moveLeft
+<p>Binds a keystroke to a user defined function,</p>
+<pre><code>sub moveLeft
    if (block.x &gt; 0) then
      moveBlock -1, 0
    fi
 end
-defineKey 0xFF04, moveLeft
-</code></pre>
-<pre><code>
-&#39; DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
+defineKey 0xFF04, moveLeft</code></pre>
+<p>To unbind the keystroke definition pass 0 as the <code>sub</code> argument, for example:</p>
+<pre><code>DEFINEKEY 0xFF04, 0</code></pre>
+<h2 id="example-1">Example 1:</h2>
+<pre><code>&#39; DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
 &#39;remember Etch-A-Sketch?
 &#39;definekey key,sub
 &#39;example: 
@@ -147,10 +147,9 @@ sub togglestepper
 end
 sub quit
   stop
-end
-</code></pre>
-<pre><code>
-&#39; Note:
+end</code></pre>
+<h2 id="example-2">Example 2:</h2>
+<pre><code>&#39; Note:
 &#39; * You may Include &quot;definekey_const.bas&quot; file in another file to make your code more clear.
 &#39;
 &#39; * Created using SmallBASIC version 0.12.2 (on Linux Mint 17.3).
@@ -235,8 +234,7 @@ Const DK_MK_MOVE    = 0xFFC2
 Const DK_MK_RELEASE = 0xFFC3
 Const DK_MK_WHEEL   = 0xFFC4
 Const DK_MK_FIRST   = DK_MK_PUSH
-Const DK_MK_LAST    = DK_MK_WHEEL
-</code></pre>
+Const DK_MK_LAST    = DK_MK_WHEEL</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using DEFINEKEY</div>
     <div class="linklist">

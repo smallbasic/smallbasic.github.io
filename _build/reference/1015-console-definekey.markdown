@@ -1,22 +1,28 @@
 # DEFINEKEY
 
-> DEFINEKEY k,sub
+> DEFINEKEY k, sub
 
-Binds a keystroke to a user defined function
+Binds a keystroke to a user defined function,
 
 ~~~
-
 sub moveLeft
    if (block.x > 0) then
      moveBlock -1, 0
    fi
 end
 defineKey 0xFF04, moveLeft
-
 ~~~
 
-~~~
+To unbind the keystroke definition pass 0 as the `sub` argument, for example:
 
+
+```
+DEFINEKEY 0xFF04, 0
+```
+
+## Example 1:
+
+~~~
 ' DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
 'remember Etch-A-Sketch?
 'definekey key,sub
@@ -80,12 +86,11 @@ end
 sub quit
   stop
 end
-
 ~~~
 
+## Example 2:
 
 ~~~
-
 ' Note:
 ' * You may Include "definekey_const.bas" file in another file to make your code more clear.
 '
@@ -172,7 +177,4 @@ Const DK_MK_RELEASE = 0xFFC3
 Const DK_MK_WHEEL   = 0xFFC4
 Const DK_MK_FIRST   = DK_MK_PUSH
 Const DK_MK_LAST    = DK_MK_WHEEL
-
 ~~~
-
-
