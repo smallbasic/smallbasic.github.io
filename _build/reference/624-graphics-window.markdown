@@ -1,50 +1,94 @@
 # WINDOW
 
-> WINDOW [x1,y1,x2,y2]
+> WINDOW [x1,y2,x2,y1]
 
-The WINDOW command allows you to redefine the corners of the display screen as a pair of "world" coordinates. WINDOW is also overloaded as a function, returning a system object providing access to the following sub-commands: graphicsScreen1, graphicsScreen2, textScreen, alert, ask, menu, message, showKeypad, insetTextScreen
+Specifies "world" coordinates for the screen.
 
+The WINDOW command allows you to redefine the corners of the display screen as a pair of "world" coordinates. 
 
 The world space defined by WINDOW is disabled by a WINDOW command with no parameters.
 
-This is a demo from http://smallbasic.sourceforge.net/?q=comment/1502#comment-1502
-It shows how to use the additional WINDOW sub-commands (It is not the traditional use of WINDOW [x1,y1,x2,y2] ).
-Tested with SmallBASIC version 0.12.6 (Linux).
+Note: the unusal coordinates are intended for Quick BASIC compatibility (possible bug).
 
-~~~
+```
+window 1, 320, 320, 1
+rect 0, 0, 160, 160, 1 filled
+rect 160, 160, 320, 320, 2 filled
+rect 160, 0, 320, 160, 3 filled
+rect 0, 160, 160, 320, 4 filled
+```
 
-' create the window object, this provides access to a number of sub-commands
+## WINDOW sub-commands (non-standard)
+
+WINDOW is also overloaded as a function, returning a system object which provides access to the following sub-commands.
+
+### alert(message, title)
+
+Display an alert message.
+
+```
 w = window()
-' select graphics mode screen 1 for output
-w.graphicsScreen1()
-for i = 0 to 10
-  print "this is printed on screen 1"
-next i
-w.message("[1] click to continue. ")
-pause
-' select graphics mode screen 1 for output
-w.graphicsScreen2()
-color 1,3
-cls
-print "this is printed on screen 2"
-w.message("[2] click to continue. ")
-pause
-w.graphicsScreen1()
-print "back to screen 1"
-w.message("[3] click to continue. ")
-pause
-' select the text mode for output
-' text mode can display more text but is slow 
-' also this is currently broken and will cause a crash 
-'w.textScreen()
 w.alert("This is an alert", "title")
+```
+
+### ask(message, title)
+
+Display a prompt to retrieve a user selection.
+
+```
+w = window()
 w.ask("Yes or no?", "Question")
-print "your answer was "; w.answer
-w.message("[4] click to continue. ")
+if w.answer == 0 then
+  w.alert("Yes!", "Answer")
+else 
+  w.alert("No", "Answer")
+endif
+```
+
+### graphicsScreen1(), graphicsScreen2()
+
+Select graphics mode screen 1 or 2 for output.
+
+```
+dim v(30)
+for i = 0 to 30
+  v[i] = rnd
+next i
+
+sub draw_chart(n,s)
+  color 1,15: cls
+  chart n, v, s, 1, 1, xmax-2, ymax-2
+end
+
+w = window()
+w.graphicsScreen2(): draw_chart(1, 5)
+w.graphicsScreen1(): draw_chart(2, 3)
+
+while 1
+  b = !b
+  if b then w.graphicsScreen1() else w.graphicsscreen2()
+  pause
+wend
+```
+### insetTextScreen(x, y, w, h)
+
+```
+w = window()
+? "How does this look?"
+w.insetTextScreen(5,10,90,90)
+for i = 0 to 200
+  ? "This is in the text screen"
+next i
 pause
+```
+
+### menu(option1, option2...)
+
+Displays a popup menu. The user response is available via INKEY.
+
+```
+w = window()
 w.menu("option1", "option2", "option3")
-' weirdly the result is sent to the keyboard handler
-' it should at least go to w.answer. also there is no option for placement
 select case asc(inkey)
 case 0
   print "one"
@@ -55,32 +99,100 @@ case 2
 case else
   print "unk"
 end select
-w.message("[5] click to continue. ")
-pause
-' this raises the virtual keypad on android
-w.showKeypad()
-' set the font size 
-' arg1 = size 
-' arg2 = unit amount for size, "px" or "em"
-'   px=  pixels
-'   em= emphasis - this is a multiplication factor for the current size
-' arg3= bold 1=on 0=off
-' arg4= italic 1=on, 0=off
-' this sets the font to be double in size with bold and italic
-' using pixels is likely to give an unexpected result in android
-w.setFont(2, "em", 1,1)
-cls
-? "How does this look?"
-w.insetTextScreen(5,10,90,90)
-for i = 0 to 200
-  ? "This is in the text screen"
-next i
-' comment out the above cls to see the bug
-w.message("spot the bug  ?")
-w.setFont(11, "px", 0,0)
-? "press a key to end..."
-pause
+```
 
-~~~
+### message(str)
 
+Displays a status message at the bottom of the screen.
 
+```
+w = window()
+w.message("Click to continue. ")
+```
+
+### setFont(size, unit, bold, italic)
+
+Sets the font to be double in size with bold and italic.
+
+"Unit" can be set to "em" to make size relative to the existing size, any other value will cause size to be avaluated as pixels.
+
+```
+w = window()
+dim buf
+
+sub text(s)
+  local x, y, j, size, width, height
+  buf << s
+  y = ymax / 2
+  cls
+  size = 30
+  for j = len(buf) - 1 to 0 step - 1
+    size -= 2
+    w.setFont(size, "px", 0, 1)
+    width = txtw(buf[j])
+    height = txth(buf[j])
+    x = (xmax - width) / 2
+    y -= height
+    at x, y: print buf[j]
+  next j
+  delay 1200
+end
+
+text "A long time ago, in a galaxy far, far away..."
+text "It is a period of civil war. Rebel"
+text "spaceships, striking from a hidden"
+text "base, have won their first victory"
+text "against the evil Galactic Empire."
+text "During the battle, Rebel spies managed"
+text "to steal secret plans to the Empire's"
+text "ultimate weapon, the Death Star, an"
+text "armored space station with enough"
+text "power to destroy an entire planet."
+text "Pursued by the Empire's sinister agents,"
+text "Princess Leia races home aboard her"
+text "starship, custodian of the stolen plans"
+text "that can save her people and restore"
+text "freedom to the galaxy...."
+```
+
+### setSize(w, h)
+
+Sets the width and height of the SmallBASIC window.
+
+```
+w = window()
+w.setSize(800, 680)
+```
+
+### showKeypad()
+
+Raises the virtual keypad on android.
+
+### textScreen()
+
+Select the text mode for output. Text mode can display more text but is slow.
+
+```
+w = window()
+w.textScreen()
+for i = 0 to 1000
+  ? "hello " + i
+next for
+```
+
+### theme
+
+Returns the active window colour theme.
+
+```
+w = window()
+const theme = w.theme
+const colBkGnd = theme.background
+const colText  = theme.text5
+const colFile  = theme.text2
+const colDir   = theme.text3
+const colText2 = theme.text4
+const colNav   = theme.text1
+const colNav2  = theme.text6
+
+```

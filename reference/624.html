@@ -75,42 +75,63 @@
     </p>
   </div>
 </blockquote>
-<p>The WINDOW command allows you to redefine the corners of the display screen as a pair of “world” coordinates. WINDOW is also overloaded as a function, returning a system object providing access to the following sub-commands: graphicsScreen1, graphicsScreen2, textScreen, alert, ask, menu, message, showKeypad, insetTextScreen</p>
+<p>Specifies “world” coordinates for the screen.</p>
+<p>The WINDOW command allows you to redefine the corners of the display screen as a pair of “world” coordinates.</p>
 <p>The world space defined by WINDOW is disabled by a WINDOW command with no parameters.</p>
-<p>This is a demo from http://smallbasic.sourceforge.net/?q=comment/1502#comment-1502 It shows how to use the additional WINDOW sub-commands (It is not the traditional use of WINDOW [x1,y1,x2,y2] ). Tested with SmallBASIC version 0.12.6 (Linux).</p>
-<pre><code>
-&#39; create the window object, this provides access to a number of sub-commands
-w = window()
-&#39; select graphics mode screen 1 for output
-w.graphicsScreen1()
-for i = 0 to 10
-  print &quot;this is printed on screen 1&quot;
-next i
-w.message(&quot;[1] click to continue. &quot;)
-pause
-&#39; select graphics mode screen 1 for output
-w.graphicsScreen2()
-color 1,3
-cls
-print &quot;this is printed on screen 2&quot;
-w.message(&quot;[2] click to continue. &quot;)
-pause
-w.graphicsScreen1()
-print &quot;back to screen 1&quot;
-w.message(&quot;[3] click to continue. &quot;)
-pause
-&#39; select the text mode for output
-&#39; text mode can display more text but is slow 
-&#39; also this is currently broken and will cause a crash 
-&#39;w.textScreen()
-w.alert(&quot;This is an alert&quot;, &quot;title&quot;)
+<p>Note: the unusal coordinates are intended for Quick BASIC compatibility (possible bug).</p>
+<pre><code>window 1, 320, 320, 1
+rect 0, 0, 160, 160, 1 filled
+rect 160, 160, 320, 320, 2 filled
+rect 160, 0, 320, 160, 3 filled
+rect 0, 160, 160, 320, 4 filled</code></pre>
+<h2 id="window-sub-commands-non-standard">WINDOW sub-commands (non-standard)</h2>
+<p>WINDOW is also overloaded as a function, returning a system object which provides access to the following sub-commands.</p>
+<h3 id="alertmessage-title">alert(message, title)</h3>
+<p>Display an alert message.</p>
+<pre><code>w = window()
+w.alert(&quot;This is an alert&quot;, &quot;title&quot;)</code></pre>
+<h3 id="askmessage-title">ask(message, title)</h3>
+<p>Display a prompt to retrieve a user selection.</p>
+<pre><code>w = window()
 w.ask(&quot;Yes or no?&quot;, &quot;Question&quot;)
-print &quot;your answer was &quot;; w.answer
-w.message(&quot;[4] click to continue. &quot;)
-pause
+if w.answer == 0 then
+  w.alert(&quot;Yes!&quot;, &quot;Answer&quot;)
+else 
+  w.alert(&quot;No&quot;, &quot;Answer&quot;)
+endif</code></pre>
+<h3 id="graphicsscreen1-graphicsscreen2">graphicsScreen1(), graphicsScreen2()</h3>
+<p>Select graphics mode screen 1 or 2 for output.</p>
+<pre><code>dim v(30)
+for i = 0 to 30
+  v[i] = rnd
+next i
+
+sub draw_chart(n,s)
+  color 1,15: cls
+  chart n, v, s, 1, 1, xmax-2, ymax-2
+end
+
+w = window()
+w.graphicsScreen2(): draw_chart(1, 5)
+w.graphicsScreen1(): draw_chart(2, 3)
+
+while 1
+  b = !b
+  if b then w.graphicsScreen1() else w.graphicsscreen2()
+  pause
+wend</code></pre>
+<h3 id="insettextscreenx-y-w-h">insetTextScreen(x, y, w, h)</h3>
+<pre><code>w = window()
+? &quot;How does this look?&quot;
+w.insetTextScreen(5,10,90,90)
+for i = 0 to 200
+  ? &quot;This is in the text screen&quot;
+next i
+pause</code></pre>
+<h3 id="menuoption1-option2">menu(option1, option2…)</h3>
+<p>Displays a popup menu. The user response is available via INKEY.</p>
+<pre><code>w = window()
 w.menu(&quot;option1&quot;, &quot;option2&quot;, &quot;option3&quot;)
-&#39; weirdly the result is sent to the keyboard handler
-&#39; it should at least go to w.answer. also there is no option for placement
 select case asc(inkey)
 case 0
   print &quot;one&quot;
@@ -120,32 +141,74 @@ case 2
   print &quot;three&quot;
 case else
   print &quot;unk&quot;
-end select
-w.message(&quot;[5] click to continue. &quot;)
-pause
-&#39; this raises the virtual keypad on android
-w.showKeypad()
-&#39; set the font size 
-&#39; arg1 = size 
-&#39; arg2 = unit amount for size, &quot;px&quot; or &quot;em&quot;
-&#39;   px=  pixels
-&#39;   em= emphasis - this is a multiplication factor for the current size
-&#39; arg3= bold 1=on 0=off
-&#39; arg4= italic 1=on, 0=off
-&#39; this sets the font to be double in size with bold and italic
-&#39; using pixels is likely to give an unexpected result in android
-w.setFont(2, &quot;em&quot;, 1,1)
-cls
-? &quot;How does this look?&quot;
-w.insetTextScreen(5,10,90,90)
-for i = 0 to 200
-  ? &quot;This is in the text screen&quot;
-next i
-&#39; comment out the above cls to see the bug
-w.message(&quot;spot the bug  ?&quot;)
-w.setFont(11, &quot;px&quot;, 0,0)
-? &quot;press a key to end...&quot;
-pause
+end select</code></pre>
+<h3 id="messagestr">message(str)</h3>
+<p>Displays a status message at the bottom of the screen.</p>
+<pre><code>w = window()
+w.message(&quot;Click to continue. &quot;)</code></pre>
+<h3 id="setfontsize-unit-bold-italic">setFont(size, unit, bold, italic)</h3>
+<p>Sets the font to be double in size with bold and italic.</p>
+<p>“Unit” can be set to “em” to make size relative to the existing size, any other value will cause size to be avaluated as pixels.</p>
+<pre><code>w = window()
+dim buf
+
+sub text(s)
+  local x, y, j, size, width, height
+  buf &lt;&lt; s
+  y = ymax / 2
+  cls
+  size = 30
+  for j = len(buf) - 1 to 0 step - 1
+    size -= 2
+    w.setFont(size, &quot;px&quot;, 0, 1)
+    width = txtw(buf[j])
+    height = txth(buf[j])
+    x = (xmax - width) / 2
+    y -= height
+    at x, y: print buf[j]
+  next j
+  delay 1200
+end
+
+text &quot;A long time ago, in a galaxy far, far away...&quot;
+text &quot;It is a period of civil war. Rebel&quot;
+text &quot;spaceships, striking from a hidden&quot;
+text &quot;base, have won their first victory&quot;
+text &quot;against the evil Galactic Empire.&quot;
+text &quot;During the battle, Rebel spies managed&quot;
+text &quot;to steal secret plans to the Empire&#39;s&quot;
+text &quot;ultimate weapon, the Death Star, an&quot;
+text &quot;armored space station with enough&quot;
+text &quot;power to destroy an entire planet.&quot;
+text &quot;Pursued by the Empire&#39;s sinister agents,&quot;
+text &quot;Princess Leia races home aboard her&quot;
+text &quot;starship, custodian of the stolen plans&quot;
+text &quot;that can save her people and restore&quot;
+text &quot;freedom to the galaxy....&quot;</code></pre>
+<h3 id="setsizew-h">setSize(w, h)</h3>
+<p>Sets the width and height of the SmallBASIC window.</p>
+<pre><code>w = window()
+w.setSize(800, 680)</code></pre>
+<h3 id="showkeypad">showKeypad()</h3>
+<p>Raises the virtual keypad on android.</p>
+<h3 id="textscreen">textScreen()</h3>
+<p>Select the text mode for output. Text mode can display more text but is slow.</p>
+<pre><code>w = window()
+w.textScreen()
+for i = 0 to 1000
+  ? &quot;hello &quot; + i
+next for</code></pre>
+<h3 id="theme">theme</h3>
+<p>Returns the active window colour theme.</p>
+<pre><code>w = window()
+const theme = w.theme
+const colBkGnd = theme.background
+const colText  = theme.text5
+const colFile  = theme.text2
+const colDir   = theme.text3
+const colText2 = theme.text4
+const colNav   = theme.text1
+const colNav2  = theme.text6
 </code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using WINDOW</div>
