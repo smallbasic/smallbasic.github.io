@@ -5,56 +5,57 @@
 Creates a form object from a MAP variable. This provides access to the following sub-commands:
 
 ---------- -------------------------------
-doEvents() Process system events, for mouse and keyboard handling
-close()    Closes the active FORM
-refresh()  Copies the UI state into the FORM input variables
+doEvents() Process system events for mouse and keyboard handling.
+close()    Closes the active FORM.
+refresh(n) n=1 Copy the UI state into the FORM input variables. n=0 Update the UI state using the FORM input variables.
 ---------- -------------------------------
 
 The form MAP may contain the following properties
 
 ------ ---------------
-value  The value from the active input field
-inputs Array of inputs
-focus  Index to the focused input
+value  The value from the active input field.
+inputs Array of inputs.
+focus  Index to the focused input.
 ------ ---------------
 
-`Inputs` is an array of MAP, each may contain the following properties
+`Inputs` is an array of type MAP, each element may contain the following properties
 
 --------------- ---------------
-x               X coordinate
-y               Y coordinate
-width           Widget width
-height          Widget height
-value           The internal value associated with the input
-label           The display label for the input
-name            The name of the input
-type            The type of input, see below
-help            Listbox or single line text input help text
-backgroundColor Background color
-color           Forground color
-isExit          Whether clicking the input exits the current program
-isExternal      Whether the `link` field opens in an external browser
-resizable       Whether the field can be resized
-visible         Whether the input field is visible
-selectedIndex   The selected item in a listbox or choice
-length          Length of an TEXT input field
-noFocus         The input cannot receive focus
-onclick         SUB to invoke when clicked
+x               X coordinate.
+y               Y coordinate.
+width           Input width.
+height          Input height.
+value           The internal value associated with the input.
+label           The display label for the input.
+name            The name of the input.
+type            The type of input, see below.
+help            Listbox or single line text input help text.
+backgroundColor Background color.
+color           Forground color.
+isExit          Whether clicking the input exits the current program.
+isExternal      Whether the `link` field opens in an external browser.
+resizable       Whether the field can be resized.
+visible         Whether the input field is visible.
+selectedIndex   The selected item in a listbox or choice.
+length          Length of an TEXT input field.
+noFocus         The input cannot receive focus.
+onclick         SUB to invoke when clicked.
 --------------- ---------------
 
 The type attribute can be one of the following
 
 ------- --------------
-button  Push button
-label   Display label 
-link    Hyperlinked text
-listbox Listbox 
-choice  Dropdown listbox
-text    Single or multi-line text input
-image   Image button
+button  Push button.
+label   Display label.
+link    Hyperlinked text.
+listbox Listbox.
+choice  Dropdown listbox.
+text    Single or multi-line text input.
+image   Image button.
 ------- --------------
 
-Example program
+Example
+-------
 
 ```
 f.handleKeys = 0

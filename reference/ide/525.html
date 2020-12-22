@@ -7,15 +7,15 @@
 <tbody>
 <tr class="odd">
 <td>doEvents()</td>
-<td>Process system events, for mouse and keyboard handling</td>
+<td>Process system events for mouse and keyboard handling.</td>
 </tr>
 <tr class="even">
 <td>close()</td>
-<td>Closes the active FORM</td>
+<td>Closes the active FORM.</td>
 </tr>
 <tr class="odd">
-<td>refresh()</td>
-<td>Copies the UI state into the FORM input variables</td>
+<td>refresh(n)</td>
+<td>n=1 Copy the UI state into the FORM input variables. n=0 Update the UI state using the FORM input variables.</td>
 </tr>
 </tbody>
 </table>
@@ -24,96 +24,96 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">value</td>
-<td>The value from the active input field</td>
+<td>The value from the active input field.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">inputs</td>
-<td>Array of inputs</td>
+<td>Array of inputs.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">focus</td>
-<td>Index to the focused input</td>
+<td>Index to the focused input.</td>
 </tr>
 </tbody>
 </table>
-<p><code>Inputs</code> is an array of MAP, each may contain the following properties</p>
+<p><code>Inputs</code> is an array of type MAP, each element may contain the following properties</p>
 <table>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">x</td>
-<td style="text-align: left;">X coordinate</td>
+<td style="text-align: left;">X coordinate.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">y</td>
-<td style="text-align: left;">Y coordinate</td>
+<td style="text-align: left;">Y coordinate.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">width</td>
-<td style="text-align: left;">Widget width</td>
+<td style="text-align: left;">Input width.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">height</td>
-<td style="text-align: left;">Widget height</td>
+<td style="text-align: left;">Input height.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">value</td>
-<td style="text-align: left;">The internal value associated with the input</td>
+<td style="text-align: left;">The internal value associated with the input.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">label</td>
-<td style="text-align: left;">The display label for the input</td>
+<td style="text-align: left;">The display label for the input.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">name</td>
-<td style="text-align: left;">The name of the input</td>
+<td style="text-align: left;">The name of the input.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">type</td>
-<td style="text-align: left;">The type of input, see below</td>
+<td style="text-align: left;">The type of input, see below.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">help</td>
-<td style="text-align: left;">Listbox or single line text input help text</td>
+<td style="text-align: left;">Listbox or single line text input help text.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">backgroundColor</td>
-<td style="text-align: left;">Background color</td>
+<td style="text-align: left;">Background color.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">color</td>
-<td style="text-align: left;">Forground color</td>
+<td style="text-align: left;">Forground color.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">isExit</td>
-<td style="text-align: left;">Whether clicking the input exits the current program</td>
+<td style="text-align: left;">Whether clicking the input exits the current program.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">isExternal</td>
-<td style="text-align: left;">Whether the <code>link</code> field opens in an external browser</td>
+<td style="text-align: left;">Whether the <code>link</code> field opens in an external browser.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">resizable</td>
-<td style="text-align: left;">Whether the field can be resized</td>
+<td style="text-align: left;">Whether the field can be resized.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">visible</td>
-<td style="text-align: left;">Whether the input field is visible</td>
+<td style="text-align: left;">Whether the input field is visible.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">selectedIndex</td>
-<td style="text-align: left;">The selected item in a listbox or choice</td>
+<td style="text-align: left;">The selected item in a listbox or choice.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">length</td>
-<td style="text-align: left;">Length of an TEXT input field</td>
+<td style="text-align: left;">Length of an TEXT input field.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">noFocus</td>
-<td style="text-align: left;">The input cannot receive focus</td>
+<td style="text-align: left;">The input cannot receive focus.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">onclick</td>
-<td style="text-align: left;">SUB to invoke when clicked</td>
+<td style="text-align: left;">SUB to invoke when clicked.</td>
 </tr>
 </tbody>
 </table>
@@ -122,35 +122,35 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">button</td>
-<td style="text-align: left;">Push button</td>
+<td style="text-align: left;">Push button.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">label</td>
-<td style="text-align: left;">Display label</td>
+<td style="text-align: left;">Display label.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">link</td>
-<td style="text-align: left;">Hyperlinked text</td>
+<td style="text-align: left;">Hyperlinked text.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">listbox</td>
-<td style="text-align: left;">Listbox</td>
+<td style="text-align: left;">Listbox.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">choice</td>
-<td style="text-align: left;">Dropdown listbox</td>
+<td style="text-align: left;">Dropdown listbox.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">text</td>
-<td style="text-align: left;">Single or multi-line text input</td>
+<td style="text-align: left;">Single or multi-line text input.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">image</td>
-<td style="text-align: left;">Image button</td>
+<td style="text-align: left;">Image button.</td>
 </tr>
 </tbody>
 </table>
-<p>Example program</p>
+<h2 id="example">Example</h2>
 <pre><code>f.handleKeys = 0
 &#39; create some buttons
 button1.y = 120
