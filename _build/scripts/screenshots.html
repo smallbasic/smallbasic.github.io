@@ -1,7 +1,9 @@
 <div class="article">
   <h1>Screenshots</h1>
   {%
-  for f in files("../images/screenshots/*")
+  shots = files("../images/screenshots/*")
+  sort shots
+  for f in shots
     print "<p><img src=/images/screenshots/" + f +">"
   next f
   %}

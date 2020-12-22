@@ -76,8 +76,7 @@
   </div>
 </blockquote>
 <p>Loads a secondary copy of system’s shell and, executes an program, or an shell command.</p>
-<pre><code>
-&#39; Note: RUN is different then CHAIN. RUN executes external system command,
+<pre><code>&#39; Note: RUN is different then CHAIN. RUN executes external system command,
 &#39;       while CHAIN executes SmallBASIC code (similar to EVAL function).
 Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;)  &#39; Check if it&#39;s Linux system
 Const IS_WINDOWS = Not IS_LINUX
@@ -121,12 +120,19 @@ Select Case 1
   Case IS_WINDOWS: Run &quot;sbasicg -e &quot; + DEMOFILE
 End Select
 ? &quot;Done...&quot;;
-Pause
-</code></pre>
-<p>Apparently, RUN/EXEC have bugs in SmallBASIC version 0.12.2…: chrisws replied on Sun, 04/24/2016 - 00:29 http://smallbasic.sourceforge.net/?q=comment/1187#comment-1187 &gt; RUN/EXEC There are three modes: 1. RUN(command) ’ invoked as a COMMAND 2. v=RUN(command) ‘invoked as a FUNC, returning the results of the sub process With both of these, control returns to the .bas once system ’command’ has completed. 3. EXEC(command) ’invoked as a COMMAND, control returns to the .bas immediately and the system command does it’s own thing external to SmallBASIC. … Note: In the android version you can use v=RUN to look at interesting things in the /proc file system.</p>
-<p>Windows 10 is having none of this. Starting with it thinking it should do the Linux branch in the first decision branch. But RUN won’t even RUN “DIR &gt; Directory.txt” (let alone give me a directory of DeskTop where I am at and running SB from.) Append: As a way to get OS, I just tried ? OSNAME and learned my Operating System is SDL ??? something is wrong also my SB version number is 0.12.1 but About menu says 0.12.2, I believe About menu. In general: 1. The search path for running a command (executable file) is defined in the “PATH” environment variable (unless full path to the executable is supplied). In Windows, the current directory will be searched before the directories specified in the PATH variable (but not on Linux).</p>
-<pre><code>
-Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;) &#39; check if it&#39;s Linux system
+Pause</code></pre>
+<p><code>RUN/EXEC</code></p>
+<p>There are three modes:</p>
+<ol type="1">
+<li><p>RUN(command) ’ invoked as a COMMAND</p></li>
+<li><p>v=RUN(command) ‘invoked as a FUNC, returning the results of the sub process. With both of these, control returns to the .bas once system ’command’ has completed.</p></li>
+<li><p>EXEC(command) ’invoked as a COMMAND, control returns to the .bas immediately and the system command does it’s own thing external to SmallBASIC.</p></li>
+</ol>
+<p>Note: In the android version you can use v=RUN to look at interesting things in the /proc file system.</p>
+<ol type="1">
+<li>The search path for running a command (executable file) is defined in the “PATH” environment variable (unless full path to the executable is supplied). In Windows, the current directory will be searched before the directories specified in the PATH variable (but not on Linux).</li>
+</ol>
+<pre><code>Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;) &#39; check if it&#39;s Linux system
 &#39; find current PATH with:
 If IS_LINUX Then
   RUN &quot;echo $PATH &gt; path.tmp&quot;
@@ -135,14 +141,12 @@ Else &#39; Windows (syntax...?)
 Fi
 Tload &quot;path.tmp&quot;, lines
 ? lines
-Pause
-</code></pre>
+Pause</code></pre>
 <ol start="2" type="1">
-<li>Command to execute is case sensitive on Linux (not on Windows).</li>
-<li>RUN loads a secondary command shell to execute a command. In Linux, and maybe on other systems as well, each command shell has unique environment-variables-table; which means that you cannot always share environment variables with command executed by RUN:</li>
+<li><p>Command to execute is case sensitive on Linux (not on Windows).</p></li>
+<li><p>RUN loads a secondary command shell to execute a command. In Linux, and maybe on other systems as well, each command shell has unique environment-variables-table; which means that you cannot always share environment variables with command executed by RUN:</p></li>
 </ol>
-<pre><code>
-Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;) &#39; check if it&#39;s Linux system
+<pre><code>Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;) &#39; check if it&#39;s Linux system
 &#39; This can work (verified on Linux):
 &#39; SB1 variable is set in main shell, and shared with secondary shell:
 ENVIRON &quot;SB1=67890&quot;
@@ -163,8 +167,7 @@ Else &#39; Windows (syntax...?)
 Fi
 &#39; Now back to main shell, so SB1 is 67890 again...:
 ? ENVIRON(&quot;SB1&quot;)
-Pause
-</code></pre>
+Pause</code></pre>
 <ol start="4" type="1">
 <li>Using RUN with built-in shell commands, such as DIR (to show directory list), might be confusing, because the result is not always visible. To delete a file you can try:</li>
 </ol>
@@ -179,39 +182,42 @@ Pause
 <pre><code>RUN &quot;ls &gt; test.tmp&quot;</code></pre>
 <p>on Linux.</p>
 <pre><code>TLOAD test.tmp, lines: ? lines</code></pre>
-<p>will verify that the command was executed well. 5. Systems commands, especially on Linux, are very powerful, and can add lots of valuable features to a SmallBASIC program. With system commands you can configure the COM port, send email (Linux at least), get lots of information about the environment, etc, etc. But before you can actually use these features - you must learn how your system is working, and which commands are available (Read Ebook or a book to understand the basics).</p>
+<p>will verify that the command was executed well.</p>
+<ol start="5" type="1">
+<li>Systems commands, especially on Linux, are very powerful, and can add lots of valuable features to a SmallBASIC program. With system commands you can configure the COM port, send email (Linux at least), get lots of information about the environment, etc, etc. But before you can actually use these features - you must learn how your system is working, and which commands are available (Read Ebook or a book to understand the basics).</li>
+</ol>
   <div class="lavenderBox">
     <div class="header">Code samples using RUN</div>
     <div class="linklist">
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/first factors mga.bas">first factors mga.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/another look at trig functions.bas">another look at trig functions.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/sb factor.bas">sb factor.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/fibanacci3.bas">fibanacci3.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/Chaos_NPhase.bas">Chaos_NPhase.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/Chaos_1xt.bas">Chaos_1xt.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/shooter.bas">shooter.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/sokoban.bas">sokoban.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//000 getting started/000 hello.bas">000 hello.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//000 getting started/001 3 ways to print hello 5 times.bas">001 3 ways to print hello 5 times.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//000 getting started/006 arrays+.bas">006 arrays+.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/chess.bas">chess.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/sokoban.bas">sokoban.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//system/new help.bas">new help.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//sound/ripples.bas">ripples.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/7gables.bas">7gables.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/realpolitik.bas">realpolitik.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/pirate.bas">pirate.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/galgenmann.bas">galgenmann.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/chess.bas">chess.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/dogstar5.bas">dogstar5.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/memorytest.bas">memorytest.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/tree.bas">tree.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/hex.bas">hex.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/mira.bas">mira.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/g_col_09.bas">g_col_09.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/mandel3.bas">mandel3.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/another look at trig functions.bas">another look at trig functions.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Misc Bpf/Balleta 2-11-15.bas">Balleta 2-11-15.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/biorythms.bas">biorythms.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Misc Bpf/Nice To Be Here.bas">Nice To Be Here.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/Chaos_1xt.bas">Chaos_1xt.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/Chaos_NPhase.bas">Chaos_NPhase.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/chess.bas">chess.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/chess.bas">chess.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/dogstar5.bas">dogstar5.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Misc Bpf/draw rectangle.bas">draw rectangle.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/fibanacci3.bas">fibanacci3.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/filemgr.bas">filemgr.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 2/fire demo.bas">fire demo.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/first factors mga.bas">first factors mga.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g2 Life.bas">g2 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g3 Life.bas">g3 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g4 Life.bas">g4 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g5 Life.bas">g5 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g6 Life.bas">g6 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/g_col_09.bas">g_col_09.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/galgenmann.bas">galgenmann.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/hex.bas">hex.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//network/irc-bot.bas">irc-bot.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/mandel3.bas">mandel3.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/memoryTest.bas">memoryTest.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/memorytest.bas">memorytest.bas </a>&nbsp;
     </div>
   </div>
   <div class="lavenderBox">
@@ -264,7 +270,7 @@ RUN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Tue, 22 Dec 2020 20:44:58 +1000
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -7,27 +7,27 @@
 <table>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">0 -</td>
-<td style="text-align: left;">true (non zero) if there is a new pen or mouse event</td>
+<td>0</td>
+<td style="text-align: left;">True (non zero) if there is a new pen or mouse event</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1 -</td>
+<td>1</td>
 <td style="text-align: left;">PEN: last pen down x; MOUSE: last mouse button down x</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2 -</td>
+<td>2</td>
 <td style="text-align: left;">Same as 1 for y</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">3 -</td>
-<td style="text-align: left;">true if the PEN is down; MOUSE: mouse left button is pressed</td>
+<td>3</td>
+<td style="text-align: left;">True if the PEN is down; MOUSE: mouse left button is pressed</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">4 -</td>
+<td>4</td>
 <td style="text-align: left;">PEN: last/current x, MOUSE: the current x position only if the left mouse button is pressed (like PEN is down)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">5 -</td>
+<td>5</td>
 <td style="text-align: left;">PEN(4) for y</td>
 </tr>
 </tbody>
@@ -36,23 +36,23 @@
 <table>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">10 -</td>
+<td>10</td>
 <td style="text-align: left;">current mouse x pos</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">11 -</td>
+<td>11</td>
 <td style="text-align: left;">current mouse y pos</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">12 -</td>
+<td>12</td>
 <td style="text-align: left;">true if the left mouse button is pressed</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">13 -</td>
+<td>13</td>
 <td style="text-align: left;">true if the right mouse button is pressed</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">14 -</td>
+<td>14</td>
 <td style="text-align: left;">true if the middle mouse button is pressed</td>
 </tr>
 </tbody>
@@ -77,7 +77,7 @@ While Inkey &lt;&gt; Chr(27) Do &#39; press Esc key to exit loop
   ? &quot;Mouse Left,Middle,Right down: &quot;, Pen(12), Pen(14), Pen(13);
 Wend
 </code></pre>
-<p>DELAY say 20 ms saves CPU and battery in a loop like the above reply. It also helps after a mouse click to not over report the same click again and again. Pen(0) probably helps too. Tested on Linux 64-bit laptop…: Pen(0) does not report all events, Delay 20 does not save much CPU; Maybe on another system the situation is different. I was reporting from Windows 7 experience last year. I got a number of complaints about CPU usage and so tested performance difference using delays (WAIT with SdlBasic code). They do seem to help reduce CPU levels when I checked performance monitors on my Windows 7-64 laptop Dual Core with AMD Radeon Graphics. It’s true I am not a tech expert and there maybe a better way to wait for key press and/or mouse input. chrisws tried to show me something way back in 2015:</p>
+<p>DELAY say 20 ms saves CPU and battery in a loop like the above reply. It also helps after a mouse click to not over report the same click again and again.</p>
 <pre><code>
 rem game loop example
 pen on
@@ -122,7 +122,3 @@ repeat
 until quit
 pen off
 </code></pre>
-<p>When I was trying to catch both mouse down and mouse up events. The printing of numbers was overwhelming and I could not make use of the code. Maybe you or someone can.</p>
-<p>From my experience, the best way to reduce CPU usage is related directly to “what you want your program to do”. You can always design your program to behave different and more efficient after giving it a second thought; it’s very subjective.</p>
-<p>Yet there ARE some commands that allow the system to do other things while your program is waiting for some input. In SmallBASIC I still don’t know them, but in other languages (with a well written Language Reference) you got some keyword like Wait_Key, etc; Wait_Key will wait for the user to input a key, and in the meantime the sys tem can do something else. But this must be documented by the author of the language.</p>
-<p>Whatever, reviewing our code again and again will pop up the correct logic for better performances, soon or later.</p>

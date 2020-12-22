@@ -39,6 +39,12 @@ end
 
 dirwalk samplesPath, "*.bas", use walker(x)
 
+func sortFunc(l, r)
+  local f1 = lower(rightOfLast(l, "/"))
+  local f2 = lower(rightOfLast(r, "/"))
+  return iff(f1 == f2, 0, iff(f1 > f2, 1, -1))
+end
+
 ' output the data
 for package in ref
   num_items = len(ref[package]) - 1
@@ -47,6 +53,7 @@ for package in ref
     item = ref[package][i]
     item.package = package
     item.samples = map[item.keyword]
+    sort item.samples use sortFunc(x, y)
     filename = "_out/data/" + item.nodeId + "-" + lower(package) + "-" + lower(item.keyword) + ".json"
     filename = translate(filename, " ", "")
     buffer = str(item)

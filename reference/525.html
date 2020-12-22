@@ -75,11 +75,156 @@
     </p>
   </div>
 </blockquote>
-<p>Creates a form object from a MAP variable. This provides access to the following sub-commands: doEvents, close, refresh. The form MAP may contain the following properties: value, inputs, focus. Inputs is an array of MAP, each may contain the following properties: x, y, width, height, value, label, name, type, backgroundColor, color, visible, isExit, selectedIndex, length, noFocus, onclick</p>
-<p>The type attribute can be one of the following: button label link tab listbox choice text image</p>
-<p>As far as I know FORM has replaced DOFORM. This example, since it is longer, will be in the Code Demo section of the Code Library as well. Here is Chris code example of FORM’s usage. As you can see, it requires knowledge of buttons and their properties. Also be forewarned this code will create the file: f.frm. I may have modified a few items playing with the code since Chris had posted it.</p>
-<pre><code>
-f.handleKeys = 0
+<p>Creates a form object from a MAP variable. This provides access to the following sub-commands:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>doEvents()</td>
+<td>Process system events, for mouse and keyboard handling</td>
+</tr>
+<tr class="even">
+<td>close()</td>
+<td>Closes the active FORM</td>
+</tr>
+<tr class="odd">
+<td>refresh()</td>
+<td>Copies the UI state into the FORM input variables</td>
+</tr>
+</tbody>
+</table>
+<p>The form MAP may contain the following properties</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">value</td>
+<td>The value from the active input field</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">inputs</td>
+<td>Array of inputs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">focus</td>
+<td>Index to the focused input</td>
+</tr>
+</tbody>
+</table>
+<p><code>Inputs</code> is an array of MAP, each may contain the following properties</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">x</td>
+<td style="text-align: left;">X coordinate</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">y</td>
+<td style="text-align: left;">Y coordinate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">width</td>
+<td style="text-align: left;">Widget width</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">Widget height</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">value</td>
+<td style="text-align: left;">The internal value associated with the input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">label</td>
+<td style="text-align: left;">The display label for the input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">The name of the input</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">The type of input, see below</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">help</td>
+<td style="text-align: left;">Listbox or single line text input help text</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">backgroundColor</td>
+<td style="text-align: left;">Background color</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">color</td>
+<td style="text-align: left;">Forground color</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">isExit</td>
+<td style="text-align: left;">Whether clicking the input exits the current program</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">isExternal</td>
+<td style="text-align: left;">Whether the <code>link</code> field opens in an external browser</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">resizable</td>
+<td style="text-align: left;">Whether the field can be resized</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">visible</td>
+<td style="text-align: left;">Whether the input field is visible</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">selectedIndex</td>
+<td style="text-align: left;">The selected item in a listbox or choice</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">length</td>
+<td style="text-align: left;">Length of an TEXT input field</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">noFocus</td>
+<td style="text-align: left;">The input cannot receive focus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">onclick</td>
+<td style="text-align: left;">SUB to invoke when clicked</td>
+</tr>
+</tbody>
+</table>
+<p>The type attribute can be one of the following</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">button</td>
+<td style="text-align: left;">Push button</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">label</td>
+<td style="text-align: left;">Display label</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">link</td>
+<td style="text-align: left;">Hyperlinked text</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">listbox</td>
+<td style="text-align: left;">Listbox</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">choice</td>
+<td style="text-align: left;">Dropdown listbox</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">Single or multi-line text input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image</td>
+<td style="text-align: left;">Image button</td>
+</tr>
+</tbody>
+</table>
+<p>Example program</p>
+<pre><code>f.handleKeys = 0
 &#39; create some buttons
 button1.y = 120
 button1.label = &quot;Button1&quot;
@@ -90,7 +235,6 @@ button2.x = -1
 button2.y = 120
 button2.label = &quot;Button2&quot;
 button2.value = &quot;valueofButton2&quot;
-button3.type = &quot;image&quot;
 button3.value = &quot;cats&quot;
 button3.x = -1
 button3.y = 120
@@ -163,40 +307,39 @@ wend
 f.close()
 func HelloWorld
 ? &quot;hello world&quot;
-end
-</code></pre>
+end</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using FORM</div>
     <div class="linklist">
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/first factors mga.bas">first factors mga.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/matrix_solve.bas">matrix_solve.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/bairstow.bas">bairstow.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/leastq.bas">leastq.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/fizzle2.bas">fizzle2.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/pedal.bas">pedal.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/plasma2.bas">plasma2.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/raycaster.bas">raycaster.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/sokoban.bas">sokoban.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/space.bas">space.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//000 getting started/002 numeric variables.bas">002 numeric variables.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master///index.bas">index.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/checkers.bas">checkers.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/startrek.bas">startrek.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/chess.bas">chess.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/star_field.bas">star_field.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/sokoban.bas">sokoban.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//system/pen pad.bas">pen pad.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/rogue trader.bas">rogue trader.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/7gables.bas">7gables.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/pirate.bas">pirate.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/checkers.bas">checkers.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/treason.bas">treason.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/startrek.bas">startrek.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/chess.bas">chess.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Misc Bpf/Another center finder.bas">Another center finder.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/bairstow.bas">bairstow.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//units section/base64.bas">base64.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/betrayal: crows ii.bas">betrayal: crows ii.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/biorythms.bas">biorythms.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/calc.bas">calc.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/calculator.bas">calculator.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/checkers.bas">checkers.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/checkers.bas">checkers.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/chess.bas">chess.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/chess.bas">chess.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Misc Bpf/circumscribe triangle.bas">circumscribe triangle.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/conrec-sb-v01.bas">conrec-sb-v01.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/dogstar5.bas">dogstar5.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//network/duckduckgo.bas">duckduckgo.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/filemanager.bas">filemanager.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/first factors mga.bas">first factors mga.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/fizzle2.bas">fizzle2.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//code demos/form demo.bas">form demo.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//gp utm package/gridareaplot.bas">gridareaplot.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/illuminati.bas">illuminati.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/memorytest.bas">memorytest.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master///index.bas">index.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/leastq.bas">leastq.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//business/loancalc.bas">loancalc.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 2/mandelbrot explorer.bas">mandelbrot explorer.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/matrix_solve.bas">matrix_solve.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/memoryTest.bas">memoryTest.bas </a>&nbsp;
     </div>
   </div>
   <div class="lavenderBox">
@@ -241,7 +384,7 @@ FORM by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Tue, 22 Dec 2020 20:44:58 +1000
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
