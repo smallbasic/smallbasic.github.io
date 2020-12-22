@@ -4,27 +4,26 @@
 
 Returns the PEN/MOUSE data.
 
-
 Values:
 
------ -----------------------------------------------------
-0 -   true (non zero) if there is a new pen or mouse event
-1 -   PEN: last pen down x; MOUSE: last mouse button down x
-2 -   Same as 1 for y
-3 -   true if the PEN is down; MOUSE: mouse left button is pressed
-4 -   PEN: last/current x, MOUSE: the current x position only if the left mouse button is pressed (like PEN is down)
-5 -   PEN(4) for y
------ -----------------------------------------------------
+- -----------------------------------------------------
+0 True (non zero) if there is a new pen or mouse event
+1 PEN: last pen down x; MOUSE: last mouse button down x
+2 Same as 1 for y
+3 True if the PEN is down; MOUSE: mouse left button is pressed
+4 PEN: last/current x, MOUSE: the current x position only if the left mouse button is pressed (like PEN is down)
+5 PEN(4) for y
+- -----------------------------------------------------
 
 Mouse specific:
 
------- --------------------
-10 -   current mouse x pos
-11 -   current mouse y pos
-12 -   true if the left mouse button is pressed
-13 -   true if the right mouse button is pressed
-14 -   true if the middle mouse button is pressed
------- --------------------
+-- --------------------
+10 current mouse x pos
+11 current mouse y pos
+12 true if the left mouse button is pressed
+13 true if the right mouse button is pressed
+14 true if the middle mouse button is pressed
+-- --------------------
 
 PEN must be enabled prior to use of this function. Pen ON|OFF
 
@@ -50,14 +49,7 @@ Wend
 
 ~~~
 
-DELAY say 20 ms saves CPU and battery in a loop like the above reply.
-It also helps after a mouse click to not over report the same click again and again. Pen(0) probably helps too.
-Tested on Linux 64-bit laptop...:
-Pen(0) does not report all events,
-Delay 20 does not save much CPU;
-Maybe on another system the situation is different.
-I was reporting from Windows 7 experience last year. I got a number of complaints about CPU usage and so tested performance difference using delays (WAIT with SdlBasic code). They do seem to help reduce CPU levels when I checked performance monitors on my Windows 7-64 laptop Dual Core with AMD Radeon Graphics.
-It's true I am not a tech expert and there maybe a better way to wait for key press and/or mouse input. chrisws tried to show me something way back in 2015:
+DELAY say 20 ms saves CPU and battery in a loop like the above reply. It also helps after a mouse click to not over report the same click again and again.
 
 ~~~
 
@@ -105,14 +97,4 @@ until quit
 pen off
 
 ~~~
-
-When I was trying to catch both mouse down and mouse up events. The printing of numbers was overwhelming and I could not make use of the code. Maybe you or someone can.
-
-From my experience, the best way to reduce CPU usage is related directly to "what you want your program to do". You can always design your program to behave different and more efficient after giving it a second thought; it's very subjective.
-
-Yet there ARE some commands that allow the system to do other things while your program is waiting for some input. In SmallBASIC I still don't know them, but in other languages (with a well written Language Reference) you got some keyword like Wait_Key, etc; Wait_Key will wait for the user to input a key, and in the meantime the sys
-tem can do something else. But this must be documented by the author of the language.
-
-Whatever, reviewing our code again and again will pop up the correct logic for better performances, soon or later.
-
 

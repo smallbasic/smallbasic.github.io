@@ -2,24 +2,61 @@
 
 > FORM(map)
 
-Creates a form object from a MAP variable. This provides access to the following sub-commands: doEvents, close, refresh. The form MAP may contain the following properties: value, inputs, focus. Inputs is an array of MAP, each may contain the following properties: x, y, width, height, value, label, name, type, backgroundColor, color, visible, isExit, selectedIndex, length, noFocus, onclick
+Creates a form object from a MAP variable. This provides access to the following sub-commands:
 
+---------- -------------------------------
+doEvents() Process system events, for mouse and keyboard handling
+close()    Closes the active FORM
+refresh()  Copies the UI state into the FORM input variables
+---------- -------------------------------
 
-The type attribute can be one of the following:
-button
-label
-link
-tab
-listbox
-choice
-text
-image
+The form MAP may contain the following properties
 
-As far as I know FORM has replaced DOFORM. This example, since it is longer,  will be in the Code Demo section of the Code Library as well.
-Here is Chris code example of FORM's usage. As you can see, it requires knowledge of buttons and their properties. Also be forewarned this code will create the file: f.frm. I may have modified a few items playing with the code since Chris had posted it.
+------ ---------------
+value  The value from the active input field
+inputs Array of inputs
+focus  Index to the focused input
+------ ---------------
 
-~~~
+`Inputs` is an array of MAP, each may contain the following properties
 
+--------------- ---------------
+x               X coordinate
+y               Y coordinate
+width           Widget width
+height          Widget height
+value           The internal value associated with the input
+label           The display label for the input
+name            The name of the input
+type            The type of input, see below
+help            Listbox or single line text input help text
+backgroundColor Background color
+color           Forground color
+isExit          Whether clicking the input exits the current program
+isExternal      Whether the `link` field opens in an external browser
+resizable       Whether the field can be resized
+visible         Whether the input field is visible
+selectedIndex   The selected item in a listbox or choice
+length          Length of an TEXT input field
+noFocus         The input cannot receive focus
+onclick         SUB to invoke when clicked
+--------------- ---------------
+
+The type attribute can be one of the following
+
+------- --------------
+button  Push button
+label   Display label 
+link    Hyperlinked text
+listbox Listbox 
+choice  Dropdown listbox
+text    Single or multi-line text input
+image   Image button
+------- --------------
+
+Example program
+
+```
 f.handleKeys = 0
 ' create some buttons
 button1.y = 120
@@ -31,7 +68,6 @@ button2.x = -1
 button2.y = 120
 button2.label = "Button2"
 button2.value = "valueofButton2"
-button3.type = "image"
 button3.value = "cats"
 button3.x = -1
 button3.y = 120
@@ -105,8 +141,4 @@ f.close()
 func HelloWorld
 ? "hello world"
 end
-
-~~~
-
-
-
+```
