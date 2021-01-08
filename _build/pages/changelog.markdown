@@ -1,6 +1,18 @@
 Changelog
 =========
 
+**12.20 (8 January 2021) **
+
+- Fix to allow c-modules to be called from units
+- Fix to allow multiple modules and units within same program
+- Implemented c-styles escape sequences
+- Add support for inline assignment of export variables
+- Add support for unit alias names
+- Ensure INT datatype is always 64 bits
+- Give error when file not found
+- Update editor popup appearance
+- Implemented restoring the cursor position
+
 **12.19 (16 July 2020) **
 
 - Fix ABSMIN/ABSMAX transposed #96
