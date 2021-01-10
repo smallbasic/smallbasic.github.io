@@ -12,6 +12,7 @@ Changelog
 - Give error when file not found
 - Update editor popup appearance
 - Implemented restoring the cursor position
+- Added modules raylib, nuklear, websocket, glfw and clipboard.
 
 **12.19 (16 July 2020) **
 

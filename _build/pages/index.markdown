@@ -39,7 +39,7 @@ SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for ever
 | January 8, 2021
 :::
 
-For details see: [release notes](https://github.com/smallbasic/SmallBASIC/releases/tag/v12.20). Please report any issues to either the forum, email or github issues page.
+This release includes new loadable modules with support for [RAYLIB](https://www.raylib.com/), [Nuklear](https://github.com/Immediate-Mode-UI/Nuklear) and WebSockets. For details see: [release notes](https://github.com/smallbasic/SmallBASIC/releases/tag/v12.20). Please report any issues to either the forum, email or github issues page.
 
 ## SmallBASIC version 12.19 has been released
 
