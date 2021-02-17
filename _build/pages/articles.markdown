@@ -14,5 +14,5 @@
 
 ## Programming SmallBASIC  by Gerard Thomas Lab&egrave;rnia
 
-- [English](/docs/smallbasic.en.pdf)
+- [English](/pages/course_gtl.html)
 - [Catalan](/docs/smallbasic.ca.pdf)

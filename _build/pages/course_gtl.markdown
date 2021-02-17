@@ -16,7 +16,7 @@ Contents
 * [Conditional commands](#conditional)
 * [Repetition commands](#repeat)
 * [Graphic commands](#graphicCommands)
-* [Graphics / Color code](#graphics)
+* [Graphics / Color code](#colorCode)
 * [Programming Exercises](#exercises)
 
 :::
@@ -122,32 +122,23 @@ Keyboard shortcuts for working with the program:
 |       |loop without leaving the program)       |
 +-------+----------------------------------------+
 
-## Programming Course
-
-Sections:
-
-1. EX1.BAS to EX7.BAS
-2. P1.BAS to P19.BAS
-3. EX8.BAS to EX13.BAS
-4. EX20.BAS to EX26.BAS
-
 ## Commands in SmallBASIC{#commands}
 
 ### Screen commands{#screenCommands}
 
-`REM (remark)`
+`REM` (remark)
 : Insert a comment in a program.
 
-`CLS (clear screen)`
+`CLS` (clear screen)
 : Delete everything on the screen.
 
 `COLOR`
-: Change the text color and background of the screen (color code at the end of section 4.5).
+: Change the text color and background of the screen [Color code](#colorCode)
 
 `COLOR A, B`
 : Change the text color of the screen background color A and B.
 
-`PRINT (print) `
+`PRINT` (print)
 : View numerical data or text on the screen.
 
 **EX1.BAS**
@@ -174,7 +165,7 @@ HELLO 40
 ```
 10 REM locate command
 20 CLS
-30 Locate 12.10
+30 Locate 12,10
 40 PRINT "HELLO"
 ```
 
@@ -219,7 +210,7 @@ Age ?
 `PAUSE t`
 : Stop the computer during t seconds.
 
-`SQR (square root)`
+`SQR` (square root)
 : Make the square root operation
 
 **EX4.BAS**
@@ -265,9 +256,9 @@ ELSE can be omitted, and simply continue the program in the following order.
 **EX6.BAS**
 
 ```
-10 REM Ordre IF – THEN – ELSE
+10 REM Command IF – THEN – ELSE
 20 CLS
-30 PRINT “EDAT?”
+30 PRINT "AGE?"
 40 INPUT A
 50 IF A>17 THEN PRINT "ADULT" ELSE PRINT "MINOR"
 
@@ -277,9 +268,7 @@ Result screen:
 
 ```
 AGE?
-
 11
-
 MINOR
 ```
 
@@ -309,12 +298,12 @@ GOOD MORNING
 
 ### Graphic commands {#graphicCommands}
 
-Before starting commands graphic graphics grid looks at the end of the chapter, to put points on the screen.
+Refer to the graphics grid at the end of the chapter for addressing positions on the screen.
 
 `PSET`
 : Draw a dot on the screen.
 
-`PSET ( X, Y), color`
+`PSET (X, Y), color`
 : Draw a point on the screen coordinates (x, y) and the desired color.
 
 **EX8.BAS**
@@ -351,7 +340,7 @@ Result screen:
 `RECT`
 : Draw a rectangle on the screen.
 
-`rect X1, Y1, X2, Y2, color`
+`RECT X1, Y1, X2, Y2, color`
 : Draw a rectangle on the screen, given by the value of the points of a diagonal from the starting point (x1, y1) to the end point (x2, y2) and the desired color.
 
 **EX10.BAS**
@@ -417,7 +406,7 @@ Note: Commands RECT and CIRCLE, FILLED option can lead to an end. This option au
 60 END
 ```
 
-![](/images/media/image6.png){#graphics}
+![](/images/media/image6.png){#colorCode}
 
 ## Programming Exercises{#exercises}
 
@@ -569,7 +558,7 @@ What happens if you remove the ';' character from the print command?
 
 Write next to each line of the program that performs the function
 
-**P18.BAS** Make a program that asks you the password (a number) to continue and if the correct sounding music and the text " correct password "
+**P18.BAS** Make a program that asks you the password (a number) to continue and if the correct, play music and display the text "correct password"
 
 **P19.BAS** Program menu: Calculator euros
 
