@@ -5,6 +5,19 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.21 (14 April 2021)**
+
+- Added range checking for the web services port
+- Fix CIRCLE command to ensure radius uses the WINDOW coordinate system
+- Fix to ensure the default VIEW is maintained during resizing
+- Fix square bracket field access issue
+- Fix crash when line length limit exceeded
+- Handle octal escapes correctly
+- Added option to preserve user data when app uninstalled
+- Update path label when displaying project folder
+- Implemented c-styles escape sequences
+- Add support for inline assignment of export variables
+
 **12.19 (16 July 2020)**
 
 - Fix usability issues with samsung mobiles
