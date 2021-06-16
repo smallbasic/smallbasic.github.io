@@ -36,5 +36,5 @@
 
 ## Language Reference
 
-[Offline help text](http://sourceforge.net/projects/smallbasic/files/Language%20Reference/sbref_v2.txt/download){target="_blank"}
+[Offline help text](../reference/sbref.txt){target="_blank"}
 

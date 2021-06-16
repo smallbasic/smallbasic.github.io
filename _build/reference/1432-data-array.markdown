@@ -2,12 +2,47 @@
 
 > ARRAY [var | expr]
 
-Creates a ARRAY or MAP variable from the given string or expression
+Creates a ARRAY or MAP variable from the given string or expression.
 
+The ARRAY command supports JSON (Javascript object notation) syntax. The MAP provides value-key pair access along with array or dotted notation.
+The MAP can be converted back into a JSON string using the STR command. You can test whether a variable is a MAP using the ISMAP command.
+
+The following example shows a possible JSON representation describing a person:
 
 ~~~
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "isAlive": true,
+  "age": 25,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021-3100"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    },
+    {
+      "type": "mobile",
+      "number": "123 456-7890"
+    }
+  ],
+  "children": [],
+  "spouse": null
+}
+~~~
 
-' See also Article "New features" -> "User defined structures".
+Example 1:
+
+~~~
 Def uline(text) = Cat(2) + text + Cat(-2) ' Underline text
 Cls
 ? uline("1-Dimension Map Array:")
@@ -78,109 +113,11 @@ b.title = "Top-Left"
 ?
 ?:?:? " Press any key..."
 Pause
-
 ~~~
 
-Thank you.
-Ah, new stuff!
-I see the string wrapped in curlie brackets, is that required? not [] brackets? or () brackets?
-I see the "properties"(?) separated by colon with it's value, is that also required? (well , separates pairs and ; separates rows)
-Append: ? "properties", better name is "field"
-Associative array is different from common array because of the fields?
-ARRAY syntax is like this (I don't see other option):
-ARRAY("{varName1:value1, varName2:value2, ...}")
-You can use expression or variable instead of string:
-Def s = "{varName1:value1, varName2:value2}"
-s = "{varName1:value1, varName2:value2}"
-...
-a = ARRAY(s)
-Associative array is not different then common array.
-ARRAY() simply creates an array which some programmers like its syntax.
-common array is more powerful because instead of fixed names it uses indexes, which you can use inside loops.
-To sum up: you don't have to use a.x; a.y - you can simply use a(X), a(Y). 
-the term "Field" is mainly used for databases;
-the term "Property" is mainly used in object oriented programming syntax.
-But in the real life, both "field" and "property" are usually element of an array.
-To sum up: you don't need to use any term - you can simply say "variable".
- 
-
-JSON is an open-standard format that uses human-readable text to transmit data objects consisting of attribute–value pairs. JSON is a language-independent data format.
-Here I quote Chris from Home -- Forums -- Project help -- Tile Map Editor:
-> 
-...
-If you click File / Export and save the output in JSON format, you can then use the output in a SmallBASIC program like this:
+Example 2:
 
 ~~~
-
-tload "map.json" , buffer, 1
-tiles= array(buffer)
-? tiles.layers(0).data(0)
-
-~~~
-
-...
-
-These are good news, because it actually allows us to save and load arrays as regular text files in JSON format (which shares its vision with XML format).
-That's useful but can it be applied to other ARRAY types? For example I can make TLOAD and TSAVE work for a one dimensional array but I cannot see how to save or load an ordinary (non MAP) ARRAY with more than one dimension. Have you achieved this? Is it possible? Just wondering. Thanks.
-I've copy this code from JSON Wikipedia, it seems like JSON supports more then one 
-dimension according to the example... 
-The following example shows a possible JSON representation describing a person:
-
-~~~
-
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "isAlive": true,
-  "age": 25,
-  "address": {
-    "streetAddress": "21 2nd Street",
-    "city": "New York",
-    "state": "NY",
-    "postalCode": "10021-3100"
-  },
-  "phoneNumbers": [
-    {
-      "type": "home",
-      "number": "212 555-1234"
-    },
-    {
-      "type": "office",
-      "number": "646 555-4567"
-    },
-    {
-      "type": "mobile",
-      "number": "123 456-7890"
-    }
-  ],
-  "children": [],
-  "spouse": null
-}
-
-~~~
-
-This what Chris wrote at Home -- Forums -- Announcements (10/02/2014):
-> 
-...
-SmallBASIC implementations: Any
-SmallBASIC version 0.11.16 for Ubuntu is now available.
-...
-Variables:
-The MAP variable type combines the features of previously separate "User Defined Structures" and "Associated Array" variables. The MAP provides value-key pair access along with array or dotted notation. The MAP can be initialized from a String variable using the ARRAY command. The ARRAY command supports JSON (Javascript object notation) syntax.
-The MAP can be converted back into a JSON string using the STR command. You can test whether a variable is a MAP using the ISMAP command.
-The ARRAY command can be used to process web services results. For example: https:raw.githubusercontent.com*smallbasic*SmallBASIC*master*samples*distro-examples*devio*google.bas
-
-I didn't have time to try anything, and I don't know if there is a function to convert between regular array and map array (is there?); 
-If there isn't any function, you can create one, JSON format looks a bit more friendly then XML format, so it must be easy.
-Sorry I didn't understand...
-See my comment on:     
-Home -- Forums -- Project help -- Tile Map Editor -- coffee first...
-It shows how easy is to save and load ordinary array with more than one dimension, by using the WRITE and READ keywords to save and load array variables in binary format.
-I am trying to make a dictionary with two columns as part of writing an assembler. I can SEARCH the first column and use (0,1) then (1,1) to look up the second column if I REDIM the array loaded from a file.
-But I cannot see a way to load the file with two dimensions.
-
-~~~
-
 REM SmallBASIC
 REM created: 03/04/2016
 ? "Let's test reading files"
@@ -228,11 +165,9 @@ SEARCH i, "JEQ", r
 
 ~~~
 
-See:  Home -- Language reference -- File -- TLOAD -- How to convert TLOAD's array into nested array
-Thanks for your help but REDIM works for me.
+Example 3:
 
 ~~~
-
 ? "OPEN \\"dest\\" FOR INPUT AS #1"
 OPEN "dest" FOR INPUT AS #1
 ? "TLOAD #1, i,0"
@@ -275,7 +210,4 @@ SEARCH i, "AM", r
 ? "r = ", r
 ? "destination = ",i(0,r)
 ? "binary      = ",i(1,r)
-
 ~~~
-
-

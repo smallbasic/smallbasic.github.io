@@ -5,6 +5,17 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.22 (? June April 2021)**
+
+- Fixed 'Socket Client doesn't receive byte with value 13' #112
+- Fixed RGB handling with IMAGEs
+- Fixed TSAVE of arrays includes extra null character. #119
+- Fixed array access regression
+- Implemented image.draw(), fix image.save in andoid #115
+- Removed "requestLegacyExternalStorage" for AppStore compliance
+- Removed path navigation to show unified view of available folders
+- Removed samsung keypad warning
+
 **12.21 (14 April 2021)**
 
 - Added range checking for the web services port

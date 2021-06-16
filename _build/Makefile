@@ -24,6 +24,7 @@ pages = $(patsubst pages/%.markdown, $(out)/pages3/%.html, $(wildcard pages/*.ma
 posts = $(patsubst posts/%.markdown, $(out)/posts3/%.html, $(wildcard posts/*.markdown))
 scripts = $(patsubst scripts/%.html, $(out)/scripts2/%.html, $(wildcard scripts/*.html))
 reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))
+reference_txt = $(patsubst reference/%.markdown, $(out)/reference_txt/%.txt, $(wildcard reference/*.markdown))
 
 # rules
 .data: reference.json page.bas site.bas mkdata.bas includes/header.html
@@ -82,11 +83,16 @@ $(out)/scripts2/%.html: $(out)/scripts/%.html
 	$(mkdir)
 	$(sbasic) $(out)/sitepage.bas $< > $@
 
-all: $(reference) $(pages) $(posts) $(scripts)
+$(out)/reference_txt/%.txt: reference/%.markdown
+	$(mkdir)
+	$(pandoc) --from markdown-tex_math_dollars --to plain -o $@ $<
+
+all: $(reference) $(out)/reference.txt $(pages) $(posts) $(scripts)
 	@mkdir -p ../reference/ide
 	@mkdir -p ../pages
 	@mkdir -p ../posts
 	@$(sbasic) deploy.bas
+	@cp $(out)/reference.txt ../reference
 	@cp $(out)/pages3/*.html ../pages
 	@cp $(out)/posts3/*.html ../posts
 	@cp $(out)/scripts2/*.html ../pages
@@ -96,6 +102,9 @@ all: $(reference) $(pages) $(posts) $(scripts)
 	@cp layouts/index.html ../samples
 	@cp layouts/index.html ../reference
 	@cp layouts/index.html ../reference/ide
+
+$(out)/reference.txt : $(reference_txt) mkref.bas
+	@$(sbasic) mkref.bas > $(out)/reference.txt
 
 clean:
 	rm -rf $(out) *.sbu
