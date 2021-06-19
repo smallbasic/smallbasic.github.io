@@ -87,12 +87,12 @@ $(out)/reference_txt/%.txt: reference/%.markdown
 	$(mkdir)
 	$(pandoc) --from markdown-tex_math_dollars --to plain -o $@ $<
 
-all: $(reference) $(out)/reference.txt $(pages) $(posts) $(scripts)
+all: $(reference) $(out)/sbref.txt $(pages) $(posts) $(scripts)
 	@mkdir -p ../reference/ide
 	@mkdir -p ../pages
 	@mkdir -p ../posts
 	@$(sbasic) deploy.bas
-	@cp $(out)/reference.txt ../reference
+	@cp $(out)/sbref.txt ../reference/
 	@cp $(out)/pages3/*.html ../pages
 	@cp $(out)/posts3/*.html ../posts
 	@cp $(out)/scripts2/*.html ../pages
@@ -103,8 +103,8 @@ all: $(reference) $(out)/reference.txt $(pages) $(posts) $(scripts)
 	@cp layouts/index.html ../reference
 	@cp layouts/index.html ../reference/ide
 
-$(out)/reference.txt : $(reference_txt) mkref.bas
-	@$(sbasic) mkref.bas > $(out)/reference.txt
+$(out)/sbref.txt : $(reference_txt) mkref.bas
+	@$(sbasic) mkref.bas > $(out)/sbref.txt
 
 clean:
 	rm -rf $(out) *.sbu

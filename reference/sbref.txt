@@ -1,22 +1,36 @@
 SmallBASIC Language reference
 
-   _____                 _ _ ____           _____ _____ _____
-  / ____|               | | |  _ \   /\    / ____|_   _/ ____|
- | (___  _ __ ___   __ _| | | |_) | /  \  | (___   | || |
-  \___ \| '_ ` _ \ / _` | | |  _ < / /\ \  \___ \  | || |
-  ____) | | | | | | (_| | | | |_) / ____ \ ____) |_| || |____
- |_____/|_| |_| |_|\__,_|_|_|____/_/    \_\_____/|_____\_____|
+░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
+██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
+╚█████╗░██╔████╔██║███████║██║░░░░░██║░░░░░██████╦╝███████║╚█████╗░██║██║░░╚═╝
+░╚═══██╗██║╚██╔╝██║██╔══██║██║░░░░░██║░░░░░██╔══██╗██╔══██║░╚═══██╗██║██║░░██╗
+██████╔╝██║░╚═╝░██║██║░░██║███████╗███████╗██████╦╝██║░░██║██████╔╝██║╚█████╔╝
+╚═════╝░╚═╝░░░░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░╚════╝░
 
+AT BEEP CAT CLS DEFINEKEY FORM INKEY INPUT LINEINPUT LINPUT LOCATE LOGPRINT NOSOUND PEN PLAY PRINT SOUND 
+TAB APPEND ARRAY CDBL CINT CREAL DATA DELETE DIM EMPTY ERASE INSERT ISARRAY ISDIR ISFILE ISLINK ISMAP 
+ISNUMBER ISSTRING LBOUND LEN READ REDIM RESTORE SEARCH SORT SWAP UBOUND DATE DATEDMY DATEFMT JULIAN TICKS 
+TIME TIMEHMS TIMER TIMESTAMP WEEKDAY ACCESS BGETC BLOAD BPUTC BSAVE CHDIR CHMOD CLOSE COPY DIRWALK EOF 
+EXIST FILES FREEFILE INPUT INPUT KILL LOCK LOF MKDIR OPEN RENAME RMDIR SEEK SEEK TLOAD TSAVE WRITE ARC 
+CHART CIRCLE COLOR DRAW DRAWPOLY IMAGE LINE PAINT PEN PLOT POINT PSET RECT RGB RGBF SHOWPAGE TEXTHEIGHT 
+TEXTWIDTH TXTH TXTW VIEW WINDOW XMAX XPOS YMAX YPOS AND AS BAND BG BOR BYREF CALL CASE CATCH CONST DECLARE 
+DEF DO ELIF ELSE ELSEIF END END TRY ENDIF EQV EXIT FALSE FI FOR FUNC GOSUB GOTO IF IFF IMP IN LABEL LET 
+LIKE LOCAL LSHIFT MDL MOD NAND NEXT NOR NOT ON OR REM REPEAT RETURN RSHIFT SELECT STEP STOP SUB THEN 
+THROW TO TRUE TRY UNTIL USE USG USING WEND WHILE XNOR XOR ABS ABSMAX ABSMIN ACOS ACOSH ACOT ACOTH ACSC 
+ACSCH ASEC ASECH ASIN ASINH ATAN ATAN2 ATANH ATN CEIL COS COSH COT COTH CSC CSCH DEG DERIV DETERM DIFFEQN 
+EXP EXPRSEQ FIX FLOOR FRAC INT INTERSECT INVERSE LINEQN LOG LOG10 M3APPLY M3IDENT M3ROTATE M3SCALE M3TRANS 
+MAX MIN POLYAREA POLYCENT POLYEXT POW PTDISTLN PTDISTSEG PTSIGN RAD RND ROOT ROUND SEC SECH SEGCOS SEGLEN 
+SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATSPREADP STATSPREADS SUM SUMSQ TAN TANH ASC BCS BIN 
+CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST LOWER LTRIM MID OCT 
+REPLACE RIGHT RIGHTOF RIGHTOFLAST RINSTR RTRIM SINPUT SPACE SPC SPLIT SPRINT SQUEEZE STR STRING TRANSLATE 
+TRIM UCASE UPPER VAL CHAIN COMMAND CWD DELAY ENV ENV EXEC EXPORT FRE HOME IMPORT INCLUDE MAXINT NIL OPTION 
+PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON UNIT 
 
 +========================================================================================+
 |                                     1. (Console) AT                                    |
 +========================================================================================+
 
-
-AT
-
-
-  AT x, y
+AT x, y
 
 Moves the console cursor to the specified position. x,y are in pixels.
 
@@ -24,11 +38,7 @@ Moves the console cursor to the specified position. x,y are in pixels.
 |                                    2. (Console) BEEP                                   |
 +========================================================================================+
 
-
 BEEP
-
-
-  BEEP
 
 Generates a beep sound.
 
@@ -36,11 +46,7 @@ Generates a beep sound.
 |                                     3. (Console) CAT                                   |
 +========================================================================================+
 
-
-CAT
-
-
-  CAT (x)
+CAT (x)
 
 Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline,
 -2 = underline-off, 3 = reverse, -3 = reverse-off.
@@ -169,11 +175,7 @@ Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline,
 |                                     4. (Console) CLS                                   |
 +========================================================================================+
 
-
-CLS
-
-
-  CLS
+CLS 
 
 Clears the screen.
 
@@ -181,11 +183,7 @@ Clears the screen.
 |                                  5. (Console) DEFINEKEY                                |
 +========================================================================================+
 
-
-DEFINEKEY
-
-
-  DEFINEKEY k, sub
+DEFINEKEY k,sub
 
 Binds a keystroke to a user defined function,
 
@@ -362,11 +360,7 @@ Example 2:
 |                                    6. (Console) FORM                                   |
 +========================================================================================+
 
-
-FORM
-
-
-  FORM(map)
+FORM(map)
 
 Creates a form object from a MAP variable. This provides access to the
 following sub-commands:
@@ -514,11 +508,7 @@ Example
 |                                    7. (Console) INKEY                                  |
 +========================================================================================+
 
-
 INKEY
-
-
-  INKEY
 
 Returns the last key-code in keyboard buffer, or an empty string if
 there are no keys. Special key-codes like the function-keys are returned
@@ -751,11 +741,7 @@ http://smallbasic.sourceforge.net/?q=node/1583
 |                                    8. (Console) INPUT                                  |
 +========================================================================================+
 
-
-INPUT
-
-
-  INPUT [prompt,|;] var[, var [, …]]
+INPUT [prompt,|;] var[, var [, ...]]
 
 Reads from “keyboard” text and stores it in a variable.
 
@@ -763,11 +749,7 @@ Reads from “keyboard” text and stores it in a variable.
 |                                  9. (Console) LINEINPUT                                |
 +========================================================================================+
 
-
-LINEINPUT
-
-
-  LINEINPUT [#fileN] var
+LINEINPUT [#fileN] var
 
 Reads a whole text line from file or console.
 
@@ -775,11 +757,7 @@ Reads a whole text line from file or console.
 |                                   10. (Console) LINPUT                                 |
 +========================================================================================+
 
-
-LINPUT
-
-
-  LINPUT [#fileN] var
+LINPUT [#fileN] var
 
 Reads a whole text line from file or console.
 
@@ -787,11 +765,7 @@ Reads a whole text line from file or console.
 |                                   11. (Console) LOCATE                                 |
 +========================================================================================+
 
-
-LOCATE
-
-
-  LOCATE y, x
+LOCATE y, x
 
 Moves the console cursor to the specified position. x,y are in character
 cells.
@@ -867,11 +841,7 @@ cells.
 |                                  12. (Console) LOGPRINT                                |
 +========================================================================================+
 
-
-LOGPRINT
-
-
-  LOGPRINT …
+LOGPRINT ...
 
 PRINT to the application logfile. The syntax is the same as command
 PRINT.
@@ -880,11 +850,7 @@ PRINT.
 |                                  13. (Console) NOSOUND                                 |
 +========================================================================================+
 
-
 NOSOUND
-
-
-  NOSOUND
 
 Stop background sound and clear the sound queue.
 
@@ -892,11 +858,7 @@ Stop background sound and clear the sound queue.
 |                                    14. (Console) PEN                                   |
 +========================================================================================+
 
-
-PEN
-
-
-  PEN ON|OFF
+PEN ON|OFF
 
 Enables/Disables the PEN/MOUSE mechanism.
 
@@ -904,11 +866,7 @@ Enables/Disables the PEN/MOUSE mechanism.
 |                                    15. (Console) PLAY                                  |
 +========================================================================================+
 
-
-PLAY
-
-
-  PLAY string
+PLAY string
 
 Play musical notes.
 
@@ -931,11 +889,7 @@ Play musical notes.
 |                                   16. (Console) PRINT                                  |
 +========================================================================================+
 
-
-PRINT
-
-
-  PRINT [USING [format];] [expr|str [,|; [expr|str]] …
+PRINT [USING [format];] [expr|str [,|; [expr|str]] ...
 
 Display text or the value of an expression.
 
@@ -1034,11 +988,7 @@ of using AT.
 |                                   17. (Console) SOUND                                  |
 +========================================================================================+
 
-
-SOUND
-
-
-  SOUND freq, dur_ms [, vol] [BG]
+SOUND freq, dur_ms [, vol] [BG]
 
 Plays a sound.
 
@@ -1051,11 +1001,7 @@ Plays a sound.
 |                                    18. (Console) TAB                                   |
 +========================================================================================+
 
-
-TAB
-
-
-  TAB (n)
+TAB (n)
 
 Moves cursor position to the nth column.
 
@@ -1067,11 +1013,7 @@ Moves cursor position to the nth column.
 |                                    19. (Data) APPEND                                   |
 +========================================================================================+
 
-
-APPEND
-
-
-  APPEND a, val [, val [, …]]
+APPEND a, val [, val [, ...]]
 
 Inserts the values at the end of the specified array.
 
@@ -1082,16 +1024,49 @@ Inserts the values at the end of the specified array.
 |                                     20. (Data) ARRAY                                   |
 +========================================================================================+
 
+ARRAY [var | expr]
 
-ARRAY
+Creates a ARRAY or MAP variable from the given string or expression.
 
+The ARRAY command supports JSON (Javascript object notation) syntax. The
+MAP provides value-key pair access along with array or dotted notation.
+The MAP can be converted back into a JSON string using the STR command.
+You can test whether a variable is a MAP using the ISMAP command.
 
-  ARRAY [var | expr]
+The following example shows a possible JSON representation describing a
+person:
 
-Creates a ARRAY or MAP variable from the given string or expression
+    {
+      "firstName": "John",
+      "lastName": "Smith",
+      "isAlive": true,
+      "age": 25,
+      "address": {
+        "streetAddress": "21 2nd Street",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": "10021-3100"
+      },
+      "phoneNumbers": [
+        {
+          "type": "home",
+          "number": "212 555-1234"
+        },
+        {
+          "type": "office",
+          "number": "646 555-4567"
+        },
+        {
+          "type": "mobile",
+          "number": "123 456-7890"
+        }
+      ],
+      "children": [],
+      "spouse": null
+    }
 
+Example 1:
 
-    ' See also Article "New features" -> "User defined structures".
     Def uline(text) = Cat(2) + text + Cat(-2) ' Underline text
     Cls
     ? uline("1-Dimension Map Array:")
@@ -1163,107 +1138,7 @@ Creates a ARRAY or MAP variable from the given string or expression
     ?:?:? " Press any key..."
     Pause
 
-Thank you. Ah, new stuff! I see the string wrapped in curlie brackets,
-is that required? not [] brackets? or () brackets? I see the
-“properties”(?) separated by colon with it’s value, is that also
-required? (well , separates pairs and ; separates rows) Append: ?
-“properties”, better name is “field” Associative array is different from
-common array because of the fields? ARRAY syntax is like this (I don’t
-see other option): ARRAY(“{varName1:value1, varName2:value2, …}”) You
-can use expression or variable instead of string: Def s =
-“{varName1:value1, varName2:value2}” s = “{varName1:value1,
-varName2:value2}” … a = ARRAY(s) Associative array is not different then
-common array. ARRAY() simply creates an array which some programmers
-like its syntax. common array is more powerful because instead of fixed
-names it uses indexes, which you can use inside loops. To sum up: you
-don’t have to use a.x; a.y - you can simply use a(X), a(Y). the term
-“Field” is mainly used for databases; the term “Property” is mainly used
-in object oriented programming syntax. But in the real life, both
-“field” and “property” are usually element of an array. To sum up: you
-don’t need to use any term - you can simply say “variable”.
-
-JSON is an open-standard format that uses human-readable text to
-transmit data objects consisting of attribute–value pairs. JSON is a
-language-independent data format. Here I quote Chris from Home – Forums
-– Project help – Tile Map Editor: > … If you click File / Export and
-save the output in JSON format, you can then use the output in a
-SmallBASIC program like this:
-
-
-    tload "map.json" , buffer, 1
-    tiles= array(buffer)
-    ? tiles.layers(0).data(0)
-
-…
-
-These are good news, because it actually allows us to save and load
-arrays as regular text files in JSON format (which shares its vision
-with XML format). That’s useful but can it be applied to other ARRAY
-types? For example I can make TLOAD and TSAVE work for a one dimensional
-array but I cannot see how to save or load an ordinary (non MAP) ARRAY
-with more than one dimension. Have you achieved this? Is it possible?
-Just wondering. Thanks. I’ve copy this code from JSON Wikipedia, it
-seems like JSON supports more then one dimension according to the
-example… The following example shows a possible JSON representation
-describing a person:
-
-
-    {
-      "firstName": "John",
-      "lastName": "Smith",
-      "isAlive": true,
-      "age": 25,
-      "address": {
-        "streetAddress": "21 2nd Street",
-        "city": "New York",
-        "state": "NY",
-        "postalCode": "10021-3100"
-      },
-      "phoneNumbers": [
-        {
-          "type": "home",
-          "number": "212 555-1234"
-        },
-        {
-          "type": "office",
-          "number": "646 555-4567"
-        },
-        {
-          "type": "mobile",
-          "number": "123 456-7890"
-        }
-      ],
-      "children": [],
-      "spouse": null
-    }
-
-This what Chris wrote at Home – Forums – Announcements (10/02/2014): > …
-SmallBASIC implementations: Any SmallBASIC version 0.11.16 for Ubuntu is
-now available. … Variables: The MAP variable type combines the features
-of previously separate “User Defined Structures” and “Associated Array”
-variables. The MAP provides value-key pair access along with array or
-dotted notation. The MAP can be initialized from a String variable using
-the ARRAY command. The ARRAY command supports JSON (Javascript object
-notation) syntax. The MAP can be converted back into a JSON string using
-the STR command. You can test whether a variable is a MAP using the
-ISMAP command. The ARRAY command can be used to process web services
-results. For example:
-https:raw.githubusercontent.com_smallbasic_SmallBASIC_master_samples_distro-examples_devio*google.bas
-
-I didn’t have time to try anything, and I don’t know if there is a
-function to convert between regular array and map array (is there?); If
-there isn’t any function, you can create one, JSON format looks a bit
-more friendly then XML format, so it must be easy. Sorry I didn’t
-understand… See my comment on:
-Home – Forums – Project help – Tile Map Editor – coffee first… It shows
-how easy is to save and load ordinary array with more than one
-dimension, by using the WRITE and READ keywords to save and load array
-variables in binary format. I am trying to make a dictionary with two
-columns as part of writing an assembler. I can SEARCH the first column
-and use (0,1) then (1,1) to look up the second column if I REDIM the
-array loaded from a file. But I cannot see a way to load the file with
-two dimensions.
-
+Example 2:
 
     REM SmallBASIC
     REM created: 03/04/2016
@@ -1310,9 +1185,7 @@ two dimensions.
     ? "jump   = ",i(0,r)
     ? "binary = ",i(1,r)
 
-See: Home – Language reference – File – TLOAD – How to convert TLOAD’s
-array into nested array Thanks for your help but REDIM works for me.
-
+Example 3:
 
     ? "OPEN \\"dest\\" FOR INPUT AS #1"
     OPEN "dest" FOR INPUT AS #1
@@ -1361,11 +1234,7 @@ array into nested array Thanks for your help but REDIM works for me.
 |                                     21. (Data) CDBL                                    |
 +========================================================================================+
 
-
-CDBL
-
-
-  CDBL (x)
+CDBL (x)
 
 Convert x to 64b real number. Meaningless. Used for compatibility.
 
@@ -1373,11 +1242,7 @@ Convert x to 64b real number. Meaningless. Used for compatibility.
 |                                     22. (Data) CINT                                    |
 +========================================================================================+
 
-
-CINT
-
-
-  CINT (x)
+CINT (x)
 
 Converts x to 32b integer. Meaningless. Used for compatibility.
 
@@ -1385,11 +1250,7 @@ Converts x to 32b integer. Meaningless. Used for compatibility.
 |                                     23. (Data) CREAL                                   |
 +========================================================================================+
 
-
-CREAL
-
-
-  CREAL (x)
+CREAL (x)
 
 Convert x to 64b real number. Meaningless. Used for compatibility.
 
@@ -1397,11 +1258,7 @@ Convert x to 64b real number. Meaningless. Used for compatibility.
 |                                     24. (Data) DATA                                    |
 +========================================================================================+
 
-
-DATA
-
-
-  DATA constant1 [,constant2]…
+DATA constant1 [,constant2]...
 
 Stores one or more constants, of any type, for subsequent access via
 READ command.
@@ -1425,11 +1282,7 @@ information that is accessed in order by your program’s READ commands.
 |                                    25. (Data) DELETE                                   |
 +========================================================================================+
 
-
-DELETE
-
-
-  DELETE a, idx [, count]
+DELETE a, idx [, count]
 
 Deletes ‘count’ elements at position ‘idx’ of array ‘a’.
 
@@ -1441,11 +1294,7 @@ Deletes ‘count’ elements at position ‘idx’ of array ‘a’.
 |                                      26. (Data) DIM                                    |
 +========================================================================================+
 
-
-DIM
-
-
-  DIM var([lower TO] upper [, …]) [, …]
+DIM var([lower TO] upper [, ...]) [, ...]
 
 Reserves storage space for an array.
 
@@ -1528,11 +1377,7 @@ and OPTION BASE hasn’t used, elements start at 0.
 |                                     27. (Data) EMPTY                                   |
 +========================================================================================+
 
-
-EMPTY
-
-
-  EMPTY (x)
+EMPTY (x)
 
 Returns true if x is: a zero length array, an empty string, an integer
 or real with the value 0.
@@ -1546,11 +1391,7 @@ or real with the value 0.
 |                                     28. (Data) ERASE                                   |
 +========================================================================================+
 
-
-ERASE
-
-
-  ERASE var[, var[, … var]]
+ERASE var[, var[, ... var]]
 
 Deallocates the memory used by the specified arrays or variables. After
 that these variables turned to simple integers with zero value.
@@ -1566,11 +1407,7 @@ that these variables turned to simple integers with zero value.
 |                                    29. (Data) INSERT                                   |
 +========================================================================================+
 
-
-INSERT
-
-
-  INSERT a, idx, val [, val [, …]]]
+INSERT a, idx, val [, val [, ...]]]
 
 Inserts the values to the specified array at the position idx.
 
@@ -1582,11 +1419,7 @@ Inserts the values to the specified array at the position idx.
 |                                    30. (Data) ISARRAY                                  |
 +========================================================================================+
 
-
-ISARRAY
-
-
-  ISARRAY (x)
+ISARRAY (x)
 
 Returns true if x is an array.
 
@@ -1594,11 +1427,7 @@ Returns true if x is an array.
 |                                     31. (Data) ISDIR                                   |
 +========================================================================================+
 
-
-ISDIR
-
-
-  ISDIR (x)
+ISDIR (x)
 
 Returns true if x is a directory.
 
@@ -1606,11 +1435,7 @@ Returns true if x is a directory.
 |                                    32. (Data) ISFILE                                   |
 +========================================================================================+
 
-
-ISFILE
-
-
-  ISFILE (x)
+ISFILE (x)
 
 Returns true if x is a regular file.
 
@@ -1618,11 +1443,7 @@ Returns true if x is a regular file.
 |                                    33. (Data) ISLINK                                   |
 +========================================================================================+
 
-
-ISLINK
-
-
-  ISLINK (x)
+ISLINK (x)
 
 Returns true if x is a link.
 
@@ -1630,11 +1451,7 @@ Returns true if x is a link.
 |                                     34. (Data) ISMAP                                   |
 +========================================================================================+
 
-
-ISMAP
-
-
-  ISMAP (x)
+ISMAP (x)
 
 Returns true if x is an MAP variable type. A MAP provides value-key pair
 access along with array or dotted notation. The MAP can be initialized
@@ -1644,11 +1461,7 @@ from a String variable using the ARRAY command.
 |                                   35. (Data) ISNUMBER                                  |
 +========================================================================================+
 
-
-ISNUMBER
-
-
-  ISNUMBER (x)
+ISNUMBER (x)
 
 Returns true if x is a number (or it can be converted to a number).
 
@@ -1663,11 +1476,7 @@ Returns true if x is a number (or it can be converted to a number).
 |                                   36. (Data) ISSTRING                                  |
 +========================================================================================+
 
-
-ISSTRING
-
-
-  ISSTRING (x)
+ISSTRING (x)
 
 Returns true if x is a string (and cannot be converted to a number).
 
@@ -1681,11 +1490,7 @@ Returns true if x is a string (and cannot be converted to a number).
 |                                    37. (Data) LBOUND                                   |
 +========================================================================================+
 
-
-LBOUND
-
-
-  LBOUND (array [, dim])
+LBOUND (array [, dim])
 
 Returns the lower bound of ‘array’.
 
@@ -1693,11 +1498,7 @@ Returns the lower bound of ‘array’.
 |                                      38. (Data) LEN                                    |
 +========================================================================================+
 
-
-LEN
-
-
-  LEN(d)
+LEN(d)
 
 Returns the length of the value contained in the variable.
 
@@ -1779,11 +1580,7 @@ floating-point binary numbers to decimal numbers.
 |                                     39. (Data) READ                                    |
 +========================================================================================+
 
-
-READ
-
-
-  READ var[, var …]
+READ var[, var ...]
 
 Assigns values in DATA items to specified variables.
 
@@ -1806,11 +1603,7 @@ READ, an run-time error occurs.
 |                                     40. (Data) REDIM                                   |
 +========================================================================================+
 
-
-REDIM
-
-
-  REDIM x
+REDIM x
 
 Same as DIM only the contents of x are preserved.
 
@@ -1856,11 +1649,7 @@ used the file number from OPEN to do the TLOAD. Very interesting…
 |                                    41. (Data) RESTORE                                  |
 +========================================================================================+
 
-
-RESTORE
-
-
-  RESTORE label
+RESTORE label
 
 Specifies the position of the next data to be read.
 
@@ -1868,11 +1657,7 @@ Specifies the position of the next data to be read.
 |                                    42. (Data) SEARCH                                   |
 +========================================================================================+
 
-
-SEARCH
-
-
-  SEARCH A, key, BYREF ridx [USE cmpfunc]
+SEARCH A, key, BYREF ridx [USE cmpfunc]
 
 Scans an array for the key. If key is not found the SEARCH command
 returns (in ridx) the value. (LBOUND(A)-1). In default-base arrays that
@@ -1955,11 +1740,7 @@ must return 0 if x = y; non-zero if x <> y.
 |                                     43. (Data) SORT                                    |
 +========================================================================================+
 
-
-SORT
-
-
-  SORT array [USE cmpfunc]
+SORT array [USE cmpfunc]
 
 Sorts an array. The cmpfunc if specified, takes 2 vars to compare and
 must return: -1 if x < y, +1 if x > y, 0 if x = y.
@@ -1984,11 +1765,7 @@ must return: -1 if x < y, +1 if x > y, 0 if x = y.
 |                                     44. (Data) SWAP                                    |
 +========================================================================================+
 
-
-SWAP
-
-
-  SWAP a, b
+SWAP a, b
 
 Exchanges the values of two variables. The parameters may be variables
 of any type.
@@ -1997,11 +1774,7 @@ of any type.
 |                                    45. (Data) UBOUND                                   |
 +========================================================================================+
 
-
-UBOUND
-
-
-  UBOUND (array [, dim])
+UBOUND (array [, dim])
 
 Returns the upper bound of ‘array’.
 
@@ -2009,11 +1782,7 @@ Returns the upper bound of ‘array’.
 |                                     46. (Date) DATE                                    |
 +========================================================================================+
 
-
 DATE
-
-
-  DATE
 
 Returns the current date as string “DD/MM/YYYY”.
 
@@ -2021,11 +1790,7 @@ Returns the current date as string “DD/MM/YYYY”.
 |                                    47. (Date) DATEDMY                                  |
 +========================================================================================+
 
-
-DATEDMY
-
-
-  DATEDMY dmy| julian_date, BYREF d, BYREF m, BYREF y
+DATEDMY dmy| julian_date, BYREF d, BYREF m, BYREF y
 
 Returns the day, month and the year as integers.
 
@@ -2033,11 +1798,7 @@ Returns the day, month and the year as integers.
 |                                    48. (Date) DATEFMT                                  |
 +========================================================================================+
 
-
-DATEFMT
-
-
-  DATEFMT (format, dmy| (d,m,y)| julian_date)
+DATEFMT (format, dmy| (d,m,y)| julian_date)
 
 Returns formatted date string.
 
@@ -2063,11 +1824,7 @@ Format:
 |                                    49. (Date) JULIAN                                   |
 +========================================================================================+
 
-
-JULIAN
-
-
-  JULIAN (dmy| (d,m,y))
+JULIAN (dmy| (d,m,y))
 
 Returns the Julian date. (dates must be greater than 1/1/100 AD).
 
@@ -2098,11 +1855,7 @@ of days between two dates. I should have used the julian date function:
 |                                     50. (Date) TICKS                                   |
 +========================================================================================+
 
-
 TICKS
-
-
-  TICKS
 
 Returns the number of milliseconds that have elapsed between successive
 calls.
@@ -2111,11 +1864,7 @@ calls.
 |                                     51. (Date) TIME                                    |
 +========================================================================================+
 
-
 TIME
-
-
-  TIME
 
 Returns the current time as string “HH:MM:SS”.
 
@@ -2123,11 +1872,7 @@ Returns the current time as string “HH:MM:SS”.
 |                                    52. (Date) TIMEHMS                                  |
 +========================================================================================+
 
-
-TIMEHMS
-
-
-  TIMEHMS hms| timer, BYREF h, BYREF m, BYREF s
+TIMEHMS hms| timer, BYREF h, BYREF m, BYREF s
 
 Converts a time-value to hours, minutes and seconds integer values.
 
@@ -2135,11 +1880,7 @@ Converts a time-value to hours, minutes and seconds integer values.
 |                                     53. (Date) TIMER                                   |
 +========================================================================================+
 
-
 TIMER
-
-
-  TIMER
 
 Returns the number of seconds from midnight.
 
@@ -2147,11 +1888,7 @@ Returns the number of seconds from midnight.
 |                                   54. (Date) TIMESTAMP                                 |
 +========================================================================================+
 
-
-TIMESTAMP
-
-
-  TIMESTAMP filename
+TIMESTAMP filename
 
 Returns the file last modified date and time.
 
@@ -2159,11 +1896,7 @@ Returns the file last modified date and time.
 |                                    55. (Date) WEEKDAY                                  |
 +========================================================================================+
 
-
-WEEKDAY
-
-
-  WEEKDAY (dmy| (d,m,y)| julian_date)
+WEEKDAY (dmy| (d,m,y)| julian_date)
 
 Returns the day of the week (0 = Sunday).
 
@@ -2179,11 +1912,7 @@ Returns the day of the week (0 = Sunday).
 |                                    56. (File) ACCESS                                   |
 +========================================================================================+
 
-
-ACCESS
-
-
-  ACCESS (file)
+ACCESS (file)
 
 Returns the access rights of the file.
 
@@ -2216,11 +1945,7 @@ The bits (in octal):
 |                                     57. (File) BGETC                                   |
 +========================================================================================+
 
-
-BGETC
-
-
-  BGETC (fileN)
+BGETC (fileN)
 
 Reads and returns a byte from file or device (Binary mode) .
 
@@ -2228,11 +1953,7 @@ Reads and returns a byte from file or device (Binary mode) .
 |                                     58. (File) BLOAD                                   |
 +========================================================================================+
 
-
-BLOAD
-
-
-  BLOAD filename[, address]
+BLOAD filename[, address]
 
 Loads a specified memory image file into memory.
 
@@ -2240,11 +1961,7 @@ Loads a specified memory image file into memory.
 |                                     59. (File) BPUTC                                   |
 +========================================================================================+
 
-
-BPUTC
-
-
-  BPUTC# fileN; byte
+BPUTC# fileN; byte
 
 Writes a byte on file or device. (Binary mode).
 
@@ -2252,11 +1969,7 @@ Writes a byte on file or device. (Binary mode).
 |                                     60. (File) BSAVE                                   |
 +========================================================================================+
 
-
-BSAVE
-
-
-  BSAVE filename, address, length
+BSAVE filename, address, length
 
 Copies a specified portion of memory to a specified file.
 
@@ -2264,11 +1977,7 @@ Copies a specified portion of memory to a specified file.
 |                                     61. (File) CHDIR                                   |
 +========================================================================================+
 
-
-CHDIR
-
-
-  CHDIR dir
+CHDIR dir
 
 Changes the current working directory.
 
@@ -2276,11 +1985,7 @@ Changes the current working directory.
 |                                     62. (File) CHMOD                                   |
 +========================================================================================+
 
-
-CHMOD
-
-
-  CHMOD file, mode
+CHMOD file, mode
 
 Change permissions of a file. See also ACCESS.
 
@@ -2297,11 +2002,7 @@ Change permissions of a file. See also ACCESS.
 |                                     63. (File) CLOSE                                   |
 +========================================================================================+
 
-
-CLOSE
-
-
-  CLOSE #fileN
+CLOSE #fileN
 
 Close a file or device.
 
@@ -2309,11 +2010,7 @@ Close a file or device.
 |                                     64. (File) COPY                                    |
 +========================================================================================+
 
-
-COPY
-
-
-  COPY “file”, “newfile”
+COPY \"file\", \"newfile\"
 
 Makes a copy of specified file to the ‘newfile’.
 
@@ -2321,11 +2018,7 @@ Makes a copy of specified file to the ‘newfile’.
 |                                    65. (File) DIRWALK                                  |
 +========================================================================================+
 
-
-DIRWALK
-
-
-  DIRWALK directory [, wildcards] [USE …]
+DIRWALK directory [, wildcards] [USE ...]
 
 Walk through the specified directories. The user-defined function must
 returns zero to stop the process.
@@ -2461,11 +2154,7 @@ returns zero to stop the process.
 |                                      66. (File) EOF                                    |
 +========================================================================================+
 
-
-EOF
-
-
-  EOF (fileN)
+EOF (fileN)
 
 Returns true if the file pointer is at end of the file. For COMx and
 SOCL VFS returns true if the connection is broken.
@@ -2474,11 +2163,7 @@ SOCL VFS returns true if the connection is broken.
 |                                     67. (File) EXIST                                   |
 +========================================================================================+
 
-
-EXIST
-
-
-  EXIST (file)
+EXIST (file)
 
 Returns true if file exists.
 
@@ -2507,11 +2192,7 @@ Returns true if file exists.
 |                                     68. (File) FILES                                   |
 +========================================================================================+
 
-
-FILES
-
-
-  FILES (wildcards)
+FILES (wildcards)
 
 Returns an array with the filenames. If there are no files returns an
 empty array.
@@ -2531,11 +2212,7 @@ sample program example:
 |                                   69. (File) FREEFILE                                  |
 +========================================================================================+
 
-
 FREEFILE
-
-
-  FREEFILE
 
 Returns an unused file handle.
 
@@ -2543,11 +2220,7 @@ Returns an unused file handle.
 |                                     70. (File) INPUT                                   |
 +========================================================================================+
 
-
-INPUT
-
-
-  INPUT #fileN; var1 [,delim] [, var2 [,delim]] …
+INPUT #fileN; var1 [,delim] [, var2 [,delim]] ...
 
 Reads data from file.
 
@@ -2555,11 +2228,7 @@ Reads data from file.
 |                                     71. (File) INPUT                                   |
 +========================================================================================+
 
-
-INPUT
-
-
-  INPUT (len [, fileN])
+INPUT (len [, fileN])
 
 Reads ‘len’ bytes from file or console (if fileN is omitted). This
 function does not convert the data or remove spaces.
@@ -2568,11 +2237,7 @@ function does not convert the data or remove spaces.
 |                                     72. (File) KILL                                    |
 +========================================================================================+
 
-
-KILL
-
-
-  KILL “file”
+KILL \"file\"
 
 Deletes the specified file.
 
@@ -2580,11 +2245,7 @@ Deletes the specified file.
 |                                     73. (File) LOCK                                    |
 +========================================================================================+
 
-
 LOCK
-
-
-  LOCK
 
 Lock a record or an area (not yet implemented).
 
@@ -2592,11 +2253,7 @@ Lock a record or an area (not yet implemented).
 |                                      74. (File) LOF                                    |
 +========================================================================================+
 
-
-LOF
-
-
-  LOF (fileN)
+LOF (fileN)
 
 Returns the length of file in bytes. For other devices, returns the
 number of available data.
@@ -2605,11 +2262,7 @@ number of available data.
 |                                     75. (File) MKDIR                                   |
 +========================================================================================+
 
-
-MKDIR
-
-
-  MKDIR dir
+MKDIR dir
 
 Create a directory.
 
@@ -2617,11 +2270,7 @@ Create a directory.
 |                                     76. (File) OPEN                                    |
 +========================================================================================+
 
-
-OPEN
-
-
-  OPEN file [FOR {INPUT|OUTPUT|APPEND}] AS #fileN
+OPEN file [FOR {INPUT|OUTPUT|APPEND}] AS #fileN
 
 Makes a file or device available for sequential input, sequential
 output.
@@ -2643,11 +2292,7 @@ The files are always opened as shared.
 |                                    77. (File) RENAME                                   |
 +========================================================================================+
 
-
-RENAME
-
-
-  RENAME “file”, “newname”
+RENAME \"file\", \"newname\"
 
 Renames the specified file.
 
@@ -2655,11 +2300,7 @@ Renames the specified file.
 |                                     78. (File) RMDIR                                   |
 +========================================================================================+
 
-
-RMDIR
-
-
-  RMDIR dir
+RMDIR dir
 
 Removes a directory.
 
@@ -2667,11 +2308,7 @@ Removes a directory.
 |                                     79. (File) SEEK                                    |
 +========================================================================================+
 
-
-SEEK
-
-
-  SEEK #fileN; pos
+SEEK #fileN; pos
 
 Sets file position for the next read/write.
 
@@ -2714,11 +2351,7 @@ Sets file position for the next read/write.
 |                                     80. (File) SEEK                                    |
 +========================================================================================+
 
-
-SEEK
-
-
-  SEEK (fileN)
+SEEK (fileN)
 
 Returns the current file position.
 
@@ -2726,11 +2359,7 @@ Returns the current file position.
 |                                     81. (File) TLOAD                                   |
 +========================================================================================+
 
-
-TLOAD
-
-
-  TLOAD file, BYREF var [, type]
+TLOAD file, BYREF var [, type]
 
 Loads a text file into array variable. Each text-line is an array
 element. type 0 = load into array (default), 1 = load into string.
@@ -2799,11 +2428,7 @@ Both these methods load a string/text file into an array.
 |                                     82. (File) TSAVE                                   |
 +========================================================================================+
 
-
-TSAVE
-
-
-  TSAVE file, var
+TSAVE file, var
 
 Writes an array to a text file. Each array element is a text-line.
 
@@ -2815,11 +2440,7 @@ Writes an array to a text file. Each array element is a text-line.
 |                                     83. (File) WRITE                                   |
 +========================================================================================+
 
-
-WRITE
-
-
-  WRITE #fileN; var1 [, …]
+WRITE #fileN; var1 [, ...]
 
 Store variables to a file as binary data.
 
@@ -2952,11 +2573,7 @@ utility…
 |                                    84. (Graphics) ARC                                  |
 +========================================================================================+
 
-
-ARC
-
-
-  ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]
+ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]
 
 Draws an arc. astart, aend = first,last angle in radians.
 
@@ -2964,11 +2581,7 @@ Draws an arc. astart, aend = first,last angle in radians.
 |                                   85. (Graphics) CHART                                 |
 +========================================================================================+
 
-
-CHART
-
-
-  CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]
+CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]
 
 Draws a chart of array values in the rectangular area x1,y1,x2,y2.
 Styles: 0 = simple, 1 = with-marks, 2 = with ruler, 3 = with marks and
@@ -2998,11 +2611,7 @@ ruler.
 |                                  86. (Graphics) CIRCLE                                 |
 +========================================================================================+
 
-
-CIRCLE
-
-
-  CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]
+CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]
 
 Draws a circle (or an ellipse if the aspect is specified).
 
@@ -3082,11 +2691,7 @@ To turn off anti-aliasing, add this to the start of your program:
 |                                   87. (Graphics) COLOR                                 |
 +========================================================================================+
 
-
-COLOR
-
-
-  COLOR foreground-color [, background-color]
+COLOR foreground-color [, background-color]
 
 Specifies the foreground and background colors.
 
@@ -3166,11 +2771,7 @@ another file to make your code more clear.
 |                                   88. (Graphics) DRAW                                  |
 +========================================================================================+
 
-
-DRAW
-
-
-  DRAW “commands”
+DRAW \"commands\"
 
 Draw lines as specified by the given directional commands.
 
@@ -3221,11 +2822,7 @@ But apparently S command is unsupported.
 |                                 89. (Graphics) DRAWPOLY                                |
 +========================================================================================+
 
-
-DRAWPOLY
-
-
-  DRAWPOLY array [,x-origin,y-origin [, scalef [, color]]] [COLOR color]
+DRAWPOLY array [,x-origin,y-origin [, scalef [, color]]] [COLOR color] [FILLED]
   [FILLED]
 
 Draws a polyline.
@@ -3237,11 +2834,7 @@ for x (starting from 0), odd elements for y
 |                                   90. (Graphics) IMAGE                                 |
 +========================================================================================+
 
-
-IMAGE
-
-
-  IMAGE [#handle | fileName | http://path-to-file.png | image-var |
+IMAGE [#handle | fileName | http://path-to-file.png | image-var | array of pixmap data]
   array of pixmap data]
 
 The IMAGE statement provides access to extended support for image
@@ -4046,11 +3639,7 @@ be used with cocos2d development
 |                                   91. (Graphics) LINE                                  |
 +========================================================================================+
 
-
-LINE
-
-
-  LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]
+LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]
 
 Draws a line.
 
@@ -4072,11 +3661,7 @@ To turn off anti-aliasing, add this to the start of your program:
 |                                   92. (Graphics) PAINT                                 |
 +========================================================================================+
 
-
-PAINT
-
-
-  PAINT [STEP] x, y [,fill-color [,border-color]]
+PAINT [STEP] x, y [,fill-color [,border-color]]
 
 Fills an enclosed area on the graphics screen with a specific color. x,y
 = Screen coordinate (column, row) within the area that is to be filled.
@@ -4090,11 +3675,7 @@ same color as the pixel at x,y - (fill-while, color=point(x,y))
 |                                    93. (Graphics) PEN                                  |
 +========================================================================================+
 
-
-PEN
-
-
-  PEN (0..14)
+PEN (0..14)
 
 Returns the PEN/MOUSE data.
 
@@ -4192,11 +3773,7 @@ and again.
 |                                   94. (Graphics) PLOT                                  |
 +========================================================================================+
 
-
-PLOT
-
-
-  PLOT xmin, xmax USE f(x)
+PLOT xmin, xmax USE f(x)
 
 Graph of f(x).
 
@@ -4216,11 +3793,7 @@ black background, so need a COLOR call to see the dots.
 |                                   95. (Graphics) POINT                                 |
 +========================================================================================+
 
-
-POINT
-
-
-  POINT (x [, y])
+POINT (x [, y])
 
 Returns the color of the pixel at x,y.
 
@@ -4325,11 +3898,7 @@ places on screen, a tiling and a moving across the screen.
 |                                   96. (Graphics) PSET                                  |
 +========================================================================================+
 
-
-PSET
-
-
-  PSET [STEP] x,y [, color| COLOR color]
+PSET [STEP] x,y [, color| COLOR color]
 
 Draw a pixel.
 
@@ -4364,11 +3933,7 @@ than 7 usually the colors get brighter
 |                                   97. (Graphics) RECT                                  |
 +========================================================================================+
 
-
-RECT
-
-
-  RECT [STEP] x,y [,|STEP x2,y2] [, color| COLOR color] [FILLED]
+RECT [STEP] x,y [,|STEP x2,y2] [, color| COLOR color] [FILLED]
 
 Draws a rectangular parallelogram.
 
@@ -4376,11 +3941,7 @@ Draws a rectangular parallelogram.
 |                                    98. (Graphics) RGB                                  |
 +========================================================================================+
 
-
-RGB
-
-
-  RGB (r, g, b)
+RGB (r, g, b)
 
 Returns the RGB color codes for the specified values. Takes values
 0..255 for each of the color.
@@ -4642,11 +4203,7 @@ something over 255 but under 256 ’maybe (rnd * 256) \ 1 (yes OK)
 |                                   99. (Graphics) RGBF                                  |
 +========================================================================================+
 
-
-RGBF
-
-
-  RGBF (r, g, b)
+RGBF (r, g, b)
 
 Returns the RGB color codes for the specified values. Takes values 0..1
 for each of the color.
@@ -4771,11 +4328,7 @@ screens. I’m not aware of new formula for these kind of screens…
 |                                 100. (Graphics) SHOWPAGE                               |
 +========================================================================================+
 
-
 SHOWPAGE
-
-
-  SHOWPAGE
 
 This command is used to display pending graphics operations allowing for
 smooth animations.
@@ -4784,11 +4337,7 @@ smooth animations.
 |                                101. (Graphics) TEXTHEIGHT                              |
 +========================================================================================+
 
-
-TEXTHEIGHT
-
-
-  TEXTHEIGHT (s)
+TEXTHEIGHT (s)
 
 Returns the text height of string s in pixels. See TXTH.
 
@@ -4796,11 +4345,7 @@ Returns the text height of string s in pixels. See TXTH.
 |                                102. (Graphics) TEXTWIDTH                               |
 +========================================================================================+
 
-
-TEXTWIDTH
-
-
-  TEXTWIDTH (s)
+TEXTWIDTH (s)
 
 Returns the text width of string s in pixels. See TXTW.
 
@@ -4808,11 +4353,7 @@ Returns the text width of string s in pixels. See TXTW.
 |                                   103. (Graphics) TXTH                                 |
 +========================================================================================+
 
-
-TXTH
-
-
-  TXTH (s)
+TXTH (s)
 
 Returns the text height of string s in pixels. See TEXTHEIGHT.
 
@@ -4820,11 +4361,7 @@ Returns the text height of string s in pixels. See TEXTHEIGHT.
 |                                   104. (Graphics) TXTW                                 |
 +========================================================================================+
 
-
-TXTW
-
-
-  TXTW (s)
+TXTW (s)
 
 Returns the text width of string s in pixels. See TEXTWIDTH.
 
@@ -4832,11 +4369,7 @@ Returns the text width of string s in pixels. See TEXTWIDTH.
 |                                   105. (Graphics) VIEW                                 |
 +========================================================================================+
 
-
-VIEW
-
-
-  VIEW [x1,y1,x2,y2 [,color [,border-color]]]
+VIEW [x1,y1,x2,y2 [,color [,border-color]]]
 
 Defines a viewport. The viewport defined by VIEW is disabled by a VIEW
 command with no parameters.
@@ -4850,11 +4383,7 @@ command with no parameters.
 |                                  106. (Graphics) WINDOW                                |
 +========================================================================================+
 
-
-WINDOW
-
-
-  WINDOW [x1,y2,x2,y1]
+WINDOW [x1,y1,x2,y2]
 
 Specifies “world” coordinates for the screen.
 
@@ -5040,11 +4569,7 @@ Returns the active window colour theme.
 |                                   107. (Graphics) XMAX                                 |
 +========================================================================================+
 
-
 XMAX
-
-
-  XMAX
 
 Holds the screen width in pixels
 
@@ -5052,11 +4577,7 @@ Holds the screen width in pixels
 |                                   108. (Graphics) XPOS                                 |
 +========================================================================================+
 
-
 XPOS
-
-
-  XPOS
 
 Returns the current X position of the cursor in “characters”.
 
@@ -5064,11 +4585,7 @@ Returns the current X position of the cursor in “characters”.
 |                                   109. (Graphics) YMAX                                 |
 +========================================================================================+
 
-
 YMAX
-
-
-  YMAX
 
 Holds the screen height in pixels.
 
@@ -5076,11 +4593,7 @@ Holds the screen height in pixels.
 |                                   110. (Graphics) YPOS                                 |
 +========================================================================================+
 
-
 YPOS
-
-
-  YPOS
 
 Returns the current Y position of the cursor in “characters”.
 
@@ -5088,11 +4601,7 @@ Returns the current Y position of the cursor in “characters”.
 |                                   111. (Language) AND                                  |
 +========================================================================================+
 
-
-AND
-
-
-  a AND b
+a AND b
 
 Logical AND. Right side is not evaluated if left side evaluates to
 False.
@@ -5341,11 +4850,7 @@ systems.
 |                                    112. (Language) AS                                  |
 +========================================================================================+
 
-
-AS
-
-
-  AS #fileN
+AS #fileN
 
 See: OPEN
 
@@ -5353,11 +4858,7 @@ See: OPEN
 |                                   113. (Language) BAND                                 |
 +========================================================================================+
 
-
-BAND
-
-
-  a BAND b
+a BAND b
 
 Bitwise AND.
 
@@ -5387,11 +4888,7 @@ Bitwise AND.
 |                                    114. (Language) BG                                  |
 +========================================================================================+
 
-
-BG
-
-
-  SOUND frq, dur [, vol] BG
+SOUND frq, dur [, vol] [BG]
 
 Play sound in the background. This prevent the program from blocking
 while the sound plays.
@@ -5400,11 +4897,7 @@ while the sound plays.
 |                                   115. (Language) BOR                                  |
 +========================================================================================+
 
-
-BOR
-
-
-  a BOR b
+a BOR b
 
 Bitwise OR.
 
@@ -5412,11 +4905,7 @@ Bitwise OR.
 |                                  116. (Language) BYREF                                 |
 +========================================================================================+
 
-
 BYREF
-
-
-  BYREF
 
 Sub/func argument declaration. Changes to the variable will be passed
 back to the caller. Equivalent syntax to the @ character.
@@ -5425,11 +4914,7 @@ back to the caller. Equivalent syntax to the @ character.
 |                                   117. (Language) CALL                                 |
 +========================================================================================+
 
-
-CALL
-
-
-  CALL (fp)
+CALL (fp)
 
 Invoke a sub or func by address pointer.
 
@@ -5437,11 +4922,7 @@ Invoke a sub or func by address pointer.
 |                                   118. (Language) CASE                                 |
 +========================================================================================+
 
-
-CASE
-
-
-  CASE expr
+CASE expr
 
 Branch condition for a SELECT statement.
 
@@ -5463,11 +4944,7 @@ Branch condition for a SELECT statement.
 |                                  119. (Language) CATCH                                 |
 +========================================================================================+
 
-
-CATCH
-
-
-  CATCH [var | expr]
+CATCH [var | expr]
 
 The CATCH statement is used to CATCH an run-time error.
 
@@ -5486,11 +4963,7 @@ CATCH statements to handle various error messages separately.
 |                                  120. (Language) CONST                                 |
 +========================================================================================+
 
-
-CONST
-
-
-  CONST name = expr
+CONST name = expr
 
 Declare a variable who’s value does not change during program execution.
 
@@ -5503,11 +4976,7 @@ Declare a variable who’s value does not change during program execution.
 |                                 121. (Language) DECLARE                                |
 +========================================================================================+
 
-
-DECLARE
-
-
-  DECLARE FUNC xxx
+DECLARE FUNC xxx
 
 Forward declare SUB or FUNC. Obsolete QB compatibility
 
@@ -5515,11 +4984,7 @@ Forward declare SUB or FUNC. Obsolete QB compatibility
 |                                   122. (Language) DEF                                  |
 +========================================================================================+
 
-
-DEF
-
-
-  DEF name[(par1[,…])] = expression
+DEF name[(par1[,...])] = expression
 
 Defines a single line function. eg, DEF MySin(x) = SIN(x): ? MySin(pi/2)
 
@@ -5567,11 +5032,7 @@ This might come in handy sometime.
 |                                    123. (Language) DO                                  |
 +========================================================================================+
 
-
 DO
-
-
-  DO
 
 FOR f IN files("*.txt") DO PRINT f
 
@@ -5579,11 +5040,7 @@ FOR f IN files("*.txt") DO PRINT f
 |                                   124. (Language) ELIF                                 |
 +========================================================================================+
 
-
 ELIF
-
-
-  ELIF
 
 foo = 2: if foo==1: ? “one”: ELIF foo==2: ? “two”: fi
 
@@ -5591,11 +5048,7 @@ foo = 2: if foo==1: ? “one”: ELIF foo==2: ? “two”: fi
 |                                   125. (Language) ELSE                                 |
 +========================================================================================+
 
-
 ELSE
-
-
-  ELSE
 
 foo = 2: if foo==1: ? “one”: ELSE: ? “not one”: fi
 
@@ -5603,11 +5056,7 @@ foo = 2: if foo==1: ? “one”: ELSE: ? “not one”: fi
 |                                  126. (Language) ELSEIF                                |
 +========================================================================================+
 
-
 ELSEIF
-
-
-  ELSEIF
 
 foo = 2: if foo==1: ? “one”: ELSEIF foo==2: ? “two”: fi
 
@@ -5615,11 +5064,7 @@ foo = 2: if foo==1: ? “one”: ELSEIF foo==2: ? “two”: fi
 |                                   127. (Language) END                                  |
 +========================================================================================+
 
-
 END
-
-
-  END
 
 Declares the END of a SUB or FUNC.
 
@@ -5627,11 +5072,7 @@ Declares the END of a SUB or FUNC.
 |                                 128. (Language) END TRY                                |
 +========================================================================================+
 
-
 END TRY
-
-
-  END TRY
 
 The END TRY statement marks the end of a TRY/CATCH block.
 
@@ -5639,11 +5080,7 @@ The END TRY statement marks the end of a TRY/CATCH block.
 |                                  129. (Language) ENDIF                                 |
 +========================================================================================+
 
-
 ENDIF
-
-
-  ENDIF
 
 foo = 1: if foo==1: ? “one”: ENDIF
 
@@ -5651,11 +5088,7 @@ foo = 1: if foo==1: ? “one”: ENDIF
 |                                   130. (Language) EQV                                  |
 +========================================================================================+
 
-
-EQV
-
-
-  a EQV b
+a EQV b
 
 Bitwise equivalence.
 
@@ -5665,11 +5098,7 @@ EQV and IMP manipulating only the lower 4 bits
 |                                   131. (Language) EXIT                                 |
 +========================================================================================+
 
-
-EXIT
-
-
-  EXIT [FOR|LOOP|SUB|FUNC]
+EXIT [FOR|LOOP|SUB|FUNC]
 
 Exits a multi line function definition, a loop, or a subprogram. By
 default (if no parameter is specified) exits from last command block
@@ -5684,11 +5113,7 @@ default (if no parameter is specified) exits from last command block
 |                                  132. (Language) FALSE                                 |
 +========================================================================================+
 
-
 FALSE
-
-
-  FALSE
 
 FALSE
 
@@ -5696,11 +5121,7 @@ FALSE
 |                                    133. (Language) FI                                  |
 +========================================================================================+
 
-
 FI
-
-
-  FI
 
 Declares the end of an IF statement. Same as ENDIF.
 
@@ -5708,11 +5129,7 @@ Declares the end of an IF statement. Same as ENDIF.
 |                                   134. (Language) FOR                                  |
 +========================================================================================+
 
-
-FOR
-
-
-  FOR expr
+FOR expr
 
 Defines a FOR/NEXT loop. FOR counter = start TO end [STEP incr] … NEXT.
 FOR element IN array (or map) … NEXT.
@@ -5765,11 +5182,7 @@ to any level of complexity, but there must be a NEXT for each FOR.
 |                                   135. (Language) FUNC                                 |
 +========================================================================================+
 
-
-FUNC
-
-
-  FUNC foo (a, b)
+FUNC foo (a, b)
 
 Declares a function. Return a value by assigning a ‘variable’ with the
 same name as the function.
@@ -5778,11 +5191,7 @@ same name as the function.
 |                                  136. (Language) GOSUB                                 |
 +========================================================================================+
 
-
-GOSUB
-
-
-  GOSUB label
+GOSUB label
 
 Causes program execution to branch to the specified label; when the
 RETURN command is encountered, execution branches to the command
@@ -5818,11 +5227,7 @@ immediately following the most recent GOSUB command.
 |                                   137. (Language) GOTO                                 |
 +========================================================================================+
 
-
-GOTO
-
-
-  GOTO label
+GOTO label
 
 Causes program execution to branch to a specified position (label).
 
@@ -5874,11 +5279,7 @@ MUCH better work if only you had more time… life.
 |                                    138. (Language) IF                                  |
 +========================================================================================+
 
-
-IF
-
-
-  IF expr
+IF expr
 
 Tests the expression and IF it evaluates to a non-zero value program
 flow will resume after the following THEN statement.
@@ -5960,11 +5361,7 @@ expression.
 |                                   139. (Language) IFF                                  |
 +========================================================================================+
 
-
-IFF
-
-
-  IFF expr
+IFF expr
 
 Inline version of IF. eg,
 animal = "cat": fur = IFF( animal = "cat", "yes", "no"): ? fur
@@ -5989,11 +5386,7 @@ animal=IFF(HasFur=1,"Cat","Fish") or
 |                                   140. (Language) IMP                                  |
 +========================================================================================+
 
-
-IMP
-
-
-  a IMP b
+a IMP b
 
 Used to perform a logical implication on two expressions.
 
@@ -6003,11 +5396,7 @@ EQV and IMP manipulating only the lower 4 bits:
 |                                    141. (Language) IN                                  |
 +========================================================================================+
 
-
-IN
-
-
-  a IN b
+a IN b
 
 Returns an index (1 Based) to the matching element when b is an array.
 Returns TRUE if the value is contained within b as a string.
@@ -6096,11 +5485,7 @@ Returns TRUE if the value is contained within b as a string.
 |                                  142. (Language) LABEL                                 |
 +========================================================================================+
 
-
-LABEL
-
-
-  LABEL name
+LABEL name
 
 Defines a label. A label marks a position in the code.
 
@@ -6118,11 +5503,7 @@ There are two kinds of labels, ‘numeric’ and ‘alphanumeric’. Unlike
 |                                   143. (Language) LET                                  |
 +========================================================================================+
 
-
-LET
-
-
-  LET var=expr
+LET var=expr
 
 Assigns a value to the variable.
 
@@ -6140,11 +5521,7 @@ Assigns a value to the variable.
 |                                   144. (Language) LIKE                                 |
 +========================================================================================+
 
-
-LIKE
-
-
-  a LIKE b
+a LIKE b
 
 Regular-expression operator. Compares the left part of the expression
 with the right side regex pattern.
@@ -6206,11 +5583,7 @@ with the right side regex pattern.
 |                                  145. (Language) LOCAL                                 |
 +========================================================================================+
 
-
 LOCAL
-
-
-  LOCAL
 
 Declare local variables inside a SUB or FUNC. Local variables no longer
 exist once the SUB or FUNC has returned.
@@ -6257,11 +5630,7 @@ exist once the SUB or FUNC has returned.
 |                                  146. (Language) LSHIFT                                |
 +========================================================================================+
 
-
-LSHIFT
-
-
-  result = LSHIFT number, amount
+result = LSHIFT number, amount
 
 Performs an arithmetic left shift on a bit pattern.
 
@@ -6286,11 +5655,7 @@ Performs an arithmetic left shift on a bit pattern.
 |                                   147. (Language) MDL                                  |
 +========================================================================================+
 
-
 MDL
-
-
-  MDL
 
 Modulus.
 
@@ -6298,11 +5663,7 @@ Modulus.
 |                                   148. (Language) MOD                                  |
 +========================================================================================+
 
-
-MOD
-
-
-  a MOD b
+a MOD b
 
 Modulus. Equivalent syntax to the percent character, eg a % b
 
@@ -6374,11 +5735,7 @@ Modulus. Equivalent syntax to the percent character, eg a % b
 |                                   149. (Language) NAND                                 |
 +========================================================================================+
 
-
-NAND
-
-
-  a NAND b
+a NAND b
 
 Bitwise exclusive NOT AND.
 
@@ -6400,11 +5757,7 @@ Bitwise exclusive NOT AND.
 |                                   150. (Language) NEXT                                 |
 +========================================================================================+
 
-
 NEXT
-
-
-  NEXT
 
 See FOR.
 
@@ -6412,11 +5765,7 @@ See FOR.
 |                                   151. (Language) NOR                                  |
 +========================================================================================+
 
-
-NOR
-
-
-  a NOR b
+a NOR b
 
 Bitwise NOT OR.
 
@@ -6456,11 +5805,7 @@ Bitwise NOT OR.
 |                                   152. (Language) NOT                                  |
 +========================================================================================+
 
-
-NOT
-
-
-  a NOT b
+a NOT b
 
 Invert expression result. Equivalent syntax to the exclamation
 character, eg a ! b
@@ -6506,11 +5851,7 @@ the expression b (e.g. true –> false) ~ inverts each bit in b
 |                                    153. (Language) ON                                  |
 +========================================================================================+
 
-
-ON
-
-
-  ON GOTO|GOSUB label1 [, …, labelN]
+ON GOTO|GOSUB label1 [, ..., labelN]
 
 Causes a branch to one of a list of labels.
 
@@ -6522,11 +5863,7 @@ list of labels that follows the keyword GOTO (or GOSUB).
 |                                    154. (Language) OR                                  |
 +========================================================================================+
 
-
-OR
-
-
-  a OR b
+a OR b
 
 Logical OR. Right side is not evaluated if left side evaluates to True.
 
@@ -6534,11 +5871,7 @@ Logical OR. Right side is not evaluated if left side evaluates to True.
 |                                   155. (Language) REM                                  |
 +========================================================================================+
 
-
-REM
-
-
-  REM comment
+REM comment
 
 Code comments. Comments can also be introduced using # and single quote
 character.
@@ -6648,11 +5981,7 @@ of the line.
 |                                  156. (Language) REPEAT                                |
 +========================================================================================+
 
-
-REPEAT
-
-
-  REPEAT … UNTIL expr
+REPEAT ... UNTIL expr
 
 Begins the definition of a REPEAT/UNTIL loop.
 
@@ -6680,11 +6009,7 @@ must be an UNTIL for each REPEAT.
 |                                  157. (Language) RETURN                                |
 +========================================================================================+
 
-
 RETURN
-
-
-  RETURN
 
 Execution branches to the command immediately following the most recent
 GOSUB command.
@@ -6701,11 +6026,7 @@ GOSUB command.
 |                                  158. (Language) RSHIFT                                |
 +========================================================================================+
 
-
-RSHIFT
-
-
-  result = RSHIFT number, amount
+result = RSHIFT number, amount
 
 Performs an arithmetic right shift on a bit pattern.
 
@@ -6733,11 +6054,7 @@ Performs an arithmetic right shift on a bit pattern.
 |                                  159. (Language) SELECT                                |
 +========================================================================================+
 
-
-SELECT
-
-
-  SELECT CASE expr
+SELECT CASE expr
 
 Perform multiple tests on the expression. Offers a more concise syntax
 to writing successive IF tests.
@@ -6837,11 +6154,7 @@ This will work too for work around to add range to a CASE block:
 |                                   160. (Language) STEP                                 |
 +========================================================================================+
 
-
-STEP
-
-
-  FOR t = 1 TO 10 STEP 2
+FOR t = 1 TO 10 STEP 2
 
 Specifies the loop counter increment in a FOR loop
 
@@ -6849,11 +6162,7 @@ Specifies the loop counter increment in a FOR loop
 |                                   161. (Language) STOP                                 |
 +========================================================================================+
 
-
-STOP
-
-
-  STOP [error]
+STOP [error]
 
 Terminates execution of a program, closes all files opened by the
 program, and returns control to the operating system.
@@ -6869,11 +6178,7 @@ On Windows, The ‘error’ value is known as ERRORLEVEL
 |                                   162. (Language) SUB                                  |
 +========================================================================================+
 
-
-SUB
-
-
-  SUB foo (a, b)
+SUB foo (a, b)
 
 Declare a sub procedure. Sub’s do not return a value but can return
 argument values when declared as BYREF.
@@ -6931,11 +6236,7 @@ argument values when declared as BYREF.
 |                                   163. (Language) THEN                                 |
 +========================================================================================+
 
-
 THEN
-
-
-  THEN
 
 foo = 1: if foo==1 THEN: ? “one”: fi
 
@@ -6947,11 +6248,7 @@ block.
 |                                  164. (Language) THROW                                 |
 +========================================================================================+
 
-
-THROW
-
-
-  THROW [info [, …]]
+THROW [info [, ...]]
 
 The THROW command (previously known as RTE) is used to initiate a
 catch-able error. If there is no surrounding TRY/CATCH block, THROW can
@@ -7000,11 +6297,7 @@ Example
 |                                    165. (Language) TO                                  |
 +========================================================================================+
 
-
-TO
-
-
-  FOR t = 1 TO 10
+FOR t = 1 TO 10
 
 Specifies the loop counter end in a FOR loop
 
@@ -7012,11 +6305,7 @@ Specifies the loop counter end in a FOR loop
 |                                   166. (Language) TRUE                                 |
 +========================================================================================+
 
-
 TRUE
-
-
-  TRUE
 
 TRUE
 
@@ -7024,11 +6313,7 @@ TRUE
 |                                   167. (Language) TRY                                  |
 +========================================================================================+
 
-
 TRY
-
-
-  TRY
 
 The TRY statement introduces a TRY/CATCH BLOCK
 
@@ -7103,11 +6388,7 @@ Note: If this demo program crashes… then run it again. It seems that TRY
 |                                  168. (Language) UNTIL                                 |
 +========================================================================================+
 
-
 UNTIL
-
-
-  UNTIL
 
     a = 0: repeat: a++: ? a: UNTIL a = 10
 
@@ -7115,11 +6396,7 @@ UNTIL
 |                                   169. (Language) USE                                  |
 +========================================================================================+
 
-
 USE
-
-
-  USE
 
 Used with various commands for passing a user-defined expression. eg
 SPLIT s," ",v USE TRIM(x). Trim each element of v.
@@ -7128,11 +6405,7 @@ SPLIT s," ",v USE TRIM(x). Trim each element of v.
 |                                   170. (Language) USG                                  |
 +========================================================================================+
 
-
-USG
-
-
-  PRINT USG
+PRINT USG
 
 Synonym for USING
 
@@ -7140,11 +6413,7 @@ Synonym for USING
 |                                  171. (Language) USING                                 |
 +========================================================================================+
 
-
-USING
-
-
-  PRINT USING
+PRINT USING
 
 See PRINT, SPRINT
 
@@ -7152,11 +6421,7 @@ See PRINT, SPRINT
 |                                   172. (Language) WEND                                 |
 +========================================================================================+
 
-
 WEND
-
-
-  WEND
 
 Go back to the start of a WHILE statement.
 
@@ -7164,11 +6429,7 @@ Go back to the start of a WHILE statement.
 |                                  173. (Language) WHILE                                 |
 +========================================================================================+
 
-
-WHILE
-
-
-  WHILE expr
+WHILE expr
 
 Loop while a test condition evaluates to true.
 
@@ -7200,11 +6461,7 @@ must be a WEND for each WHILE.
 |                                   174. (Language) XNOR                                 |
 +========================================================================================+
 
-
-XNOR
-
-
-  a XNOR b
+a XNOR b
 
 Bitwise exclusive NOT OR.
 
@@ -7215,11 +6472,7 @@ same as NOR
 |                                   175. (Language) XOR                                  |
 +========================================================================================+
 
-
-XOR
-
-
-  a XOR b
+a XOR b
 
 Bitwise exclusive OR. Equivalent syntax to: a ~ b
 
@@ -7264,11 +6517,7 @@ XOR is Not equivalent syntax to: a ~ b
 |                                     176. (Math) ABS                                    |
 +========================================================================================+
 
-
-ABS
-
-
-  ABS (x)
+ABS (x)
 
 Returns the absolute value of x.
 
@@ -7276,11 +6525,7 @@ Returns the absolute value of x.
 |                                    177. (Math) ABSMAX                                  |
 +========================================================================================+
 
-
-ABSMAX
-
-
-  ABSMAX (…)
+ABSMAX (...)
 
 Returns the absolute max value of x.
 
@@ -7288,11 +6533,7 @@ Returns the absolute max value of x.
 |                                    178. (Math) ABSMIN                                  |
 +========================================================================================+
 
-
-ABSMIN
-
-
-  ABSMIN (…)
+ABSMIN (...)
 
 Returns the absolute min value of x.
 
@@ -7300,11 +6541,7 @@ Returns the absolute min value of x.
 |                                     179. (Math) ACOS                                   |
 +========================================================================================+
 
-
-ACOS
-
-
-  ACOS (x)
+ACOS (x)
 
 Inverse cosine.
 
@@ -7312,11 +6549,7 @@ Inverse cosine.
 |                                    180. (Math) ACOSH                                   |
 +========================================================================================+
 
-
-ACOSH
-
-
-  ACOSH (x)
+ACOSH (x)
 
 Inverse cosine.
 
@@ -7324,11 +6557,7 @@ Inverse cosine.
 |                                     181. (Math) ACOT                                   |
 +========================================================================================+
 
-
-ACOT
-
-
-  ACOT (x)
+ACOT (x)
 
 Inverse cotangent.
 
@@ -7336,11 +6565,7 @@ Inverse cotangent.
 |                                    182. (Math) ACOTH                                   |
 +========================================================================================+
 
-
-ACOTH
-
-
-  ACOTH (x)
+ACOTH (x)
 
 Inverse cotangent.
 
@@ -7348,11 +6573,7 @@ Inverse cotangent.
 |                                     183. (Math) ACSC                                   |
 +========================================================================================+
 
-
-ACSC
-
-
-  ACSC (x)
+ACSC (x)
 
 Inverse co secant.
 
@@ -7360,11 +6581,7 @@ Inverse co secant.
 |                                    184. (Math) ACSCH                                   |
 +========================================================================================+
 
-
-ACSCH
-
-
-  ACSCH (x)
+ACSCH (x)
 
 Inverse co secant.
 
@@ -7372,11 +6589,7 @@ Inverse co secant.
 |                                     185. (Math) ASEC                                   |
 +========================================================================================+
 
-
-ASEC
-
-
-  ASEC (x)
+ASEC (x)
 
 Inverse secant.
 
@@ -7384,11 +6597,7 @@ Inverse secant.
 |                                    186. (Math) ASECH                                   |
 +========================================================================================+
 
-
-ASECH
-
-
-  ASECH (x)
+ASECH (x)
 
 Inverse secant.
 
@@ -7396,11 +6605,7 @@ Inverse secant.
 |                                     187. (Math) ASIN                                   |
 +========================================================================================+
 
-
-ASIN
-
-
-  ASIN (x)
+ASIN (x)
 
 Inverse sine.
 
@@ -7408,11 +6613,7 @@ Inverse sine.
 |                                    188. (Math) ASINH                                   |
 +========================================================================================+
 
-
-ASINH
-
-
-  ASINH (x)
+ASINH (x)
 
 Inverse sine.
 
@@ -7420,11 +6621,7 @@ Inverse sine.
 |                                     189. (Math) ATAN                                   |
 +========================================================================================+
 
-
-ATAN
-
-
-  ATAN (x)
+ATAN (x)
 
 Inverse tangent.
 
@@ -7462,11 +6659,7 @@ Trig lesson two in TAN offers a lead in to this little demo:
 |                                    190. (Math) ATAN2                                   |
 +========================================================================================+
 
-
-ATAN2
-
-
-  ATAN2 (x, y)
+ATAN2 (x, y)
 
 Inverse tangent (x,y).
 
@@ -7506,11 +6699,7 @@ Inverse tangent (x,y).
 |                                    191. (Math) ATANH                                   |
 +========================================================================================+
 
-
-ATANH
-
-
-  ATANH (x)
+ATANH (x)
 
 Inverse tangent.
 
@@ -7518,11 +6707,7 @@ Inverse tangent.
 |                                     192. (Math) ATN                                    |
 +========================================================================================+
 
-
-ATN
-
-
-  ATN (x)
+ATN (x)
 
 Inverse tangent.
 
@@ -7530,11 +6715,7 @@ Inverse tangent.
 |                                     193. (Math) CEIL                                   |
 +========================================================================================+
 
-
-CEIL
-
-
-  CEIL (x)
+CEIL (x)
 
 Smallest integral value not less than x.
 
@@ -7542,11 +6723,7 @@ Smallest integral value not less than x.
 |                                     194. (Math) COS                                    |
 +========================================================================================+
 
-
-COS
-
-
-  COS (x)
+COS (x)
 
 Cosine.
 
@@ -7699,11 +6876,7 @@ can locate the absolute screen x,y coordinate:
 |                                     195. (Math) COSH                                   |
 +========================================================================================+
 
-
-COSH
-
-
-  COSH (x)
+COSH (x)
 
 Cosine.
 
@@ -7711,11 +6884,7 @@ Cosine.
 |                                     196. (Math) COT                                    |
 +========================================================================================+
 
-
-COT
-
-
-  COT (x)
+COT (x)
 
 Cotangent.
 
@@ -7723,11 +6892,7 @@ Cotangent.
 |                                     197. (Math) COTH                                   |
 +========================================================================================+
 
-
-COTH
-
-
-  COTH (x)
+COTH (x)
 
 Cotangent.
 
@@ -7735,11 +6900,7 @@ Cotangent.
 |                                     198. (Math) CSC                                    |
 +========================================================================================+
 
-
-CSC
-
-
-  CSC (x)
+CSC (x)
 
 Co secant.
 
@@ -7747,11 +6908,7 @@ Co secant.
 |                                     199. (Math) CSCH                                   |
 +========================================================================================+
 
-
-CSCH
-
-
-  CSCH (x)
+CSCH (x)
 
 Co secant.
 
@@ -7759,11 +6916,7 @@ Co secant.
 |                                     200. (Math) DEG                                    |
 +========================================================================================+
 
-
-DEG
-
-
-  DEG (x)
+DEG (x)
 
 Radians to degrees.
 
@@ -7771,11 +6924,7 @@ Radians to degrees.
 |                                    201. (Math) DERIV                                   |
 +========================================================================================+
 
-
-DERIV
-
-
-  DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
+DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
 
 Calculation of derivative. errcode = 0 for success; otherwise
 calculation error.
@@ -7790,11 +6939,7 @@ calculation error.
 |                                    202. (Math) DETERM                                  |
 +========================================================================================+
 
-
-DETERM
-
-
-  DETERM (A[, toler])
+DETERM (A[, toler])
 
 Determinant of A. toler = tolerance number. the absolute value of the
 lowest acceptable number. default = 0.
@@ -7803,11 +6948,7 @@ lowest acceptable number. default = 0.
 |                                   203. (Math) DIFFEQN                                  |
 +========================================================================================+
 
-
-DIFFEQN
-
-
-  DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr
+DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr
 
 Differential equation - Runge-Kutta method. x0 = initial x,y, xf = x
 final. errcode = 0 for success; otherwise calculation error. yf =
@@ -7817,11 +6958,7 @@ result.
 |                                     204. (Math) EXP                                    |
 +========================================================================================+
 
-
-EXP
-
-
-  EXP (x)
+EXP (x)
 
 Returns the value of e raised to the power of x.
 
@@ -7829,11 +6966,7 @@ Returns the value of e raised to the power of x.
 |                                   205. (Math) EXPRSEQ                                  |
 +========================================================================================+
 
-
-EXPRSEQ
-
-
-  EXPRSEQ BYREF array, xmin, xmax, count USE expression
+EXPRSEQ BYREF array, xmin, xmax, count USE expression
 
 Returns an array with ‘count’ elements. Each element had the ‘y’ value
 of its position as it is returned by the expression.
@@ -7845,11 +6978,7 @@ of its position as it is returned by the expression.
 |                                     206. (Math) FIX                                    |
 +========================================================================================+
 
-
-FIX
-
-
-  FIX (x)
+FIX (x)
 
 Rounds x upwards to the nearest integer.
 
@@ -7857,11 +6986,7 @@ Rounds x upwards to the nearest integer.
 |                                    207. (Math) FLOOR                                   |
 +========================================================================================+
 
-
-FLOOR
-
-
-  FLOOR (x)
+FLOOR (x)
 
 Largest integer value not greater than x.
 
@@ -7869,11 +6994,7 @@ Largest integer value not greater than x.
 |                                     208. (Math) FRAC                                   |
 +========================================================================================+
 
-
-FRAC
-
-
-  FRAC (x)
+FRAC (x)
 
 Fractional part of x.
 
@@ -7881,11 +7002,7 @@ Fractional part of x.
 |                                     209. (Math) INT                                    |
 +========================================================================================+
 
-
-INT
-
-
-  INT (x)
+INT (x)
 
 Rounds x downwards to the nearest integer.
 
@@ -7917,11 +7034,7 @@ words, they both drop the fractional part of the number.
 |                                  210. (Math) INTERSECT                                 |
 +========================================================================================+
 
-
-INTERSECT
-
-
-  INTERSECT Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, BYREF type, BYREF Rx, BYREF
+INTERSECT Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, BYREF type, BYREF Rx, BYREF Ry
   Ry
 
 Calculates the intersection of the two line segments A-B and C-D.
@@ -7939,11 +7052,7 @@ type = cross-type:
 |                                   211. (Math) INVERSE                                  |
 +========================================================================================+
 
-
-INVERSE
-
-
-  INVERSE (A)
+INVERSE (A)
 
 Returns the inverse matrix of A.
 
@@ -7951,11 +7060,7 @@ Returns the inverse matrix of A.
 |                                    212. (Math) LINEQN                                  |
 +========================================================================================+
 
-
-LINEQN
-
-
-  LINEQN (a, b [, toler])
+LINEQN (a, b [, toler])
 
 Returns an array with the values of the unknowns. This function solves
 equations using the Gauss-Jordan method.
@@ -7973,11 +7078,7 @@ The result is a matrix Nx1. The array is two-dimension array.
 |                                     213. (Math) LOG                                    |
 +========================================================================================+
 
-
-LOG
-
-
-  LOG (x)
+LOG (x)
 
 Returns the natural logarithm of x.
 
@@ -7985,11 +7086,7 @@ Returns the natural logarithm of x.
 |                                    214. (Math) LOG10                                   |
 +========================================================================================+
 
-
-LOG10
-
-
-  LOG10 (x)
+LOG10 (x)
 
 Returns the base-10 logarithm of x.
 
@@ -7997,11 +7094,7 @@ Returns the base-10 logarithm of x.
 |                                   215. (Math) M3APPLY                                  |
 +========================================================================================+
 
-
-M3APPLY
-
-
-  M3APPLY m3x3, BYREF poly
+M3APPLY m3x3, BYREF poly
 
 Apply matrix to poly-line.
 
@@ -8061,11 +7154,7 @@ Any change to matrix will combined with its previous value.
 |                                   216. (Math) M3IDENT                                  |
 +========================================================================================+
 
-
-M3IDENT
-
-
-  M3IDENT BYREF m3x3
+M3IDENT BYREF m3x3
 
 Resets matrix (Identity).
 
@@ -8077,11 +7166,7 @@ Resets matrix (Identity).
 |                                   217. (Math) M3ROTATE                                 |
 +========================================================================================+
 
-
-M3ROTATE
-
-
-  M3ROTATE BYREF m3x3, angle [, x, y]
+M3ROTATE BYREF m3x3, angle [, x, y]
 
 Rotate by angle with center x,y.
 
@@ -8095,11 +7180,7 @@ Rotate by angle with center x,y.
 |                                   218. (Math) M3SCALE                                  |
 +========================================================================================+
 
-
-M3SCALE
-
-
-  M3SCALE BYREF m3x3, x, y, Sx, Sy
+M3SCALE BYREF m3x3, x, y, Sx, Sy
 
 Scale matrix.
 
@@ -8111,11 +7192,7 @@ Scale matrix.
 |                                   219. (Math) M3TRANS                                  |
 +========================================================================================+
 
-
-M3TRANS
-
-
-  M3TRANS BYREF m3x3, Tx, Ty
+M3TRANS BYREF m3x3, Tx, Ty
 
 Matrix translation.
 
@@ -8127,11 +7204,7 @@ Matrix translation.
 |                                     220. (Math) MAX                                    |
 +========================================================================================+
 
-
-MAX
-
-
-  MAX (…)
+MAX (...)
 
 Maximum value of parameters.
 
@@ -8143,11 +7216,7 @@ Maximum value of parameters.
 |                                     221. (Math) MIN                                    |
 +========================================================================================+
 
-
-MIN
-
-
-  MIN (…)
+MIN (...)
 
 Minimum value of parameters. Parameters can be anything (arrays, ints,
 reals, strings).
@@ -8156,11 +7225,7 @@ reals, strings).
 |                                   222. (Math) POLYAREA                                 |
 +========================================================================================+
 
-
-POLYAREA
-
-
-  POLYAREA (poly)
+POLYAREA (poly)
 
 Returns the area of the polyline poly.
 
@@ -8168,11 +7233,7 @@ Returns the area of the polyline poly.
 |                                   223. (Math) POLYCENT                                 |
 +========================================================================================+
 
-
 POLYCENT
-
-
-  POLYCENT
 
 Polycent.
 
@@ -8180,11 +7241,7 @@ Polycent.
 |                                   224. (Math) POLYEXT                                  |
 +========================================================================================+
 
-
-POLYEXT
-
-
-  POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax
+POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax
 
 Returns the polyline’s extents.
 
@@ -8192,11 +7249,7 @@ Returns the polyline’s extents.
 |                                     225. (Math) POW                                    |
 +========================================================================================+
 
-
-POW
-
-
-  POW (x, y)
+POW (x, y)
 
 x raised to power of y.
 
@@ -8204,11 +7257,7 @@ x raised to power of y.
 |                                   226. (Math) PTDISTLN                                 |
 +========================================================================================+
 
-
-PTDISTLN
-
-
-  PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
+PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
 
 Distance of point A from line B, C.
 
@@ -8216,11 +7265,7 @@ Distance of point A from line B, C.
 |                                  227. (Math) PTDISTSEG                                 |
 +========================================================================================+
 
-
-PTDISTSEG
-
-
-  PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)
+PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)
 
 Distance of point A from line segment B-C.
 
@@ -8228,11 +7273,7 @@ Distance of point A from line segment B-C.
 |                                    228. (Math) PTSIGN                                  |
 +========================================================================================+
 
-
-PTSIGN
-
-
-  PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
+PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
 
 The sign of point Q from line segment A->B.
 
@@ -8240,11 +7281,7 @@ The sign of point Q from line segment A->B.
 |                                     229. (Math) RAD                                    |
 +========================================================================================+
 
-
-RAD
-
-
-  RAD (x)
+RAD (x)
 
 Degrees to radians.
 
@@ -8252,11 +7289,7 @@ Degrees to radians.
 |                                     230. (Math) RND                                    |
 +========================================================================================+
 
-
 RND
-
-
-  RND
 
 Returns a random number from the range 0 to 1.
 
@@ -8297,11 +7330,7 @@ Returns a random number from the range 0 to 1.
 |                                     231. (Math) ROOT                                   |
 +========================================================================================+
 
-
-ROOT
-
-
-  ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr
+ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr
 
 Roots of F(x).
 
@@ -8322,11 +7351,7 @@ Roots of F(x).
 |                                    232. (Math) ROUND                                   |
 +========================================================================================+
 
-
-ROUND
-
-
-  ROUND (x [, decs])
+ROUND (x [, decs])
 
 Rounds the x to the nearest integer or number with ‘decs’ decimal
 digits.
@@ -8335,11 +7360,7 @@ digits.
 |                                     233. (Math) SEC                                    |
 +========================================================================================+
 
-
-SEC
-
-
-  SEC (x)
+SEC (x)
 
 Secant.
 
@@ -8347,11 +7368,7 @@ Secant.
 |                                     234. (Math) SECH                                   |
 +========================================================================================+
 
-
-SECH
-
-
-  SECH (x)
+SECH (x)
 
 Secant.
 
@@ -8359,11 +7376,7 @@ Secant.
 |                                    235. (Math) SEGCOS                                  |
 +========================================================================================+
 
-
-SEGCOS
-
-
-  SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 
 Cosine of 2 line segments (A->B, C->D).
 
@@ -8371,11 +7384,7 @@ Cosine of 2 line segments (A->B, C->D).
 |                                    236. (Math) SEGLEN                                  |
 +========================================================================================+
 
-
-SEGLEN
-
-
-  SEGLEN (Ax,Ay,Bx,By)
+SEGLEN (Ax,Ay,Bx,By)
 
 Length of line segment.
 
@@ -8383,11 +7392,7 @@ Length of line segment.
 |                                    237. (Math) SEGSIN                                  |
 +========================================================================================+
 
-
-SEGSIN
-
-
-  SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 
 Sinus of 2 line segments (A->B, C->D).
 
@@ -8395,11 +7400,7 @@ Sinus of 2 line segments (A->B, C->D).
 |                                     238. (Math) SEQ                                    |
 +========================================================================================+
 
-
-SEQ
-
-
-  SEQ (xmin, xmax, count)
+SEQ (xmin, xmax, count)
 
 Returns an array with ‘count’ elements. Each element has the x value of
 its position.
@@ -8408,11 +7409,7 @@ its position.
 |                                     239. (Math) SGN                                    |
 +========================================================================================+
 
-
-SGN
-
-
-  SGN (x)
+SGN (x)
 
 Sign of x (+1 for positive, -1 for negative and 0 for zero).
 
@@ -8431,11 +7428,7 @@ Sign of x (+1 for positive, -1 for negative and 0 for zero).
 |                                     240. (Math) SIN                                    |
 +========================================================================================+
 
-
-SIN
-
-
-  SIN (x)
+SIN (x)
 
 First off, Trig lessons started in COS comments of this Language
 reference, check that for some remarks about trig functions.
@@ -8603,11 +7596,7 @@ main Trig ratios:
 |                                     241. (Math) SINH                                   |
 +========================================================================================+
 
-
-SINH
-
-
-  SINH (x)
+SINH (x)
 
 Sine.
 
@@ -8615,11 +7604,7 @@ Sine.
 |                                     242. (Math) SQR                                    |
 +========================================================================================+
 
-
-SQR
-
-
-  SQR (x)
+SQR (x)
 
 Square root of x.
 
@@ -8627,11 +7612,7 @@ Square root of x.
 |                                   243. (Math) STATMEAN                                 |
 +========================================================================================+
 
-
-STATMEAN
-
-
-  STATMEAN (…)
+STATMEAN (...)
 
 Arithmetical mean.
 
@@ -8639,11 +7620,7 @@ Arithmetical mean.
 |                                 244. (Math) STATMEANDEV                                |
 +========================================================================================+
 
-
-STATMEANDEV
-
-
-  STATMEANDEV (…)
+STATMEANDEV (...)
 
 Mean deviation.
 
@@ -8651,11 +7628,7 @@ Mean deviation.
 |                                 245. (Math) STATSPREADP                                |
 +========================================================================================+
 
-
-STATSPREADP
-
-
-  STATSPREADS (…)
+STATSPREADS (...)
 
 Sample spread.
 
@@ -8663,11 +7636,7 @@ Sample spread.
 |                                 246. (Math) STATSPREADS                                |
 +========================================================================================+
 
-
-STATSPREADS
-
-
-  STATSPREADP (…)
+STATSPREADP (...)
 
 Population spread.
 
@@ -8675,11 +7644,7 @@ Population spread.
 |                                     247. (Math) SUM                                    |
 +========================================================================================+
 
-
-SUM
-
-
-  SUM (…)
+SUM (...)
 
 Sum of value.
 
@@ -8687,11 +7652,7 @@ Sum of value.
 |                                    248. (Math) SUMSQ                                   |
 +========================================================================================+
 
-
-SUMSQ
-
-
-  SUMSQ (…)
+SUMSQ (...)
 
 Sum of square value.
 
@@ -8699,11 +7660,7 @@ Sum of square value.
 |                                     249. (Math) TAN                                    |
 +========================================================================================+
 
-
-TAN
-
-
-  TAN (x)
+TAN (x)
 
 see COS for Trig lesson one see ATAN for a maybe fun demo involving TAN
 and ATAN
@@ -8876,11 +7833,7 @@ TAN lesson “TAN use again” and update it to explain how SIN works).
 |                                     250. (Math) TANH                                   |
 +========================================================================================+
 
-
-TANH
-
-
-  TANH (x)
+TANH (x)
 
 Tangent.
 
@@ -8888,11 +7841,7 @@ Tangent.
 |                                    251. (String) ASC                                   |
 +========================================================================================+
 
-
-ASC
-
-
-  ASC (s)
+ASC (s)
 
 Returns the ASCII code of first character of the string s.
 
@@ -8931,11 +7880,7 @@ Also see CHR
 |                                    252. (String) BCS                                   |
 +========================================================================================+
 
-
-BCS
-
-
-  BCS (s)
+BCS (s)
 
 Converts (B)ASIC-style strings to (C)-style (S)trings.
 
@@ -9009,11 +7954,7 @@ Converts (B)ASIC-style strings to (C)-style (S)trings.
 |                                    253. (String) BIN                                   |
 +========================================================================================+
 
-
-BIN
-
-
-  BIN (x)
+BIN (x)
 
 Returns the binary value of x as string.
 
@@ -9021,11 +7962,7 @@ Returns the binary value of x as string.
 |                                    254. (String) CBS                                   |
 +========================================================================================+
 
-
-CBS
-
-
-  CBS (s)
+CBS (s)
 
 Converts (C)-style strings to (B)ASIC-style (S)trings.
 
@@ -9062,11 +7999,7 @@ Converts (C)-style strings to (B)ASIC-style (S)trings.
 |                                    255. (String) CHOP                                  |
 +========================================================================================+
 
-
-CHOP
-
-
-  CHOP (source)
+CHOP (source)
 
 Chops off the last character of the string ‘source’ and returns the
 result.
@@ -9075,11 +8008,7 @@ result.
 |                                    256. (String) CHR                                   |
 +========================================================================================+
 
-
-CHR
-
-
-  CHR (x)
+CHR (x)
 
 Returns one-char string of character with ASCII code x.
 
@@ -9131,11 +8060,7 @@ character (ASCII 27) For example:
 |                                  257. (String) DISCLOSE                                |
 +========================================================================================+
 
-
-DISCLOSE
-
-
-  DISCLOSE (str[, pairs [, ignore-pairs]])
+DISCLOSE (str[, pairs [, ignore-pairs]])
 
 Discloses a string.
 
@@ -9167,11 +8092,7 @@ Default pairs and ignore pairs
 |                                  258. (String) ENCLOSE                                 |
 +========================================================================================+
 
-
-ENCLOSE
-
-
-  ENCLOSE (str[, pair])
+ENCLOSE (str[, pair])
 
 Encloses a string.
 
@@ -9191,11 +8112,7 @@ ENCLOSE defaults to double quotes if the [pair] option is not used.
 |                                   259. (String) FORMAT                                 |
 +========================================================================================+
 
-
-FORMAT
-
-
-  FORMAT (format, val)
+FORMAT (format, val)
 
 Returns a formated string.
 
@@ -9285,11 +8202,7 @@ Must add extra space after ‘\’, if not there is an error:
 |                                    260. (String) HEX                                   |
 +========================================================================================+
 
-
-HEX
-
-
-  HEX (x)
+HEX (x)
 
 Returns the hexadecimal value of x as string.
 
@@ -9297,11 +8210,7 @@ Returns the hexadecimal value of x as string.
 |                                   261. (String) INSTR                                  |
 +========================================================================================+
 
-
-INSTR
-
-
-  INSTR ([start,] s1, s2)
+INSTR ([start,] s1, s2)
 
 Returns the position of the first occurrence of the string s2 into
 string s1 (starting from the position ‘start’). If there is no match,
@@ -9334,11 +8243,7 @@ INSTR returns 0
 |                                    262. (String) JOIN                                  |
 +========================================================================================+
 
-
-JOIN
-
-
-  JOIN words(), delimiters, string
+JOIN words(), delimiters, string
 
 Returns the words of the specified string into array ‘words’.
 
@@ -9353,11 +8258,7 @@ Returns the words of the specified string into array ‘words’.
 |                                   263. (String) LCASE                                  |
 +========================================================================================+
 
-
-LCASE
-
-
-  LCASE (s)
+LCASE (s)
 
 Converts the string s to lower case.
 
@@ -9365,11 +8266,7 @@ Converts the string s to lower case.
 |                                    264. (String) LEFT                                  |
 +========================================================================================+
 
-
-LEFT
-
-
-  LEFT (s [,n])
+LEFT (s [,n])
 
 Returns the n number of leftmost chars of string s. if not specified n =
 1.
@@ -9378,11 +8275,7 @@ Returns the n number of leftmost chars of string s. if not specified n =
 |                                   265. (String) LEFTOF                                 |
 +========================================================================================+
 
-
-LEFTOF
-
-
-  LEFTOF (s1, s2)
+LEFTOF (s1, s2)
 
 Returns the left part of s1 at the position of the first occurrence of
 the string s2 into string s1.
@@ -9417,11 +8310,7 @@ the string s2 into string s1.
 |                                 266. (String) LEFTOFLAST                               |
 +========================================================================================+
 
-
-LEFTOFLAST
-
-
-  LEFTOFLAST (s1, s2)
+LEFTOFLAST (s1, s2)
 
 Returns the left part of s1 at the position of the last occurrence of
 the string s2 into string s1.
@@ -9430,11 +8319,7 @@ the string s2 into string s1.
 |                                   267. (String) LOWER                                  |
 +========================================================================================+
 
-
-LOWER
-
-
-  LOWER (s)
+LOWER (s)
 
 Converts the string s to lower case.
 
@@ -9442,11 +8327,7 @@ Converts the string s to lower case.
 |                                   268. (String) LTRIM                                  |
 +========================================================================================+
 
-
-LTRIM
-
-
-  LTRIM (s)
+LTRIM (s)
 
 Removes leading white-spaces from string s.
 
@@ -9454,11 +8335,7 @@ Removes leading white-spaces from string s.
 |                                    269. (String) MID                                   |
 +========================================================================================+
 
-
-MID
-
-
-  MID (s, start [,length])
+MID (s, start [,length])
 
 Returns the part (length) of the string s starting from ‘start’
 position.
@@ -9470,11 +8347,7 @@ the position ‘start’.
 |                                    270. (String) OCT                                   |
 +========================================================================================+
 
-
-OCT
-
-
-  OCT (x)
+OCT (x)
 
 Returns the octal value of x as string.
 
@@ -9482,11 +8355,7 @@ Returns the octal value of x as string.
 |                                  271. (String) REPLACE                                 |
 +========================================================================================+
 
-
-REPLACE
-
-
-  REPLACE (source, pos, str [, len])
+REPLACE (source, pos, str [, len])
 
 Writes str into pos of source and returns the new string.
 
@@ -9571,11 +8440,7 @@ is the length of _str_.
 |                                   272. (String) RIGHT                                  |
 +========================================================================================+
 
-
-RIGHT
-
-
-  RIGHT (s[,n])
+RIGHT (s[,n])
 
 Returns the n number of rightmost chars of string s. if not specified n
 = 1.
@@ -9584,11 +8449,7 @@ Returns the n number of rightmost chars of string s. if not specified n
 |                                  273. (String) RIGHTOF                                 |
 +========================================================================================+
 
-
-RIGHTOF
-
-
-  RIGHTOF (s1, s2)
+RIGHTOF (s1, s2)
 
 Returns the right part of s1 at the position of the first occurrence of
 the string s2 into string s1.
@@ -9597,11 +8458,7 @@ the string s2 into string s1.
 |                                274. (String) RIGHTOFLAST                               |
 +========================================================================================+
 
-
-RIGHTOFLAST
-
-
-  RIGHTOFLAST (s1, s2)
+RIGHTOFLAST (s1, s2)
 
 Returns the right part of s1 at the position of the last occurrence of
 the string s2 into string s1.
@@ -9610,11 +8467,7 @@ the string s2 into string s1.
 |                                   275. (String) RINSTR                                 |
 +========================================================================================+
 
-
-RINSTR
-
-
-  RINSTR ([start,] s1, s2)
+RINSTR ([start,] s1, s2)
 
 Returns the position of the last occurrence of the string s2 into string
 s1 (starting from the position ‘start’).
@@ -9625,11 +8478,7 @@ If there is no match, RINSTR returns 0
 |                                   276. (String) RTRIM                                  |
 +========================================================================================+
 
-
-RTRIM
-
-
-  RTRIM (s)
+RTRIM (s)
 
 Removes trailing white-spaces from string s.
 
@@ -9637,11 +8486,7 @@ Removes trailing white-spaces from string s.
 |                                   277. (String) SINPUT                                 |
 +========================================================================================+
 
-
-SINPUT
-
-
-  SINPUT src; var [, delim] [,var [, delim]] …
+SINPUT src; var [, delim] [,var [, delim]] ...
 
 Splits the string ‘src’ into variables which are separated by
 delimiters.
@@ -9655,11 +8500,7 @@ delimiters.
 |                                   278. (String) SPACE                                  |
 +========================================================================================+
 
-
-SPACE
-
-
-  SPACE (n)
+SPACE (n)
 
 Returns a string of n spaces.
 
@@ -9687,11 +8528,7 @@ Returns a string of n spaces.
 |                                    279. (String) SPC                                   |
 +========================================================================================+
 
-
-SPC
-
-
-  SPC (n)
+SPC (n)
 
 Returns a string of n spaces.
 
@@ -9714,11 +8551,7 @@ I think SPACE and SPC are both the same, see also SPACE.
 |                                   280. (String) SPLIT                                  |
 +========================================================================================+
 
-
-SPLIT
-
-
-  SPLIT string, delimiters, words() [, pairs] [USE expr]
+SPLIT string, delimiters, words() [, pairs] [USE expr]
 
 Returns the words of the specified string into array ‘words’.
 
@@ -9740,11 +8573,7 @@ displays:
 |                                   281. (String) SPRINT                                 |
 +========================================================================================+
 
-
-SPRINT
-
-
-  SPRINT var; [USING…;] …
+SPRINT var; [USING...;] ...
 
 Create formated string and storing it to var. See also: PRINT command.
 
@@ -9756,11 +8585,7 @@ _Note: you can use ‘USG’ instead of ‘USING’._
 |                                  282. (String) SQUEEZE                                 |
 +========================================================================================+
 
-
-SQUEEZE
-
-
-  SQUEEZE (s)
+SQUEEZE (s)
 
 Removes all leading, trailing and duplicated white-space.
 
@@ -9771,11 +8596,7 @@ Removes all leading, trailing and duplicated white-space.
 |                                    283. (String) STR                                   |
 +========================================================================================+
 
-
-STR
-
-
-  STR (n)
+STR (n)
 
 Converts the number n into a string.
 
@@ -9783,11 +8604,7 @@ Converts the number n into a string.
 |                                   284. (String) STRING                                 |
 +========================================================================================+
 
-
-STRING
-
-
-  STRING ( count [,start | s] )
+STRING ( count [,start | s] )
 
 Creates a new string of count length.
 
@@ -9849,11 +8666,7 @@ How to understand this syntax “STRING ( count [,start | s] )”:
 |                                 285. (String) TRANSLATE                                |
 +========================================================================================+
 
-
-TRANSLATE
-
-
-  TRANSLATE (source, what [, with])
+TRANSLATE (source, what [, with])
 
 Translates all occurrences of the string ‘what’ found in source with the
 string ‘with’ and returns the new string.
@@ -9865,11 +8678,7 @@ string ‘with’ and returns the new string.
 |                                    286. (String) TRIM                                  |
 +========================================================================================+
 
-
-TRIM
-
-
-  TRIM(s)
+TRIM(s)
 
 Removes all leading and trailing white-space.
 
@@ -9877,11 +8686,7 @@ Removes all leading and trailing white-space.
 |                                   287. (String) UCASE                                  |
 +========================================================================================+
 
-
-UCASE
-
-
-  UCASE (s)
+UCASE (s)
 
 Converts the string s to upper case.
 
@@ -9898,11 +8703,7 @@ output: UPPER and UCASE do the same thing.
 |                                   288. (String) UPPER                                  |
 +========================================================================================+
 
-
-UPPER
-
-
-  UPPER (s)
+UPPER (s)
 
 Converts the string s to upper case.
 
@@ -9912,11 +8713,7 @@ Yes, you should see the comment in UCASE.
 |                                    289. (String) VAL                                   |
 +========================================================================================+
 
-
-VAL
-
-
-  VAL (s)
+VAL (s)
 
 Returns the numeric value of string s.
 
@@ -9973,11 +8770,7 @@ functionality, the CHAIN command is somewhat similar.
 |                                   290. (System) CHAIN                                  |
 +========================================================================================+
 
-
-CHAIN
-
-
-  CHAIN source
+CHAIN source
 
 Compile and run the given source. Source can be a file name, a line of
 code or an array of code. Use ENV to share variables with the parent
@@ -10082,11 +8875,7 @@ process.
 |                                  291. (System) COMMAND                                 |
 +========================================================================================+
 
-
 COMMAND
-
-
-  COMMAND
 
 SmallBASIC startup command line options.
 
@@ -10120,11 +8909,7 @@ Will print “abc xyz fileName”
 |                                    292. (System) CWD                                   |
 +========================================================================================+
 
-
 CWD
-
-
-  CWD
 
 Current working directory
 
@@ -10132,11 +8917,7 @@ Current working directory
 |                                   293. (System) DELAY                                  |
 +========================================================================================+
 
-
-DELAY
-
-
-  DELAY ms
+DELAY ms
 
 Delay for a specified amount of milliseconds. Note ‘delay’ depends on
 the system clock.
@@ -10145,11 +8926,7 @@ the system clock.
 |                                    294. (System) ENV                                   |
 +========================================================================================+
 
-
-ENV
-
-
-  ENV expr
+ENV expr
 
 Adds a variable to or deletes a variable from the current environment
 variable-table.
@@ -10228,11 +9005,7 @@ example).
 |                                    295. (System) ENV                                   |
 +========================================================================================+
 
-
-ENV
-
-
-  ENV expr
+ENV expr
 
 Returns the value of a specified entry in the current environment table.
 If the parameter is empty ("") then returns an array of the environment
@@ -10284,11 +9057,7 @@ whole set of them into an array using: EVarray=ENV("")
 |                                    296. (System) EXEC                                  |
 +========================================================================================+
 
-
-EXEC
-
-
-  EXEC file
+EXEC file
 
 Transfers control to another operating system program.
 
@@ -10356,11 +9125,7 @@ things in the /proc file system.
 |                                   297. (System) EXPORT                                 |
 +========================================================================================+
 
-
-EXPORT
-
-
-  EXPORT thing
+EXPORT thing
 
 Export a SUB, FUNC or variable from a UNIT to be used by the unit
 consumer.
@@ -10369,11 +9134,7 @@ consumer.
 |                                    298. (System) FRE                                   |
 +========================================================================================+
 
-
-FRE
-
-
-  FRE (x)
+FRE (x)
 
 Returns system information. eg, 0 = free memory,
 
@@ -10420,11 +9181,7 @@ The optional values will return 0 if not supported.
 |                                    299. (System) HOME                                  |
 +========================================================================================+
 
-
 HOME
-
-
-  HOME
 
 User HOME folder
 
@@ -10432,11 +9189,7 @@ User HOME folder
 |                                   300. (System) IMPORT                                 |
 +========================================================================================+
 
-
 IMPORT
-
-
-  IMPORT
 
 Import an exported UNIT variable, SUB or FUNC.
 
@@ -10444,11 +9197,7 @@ Import an exported UNIT variable, SUB or FUNC.
 |                                  301. (System) INCLUDE                                 |
 +========================================================================================+
 
-
-INCLUDE
-
-
-  INCLUDE source-file.bas
+INCLUDE source-file.bas
 
 Inserts code in the named file when the program is compiled.
 
@@ -10496,11 +9245,7 @@ Here is part_2.bas, the second (and startup) part of our long program:
 |                                   302. (System) MAXINT                                 |
 +========================================================================================+
 
-
 MAXINT
-
-
-  MAXINT
 
 Holds the maximum value for an integer. The value depends on whether you
 are using a 32 or 64 bit build of SmallBASIC.
@@ -10509,11 +9254,7 @@ are using a 32 or 64 bit build of SmallBASIC.
 |                                    303. (System) NIL                                   |
 +========================================================================================+
 
-
 NIL
-
-
-  NIL
 
 NIL is used to mean ‘not set’ as distinct from having an INT set to 0
 
@@ -10521,11 +9262,7 @@ NIL is used to mean ‘not set’ as distinct from having an INT set to 0
 |                                   304. (System) OPTION                                 |
 +========================================================================================+
 
-
-OPTION
-
-
-  OPTION keyword
+OPTION keyword
 
 Used to pass parameters to the run-time environment.
 
@@ -10533,11 +9270,7 @@ Used to pass parameters to the run-time environment.
 |                                   305. (System) PAUSE                                  |
 +========================================================================================+
 
-
-PAUSE
-
-
-  PAUSE [secs]
+PAUSE [secs]
 
 Pauses the execution for a specified length of time, or until user hit
 the keyboard.
@@ -10570,11 +9303,7 @@ halt program execution (for the user to see the output screen).
 |                                     306. (System) PI                                   |
 +========================================================================================+
 
-
 PI
-
-
-  PI
 
 Holds PI
 
@@ -10584,11 +9313,7 @@ See: https://en.wikipedia.org/wiki/Pi
 |                                  307. (System) PROGLINE                                |
 +========================================================================================+
 
-
 PROGLINE
-
-
-  PROGLINE
 
 Returns the current program line number.
 
@@ -10596,11 +9321,7 @@ Returns the current program line number.
 |                                 308. (System) RANDOMIZE                                |
 +========================================================================================+
 
-
-RANDOMIZE
-
-
-  RANDOMIZE [int]
+RANDOMIZE [int]
 
 Seeds the random number generator.
 
@@ -10608,11 +9329,7 @@ Seeds the random number generator.
 |                                    309. (System) RUN                                   |
 +========================================================================================+
 
-
-RUN
-
-
-  RUN cmdstr
+RUN cmdstr
 
 Loads a secondary copy of system’s shell and, executes an program, or an
 shell command.
@@ -10767,11 +9484,7 @@ will verify that the command was executed well.
 |                                   310. (System) SBVER                                  |
 +========================================================================================+
 
-
 SBVER
-
-
-  SBVER
 
 Version and build information
 
@@ -10779,11 +9492,7 @@ Version and build information
 |                                    311. (System) SELF                                  |
 +========================================================================================+
 
-
 SELF
-
-
-  SELF
 
 Pseudo class instance variable
 
@@ -10808,11 +9517,7 @@ Example:
 |                                  312. (System) STKDUMP                                 |
 +========================================================================================+
 
-
 STKDUMP
-
-
-  STKDUMP
 
 Display internal execution stack.
 
@@ -10820,11 +9525,7 @@ Display internal execution stack.
 |                                   313. (System) TROFF                                  |
 +========================================================================================+
 
-
 TROFF
-
-
-  TROFF
 
 See TRON.
 
@@ -10832,11 +9533,7 @@ See TRON.
 |                                    314. (System) TRON                                  |
 +========================================================================================+
 
-
 TRON
-
-
-  TRON
 
 When trace mechanism is ON, displays each line number as the program is
 executed.
@@ -10845,11 +9542,7 @@ executed.
 |                                    315. (System) UNIT                                  |
 +========================================================================================+
 
-
-UNIT
-
-
-  UNIT name
+UNIT name
 
 Declares the source module as a unit. Units are a set of procedures,
 functions and/or variables that can be used by another program or unit.
