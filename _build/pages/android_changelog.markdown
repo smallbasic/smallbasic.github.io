@@ -5,7 +5,7 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
-**12.22 (? June April 2021)**
+**12.22 (16 July 2021)**
 
 - Fixed 'Socket Client doesn't receive byte with value 13' #112
 - Fixed RGB handling with IMAGEs
