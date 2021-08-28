@@ -429,7 +429,7 @@ div.articleRightInner {
 #simpleSearch {
   margin: 1em 1em 0em 0.5em;
   display: block;
-  width: 267px;
+  width: 10em;
   height: 23px;
   padding: 0 0 0 3px;
   float: right;
@@ -445,17 +445,22 @@ div.articleRightInner {
   border: none;
   vertical-align: top;
   height: 23px;
-  width: 239px;
+  width: 10em;
   font-size: 0.8em;
 }
+#searchInput:focus {
+  outline: none;
+}
 #submitSearch {
-  background-image: url(/images/search.png);
-  display: inline-block;
-  background-position: center center;
-  background-repeat: no-repeat;
+  display: flex;
   height: 23px;
   width: 23px;
-  cursor: pointer;
+}
+#submitSearch > button {
+  background-image: url(/images/search.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 0px;
 }
 .tabsRight {
   float: right;

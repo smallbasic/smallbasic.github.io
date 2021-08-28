@@ -44,13 +44,15 @@
         </ul>
       </div>
       <div id="simpleSearch">
-        <div id="submitSearch"></div>
         <form action="https://github.com/smallbasic/smallbasic.github.io/search"
               target="_github" accept-charset="UTF-8" method="get" style="display:inline">
-          <input type="hidden" class="js-site-search-type-field" name="type">
-          <input type="hidden" name="utf8" value="✓">
-          <input type="hidden" name="l" value="Visual Basic">
-          <input type="text" name="q" placeholder="Search" size="12" id="searchInput">
+          <div id="submitSearch">
+            <button type="submit">&nbsp;</button>
+            <input type="hidden" class="js-site-search-type-field" name="type">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="l" value="Visual Basic">
+            <input type="text" name="q" placeholder="Search" id="searchInput">
+          </div>
         </form>
       </div>
       <div class="tabsRight">
