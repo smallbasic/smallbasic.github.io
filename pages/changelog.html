@@ -64,6 +64,35 @@
     </div>
 <div class="article">
 <h1 id="changelog">Changelog</h1>
+<p><strong>12.23 (30 August 2021) </strong></p>
+<ul>
+<li>Allow RGB to be used with image array passed to IMAGE</li>
+<li>Fix CIRCLE command to ensure radius uses the WINDOW coordinate system</li>
+<li>Fix PSET display of extra pixel</li>
+<li>Fix RGB handling with IMAGE</li>
+<li>Fix array append regression #122</li>
+<li>Fix crash when line length limit exceeded</li>
+<li>Fix live edit when start path contains unicode characters #123</li>
+<li>Fix maDrawRGB() buffer overflow</li>
+<li>Fix potential memory leak using IMAGE</li>
+<li>Fix square bracket field access issue</li>
+<li>Fix to ensure the default VIEW is maintained during resizing</li>
+<li>Fix to make image save and load compatible</li>
+<li>Fixes ‘Socket Client doesn’t receive byte with value 13’ #112</li>
+<li>Fixes TSAVE of arrays includes extra null character. #119</li>
+<li>Handle octal escapes correctly</li>
+<li>Implemented image opacity handling</li>
+<li>Implemented image.clip(left,top,right,bottom)</li>
+<li>Update editor to handle unit errors</li>
+<li>Validate window dimensions on loading to prevent hidden window</li>
+<li>added xpm validation check.</li>
+<li>fix image placement when using img.clip()</li>
+<li>implemented image.draw()</li>
+<li>make image save and load compatible.</li>
+<li>prevent invalid char input with ALT+ESC keystroke</li>
+<li>rand() replacement using PCG</li>
+<li>updated sub-modules</li>
+</ul>
 <p><strong>12.20 (8 January 2021) </strong></p>
 <ul>
 <li>Fix to allow c-modules to be called from units</li>

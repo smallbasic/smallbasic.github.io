@@ -1,6 +1,35 @@
 Changelog
 =========
 
+**12.23 (30 August 2021) **
+
+- Allow RGB to be used with image array passed to IMAGE
+- Fix CIRCLE command to ensure radius uses the WINDOW coordinate system
+- Fix PSET display of extra pixel
+- Fix RGB handling with IMAGE
+- Fix array append regression #122
+- Fix crash when line length limit exceeded
+- Fix live edit when start path contains unicode characters #123
+- Fix maDrawRGB() buffer overflow
+- Fix potential memory leak using IMAGE
+- Fix square bracket field access issue
+- Fix to ensure the default VIEW is maintained during resizing
+- Fix to make image save and load compatible
+- Fixes 'Socket Client doesn't receive byte with value 13' #112
+- Fixes TSAVE of arrays includes extra null character. #119
+- Handle octal escapes correctly
+- Implemented image opacity handling
+- Implemented image.clip(left,top,right,bottom)
+- Update editor to handle unit errors
+- Validate window dimensions on loading to prevent hidden window
+- added xpm validation check.
+- fix image placement when using img.clip()
+- implemented image.draw()
+- make image save and load compatible.
+- prevent invalid char input with ALT+ESC keystroke
+- rand() replacement using PCG
+- updated sub-modules
+
 **12.20 (8 January 2021) **
 
 - Fix to allow c-modules to be called from units
