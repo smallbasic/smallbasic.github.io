@@ -5,6 +5,11 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.23 (31 August 2021)**
+
+- Fix array append regression #122
+- Hide keypad on run. Show keypad for INPUT, then re-hide on completion.
+
 **12.22 (16 July 2021)**
 
 - Fixed 'Socket Client doesn't receive byte with value 13' #112
