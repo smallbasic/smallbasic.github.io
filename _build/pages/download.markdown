@@ -10,8 +10,8 @@
 
 ## Linux
 
-- [SDL 64 bit AppImage - 12.23](https://github.com/smallbasic/SmallBASIC/releases/download/v12.23/SmallBASIC-SDL_12.23-x86_64.AppImage){target="_blank"}
-- [FLTK 64 bit AppImage - 12.23](https://github.com/smallbasic/SmallBASIC/releases/download/v12.23/SmallBASIC-FLTK_12.23-x86_64.AppImage){target="_blank"}
+- [SDL 64 bit AppImage - 12.23](https://github.com/smallbasic/SmallBASIC/releases/download/v12.23/SmallBASIC-SDL_12.23-2-x86_64.AppImage){target="_blank"}
+- [FLTK 64 bit AppImage - 12.23](https://github.com/smallbasic/SmallBASIC/releases/download/v12.23/SmallBASIC-FLTK_12.23-2-x86_64.AppImage){target="_blank"}
 - [Ubuntu 32 bit - 0.12.9](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.9/smallbasic_0.12.9_i386.deb){target="_blank"}
 - [Raspberry PI - 0.12.6](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.6/smallbasic_0.12.6_armhf.deb){target="_blank"}
 
