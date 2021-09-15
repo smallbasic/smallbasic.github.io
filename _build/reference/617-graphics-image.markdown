@@ -51,6 +51,37 @@ For y = 0 To Ubound(a, 1)
 Next
 i = Image(a)
 ```
+Create via 2D array with transparency
+
+```
+'Create image array 1 without transparency
+dim a1(100, 200)
+For y = 0 To 99
+  For x = 0 To 199
+    r += 5: g += 10: b += 15
+    a1(y, x) = rgb(r%255, g%255,b%255)
+  Next
+Next
+
+'Create image array 2 with transparency
+dim a2(100, 200)
+r = 255: g = 255: b = 255
+For y = 0 To 99
+  alpha = 5
+  For x = 0 To 199
+    alpha += 0.1
+    transparency = (round(alpha) * 10)  
+    a2(y, x) = (transparency lshift 24) - rgb(r,g,b)
+  Next
+Next
+
+'Create and display images
+i1 = Image(a1)
+i2 = Image(a2)
+
+i1.show(20,20)
+i2.show(0,0)
+```
 
 
 Create via array of [X_PixMap](https://en.wikipedia.org/wiki/X_PixMap) data
