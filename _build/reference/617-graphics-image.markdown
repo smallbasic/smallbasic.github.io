@@ -42,14 +42,35 @@ i = Image(k)
 Create via 2D array
 
 ```
-dim a(100, 200)
-For y = 0 To Ubound(a, 1)
-  For x = 0 To Ubound(a, 2)
+'Create image array a1 without transparency
+dim a1(100, 200)
+For y = 0 To 99
+  For x = 0 To 199
     r += 5: g += 10: b += 15
-    a(y, x) = rgb(r%255, g%255,b%255)
+    a1(y, x) = rgb(r%255, g%255,b%255)
   Next
 Next
-i = Image(a)
+
+'Create image array a2 with transparency
+'Transparency is a value between 0 and 255
+'0 is fully transparent; 255 is solid
+dim a2(100, 200)
+r = 255: g = 255: b = 255
+For y = 0 To 99
+  alpha = 5
+  For x = 0 To 199
+    alpha += 0.1
+    transparency = round(alpha) * 10
+    a2(y, x) = (transparency lshift 24) - rgb(r,g,b)    
+  Next
+Next
+
+'Create and display images
+i1 = Image(a1)
+i2 = Image(a2)
+
+i1.show(20,20)
+i2.show(0,0)
 ```
 
 
@@ -84,7 +105,7 @@ i = Image(im)
 
 ### Show command
 
-zIndex controls whether the image will be displayed over or under another image. Images with higher zIndex values are drawn over the top of images with lower zIndex values. Opacity controls whether to display the image as solid or semi-transparent. Opacity values range from 1-100, with higher opacity values making the image less transparent. The default is 100 resulting in a solid image.
+zIndex controls whether the image will be displayed over or under another image. Images with higher zIndex values are drawn over the top of images with lower zIndex values. Opacity controls whether to display the image as solid or semi-transparent. Opacity values range from 1-100, with higher opacity values making the image less transparent. The default is 100 resulting in a solid image. When calling the show command a second time with new coordinates, the image will move to the new position.
 
 ```
 i.show([x,y [,zindex [,opacity]]])
@@ -96,6 +117,14 @@ The hide command hides the image from display
 
 ```
  i.hide()
+```
+
+### Draw command
+
+The draw command draws the image immediately to the screen. Calling the draw command a second time with new coordinates, will draw the same image a second time at the new position to the screen.
+
+```
+ i.draw([x,y [,opacity]])
 ```
 
 ### Save command
