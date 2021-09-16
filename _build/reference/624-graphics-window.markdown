@@ -168,6 +168,21 @@ w.setSize(800, 680)
 
 Raises the virtual keypad on android.
 
+```
+w = window()
+w.showKeypad()
+```
+
+### hideKeypad()
+
+Hides the virtual keypad on android.
+
+```
+w = window()
+w.hideKeypad()
+```
+
+
 ### textScreen()
 
 Select the text mode for output. Text mode can display more text but is slow.
