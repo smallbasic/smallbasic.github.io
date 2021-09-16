@@ -88,14 +88,35 @@ i = Image(#1)</code></pre>
 <pre><code>k = Image(...)
 i = Image(k)</code></pre>
 <p>Create via 2D array</p>
-<pre><code>dim a(100, 200)
-For y = 0 To Ubound(a, 1)
-  For x = 0 To Ubound(a, 2)
+<pre><code>&#39;Create image array a1 without transparency
+dim a1(100, 200)
+For y = 0 To 99
+  For x = 0 To 199
     r += 5: g += 10: b += 15
-    a(y, x) = rgb(r%255, g%255,b%255)
+    a1(y, x) = rgb(r%255, g%255,b%255)
   Next
 Next
-i = Image(a)</code></pre>
+
+&#39;Create image array a2 with transparency
+&#39;Transparency is a value between 0 and 255
+&#39;0 is fully transparent; 255 is solid
+dim a2(100, 200)
+r = 255: g = 255: b = 255
+For y = 0 To 99
+  alpha = 5
+  For x = 0 To 199
+    alpha += 0.1
+    transparency = round(alpha) * 10
+    a2(y, x) = (transparency lshift 24) - rgb(r,g,b)    
+  Next
+Next
+
+&#39;Create and display images
+i1 = Image(a1)
+i2 = Image(a2)
+
+i1.show(20,20)
+i2.show(0,0)</code></pre>
 <p>Create via array of <a href="https://en.wikipedia.org/wiki/X_PixMap">X_PixMap</a> data</p>
 <pre><code>im &lt;&lt; &quot;16 18 4 1&quot;
 im &lt;&lt; &quot;@ c #547B43&quot;
@@ -122,11 +143,14 @@ im &lt;&lt; &quot;@              @&quot;
 im &lt;&lt; &quot;@@@@@@@@@@@@@@@@&quot;
 i = Image(im)</code></pre>
 <h3 id="show-command">Show command</h3>
-<p>zIndex controls whether the image will be displayed over or under another image. Images with higher zIndex values are drawn over the top of images with lower zIndex values. Opacity controls whether to display the image as solid or semi-transparent. Opacity values range from 1-100, with higher opacity values making the image less transparent. The default is 100 resulting in a solid image.</p>
+<p>zIndex controls whether the image will be displayed over or under another image. Images with higher zIndex values are drawn over the top of images with lower zIndex values. Opacity controls whether to display the image as solid or semi-transparent. Opacity values range from 1-100, with higher opacity values making the image less transparent. The default is 100 resulting in a solid image. When calling the show command a second time with new coordinates, the image will move to the new position.</p>
 <pre><code>i.show([x,y [,zindex [,opacity]]])</code></pre>
 <h3 id="hide-command">Hide command</h3>
 <p>The hide command hides the image from display</p>
 <pre><code> i.hide()</code></pre>
+<h3 id="draw-command">Draw command</h3>
+<p>The draw command draws the image immediately to the screen. Calling the draw command a second time with new coordinates, will draw the same image a second time at the new position to the screen.</p>
+<pre><code> i.draw([x,y [,opacity]])</code></pre>
 <h3 id="save-command">Save command</h3>
 <p>The save command saves the image data into the given file handle, file name or array</p>
 <pre><code>dim png
@@ -884,7 +908,7 @@ IMAGE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 7 Mar 2019 21:03:26 +1000
+      This page was last edited on Thu, 16 Sep 2021 21:51:37 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
