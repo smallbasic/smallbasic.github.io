@@ -121,7 +121,7 @@ The hide command hides the image from display
 
 ### Draw command
 
-The draw command draws the image immediately to the screen. Calling the draw command a second time with new coordinates, will draw the same image a second at the new position to the screen.
+The draw command draws the image immediately to the screen. Calling the draw command a second time with new coordinates, will draw the same image a second time at the new position to the screen.
 
 ```
  i.draw([x,y [,opacity]])
