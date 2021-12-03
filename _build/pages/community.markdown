@@ -2,7 +2,7 @@
 
 ## Forum
 
-- [SyntaxBomb / SmallBASIC](https://www.syntaxbomb.com/index.php/board,54.0.html)
+- [SyntaxBomb / SmallBASIC](https://www.syntaxbomb.com/smallbasic)
 
 ## Issues
 - [GitHub](https://github.com/smallbasic/SmallBASIC/issues){target=new}
