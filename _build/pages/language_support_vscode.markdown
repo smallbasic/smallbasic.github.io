@@ -9,6 +9,8 @@ _In the Stack Overflow 2021 Developer Survey, Visual Studio Code was ranked the 
 developer environment tool, with 70% of 82,000 respondents reporting that they use it." 
 ([wikipedia](https://en.wikipedia.org/wiki/Visual_Studio_Code))_
 
+![Example](https://github.com/Joe7M/smallbasic.vscode.syntaxcoloring/blob/main/Screenshot.png)
+
 ## Setup Syntax Highlighting and Coloring
 
 The VSCode extension for syntax highlighting and code snippets can be downloaded from
@@ -19,7 +21,7 @@ the extension please select this file in the VSCode extensions section
 ## Setup Code Execution
 
 In VSCode task can be configured for your project to execute commands. To create a task go to
-Terminal->Configure Task. The file task.json will be display (stored in your project folder in the
+Terminal->Configure Task. The file task.json will be displayed (stored in your project folder in the
 subfolder .vscode). Replace the content of the file with the following commands:
 
 ```json
