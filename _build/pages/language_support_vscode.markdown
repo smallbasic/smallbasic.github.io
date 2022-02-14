@@ -20,7 +20,7 @@ the extension please select this file in the VSCode extensions section
 
 ## Setup Code Execution
 
-In VSCode task can be configured for your project to execute commands. To create a task go to
+In VSCode tasks can be configured for your project to execute commands. To create a task go to
 Terminal->Configure Task. The file task.json will be displayed (stored in your project folder in the
 subfolder .vscode). Replace the content of the file with the following commands:
 
