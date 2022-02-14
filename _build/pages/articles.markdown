@@ -10,6 +10,7 @@
 - [FLTK](/pages/fltk.html)
 - [TRY/CATCH](/pages/trycatch.html)
 - [Network programming](/pages/network.html)
+- [Visual Studio Code, Atom and Geany](/pages/language_support.html)
 - [Contributing](/pages/contributing.html)
 
 ## Programming SmallBASIC  by Gerard Thomas Lab&egrave;rnia
