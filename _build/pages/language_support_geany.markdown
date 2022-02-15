@@ -1,5 +1,7 @@
 # SmallBASIC in Geany
 
+> Using Geany
+
 _"Geany is a free and open-source lightweight GUI text editor using Scintilla and GTK, including basic
 IDE features. It is designed to have short load times, with limited dependency on separate packages or
 external libraries on Linux. It has been ported to a wide range of operating systems, such as BSD,
@@ -9,7 +11,7 @@ separately by the user. Among the supported programming languages and markup lan
 C#, Java, JavaScript, PHP, HTML, LaTeX, CSS, Python, Perl, Ruby, Pascal, Haskell, Erlang, Vala and
 many others." ([wikipedia](https://en.wikipedia.org/wiki/Geany))_
 
-![Example](https://github.com/Joe7M/smallbasic.geany.syntaxcoloring/blob/main/Screenshot.png)
+![Example](https://github.com/Joe7M/smallbasic.geany.syntaxcoloring/raw/main/Screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 

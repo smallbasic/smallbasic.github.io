@@ -36,6 +36,15 @@ SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for ever
 
 [Read more](/pages/guide.html)
 
+## New article: "Language Support" provided by Joe7M
+
+::: date
+| February 15, 2022
+:::
+
+For details see: [Language Support](/pages/language_support.html)
+
+
 ## SmallBASIC version 12.23 has been released
 
 ::: date

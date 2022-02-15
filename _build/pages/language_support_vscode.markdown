@@ -1,15 +1,16 @@
 # SmallBASIC in Visual Studio Code
 
+> Using Visual Studio Code
+
 _"Visual Studio Code is a source-code editor made by Microsoft for Windows, Linux and macOS.
 Features include support for debugging, syntax highlighting, intelligent code completion, snippets,
 code refactoring, and embedded Git. Users can change the theme, keyboard shortcuts, preferences,
 and install extensions that add additional functionality._
-
 _In the Stack Overflow 2021 Developer Survey, Visual Studio Code was ranked the most popular
 developer environment tool, with 70% of 82,000 respondents reporting that they use it." 
 ([wikipedia](https://en.wikipedia.org/wiki/Visual_Studio_Code))_
 
-![Example](https://github.com/Joe7M/smallbasic.vscode.syntaxcoloring/blob/main/Screenshot.png)
+![Example](https://github.com/Joe7M/smallbasic.vscode.syntaxcoloring/raw/main/Screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 
