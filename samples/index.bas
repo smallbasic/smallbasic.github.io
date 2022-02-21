@@ -16,6 +16,7 @@ color 15,0
 print cat(3) + "SmallBASIC featured samples" + cat(0)
 
 dim frm
+frm.inputs << bn("5005", "Wordle Assistant")
 frm.inputs << bn("5003", "Sailors coconuts and monkeys [TW Gonder]")
 frm.inputs << bn("5002", "Parallax Compression")
 frm.inputs << bn("5000", "[Android] Stopit")
