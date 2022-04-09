@@ -1,5 +1,9 @@
 # Download
 
+## Emscripten
+
+[Online - 12.24](https://smallbasic.github.io/online/sbasic.html){target="_blank"}
+
 ## Android
 
 [Google play](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}
