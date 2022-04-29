@@ -59,8 +59,8 @@ for package in ref
     buffer = str(item)
     tsave filename, buffer
     item_data = []
-    item_data << item.keyword
-    item_data << item.nodeId
+    item_data << "\"" + item.keyword + "\""
+    item_data << "\"" + item.nodeId + "\""
     package_data << item_data
   next i
 

@@ -3,7 +3,7 @@
 ## Forum
 
 - [SyntaxBomb / SmallBASIC](https://www.syntaxbomb.com/smallbasic)
-- [Basic4All](http://basic4all.info8-hosting.info/index.php)
+- [Basic4All](http://basic4all.epizy.com/index.php)
 
 ## Issues
 - [GitHub](https://github.com/smallbasic/SmallBASIC/issues){target=new}
