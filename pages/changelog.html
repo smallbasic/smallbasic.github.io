@@ -65,6 +65,24 @@
     </div>
 <div class="article">
 <h1 id="changelog">Changelog</h1>
+<p><strong>12.24 (19 June 2022) </strong></p>
+<ul>
+<li>Implemented emscripten web version</li>
+<li>add support for image.save(“file.png”) as per console</li>
+<li>ARRAY now parses json with true/false correctly</li>
+<li>Fix #131 - Scalar * Vector doesnt work</li>
+<li>Fix array access with embedded strings #136</li>
+<li>Fixed hashmap access issue</li>
+<li>Fixed http_read to handle large HTTP headers</li>
+<li>Implemented window.setLocation(x,y) #102</li>
+<li>Removed ‘Meaningless’ CDBL, CINT, CREAL. These can be poly-filled with ‘DEF’ if required.</li>
+<li>Update plugin system to allow loading to be driven by the IMPORT statement</li>
+<li>m3Apply no longer crashes if the second argument is not an array</li>
+<li>parse JSON with SB “;” dimension syntax</li>
+<li><p>Added -i command switch for live mode</p>
+<p>This will run the BASIC program in a loop. It can be used with the debug module to rerun whenever the source code changes:</p>
+<p>import debug run(“xdotool windowactivate <code>xdotool search --onlyvisible --name \"Emacs\"</code>”) while (!debug.IsSourceModified()) rem main loop wend</p></li>
+</ul>
 <p><strong>12.23 (30 August 2021) </strong></p>
 <ul>
 <li>Allow RGB to be used with image array passed to IMAGE</li>

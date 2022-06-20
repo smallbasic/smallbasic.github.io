@@ -1,6 +1,31 @@
 Changelog
 =========
 
+**12.24 (19 June 2022) **
+
+- Implemented emscripten web version
+- add support for image.save("file.png") as per console
+- ARRAY now parses json with true/false correctly
+- Fix #131 - Scalar * Vector doesnt work
+- Fix array access with embedded strings #136
+- Fixed hashmap access issue
+- Fixed http_read to handle large HTTP headers
+- Implemented window.setLocation(x,y) #102
+- Removed 'Meaningless' CDBL, CINT, CREAL. These can be poly-filled with 'DEF' if required.
+- Update plugin system to allow loading to be driven by the IMPORT statement
+- m3Apply no longer crashes if the second argument is not an array
+- parse JSON with SB ";" dimension syntax
+- Added -i command switch for live mode
+
+	This will run the BASIC program in a loop. It can be used with the debug module
+	to rerun whenever the source code changes:
+
+	import debug
+	run("xdotool windowactivate `xdotool search --onlyvisible --name \"Emacs\"`")
+	while (!debug.IsSourceModified())
+	  rem main loop
+	wend
+
 **12.23 (30 August 2021) **
 
 - Allow RGB to be used with image array passed to IMAGE
