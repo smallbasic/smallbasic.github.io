@@ -5,3 +5,19 @@
 Declares a function. Return a value by assigning a 'variable' with the same name as the function.
 
 
+~~~
+'Main program
+print MyAddFunction(10,20)
+
+
+'Function definition
+FUNC MyAddFunction(a,b)
+
+  local c   'c is just known inside this function
+  
+  c = a + b
+  
+  MyAddFunction = c
+
+END
+~~~
