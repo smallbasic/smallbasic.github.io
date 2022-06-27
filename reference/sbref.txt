@@ -1857,8 +1857,36 @@ of days between two dates. I should have used the julian date function:
 
 TICKS
 
-Returns the number of milliseconds that have elapsed between successive
-calls.
+Returns the number of milliseconds that have elapsed since start of the
+operating system.
+
+    t = ticks()
+    print t
+
+    ' ticks() can be used to let your game
+    ' run with a constant frame rate
+
+    FramesPerSecond = 20
+
+    for xx = 1 to 200
+
+      StartTime = ticks()
+      
+      'Put your heavy computions here
+      cls
+      rect 10 + xx, 10, 50+xx, 50
+      showpage
+
+      'Delay the execution of the for-loop  
+      StopTime = ticks()
+
+      ElapsedTime = StopTime - StartTime
+
+      if(ElapsedTime < 1000 / FramesPerSecond)
+        delay(1000 / FramesPerSecond - ElapsedTime)
+      endif
+
+    next
 
 +========================================================================================+
 |                                     51. (Date) TIME                                    |
@@ -5228,6 +5256,21 @@ FUNC foo (a, b)
 Declares a function. Return a value by assigning a ‘variable’ with the
 same name as the function.
 
+    'Main program
+    print MyAddFunction(10,20)
+
+
+    'Function definition
+    FUNC MyAddFunction(a,b)
+
+      local c   'c is just known inside this function
+      
+      c = a + b
+      
+      MyAddFunction = c
+
+    END
+
 +========================================================================================+
 |                                  136. (Language) GOSUB                                 |
 +========================================================================================+
@@ -5700,6 +5743,13 @@ MDL
 
 Modulus.
 
+The difference to MOD and % is, that MDL works also with float numbers
+instead of only integers.
+
+    Result =  2.3 MDL 1
+    print Result
+    'Output: "0.3"
+
 +========================================================================================+
 |                                   148. (Language) MOD                                  |
 +========================================================================================+
@@ -6052,8 +6102,10 @@ must be an UNTIL for each REPEAT.
 
 RETURN
 
-Execution branches to the command immediately following the most recent
-GOSUB command.
+When used with GOSUB: Execution branches to the command immediately
+following the most recent GOSUB command.
+
+When used with FUNC: returns the value.
 
     ...
     GOSUB my_routine
@@ -6062,6 +6114,14 @@ GOSUB command.
     LABEL my_routine
     PRINT "I am in my routine"
     RETURN
+
+    Result = MyAddFunction(10, 20)
+    print Result
+
+
+    func MyAddFunction(a, b)
+      return a + b
+    end
 
 +========================================================================================+
 |                                  158. (Language) RSHIFT                                |

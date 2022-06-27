@@ -2,7 +2,8 @@
 <blockquote>
 <p>RETURN</p>
 </blockquote>
-<p>Execution branches to the command immediately following the most recent GOSUB command.</p>
+<p>When used with GOSUB: Execution branches to the command immediately following the most recent GOSUB command.</p>
+<p>When used with FUNC: returns the value.</p>
 <pre><code>...
 GOSUB my_routine
 PRINT &quot;RETURN sent me here&quot;
@@ -10,3 +11,10 @@ PRINT &quot;RETURN sent me here&quot;
 LABEL my_routine
 PRINT &quot;I am in my routine&quot;
 RETURN</code></pre>
+<pre><code>Result = MyAddFunction(10, 20)
+print Result
+
+
+func MyAddFunction(a, b)
+  return a + b
+end</code></pre>

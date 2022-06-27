@@ -2,4 +2,30 @@
 <blockquote>
 <p>TICKS</p>
 </blockquote>
-<p>Returns the number of milliseconds that have elapsed between successive calls.</p>
+<p>Returns the number of milliseconds that have elapsed since start of the operating system.</p>
+<pre><code>t = ticks()
+print t</code></pre>
+<pre><code>&#39; ticks() can be used to let your game
+&#39; run with a constant frame rate
+
+FramesPerSecond = 20
+
+for xx = 1 to 200
+
+  StartTime = ticks()
+  
+  &#39;Put your heavy computions here
+  cls
+  rect 10 + xx, 10, 50+xx, 50
+  showpage
+
+  &#39;Delay the execution of the for-loop  
+  StopTime = ticks()
+
+  ElapsedTime = StopTime - StartTime
+
+  if(ElapsedTime &lt; 1000 / FramesPerSecond)
+    delay(1000 / FramesPerSecond - ElapsedTime)
+  endif
+
+next</code></pre>
