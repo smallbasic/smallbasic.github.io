@@ -2,7 +2,7 @@
 
 > M3TRANS BYREF m3x3, Tx, Ty
 
-Mutliply the given matrix by a 3x3 translation matrix.
+Multiply the given matrix by a 3x3 translation matrix.
 
 ```
          |  1  0  Tx |
