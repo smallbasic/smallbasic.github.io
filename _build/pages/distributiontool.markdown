@@ -4,6 +4,7 @@ Package your SmallBASIC program with all the files needed and share the package 
 The packages for Windows contain an exe-file for starting your program. The Linux AppImage can be directly executed.
 
 The following packages can be created:
+
 - Distribution Tool for Windows:
   - Package as a directory for Win64
   - Self extracting zip file for Win64
@@ -37,7 +38,7 @@ The following packages can be created:
 ### Linux
 
 - Download the newest release of the Distribution Tool for Linux (AppImage file) [Download](https://github.com/Joe7M/smallbasic.DistributionTool/releases)
-- Start the AppImage file (it might be necessary to make it executable: _chmod a+x DistributionTool*.AppImage_)
+- Start the AppImage file (it might be necessary to make it executable: _chmod a+x DistributionTool*.AppImage_ )
 - _Source Directory_: Directory where your SmallBASIC program and all the assets are located
 - _Destination Directory_: Directory where the final packaged program should be saved.
 - _Name of Basic File_: The name of your basic file. If you have several basic files, then give the one which should be started.
@@ -56,7 +57,7 @@ The following packages can be created:
 
 ### Assets
 
-If your program needs assets like images or sounds, then please place all the assets in the same folder as your basic file or in a subfolder. Don't use absolute paths to load the assets. Instead of _C:\MyProgram\assets\image.png_ please use relative paths like assets\image.png or ./assets/image.png.
+If your program needs assets like images or sounds, then please place all the assets in the same folder as your basic file or in a subfolder. Don't use absolute paths to load the assets. Instead of _C:\\MyProgram\\assets\\image.png_ please use relative paths like assets\\image.png or ./assets/image.png.
 
 ### Plugins
 
