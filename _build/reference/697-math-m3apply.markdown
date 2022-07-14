@@ -5,60 +5,21 @@
 Apply matrix to poly-line.
 
 ```
-|  1  0  0|
-|  0 -1  0| = reflection on x
-|  0  0  1|
-
-| -1  0  0|
-|  0  1  0| = reflection on y
-|  0  0  1|
-```
-
-3D-Graphics Matrices:
-
-```
-|  1  0  0 Tx|
-|  0  1  0 Ty| = translation
-|  0  0  1 Tz|
-|  0  0  0  1|
-
-| Sx  0  0  0|
-|  0 Sy  0  0| = scaling
-|  0  0 Sz  0|
-|  0  0  0  1|
-
-|  1  0  0  0|
-|  0  c -s  0| = rotation on x
-|  0  s  c  0|
-|  0  0  0  1|
-
-|  c  0  s  0|
-|  0  1  0  0| = rotation on y
-| -s  0  c  0|
-|  0  0  0  1|
-
-|  c -s  0  0|
-|  s  c  0  0| = rotation on z
-|  0  0  1  0|
-|  0  0  0  1|
-```
-
-Any change to matrix will combined with its previous value.
-
-```
-DIM poly(24)
 DIM M(2,2)
-...
-M3IDENT M
-M3ROTATE M, pi/2, 0, 0
-M3SCALE M, 0, 0, 1.24, 1.24
-...
-' Draw the original polyline
-DRAWPOLY poly
-...
-' Draw the polyline
-' rotated by pi/2 from 0,0 and scaled by 1.24
-M3APPLY M, poly
-DRAWPOLY poly
+
+Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  ' Create a rectangular polygon
+
+M3IDENT M                                    ' Create Identity Matrix
+
+M3Trans M, 100,100                           ' Move rectangle to position (100,100) 
+M3SCALE M, 0, 0, 50, 50                      ' Scale rectangle by factor 50 in x and y
+M3ROTATE M, 45*pi/180                        ' Rotate by 45°
+
+M3APPLY M, Rectangle                         ' Transform the rectangle
+
+DRAWPOLY Rectangle
 ```
 
+M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When performing matrix multiplication, then last matrix is applied first.
+In the example above, the rectangle is first rotated, then scaled and in the last step translated. If the order is changed, the outcome might
+be different.
