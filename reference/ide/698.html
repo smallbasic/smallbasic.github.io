@@ -3,6 +3,19 @@
 <p>M3IDENT BYREF m3x3</p>
 </blockquote>
 <p>Resets matrix (Identity).</p>
-<pre><code>|1  0  0|
-|0  1  0|
-|0  0  1|</code></pre>
+<pre><code>    |1  0  0|
+M = |0  1  0|
+    |0  0  1|</code></pre>
+<pre><code>DIM M(2,2)
+
+Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon
+
+M3IDENT M                                    &#39; Create Identity Matrix
+
+M3Trans M, 100,100                           &#39; Move rectangle to position (100,100) 
+M3SCALE M, 0, 0, 50, 50                      &#39; Scale rectangle by factor 50 in x and y
+M3ROTATE M, 45*pi/180                        &#39; Rotate by 45°
+
+M3APPLY M, Rectangle                         &#39; Transform the rectangle
+
+DRAWPOLY Rectangle</code></pre>

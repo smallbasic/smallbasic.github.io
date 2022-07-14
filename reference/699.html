@@ -74,12 +74,29 @@
     </p>
   </div>
 </blockquote>
-<p>Rotate by angle with center x,y.</p>
-<pre><code>|  c  s  0|
---------- 
--s  c  0
-*  *  1
---------- </code></pre>
+<p>Multiply the given matrix by a rotation matrix with an angle and a rotation center x,y.</p>
+<p>If x = 0 and y = 0:</p>
+<pre><code>       | cos(angle) -sin(angle)  0 |
+MRot = | sin(angle)  cos(angle)  0 |
+       | 0           0           1 |</code></pre>
+<p>else:</p>
+<pre><code>       | cos(angle) -sin(angle)  (1 - cos(angle))*x + sin(angle) * y |
+MRot = | sin(angle)  cos(angle)  (1 - cos(angle))*y - sin(angle) * x |
+       | 0           0           1 |</code></pre>
+<pre><code>DIM M(2,2)
+
+Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon
+
+M3IDENT M                                    &#39; Create Identity Matrix
+
+M3Trans M, 100,100                           &#39; Move rectangle to position (100,100) 
+M3SCALE M, 0, 0, 50, 50                      &#39; Scale rectangle by factor 50 in x and y
+M3ROTATE M, 45*pi/180                        &#39; Rotate by 45°
+
+M3APPLY M, Rectangle                         &#39; Transform the rectangle
+
+DRAWPOLY Rectangle</code></pre>
+<p>M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When performing matrix multiplication, then last matrix is applied first. In the example above, the rectangle is first rotated, then scaled and in the last step translated. If the order is changed, the outcome might be different.</p>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -179,7 +196,7 @@ M3ROTATE by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Wed, 13 Jul 2022 23:27:20 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

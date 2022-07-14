@@ -75,53 +75,20 @@
   </div>
 </blockquote>
 <p>Apply matrix to poly-line.</p>
-<pre><code>|  1  0  0|
-|  0 -1  0| = reflection on x
-|  0  0  1|
+<pre><code>DIM M(2,2)
 
-| -1  0  0|
-|  0  1  0| = reflection on y
-|  0  0  1|</code></pre>
-<p>3D-Graphics Matrices:</p>
-<pre><code>|  1  0  0 Tx|
-|  0  1  0 Ty| = translation
-|  0  0  1 Tz|
-|  0  0  0  1|
+Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon
 
-| Sx  0  0  0|
-|  0 Sy  0  0| = scaling
-|  0  0 Sz  0|
-|  0  0  0  1|
+M3IDENT M                                    &#39; Create Identity Matrix
 
-|  1  0  0  0|
-|  0  c -s  0| = rotation on x
-|  0  s  c  0|
-|  0  0  0  1|
+M3Trans M, 100,100                           &#39; Move rectangle to position (100,100) 
+M3SCALE M, 0, 0, 50, 50                      &#39; Scale rectangle by factor 50 in x and y
+M3ROTATE M, 45*pi/180                        &#39; Rotate by 45°
 
-|  c  0  s  0|
-|  0  1  0  0| = rotation on y
-| -s  0  c  0|
-|  0  0  0  1|
+M3APPLY M, Rectangle                         &#39; Transform the rectangle
 
-|  c -s  0  0|
-|  s  c  0  0| = rotation on z
-|  0  0  1  0|
-|  0  0  0  1|</code></pre>
-<p>Any change to matrix will combined with its previous value.</p>
-<pre><code>DIM poly(24)
-DIM M(2,2)
-...
-M3IDENT M
-M3ROTATE M, pi/2, 0, 0
-M3SCALE M, 0, 0, 1.24, 1.24
-...
-&#39; Draw the original polyline
-DRAWPOLY poly
-...
-&#39; Draw the polyline
-&#39; rotated by pi/2 from 0,0 and scaled by 1.24
-M3APPLY M, poly
-DRAWPOLY poly</code></pre>
+DRAWPOLY Rectangle</code></pre>
+<p>M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When performing matrix multiplication, then last matrix is applied first. In the example above, the rectangle is first rotated, then scaled and in the last step translated. If the order is changed, the outcome might be different.</p>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -221,7 +188,7 @@ M3APPLY by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Wed, 13 Jul 2022 23:35:26 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

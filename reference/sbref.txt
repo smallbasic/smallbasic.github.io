@@ -7199,57 +7199,25 @@ M3APPLY m3x3, BYREF poly
 
 Apply matrix to poly-line.
 
-    |  1  0  0|
-    |  0 -1  0| = reflection on x
-    |  0  0  1|
-
-    | -1  0  0|
-    |  0  1  0| = reflection on y
-    |  0  0  1|
-
-3D-Graphics Matrices:
-
-    |  1  0  0 Tx|
-    |  0  1  0 Ty| = translation
-    |  0  0  1 Tz|
-    |  0  0  0  1|
-
-    | Sx  0  0  0|
-    |  0 Sy  0  0| = scaling
-    |  0  0 Sz  0|
-    |  0  0  0  1|
-
-    |  1  0  0  0|
-    |  0  c -s  0| = rotation on x
-    |  0  s  c  0|
-    |  0  0  0  1|
-
-    |  c  0  s  0|
-    |  0  1  0  0| = rotation on y
-    | -s  0  c  0|
-    |  0  0  0  1|
-
-    |  c -s  0  0|
-    |  s  c  0  0| = rotation on z
-    |  0  0  1  0|
-    |  0  0  0  1|
-
-Any change to matrix will combined with its previous value.
-
-    DIM poly(24)
     DIM M(2,2)
-    ...
-    M3IDENT M
-    M3ROTATE M, pi/2, 0, 0
-    M3SCALE M, 0, 0, 1.24, 1.24
-    ...
-    ' Draw the original polyline
-    DRAWPOLY poly
-    ...
-    ' Draw the polyline
-    ' rotated by pi/2 from 0,0 and scaled by 1.24
-    M3APPLY M, poly
-    DRAWPOLY poly
+
+    Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  ' Create a rectangular polygon
+
+    M3IDENT M                                    ' Create Identity Matrix
+
+    M3Trans M, 100,100                           ' Move rectangle to position (100,100) 
+    M3SCALE M, 0, 0, 50, 50                      ' Scale rectangle by factor 50 in x and y
+    M3ROTATE M, 45*pi/180                        ' Rotate by 45°
+
+    M3APPLY M, Rectangle                         ' Transform the rectangle
+
+    DRAWPOLY Rectangle
+
+M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When
+performing matrix multiplication, then last matrix is applied first. In
+the example above, the rectangle is first rotated, then scaled and in
+the last step translated. If the order is changed, the outcome might be
+different.
 
 +========================================================================================+
 |                                   216. (Math) M3IDENT                                  |
@@ -7259,9 +7227,23 @@ M3IDENT BYREF m3x3
 
 Resets matrix (Identity).
 
-    |1  0  0|
-    |0  1  0|
-    |0  0  1|
+        |1  0  0|
+    M = |0  1  0|
+        |0  0  1|
+
+    DIM M(2,2)
+
+    Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  ' Create a rectangular polygon
+
+    M3IDENT M                                    ' Create Identity Matrix
+
+    M3Trans M, 100,100                           ' Move rectangle to position (100,100) 
+    M3SCALE M, 0, 0, 50, 50                      ' Scale rectangle by factor 50 in x and y
+    M3ROTATE M, 45*pi/180                        ' Rotate by 45°
+
+    M3APPLY M, Rectangle                         ' Transform the rectangle
+
+    DRAWPOLY Rectangle
 
 +========================================================================================+
 |                                   217. (Math) M3ROTATE                                 |
@@ -7269,13 +7251,40 @@ Resets matrix (Identity).
 
 M3ROTATE BYREF m3x3, angle [, x, y]
 
-Rotate by angle with center x,y.
+Multiply the given matrix by a rotation matrix with an angle and a
+rotation center x,y.
 
-    |  c  s  0|
-    --------- 
-    -s  c  0
-    *  *  1
-    --------- 
+If x = 0 and y = 0:
+
+           | cos(angle) -sin(angle)  0 |
+    MRot = | sin(angle)  cos(angle)  0 |
+           | 0           0           1 |
+
+else:
+
+           | cos(angle) -sin(angle)  (1 - cos(angle))*x + sin(angle) * y |
+    MRot = | sin(angle)  cos(angle)  (1 - cos(angle))*y - sin(angle) * x |
+           | 0           0           1 |
+
+    DIM M(2,2)
+
+    Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  ' Create a rectangular polygon
+
+    M3IDENT M                                    ' Create Identity Matrix
+
+    M3Trans M, 100,100                           ' Move rectangle to position (100,100) 
+    M3SCALE M, 0, 0, 50, 50                      ' Scale rectangle by factor 50 in x and y
+    M3ROTATE M, 45*pi/180                        ' Rotate by 45°
+
+    M3APPLY M, Rectangle                         ' Transform the rectangle
+
+    DRAWPOLY Rectangle
+
+M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When
+performing matrix multiplication, then last matrix is applied first. In
+the example above, the rectangle is first rotated, then scaled and in
+the last step translated. If the order is changed, the outcome might be
+different.
 
 +========================================================================================+
 |                                   218. (Math) M3SCALE                                  |
@@ -7283,11 +7292,32 @@ Rotate by angle with center x,y.
 
 M3SCALE BYREF m3x3, x, y, Sx, Sy
 
-Scale matrix.
+Multiply the given matrix by a scale matrix. Sx and Sy are the scaling
+factors in x and y direction.
 
-    | Sx  0  0|
-    | 0  Sy  0|
-    | *   *  1|
+             | Sx  0  0|
+    MScale = | 0  Sy  0|
+             | 0   0  1|
+
+    DIM M(2,2)
+
+    Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  ' Create a rectangular polygon
+
+    M3IDENT M                                    ' Create Identity Matrix
+
+    M3Trans M, 100,100                           ' Move rectangle to position (100,100) 
+    M3SCALE M, 0, 0, 50, 50                      ' Scale rectangle by factor 50 in x and y
+    M3ROTATE M, 45*pi/180                        ' Rotate by 45°
+
+    M3APPLY M, Rectangle                         ' Transform the rectangle
+
+    DRAWPOLY Rectangle
+
+M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When
+performing matrix multiplication, then last matrix is applied first. In
+the example above, the rectangle is first rotated, then scaled and in
+the last step translated. If the order is changed, the outcome might be
+different.
 
 +========================================================================================+
 |                                   219. (Math) M3TRANS                                  |
@@ -7295,11 +7325,31 @@ Scale matrix.
 
 M3TRANS BYREF m3x3, Tx, Ty
 
-Matrix translation.
+Multiply the given matrix by a 3x3 translation matrix.
 
-    |  1  0  0|
-    |  0  1  0|
-    | Tx Ty  1|
+             |  1  0  Tx |
+    MTrans = |  0  1  Ty |
+             |  0  0  1  |
+
+    DIM M(2,2)
+
+    Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  ' Create a rectangular polygon
+
+    M3IDENT M                                    ' Create Identity Matrix
+
+    M3Trans M, 100,100                           ' Move rectangle to position (100,100) 
+    M3SCALE M, 0, 0, 50, 50                      ' Scale rectangle by factor 50 in x and y
+    M3ROTATE M, 45*pi/180                        ' Rotate by 45°
+
+    M3APPLY M, Rectangle                         ' Transform the rectangle
+
+    DRAWPOLY Rectangle
+
+M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When
+performing matrix multiplication, then last matrix is applied first. In
+the example above, the rectangle is first rotated, then scaled and in
+the last step translated. If the order is changed, the outcome might be
+different.
 
 +========================================================================================+
 |                                     220. (Math) MAX                                    |
