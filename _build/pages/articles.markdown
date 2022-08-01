@@ -19,11 +19,10 @@
 - [Visual Studio Code, Atom and Geany](/pages/language_support.html)
 - [Distribute your program](/pages/distributiontool.html)
 
-<!--
+
 ## Plugins ##
-- Raylib: Game development in 2D and 3D
-- Nuklear: Create your own graphical user interface
--->
+- [Nuklear: Create your own graphical user interface](/pages/plugins_nuklear.html)
+
 
 ## Miscellaneous ##
 - [Android Changelog](/pages/android_changelog.html)
