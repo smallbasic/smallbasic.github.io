@@ -199,27 +199,6 @@
             "type": "function"
         },
         {
-            "help": "Convert x to 64b real number. Meaningless. Used for compatibility.",
-            "keyword": "CDBL",
-            "nodeID": "552",
-            "signature": "CDBL (x)",
-            "type": "function"
-        },
-        {
-            "help": "Converts x to 32b integer. Meaningless. Used for compatibility.",
-            "keyword": "CINT",
-            "nodeID": "553",
-            "signature": "CINT (x)",
-            "type": "function"
-        },
-        {
-            "help": "Convert x to 64b real number. Meaningless. Used for compatibility.",
-            "keyword": "CREAL",
-            "nodeID": "554",
-            "signature": "CREAL (x)",
-            "type": "function"
-        },
-        {
             "help": "Returns true if x is an array.",
             "keyword": "ISARRAY",
             "nodeID": "555",

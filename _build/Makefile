@@ -87,7 +87,7 @@ $(out)/reference_txt/%.txt: reference/%.markdown
 	$(mkdir)
 	$(pandoc) --from markdown-tex_math_dollars --to plain -o $@ $<
 
-all: $(reference) $(out)/sbref.txt $(pages) $(posts) $(scripts)
+all: $(reference) $(out)/sbref.txt $(out)/sbasic_ref.csv $(pages) $(posts) $(scripts)
 	@mkdir -p ../reference/ide
 	@mkdir -p ../pages
 	@mkdir -p ../posts
@@ -105,6 +105,9 @@ all: $(reference) $(out)/sbref.txt $(pages) $(posts) $(scripts)
 
 $(out)/sbref.txt : $(reference_txt) mkref.bas
 	@$(sbasic) mkref.bas > $(out)/sbref.txt
+
+$(out)/sbasic_ref.csv : mkrefcsv.bas
+	@$(sbasic) mkrefcsv.bas > $(out)/sbasic_ref.csv
 
 clean:
 	rm -rf $(out) *.sbu
