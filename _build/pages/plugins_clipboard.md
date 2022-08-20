@@ -25,7 +25,7 @@ print clipboard.paste()
 
 ### PASTE
 
->> text = paste()
+> text = paste()
 
 text (String): content of the clipboard
 
@@ -33,7 +33,7 @@ Copies the content of the system clipboard to _text_.
 
 ### COPY
 
->> copy(text)
+> copy(text)
 
 text (String): text for copying to the clipboard
 
