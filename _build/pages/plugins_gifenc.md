@@ -35,13 +35,13 @@ next i
 ge.close(gif)
 ```
 
-_w_ and _h_ contain the width and the height of the image. _palette_ is an array of colors. Three successive vales represent the red, green and blue component of the color. _bgIndex_ defines which of the colors in _palette_ should be set as a background color. If set to -1 the background is transparent. _loopCount_ defines the number of times the animation should be repeated. If set to zero, the animations will repeat endless. The _delay_ parameter  specifies how long the frame will  be shown, in hundredths of a second. For example, `delay = 100` means one second, and `delay = 25` means a quarter of a second. Each frame of the gif is stored in an 1D array with _w_ times _h_ elements. Every element defines the color index (from _palette_ ) of the corresponding pixel.
+_w_ and _h_ contain the width and the height of the image. _palette_ is an array of colors. Three successive values represent the red, green and blue component of the color. _bgIndex_ defines which of the colors in _palette_ should be set as a background color. If set to -1 the background is transparent. _loopCount_ defines the number of times the animation should be repeated. If set to zero, the animations will repeat endless. The _delay_ parameter  specifies how long the frame will  be shown, in hundredths of a second. For example, `delay = 100` means one second, and `delay = 25` means a quarter of a second. Each frame of the gif is stored in an 1D array with _w_ times _h_ elements. Every element defines the color index (from _palette_ ) of the corresponding pixel.
 
 ## Supported Commands
 
 ### CREATE
 
->> gif = create(fileName, w, h, palette, bgIndex, loopCount)
+> gif = create(fileName, w, h, palette, bgIndex, loopCount)
 
 **fileName** (String): file name  
 **w, h**: width and height of the image in pixel  
@@ -54,7 +54,7 @@ Creates a gif object and returns the ID.
 
 ### ADD_FRAME
 
->> add_frame(gif, delay, frame)
+> add_frame(gif, delay, frame)
 
 **gif**: gif object with ID  
 **delay**: delay in hundredths of a second  
@@ -62,7 +62,7 @@ Creates a gif object and returns the ID.
 
 ### CLOSE
 
->> close(gif)
+> close(gif)
 
 **gif**: gif object with ID
 
