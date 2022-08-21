@@ -8,17 +8,17 @@ SmallBASIC Language reference
 ╚═════╝░╚═╝░░░░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░╚════╝░
 
 AT BEEP CAT CLS DEFINEKEY FORM INKEY INPUT LINEINPUT LINPUT LOCATE LOGPRINT NOSOUND PEN PLAY PRINT SOUND 
-TAB APPEND ARRAY CDBL CINT CREAL DATA DELETE DIM EMPTY ERASE INSERT ISARRAY ISDIR ISFILE ISLINK ISMAP 
-ISNUMBER ISSTRING LBOUND LEN READ REDIM RESTORE SEARCH SORT SWAP UBOUND DATE DATEDMY DATEFMT JULIAN TICKS 
-TIME TIMEHMS TIMER TIMESTAMP WEEKDAY ACCESS BGETC BLOAD BPUTC BSAVE CHDIR CHMOD CLOSE COPY DIRWALK EOF 
-EXIST FILES FREEFILE INPUT INPUT KILL LOCK LOF MKDIR OPEN RENAME RMDIR SEEK SEEK TLOAD TSAVE WRITE ARC 
-CHART CIRCLE COLOR DRAW DRAWPOLY IMAGE LINE PAINT PEN PLOT POINT PSET RECT RGB RGBF SHOWPAGE TEXTHEIGHT 
-TEXTWIDTH TXTH TXTW VIEW WINDOW XMAX XPOS YMAX YPOS AND AS BAND BG BOR BYREF CALL CASE CATCH CONST DECLARE 
-DEF DO ELIF ELSE ELSEIF END END TRY ENDIF EQV EXIT FALSE FI FOR FUNC GOSUB GOTO IF IFF IMP IN LABEL LET 
-LIKE LOCAL LSHIFT MDL MOD NAND NEXT NOR NOT ON OR REM REPEAT RETURN RSHIFT SELECT STEP STOP SUB THEN 
-THROW TO TRUE TRY UNTIL USE USG USING WEND WHILE XNOR XOR ABS ABSMAX ABSMIN ACOS ACOSH ACOT ACOTH ACSC 
-ACSCH ASEC ASECH ASIN ASINH ATAN ATAN2 ATANH ATN CEIL COS COSH COT COTH CSC CSCH DEG DERIV DETERM DIFFEQN 
-EXP EXPRSEQ FIX FLOOR FRAC INT INTERSECT INVERSE LINEQN LOG LOG10 M3APPLY M3IDENT M3ROTATE M3SCALE M3TRANS 
+TAB APPEND ARRAY DATA DELETE DIM EMPTY ERASE INSERT ISARRAY ISDIR ISFILE ISLINK ISMAP ISNUMBER ISSTRING 
+LBOUND LEN READ REDIM RESTORE SEARCH SORT SWAP UBOUND DATE DATEDMY DATEFMT JULIAN TICKS TIME TIMEHMS 
+TIMER TIMESTAMP WEEKDAY ACCESS BGETC BLOAD BPUTC BSAVE CHDIR CHMOD CLOSE COPY DIRWALK EOF EXIST FILES 
+FREEFILE INPUT INPUT KILL LOCK LOF MKDIR OPEN RENAME RMDIR SEEK SEEK TLOAD TSAVE WRITE ARC CHART CIRCLE 
+COLOR DRAW DRAWPOLY IMAGE LINE PAINT PEN PLOT POINT PSET RECT RGB RGBF SHOWPAGE TEXTHEIGHT TEXTWIDTH 
+TXTH TXTW VIEW WINDOW XMAX XPOS YMAX YPOS AND AS BAND BG BOR BYREF CALL CASE CATCH CONST DECLARE DEF 
+DO ELIF ELSE ELSEIF END END TRY ENDIF EQV EXIT FALSE FI FOR FUNC GOSUB GOTO IF IFF IMP IN LABEL LET LIKE 
+LOCAL LSHIFT MDL MOD NAND NEXT NOR NOT ON OR REM REPEAT RETURN RSHIFT SELECT STEP STOP SUB THEN THROW 
+TO TRUE TRY UNTIL USE USG USING WEND WHILE XNOR XOR ABS ABSMAX ABSMIN ACOS ACOSH ACOT ACOTH ACSC ACSCH 
+ASEC ASECH ASIN ASINH ATAN ATAN2 ATANH ATN CEIL COS COSH COT COTH CSC CSCH DEG DERIV DETERM DIFFEQN EXP 
+EXPRSEQ FIX FLOOR FRAC INT INTERSECT INVERSE LINEQN LOG LOG10 M3APPLY M3IDENT M3ROTATE M3SCALE M3TRANS 
 MAX MIN POLYAREA POLYCENT POLYEXT POW PTDISTLN PTDISTSEG PTSIGN RAD RND ROOT ROUND SEC SECH SEGCOS SEGLEN 
 SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATSPREADP STATSPREADS SUM SUMSQ TAN TANH ASC BCS BIN 
 CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST LOWER LTRIM MID OCT 
@@ -1231,31 +1231,7 @@ Example 3:
     ? "binary      = ",i(1,r)
 
 +========================================================================================+
-|                                     21. (Data) CDBL                                    |
-+========================================================================================+
-
-CDBL (x)
-
-Convert x to 64b real number. Meaningless. Used for compatibility.
-
-+========================================================================================+
-|                                     22. (Data) CINT                                    |
-+========================================================================================+
-
-CINT (x)
-
-Converts x to 32b integer. Meaningless. Used for compatibility.
-
-+========================================================================================+
-|                                     23. (Data) CREAL                                   |
-+========================================================================================+
-
-CREAL (x)
-
-Convert x to 64b real number. Meaningless. Used for compatibility.
-
-+========================================================================================+
-|                                     24. (Data) DATA                                    |
+|                                     21. (Data) DATA                                    |
 +========================================================================================+
 
 DATA constant1 [,constant2]...
@@ -1279,7 +1255,7 @@ information that is accessed in order by your program’s READ commands.
     DATA 1,2,3
 
 +========================================================================================+
-|                                    25. (Data) DELETE                                   |
+|                                    22. (Data) DELETE                                   |
 +========================================================================================+
 
 DELETE a, idx [, count]
@@ -1291,7 +1267,7 @@ Deletes ‘count’ elements at position ‘idx’ of array ‘a’.
 -   count - The number of the elements to be deleted.
 
 +========================================================================================+
-|                                      26. (Data) DIM                                    |
+|                                      23. (Data) DIM                                    |
 +========================================================================================+
 
 DIM var([lower TO] upper [, ...]) [, ...]
@@ -1374,7 +1350,7 @@ and OPTION BASE hasn’t used, elements start at 0.
     Pause
 
 +========================================================================================+
-|                                     27. (Data) EMPTY                                   |
+|                                     24. (Data) EMPTY                                   |
 +========================================================================================+
 
 EMPTY (x)
@@ -1388,7 +1364,7 @@ or real with the value 0.
     without elements).
 
 +========================================================================================+
-|                                     28. (Data) ERASE                                   |
+|                                     25. (Data) ERASE                                   |
 +========================================================================================+
 
 ERASE var[, var[, ... var]]
@@ -1404,7 +1380,7 @@ that these variables turned to simple integers with zero value.
     PRINT x(1):REM ERROR
 
 +========================================================================================+
-|                                    29. (Data) INSERT                                   |
+|                                    26. (Data) INSERT                                   |
 +========================================================================================+
 
 INSERT a, idx, val [, val [, ...]]]
@@ -1416,7 +1392,7 @@ Inserts the values to the specified array at the position idx.
 -   val - Any value or expression.
 
 +========================================================================================+
-|                                    30. (Data) ISARRAY                                  |
+|                                    27. (Data) ISARRAY                                  |
 +========================================================================================+
 
 ISARRAY (x)
@@ -1424,7 +1400,7 @@ ISARRAY (x)
 Returns true if x is an array.
 
 +========================================================================================+
-|                                     31. (Data) ISDIR                                   |
+|                                     28. (Data) ISDIR                                   |
 +========================================================================================+
 
 ISDIR (x)
@@ -1432,7 +1408,7 @@ ISDIR (x)
 Returns true if x is a directory.
 
 +========================================================================================+
-|                                    32. (Data) ISFILE                                   |
+|                                    29. (Data) ISFILE                                   |
 +========================================================================================+
 
 ISFILE (x)
@@ -1440,7 +1416,7 @@ ISFILE (x)
 Returns true if x is a regular file.
 
 +========================================================================================+
-|                                    33. (Data) ISLINK                                   |
+|                                    30. (Data) ISLINK                                   |
 +========================================================================================+
 
 ISLINK (x)
@@ -1448,7 +1424,7 @@ ISLINK (x)
 Returns true if x is a link.
 
 +========================================================================================+
-|                                     34. (Data) ISMAP                                   |
+|                                     31. (Data) ISMAP                                   |
 +========================================================================================+
 
 ISMAP (x)
@@ -1458,7 +1434,7 @@ access along with array or dotted notation. The MAP can be initialized
 from a String variable using the ARRAY command.
 
 +========================================================================================+
-|                                   35. (Data) ISNUMBER                                  |
+|                                   32. (Data) ISNUMBER                                  |
 +========================================================================================+
 
 ISNUMBER (x)
@@ -1473,7 +1449,7 @@ Returns true if x is a number (or it can be converted to a number).
     ? ISNUMBER("int(2.4)")  :REM false
 
 +========================================================================================+
-|                                   36. (Data) ISSTRING                                  |
+|                                   33. (Data) ISSTRING                                  |
 +========================================================================================+
 
 ISSTRING (x)
@@ -1487,7 +1463,7 @@ Returns true if x is a string (and cannot be converted to a number).
     ? ISSTRING("1+2")   :REM true
 
 +========================================================================================+
-|                                    37. (Data) LBOUND                                   |
+|                                    34. (Data) LBOUND                                   |
 +========================================================================================+
 
 LBOUND (array [, dim])
@@ -1495,7 +1471,7 @@ LBOUND (array [, dim])
 Returns the lower bound of ‘array’.
 
 +========================================================================================+
-|                                      38. (Data) LEN                                    |
+|                                      35. (Data) LEN                                    |
 +========================================================================================+
 
 LEN(d)
@@ -1577,7 +1553,7 @@ address) This article shows that it’s not easy to convert IEEE
 floating-point binary numbers to decimal numbers.
 
 +========================================================================================+
-|                                     39. (Data) READ                                    |
+|                                     36. (Data) READ                                    |
 +========================================================================================+
 
 READ var[, var ...]
@@ -1600,7 +1576,7 @@ READ, an run-time error occurs.
     DATA "fifth", 6
 
 +========================================================================================+
-|                                     40. (Data) REDIM                                   |
+|                                     37. (Data) REDIM                                   |
 +========================================================================================+
 
 REDIM x
@@ -1646,7 +1622,7 @@ I never would have guessed you could TLOAD an OPENed file and Bambi56
 used the file number from OPEN to do the TLOAD. Very interesting…
 
 +========================================================================================+
-|                                    41. (Data) RESTORE                                  |
+|                                    38. (Data) RESTORE                                  |
 +========================================================================================+
 
 RESTORE label
@@ -1654,7 +1630,7 @@ RESTORE label
 Specifies the position of the next data to be read.
 
 +========================================================================================+
-|                                    42. (Data) SEARCH                                   |
+|                                    39. (Data) SEARCH                                   |
 +========================================================================================+
 
 SEARCH A, key, BYREF ridx [USE cmpfunc]
@@ -1737,7 +1713,7 @@ must return 0 if x = y; non-zero if x <> y.
     Pause
 
 +========================================================================================+
-|                                     43. (Data) SORT                                    |
+|                                     40. (Data) SORT                                    |
 +========================================================================================+
 
 SORT array [USE cmpfunc]
@@ -1762,7 +1738,7 @@ must return: -1 if x < y, +1 if x > y, 0 if x = y.
     SORT A USE qscmp(x,y)
 
 +========================================================================================+
-|                                     44. (Data) SWAP                                    |
+|                                     41. (Data) SWAP                                    |
 +========================================================================================+
 
 SWAP a, b
@@ -1771,7 +1747,7 @@ Exchanges the values of two variables. The parameters may be variables
 of any type.
 
 +========================================================================================+
-|                                    45. (Data) UBOUND                                   |
+|                                    42. (Data) UBOUND                                   |
 +========================================================================================+
 
 UBOUND (array [, dim])
@@ -1779,7 +1755,7 @@ UBOUND (array [, dim])
 Returns the upper bound of ‘array’.
 
 +========================================================================================+
-|                                     46. (Date) DATE                                    |
+|                                     43. (Date) DATE                                    |
 +========================================================================================+
 
 DATE
@@ -1787,7 +1763,7 @@ DATE
 Returns the current date as string “DD/MM/YYYY”.
 
 +========================================================================================+
-|                                    47. (Date) DATEDMY                                  |
+|                                    44. (Date) DATEDMY                                  |
 +========================================================================================+
 
 DATEDMY dmy| julian_date, BYREF d, BYREF m, BYREF y
@@ -1795,7 +1771,7 @@ DATEDMY dmy| julian_date, BYREF d, BYREF m, BYREF y
 Returns the day, month and the year as integers.
 
 +========================================================================================+
-|                                    48. (Date) DATEFMT                                  |
+|                                    45. (Date) DATEFMT                                  |
 +========================================================================================+
 
 DATEFMT (format, dmy| (d,m,y)| julian_date)
@@ -1821,7 +1797,7 @@ Format:
     REM prints "Fri 23, 11/01"
 
 +========================================================================================+
-|                                    49. (Date) JULIAN                                   |
+|                                    46. (Date) JULIAN                                   |
 +========================================================================================+
 
 JULIAN (dmy| (d,m,y))
@@ -1852,7 +1828,7 @@ of days between two dates. I should have used the julian date function:
     end
 
 +========================================================================================+
-|                                     50. (Date) TICKS                                   |
+|                                     47. (Date) TICKS                                   |
 +========================================================================================+
 
 TICKS
@@ -1889,7 +1865,7 @@ operating system.
     next
 
 +========================================================================================+
-|                                     51. (Date) TIME                                    |
+|                                     48. (Date) TIME                                    |
 +========================================================================================+
 
 TIME
@@ -1897,7 +1873,7 @@ TIME
 Returns the current time as string “HH:MM:SS”.
 
 +========================================================================================+
-|                                    52. (Date) TIMEHMS                                  |
+|                                    49. (Date) TIMEHMS                                  |
 +========================================================================================+
 
 TIMEHMS hms| timer, BYREF h, BYREF m, BYREF s
@@ -1905,7 +1881,7 @@ TIMEHMS hms| timer, BYREF h, BYREF m, BYREF s
 Converts a time-value to hours, minutes and seconds integer values.
 
 +========================================================================================+
-|                                     53. (Date) TIMER                                   |
+|                                     50. (Date) TIMER                                   |
 +========================================================================================+
 
 TIMER
@@ -1913,7 +1889,7 @@ TIMER
 Returns the number of seconds from midnight.
 
 +========================================================================================+
-|                                   54. (Date) TIMESTAMP                                 |
+|                                   51. (Date) TIMESTAMP                                 |
 +========================================================================================+
 
 TIMESTAMP filename
@@ -1921,7 +1897,7 @@ TIMESTAMP filename
 Returns the file last modified date and time.
 
 +========================================================================================+
-|                                    55. (Date) WEEKDAY                                  |
+|                                    52. (Date) WEEKDAY                                  |
 +========================================================================================+
 
 WEEKDAY (dmy| (d,m,y)| julian_date)
@@ -1937,7 +1913,7 @@ Returns the day of the week (0 = Sunday).
     PRINT today
 
 +========================================================================================+
-|                                    56. (File) ACCESS                                   |
+|                                    53. (File) ACCESS                                   |
 +========================================================================================+
 
 ACCESS (file)
@@ -1970,7 +1946,7 @@ The bits (in octal):
     ENDIF
 
 +========================================================================================+
-|                                     57. (File) BGETC                                   |
+|                                     54. (File) BGETC                                   |
 +========================================================================================+
 
 BGETC (fileN)
@@ -1978,7 +1954,7 @@ BGETC (fileN)
 Reads and returns a byte from file or device (Binary mode) .
 
 +========================================================================================+
-|                                     58. (File) BLOAD                                   |
+|                                     55. (File) BLOAD                                   |
 +========================================================================================+
 
 BLOAD filename[, address]
@@ -1986,7 +1962,7 @@ BLOAD filename[, address]
 Loads a specified memory image file into memory.
 
 +========================================================================================+
-|                                     59. (File) BPUTC                                   |
+|                                     56. (File) BPUTC                                   |
 +========================================================================================+
 
 BPUTC# fileN; byte
@@ -1994,7 +1970,7 @@ BPUTC# fileN; byte
 Writes a byte on file or device. (Binary mode).
 
 +========================================================================================+
-|                                     60. (File) BSAVE                                   |
+|                                     57. (File) BSAVE                                   |
 +========================================================================================+
 
 BSAVE filename, address, length
@@ -2002,7 +1978,7 @@ BSAVE filename, address, length
 Copies a specified portion of memory to a specified file.
 
 +========================================================================================+
-|                                     61. (File) CHDIR                                   |
+|                                     58. (File) CHDIR                                   |
 +========================================================================================+
 
 CHDIR dir
@@ -2010,7 +1986,7 @@ CHDIR dir
 Changes the current working directory.
 
 +========================================================================================+
-|                                     62. (File) CHMOD                                   |
+|                                     59. (File) CHMOD                                   |
 +========================================================================================+
 
 CHMOD file, mode
@@ -2027,7 +2003,7 @@ Change permissions of a file. See also ACCESS.
     CHMOD "myfile.bas", 0o777
 
 +========================================================================================+
-|                                     63. (File) CLOSE                                   |
+|                                     60. (File) CLOSE                                   |
 +========================================================================================+
 
 CLOSE #fileN
@@ -2035,7 +2011,7 @@ CLOSE #fileN
 Close a file or device.
 
 +========================================================================================+
-|                                     64. (File) COPY                                    |
+|                                     61. (File) COPY                                    |
 +========================================================================================+
 
 COPY \"file\", \"newfile\"
@@ -2043,7 +2019,7 @@ COPY \"file\", \"newfile\"
 Makes a copy of specified file to the ‘newfile’.
 
 +========================================================================================+
-|                                    65. (File) DIRWALK                                  |
+|                                    62. (File) DIRWALK                                  |
 +========================================================================================+
 
 DIRWALK directory [, wildcards] [USE ...]
@@ -2179,7 +2155,7 @@ returns zero to stop the process.
     End Sub
 
 +========================================================================================+
-|                                      66. (File) EOF                                    |
+|                                      63. (File) EOF                                    |
 +========================================================================================+
 
 EOF (fileN)
@@ -2188,7 +2164,7 @@ Returns true if the file pointer is at end of the file. For COMx and
 SOCL VFS returns true if the connection is broken.
 
 +========================================================================================+
-|                                     67. (File) EXIST                                   |
+|                                     64. (File) EXIST                                   |
 +========================================================================================+
 
 EXIST (file)
@@ -2217,7 +2193,7 @@ Returns true if file exists.
     Kill filename ' delete demo file
 
 +========================================================================================+
-|                                     68. (File) FILES                                   |
+|                                     65. (File) FILES                                   |
 +========================================================================================+
 
 FILES (wildcards)
@@ -2237,7 +2213,7 @@ sample program example:
     60 NEXT i
 
 +========================================================================================+
-|                                   69. (File) FREEFILE                                  |
+|                                   66. (File) FREEFILE                                  |
 +========================================================================================+
 
 FREEFILE
@@ -2245,7 +2221,7 @@ FREEFILE
 Returns an unused file handle.
 
 +========================================================================================+
-|                                     70. (File) INPUT                                   |
+|                                     67. (File) INPUT                                   |
 +========================================================================================+
 
 INPUT #fileN; var1 [,delim] [, var2 [,delim]] ...
@@ -2253,7 +2229,7 @@ INPUT #fileN; var1 [,delim] [, var2 [,delim]] ...
 Reads data from file.
 
 +========================================================================================+
-|                                     71. (File) INPUT                                   |
+|                                     68. (File) INPUT                                   |
 +========================================================================================+
 
 INPUT (len [, fileN])
@@ -2262,7 +2238,7 @@ Reads ‘len’ bytes from file or console (if fileN is omitted). This
 function does not convert the data or remove spaces.
 
 +========================================================================================+
-|                                     72. (File) KILL                                    |
+|                                     69. (File) KILL                                    |
 +========================================================================================+
 
 KILL \"file\"
@@ -2270,7 +2246,7 @@ KILL \"file\"
 Deletes the specified file.
 
 +========================================================================================+
-|                                     73. (File) LOCK                                    |
+|                                     70. (File) LOCK                                    |
 +========================================================================================+
 
 LOCK
@@ -2278,7 +2254,7 @@ LOCK
 Lock a record or an area (not yet implemented).
 
 +========================================================================================+
-|                                      74. (File) LOF                                    |
+|                                      71. (File) LOF                                    |
 +========================================================================================+
 
 LOF (fileN)
@@ -2287,7 +2263,7 @@ Returns the length of file in bytes. For other devices, returns the
 number of available data.
 
 +========================================================================================+
-|                                     75. (File) MKDIR                                   |
+|                                     72. (File) MKDIR                                   |
 +========================================================================================+
 
 MKDIR dir
@@ -2295,7 +2271,7 @@ MKDIR dir
 Create a directory.
 
 +========================================================================================+
-|                                     76. (File) OPEN                                    |
+|                                     73. (File) OPEN                                    |
 +========================================================================================+
 
 OPEN file [FOR {INPUT|OUTPUT|APPEND}] AS #fileN
@@ -2317,7 +2293,7 @@ FOR
 The files are always opened as shared.
 
 +========================================================================================+
-|                                    77. (File) RENAME                                   |
+|                                    74. (File) RENAME                                   |
 +========================================================================================+
 
 RENAME \"file\", \"newname\"
@@ -2325,7 +2301,7 @@ RENAME \"file\", \"newname\"
 Renames the specified file.
 
 +========================================================================================+
-|                                     78. (File) RMDIR                                   |
+|                                     75. (File) RMDIR                                   |
 +========================================================================================+
 
 RMDIR dir
@@ -2333,7 +2309,7 @@ RMDIR dir
 Removes a directory.
 
 +========================================================================================+
-|                                     79. (File) SEEK                                    |
+|                                     76. (File) SEEK                                    |
 +========================================================================================+
 
 SEEK #fileN; pos
@@ -2376,7 +2352,7 @@ Sets file position for the next read/write.
     Close #1
 
 +========================================================================================+
-|                                     80. (File) SEEK                                    |
+|                                     77. (File) SEEK                                    |
 +========================================================================================+
 
 SEEK (fileN)
@@ -2384,7 +2360,7 @@ SEEK (fileN)
 Returns the current file position.
 
 +========================================================================================+
-|                                     81. (File) TLOAD                                   |
+|                                     78. (File) TLOAD                                   |
 +========================================================================================+
 
 TLOAD file, BYREF var [, type]
@@ -2453,7 +2429,7 @@ Both these methods load a string/text file into an array.
     Pause
 
 +========================================================================================+
-|                                     82. (File) TSAVE                                   |
+|                                     79. (File) TSAVE                                   |
 +========================================================================================+
 
 TSAVE file, var
@@ -2465,7 +2441,7 @@ Writes an array to a text file. Each array element is a text-line.
     allowed.
 
 +========================================================================================+
-|                                     83. (File) WRITE                                   |
+|                                     80. (File) WRITE                                   |
 +========================================================================================+
 
 WRITE #fileN; var1 [, ...]
@@ -2598,7 +2574,7 @@ utility…
     Pause
 
 +========================================================================================+
-|                                    84. (Graphics) ARC                                  |
+|                                    81. (Graphics) ARC                                  |
 +========================================================================================+
 
 ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]
@@ -2606,7 +2582,7 @@ ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]
 Draws an arc. astart, aend = first,last angle in radians.
 
 +========================================================================================+
-|                                   85. (Graphics) CHART                                 |
+|                                   82. (Graphics) CHART                                 |
 +========================================================================================+
 
 CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]
@@ -2636,7 +2612,7 @@ ruler.
     Next type
 
 +========================================================================================+
-|                                  86. (Graphics) CIRCLE                                 |
+|                                  83. (Graphics) CIRCLE                                 |
 +========================================================================================+
 
 CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]
@@ -2716,7 +2692,7 @@ To turn off anti-aliasing, add this to the start of your program:
      option predef antialias off
 
 +========================================================================================+
-|                                   87. (Graphics) COLOR                                 |
+|                                   84. (Graphics) COLOR                                 |
 +========================================================================================+
 
 COLOR foreground-color [, background-color]
@@ -2796,7 +2772,7 @@ another file to make your code more clear.
     Const BRIGHT_WHITE = 15
 
 +========================================================================================+
-|                                   88. (Graphics) DRAW                                  |
+|                                   85. (Graphics) DRAW                                  |
 +========================================================================================+
 
 DRAW \"commands\"
@@ -2847,7 +2823,7 @@ So this should work just fine:
 But apparently S command is unsupported.
 
 +========================================================================================+
-|                                 89. (Graphics) DRAWPOLY                                |
+|                                 86. (Graphics) DRAWPOLY                                |
 +========================================================================================+
 
 DRAWPOLY array [,x-origin,y-origin [, scalef [, color]]] [COLOR color] [FILLED]
@@ -2859,7 +2835,7 @@ If the array does not use points as element arrays, then even elements
 for x (starting from 0), odd elements for y
 
 +========================================================================================+
-|                                   90. (Graphics) IMAGE                                 |
+|                                   87. (Graphics) IMAGE                                 |
 +========================================================================================+
 
 IMAGE [#handle | fileName | http://path-to-file.png | image-var | array of pixmap data]
@@ -3695,7 +3671,7 @@ be used with cocos2d development
     main(tileset)
 
 +========================================================================================+
-|                                   91. (Graphics) LINE                                  |
+|                                   88. (Graphics) LINE                                  |
 +========================================================================================+
 
 LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]
@@ -3717,7 +3693,7 @@ To turn off anti-aliasing, add this to the start of your program:
      option predef antialias off
 
 +========================================================================================+
-|                                   92. (Graphics) PAINT                                 |
+|                                   89. (Graphics) PAINT                                 |
 +========================================================================================+
 
 PAINT [STEP] x, y [,fill-color [,border-color]]
@@ -3731,7 +3707,7 @@ the border-color is NOT specified then PAINT will fill the area with the
 same color as the pixel at x,y - (fill-while, color=point(x,y))
 
 +========================================================================================+
-|                                    93. (Graphics) PEN                                  |
+|                                    90. (Graphics) PEN                                  |
 +========================================================================================+
 
 PEN (0..14)
@@ -3829,7 +3805,7 @@ and again.
     pen off
 
 +========================================================================================+
-|                                   94. (Graphics) PLOT                                  |
+|                                   91. (Graphics) PLOT                                  |
 +========================================================================================+
 
 PLOT xmin, xmax USE f(x)
@@ -3849,7 +3825,7 @@ black background, so need a COLOR call to see the dots.
     pause
 
 +========================================================================================+
-|                                   95. (Graphics) POINT                                 |
+|                                   92. (Graphics) POINT                                 |
 +========================================================================================+
 
 POINT (x [, y])
@@ -3954,7 +3930,7 @@ places on screen, a tiling and a moving across the screen.
     Pause
 
 +========================================================================================+
-|                                   96. (Graphics) PSET                                  |
+|                                   93. (Graphics) PSET                                  |
 +========================================================================================+
 
 PSET [STEP] x,y [, color| COLOR color]
@@ -3989,7 +3965,7 @@ QB red, 9 is blue, 14 is yellow, 7 dull white, 0 black, 8 is darker gray
 than 7 usually the colors get brighter
 
 +========================================================================================+
-|                                   97. (Graphics) RECT                                  |
+|                                   94. (Graphics) RECT                                  |
 +========================================================================================+
 
 RECT [STEP] x,y [,|STEP x2,y2] [, color| COLOR color] [FILLED]
@@ -3997,7 +3973,7 @@ RECT [STEP] x,y [,|STEP x2,y2] [, color| COLOR color] [FILLED]
 Draws a rectangular parallelogram.
 
 +========================================================================================+
-|                                    98. (Graphics) RGB                                  |
+|                                    95. (Graphics) RGB                                  |
 +========================================================================================+
 
 RGB (r, g, b)
@@ -4259,7 +4235,7 @@ something over 255 but under 256 ’maybe (rnd * 256) \ 1 (yes OK)
     color myError, 0  '<=== Invalid parameter
 
 +========================================================================================+
-|                                   99. (Graphics) RGBF                                  |
+|                                   96. (Graphics) RGBF                                  |
 +========================================================================================+
 
 RGBF (r, g, b)
@@ -4384,7 +4360,7 @@ It might work better for modern SVGA modes with high resolution and LCD
 screens. I’m not aware of new formula for these kind of screens…
 
 +========================================================================================+
-|                                 100. (Graphics) SHOWPAGE                               |
+|                                 97. (Graphics) SHOWPAGE                                |
 +========================================================================================+
 
 SHOWPAGE
@@ -4393,7 +4369,7 @@ This command is used to display pending graphics operations allowing for
 smooth animations.
 
 +========================================================================================+
-|                                101. (Graphics) TEXTHEIGHT                              |
+|                                98. (Graphics) TEXTHEIGHT                               |
 +========================================================================================+
 
 TEXTHEIGHT (s)
@@ -4401,7 +4377,7 @@ TEXTHEIGHT (s)
 Returns the text height of string s in pixels. See TXTH.
 
 +========================================================================================+
-|                                102. (Graphics) TEXTWIDTH                               |
+|                                 99. (Graphics) TEXTWIDTH                               |
 +========================================================================================+
 
 TEXTWIDTH (s)
@@ -4409,7 +4385,7 @@ TEXTWIDTH (s)
 Returns the text width of string s in pixels. See TXTW.
 
 +========================================================================================+
-|                                   103. (Graphics) TXTH                                 |
+|                                   100. (Graphics) TXTH                                 |
 +========================================================================================+
 
 TXTH (s)
@@ -4417,7 +4393,7 @@ TXTH (s)
 Returns the text height of string s in pixels. See TEXTHEIGHT.
 
 +========================================================================================+
-|                                   104. (Graphics) TXTW                                 |
+|                                   101. (Graphics) TXTW                                 |
 +========================================================================================+
 
 TXTW (s)
@@ -4425,7 +4401,7 @@ TXTW (s)
 Returns the text width of string s in pixels. See TEXTWIDTH.
 
 +========================================================================================+
-|                                   105. (Graphics) VIEW                                 |
+|                                   102. (Graphics) VIEW                                 |
 +========================================================================================+
 
 VIEW [x1,y1,x2,y2 [,color [,border-color]]]
@@ -4439,7 +4415,7 @@ command with no parameters.
     around the defined viewport.
 
 +========================================================================================+
-|                                  106. (Graphics) WINDOW                                |
+|                                  103. (Graphics) WINDOW                                |
 +========================================================================================+
 
 WINDOW [x1,y1,x2,y2]
@@ -4635,7 +4611,7 @@ Returns the active window colour theme.
     const colNav2  = theme.text6
 
 +========================================================================================+
-|                                   107. (Graphics) XMAX                                 |
+|                                   104. (Graphics) XMAX                                 |
 +========================================================================================+
 
 XMAX
@@ -4643,7 +4619,7 @@ XMAX
 Holds the screen width in pixels
 
 +========================================================================================+
-|                                   108. (Graphics) XPOS                                 |
+|                                   105. (Graphics) XPOS                                 |
 +========================================================================================+
 
 XPOS
@@ -4651,7 +4627,7 @@ XPOS
 Returns the current X position of the cursor in “characters”.
 
 +========================================================================================+
-|                                   109. (Graphics) YMAX                                 |
+|                                   106. (Graphics) YMAX                                 |
 +========================================================================================+
 
 YMAX
@@ -4659,7 +4635,7 @@ YMAX
 Holds the screen height in pixels.
 
 +========================================================================================+
-|                                   110. (Graphics) YPOS                                 |
+|                                   107. (Graphics) YPOS                                 |
 +========================================================================================+
 
 YPOS
@@ -4667,7 +4643,7 @@ YPOS
 Returns the current Y position of the cursor in “characters”.
 
 +========================================================================================+
-|                                   111. (Language) AND                                  |
+|                                   108. (Language) AND                                  |
 +========================================================================================+
 
 a AND b
@@ -4916,7 +4892,7 @@ solves lots of bit-level conflicts between 32-bit systems and 64-bit
 systems.
 
 +========================================================================================+
-|                                    112. (Language) AS                                  |
+|                                    109. (Language) AS                                  |
 +========================================================================================+
 
 AS #fileN
@@ -4924,7 +4900,7 @@ AS #fileN
 See: OPEN
 
 +========================================================================================+
-|                                   113. (Language) BAND                                 |
+|                                   110. (Language) BAND                                 |
 +========================================================================================+
 
 a BAND b
@@ -4954,7 +4930,7 @@ Bitwise AND.
     Pause
 
 +========================================================================================+
-|                                    114. (Language) BG                                  |
+|                                    111. (Language) BG                                  |
 +========================================================================================+
 
 SOUND frq, dur [, vol] [BG]
@@ -4963,7 +4939,7 @@ Play sound in the background. This prevent the program from blocking
 while the sound plays.
 
 +========================================================================================+
-|                                   115. (Language) BOR                                  |
+|                                   112. (Language) BOR                                  |
 +========================================================================================+
 
 a BOR b
@@ -4971,7 +4947,7 @@ a BOR b
 Bitwise OR.
 
 +========================================================================================+
-|                                  116. (Language) BYREF                                 |
+|                                  113. (Language) BYREF                                 |
 +========================================================================================+
 
 BYREF
@@ -4980,7 +4956,7 @@ Sub/func argument declaration. Changes to the variable will be passed
 back to the caller. Equivalent syntax to the @ character.
 
 +========================================================================================+
-|                                   117. (Language) CALL                                 |
+|                                   114. (Language) CALL                                 |
 +========================================================================================+
 
 CALL (fp)
@@ -4988,7 +4964,7 @@ CALL (fp)
 Invoke a sub or func by address pointer.
 
 +========================================================================================+
-|                                   118. (Language) CASE                                 |
+|                                   115. (Language) CASE                                 |
 +========================================================================================+
 
 CASE expr
@@ -5010,7 +4986,7 @@ Branch condition for a SELECT statement.
     End Select
 
 +========================================================================================+
-|                                  119. (Language) CATCH                                 |
+|                                  116. (Language) CATCH                                 |
 +========================================================================================+
 
 CATCH [var | expr]
@@ -5029,7 +5005,7 @@ caught. When using the expression mode, you can supply a succession of
 CATCH statements to handle various error messages separately.
 
 +========================================================================================+
-|                                  120. (Language) CONST                                 |
+|                                  117. (Language) CONST                                 |
 +========================================================================================+
 
 CONST name = expr
@@ -5042,7 +5018,7 @@ Declare a variable who’s value does not change during program execution.
     operators, only. COSNT G = 6.67259E-11
 
 +========================================================================================+
-|                                 121. (Language) DECLARE                                |
+|                                 118. (Language) DECLARE                                |
 +========================================================================================+
 
 DECLARE FUNC xxx
@@ -5050,7 +5026,7 @@ DECLARE FUNC xxx
 Forward declare SUB or FUNC. Obsolete QB compatibility
 
 +========================================================================================+
-|                                   122. (Language) DEF                                  |
+|                                   119. (Language) DEF                                  |
 +========================================================================================+
 
 DEF name[(par1[,...])] = expression
@@ -5098,7 +5074,7 @@ This might come in handy sometime.
     end
 
 +========================================================================================+
-|                                    123. (Language) DO                                  |
+|                                    120. (Language) DO                                  |
 +========================================================================================+
 
 DO
@@ -5106,7 +5082,7 @@ DO
 FOR f IN files("*.txt") DO PRINT f
 
 +========================================================================================+
-|                                   124. (Language) ELIF                                 |
+|                                   121. (Language) ELIF                                 |
 +========================================================================================+
 
 ELIF
@@ -5114,7 +5090,7 @@ ELIF
 foo = 2: if foo==1: ? “one”: ELIF foo==2: ? “two”: fi
 
 +========================================================================================+
-|                                   125. (Language) ELSE                                 |
+|                                   122. (Language) ELSE                                 |
 +========================================================================================+
 
 ELSE
@@ -5122,7 +5098,7 @@ ELSE
 foo = 2: if foo==1: ? “one”: ELSE: ? “not one”: fi
 
 +========================================================================================+
-|                                  126. (Language) ELSEIF                                |
+|                                  123. (Language) ELSEIF                                |
 +========================================================================================+
 
 ELSEIF
@@ -5130,7 +5106,7 @@ ELSEIF
 foo = 2: if foo==1: ? “one”: ELSEIF foo==2: ? “two”: fi
 
 +========================================================================================+
-|                                   127. (Language) END                                  |
+|                                   124. (Language) END                                  |
 +========================================================================================+
 
 END
@@ -5138,7 +5114,7 @@ END
 Declares the END of a SUB or FUNC.
 
 +========================================================================================+
-|                                 128. (Language) END TRY                                |
+|                                 125. (Language) END TRY                                |
 +========================================================================================+
 
 END TRY
@@ -5146,7 +5122,7 @@ END TRY
 The END TRY statement marks the end of a TRY/CATCH block.
 
 +========================================================================================+
-|                                  129. (Language) ENDIF                                 |
+|                                  126. (Language) ENDIF                                 |
 +========================================================================================+
 
 ENDIF
@@ -5154,7 +5130,7 @@ ENDIF
 foo = 1: if foo==1: ? “one”: ENDIF
 
 +========================================================================================+
-|                                   130. (Language) EQV                                  |
+|                                   127. (Language) EQV                                  |
 +========================================================================================+
 
 a EQV b
@@ -5164,7 +5140,7 @@ Bitwise equivalence.
 EQV and IMP manipulating only the lower 4 bits
 
 +========================================================================================+
-|                                   131. (Language) EXIT                                 |
+|                                   128. (Language) EXIT                                 |
 +========================================================================================+
 
 EXIT [FOR|LOOP|SUB|FUNC]
@@ -5179,7 +5155,7 @@ default (if no parameter is specified) exits from last command block
 -   FUNC - Return from the current function
 
 +========================================================================================+
-|                                  132. (Language) FALSE                                 |
+|                                  129. (Language) FALSE                                 |
 +========================================================================================+
 
 FALSE
@@ -5187,7 +5163,7 @@ FALSE
 FALSE
 
 +========================================================================================+
-|                                    133. (Language) FI                                  |
+|                                    130. (Language) FI                                  |
 +========================================================================================+
 
 FI
@@ -5195,7 +5171,7 @@ FI
 Declares the end of an IF statement. Same as ENDIF.
 
 +========================================================================================+
-|                                   134. (Language) FOR                                  |
+|                                   131. (Language) FOR                                  |
 +========================================================================================+
 
 FOR expr
@@ -5248,7 +5224,7 @@ to any level of complexity, but there must be a NEXT for each FOR.
     NEXT
 
 +========================================================================================+
-|                                   135. (Language) FUNC                                 |
+|                                   132. (Language) FUNC                                 |
 +========================================================================================+
 
 FUNC foo (a, b)
@@ -5272,7 +5248,7 @@ same name as the function.
     END
 
 +========================================================================================+
-|                                  136. (Language) GOSUB                                 |
+|                                  133. (Language) GOSUB                                 |
 +========================================================================================+
 
 GOSUB label
@@ -5308,7 +5284,7 @@ immediately following the most recent GOSUB command.
     Return
 
 +========================================================================================+
-|                                   137. (Language) GOTO                                 |
+|                                   134. (Language) GOTO                                 |
 +========================================================================================+
 
 GOTO label
@@ -5360,7 +5336,7 @@ must be finished, and sometimes you know very well that you could do
 MUCH better work if only you had more time… life.
 
 +========================================================================================+
-|                                    138. (Language) IF                                  |
+|                                    135. (Language) IF                                  |
 +========================================================================================+
 
 IF expr
@@ -5442,7 +5418,7 @@ expression.
     1000 PRINT "true"
 
 +========================================================================================+
-|                                   139. (Language) IFF                                  |
+|                                   136. (Language) IFF                                  |
 +========================================================================================+
 
 IFF expr
@@ -5467,7 +5443,7 @@ animal=IFF(HasFur=1,"Cat","Fish") or
     PAUSE
 
 +========================================================================================+
-|                                   140. (Language) IMP                                  |
+|                                   137. (Language) IMP                                  |
 +========================================================================================+
 
 a IMP b
@@ -5477,7 +5453,7 @@ Used to perform a logical implication on two expressions.
 EQV and IMP manipulating only the lower 4 bits:
 
 +========================================================================================+
-|                                    141. (Language) IN                                  |
+|                                    138. (Language) IN                                  |
 +========================================================================================+
 
 a IN b
@@ -5566,7 +5542,7 @@ Returns TRUE if the value is contained within b as a string.
     Pause
 
 +========================================================================================+
-|                                  142. (Language) LABEL                                 |
+|                                  139. (Language) LABEL                                 |
 +========================================================================================+
 
 LABEL name
@@ -5584,7 +5560,7 @@ There are two kinds of labels, ‘numeric’ and ‘alphanumeric’. Unlike
     GOTO AlphaLabel
 
 +========================================================================================+
-|                                   143. (Language) LET                                  |
+|                                   140. (Language) LET                                  |
 +========================================================================================+
 
 LET var=expr
@@ -5602,7 +5578,7 @@ Assigns a value to the variable.
     z=v                 ' Assign array (z = clone of v)
 
 +========================================================================================+
-|                                   144. (Language) LIKE                                 |
+|                                   141. (Language) LIKE                                 |
 +========================================================================================+
 
 a LIKE b
@@ -5664,7 +5640,7 @@ with the right side regex pattern.
     Pause
 
 +========================================================================================+
-|                                  145. (Language) LOCAL                                 |
+|                                  142. (Language) LOCAL                                 |
 +========================================================================================+
 
 LOCAL
@@ -5711,7 +5687,7 @@ exist once the SUB or FUNC has returned.
     end
 
 +========================================================================================+
-|                                  146. (Language) LSHIFT                                |
+|                                  143. (Language) LSHIFT                                |
 +========================================================================================+
 
 result = LSHIFT number, amount
@@ -5736,7 +5712,7 @@ Performs an arithmetic left shift on a bit pattern.
     ? x                    ' x is -1073741824  (on 32-bit system)
 
 +========================================================================================+
-|                                   147. (Language) MDL                                  |
+|                                   144. (Language) MDL                                  |
 +========================================================================================+
 
 MDL
@@ -5751,7 +5727,7 @@ instead of only integers.
     'Output: "0.3"
 
 +========================================================================================+
-|                                   148. (Language) MOD                                  |
+|                                   145. (Language) MOD                                  |
 +========================================================================================+
 
 a MOD b
@@ -5823,7 +5799,7 @@ Modulus. Equivalent syntax to the percent character, eg a % b
     PAUSE
 
 +========================================================================================+
-|                                   149. (Language) NAND                                 |
+|                                   146. (Language) NAND                                 |
 +========================================================================================+
 
 a NAND b
@@ -5845,7 +5821,7 @@ Bitwise exclusive NOT AND.
     Wend
 
 +========================================================================================+
-|                                   150. (Language) NEXT                                 |
+|                                   147. (Language) NEXT                                 |
 +========================================================================================+
 
 NEXT
@@ -5853,7 +5829,7 @@ NEXT
 See FOR.
 
 +========================================================================================+
-|                                   151. (Language) NOR                                  |
+|                                   148. (Language) NOR                                  |
 +========================================================================================+
 
 a NOR b
@@ -5893,7 +5869,7 @@ Bitwise NOT OR.
     Wend
 
 +========================================================================================+
-|                                   152. (Language) NOT                                  |
+|                                   149. (Language) NOT                                  |
 +========================================================================================+
 
 a NOT b
@@ -5939,7 +5915,7 @@ the expression b (e.g. true –> false) ~ inverts each bit in b
 (e.g. 01011 –> 10100)
 
 +========================================================================================+
-|                                    153. (Language) ON                                  |
+|                                    150. (Language) ON                                  |
 +========================================================================================+
 
 ON GOTO|GOSUB label1 [, ..., labelN]
@@ -5951,7 +5927,7 @@ ON…GOTO command (or ON…GOSUB), BASIC branches to the nth item in the
 list of labels that follows the keyword GOTO (or GOSUB).
 
 +========================================================================================+
-|                                    154. (Language) OR                                  |
+|                                    151. (Language) OR                                  |
 +========================================================================================+
 
 a OR b
@@ -5959,7 +5935,7 @@ a OR b
 Logical OR. Right side is not evaluated if left side evaluates to True.
 
 +========================================================================================+
-|                                   155. (Language) REM                                  |
+|                                   152. (Language) REM                                  |
 +========================================================================================+
 
 REM comment
@@ -6069,7 +6045,7 @@ of the line.
     REM Without explicit permission from MGA...
 
 +========================================================================================+
-|                                  156. (Language) REPEAT                                |
+|                                  153. (Language) REPEAT                                |
 +========================================================================================+
 
 REPEAT ... UNTIL expr
@@ -6097,7 +6073,7 @@ must be an UNTIL for each REPEAT.
     NEXT
 
 +========================================================================================+
-|                                  157. (Language) RETURN                                |
+|                                  154. (Language) RETURN                                |
 +========================================================================================+
 
 RETURN
@@ -6124,7 +6100,7 @@ When used with FUNC: returns the value.
     end
 
 +========================================================================================+
-|                                  158. (Language) RSHIFT                                |
+|                                  155. (Language) RSHIFT                                |
 +========================================================================================+
 
 result = RSHIFT number, amount
@@ -6152,7 +6128,7 @@ Performs an arithmetic right shift on a bit pattern.
     ? x                      ' x is 3
 
 +========================================================================================+
-|                                  159. (Language) SELECT                                |
+|                                  156. (Language) SELECT                                |
 +========================================================================================+
 
 SELECT CASE expr
@@ -6252,7 +6228,7 @@ This will work too for work around to add range to a CASE block:
     pause
 
 +========================================================================================+
-|                                   160. (Language) STEP                                 |
+|                                   157. (Language) STEP                                 |
 +========================================================================================+
 
 FOR t = 1 TO 10 STEP 2
@@ -6260,7 +6236,7 @@ FOR t = 1 TO 10 STEP 2
 Specifies the loop counter increment in a FOR loop
 
 +========================================================================================+
-|                                   161. (Language) STOP                                 |
+|                                   158. (Language) STOP                                 |
 +========================================================================================+
 
 STOP [error]
@@ -6276,7 +6252,7 @@ specified SmallBASIC returns 0.
 On Windows, The ‘error’ value is known as ERRORLEVEL
 
 +========================================================================================+
-|                                   162. (Language) SUB                                  |
+|                                   159. (Language) SUB                                  |
 +========================================================================================+
 
 SUB foo (a, b)
@@ -6334,7 +6310,7 @@ argument values when declared as BYREF.
     End Sub
 
 +========================================================================================+
-|                                   163. (Language) THEN                                 |
+|                                   160. (Language) THEN                                 |
 +========================================================================================+
 
 THEN
@@ -6346,7 +6322,7 @@ create multi-line block on one line) THEN not needed for multi-line
 block.
 
 +========================================================================================+
-|                                  164. (Language) THROW                                 |
+|                                  161. (Language) THROW                                 |
 +========================================================================================+
 
 THROW [info [, ...]]
@@ -6395,7 +6371,7 @@ Example
     end try
 
 +========================================================================================+
-|                                    165. (Language) TO                                  |
+|                                    162. (Language) TO                                  |
 +========================================================================================+
 
 FOR t = 1 TO 10
@@ -6403,7 +6379,7 @@ FOR t = 1 TO 10
 Specifies the loop counter end in a FOR loop
 
 +========================================================================================+
-|                                   166. (Language) TRUE                                 |
+|                                   163. (Language) TRUE                                 |
 +========================================================================================+
 
 TRUE
@@ -6411,7 +6387,7 @@ TRUE
 TRUE
 
 +========================================================================================+
-|                                   167. (Language) TRY                                  |
+|                                   164. (Language) TRY                                  |
 +========================================================================================+
 
 TRY
@@ -6486,7 +6462,7 @@ Note: If this demo program crashes… then run it again. It seems that TRY
     Pause
 
 +========================================================================================+
-|                                  168. (Language) UNTIL                                 |
+|                                  165. (Language) UNTIL                                 |
 +========================================================================================+
 
 UNTIL
@@ -6494,7 +6470,7 @@ UNTIL
     a = 0: repeat: a++: ? a: UNTIL a = 10
 
 +========================================================================================+
-|                                   169. (Language) USE                                  |
+|                                   166. (Language) USE                                  |
 +========================================================================================+
 
 USE
@@ -6503,7 +6479,7 @@ Used with various commands for passing a user-defined expression. eg
 SPLIT s," ",v USE TRIM(x). Trim each element of v.
 
 +========================================================================================+
-|                                   170. (Language) USG                                  |
+|                                   167. (Language) USG                                  |
 +========================================================================================+
 
 PRINT USG
@@ -6511,7 +6487,7 @@ PRINT USG
 Synonym for USING
 
 +========================================================================================+
-|                                  171. (Language) USING                                 |
+|                                  168. (Language) USING                                 |
 +========================================================================================+
 
 PRINT USING
@@ -6519,7 +6495,7 @@ PRINT USING
 See PRINT, SPRINT
 
 +========================================================================================+
-|                                   172. (Language) WEND                                 |
+|                                   169. (Language) WEND                                 |
 +========================================================================================+
 
 WEND
@@ -6527,7 +6503,7 @@ WEND
 Go back to the start of a WHILE statement.
 
 +========================================================================================+
-|                                  173. (Language) WHILE                                 |
+|                                  170. (Language) WHILE                                 |
 +========================================================================================+
 
 WHILE expr
@@ -6559,7 +6535,7 @@ must be a WEND for each WHILE.
     NEXT
 
 +========================================================================================+
-|                                   174. (Language) XNOR                                 |
+|                                   171. (Language) XNOR                                 |
 +========================================================================================+
 
 a XNOR b
@@ -6570,7 +6546,7 @@ see Forum> Bug Reports >(same title) for details but XNOR is returning
 same as NOR
 
 +========================================================================================+
-|                                   175. (Language) XOR                                  |
+|                                   172. (Language) XOR                                  |
 +========================================================================================+
 
 a XOR b
@@ -6615,7 +6591,7 @@ XOR is Not equivalent syntax to: a ~ b
     is bitwise NOT, for example: ~b
 
 +========================================================================================+
-|                                     176. (Math) ABS                                    |
+|                                     173. (Math) ABS                                    |
 +========================================================================================+
 
 ABS (x)
@@ -6623,7 +6599,7 @@ ABS (x)
 Returns the absolute value of x.
 
 +========================================================================================+
-|                                    177. (Math) ABSMAX                                  |
+|                                    174. (Math) ABSMAX                                  |
 +========================================================================================+
 
 ABSMAX (...)
@@ -6631,7 +6607,7 @@ ABSMAX (...)
 Returns the absolute max value of x.
 
 +========================================================================================+
-|                                    178. (Math) ABSMIN                                  |
+|                                    175. (Math) ABSMIN                                  |
 +========================================================================================+
 
 ABSMIN (...)
@@ -6639,7 +6615,7 @@ ABSMIN (...)
 Returns the absolute min value of x.
 
 +========================================================================================+
-|                                     179. (Math) ACOS                                   |
+|                                     176. (Math) ACOS                                   |
 +========================================================================================+
 
 ACOS (x)
@@ -6647,7 +6623,7 @@ ACOS (x)
 Inverse cosine.
 
 +========================================================================================+
-|                                    180. (Math) ACOSH                                   |
+|                                    177. (Math) ACOSH                                   |
 +========================================================================================+
 
 ACOSH (x)
@@ -6655,7 +6631,7 @@ ACOSH (x)
 Inverse cosine.
 
 +========================================================================================+
-|                                     181. (Math) ACOT                                   |
+|                                     178. (Math) ACOT                                   |
 +========================================================================================+
 
 ACOT (x)
@@ -6663,7 +6639,7 @@ ACOT (x)
 Inverse cotangent.
 
 +========================================================================================+
-|                                    182. (Math) ACOTH                                   |
+|                                    179. (Math) ACOTH                                   |
 +========================================================================================+
 
 ACOTH (x)
@@ -6671,7 +6647,7 @@ ACOTH (x)
 Inverse cotangent.
 
 +========================================================================================+
-|                                     183. (Math) ACSC                                   |
+|                                     180. (Math) ACSC                                   |
 +========================================================================================+
 
 ACSC (x)
@@ -6679,7 +6655,7 @@ ACSC (x)
 Inverse co secant.
 
 +========================================================================================+
-|                                    184. (Math) ACSCH                                   |
+|                                    181. (Math) ACSCH                                   |
 +========================================================================================+
 
 ACSCH (x)
@@ -6687,7 +6663,7 @@ ACSCH (x)
 Inverse co secant.
 
 +========================================================================================+
-|                                     185. (Math) ASEC                                   |
+|                                     182. (Math) ASEC                                   |
 +========================================================================================+
 
 ASEC (x)
@@ -6695,7 +6671,7 @@ ASEC (x)
 Inverse secant.
 
 +========================================================================================+
-|                                    186. (Math) ASECH                                   |
+|                                    183. (Math) ASECH                                   |
 +========================================================================================+
 
 ASECH (x)
@@ -6703,7 +6679,7 @@ ASECH (x)
 Inverse secant.
 
 +========================================================================================+
-|                                     187. (Math) ASIN                                   |
+|                                     184. (Math) ASIN                                   |
 +========================================================================================+
 
 ASIN (x)
@@ -6711,7 +6687,7 @@ ASIN (x)
 Inverse sine.
 
 +========================================================================================+
-|                                    188. (Math) ASINH                                   |
+|                                    185. (Math) ASINH                                   |
 +========================================================================================+
 
 ASINH (x)
@@ -6719,7 +6695,7 @@ ASINH (x)
 Inverse sine.
 
 +========================================================================================+
-|                                     189. (Math) ATAN                                   |
+|                                     186. (Math) ATAN                                   |
 +========================================================================================+
 
 ATAN (x)
@@ -6757,7 +6733,7 @@ Trig lesson two in TAN offers a lead in to this little demo:
     pause
 
 +========================================================================================+
-|                                    190. (Math) ATAN2                                   |
+|                                    187. (Math) ATAN2                                   |
 +========================================================================================+
 
 ATAN2 (x, y)
@@ -6797,7 +6773,7 @@ Inverse tangent (x,y).
     wend
 
 +========================================================================================+
-|                                    191. (Math) ATANH                                   |
+|                                    188. (Math) ATANH                                   |
 +========================================================================================+
 
 ATANH (x)
@@ -6805,7 +6781,7 @@ ATANH (x)
 Inverse tangent.
 
 +========================================================================================+
-|                                     192. (Math) ATN                                    |
+|                                     189. (Math) ATN                                    |
 +========================================================================================+
 
 ATN (x)
@@ -6813,7 +6789,7 @@ ATN (x)
 Inverse tangent.
 
 +========================================================================================+
-|                                     193. (Math) CEIL                                   |
+|                                     190. (Math) CEIL                                   |
 +========================================================================================+
 
 CEIL (x)
@@ -6821,7 +6797,7 @@ CEIL (x)
 Smallest integral value not less than x.
 
 +========================================================================================+
-|                                     194. (Math) COS                                    |
+|                                     191. (Math) COS                                    |
 +========================================================================================+
 
 COS (x)
@@ -6974,7 +6950,7 @@ can locate the absolute screen x,y coordinate:
     end 
 
 +========================================================================================+
-|                                     195. (Math) COSH                                   |
+|                                     192. (Math) COSH                                   |
 +========================================================================================+
 
 COSH (x)
@@ -6982,7 +6958,7 @@ COSH (x)
 Cosine.
 
 +========================================================================================+
-|                                     196. (Math) COT                                    |
+|                                     193. (Math) COT                                    |
 +========================================================================================+
 
 COT (x)
@@ -6990,7 +6966,7 @@ COT (x)
 Cotangent.
 
 +========================================================================================+
-|                                     197. (Math) COTH                                   |
+|                                     194. (Math) COTH                                   |
 +========================================================================================+
 
 COTH (x)
@@ -6998,7 +6974,7 @@ COTH (x)
 Cotangent.
 
 +========================================================================================+
-|                                     198. (Math) CSC                                    |
+|                                     195. (Math) CSC                                    |
 +========================================================================================+
 
 CSC (x)
@@ -7006,7 +6982,7 @@ CSC (x)
 Co secant.
 
 +========================================================================================+
-|                                     199. (Math) CSCH                                   |
+|                                     196. (Math) CSCH                                   |
 +========================================================================================+
 
 CSCH (x)
@@ -7014,7 +6990,7 @@ CSCH (x)
 Co secant.
 
 +========================================================================================+
-|                                     200. (Math) DEG                                    |
+|                                     197. (Math) DEG                                    |
 +========================================================================================+
 
 DEG (x)
@@ -7022,7 +6998,7 @@ DEG (x)
 Radians to degrees.
 
 +========================================================================================+
-|                                    201. (Math) DERIV                                   |
+|                                    198. (Math) DERIV                                   |
 +========================================================================================+
 
 DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
@@ -7037,7 +7013,7 @@ calculation error.
 -   result the result
 
 +========================================================================================+
-|                                    202. (Math) DETERM                                  |
+|                                    199. (Math) DETERM                                  |
 +========================================================================================+
 
 DETERM (A[, toler])
@@ -7046,7 +7022,7 @@ Determinant of A. toler = tolerance number. the absolute value of the
 lowest acceptable number. default = 0.
 
 +========================================================================================+
-|                                   203. (Math) DIFFEQN                                  |
+|                                   200. (Math) DIFFEQN                                  |
 +========================================================================================+
 
 DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr
@@ -7056,7 +7032,7 @@ final. errcode = 0 for success; otherwise calculation error. yf =
 result.
 
 +========================================================================================+
-|                                     204. (Math) EXP                                    |
+|                                     201. (Math) EXP                                    |
 +========================================================================================+
 
 EXP (x)
@@ -7064,7 +7040,7 @@ EXP (x)
 Returns the value of e raised to the power of x.
 
 +========================================================================================+
-|                                   205. (Math) EXPRSEQ                                  |
+|                                   202. (Math) EXPRSEQ                                  |
 +========================================================================================+
 
 EXPRSEQ BYREF array, xmin, xmax, count USE expression
@@ -7076,7 +7052,7 @@ of its position as it is returned by the expression.
     EXPRSEQ v, 0, 1, 11 USE x
 
 +========================================================================================+
-|                                     206. (Math) FIX                                    |
+|                                     203. (Math) FIX                                    |
 +========================================================================================+
 
 FIX (x)
@@ -7084,7 +7060,7 @@ FIX (x)
 Rounds x upwards to the nearest integer.
 
 +========================================================================================+
-|                                    207. (Math) FLOOR                                   |
+|                                    204. (Math) FLOOR                                   |
 +========================================================================================+
 
 FLOOR (x)
@@ -7092,7 +7068,7 @@ FLOOR (x)
 Largest integer value not greater than x.
 
 +========================================================================================+
-|                                     208. (Math) FRAC                                   |
+|                                     205. (Math) FRAC                                   |
 +========================================================================================+
 
 FRAC (x)
@@ -7100,7 +7076,7 @@ FRAC (x)
 Fractional part of x.
 
 +========================================================================================+
-|                                     209. (Math) INT                                    |
+|                                     206. (Math) INT                                    |
 +========================================================================================+
 
 INT (x)
@@ -7132,7 +7108,7 @@ words, they both drop the fractional part of the number.
     pause
 
 +========================================================================================+
-|                                  210. (Math) INTERSECT                                 |
+|                                  207. (Math) INTERSECT                                 |
 +========================================================================================+
 
 INTERSECT Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, BYREF type, BYREF Rx, BYREF Ry
@@ -7150,7 +7126,7 @@ type = cross-type:
 -   4 The cross is one of the line segments edges.
 
 +========================================================================================+
-|                                   211. (Math) INVERSE                                  |
+|                                   208. (Math) INVERSE                                  |
 +========================================================================================+
 
 INVERSE (A)
@@ -7158,7 +7134,7 @@ INVERSE (A)
 Returns the inverse matrix of A.
 
 +========================================================================================+
-|                                    212. (Math) LINEQN                                  |
+|                                    209. (Math) LINEQN                                  |
 +========================================================================================+
 
 LINEQN (a, b [, toler])
@@ -7176,7 +7152,7 @@ equations using the Gauss-Jordan method.
 The result is a matrix Nx1. The array is two-dimension array.
 
 +========================================================================================+
-|                                     213. (Math) LOG                                    |
+|                                     210. (Math) LOG                                    |
 +========================================================================================+
 
 LOG (x)
@@ -7184,7 +7160,7 @@ LOG (x)
 Returns the natural logarithm of x.
 
 +========================================================================================+
-|                                    214. (Math) LOG10                                   |
+|                                    211. (Math) LOG10                                   |
 +========================================================================================+
 
 LOG10 (x)
@@ -7192,7 +7168,7 @@ LOG10 (x)
 Returns the base-10 logarithm of x.
 
 +========================================================================================+
-|                                   215. (Math) M3APPLY                                  |
+|                                   212. (Math) M3APPLY                                  |
 +========================================================================================+
 
 M3APPLY m3x3, BYREF poly
@@ -7220,7 +7196,7 @@ the last step translated. If the order is changed, the outcome might be
 different.
 
 +========================================================================================+
-|                                   216. (Math) M3IDENT                                  |
+|                                   213. (Math) M3IDENT                                  |
 +========================================================================================+
 
 M3IDENT BYREF m3x3
@@ -7246,7 +7222,7 @@ Resets matrix (Identity).
     DRAWPOLY Rectangle
 
 +========================================================================================+
-|                                   217. (Math) M3ROTATE                                 |
+|                                   214. (Math) M3ROTATE                                 |
 +========================================================================================+
 
 M3ROTATE BYREF m3x3, angle [, x, y]
@@ -7287,7 +7263,7 @@ the last step translated. If the order is changed, the outcome might be
 different.
 
 +========================================================================================+
-|                                   218. (Math) M3SCALE                                  |
+|                                   215. (Math) M3SCALE                                  |
 +========================================================================================+
 
 M3SCALE BYREF m3x3, x, y, Sx, Sy
@@ -7320,7 +7296,7 @@ the last step translated. If the order is changed, the outcome might be
 different.
 
 +========================================================================================+
-|                                   219. (Math) M3TRANS                                  |
+|                                   216. (Math) M3TRANS                                  |
 +========================================================================================+
 
 M3TRANS BYREF m3x3, Tx, Ty
@@ -7352,7 +7328,7 @@ the last step translated. If the order is changed, the outcome might be
 different.
 
 +========================================================================================+
-|                                     220. (Math) MAX                                    |
+|                                     217. (Math) MAX                                    |
 +========================================================================================+
 
 MAX (...)
@@ -7364,7 +7340,7 @@ Maximum value of parameters.
     ? MAX("abc","def")
 
 +========================================================================================+
-|                                     221. (Math) MIN                                    |
+|                                     218. (Math) MIN                                    |
 +========================================================================================+
 
 MIN (...)
@@ -7373,7 +7349,7 @@ Minimum value of parameters. Parameters can be anything (arrays, ints,
 reals, strings).
 
 +========================================================================================+
-|                                   222. (Math) POLYAREA                                 |
+|                                   219. (Math) POLYAREA                                 |
 +========================================================================================+
 
 POLYAREA (poly)
@@ -7381,7 +7357,7 @@ POLYAREA (poly)
 Returns the area of the polyline poly.
 
 +========================================================================================+
-|                                   223. (Math) POLYCENT                                 |
+|                                   220. (Math) POLYCENT                                 |
 +========================================================================================+
 
 POLYCENT
@@ -7389,7 +7365,7 @@ POLYCENT
 Polycent.
 
 +========================================================================================+
-|                                   224. (Math) POLYEXT                                  |
+|                                   221. (Math) POLYEXT                                  |
 +========================================================================================+
 
 POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax
@@ -7397,7 +7373,7 @@ POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax
 Returns the polyline’s extents.
 
 +========================================================================================+
-|                                     225. (Math) POW                                    |
+|                                     222. (Math) POW                                    |
 +========================================================================================+
 
 POW (x, y)
@@ -7405,7 +7381,7 @@ POW (x, y)
 x raised to power of y.
 
 +========================================================================================+
-|                                   226. (Math) PTDISTLN                                 |
+|                                   223. (Math) PTDISTLN                                 |
 +========================================================================================+
 
 PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
@@ -7413,7 +7389,7 @@ PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
 Distance of point A from line B, C.
 
 +========================================================================================+
-|                                  227. (Math) PTDISTSEG                                 |
+|                                  224. (Math) PTDISTSEG                                 |
 +========================================================================================+
 
 PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)
@@ -7421,7 +7397,7 @@ PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)
 Distance of point A from line segment B-C.
 
 +========================================================================================+
-|                                    228. (Math) PTSIGN                                  |
+|                                    225. (Math) PTSIGN                                  |
 +========================================================================================+
 
 PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
@@ -7429,7 +7405,7 @@ PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
 The sign of point Q from line segment A->B.
 
 +========================================================================================+
-|                                     229. (Math) RAD                                    |
+|                                     226. (Math) RAD                                    |
 +========================================================================================+
 
 RAD (x)
@@ -7437,7 +7413,7 @@ RAD (x)
 Degrees to radians.
 
 +========================================================================================+
-|                                     230. (Math) RND                                    |
+|                                     227. (Math) RND                                    |
 +========================================================================================+
 
 RND
@@ -7478,7 +7454,7 @@ Returns a random number from the range 0 to 1.
     PAUSE
 
 +========================================================================================+
-|                                     231. (Math) ROOT                                   |
+|                                     228. (Math) ROOT                                   |
 +========================================================================================+
 
 ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr
@@ -7499,7 +7475,7 @@ Roots of F(x).
     ROOT 1, 5, 500, 0.00001, result, errcode USE F(x)
 
 +========================================================================================+
-|                                    232. (Math) ROUND                                   |
+|                                    229. (Math) ROUND                                   |
 +========================================================================================+
 
 ROUND (x [, decs])
@@ -7508,7 +7484,7 @@ Rounds the x to the nearest integer or number with ‘decs’ decimal
 digits.
 
 +========================================================================================+
-|                                     233. (Math) SEC                                    |
+|                                     230. (Math) SEC                                    |
 +========================================================================================+
 
 SEC (x)
@@ -7516,7 +7492,7 @@ SEC (x)
 Secant.
 
 +========================================================================================+
-|                                     234. (Math) SECH                                   |
+|                                     231. (Math) SECH                                   |
 +========================================================================================+
 
 SECH (x)
@@ -7524,7 +7500,7 @@ SECH (x)
 Secant.
 
 +========================================================================================+
-|                                    235. (Math) SEGCOS                                  |
+|                                    232. (Math) SEGCOS                                  |
 +========================================================================================+
 
 SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
@@ -7532,7 +7508,7 @@ SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 Cosine of 2 line segments (A->B, C->D).
 
 +========================================================================================+
-|                                    236. (Math) SEGLEN                                  |
+|                                    233. (Math) SEGLEN                                  |
 +========================================================================================+
 
 SEGLEN (Ax,Ay,Bx,By)
@@ -7540,7 +7516,7 @@ SEGLEN (Ax,Ay,Bx,By)
 Length of line segment.
 
 +========================================================================================+
-|                                    237. (Math) SEGSIN                                  |
+|                                    234. (Math) SEGSIN                                  |
 +========================================================================================+
 
 SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
@@ -7548,7 +7524,7 @@ SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 Sinus of 2 line segments (A->B, C->D).
 
 +========================================================================================+
-|                                     238. (Math) SEQ                                    |
+|                                     235. (Math) SEQ                                    |
 +========================================================================================+
 
 SEQ (xmin, xmax, count)
@@ -7557,7 +7533,7 @@ Returns an array with ‘count’ elements. Each element has the x value of
 its position.
 
 +========================================================================================+
-|                                     239. (Math) SGN                                    |
+|                                     236. (Math) SGN                                    |
 +========================================================================================+
 
 SGN (x)
@@ -7576,7 +7552,7 @@ Sign of x (+1 for positive, -1 for negative and 0 for zero).
     See Also:    ABS, ABSMAX, ABSMIN, CINT
 
 +========================================================================================+
-|                                     240. (Math) SIN                                    |
+|                                     237. (Math) SIN                                    |
 +========================================================================================+
 
 SIN (x)
@@ -7744,7 +7720,7 @@ main Trig ratios:
     pause
 
 +========================================================================================+
-|                                     241. (Math) SINH                                   |
+|                                     238. (Math) SINH                                   |
 +========================================================================================+
 
 SINH (x)
@@ -7752,7 +7728,7 @@ SINH (x)
 Sine.
 
 +========================================================================================+
-|                                     242. (Math) SQR                                    |
+|                                     239. (Math) SQR                                    |
 +========================================================================================+
 
 SQR (x)
@@ -7760,7 +7736,7 @@ SQR (x)
 Square root of x.
 
 +========================================================================================+
-|                                   243. (Math) STATMEAN                                 |
+|                                   240. (Math) STATMEAN                                 |
 +========================================================================================+
 
 STATMEAN (...)
@@ -7768,7 +7744,7 @@ STATMEAN (...)
 Arithmetical mean.
 
 +========================================================================================+
-|                                 244. (Math) STATMEANDEV                                |
+|                                 241. (Math) STATMEANDEV                                |
 +========================================================================================+
 
 STATMEANDEV (...)
@@ -7776,7 +7752,7 @@ STATMEANDEV (...)
 Mean deviation.
 
 +========================================================================================+
-|                                 245. (Math) STATSPREADP                                |
+|                                 242. (Math) STATSPREADP                                |
 +========================================================================================+
 
 STATSPREADS (...)
@@ -7784,7 +7760,7 @@ STATSPREADS (...)
 Sample spread.
 
 +========================================================================================+
-|                                 246. (Math) STATSPREADS                                |
+|                                 243. (Math) STATSPREADS                                |
 +========================================================================================+
 
 STATSPREADP (...)
@@ -7792,7 +7768,7 @@ STATSPREADP (...)
 Population spread.
 
 +========================================================================================+
-|                                     247. (Math) SUM                                    |
+|                                     244. (Math) SUM                                    |
 +========================================================================================+
 
 SUM (...)
@@ -7800,7 +7776,7 @@ SUM (...)
 Sum of value.
 
 +========================================================================================+
-|                                    248. (Math) SUMSQ                                   |
+|                                    245. (Math) SUMSQ                                   |
 +========================================================================================+
 
 SUMSQ (...)
@@ -7808,7 +7784,7 @@ SUMSQ (...)
 Sum of square value.
 
 +========================================================================================+
-|                                     249. (Math) TAN                                    |
+|                                     246. (Math) TAN                                    |
 +========================================================================================+
 
 TAN (x)
@@ -7981,7 +7957,7 @@ TAN - for SIN. So I’ll understand why and how it works (just copy the
 TAN lesson “TAN use again” and update it to explain how SIN works).
 
 +========================================================================================+
-|                                     250. (Math) TANH                                   |
+|                                     247. (Math) TANH                                   |
 +========================================================================================+
 
 TANH (x)
@@ -7989,7 +7965,7 @@ TANH (x)
 Tangent.
 
 +========================================================================================+
-|                                    251. (String) ASC                                   |
+|                                    248. (String) ASC                                   |
 +========================================================================================+
 
 ASC (s)
@@ -8028,7 +8004,7 @@ Also see CHR
     PAUSE
 
 +========================================================================================+
-|                                    252. (String) BCS                                   |
+|                                    249. (String) BCS                                   |
 +========================================================================================+
 
 BCS (s)
@@ -8102,7 +8078,7 @@ Converts (B)ASIC-style strings to (C)-style (S)trings.
     ' \\t\\tThat's it.\\0This text is hidden from C ... :)
 
 +========================================================================================+
-|                                    253. (String) BIN                                   |
+|                                    250. (String) BIN                                   |
 +========================================================================================+
 
 BIN (x)
@@ -8110,7 +8086,7 @@ BIN (x)
 Returns the binary value of x as string.
 
 +========================================================================================+
-|                                    254. (String) CBS                                   |
+|                                    251. (String) CBS                                   |
 +========================================================================================+
 
 CBS (s)
@@ -8147,7 +8123,7 @@ Converts (C)-style strings to (B)ASIC-style (S)trings.
     Pause 
 
 +========================================================================================+
-|                                    255. (String) CHOP                                  |
+|                                    252. (String) CHOP                                  |
 +========================================================================================+
 
 CHOP (source)
@@ -8156,7 +8132,7 @@ Chops off the last character of the string ‘source’ and returns the
 result.
 
 +========================================================================================+
-|                                    256. (String) CHR                                   |
+|                                    253. (String) CHR                                   |
 +========================================================================================+
 
 CHR (x)
@@ -8208,7 +8184,7 @@ character (ASCII 27) For example:
     Data "rs" , "us"  ' 30..31
 
 +========================================================================================+
-|                                  257. (String) DISCLOSE                                |
+|                                  254. (String) DISCLOSE                                |
 +========================================================================================+
 
 DISCLOSE (str[, pairs [, ignore-pairs]])
@@ -8240,7 +8216,7 @@ Default pairs and ignore pairs
     ' prints a='(bc)', nothing
 
 +========================================================================================+
-|                                  258. (String) ENCLOSE                                 |
+|                                  255. (String) ENCLOSE                                 |
 +========================================================================================+
 
 ENCLOSE (str[, pair])
@@ -8260,7 +8236,7 @@ ENCLOSE defaults to double quotes if the [pair] option is not used.
     pause
 
 +========================================================================================+
-|                                   259. (String) FORMAT                                 |
+|                                   256. (String) FORMAT                                 |
 +========================================================================================+
 
 FORMAT (format, val)
@@ -8350,7 +8326,7 @@ Must add extra space after ‘\’, if not there is an error:
     ? Usg "\\  _ \\ "; "abcde" ' --> "abc_de "
 
 +========================================================================================+
-|                                    260. (String) HEX                                   |
+|                                    257. (String) HEX                                   |
 +========================================================================================+
 
 HEX (x)
@@ -8358,7 +8334,7 @@ HEX (x)
 Returns the hexadecimal value of x as string.
 
 +========================================================================================+
-|                                   261. (String) INSTR                                  |
+|                                   258. (String) INSTR                                  |
 +========================================================================================+
 
 INSTR ([start,] s1, s2)
@@ -8391,7 +8367,7 @@ INSTR returns 0
     wend
 
 +========================================================================================+
-|                                    262. (String) JOIN                                  |
+|                                    259. (String) JOIN                                  |
 +========================================================================================+
 
 JOIN words(), delimiters, string
@@ -8406,7 +8382,7 @@ Returns the words of the specified string into array ‘words’.
     [/etc/temp/filename/ext]
 
 +========================================================================================+
-|                                   263. (String) LCASE                                  |
+|                                   260. (String) LCASE                                  |
 +========================================================================================+
 
 LCASE (s)
@@ -8414,7 +8390,7 @@ LCASE (s)
 Converts the string s to lower case.
 
 +========================================================================================+
-|                                    264. (String) LEFT                                  |
+|                                    261. (String) LEFT                                  |
 +========================================================================================+
 
 LEFT (s [,n])
@@ -8423,7 +8399,7 @@ Returns the n number of leftmost chars of string s. if not specified n =
 1.
 
 +========================================================================================+
-|                                   265. (String) LEFTOF                                 |
+|                                   262. (String) LEFTOF                                 |
 +========================================================================================+
 
 LEFTOF (s1, s2)
@@ -8458,7 +8434,7 @@ the string s2 into string s1.
     Pause
 
 +========================================================================================+
-|                                 266. (String) LEFTOFLAST                               |
+|                                 263. (String) LEFTOFLAST                               |
 +========================================================================================+
 
 LEFTOFLAST (s1, s2)
@@ -8467,7 +8443,7 @@ Returns the left part of s1 at the position of the last occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                   267. (String) LOWER                                  |
+|                                   264. (String) LOWER                                  |
 +========================================================================================+
 
 LOWER (s)
@@ -8475,7 +8451,7 @@ LOWER (s)
 Converts the string s to lower case.
 
 +========================================================================================+
-|                                   268. (String) LTRIM                                  |
+|                                   265. (String) LTRIM                                  |
 +========================================================================================+
 
 LTRIM (s)
@@ -8483,7 +8459,7 @@ LTRIM (s)
 Removes leading white-spaces from string s.
 
 +========================================================================================+
-|                                    269. (String) MID                                   |
+|                                    266. (String) MID                                   |
 +========================================================================================+
 
 MID (s, start [,length])
@@ -8495,7 +8471,7 @@ If the ‘length’ parameter is omitted, MID returns the whole string from
 the position ‘start’.
 
 +========================================================================================+
-|                                    270. (String) OCT                                   |
+|                                    267. (String) OCT                                   |
 +========================================================================================+
 
 OCT (x)
@@ -8503,7 +8479,7 @@ OCT (x)
 Returns the octal value of x as string.
 
 +========================================================================================+
-|                                  271. (String) REPLACE                                 |
+|                                  268. (String) REPLACE                                 |
 +========================================================================================+
 
 REPLACE (source, pos, str [, len])
@@ -8588,7 +8564,7 @@ is the length of _str_.
     Pause
 
 +========================================================================================+
-|                                   272. (String) RIGHT                                  |
+|                                   269. (String) RIGHT                                  |
 +========================================================================================+
 
 RIGHT (s[,n])
@@ -8597,7 +8573,7 @@ Returns the n number of rightmost chars of string s. if not specified n
 = 1.
 
 +========================================================================================+
-|                                  273. (String) RIGHTOF                                 |
+|                                  270. (String) RIGHTOF                                 |
 +========================================================================================+
 
 RIGHTOF (s1, s2)
@@ -8606,7 +8582,7 @@ Returns the right part of s1 at the position of the first occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                274. (String) RIGHTOFLAST                               |
+|                                271. (String) RIGHTOFLAST                               |
 +========================================================================================+
 
 RIGHTOFLAST (s1, s2)
@@ -8615,7 +8591,7 @@ Returns the right part of s1 at the position of the last occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                   275. (String) RINSTR                                 |
+|                                   272. (String) RINSTR                                 |
 +========================================================================================+
 
 RINSTR ([start,] s1, s2)
@@ -8626,7 +8602,7 @@ s1 (starting from the position ‘start’).
 If there is no match, RINSTR returns 0
 
 +========================================================================================+
-|                                   276. (String) RTRIM                                  |
+|                                   273. (String) RTRIM                                  |
 +========================================================================================+
 
 RTRIM (s)
@@ -8634,7 +8610,7 @@ RTRIM (s)
 Removes trailing white-spaces from string s.
 
 +========================================================================================+
-|                                   277. (String) SINPUT                                 |
+|                                   274. (String) SINPUT                                 |
 +========================================================================================+
 
 SINPUT src; var [, delim] [,var [, delim]] ...
@@ -8648,7 +8624,7 @@ delimiters.
     ' x>1   y
 
 +========================================================================================+
-|                                   278. (String) SPACE                                  |
+|                                   275. (String) SPACE                                  |
 +========================================================================================+
 
 SPACE (n)
@@ -8676,7 +8652,7 @@ Returns a string of n spaces.
     Wend
 
 +========================================================================================+
-|                                    279. (String) SPC                                   |
+|                                    276. (String) SPC                                   |
 +========================================================================================+
 
 SPC (n)
@@ -8699,7 +8675,7 @@ Left Center or Right aligning text.
 I think SPACE and SPC are both the same, see also SPACE.
 
 +========================================================================================+
-|                                   280. (String) SPLIT                                  |
+|                                   277. (String) SPLIT                                  |
 +========================================================================================+
 
 SPLIT string, delimiters, words() [, pairs] [USE expr]
@@ -8721,7 +8697,7 @@ displays:
     4 [ext]
 
 +========================================================================================+
-|                                   281. (String) SPRINT                                 |
+|                                   278. (String) SPRINT                                 |
 +========================================================================================+
 
 SPRINT var; [USING...;] ...
@@ -8733,7 +8709,7 @@ Create formated string and storing it to var. See also: PRINT command.
 _Note: you can use ‘USG’ instead of ‘USING’._
 
 +========================================================================================+
-|                                  282. (String) SQUEEZE                                 |
+|                                  279. (String) SQUEEZE                                 |
 +========================================================================================+
 
 SQUEEZE (s)
@@ -8744,7 +8720,7 @@ Removes all leading, trailing and duplicated white-space.
     ' Result: [Hi there]
 
 +========================================================================================+
-|                                    283. (String) STR                                   |
+|                                    280. (String) STR                                   |
 +========================================================================================+
 
 STR (n)
@@ -8752,7 +8728,7 @@ STR (n)
 Converts the number n into a string.
 
 +========================================================================================+
-|                                   284. (String) STRING                                 |
+|                                   281. (String) STRING                                 |
 +========================================================================================+
 
 STRING ( count [,start | s] )
@@ -8814,7 +8790,7 @@ How to understand this syntax “STRING ( count [,start | s] )”:
     ? x ' --> x is "Hello Hello "
 
 +========================================================================================+
-|                                 285. (String) TRANSLATE                                |
+|                                 282. (String) TRANSLATE                                |
 +========================================================================================+
 
 TRANSLATE (source, what [, with])
@@ -8826,7 +8802,7 @@ string ‘with’ and returns the new string.
     ' displays: HellO wOrld
 
 +========================================================================================+
-|                                    286. (String) TRIM                                  |
+|                                    283. (String) TRIM                                  |
 +========================================================================================+
 
 TRIM(s)
@@ -8834,7 +8810,7 @@ TRIM(s)
 Removes all leading and trailing white-space.
 
 +========================================================================================+
-|                                   287. (String) UCASE                                  |
+|                                   284. (String) UCASE                                  |
 +========================================================================================+
 
 UCASE (s)
@@ -8851,7 +8827,7 @@ Converts the string s to upper case.
 output: UPPER and UCASE do the same thing.
 
 +========================================================================================+
-|                                   288. (String) UPPER                                  |
+|                                   285. (String) UPPER                                  |
 +========================================================================================+
 
 UPPER (s)
@@ -8861,7 +8837,7 @@ Converts the string s to upper case.
 Yes, you should see the comment in UCASE.
 
 +========================================================================================+
-|                                    289. (String) VAL                                   |
+|                                    286. (String) VAL                                   |
 +========================================================================================+
 
 VAL (s)
@@ -8918,7 +8894,7 @@ The VAL command just converts a string to a number. For EVAL type
 functionality, the CHAIN command is somewhat similar.
 
 +========================================================================================+
-|                                   290. (System) CHAIN                                  |
+|                                   287. (System) CHAIN                                  |
 +========================================================================================+
 
 CHAIN source
@@ -9023,7 +8999,7 @@ process.
     Pause
 
 +========================================================================================+
-|                                  291. (System) COMMAND                                 |
+|                                  288. (System) COMMAND                                 |
 +========================================================================================+
 
 COMMAND
@@ -9057,7 +9033,7 @@ When “test.bas” is:
 Will print “abc xyz fileName”
 
 +========================================================================================+
-|                                    292. (System) CWD                                   |
+|                                    289. (System) CWD                                   |
 +========================================================================================+
 
 CWD
@@ -9065,7 +9041,7 @@ CWD
 Current working directory
 
 +========================================================================================+
-|                                   293. (System) DELAY                                  |
+|                                   290. (System) DELAY                                  |
 +========================================================================================+
 
 DELAY ms
@@ -9074,7 +9050,7 @@ Delay for a specified amount of milliseconds. Note ‘delay’ depends on
 the system clock.
 
 +========================================================================================+
-|                                    294. (System) ENV                                   |
+|                                    291. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -9153,7 +9129,7 @@ i.e. “SB1” may be different then “sb1” on some systems (Linux for
 example).
 
 +========================================================================================+
-|                                    295. (System) ENV                                   |
+|                                    292. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -9205,7 +9181,7 @@ whole set of them into an array using: EVarray=ENV("")
     ' so it didn't just LOOK erased from a bad call
 
 +========================================================================================+
-|                                    296. (System) EXEC                                  |
+|                                    293. (System) EXEC                                  |
 +========================================================================================+
 
 EXEC file
@@ -9273,7 +9249,7 @@ Note: In the android version you can use v=RUN to look at interesting
 things in the /proc file system.
 
 +========================================================================================+
-|                                   297. (System) EXPORT                                 |
+|                                   294. (System) EXPORT                                 |
 +========================================================================================+
 
 EXPORT thing
@@ -9282,7 +9258,7 @@ Export a SUB, FUNC or variable from a UNIT to be used by the unit
 consumer.
 
 +========================================================================================+
-|                                    298. (System) FRE                                   |
+|                                    295. (System) FRE                                   |
 +========================================================================================+
 
 FRE (x)
@@ -9329,7 +9305,7 @@ Optional-set #2:
 The optional values will return 0 if not supported.
 
 +========================================================================================+
-|                                    299. (System) HOME                                  |
+|                                    296. (System) HOME                                  |
 +========================================================================================+
 
 HOME
@@ -9337,7 +9313,7 @@ HOME
 User HOME folder
 
 +========================================================================================+
-|                                   300. (System) IMPORT                                 |
+|                                   297. (System) IMPORT                                 |
 +========================================================================================+
 
 IMPORT
@@ -9345,7 +9321,7 @@ IMPORT
 Import an exported UNIT variable, SUB or FUNC.
 
 +========================================================================================+
-|                                  301. (System) INCLUDE                                 |
+|                                  298. (System) INCLUDE                                 |
 +========================================================================================+
 
 INCLUDE source-file.bas
@@ -9393,7 +9369,7 @@ Here is part_2.bas, the second (and startup) part of our long program:
     Pause
 
 +========================================================================================+
-|                                   302. (System) MAXINT                                 |
+|                                   299. (System) MAXINT                                 |
 +========================================================================================+
 
 MAXINT
@@ -9402,7 +9378,7 @@ Holds the maximum value for an integer. The value depends on whether you
 are using a 32 or 64 bit build of SmallBASIC.
 
 +========================================================================================+
-|                                    303. (System) NIL                                   |
+|                                    300. (System) NIL                                   |
 +========================================================================================+
 
 NIL
@@ -9410,7 +9386,7 @@ NIL
 NIL is used to mean ‘not set’ as distinct from having an INT set to 0
 
 +========================================================================================+
-|                                   304. (System) OPTION                                 |
+|                                   301. (System) OPTION                                 |
 +========================================================================================+
 
 OPTION keyword
@@ -9418,7 +9394,7 @@ OPTION keyword
 Used to pass parameters to the run-time environment.
 
 +========================================================================================+
-|                                   305. (System) PAUSE                                  |
+|                                   302. (System) PAUSE                                  |
 +========================================================================================+
 
 PAUSE [secs]
@@ -9451,7 +9427,7 @@ halt program execution (for the user to see the output screen).
     wend
 
 +========================================================================================+
-|                                     306. (System) PI                                   |
+|                                     303. (System) PI                                   |
 +========================================================================================+
 
 PI
@@ -9461,7 +9437,7 @@ Holds PI
 See: https://en.wikipedia.org/wiki/Pi
 
 +========================================================================================+
-|                                  307. (System) PROGLINE                                |
+|                                  304. (System) PROGLINE                                |
 +========================================================================================+
 
 PROGLINE
@@ -9469,7 +9445,7 @@ PROGLINE
 Returns the current program line number.
 
 +========================================================================================+
-|                                 308. (System) RANDOMIZE                                |
+|                                 305. (System) RANDOMIZE                                |
 +========================================================================================+
 
 RANDOMIZE [int]
@@ -9477,7 +9453,7 @@ RANDOMIZE [int]
 Seeds the random number generator.
 
 +========================================================================================+
-|                                    309. (System) RUN                                   |
+|                                    306. (System) RUN                                   |
 +========================================================================================+
 
 RUN cmdstr
@@ -9632,7 +9608,7 @@ will verify that the command was executed well.
     book to understand the basics).
 
 +========================================================================================+
-|                                   310. (System) SBVER                                  |
+|                                   307. (System) SBVER                                  |
 +========================================================================================+
 
 SBVER
@@ -9640,7 +9616,7 @@ SBVER
 Version and build information
 
 +========================================================================================+
-|                                    311. (System) SELF                                  |
+|                                    308. (System) SELF                                  |
 +========================================================================================+
 
 SELF
@@ -9665,7 +9641,7 @@ Example:
     a.foo()
 
 +========================================================================================+
-|                                  312. (System) STKDUMP                                 |
+|                                  309. (System) STKDUMP                                 |
 +========================================================================================+
 
 STKDUMP
@@ -9673,7 +9649,7 @@ STKDUMP
 Display internal execution stack.
 
 +========================================================================================+
-|                                   313. (System) TROFF                                  |
+|                                   310. (System) TROFF                                  |
 +========================================================================================+
 
 TROFF
@@ -9681,7 +9657,7 @@ TROFF
 See TRON.
 
 +========================================================================================+
-|                                    314. (System) TRON                                  |
+|                                    311. (System) TRON                                  |
 +========================================================================================+
 
 TRON
@@ -9690,7 +9666,7 @@ When trace mechanism is ON, displays each line number as the program is
 executed.
 
 +========================================================================================+
-|                                    315. (System) UNIT                                  |
+|                                    312. (System) UNIT                                  |
 +========================================================================================+
 
 UNIT name
