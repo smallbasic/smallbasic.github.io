@@ -5,10 +5,10 @@ You can find more information about raylib at the [raylib website](https://www.r
 
 ## How to learn coding with raylib
 
-raylib does not provide the typical API documentation or a big set of tutorials. 
+"raylib does not provide the typical API documentation or a big set of tutorials. 
 The library is designed to be minimalistic and be learned just from a cheatsheet
 with all required functionality and a big collection of examples to see how to
-use that functionality. **Best way to learn to code is reading code.**
+use that functionality. **Best way to learn to code is reading code.**" [raylib website, Aug. 2022]
 
 Many of the original raylib examples, which are written in C, were converted to SmallBASIC and are available
 on [Github](https://github.com/smallbasic/smallbasic.plugins/tree/master/raylib/samples). To make it easier for you, 
@@ -176,7 +176,7 @@ If you are working in Windows, then start your program with: `sbasic.exe MyRayli
   
   ![](/images/raylib/textures_mouse_painting.png)
   
-- nPatch Drawing: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/textures_npatch_drawing.bas)
+- N-Patch Drawing: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/textures_npatch_drawing.bas)
   
   ![](/images/raylib/textures_npatch_drawing.png)
   
@@ -212,24 +212,27 @@ If you are working in Windows, then start your program with: `sbasic.exe MyRayli
 - Music Stream: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/audio_music_stream.bas)
   
   ![](/images/raylib/audio_music_stream.png)
-  
-### Viscellaneous
 
-- SmallBASIC raylib GUI: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/gui.bas)
-  
-  ![](/images/raylib/gui.png)
-  
-- Sand: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/sand.bas)
-  
-  ![](/images/raylib/sand.png)
   
 ### Models
 
 - Animation: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/models_animation.bas)
   
   ![](/images/raylib/models_animation.png)
+ 
   
- ### Physics
+### Shaders
+  
+- Postprocessing: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/shaders_postprocessing.bas)
+  
+  ![](/images/raylib/shaders_postprocessing.png)
+  
+- Raymarching: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/shaders_raymarching.bas)
+  
+  ![](/images/raylib/shaders_raymarching.png)
+
+  
+### Physics
  
 - Demo: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/physics_demo.bas)
   
@@ -247,15 +250,72 @@ If you are working in Windows, then start your program with: `sbasic.exe MyRayli
   
   ![](/images/raylib/physics_restitution.png)
   
-### Shaders
-  
-- Postprocessing: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/shaders_postprocessing.bas)
-  
-  ![](/images/raylib/shaders_postprocessing.png)
-  
-- Raymarching: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/shaders_raymarching.bas)
-  
-  ![](/images/raylib/shaders_raymarching.png)
+### Miscellaneous
 
+- SmallBASIC raylib GUI: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/gui.bas)
+  
+  ![](/images/raylib/gui.png)
+  
+- Sand: [Source code](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/sand.bas)
+  
+  ![](/images/raylib/sand.png)
   
   
+## Structures and Variables
+
+### Camera2D
+```
+camera2D.target.x = 0
+camera2D.target.y = 0
+camera2D.offset.x = 0
+camera2D.offset.y = 0
+camera2D.rotation = 0
+camera2D.zoom = 1
+```
+
+### Camera3D
+```
+camera.position = [4, 2, 4]
+camera.target = [0, 0, 0]
+camera.up = [0, 1, 0]
+camera.fovy = 60
+camera.projection = c.CAMERA_PERSPECTIVE
+```
+
+### Position
+```
+position = [0, 0, 0]
+```
+
+### Rectangle
+```
+rectangle.x = 0
+rectangle.y = 0
+rectangle.width = 100
+rectangle.height = 100
+```
+```
+rectangle = {x: 0, y: 0, width: 100, height: 100}
+```
+
+### Vector2
+```
+vector2.x = 0
+vector2.y = 0
+```
+```
+vector2 = {x: 0, y: 0}
+```
+
+### Vector3
+```
+vector3.x = 0
+vector3.y = 0
+vector3.z = 0
+```
+```
+vector3 = {x: 0, y: 0, z: 0}
+```
+
+
+
