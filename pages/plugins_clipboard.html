@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SmallBASIC | articles</title>
+  <title>SmallBASIC | plugins_clipboard</title>
   <meta name="description" content="SmallBASIC | One more basic">
-  <link rel="canonical" href="/articles.html">
-  <link rel="keywords" href="articles">
+  <link rel="canonical" href="/plugins_clipboard.html">
+  <link rel="keywords" href="plugins_clipboard">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
   <script src="/clipboard.js"></script>
@@ -58,49 +58,42 @@
       </div>
       <div class="tabsRight">
         <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/articles.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/articles.markdown">View history</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/plugins_clipboard.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/plugins_clipboard.markdown">View history</a></li>
         </ul>
       </div>
     </div>
 <div class="article">
-<h1 id="articles">Articles</h1>
-<h2 id="programming-in-smallbasic">Programming in SmallBASIC</h2>
-<ul>
-<li><a href="/pages/guide.html">User guide</a>: brief description of SmallBASIC for advanced BASIC users</li>
-<li>Programming SmallBASIC by Gerard Thomas Labèrnia: great starting point for all who want to learn programing in SmallBASIC
-<ul>
-<li><a href="/pages/course_gtl.html">English</a></li>
-<li><a href="/docs/smallbasic.ca.pdf">Catalan</a></li>
-</ul></li>
-<li><a href="/pages/vade.html">Vademecum</a>: comprehensive tutorial for beginners and experts</li>
-<li><a href="/pages/escape.html">Escape codes</a></li>
-<li><a href="/pages/trycatch.html">TRY/CATCH</a></li>
-<li><a href="/pages/network.html">Network programming</a></li>
-<li><a href="/pages/features.html">New features</a></li>
-</ul>
-<h2 id="getting-started">Getting started</h2>
-<ul>
-<li><a href="/pages/android.html">Android</a></li>
-<li><a href="/pages/sdl.html">SDL</a></li>
-<li><a href="/pages/fltk.html">FLTK</a></li>
-<li><a href="/pages/language_support.html">Visual Studio Code, Atom and Geany</a></li>
-<li><a href="/pages/distributiontool.html">Distribute your program</a></li>
-</ul>
-<h2 id="plugins">Plugins</h2>
-<ul>
-<li><a href="/pages/plugins_nuklear.html">Nuklear: Create your own graphical user interface</a></li>
-<li><a href="/pages/plugins_clipboard.html">Clipboard: Copy and paste</a></li>
-<li><a href="/pages/plugins_gifenc.html">GIFenc: create animated GIFs</a></li>
-</ul>
-<h2 id="miscellaneous">Miscellaneous</h2>
-<ul>
-<li><a href="/pages/android_changelog.html">Android Changelog</a></li>
-<li><a href="/pages/contributing.html">Contributing</a></li>
-</ul>
+<h1 id="clipboard---copy-and-paste">Clipboard - Copy and Paste</h1>
+<h2 id="about-the-plugin">About the plugin</h2>
+<p>Clipboard is a simple plugin to copy and paste text between your SmallBASIC program and the Windows or Linux desktop.</p>
+<h2 id="using-the-plugin">Using the plugin</h2>
+<p>The plugin can be used by importing it with <code>import clipboard</code>. A simple “Hello World” program looks like this:</p>
+<pre><code>import clipboard
+
+print clipboard.paste()
+
+text = &quot;Hello World&quot;
+
+clipboard.copy(text)
+
+print clipboard.paste()</code></pre>
+<h2 id="supported-commands">Supported Commands</h2>
+<h3 id="paste">PASTE</h3>
+<blockquote>
+<p>text = paste()</p>
+</blockquote>
+<p>text (String): content of the clipboard</p>
+<p>Copies the content of the system clipboard to <em>text</em>.</p>
+<h3 id="copy">COPY</h3>
+<blockquote>
+<p>copy(text)</p>
+</blockquote>
+<p>text (String): text for copying to the clipboard</p>
+<p>Copies <em>text</em> to the system clipboard.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 20 Aug 2022 20:24:48 +0200
+      This page was last edited on Sun, 21 Aug 2022 10:03:14 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
