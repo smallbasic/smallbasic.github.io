@@ -74,15 +74,15 @@
 <p>Here you learn about the basics of BASIC, so to speak. This chapter deals with the way a SmallBASIC program composed.</p>
 <p>A program consists of a single source file. It is possible to include libraries from external source files with the Unit-mechanism.</p>
 <p>Source files are simple text files. They can be written in <strong>ASCII</strong> or <strong>UTF-8</strong>.</p>
-<p>The basic program component is a line of text, ending with <sub>CR</sub> or <sub>LF/CR</sub> characters.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>The basic program component is a line of text, ending with <sub>CR</sub> or <sub>LF/CR</sub> characters.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>SmallBASIC is <strong>case-insensitive</strong>: The names <code>myvar</code> and <code>MyVar</code> will always refer to the same variable or function. Likewise, keywords are case-insensitive: Both <code>print</code> and <code>PRINT</code> are legal variants of the same command.</p>
-<p><strong>Whitespace</strong> – i.e., non-printing characters like spaces and tabs – is ignored in SmallBASIC, except inside string literals where it is retained. <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p><strong>Whitespace</strong> – i.e., non-printing characters like spaces and tabs – is ignored in SmallBASIC, except inside string literals where it is retained. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <pre><code>for a = 0 to 10
 
 for a=0to 10</code></pre>
 <p>But note that the omission of whitespace can lead to parsing errors: If the above line were abbreviated to</p>
 <pre><code>fora=0to10</code></pre>
-<p>this would cause an error, because <code>for</code> and <code>to</code> wouldn’t be recognized as keywords anymore. Rather, SmallBASIC would consider <code>fora</code> and <code>to10</code> to be variable names.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>this would cause an error, because <code>for</code> and <code>to</code> wouldn’t be recognized as keywords anymore. Rather, SmallBASIC would consider <code>fora</code> and <code>to10</code> to be variable names.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>Each program line contains one or more commands. Multiple commands on a line are <strong>separated by a colon</strong> <sub>:</sub>.</p>
 <pre><code>print &quot;Hello world!&quot;
 print &quot;Wonderful day.&quot;
@@ -124,7 +124,7 @@ print &quot;Hello &quot; &amp;
 <li><p>the dollar sign <sub>$</sub> (only as the last character of the identifier, see below)</p></li>
 </ul>
 <p>A single underscore <sub>_</sub> is a legal complete identifier.</p>
-<p>Identifiers can have virtually unlimited length. All characters are significant in resolving an identifier (ie, to determine whether two identifiers refer to the same variable.)<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>Identifiers can have virtually unlimited length. All characters are significant in resolving an identifier (ie, to determine whether two identifiers refer to the same variable.)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p>Traditionally, in BASIC the <strong>dollar sign</strong> <code>$</code> serves as a signal to indicate that a name identifies a string variable, if used as the last character of the identifier (i.e., <code>my_name$</code>).</p>
 <p>Since SmallBASIC is a typeless language (see below) where variables can hold values of any type, such a signal would be misleading, yet it has been retained for the sake of compatibility. It may be placed as the last character of an identifier only. Here it serves two distinguish between identifiers (<code>harry</code> and <code>harry$</code> are two different identifiers), but has otherwise no function.</p>
 <h1 id="comments">Comments</h1>
@@ -145,13 +145,13 @@ rem the last comment
 print &quot;Hello world!&quot;   rem vain commenting attempt</code></pre>
 <p>The <code>rem</code> in the last line above will cause an error, because it needs to be preceded with a colon <sub>:</sub>.</p>
 <p>There are no provision for <strong>block comments</strong>.</p>
-<section class="footnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Don’t worry about this, your operating system will handle it right. It may only every be an issue if you use source files written in one OS and then transferred to a different one.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>All listings in the vademecum follow the same convention and show the source code as you would have typed it in in the IDE. If a line in the listing begins with a greater-than sign <sub>&gt;</sub>, this indicates a response of the program printed on your screen.<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>As a rule of thumb, it’s advisable to always leave spaces around keywords.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>This is in contrast to many older BASICs. The <em>Commodore BASIC</em> shipped with the honourable C64, for example, allowed identifiers of arbitrary length, but used only the first two letters for resolution: <code>hoogla</code> and <code>hooray</code> were considered to refer to the same variable.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Don’t worry about this, your operating system will handle it right. It may only every be an issue if you use source files written in one OS and then transferred to a different one.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>All listings in the vademecum follow the same convention and show the source code as you would have typed it in in the IDE. If a line in the listing begins with a greater-than sign <sub>&gt;</sub>, this indicates a response of the program printed on your screen.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>As a rule of thumb, it’s advisable to always leave spaces around keywords.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>This is in contrast to many older BASICs. The <em>Commodore BASIC</em> shipped with the honourable C64, for example, allowed identifiers of arbitrary length, but used only the first two letters for resolution: <code>hoogla</code> and <code>hooray</code> were considered to refer to the same variable.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </div>
@@ -160,7 +160,7 @@ print &quot;Hello world!&quot;   rem vain commenting attempt</code></pre>
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.5</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

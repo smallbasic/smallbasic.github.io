@@ -17,7 +17,7 @@ Changelog
 - parse JSON with SB ";" dimension syntax
 - Added -i command switch for live mode
 
-	This will run the BASIC program in a loop. It can be used with the debug module
+This will run the BASIC program in a loop. It can be used with the debug module
 	to rerun whenever the source code changes:
 
 	import debug

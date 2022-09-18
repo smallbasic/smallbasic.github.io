@@ -70,39 +70,39 @@
 </blockquote>
 <p><em>"Visual Studio Code is a source-code editor made by Microsoft for Windows, Linux and macOS. Features include support for debugging, syntax highlighting, intelligent code completion, snippets, code refactoring, and embedded Git. Users can change the theme, keyboard shortcuts, preferences, and install extensions that add additional functionality.</em> <em>In the Stack Overflow 2021 Developer Survey, Visual Studio Code was ranked the most popular developer environment tool, with 70% of 82,000 respondents reporting that they use it." (<a href="https://en.wikipedia.org/wiki/Visual_Studio_Code">wikipedia</a>)</em></p>
 <figure>
-<img src="https://github.com/Joe7M/smallbasic.vscode.syntaxcoloring/raw/main/Screenshot.png" alt="Example" /><figcaption>Example</figcaption>
+<img src="https://github.com/Joe7M/smallbasic.vscode.syntaxcoloring/raw/main/Screenshot.png" alt="" /><figcaption>Example</figcaption>
 </figure>
 <h2 id="setup-syntax-highlighting-and-coloring">Setup Syntax Highlighting and Coloring</h2>
 <p>The VSCode extension for syntax highlighting and code snippets can be downloaded from <a href="https://github.com/Joe7M/smallbasic.vscode.syntaxcoloring/releases">Github</a> as a VSIX file. To install the extension please select this file in the VSCode extensions section (View -&gt; Extensions -&gt; … (3 dots) -&gt; Install from VSIX)</p>
 <h2 id="setup-code-execution">Setup Code Execution</h2>
 <p>In VSCode tasks can be configured for your project to execute commands. To create a task go to Terminal-&gt;Configure Task. The file task.json will be displayed (stored in your project folder in the subfolder .vscode). Replace the content of the file with the following commands:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">{</span></a>
-<a class="sourceLine" id="cb1-2" title="2">    <span class="er">//</span> <span class="er">See</span> <span class="er">https</span><span class="fu">:</span><span class="er">//go.microsoft.com/fwlink/?LinkId=</span><span class="dv">733558</span></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="er">//</span> <span class="er">for</span> <span class="er">the</span> <span class="er">documentation</span> <span class="er">about</span> <span class="er">the</span> <span class="er">tasks.json</span> <span class="er">format</span></a>
-<a class="sourceLine" id="cb1-4" title="4">    <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;2.0.0&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb1-5" title="5">    <span class="dt">&quot;tasks&quot;</span><span class="fu">:</span> <span class="ot">[</span></a>
-<a class="sourceLine" id="cb1-6" title="6">        <span class="fu">{</span></a>
-<a class="sourceLine" id="cb1-7" title="7">            <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Execute sbasicg&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb1-8" title="8">            <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;shell&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb1-9" title="9">            <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;sbasicg&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb1-10" title="10">            <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span></a>
-<a class="sourceLine" id="cb1-11" title="11">                <span class="st">&quot;-r&quot;</span><span class="ot">,</span></a>
-<a class="sourceLine" id="cb1-12" title="12">                <span class="st">&quot;${file}&quot;</span></a>
-<a class="sourceLine" id="cb1-13" title="13">            <span class="ot">]</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb1-14" title="14">            <span class="dt">&quot;problemMatcher&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb1-15" title="15">            <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
-<a class="sourceLine" id="cb1-16" title="16">                <span class="dt">&quot;kind&quot;</span><span class="fu">:</span> <span class="st">&quot;build&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb1-17" title="17">                <span class="dt">&quot;isDefault&quot;</span><span class="fu">:</span> <span class="kw">true</span></a>
-<a class="sourceLine" id="cb1-18" title="18">            <span class="fu">}</span></a>
-<a class="sourceLine" id="cb1-19" title="19">        <span class="fu">}</span></a>
-<a class="sourceLine" id="cb1-20" title="20">    <span class="ot">]</span></a>
-<a class="sourceLine" id="cb1-21" title="21"><span class="fu">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="er">//</span> <span class="er">See</span> <span class="er">https</span><span class="fu">:</span><span class="er">//go.microsoft.com/fwlink/?LinkId=</span><span class="dv">733558</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="er">//</span> <span class="er">for</span> <span class="er">the</span> <span class="er">documentation</span> <span class="er">about</span> <span class="er">the</span> <span class="er">tasks.json</span> <span class="er">format</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;2.0.0&quot;</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="dt">&quot;tasks&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>        <span class="fu">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>            <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Execute sbasicg&quot;</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>            <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;shell&quot;</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>            <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;sbasicg&quot;</span><span class="fu">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>            <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>                <span class="st">&quot;-r&quot;</span><span class="ot">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>                <span class="st">&quot;${file}&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>            <span class="dt">&quot;problemMatcher&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>            <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>                <span class="dt">&quot;kind&quot;</span><span class="fu">:</span> <span class="st">&quot;build&quot;</span><span class="fu">,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>                <span class="dt">&quot;isDefault&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>            <span class="fu">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>        <span class="fu">}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    <span class="ot">]</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="fu">}</span></span></code></pre></div>
 <p>You have to edit the command-keyword to point to the correct location of the sbasic executable. In Linux it could be for example:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb2-1" title="1"><span class="er">&quot;command&quot;:</span> <span class="er">&quot;sbasicg&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="er">&quot;command&quot;:</span> <span class="er">&quot;sbasicg&quot;</span></span></code></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb3-1" title="1"><span class="er">&quot;command&quot;:</span> <span class="er">&quot;/home/myname/programs/sbasicg&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="er">&quot;command&quot;:</span> <span class="er">&quot;/home/myname/programs/sbasicg&quot;</span></span></code></pre></div>
 <p>in Windows for example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb4-1" title="1"><span class="er">&quot;command&quot;:</span> <span class="er">&quot;C:\Program</span> <span class="er">Files\SmallBASIC\sbasicg.exe&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="er">&quot;command&quot;:</span> <span class="er">&quot;C:\Program</span> <span class="er">Files\SmallBASIC\sbasicg.exe&quot;</span></span></code></pre></div>
 <p>You can execute the task either by “Terminal-&gt;Run Build Task” or by pressing Ctrl+Shift+B.</p>
 </div>
     <div class="pagefooter">
@@ -110,7 +110,7 @@
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.5</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

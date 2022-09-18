@@ -91,7 +91,7 @@ endif</code></pre>
 <p><code>Elseif</code> can be replaced with <code>elif</code>. <code>Else</code> will catch all alternatives, if none of the <code>if</code> and <code>elseif</code> branches are true.</p>
 <p>Note that all the branches can be tested against arbitrary expressions; they don’t need to refer to the same variable. If you want to test a single value against several possible outcomes, <code>select ... case</code> is probably a better option.</p>
 <p>Several <code>if</code> clauses can be nested. It’s your responsibility to make sure than they are properly closed, especially when you’re using many <code>elseif</code>/<code>else</code> branches.</p>
-<p>If your <code>deserts are small</code>,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and you don’t have to process much code in your <code>if</code> clause, then there is a single-line variation as well:</p>
+<p>If your <code>deserts are small</code>,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and you don’t have to process much code in your <code>if</code> clause, then there is a single-line variation as well:</p>
 <pre><code>if temp&gt;30 then ? &quot;Hot&quot; else ? &quot;Moderate&quot;</code></pre>
 <p>Note that in this case, <code>then</code> is mandatory, while <code>endif</code> must not be used. You can put several colon-separated commands between <code>then</code> and <code>else</code> and after <code>else</code>, respectively, provided you can fit everything into a single line of code.</p>
 <h3 id="iff..."><code>iff(...)</code></h3>
@@ -131,7 +131,7 @@ end select</code></pre>
 <pre><code>for i=start to end [step inc]
     ...
 next</code></pre>
-<p>The <code>step</code> keyword and the subsequent increment <code>inc</code> (which can be any expression, not necessarily only a variable) are optional; if they’re missing, the increment is set to <code>1</code>. There is no need to add to the <code>next</code> keyword the name of the loop variable.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>The <code>step</code> keyword and the subsequent increment <code>inc</code> (which can be any expression, not necessarily only a variable) are optional; if they’re missing, the increment is set to <code>1</code>. There is no need to add to the <code>next</code> keyword the name of the loop variable.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>The index loop variable <code>i</code> will be set to the initial value <code>start</code>, and the code inside the loop executed at least once. Upon reaching the corresponding <code>next</code> statement, the index is compared to the limit <code>end</code> given after the <code>to</code> keyword. If the index is smaller or equal to <code>end</code>, the index is incremented by the <code>inc</code>, if this is provided, or by <code>1</code>), and the loop is traversed once more. (If <code>inc</code> is negative, the situation is obviously reversed.)</p>
 <p>This means that to traverse through a complete array (assuming it uses sequential indices only), you must configure your loop like this:</p>
 <pre><code>dim x(423)
@@ -156,7 +156,7 @@ next</code></pre>
 <li><p><code>z(i)</code>, if <code>i</code> is an array, or</p></li>
 <li><p>the <code>next</code> key of <code>z</code>, if it is a map.</p></li>
 </ul>
-<p>In the case of a map, the map element can be accessed with <code>z(i)</code>.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>In the case of a map, the map element can be accessed with <code>z(i)</code>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <pre><code>dim zoogla(5)
 zoogla(3)= &quot;uffda&quot;
 
@@ -198,8 +198,8 @@ repeat
 until (expression)</code></pre>
 <p>In both cases the code block between the loop delimiters will be repeated until an expression will be fulfilled. Note two important differences though:</p>
 <ul>
-<li><p>In a <code>while ... wend</code> loop, the loop is executed as long as the expression is <em>true</em> (ie, unequal to <sub>0</sub>), whereas a <code>repeat ... until</code> loop is executed as long as the expression is <em>false</em>, or <sub>0</sub>.</p></li>
-<li><p>In a <code>while ... wend</code> loop, the test for the expression is performed at the <em>beginning</em> of the loop, but in a <code>repeat ... until</code> loop, the expression test takes place at the <em>end</em> of the loop. This has the consequence that the <code>repeat ...</code> code block is guaranteed to be executed at least once, wheres the <code>while ...</code> code block is not.</p></li>
+<li><p>In a <code>while ... wend</code> loop, the loop is executed as long as the expression is <em>true</em> (ie, unequal to <sub>0</sub>), whereas a <code>repeat     ... until</code> loop is executed as long as the expression is <em>false</em>, or <sub>0</sub>.</p></li>
+<li><p>In a <code>while ... wend</code> loop, the test for the expression is performed at the <em>beginning</em> of the loop, but in a <code>repeat ...     until</code> loop, the expression test takes place at the <em>end</em> of the loop. This has the consequence that the <code>repeat ...</code> code block is guaranteed to be executed at least once, wheres the <code>while ...</code> code block is not.</p></li>
 </ul>
 <p><code>(expression)</code> can be any valid term which will result in a value returned, like a variable or a function call. It can even be useful to employ a constant here, namely when you want to break from the loop somewhere in the middle of the code block. For example –</p>
 <pre><code>while 1
@@ -221,7 +221,7 @@ wend</code></pre>
 <p>The keyword <code>exit</code> lets you exit immediately from the innermost loop it is found in. (This is equivalent to the <code>C</code> statement <code>break</code>.) You can specify a qualifier with <code>exit</code>, namely one of <code>for</code>, <code>loop</code>, <code>sub</code>, or <code>func</code>, which will make SmallBASIC leave the innermost surrounding structure of that type. (<code>loop</code> includes <code>repeat</code> and <code>while</code> constructs.)</p>
 <h2 id="exceptions-try-...-catch-...-throw">Exceptions: <code>try ... catch ... throw</code></h2>
 <p>Exceptions provide a fairly comfortable way to catch runtime errors occurring unexpectedly in your program. Of course, they can’t help with faulty program logic. Rather, exceptions are supposed to handle files not conforming to an expected format, hardware problems and the like.</p>
-<p>Formally, an exception block somewhat resembles a <code>select ... case</code> sequence. It consists of an outer <code>bracket</code> of <code>try</code> and <code>end try</code> keywords, which delimites the <code>regime</code> of code to which the exception handling applies.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Inside this bracket there are one or more <code>catch</code> sections, each of which applies to one particular error condition:</p>
+<p>Formally, an exception block somewhat resembles a <code>select ... case</code> sequence. It consists of an outer <code>bracket</code> of <code>try</code> and <code>end try</code> keywords, which delimites the <code>regime</code> of code to which the exception handling applies.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Inside this bracket there are one or more <code>catch</code> sections, each of which applies to one particular error condition:</p>
 <pre><code>try
     &#39; error-generating section
     ...
@@ -234,25 +234,25 @@ wend</code></pre>
     &#39; and so on
 end try</code></pre>
 <p>You have basically two options to catch errors this way:</p>
-<p>Firstly, as shown above, you may provide <em>several</em> <code>catch</code>-phrases.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> In this case, <code>error1</code>, <code>error2</code> and so on must be string expressions. Once an error is raised, these string expressions are compared to the error message associated with the error, and the first <code>catch</code> section which matches the error message will be executed,<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> whereupon the <code>try ... catch</code> section will be left and the <code>regular</code> surrounding code will be resumed. If none of the <code>catch</code> expressions matches, program execution is resumed after <code>end try</code>, too.</p>
+<p>Firstly, as shown above, you may provide <em>several</em> <code>catch</code>-phrases.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> In this case, <code>error1</code>, <code>error2</code> and so on must be string expressions. Once an error is raised, these string expressions are compared to the error message associated with the error, and the first <code>catch</code> section which matches the error message will be executed,<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> whereupon the <code>try ... catch</code> section will be left and the <code>regular</code> surrounding code will be resumed. If none of the <code>catch</code> expressions matches, program execution is resumed after <code>end try</code>, too.</p>
 <p>Your second option is to provide only a <em>single</em> <code>catch</code>. In this case, <code>error1</code> must be a simple string variable, and the current error string will be assigned to this variable (provided any error occured at all). The corresponding <code>catch</code> section will then be executed, regardless of the exact nature of the error.</p>
 <p>The second option is thus preferable if you either want to have a simple <code>catch all</code> which will deal with any imaginable error in a single sweep, or, at the other extreme, if the error conditions you expect to encounter are so confusing that you’d rather dedicate some more sophisticated code to them than simple string comparisons against the error messages.</p>
 <p>If no error is caused in the error-generating section, then none of the <code>catch</code> sections are executed. Errors raised outside the <code>try ... catch</code> section can’t be evaluated inside it. (The will have caused your program to halt already.)</p>
 <p>If no error occured, but you feel facetious, you can use <strong><code>throw</code> to create any desired error</strong>. The syntax is simply –</p>
 <pre><code>throw my_err</code></pre>
 <p>with the parameter <code>my_err</code> being the error string. (Outside of a <code>catch ... try</code> block, <code>throw</code> will cause the program to abort.)</p>
-<section class="footnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p><em>He either fears his fate too much<br />
+<li id="fn1" role="doc-endnote"><p><em>He either fears his fate too much<br />
 Or his deserts are small<br />
 Who dares not put it to the touch<br />
-To win, or lose, it all</em> – Earl of Montrose<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Currently, you can write <em>anything</em> you want there without causing an error, but I guess this is more a bug than a feature, and will be removed over the next few versions.<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>Yes, that’s correct. Read it again.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Obviously, in different sections of your code you may want to respond to the same error in different ways, thus there’s no <code>global</code> treatment.<a href="#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>if you’ll pardon the pun<a href="#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>Which means that, to use the exception mechanism responsibly, you must have a good idea what the error messages you may encounter will look like.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+To win, or lose, it all</em> – Earl of Montrose<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Currently, you can write <em>anything</em> you want there without causing an error, but I guess this is more a bug than a feature, and will be removed over the next few versions.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Yes, that’s correct. Read it again.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Obviously, in different sections of your code you may want to respond to the same error in different ways, thus there’s no <code>global</code> treatment.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>if you’ll pardon the pun<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>Which means that, to use the exception mechanism responsibly, you must have a good idea what the error messages you may encounter will look like.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </div>
@@ -261,7 +261,7 @@ To win, or lose, it all</em> – Earl of Montrose<a href="#fnref1" class="footno
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.5</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

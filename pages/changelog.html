@@ -79,10 +79,14 @@
 <li>Update plugin system to allow loading to be driven by the IMPORT statement</li>
 <li>m3Apply no longer crashes if the second argument is not an array</li>
 <li>parse JSON with SB “;” dimension syntax</li>
-<li><p>Added -i command switch for live mode</p>
-<p>This will run the BASIC program in a loop. It can be used with the debug module to rerun whenever the source code changes:</p>
-<p>import debug run(“xdotool windowactivate <code>xdotool search --onlyvisible --name \"Emacs\"</code>”) while (!debug.IsSourceModified()) rem main loop wend</p></li>
+<li>Added -i command switch for live mode</li>
 </ul>
+<p>This will run the BASIC program in a loop. It can be used with the debug module to rerun whenever the source code changes:</p>
+<pre><code>import debug
+run(&quot;xdotool windowactivate `xdotool search --onlyvisible --name \&quot;Emacs\&quot;`&quot;)
+while (!debug.IsSourceModified())
+  rem main loop
+wend</code></pre>
 <p><strong>12.23 (30 August 2021) </strong></p>
 <ul>
 <li>Allow RGB to be used with image array passed to IMAGE</li>
@@ -1432,7 +1436,7 @@ ex:
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.5</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>
