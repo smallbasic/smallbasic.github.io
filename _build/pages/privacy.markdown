@@ -47,4 +47,4 @@ _INSTALL_SHORTCUT_
 
 -------------
 
-This Privacy Policy is effective as of 18/09/2022
+This Privacy Policy is effective as of 19/09/2022
