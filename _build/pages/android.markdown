@@ -224,5 +224,5 @@ Use the PLAY command with the prefix "file://" to play an audio track. For suppo
 
 ## Privacy Policy [](#privacy-policy)
 
-[Android Privacy Policy](android_privacy.html)
+[Privacy Policy](privacy.html)
 
