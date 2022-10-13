@@ -59,6 +59,8 @@ The following packages can be created:
 
 ### Distribution Tool for Android
 
+![Screenshot of Distribution Tool](https://github.com/Joe7M/smallbasic.DistributionTool/raw/main/screenshot/AndroidDistTool.png)
+
 The Distribution-Tool for Android is so far only available for Linux and tested with Ubuntu 22.04 and Manjaro.
 
 - Download the newest release of the [Distribution Tool for Android](https://github.com/Joe7M/smallbasic.DistributionTool/releases)
@@ -70,7 +72,7 @@ The Distribution-Tool for Android is so far only available for Linux and tested 
 - Start the AppImage file (it might be necessary to make it executable: `chmod a+x DistributionTool*.AppImage` ). It will download and setup all necessary Android SDK components.
 - Create a key to sign your Android app. The key needs to be created only ones and can be used for all your apps. `keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias` will create a keystore called my-release-key.jks with a key called my-alias. Feel free to change the names.
 - Create app icons. An easy way is to use an online icon creator, like [icon.kitchen](https://icon.kitchen/). Download the created icon set and unzip the file.
-- If you want to transfer your newly created app to your android device, you have to [enable adb debugging](https://developer.android.com/studio/command-line/adb).
+- If you want to transfer your newly created app to your android device, you have to [enable USB debugging](https://developer.android.com/studio/command-line/adb#Enabling).
 
 GUI-Interface
 
