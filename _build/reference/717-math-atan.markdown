@@ -4,10 +4,17 @@
 
 Inverse tangent.
 
-Trig lesson two in TAN offers a lead in to this little demo:
+```
+a = tan(0.5)
+print a
+
+b = atan(a)
+print b
+```
+
+Little demo:
 
 ~~~
-
 ' pin the tail.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
 ' look how simple ATAN returns an angle from a ratio y/x 
  
@@ -23,9 +30,9 @@ color 14,4
 for player=1 to 12
   xtail=rnd*xlimit 'keeps the player tail in one line on the screen, hopefully
   ytail=rnd*ylim   'keeps the player on the screen and screen from scrolling, hopefully
-  angle=deg(atan(ytail/xtail))\\1 '<====== notice no angle involved with atan we feed it a ratio
+  angle=deg(atan(ytail/xtail))\1 '<====== notice no angle involved with atan we feed it a ratio
                                                   ' DEG converts the angle to degrees from radians
-  distance=((xtail^2+ytail^2)^.5)\\1
+  distance=((xtail^2+ytail^2)^.5)\1
   tail="^<"+str(player)+" deg:"+str(angle)+" dist:"+str(distance)
   at xtail,ytail:? tail
   if distance < windistance then windistance=distance:winner=player
@@ -34,7 +41,6 @@ next
 color 15,0 'cause a screen scroll on purpose
 at 0,ymax-th: ? "The winner is "+str(winner)+" at "+str(windistance)+" press any..."
 pause
-
 ~~~
 
 
