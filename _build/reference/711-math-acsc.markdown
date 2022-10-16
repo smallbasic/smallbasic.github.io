@@ -2,6 +2,14 @@
 
 > ACSC (x)
 
-Inverse co secant.
+Inverse cosecant.
+
+```
+a = csc(0.1)
+print a
+
+b = acsc(a)
+print b
+```
 
 
