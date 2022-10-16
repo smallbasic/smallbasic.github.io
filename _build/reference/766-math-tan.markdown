@@ -2,11 +2,17 @@
 
 > TAN (x)
 
-see COS for Trig lesson one
-see ATAN for a maybe fun demo involving TAN and ATAN
+```
+a = tan(0.5)
+print a
 
-Trigonometry lesson two.
-We will try this from a txt file instead.
+b = atan(a)
+print b
+```
+
+see COS, SIN, TAN and ATAN
+
+Trigonometry lesson
 
 Review:
 
@@ -83,40 +89,23 @@ A donkey is mounted on the SmallBASIC screen
 so that it's tail should be pinned at 0,0 ....
 see ATAN for "pin the tail.bas"
 
-This information is unavailable elsewhere.
-
-Wikipedia gives you formulas that look like ancient Egyptian glyph.
-Others, explain what is TAN - but don't even mention a single word about Arc TAN (as if there is absolutely no relation).
-This is really a valuable and practical information. (an extra VERY SHORT DEMO for this info would be even more astonishing).
-Thanks again.
-Edit: by SHORT DEMO I just mean few lines of code that illustrate how it's written in SmallBASiC, for creating the most simple shape... (you know, chunk by chunk... it's really a new world for me and maybe for some others).
-Like this? It would have been in 3 lines but it seems print usg needs it's own line
 TAN used in a short code example:
 
 ~~~
 ' TAN use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
 for degrees = 0 to 360 step 15
-? "For angle (degrees) = ";
-? usg "###";degrees;
-?" (or ";
-? usg "#.00";rad(degrees);
-?" radians ) the TANgent is ";
-? usg "#####.0000";tan(rad(degrees))  '<== typical to convert degrees to radians (with RAD) before TAN call
+  print "For angle (degrees) = ";
+  print usg "###";degrees;
+  print " (or ";
+  print usg "#.00";rad(degrees);
+  print " radians ) the TANgent is ";
+  print usg "#####.0000";tan(rad(degrees))  '<== typical to convert degrees to radians (with RAD) before TAN call
 next
-?:?"As the TANgent approaches 90 or 270 degrees the TANgent becomes 1/0 which is undefined."
+print
+print "As the TANgent approaches 90 or 270 degrees the TANgent becomes 1/0 which is undefined."
 pause
 
 ~~~
-
-I should make clear, TAN is not used directly for drawing on screen but indirectly it helps by calculating angles and lengths which is needed for drawing point to point or step drawing from last drawing x,y point.
-
-Yes, short example like this, or with one single shape on screen, is very very useful.
-For instance, I can show an example program of using bitwise XOR in calculating CRC-32 checksum, which is very useful code. But nobody will understand anything, because CRC-32 is complicated algorithm by itself. And it's very hard to understand how XOR is used in this algorithm unless you already very experienced with bit manipulation.
-
-It's useful to give a short and clear examples, something like:
-"How can I draw a line from point (x1,y1) to (x2,y2) using TAN."
-Later, if I know how to draw one line with TAN, then I will be able to draw a 3D box (maybe..).
-Small chunks...
 
 TAN use again in a few lines of code but I have to try and explain what is going on or it would be void of meaning.
 
@@ -126,8 +115,13 @@ TAN use again in a few lines of code but I have to try and explain what is going
 'x,y when used in TAN are relative positions to x1,y1 and not
 'absolute screen coordinates
 'you can move x1,y1 anywhere on screen!!!!
-x1=250:y1=150 'x,y of point 1 we will mark with yellow circle
+
+'x,y of point 1 we will mark with yellow circle
+x1=250
+y1=150
+
 circle x1,y1,2,1,14 'highlight start point in yellow radius 2
+
 'circle x,y,r,aspect,c   'aspect 1 is circle, !1=ellipse
 'say you want to make a line 60 degrees from x1,y1  and
 'you need the x2 100 greater than x1 or x2 = x1+100
@@ -135,39 +129,17 @@ circle x1,y1,2,1,14 'highlight start point in yellow radius 2
 'then TAN(RAD(60)) = y/100
 'then 100*TAN(rad(60) = y   by algebraic mult 100 both sides
 'so  y2=y1+100*TAN(rad(60)
+
 line x1,y1,x1+100,y1+100*TAN(RAD(60))  '<== HERE IS TAN
+
 'so here we used TAN to calculate the y change in height
 'from y1 to create a 60 angle from point x1,y1 and x2,y2 AND
 'AND make it so x2=100 more than x1
 'check draw arc at x1,y1 with 100 radius
 'for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect
+
 arc x1,y1,100,0,2*pi/6,1,14 '14=color yellow
+
 pause
 ~~~
-
-SUPREME; BRILLIANT; WELL DOCUMENTED; PRACTICAL; USEFUL; MERCIFUL, KNOCKS OUT.
-
-And the final jump back spinning kick (AKA jump hook kick):
-EVEN ME CAN UNDERSTAND IT AND PRACTICALLY USE IT !>
-I could never grasp those holy Aztec keywords... TAN, ASIN... and with H !!! ASINH... Mercy!.
-
-Please continue this way...
-Gravely.
-
-P.S. sorry for starting a new "comment" - my screen is so small that I cannot see the message by using "reply".
-
-I guess I hit the spot. :))
-I drew your cube just by defining 4 points for one square face and then using this code for the back 4 points.
-
-But I didn't stop there. I turned TAN(RAD(60) to TAN(RAD(angle) and put an angle increase in a loop and when...
-... well, I spent the night bouncing and spinning and growing/shrinking the cube. ;)
-
-You certainly hit the spot.
-"... well, I spent the night bouncing and spinning and growing/shrinking the cube. ;)">
-
-I know holistic therapist who cured other programmers...
-Look, I've made an example program for CIRCLE, using your TAN lesson!
-But I only changed the TAN with SIN, and it works....
-Now please, repeat that same lesson of TAN - for SIN. So I'll understand why and how it works (just copy the TAN lesson "TAN use again" and update it to explain how SIN works).
-
 
