@@ -2,6 +2,14 @@
 
 > TANH (x)
 
-Tangent.
+Hyperbolic tangent.
+
+```
+a = tanh(0.5)
+print a
+
+b = atanh(a)
+print b
+```
 
 
