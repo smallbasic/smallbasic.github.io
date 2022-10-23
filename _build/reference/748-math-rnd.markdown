@@ -4,6 +4,13 @@
 
 Returns a random number from the range 0 to 1.
 
+```
+RANDOMIZE
+print "Number between 0 and 1   : "; RND()
+print "Number between 5 and 12  : "; (12 - 5) * RND() + 5 
+print "Number between -5 and -12: "; (-12 - -5) * RND() - 5 
+```
+
 
 ~~~
 

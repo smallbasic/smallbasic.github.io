@@ -4,6 +4,28 @@
 
 Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.
 
+```
+' Create an array with some data
+DIM A
+A << 1
+A << "test"
+A << 2
+
+print A
+
+' Save the array. This will create the file myfile.txt in
+' the same directory as your BASIC file
+tsave "myfile.txt", A
+
+' Create a second array for loading
+dim B
+
+' Load the file
+tload "myfile.txt", B
+
+print B
+```
+
 Both these methods load a string/text file into an array.
 
 ~~~

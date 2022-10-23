@@ -4,6 +4,15 @@
 
 Cosine.
 
+```
+a = cos(0.5)
+print a
+
+b = acos(a)
+print b
+```
+
+See SIN, TAN and ATAN.
 
 ~~~
 

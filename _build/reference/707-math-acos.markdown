@@ -4,4 +4,8 @@
 
 Inverse cosine.
 
+```
+a = cos(pi)
+print acos(a)
+```
 

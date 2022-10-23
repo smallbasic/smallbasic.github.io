@@ -32,7 +32,7 @@ while asc(inkey) <> 27
   '^^^^^^^^^^^^^^^^^^^^^^^^  if want a = 0 to 2*pi, instead of -pi to pi
   
   arc centerX, centerY, 100, 0, a 'draw the arc from 0 to angle
-  s = "Angle of mouse to center of screen ~ "+deg(a)\\1+" degrees"
+  s = "Angle of mouse to center of screen ~ "+deg(a)\1+" degrees"
   locate 30, 20 : ? s
   showpage
   delay 10
