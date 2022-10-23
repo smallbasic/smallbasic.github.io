@@ -2,6 +2,12 @@
 <blockquote>
 <p>EXPRSEQ BYREF array, xmin, xmax, count USE expression</p>
 </blockquote>
-<p>Returns an array with ‘count’ elements. Each element had the ‘y’ value of its position as it is returned by the expression.</p>
-<pre><code>REM same as v=SEQ(0,1,11)
-EXPRSEQ v, 0, 1, 11 USE x</code></pre>
+<p>Returns an array with ‘count’ elements. Each element has the ‘y’ value of its position as it is returned by the expression.</p>
+<pre><code>def f(x) = 2*x
+
+EXPRSEQ v1, 0, 1, 5 USE f(x)
+print v1
+
+&#39;same as
+v2 = [f(0), f(0.25), f(0.5), f(0.75), f(1)]
+print v2</code></pre>

@@ -74,17 +74,9 @@
     </p>
   </div>
 </blockquote>
-<p>Sign of x (+1 for positive, -1 for negative and 0 for zero).</p>
-<pre><code>Built-in:    SGN
-Syntax:      SGN(numeric-expression)
-Description: SGN returns a value indicating the sign of a numeric expression (1 if the
-             expression is positive, 0 if it is zero, or -1 if it is negative).
-Comment:     SGN cannot accept a numeric string, such as &quot;24&quot;, as an argument.
-Example:
-             PRINT SGN(1), SGN(-1), SGN(0)  &#39; Output is:  1  -1  0
-             PRINT SGN(CINT(&quot;-2&quot;))          &#39; Output is:  -1
-             PRINT SGN(&quot;2 + 1&quot;)             &#39; Error
-See Also:    ABS, ABSMAX, ABSMIN, CINT</code></pre>
+<p>Sign of x (+1 for positive, -1 for negative and 0 for zero). SGN cannot accept a numeric string, such as “24”, as an argument.</p>
+<pre><code>PRINT SGN(2), SGN(-2), SGN(0)  &#39; Output is:   1 -1  0
+PRINT SGN(INT(&quot;-2&quot;))           &#39; Output is:  -1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using SGN</div>
     <div class="linklist">
@@ -210,7 +202,7 @@ SGN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Sun, 23 Oct 2022 12:49:43 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

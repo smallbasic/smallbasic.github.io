@@ -74,7 +74,16 @@
     </p>
   </div>
 </blockquote>
-<p>Polycent.</p>
+<p>returns the centroid of a polygon.</p>
+<p>Polycent is based on code from the article “Centroid of a Polygon” by Gerard Bashein and Paul R. Detmer.</p>
+<p>Polycent calculates the centroid (xCentroid, yCentroid) and area of a polygon, given its vertices (x[0], y[0]) … (x[n-1], y[n-1]). It is assumed that the contour is closed, i.e., that the vertex following (x[n-1], y[n-1]) is (x[0], y[0]). The algebraic sign of the area is positive for counterclockwise ordering of vertices in x-y plane; otherwise negative.</p>
+<pre><code>polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
+
+centroid = polycent(polygon)  
+print &quot;Centroid is at: &quot;; centroid
+
+drawpoly polygon color 12
+circle centroid(0), centroid(1) , 5 color 5</code></pre>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -174,7 +183,7 @@ POLYCENT by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Tue, 18 Oct 2022 22:54:32 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

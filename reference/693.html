@@ -76,12 +76,43 @@
 </blockquote>
 <p>Calculation of derivative. errcode = 0 for success; otherwise calculation error.</p>
 <ul>
-<li>x value of x</li>
-<li>maxtries maximum number of retries</li>
-<li>maxerr tolerance</li>
-<li>errcode 0 for success; otherwise calculation error</li>
-<li>result the result</li>
+<li>x: value of x</li>
+<li>maxtries: maximum number of retries</li>
+<li>maxerr: tolerance</li>
+<li>errcode: 0 for success; otherwise calculation error</li>
+<li>result: the result</li>
+<li>expr: f(x)</li>
 </ul>
+<pre><code>&#39; What is the derivative of f(x) for a given x
+
+def f(x) = 2*x^2+2
+
+x = 3
+result = 0
+errcode = 0
+
+deriv x, 10, 0.01, result, errcode USE f(x)
+
+
+def d(x) = 4*x &#39; Exact derivative of f(x) for comparision
+
+print &quot;Result of DERIV  at x = &quot;; x; &quot; : &quot;; result
+print &quot;Exact derivative at x = &quot;; x; &quot; : &quot;; d(x)</code></pre>
+<pre><code>&#39; What is the derivative of f(x) for a given x
+
+def f(x) = x^3 + 2 * exp(2*x)
+
+x = 3
+result = 0
+errcode = 0
+
+deriv x, 10, 0.000001, result, errcode USE f(x)
+
+
+def d(x) = 3*x^2 + 4*exp(2*x) &#39; Exact derivative of f(x) for comparision
+
+print &quot;Result of DERIV  at x = &quot;; x; &quot; : &quot;; result
+print &quot;Exact derivative at x = &quot;; x; &quot; : &quot;; d(x)</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using DERIV</div>
     <div class="linklist">
@@ -194,7 +225,7 @@ DERIV by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Tue, 18 Oct 2022 21:48:23 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

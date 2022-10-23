@@ -9,4 +9,16 @@
 <li>toler tolerance number. (the absolute value of the lowest acceptable number) default = 0 = none…</li>
 </ul>
 <pre><code>|x| &lt;= toler : x = 0</code></pre>
-<p>The result is a matrix Nx1. The array is two-dimension array.</p>
+<p>The result is a matrix Nx1. The array is two-dimensional.</p>
+<pre><code>print &quot;Solve this:&quot;
+print &quot;  5x - 2y + 3z = -2&quot;
+print &quot; -2x + 7y + 5z =  7&quot;
+print &quot;  3x + 5y + 6z =  9&quot;
+print
+
+A = [ 5, -2, 3; -2, 7, 5; 3, 5, 6]
+B = [ -2; 7; 9]
+
+C = LinEqn(A, B)
+
+print &quot;[x;y;z] = &quot;; C</code></pre>

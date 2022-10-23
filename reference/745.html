@@ -75,6 +75,67 @@
   </div>
 </blockquote>
 <p>Distance of point A from line segment B-C.</p>
+<pre><code>&#39; Define line segment
+Bx = 100
+By = 100
+Cx = 200
+Cy = 300
+
+&#39; Define point
+Ax = 150
+Ay = 50
+
+Distance = PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay) 
+print &quot;Distant between line and point is &quot;; Distance  ;&quot; pixel&quot;</code></pre>
+<pre><code>&#39; Interactive example to illustrate the geometry of PTDISTSEG
+
+Bx = 200
+By = 300
+Ax = 300
+Ay = 100
+
+pen on
+while(!pen(12))
+
+  cls
+  print &quot;Move Mouse. Press Left Mouse Button to exit&quot;
+  
+  Cx = pen(10)
+  Cy = pen(11)
+  
+  Distance = PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay) 
+  print &quot;Distant between line and point is &quot;; Distance  ;&quot; pixel&quot;
+  
+  Lx = Cx - Bx
+  Ly = Cy - By
+  
+  if(Lx != 0 AND Ly != 0) then
+    &#39; Calculate projection vector V using dot-product
+    Px = Ax - Bx
+    Py = Ay - By
+    Vx = Bx + (Lx * Px + Ly * Py) / (Lx^2 + Ly^2) * Lx
+    Vy = By + (Lx * Px + Ly * Py) / (Lx^2 + Ly^2) * Ly
+
+    &#39; Test if V is on the line segment
+    t = (Vx-Bx)/Lx
+    if(t &lt; 0) then
+      Vx = Bx
+      Vy = By
+    elseif(t &gt; 1) then
+      Vx = Cx
+      Vy = Cy
+    endif
+
+  endif
+
+  &#39; Draw
+  line Bx, By, Cx, Cy color 10   &#39; Line
+  line Ax, Ay, Vx, Vy color 2    &#39; Distant between line and point
+  circle Ax, Ay, 5 color 11      &#39; Cirlce at position of the point
+  showpage
+  delay(50)
+  
+wend</code></pre>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -174,7 +235,7 @@ PTDISTSEG by submitting a <a href="https://github.com/smallbasic/smallbasic.gith
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sat, 22 Oct 2022 19:17:42 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

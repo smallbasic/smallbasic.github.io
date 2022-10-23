@@ -3,6 +3,25 @@
 <p>TLOAD file, BYREF var [, type]</p>
 </blockquote>
 <p>Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.</p>
+<pre><code>&#39; Create an array with some data
+DIM A
+A &lt;&lt; 1
+A &lt;&lt; &quot;test&quot;
+A &lt;&lt; 2
+
+print A
+
+&#39; Save the array. This will create the file myfile.txt in
+&#39; the same directory as your BASIC file
+tsave &quot;myfile.txt&quot;, A
+
+&#39; Create a second array for loading
+dim B
+
+&#39; Load the file
+tload &quot;myfile.txt&quot;, B
+
+print B</code></pre>
 <p>Both these methods load a string/text file into an array.</p>
 <pre><code>
 &#39; TLOAD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-04

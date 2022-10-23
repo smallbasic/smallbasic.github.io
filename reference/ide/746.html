@@ -3,3 +3,41 @@
 <p>PTSIGN (Ax,Ay,Bx,By,Qx,Qy)</p>
 </blockquote>
 <p>The sign of point Q from line segment A-&gt;B.</p>
+<pre><code>&#39; Define line
+Bx = 100
+By = 100
+Cx = 200
+Cy = 150
+
+&#39; Define point
+Ax = 150
+Ay = 50
+
+Sign = PTSIGN(Bx, By, Cx, Cy, Ax,Ay) 
+print &quot;Sign of point relative to the line &quot;; Sign</code></pre>
+<pre><code>&#39; Interactive example to illustrate the geometry of PTDISTLN
+
+Bx = 200
+By = 300
+Ax = 300
+Ay = 100
+
+pen on
+while(!pen(12))
+
+  cls
+  print &quot;Move Mouse. Press Left Mouse Button to exit&quot;
+  
+  Cx = pen(10)
+  Cy = pen(11)
+  
+  Sign = PTSIGN (Bx,By,Cx,Cy,Ax,Ay) 
+  print &quot;Sign of point relative to the line &quot;; Sign
+  
+  &#39; Draw
+  line Bx, By, Cx, Cy color 10   &#39; Line
+  circle Ax, Ay, 5 color 11      &#39; Cirlce at position of the point
+  showpage
+  delay(50)
+  
+wend</code></pre>

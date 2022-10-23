@@ -75,6 +75,25 @@
   </div>
 </blockquote>
 <p>Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.</p>
+<pre><code>&#39; Create an array with some data
+DIM A
+A &lt;&lt; 1
+A &lt;&lt; &quot;test&quot;
+A &lt;&lt; 2
+
+print A
+
+&#39; Save the array. This will create the file myfile.txt in
+&#39; the same directory as your BASIC file
+tsave &quot;myfile.txt&quot;, A
+
+&#39; Create a second array for loading
+dim B
+
+&#39; Load the file
+tload &quot;myfile.txt&quot;, B
+
+print B</code></pre>
 <p>Both these methods load a string/text file into an array.</p>
 <pre><code>
 &#39; TLOAD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-04
@@ -204,7 +223,7 @@ TLOAD by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Fri, 14 Oct 2022 15:28:24 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

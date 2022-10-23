@@ -2,4 +2,58 @@
 <blockquote>
 <p>DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr</p>
 </blockquote>
-<p>Differential equation - Runge-Kutta method. x0 = initial x,y, xf = x final. errcode = 0 for success; otherwise calculation error. yf = result.</p>
+<p>Solving first-order differential equations using Runge-Kutta method.</p>
+<p>dy/dx = f(y,x) with start condition: y(x = x0) = y0</p>
+<p>x0,y0 = initial x,y<br />
+xf = final x<br />
+errcode = 0 for success; otherwise calculation error<br />
+yf = result</p>
+<pre><code>&#39; Solving dy/dx = 7*y^2 * x^3 with start condition y(2) = 3 
+
+def f1(x,y) = 7*y^2 * x^3
+
+y0 = 3
+x0 = 2
+yf = 0
+xf = 1 
+maxseg = 10000
+maxerr = 0.001
+errcode = 0
+
+diffeqn x0, y0, xf, maxseg, maxerr, yf, errcode USE f1(x,y)
+
+&#39; Exact solution for comparision
+def g1(x) = -1 / (7/4 * x^4 - 85/3)
+
+print &quot;g1(xf) = &quot;; g1(xf)
+print &quot;yf(xf) = &quot;; yf
+
+if(errcode != 0) then
+    print &quot;Error solving equation&quot;
+    print &quot;Increasing maxseg might help&quot;
+endif</code></pre>
+<pre><code>&#39; Defining the differential equation for a stiffness system
+
+def f2(y,t) = -1000*y + 3000 - 2000 * exp(-t)
+
+&#39; Solving equation at time tf = 0.001 seconds with y(0) = 0
+y0 = 0
+t0 = 0
+yf = 0
+tf = 0.001 
+maxseg = 1000
+maxerr = 0.001
+errcode = 0
+
+diffeqn t0, y0, tf, maxseg, maxerr, yf, errcode USE f2(y,t)
+
+&#39; Exact solution for comparision
+def g2(t) = 3 - 0.998*exp(-1000*t) - 2.002 * exp(-t)
+
+print &quot;g2(tf) = &quot;; g2(tf)
+print &quot;yf(tf) = &quot;; yf
+
+if(errcode != 0) then
+    print &quot;Error solving equation&quot;
+    print &quot;Increasing maxseg might help&quot;
+endif</code></pre>

@@ -3,9 +3,13 @@
 <p>ATAN (x)</p>
 </blockquote>
 <p>Inverse tangent.</p>
-<p>Trig lesson two in TAN offers a lead in to this little demo:</p>
-<pre><code>
-&#39; pin the tail.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
+<pre><code>a = tan(0.5)
+print a
+
+b = atan(a)
+print b</code></pre>
+<p>Little demo:</p>
+<pre><code>&#39; pin the tail.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
 &#39; look how simple ATAN returns an angle from a ratio y/x 
  
 tw=txtw(string(22,&quot;W&quot;)):xlimit=xmax-tw
@@ -20,9 +24,9 @@ color 14,4
 for player=1 to 12
   xtail=rnd*xlimit &#39;keeps the player tail in one line on the screen, hopefully
   ytail=rnd*ylim   &#39;keeps the player on the screen and screen from scrolling, hopefully
-  angle=deg(atan(ytail/xtail))\\1 &#39;&lt;====== notice no angle involved with atan we feed it a ratio
+  angle=deg(atan(ytail/xtail))\1 &#39;&lt;====== notice no angle involved with atan we feed it a ratio
                                                   &#39; DEG converts the angle to degrees from radians
-  distance=((xtail^2+ytail^2)^.5)\\1
+  distance=((xtail^2+ytail^2)^.5)\1
   tail=&quot;^&lt;&quot;+str(player)+&quot; deg:&quot;+str(angle)+&quot; dist:&quot;+str(distance)
   at xtail,ytail:? tail
   if distance &lt; windistance then windistance=distance:winner=player
@@ -30,5 +34,4 @@ for player=1 to 12
 next
 color 15,0 &#39;cause a screen scroll on purpose
 at 0,ymax-th: ? &quot;The winner is &quot;+str(winner)+&quot; at &quot;+str(windistance)+&quot; press any...&quot;
-pause
-</code></pre>
+pause</code></pre>

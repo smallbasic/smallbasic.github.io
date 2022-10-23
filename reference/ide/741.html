@@ -3,3 +3,10 @@
 <p>POLYAREA (poly)</p>
 </blockquote>
 <p>Returns the area of the polyline poly.</p>
+<pre><code>polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
+drawpoly polygon color 12
+
+Area = polyarea(polygon) / 2  &#39; Bug, please divide area always by 2
+
+print &quot;Polyarea() returns: &quot;; Area
+print &quot;Exact area is 50x50 = 2500&quot;</code></pre>

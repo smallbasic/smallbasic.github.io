@@ -1,58 +1,76 @@
 <h1 id="sin">SIN</h1>
 <blockquote>
-<p>SIN (x)</p>
+<p>SIN(x)</p>
 </blockquote>
-<p>First off, Trig lessons started in COS comments of this Language reference, check that for some remarks about trig functions.</p>
-<p>2nd, SIN and COS use radians for angle measure, just use the RAD function to convert an angle in degrees to radians. Radians are circle measures based on pi instead of degrees.</p>
+<p>Sinus.</p>
+<pre><code>a = sin(0.5)
+print a
+
+b = asin(a)
+print b</code></pre>
+<p>SIN and COS use radians for angle measure, just use the RAD function to convert an angle in degrees to radians. Radians are circle measures based on pi instead of degrees.</p>
 <pre><code>2*pi = one circle 360 degrees
-    pi = 180 degrees half a circle
- pi/2 = 90   degrees 1/4 circle
- pi/4 = 45   degrees 1/8 circle
- pi/6 = 60   degrees 1/6 circle
-pi/12= 30   degree s 1/12 circle
-3rd, Here is a demo of cool stuff you can do with SIN and COS:</code></pre>
+  pi = 180  degrees half a circle
+pi/2 = 90   degrees 1/4 circle
+pi/4 = 45   degrees 1/8 circle
+pi/6 = 60   degrees 1/6 circle
+pi/12= 30   degree s 1/12 circle</code></pre>
+<p>Here is a demo of cool stuff you can do with SIN and COS:</p>
 <pre><code>&#39;Drawing spiral around point.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
 &#39;using SIN and COS in a most common situation drawing at an angle from a point
-cx=xmax\\2:cy=ymax\\2
+
+cx=xmax\2:cy=ymax\2
+
 for degree=0 to 360 step 10   &#39;zero is due East
-  line cx,cy step 10*(degree^.5)*cos(rad(degree)),10*(degree^.5)*sin(rad(degree)),rgb(0,0,degree\\360*128+127)
-  at 0,0: ?spc(100)
+
+  line cx,cy step 10*(degree^.5) * cos(rad(degree)), 10*(degree^.5) * sin(rad(degree)), rgb(0,0,degree\360*128+127)
+
+  at 0,0: print spc(100)
   at 0,0
+  
   if degree=0 then
-    ? &quot; 0 degrees don&#39;t worry, you haven&#39;t seen nothing yet! press any...
+    print &quot; 0 degrees don&#39;t worry, you haven&#39;t seen nothing yet! press any...
   else
-    ? degree;&quot; degrees press any...&quot;
+    print degree;&quot; degrees press any...&quot;
   end if
-pause
+  
+  pause
 next
-? &quot;Notice how the the drawing started due East for 0 degrees and&quot;
-? &quot;as the angle increased the drawing went around clock-wise.&quot;
+
+print &quot;Notice how the the drawing started due East for 0 degrees and&quot;
+print &quot;as the angle increased the drawing went around clock-wise.&quot;
+
 pause
+
 cls
+
 &#39;now I am doing a LOGO like program and I want 0 degrees to be due North
 &#39;due North is -90 degrees for clock-wise rotation so subtract 90 from degrees
+
 for degree=0 to 360 step 10
-  line cx,cy step 10*(degree^.5)*cos(rad(degree-90)),10*(degree^.5)*sin(rad(degree-90)),rgb(0,0,degree\\360*128+127)
-  at 0,0: ?spc(100)
+  
+  line cx,cy step 10*(degree^.5) * cos(rad(degree-90)), 10*(degree^.5) * sin(rad(degree-90)), rgb(0,0,degree\360*128+127)
+
+  at 0,0: print spc(100)
   at 0,0
+
   if degree=0 then
-    ? &quot; 0 degrees don&#39;t worry, you haven&#39;t seen nothing yet! press any...&quot;
+    print &quot; 0 degrees don&#39;t worry, you haven&#39;t seen nothing yet! press any...&quot;
   else
-    ? degree;&quot; degrees press any...&quot;
+    print degree;&quot; degrees press any...&quot;
   end if
-pause
+  
+  pause
+
 next
-? &quot;Notice how the drawing started due North because of the -90 adjustment made in SIN and COS calls&quot;
-?:? &quot;press any to end...&quot;
+print &quot;Notice how the drawing started due North because of the -90 adjustment made in SIN and COS calls&quot;
+print
+print  &quot;press any to end...&quot;
 pause</code></pre>
 <p>this is the crucial line:</p>
-<pre><code>
-line cx,cy step 10*(degree^.5)*cos(rad(degree)),10*(degree^.5)*sin(rad(degree)),rgb(0,0,degree\\360*128+127)
-</code></pre>
-<p>The multiple 10*(degree^.5) to both SIN and COS controls how far the extension of the line will be from point cx,cy “origin” here as the degrees increase so did the extension out which cause the spiral effect.</p>
-<p>The COS calculation was used for x “the run” or horizontal component and the SIN calculation was used for y “the rise” or vertical component.</p>
-<p>This is really, really important to use and play with even if you don’t understand all the details, the code will serve you well.</p>
-<p>Still I did my best to explain how this works, so it is a bit wordy…</p>
+<pre><code>line cx,cy step 10*(degree^.5)*cos(rad(degree)),10*(degree^.5)*sin(rad(degree)),rgb(0,0,degree\\360*128+127)</code></pre>
+<p>The multiple 10*(degree^.5) to both SIN and COS controls how far the extension of the line will be from point cx,cy “origin” here as the degrees increase so did the extension out which cause the spiral effect. The COS calculation was used for x “the run” or horizontal component and the SIN calculation was used for y “the rise” or vertical component. This is really, really important to use and play with even if you don’t understand all the details, the code will serve you well. Still I did my best to explain how this works, so it is a bit wordy…</p>
+<p>Here another example:</p>
 <pre><code>&#39; sin and cos use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-15
 &#39;                    SIN and COS work as a team
 &#39;SIN and COS are used most for drawing points in circle around a central point.
@@ -80,6 +98,7 @@ line cx,cy step 10*(degree^.5)*cos(rad(degree)),10*(degree^.5)*sin(rad(degree)),
 &#39;to make absolute screen point it is y = cy + radius*SIN(angle)
 &#39;So going around a central point x=cx+radius*COS(angle),y=cy+radius*SIN(angle)
 &#39;will locate points equal distance from center for equal sided polygon
+
 cx=xmax/2 : cy=ymax/2 &#39;here&#39;s our center move it anywhere on screen
 &#39;cx=100 : cy = 500 &#39;&lt;== try different center points
 &#39;radius=100 &#39;draw points in a radius of 100 around cx,cy
@@ -118,15 +137,7 @@ while 1
   pause
 wend
 &#39;you are just a few simple steps away from spinning these polygons!</code></pre>
-<p>Perfect.</p>
-<ol>
-<li>All elementary information in a single place.</li>
-<li>Documented very well (even I understand, at least how to use it).</li>
-<li>Simple, short, and practical demo code.</li>
-</ol>
-<p>As far as I concerned: they may shut down Wikipedia right now.</p>
-<p>Thanks! By the way… Is it possible to accurately&gt; calculate the Length&gt; of an Arc (segment of an ellipse)? Can I get the length of an Arc in let’s say millimetres? As if it was a regular line?</p>
-<p>(arc length discussion picked up on forum) Here is graph of the three main Trig ratios:</p>
+<p>Here is graph of the three main Trig ratios:</p>
 <pre><code>&#39; sin-cos-tan.bas from FLTK samples
 cls
 at 0,ymax/2+txth(&quot;Q&quot;)
@@ -135,8 +146,8 @@ color 8: ? &quot;cos(x)&quot;:
 color 12: ? &quot;tan(x)&quot;
 line 0,ymax/2,xmax,ymax/2  &#39;central or x axis, ymax/4 is multiplier scaled to 1/4 of ymax
 for i=0 to xmax
-pset i,ymax/2-sin(i*2*pi/ymax)*ymax/4  color 1
-pset i,ymax/2-cos(i*2*pi/ymax)*ymax/4 color 8
-pset i,ymax/2-tan(i*2*pi/ymax)*ymax/4 color 12
+   pset i,ymax/2-sin(i*2*pi/ymax)*ymax/4  color 1
+   pset i,ymax/2-cos(i*2*pi/ymax)*ymax/4 color 8
+   pset i,ymax/2-tan(i*2*pi/ymax)*ymax/4 color 12
 next
 pause</code></pre>

@@ -2131,6 +2131,26 @@ SEEK (fileN)
 
 TLOAD file, BYREF var [, type]
 
+    ' Create an array with some data
+    DIM A
+    A << 1
+    A << "test"
+    A << 2
+
+    print A
+
+    ' Save the array. This will create the file myfile.txt in
+    ' the same directory as your BASIC file
+    tsave "myfile.txt", A
+
+    ' Create a second array for loading
+    dim B
+
+    ' Load the file
+    tload "myfile.txt", B
+
+    print B
+
 Both these methods load a string/text file into an array.
 
 
@@ -2199,6 +2219,26 @@ TSAVE file, var
 -   file - A string expression that follows OS file naming conventions.
 -   var - An array variable or a string variable. Expressions are not
     allowed.
+
+    ' Create an array with some data
+    DIM A
+    A << 1
+    A << "test"
+    A << 2
+
+    print A
+
+    ' Save the array. This will create the file myfile.txt in
+    ' the same directory as your BASIC file
+    tsave "myfile.txt", A
+
+    ' Create a second array for loading
+    dim B
+
+    ' Load the file
+    tload "myfile.txt", B
+
+    print B
 
 +========================================================================================+
 |                                     80. (File) WRITE                                   |
@@ -6075,73 +6115,167 @@ XOR is Not equivalent syntax to: a ~ b
 +========================================================================================+
 
 ABS (x)
+    a =  1
+    b = -1
+
+    print abs(a)
+    print abs(b)
+
 +========================================================================================+
 |                                    174. (Math) ABSMAX                                  |
 +========================================================================================+
 
 ABSMAX (...)
+    ' absmax of three values
+    print absmax(-3,-1,2)
+
+    ' absmax of three variables
+    a = -3
+    b = -1
+    c =  2
+    print absmax(a,b,c)
+
+    ' absmax of an array
+    a = [-3,-1,2]
+    print absmax(a)
+
 +========================================================================================+
 |                                    175. (Math) ABSMIN                                  |
 +========================================================================================+
 
 ABSMIN (...)
+    ' absmin of three values
+    print absmin(-3,-1,2)
+
+    ' absmin of three variables
+    a = -3
+    b = -1
+    c =  2
+    print absmin(a,b,c)
+
+    ' absmin of an array
+    a = [-3,-1,2]
+    print absmin(a)
+
 +========================================================================================+
 |                                     176. (Math) ACOS                                   |
 +========================================================================================+
 
 ACOS (x)
+    a = cos(pi)
+    print acos(a)
+
 +========================================================================================+
 |                                    177. (Math) ACOSH                                   |
 +========================================================================================+
 
 ACOSH (x)
+    a = cosh(pi)
+    print a
+
+    b = acosh(a)
+    print b
+
 +========================================================================================+
 |                                     178. (Math) ACOT                                   |
 +========================================================================================+
 
 ACOT (x)
+    a = cot(pi)
+    print a
+
+    b = acot(a)
+    print b
+
 +========================================================================================+
 |                                    179. (Math) ACOTH                                   |
 +========================================================================================+
 
 ACOTH (x)
+    a = coth(pi)
+    print a
+
+    b = acoth(a)
+    print b
+
 +========================================================================================+
 |                                     180. (Math) ACSC                                   |
 +========================================================================================+
 
 ACSC (x)
+    a = csc(0.1)
+    print a
+
+    b = acsc(a)
+    print b
+
 +========================================================================================+
 |                                    181. (Math) ACSCH                                   |
 +========================================================================================+
 
 ACSCH (x)
+    a = csch(0.1)
+    print a
+
+    b = acsch(a)
+    print b
+
 +========================================================================================+
 |                                     182. (Math) ASEC                                   |
 +========================================================================================+
 
 ASEC (x)
+    a = sec(0.1)
+    print a
+
+    b = asec(a)
+    print b
+
 +========================================================================================+
 |                                    183. (Math) ASECH                                   |
 +========================================================================================+
 
 ASECH (x)
+    a = sech(0.1)
+    print a
+
+    b = asech(a)
+    print b
+
 +========================================================================================+
 |                                     184. (Math) ASIN                                   |
 +========================================================================================+
 
 ASIN (x)
+    a = sin(0.5)
+    print a
+
+    b = asin(a)
+    print b
+
 +========================================================================================+
 |                                    185. (Math) ASINH                                   |
 +========================================================================================+
 
 ASINH (x)
+    a = sinh(0.5)
+    print a
+
+    b = asinh(a)
+    print b
+
 +========================================================================================+
 |                                     186. (Math) ATAN                                   |
 +========================================================================================+
 
 ATAN (x)
-Trig lesson two in TAN offers a lead in to this little demo:
+    a = tan(0.5)
+    print a
 
+    b = atan(a)
+    print b
+
+Little demo:
 
     ' pin the tail.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
     ' look how simple ATAN returns an angle from a ratio y/x 
@@ -6158,9 +6292,9 @@ Trig lesson two in TAN offers a lead in to this little demo:
     for player=1 to 12
       xtail=rnd*xlimit 'keeps the player tail in one line on the screen, hopefully
       ytail=rnd*ylim   'keeps the player on the screen and screen from scrolling, hopefully
-      angle=deg(atan(ytail/xtail))\\1 '<====== notice no angle involved with atan we feed it a ratio
+      angle=deg(atan(ytail/xtail))\1 '<====== notice no angle involved with atan we feed it a ratio
                                                       ' DEG converts the angle to degrees from radians
-      distance=((xtail^2+ytail^2)^.5)\\1
+      distance=((xtail^2+ytail^2)^.5)\1
       tail="^<"+str(player)+" deg:"+str(angle)+" dist:"+str(distance)
       at xtail,ytail:? tail
       if distance < windistance then windistance=distance:winner=player
@@ -6201,7 +6335,7 @@ ATAN2 (x, y)
       '^^^^^^^^^^^^^^^^^^^^^^^^  if want a = 0 to 2*pi, instead of -pi to pi
       
       arc centerX, centerY, 100, 0, a 'draw the arc from 0 to angle
-      s = "Angle of mouse to center of screen ~ "+deg(a)\\1+" degrees"
+      s = "Angle of mouse to center of screen ~ "+deg(a)\1+" degrees"
       locate 30, 20 : ? s
       showpage
       delay 10
@@ -6212,21 +6346,53 @@ ATAN2 (x, y)
 +========================================================================================+
 
 ATANH (x)
+    a = tanh(0.5)
+    print a
+
+    b = atanh(a)
+    print b
+
 +========================================================================================+
 |                                     189. (Math) ATN                                    |
 +========================================================================================+
 
 ATN (x)
+    a = tan(0.5)
+    print a
+
+    b = atan(a)
+    print b
+
+    c = atn(a)
+    print c
+
 +========================================================================================+
 |                                     190. (Math) CEIL                                   |
 +========================================================================================+
 
 CEIL (x)
+For smallest integer value less then x see FLOOR(x)
+
+    print "ceil(1.1)  = "; ceil(1.1)
+    print "ceil(1.5)  = "; ceil(1.5)
+    print "ceil(1.9)  = "; ceil(1.9)
+    print "ceil(-1.1) = "; ceil(-1.1)
+    print "ceil(-1.5) = "; ceil(-1.5)
+    print "ceil(-1.9) = "; ceil(-1.9)
+
 +========================================================================================+
 |                                     191. (Math) COS                                    |
 +========================================================================================+
 
 COS (x)
+    a = cos(0.5)
+    print a
+
+    b = acos(a)
+    print b
+
+See SIN, TAN and ATAN.
+
 
     'TRIG lesson one.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12
     'note: the lines in the diagram have been thickened to help see and identify the color
@@ -6377,42 +6543,111 @@ can locate the absolute screen x,y coordinate:
 +========================================================================================+
 
 COSH (x)
+    a = cosh(pi)
+    print a
+
+    b = acosh(a)
+    print b
+
 +========================================================================================+
 |                                     193. (Math) COT                                    |
 +========================================================================================+
 
 COT (x)
+    a = cot(pi)
+    print a
+
+    b = acot(a)
+    print b
+
 +========================================================================================+
 |                                     194. (Math) COTH                                   |
 +========================================================================================+
 
 COTH (x)
+    a = coth(pi)
+    print a
+
+    b = acoth(a)
+    print b
+
 +========================================================================================+
 |                                     195. (Math) CSC                                    |
 +========================================================================================+
 
 CSC (x)
+    a = csc(0.1)
+    print a
+
+    b = acsc(a)
+    print b
+
 +========================================================================================+
 |                                     196. (Math) CSCH                                   |
 +========================================================================================+
 
 CSCH (x)
+    a = csch(0.1)
+    print a
+
+    b = acsch(a)
+    print b
+
 +========================================================================================+
 |                                     197. (Math) DEG                                    |
 +========================================================================================+
 
 DEG (x)
+    a = deg(pi)
+    print a
+
+    b = rad(a)
+    print b
+
 +========================================================================================+
 |                                    198. (Math) DERIV                                   |
 +========================================================================================+
 
 DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
 
--   x value of x
--   maxtries maximum number of retries
--   maxerr tolerance
--   errcode 0 for success; otherwise calculation error
--   result the result
+-   x: value of x
+-   maxtries: maximum number of retries
+-   maxerr: tolerance
+-   errcode: 0 for success; otherwise calculation error
+-   result: the result
+-   expr: f(x)
+
+    ' What is the derivative of f(x) for a given x
+
+    def f(x) = 2*x^2+2
+
+    x = 3
+    result = 0
+    errcode = 0
+
+    deriv x, 10, 0.01, result, errcode USE f(x)
+
+
+    def d(x) = 4*x ' Exact derivative of f(x) for comparision
+
+    print "Result of DERIV  at x = "; x; " : "; result
+    print "Exact derivative at x = "; x; " : "; d(x)
+
+    ' What is the derivative of f(x) for a given x
+
+    def f(x) = x^3 + 2 * exp(2*x)
+
+    x = 3
+    result = 0
+    errcode = 0
+
+    deriv x, 10, 0.000001, result, errcode USE f(x)
+
+
+    def d(x) = 3*x^2 + 4*exp(2*x) ' Exact derivative of f(x) for comparision
+
+    print "Result of DERIV  at x = "; x; " : "; result
+    print "Exact derivative at x = "; x; " : "; d(x)
 
 +========================================================================================+
 |                                    199. (Math) DETERM                                  |
@@ -6420,70 +6655,165 @@ DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
 
 DETERM (A[, toler])
 
+    A = [ 0, 1, 2; 3, 2, 1; 1, 1, 0]
+    print determ(A)
+
 +========================================================================================+
 |                                   200. (Math) DIFFEQN                                  |
 +========================================================================================+
 
 DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr
-result.
+dy/dx = f(y,x) with start condition: y(x = x0) = y0
+
+x0,y0 = initial x,y
+xf = final x
+errcode = 0 for success; otherwise calculation error
+yf = result
+
+    ' Solving dy/dx = 7*y^2 * x^3 with start condition y(2) = 3 
+
+    def f1(x,y) = 7*y^2 * x^3
+
+    y0 = 3
+    x0 = 2
+    yf = 0
+    xf = 1 
+    maxseg = 10000
+    maxerr = 0.001
+    errcode = 0
+
+    diffeqn x0, y0, xf, maxseg, maxerr, yf, errcode USE f1(x,y)
+
+    ' Exact solution for comparision
+    def g1(x) = -1 / (7/4 * x^4 - 85/3)
+
+    print "g1(xf) = "; g1(xf)
+    print "yf(xf) = "; yf
+
+    if(errcode != 0) then
+        print "Error solving equation"
+        print "Increasing maxseg might help"
+    endif
+
+    ' Defining the differential equation for a stiffness system
+
+    def f2(y,t) = -1000*y + 3000 - 2000 * exp(-t)
+
+    ' Solving equation at time tf = 0.001 seconds with y(0) = 0
+    y0 = 0
+    t0 = 0
+    yf = 0
+    tf = 0.001 
+    maxseg = 1000
+    maxerr = 0.001
+    errcode = 0
+
+    diffeqn t0, y0, tf, maxseg, maxerr, yf, errcode USE f2(y,t)
+
+    ' Exact solution for comparision
+    def g2(t) = 3 - 0.998*exp(-1000*t) - 2.002 * exp(-t)
+
+    print "g2(tf) = "; g2(tf)
+    print "yf(tf) = "; yf
+
+    if(errcode != 0) then
+        print "Error solving equation"
+        print "Increasing maxseg might help"
+    endif
 
 +========================================================================================+
 |                                     201. (Math) EXP                                    |
 +========================================================================================+
 
 EXP (x)
+    a = exp(2)
+    print a
+
+    b = log(a)
+    print b
+
 +========================================================================================+
 |                                   202. (Math) EXPRSEQ                                  |
 +========================================================================================+
 
 EXPRSEQ BYREF array, xmin, xmax, count USE expression
 
-    REM same as v=SEQ(0,1,11)
-    EXPRSEQ v, 0, 1, 11 USE x
+    def f(x) = 2*x
+
+    EXPRSEQ v1, 0, 1, 5 USE f(x)
+    print v1
+
+    'same as
+    v2 = [f(0), f(0.25), f(0.5), f(0.75), f(1)]
+    print v2
 
 +========================================================================================+
 |                                     203. (Math) FIX                                    |
 +========================================================================================+
 
 FIX (x)
+    print "fix(1.1)  = "; fix(1.1)
+    print "fix(1.5)  = "; fix(1.5)
+    print "fix(1.9)  = "; fix(1.9)
+    print "fix(-1.1) = "; fix(-1.1)
+    print "fix(-1.5) = "; fix(-1.5)
+    print "fix(-1.9) = "; fix(-1.9)
+
+    ' Difference to ceil with negative numbers
+    print "ceil(1.1)  = "; ceil(1.1)
+    print "ceil(1.5)  = "; ceil(1.5)
+    print "ceil(1.9)  = "; ceil(1.9)
+    print "ceil(-1.1) = "; ceil(-1.1)
+    print "ceil(-1.5) = "; ceil(-1.5)
+    print "ceil(-1.9) = "; ceil(-1.9)
+
 +========================================================================================+
 |                                    204. (Math) FLOOR                                   |
 +========================================================================================+
 
 FLOOR (x)
+For largest integer value greater then x see CEIL(x)
+
+    print "floor(1.1)  = "; floor(1.1)
+    print "floor(1.5)  = "; floor(1.5)
+    print "floor(1.9)  = "; floor(1.9)
+    print "floor(-1.1) = "; floor(-1.1)
+    print "floor(-1.5) = "; floor(-1.5)
+    print "floor(-1.9) = "; floor(-1.9)
+
 +========================================================================================+
 |                                     205. (Math) FRAC                                   |
 +========================================================================================+
 
 FRAC (x)
+    print frac(71.901)
+
 +========================================================================================+
 |                                     206. (Math) INT                                    |
 +========================================================================================+
 
 INT (x)
-I think /1 will convert a number to an integer in less keystrokes than
-INT, they both round down for positives and up for negatives. In other
-words, they both drop the fractional part of the number.
-
+x\1 will convert a x to an integer in less keystrokes than INT, they
+both round down for positives and up for negatives. In other words, they
+both drop the fractional part of the number.
 
     'INT or alternate.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
-    'I think number\\1 is eqivalent to INT(number) in less keystrokes
+    'I think number\1 is eqivalent to INT(number) in less keystrokes
     ' both of these convert a number to an integer and both round down to do it.
     for i = 1 to 20
       'which coin should I use
-      if rnd<.5 then TF=int(rnd*2) else TF=rnd*2\\1
+      if rnd<.5 then TF=int(rnd*2) else TF=rnd*2\1
       ? TF,
       if TF then ? "It is true now."; else ? "Now it's false.";
       ?spc(3)+"press a key or click for next..."
     next
     for i=0 to -10 step -1 'they seem to behave the same for negatives too
       test=i+rnd
-      ? "test = ";test
-      ? "test\\1 " ;test\\1
-      ? "int(test) ";int(test)
+      ? "     test = ";test
+      ? "   test\1 = " ;test\1
+      ? "int(test) = ";int(test)
       ?
     next
-    pause
 
 +========================================================================================+
 |                                  207. (Math) INTERSECT                                 |
@@ -6494,17 +6824,45 @@ Returns: Rx,Ry = cross.
 
 type = cross-type:
 
--   0 No cross (R = external cross)
--   1 One cross
--   2 Parallel
--   3 Parallel (many crosses)
--   4 The cross is one of the line segments edges.
+-   0: No cross (R = external cross)
+-   1: One cross
+-   2: Parallel
+-   3: Parallel (many crosses)
+-   4: The cross is one of the line segments edges.
+
+    'Line segment AB
+    Ax = 50
+    Ay = 50
+    Bx = 100
+    By = 100
+
+    'Line segment CD
+    Cx = 100
+    Cy =  50
+    Dx =  50
+    Dy = 100
+
+    type = 0
+    Rx = 0
+    Ry = 0
+
+    intersect Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, type, Rx, Ry
+
+    print "Intersection at x = "; Rx; ", y = "; Ry
+
+    ' Draw lines and a circle at the calculated crossing point
+    line Ax, Ay, Bx, By color 5
+    line Cx, Cy, Dx, Dy color 8
+    circle Rx,Ry, 5 color 12
 
 +========================================================================================+
 |                                   208. (Math) INVERSE                                  |
 +========================================================================================+
 
 INVERSE (A)
+    A = [ 1, -1, 1; 2, -1, 2; 3, 2, -1]
+    print INVERSE(A)
+
 +========================================================================================+
 |                                    209. (Math) LINEQN                                  |
 +========================================================================================+
@@ -6518,18 +6876,43 @@ LINEQN (a, b [, toler])
 
     |x| <= toler : x = 0
 
-The result is a matrix Nx1. The array is two-dimension array.
+The result is a matrix Nx1. The array is two-dimensional.
+
+    print "Solve this:"
+    print "  5x - 2y + 3z = -2"
+    print " -2x + 7y + 5z =  7"
+    print "  3x + 5y + 6z =  9"
+    print
+
+    A = [ 5, -2, 3; -2, 7, 5; 3, 5, 6]
+    B = [ -2; 7; 9]
+
+    C = LinEqn(A, B)
+
+    print "[x;y;z] = "; C
 
 +========================================================================================+
 |                                     210. (Math) LOG                                    |
 +========================================================================================+
 
 LOG (x)
+    a = exp(2)
+    print a
+
+    b = log(a)
+    print b
+
 +========================================================================================+
 |                                    211. (Math) LOG10                                   |
 +========================================================================================+
 
 LOG10 (x)
+    a = 10^2
+    print a
+
+    b = log10(a)
+    print b
+
 +========================================================================================+
 |                                   212. (Math) M3APPLY                                  |
 +========================================================================================+
@@ -6680,9 +7063,14 @@ different.
 +========================================================================================+
 
 MAX (...)
-    ? MAX(3,4,8)
-    ? MIN(array(),2,3)
-    ? MAX("abc","def")
+
+    print MAX(3, 4, 8)
+    print MAX("abc","def")
+    x = [-1, 5, 8]: print MAX(x, 2, 3)
+
+    print MIN(3, 4, 8)
+    print MIN("abc","def")
+    x = [-1, 5, 8]: print MIN(x, 2, 3)
 
 +========================================================================================+
 |                                     218. (Math) MIN                                    |
@@ -6690,51 +7078,260 @@ MAX (...)
 
 MIN (...)
 
+    print MAX(3, 4, 8)
+    print MAX("abc","def")
+    x = [-1, 5, 8]: print MAX(x, 2, 3)
+
+    print MIN(3, 4, 8)
+    print MIN("abc","def")
+    x = [-1, 5, 8]: print MIN(x, 2, 3)
+
 +========================================================================================+
 |                                   219. (Math) POLYAREA                                 |
 +========================================================================================+
 
 POLYAREA (poly)
+    polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
+    drawpoly polygon color 12
+
+    Area = polyarea(polygon) / 2  ' Bug, please divide area always by 2
+
+    print "Polyarea() returns: "; Area
+    print "Exact area is 50x50 = 2500"
+
 +========================================================================================+
 |                                   220. (Math) POLYCENT                                 |
 +========================================================================================+
 
 POLYCENT
+Polycent is based on code from the article “Centroid of a Polygon” by
+Gerard Bashein and Paul R. Detmer.
+
+Polycent calculates the centroid (xCentroid, yCentroid) and area of a
+polygon, given its vertices (x[0], y[0]) … (x[n-1], y[n-1]). It is
+assumed that the contour is closed, i.e., that the vertex following
+(x[n-1], y[n-1]) is (x[0], y[0]). The algebraic sign of the area is
+positive for counterclockwise ordering of vertices in x-y plane;
+otherwise negative.
+
+    polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
+
+    centroid = polycent(polygon)  
+    print "Centroid is at: "; centroid
+
+    drawpoly polygon color 12
+    circle centroid(0), centroid(1) , 5 color 5
+
 +========================================================================================+
 |                                   221. (Math) POLYEXT                                  |
 +========================================================================================+
 
 POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax
+    polygon = [ [30,50], [100,70], [120,90], [50,100], [30,50]]
+
+    polyext(polygon, PolyXmin, PolyYmin, PolyXmax, PolyYmax)
+
+    drawpoly polygon color 12
+    rect PolyXmin, PolyYmin, PolyXmax, PolyYmax  color 5
+
 +========================================================================================+
 |                                     222. (Math) POW                                    |
 +========================================================================================+
 
 POW (x, y)
+    print pow(5,2)   ' same as 5^2
+
 +========================================================================================+
 |                                   223. (Math) PTDISTLN                                 |
 +========================================================================================+
 
 PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
+    ' Define line
+    Bx = 100
+    By = 100
+    Cx = 200
+    Cy = 150
+
+    ' Define point
+    Ax = 150
+    Ay = 50
+
+    Distance = ptdistln(Bx, By, Cx, Cy, Ax,Ay) 
+    print "Distant between line and point is "; Distance  ;" pixel"
+
+    ' Interactive example to illustrate the geometry of PTDISTLN
+
+    Bx = 200
+    By = 300
+    Ax = 300
+    Ay = 100
+
+    pen on
+    while(!pen(12))
+
+      cls
+      print "Move Mouse. Press Left Mouse Button to exit"
+      
+      Cx = pen(10)
+      Cy = pen(11)
+      
+      Distance = PTDISTLN (Bx,By,Cx,Cy,Ax,Ay) 
+      print "Distant between line and point is "; Distance  ;" pixel"
+      
+      Lx = Cx - Bx
+      Ly = Cy - By
+      
+      if(Lx != 0 AND Ly != 0) then
+        ' Calculate projection vector V using dot-product
+        Px = Ax - Bx
+        Py = Ay - By
+        Vx = Bx + (Lx * Px + Ly * Py) / (Lx^2 + Ly^2) * Lx
+        Vy = By + (Lx * Px + Ly * Py) / (Lx^2 + Ly^2) * Ly
+      endif
+
+      ' Draw
+      line Bx, By, Cx, Cy color 10   ' Line
+      line Ax, Ay, Vx, Vy color 2    ' Distant between line and point
+      circle Ax, Ay, 5 color 11      ' Cirlce at position of the point
+      showpage
+      delay(50)
+      
+    wend
+
 +========================================================================================+
 |                                  224. (Math) PTDISTSEG                                 |
 +========================================================================================+
 
 PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)
+    ' Define line segment
+    Bx = 100
+    By = 100
+    Cx = 200
+    Cy = 300
+
+    ' Define point
+    Ax = 150
+    Ay = 50
+
+    Distance = PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay) 
+    print "Distant between line and point is "; Distance  ;" pixel"
+
+    ' Interactive example to illustrate the geometry of PTDISTSEG
+
+    Bx = 200
+    By = 300
+    Ax = 300
+    Ay = 100
+
+    pen on
+    while(!pen(12))
+
+      cls
+      print "Move Mouse. Press Left Mouse Button to exit"
+      
+      Cx = pen(10)
+      Cy = pen(11)
+      
+      Distance = PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay) 
+      print "Distant between line and point is "; Distance  ;" pixel"
+      
+      Lx = Cx - Bx
+      Ly = Cy - By
+      
+      if(Lx != 0 AND Ly != 0) then
+        ' Calculate projection vector V using dot-product
+        Px = Ax - Bx
+        Py = Ay - By
+        Vx = Bx + (Lx * Px + Ly * Py) / (Lx^2 + Ly^2) * Lx
+        Vy = By + (Lx * Px + Ly * Py) / (Lx^2 + Ly^2) * Ly
+
+        ' Test if V is on the line segment
+        t = (Vx-Bx)/Lx
+        if(t < 0) then
+          Vx = Bx
+          Vy = By
+        elseif(t > 1) then
+          Vx = Cx
+          Vy = Cy
+        endif
+
+      endif
+
+      ' Draw
+      line Bx, By, Cx, Cy color 10   ' Line
+      line Ax, Ay, Vx, Vy color 2    ' Distant between line and point
+      circle Ax, Ay, 5 color 11      ' Cirlce at position of the point
+      showpage
+      delay(50)
+      
+    wend
+
 +========================================================================================+
 |                                    225. (Math) PTSIGN                                  |
 +========================================================================================+
 
 PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
+    ' Define line
+    Bx = 100
+    By = 100
+    Cx = 200
+    Cy = 150
+
+    ' Define point
+    Ax = 150
+    Ay = 50
+
+    Sign = PTSIGN(Bx, By, Cx, Cy, Ax,Ay) 
+    print "Sign of point relative to the line "; Sign
+
+    ' Interactive example to illustrate the geometry of PTDISTLN
+
+    Bx = 200
+    By = 300
+    Ax = 300
+    Ay = 100
+
+    pen on
+    while(!pen(12))
+
+      cls
+      print "Move Mouse. Press Left Mouse Button to exit"
+      
+      Cx = pen(10)
+      Cy = pen(11)
+      
+      Sign = PTSIGN (Bx,By,Cx,Cy,Ax,Ay) 
+      print "Sign of point relative to the line "; Sign
+      
+      ' Draw
+      line Bx, By, Cx, Cy color 10   ' Line
+      circle Ax, Ay, 5 color 11      ' Cirlce at position of the point
+      showpage
+      delay(50)
+      
+    wend
+
 +========================================================================================+
 |                                     226. (Math) RAD                                    |
 +========================================================================================+
 
 RAD (x)
+    a = deg(pi)
+    print a
+
+    b = rad(a)
+    print b
+
 +========================================================================================+
 |                                     227. (Math) RND                                    |
 +========================================================================================+
 
 RND
+    RANDOMIZE
+    print "Number between 0 and 1   : "; RND()
+    print "Number between 5 and 12  : "; (12 - 5) * RND() + 5 
+    print "Number between -5 and -12: "; (-12 - -5) * RND() - 5 
+
 
     ' RND IFF and DEF.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-24
     ' RND - returns a number from 0 to almost 1
@@ -6773,141 +7370,356 @@ RND
 +========================================================================================+
 
 ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr
+ROOT will find the first x-intercept of the given function ( where f(x)
+= 0 ) in the interval [low,high]
+
 -   low the lower limit
 -   high the upper limit
 -   segs the number of segments (spaces)
--   maxerr tolerance (IF ABS(F(x)) < maxerr THEN OK)
+-   maxerr tolerance (IF ABS(f(x)) < maxerr THEN OK)
 -   errcode 0 for success; otherwise calculation error
 -   result the result
 
-    FUNC F(x)
-     F = SIN(x)
-    END
-    ...
-    ROOT 1, 5, 500, 0.00001, result, errcode USE F(x)
+    def f1(x) = x - 2 
+    ' Theory: x - 2 = 0 -> x = 2
+
+    ROOT 0, 5, 500, 0.001, result, errcode USE f1(x)
+
+    if(errcode) then
+        print("No root found")
+    else
+        print "Root at "; result
+    endif
+
+    def f2(x) = x^2 - 2
+    ' Theory: x^2 - 2 = 0 -> x^2 = 2 -> x = +/-sqr(2) = +/-1.41
+
+    ROOT -1, 2, 500, 0.001, result, errcode USE f2(x)
+
+    if(errcode) then
+        print("No root found")
+    else
+        print "Root at "; result 
+    endif
 
 +========================================================================================+
 |                                    229. (Math) ROUND                                   |
 +========================================================================================+
 
 ROUND (x [, decs])
+    A = 12.3456  
+    print A
+    print round(A,0)
+    print round(A,1)
+    print round(A,2)
+
+    A = 123456
+    print A
+    print round(A/10,0) * 10
+    print round(A/100,0) * 100
+    print round(A/1000,0) * 1000
 
 +========================================================================================+
 |                                     230. (Math) SEC                                    |
 +========================================================================================+
 
 SEC (x)
+    a = sec(0.1)
+    print a
+
+    b = asec(a)
+    print b
+
 +========================================================================================+
 |                                     231. (Math) SECH                                   |
 +========================================================================================+
 
 SECH (x)
+    a = sech(0.1)
+    print a
+
+    b = asech(a)
+    print b
+
 +========================================================================================+
 |                                    232. (Math) SEGCOS                                  |
 +========================================================================================+
 
 SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+    ' Line 1
+    Ax = 50
+    Ay = 50
+    Bx = 50
+    By = 100
+
+    ' Line 2
+    Cx = 100
+    Cy = 100
+    Dx = 50
+    Dy = 100
+
+    print "SEGCOS: "; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+    print "SEGSIN: "; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+    print "Angle between the lines: "; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); "°"
+
+    ' Interactive example to illustrate the geometry
+    ' of SEGCOS and SEGSIN
+
+    ' Line 1
+    Ax = 280
+    Ay = 250
+    Bx = 250
+    By = 200
+
+    ' Line 2
+    Cx = 400
+    Cy = 300
+    Dx = 210
+    Dy = 300
+
+    pen on
+    while(!pen(12))
+
+      cls
+      print "Move Mouse. Press Left Mouse Button to exit"
+      
+      Dx = pen(10)
+      Dy = pen(11)
+      
+      ResultCos = SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+      ResultSin = SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+      print "SEGCOS between the two segments: "; ResultCos  ;"
+      print "SEGSIN between the two segments: "; ResultSin  ;"
+      print "Angle between the two segments : "; DEG(ACOS(ResultCos)); " DEG"
+      
+      'Calc intersecton of both lines
+      'f1(x) = a1*x+b1
+      'f2(x) = a2*x+b2
+      'f1 = f2
+      '-> x0 = (b2-b1) / (a1-a2)
+      '-> y0 = f1(x0)
+      '  
+      if( (Bx - Ax) != 0 AND (Dx - Cx) != 0) then
+        a1 = (By - Ay) / (Bx - Ax)
+        a2 = (Dy - Cy) / (Dx - Cx)
+        b1 = Ay - a1 * Ax
+        b2 = Cy - a2 * Cx
+      
+        X0 = (b2-b1) / (a1-a2) 
+        Y0 = a1*X0 + b1
+      endif
+      
+      ' Draw
+      line X0, Y0, Ax, Ay color 2  ' Line segment 1
+      line X0, Y0, Cx, Cy color 2  ' Line segment 2
+      line Ax, Ay, Bx, By color 10 ' Line 1
+      line Cx, Cy, Dx, Dy color 10 ' Line 2
+      
+      
+      showpage
+      delay(50)
+      
+    wend
+
 +========================================================================================+
 |                                    233. (Math) SEGLEN                                  |
 +========================================================================================+
 
 SEGLEN (Ax,Ay,Bx,By)
+    Ax = 150
+    Ay = 50
+    Bx = 50
+    By = 100
+
+    print "SEGLEN: "; SEGLEN(Ax,Ay,Bx,By); " pixel"
+
 +========================================================================================+
 |                                    234. (Math) SEGSIN                                  |
 +========================================================================================+
 
 SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+    ' Line 1
+    Ax = 50
+    Ay = 50
+    Bx = 50
+    By = 100
+
+    ' Line 2
+    Cx = 100
+    Cy = 100
+    Dx = 50
+    Dy = 100
+
+    print "SEGCOS: "; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+    print "SEGSIN: "; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+    print "Angle between the lines: "; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); "°"
+
+    ' Interactive example to illustrate the geometry
+    ' of SEGCOS and SEGSIN
+
+    ' Line 1
+    Ax = 280
+    Ay = 250
+    Bx = 250
+    By = 200
+
+    ' Line 2
+    Cx = 400
+    Cy = 300
+    Dx = 210
+    Dy = 300
+
+    pen on
+    while(!pen(12))
+
+      cls
+      print "Move Mouse. Press Left Mouse Button to exit"
+      
+      Dx = pen(10)
+      Dy = pen(11)
+      
+      ResultCos = SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+      ResultSin = SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+      print "SEGCOS between the two segments: "; ResultCos  ;"
+      print "SEGSIN between the two segments: "; ResultSin  ;"
+      print "Angle between the two segments : "; DEG(ACOS(ResultCos)); " DEG"
+      
+      'Calc intersecton of both lines
+      'f1(x) = a1*x+b1
+      'f2(x) = a2*x+b2
+      'f1 = f2
+      '-> x0 = (b2-b1) / (a1-a2)
+      '-> y0 = f1(x0)
+      '  
+      if( (Bx - Ax) != 0 AND (Dx - Cx) != 0) then
+        a1 = (By - Ay) / (Bx - Ax)
+        a2 = (Dy - Cy) / (Dx - Cx)
+        b1 = Ay - a1 * Ax
+        b2 = Cy - a2 * Cx
+      
+        X0 = (b2-b1) / (a1-a2) 
+        Y0 = a1*X0 + b1
+      endif
+      
+      ' Draw
+      line X0, Y0, Ax, Ay color 2  ' Line segment 1
+      line X0, Y0, Cx, Cy color 2  ' Line segment 2
+      line Ax, Ay, Bx, By color 10 ' Line 1
+      line Cx, Cy, Dx, Dy color 10 ' Line 2
+      
+      
+      showpage
+      delay(50)
+      
+    wend
+
 +========================================================================================+
 |                                     235. (Math) SEQ                                    |
 +========================================================================================+
 
 SEQ (xmin, xmax, count)
 
+    print SEQ(2,10,5)  'Output: [2,4,6,8,10]
+
 +========================================================================================+
 |                                     236. (Math) SGN                                    |
 +========================================================================================+
 
 SGN (x)
-    Built-in:    SGN
-    Syntax:      SGN(numeric-expression)
-    Description: SGN returns a value indicating the sign of a numeric expression (1 if the
-                 expression is positive, 0 if it is zero, or -1 if it is negative).
-    Comment:     SGN cannot accept a numeric string, such as "24", as an argument.
-    Example:
-                 PRINT SGN(1), SGN(-1), SGN(0)  ' Output is:  1  -1  0
-                 PRINT SGN(CINT("-2"))          ' Output is:  -1
-                 PRINT SGN("2 + 1")             ' Error
-    See Also:    ABS, ABSMAX, ABSMIN, CINT
+
+    PRINT SGN(2), SGN(-2), SGN(0)  ' Output is:   1 -1  0
+    PRINT SGN(INT("-2"))           ' Output is:  -1
 
 +========================================================================================+
 |                                     237. (Math) SIN                                    |
 +========================================================================================+
 
 SIN (x)
+    a = sin(0.5)
+    print a
 
-2nd, SIN and COS use radians for angle measure, just use the RAD
-function to convert an angle in degrees to radians. Radians are circle
-measures based on pi instead of degrees.
+    b = asin(a)
+    print b
+
+SIN and COS use radians for angle measure, just use the RAD function to
+convert an angle in degrees to radians. Radians are circle measures
+based on pi instead of degrees.
 
     2*pi = one circle 360 degrees
-        pi = 180 degrees half a circle
-     pi/2 = 90   degrees 1/4 circle
-     pi/4 = 45   degrees 1/8 circle
-     pi/6 = 60   degrees 1/6 circle
+      pi = 180  degrees half a circle
+    pi/2 = 90   degrees 1/4 circle
+    pi/4 = 45   degrees 1/8 circle
+    pi/6 = 60   degrees 1/6 circle
     pi/12= 30   degree s 1/12 circle
-    3rd, Here is a demo of cool stuff you can do with SIN and COS:
+
+Here is a demo of cool stuff you can do with SIN and COS:
 
     'Drawing spiral around point.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
     'using SIN and COS in a most common situation drawing at an angle from a point
-    cx=xmax\\2:cy=ymax\\2
+
+    cx=xmax\2:cy=ymax\2
+
     for degree=0 to 360 step 10   'zero is due East
-      line cx,cy step 10*(degree^.5)*cos(rad(degree)),10*(degree^.5)*sin(rad(degree)),rgb(0,0,degree\\360*128+127)
-      at 0,0: ?spc(100)
+
+      line cx,cy step 10*(degree^.5) * cos(rad(degree)), 10*(degree^.5) * sin(rad(degree)), rgb(0,0,degree\360*128+127)
+
+      at 0,0: print spc(100)
       at 0,0
+      
       if degree=0 then
-        ? " 0 degrees don't worry, you haven't seen nothing yet! press any...
+        print " 0 degrees don't worry, you haven't seen nothing yet! press any...
       else
-        ? degree;" degrees press any..."
+        print degree;" degrees press any..."
       end if
-    pause
+      
+      pause
     next
-    ? "Notice how the the drawing started due East for 0 degrees and"
-    ? "as the angle increased the drawing went around clock-wise."
+
+    print "Notice how the the drawing started due East for 0 degrees and"
+    print "as the angle increased the drawing went around clock-wise."
+
     pause
+
     cls
+
     'now I am doing a LOGO like program and I want 0 degrees to be due North
     'due North is -90 degrees for clock-wise rotation so subtract 90 from degrees
+
     for degree=0 to 360 step 10
-      line cx,cy step 10*(degree^.5)*cos(rad(degree-90)),10*(degree^.5)*sin(rad(degree-90)),rgb(0,0,degree\\360*128+127)
-      at 0,0: ?spc(100)
+      
+      line cx,cy step 10*(degree^.5) * cos(rad(degree-90)), 10*(degree^.5) * sin(rad(degree-90)), rgb(0,0,degree\360*128+127)
+
+      at 0,0: print spc(100)
       at 0,0
+
       if degree=0 then
-        ? " 0 degrees don't worry, you haven't seen nothing yet! press any..."
+        print " 0 degrees don't worry, you haven't seen nothing yet! press any..."
       else
-        ? degree;" degrees press any..."
+        print degree;" degrees press any..."
       end if
-    pause
+      
+      pause
+
     next
-    ? "Notice how the drawing started due North because of the -90 adjustment made in SIN and COS calls"
-    ?:? "press any to end..."
+    print "Notice how the drawing started due North because of the -90 adjustment made in SIN and COS calls"
+    print
+    print  "press any to end..."
     pause
 
 this is the crucial line:
-
 
     line cx,cy step 10*(degree^.5)*cos(rad(degree)),10*(degree^.5)*sin(rad(degree)),rgb(0,0,degree\\360*128+127)
 
 The multiple 10*(degree^.5) to both SIN and COS controls how far the
 extension of the line will be from point cx,cy “origin” here as the
 degrees increase so did the extension out which cause the spiral effect.
-
 The COS calculation was used for x “the run” or horizontal component and
 the SIN calculation was used for y “the rise” or vertical component.
-
 This is really, really important to use and play with even if you don’t
-understand all the details, the code will serve you well.
+understand all the details, the code will serve you well. Still I did my
+best to explain how this works, so it is a bit wordy…
 
-Still I did my best to explain how this works, so it is a bit wordy…
+Here another example:
 
     ' sin and cos use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-15
     '                    SIN and COS work as a team
@@ -6936,6 +7748,7 @@ Still I did my best to explain how this works, so it is a bit wordy…
     'to make absolute screen point it is y = cy + radius*SIN(angle)
     'So going around a central point x=cx+radius*COS(angle),y=cy+radius*SIN(angle)
     'will locate points equal distance from center for equal sided polygon
+
     cx=xmax/2 : cy=ymax/2 'here's our center move it anywhere on screen
     'cx=100 : cy = 500 '<== try different center points
     'radius=100 'draw points in a radius of 100 around cx,cy
@@ -6975,20 +7788,7 @@ Still I did my best to explain how this works, so it is a bit wordy…
     wend
     'you are just a few simple steps away from spinning these polygons!
 
-Perfect.
-
-1.  All elementary information in a single place.
-2.  Documented very well (even I understand, at least how to use it).
-3.  Simple, short, and practical demo code.
-
-As far as I concerned: they may shut down Wikipedia right now.
-
-Thanks! By the way… Is it possible to accurately> calculate the Length>
-of an Arc (segment of an ellipse)? Can I get the length of an Arc in
-let’s say millimetres? As if it was a regular line?
-
-(arc length discussion picked up on forum) Here is graph of the three
-main Trig ratios:
+Here is graph of the three main Trig ratios:
 
     ' sin-cos-tan.bas from FLTK samples
     cls
@@ -6998,9 +7798,9 @@ main Trig ratios:
     color 12: ? "tan(x)"
     line 0,ymax/2,xmax,ymax/2  'central or x axis, ymax/4 is multiplier scaled to 1/4 of ymax
     for i=0 to xmax
-    pset i,ymax/2-sin(i*2*pi/ymax)*ymax/4  color 1
-    pset i,ymax/2-cos(i*2*pi/ymax)*ymax/4 color 8
-    pset i,ymax/2-tan(i*2*pi/ymax)*ymax/4 color 12
+       pset i,ymax/2-sin(i*2*pi/ymax)*ymax/4  color 1
+       pset i,ymax/2-cos(i*2*pi/ymax)*ymax/4 color 8
+       pset i,ymax/2-tan(i*2*pi/ymax)*ymax/4 color 12
     next
     pause
 
@@ -7009,48 +7809,91 @@ main Trig ratios:
 +========================================================================================+
 
 SINH (x)
+    a = sinh(0.5)
+    print a
+
+    b = asinh(a)
+    print b
+
 +========================================================================================+
 |                                     239. (Math) SQR                                    |
 +========================================================================================+
 
 SQR (x)
+    print sqr(2)
+
 +========================================================================================+
 |                                   240. (Math) STATMEAN                                 |
 +========================================================================================+
 
 STATMEAN (...)
+    A = [2,2,3,4,14]
+    print statmean(A)   ' same as: sum(A) / len(A)
+
 +========================================================================================+
 |                                 241. (Math) STATMEANDEV                                |
 +========================================================================================+
 
 STATMEANDEV (...)
+See: https://en.wikipedia.org/wiki/Average_absolute_deviation
+
+    A = [2,2,3,4,14]
+    print statmeandev(A)
+
 +========================================================================================+
 |                                 242. (Math) STATSPREADP                                |
 +========================================================================================+
 
 STATSPREADS (...)
+See: https://en.wikipedia.org/wiki/Variance#Sample_variance
+
+    A = [1,2,3,4,6]
+    print "Biased sample variance:   "; statspreadp(A)
+    print "Unbiased sample variance: "; statspreads(A)
+
 +========================================================================================+
 |                                 243. (Math) STATSPREADS                                |
 +========================================================================================+
 
 STATSPREADP (...)
+See: https://en.wikipedia.org/wiki/Variance#Sample_variance
+
+    A = [1,2,3,4,6]
+    print "Biased sample variance:   "; statspreadp(A)
+    print "Unbiased sample variance: "; statspreads(A)
+
 +========================================================================================+
 |                                     244. (Math) SUM                                    |
 +========================================================================================+
 
 SUM (...)
+    A = [1,2,3]
+    print sum(1,2,3)
+    print sum(A)
+    print sum(A,1,2,3)
+
 +========================================================================================+
 |                                    245. (Math) SUMSQ                                   |
 +========================================================================================+
 
 SUMSQ (...)
+    A = [1,2,3]
+    print sumsq(1,2,3)      ' 1^2 + 2^2 + 3^2
+    print sumsq(A)
+    print sumsq(A,1,2,3)
+
 +========================================================================================+
 |                                     246. (Math) TAN                                    |
 +========================================================================================+
 
 TAN (x)
 
-Trigonometry lesson two. We will try this from a txt file instead.
+    b = atan(a)
+    print b
+
+see COS, SIN, TAN and ATAN
+
+Trigonometry lesson
 
 Review:
 
@@ -7118,47 +7961,20 @@ you get side ratios.
 A donkey is mounted on the SmallBASIC screen so that it’s tail should be
 pinned at 0,0 …. see ATAN for “pin the tail.bas”
 
-This information is unavailable elsewhere.
-
-Wikipedia gives you formulas that look like ancient Egyptian glyph.
-Others, explain what is TAN - but don’t even mention a single word about
-Arc TAN (as if there is absolutely no relation). This is really a
-valuable and practical information. (an extra VERY SHORT DEMO for this
-info would be even more astonishing). Thanks again. Edit: by SHORT DEMO
-I just mean few lines of code that illustrate how it’s written in
-SmallBASiC, for creating the most simple shape… (you know, chunk by
-chunk… it’s really a new world for me and maybe for some others). Like
-this? It would have been in 3 lines but it seems print usg needs it’s
-own line TAN used in a short code example:
+TAN used in a short code example:
 
     ' TAN use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
     for degrees = 0 to 360 step 15
-    ? "For angle (degrees) = ";
-    ? usg "###";degrees;
-    ?" (or ";
-    ? usg "#.00";rad(degrees);
-    ?" radians ) the TANgent is ";
-    ? usg "#####.0000";tan(rad(degrees))  '<== typical to convert degrees to radians (with RAD) before TAN call
+      print "For angle (degrees) = ";
+      print usg "###";degrees;
+      print " (or ";
+      print usg "#.00";rad(degrees);
+      print " radians ) the TANgent is ";
+      print usg "#####.0000";tan(rad(degrees))  '<== typical to convert degrees to radians (with RAD) before TAN call
     next
-    ?:?"As the TANgent approaches 90 or 270 degrees the TANgent becomes 1/0 which is undefined."
+    print
+    print "As the TANgent approaches 90 or 270 degrees the TANgent becomes 1/0 which is undefined."
     pause
-
-I should make clear, TAN is not used directly for drawing on screen but
-indirectly it helps by calculating angles and lengths which is needed
-for drawing point to point or step drawing from last drawing x,y point.
-
-Yes, short example like this, or with one single shape on screen, is
-very very useful. For instance, I can show an example program of using
-bitwise XOR in calculating CRC-32 checksum, which is very useful code.
-But nobody will understand anything, because CRC-32 is complicated
-algorithm by itself. And it’s very hard to understand how XOR is used in
-this algorithm unless you already very experienced with bit
-manipulation.
-
-It’s useful to give a short and clear examples, something like: “How can
-I draw a line from point (x1,y1) to (x2,y2) using TAN.” Later, if I know
-how to draw one line with TAN, then I will be able to draw a 3D box
-(maybe..). Small chunks…
 
 TAN use again in a few lines of code but I have to try and explain what
 is going on or it would be void of meaning.
@@ -7168,8 +7984,13 @@ is going on or it would be void of meaning.
     'x,y when used in TAN are relative positions to x1,y1 and not
     'absolute screen coordinates
     'you can move x1,y1 anywhere on screen!!!!
-    x1=250:y1=150 'x,y of point 1 we will mark with yellow circle
+
+    'x,y of point 1 we will mark with yellow circle
+    x1=250
+    y1=150
+
     circle x1,y1,2,1,14 'highlight start point in yellow radius 2
+
     'circle x,y,r,aspect,c   'aspect 1 is circle, !1=ellipse
     'say you want to make a line 60 degrees from x1,y1  and
     'you need the x2 100 greater than x1 or x2 = x1+100
@@ -7177,48 +7998,30 @@ is going on or it would be void of meaning.
     'then TAN(RAD(60)) = y/100
     'then 100*TAN(rad(60) = y   by algebraic mult 100 both sides
     'so  y2=y1+100*TAN(rad(60)
+
     line x1,y1,x1+100,y1+100*TAN(RAD(60))  '<== HERE IS TAN
+
     'so here we used TAN to calculate the y change in height
     'from y1 to create a 60 angle from point x1,y1 and x2,y2 AND
     'AND make it so x2=100 more than x1
     'check draw arc at x1,y1 with 100 radius
     'for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect
+
     arc x1,y1,100,0,2*pi/6,1,14 '14=color yellow
+
     pause
-
-SUPREME; BRILLIANT; WELL DOCUMENTED; PRACTICAL; USEFUL; MERCIFUL, KNOCKS
-OUT.
-
-And the final jump back spinning kick (AKA jump hook kick): EVEN ME CAN
-UNDERSTAND IT AND PRACTICALLY USE IT !> I could never grasp those holy
-Aztec keywords… TAN, ASIN… and with H !!! ASINH… Mercy!.
-
-Please continue this way… Gravely.
-
-P.S. sorry for starting a new “comment” - my screen is so small that I
-cannot see the message by using “reply”.
-
-I guess I hit the spot. :)) I drew your cube just by defining 4 points
-for one square face and then using this code for the back 4 points.
-
-But I didn’t stop there. I turned TAN(RAD(60) to TAN(RAD(angle) and put
-an angle increase in a loop and when… … well, I spent the night bouncing
-and spinning and growing/shrinking the cube. ;)
-
-You certainly hit the spot. “… well, I spent the night bouncing and
-spinning and growing/shrinking the cube. ;)”>
-
-I know holistic therapist who cured other programmers… Look, I’ve made
-an example program for CIRCLE, using your TAN lesson! But I only changed
-the TAN with SIN, and it works…. Now please, repeat that same lesson of
-TAN - for SIN. So I’ll understand why and how it works (just copy the
-TAN lesson “TAN use again” and update it to explain how SIN works).
 
 +========================================================================================+
 |                                     247. (Math) TANH                                   |
 +========================================================================================+
 
 TANH (x)
+    a = tanh(0.5)
+    print a
+
+    b = atanh(a)
+    print b
+
 +========================================================================================+
 |                                    248. (String) ASC                                   |
 +========================================================================================+

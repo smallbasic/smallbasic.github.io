@@ -4,9 +4,40 @@
 </blockquote>
 <p>Calculation of derivative. errcode = 0 for success; otherwise calculation error.</p>
 <ul>
-<li>x value of x</li>
-<li>maxtries maximum number of retries</li>
-<li>maxerr tolerance</li>
-<li>errcode 0 for success; otherwise calculation error</li>
-<li>result the result</li>
+<li>x: value of x</li>
+<li>maxtries: maximum number of retries</li>
+<li>maxerr: tolerance</li>
+<li>errcode: 0 for success; otherwise calculation error</li>
+<li>result: the result</li>
+<li>expr: f(x)</li>
 </ul>
+<pre><code>&#39; What is the derivative of f(x) for a given x
+
+def f(x) = 2*x^2+2
+
+x = 3
+result = 0
+errcode = 0
+
+deriv x, 10, 0.01, result, errcode USE f(x)
+
+
+def d(x) = 4*x &#39; Exact derivative of f(x) for comparision
+
+print &quot;Result of DERIV  at x = &quot;; x; &quot; : &quot;; result
+print &quot;Exact derivative at x = &quot;; x; &quot; : &quot;; d(x)</code></pre>
+<pre><code>&#39; What is the derivative of f(x) for a given x
+
+def f(x) = x^3 + 2 * exp(2*x)
+
+x = 3
+result = 0
+errcode = 0
+
+deriv x, 10, 0.000001, result, errcode USE f(x)
+
+
+def d(x) = 3*x^2 + 4*exp(2*x) &#39; Exact derivative of f(x) for comparision
+
+print &quot;Result of DERIV  at x = &quot;; x; &quot; : &quot;; result
+print &quot;Exact derivative at x = &quot;; x; &quot; : &quot;; d(x)</code></pre>

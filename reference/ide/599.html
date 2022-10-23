@@ -7,3 +7,22 @@
 <li>file - A string expression that follows OS file naming conventions.</li>
 <li>var - An array variable or a string variable. Expressions are not allowed.</li>
 </ul>
+<pre><code>&#39; Create an array with some data
+DIM A
+A &lt;&lt; 1
+A &lt;&lt; &quot;test&quot;
+A &lt;&lt; 2
+
+print A
+
+&#39; Save the array. This will create the file myfile.txt in
+&#39; the same directory as your BASIC file
+tsave &quot;myfile.txt&quot;, A
+
+&#39; Create a second array for loading
+dim B
+
+&#39; Load the file
+tload &quot;myfile.txt&quot;, B
+
+print B</code></pre>

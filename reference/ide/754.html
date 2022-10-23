@@ -3,3 +3,76 @@
 <p>SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)</p>
 </blockquote>
 <p>Sinus of 2 line segments (A-&gt;B, C-&gt;D).</p>
+<pre><code>&#39; Line 1
+Ax = 50
+Ay = 50
+Bx = 50
+By = 100
+
+&#39; Line 2
+Cx = 100
+Cy = 100
+Dx = 50
+Dy = 100
+
+print &quot;SEGCOS: &quot;; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+print &quot;SEGSIN: &quot;; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+print &quot;Angle between the lines: &quot;; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); &quot;°&quot;</code></pre>
+<pre><code>&#39; Interactive example to illustrate the geometry
+&#39; of SEGCOS and SEGSIN
+
+&#39; Line 1
+Ax = 280
+Ay = 250
+Bx = 250
+By = 200
+
+&#39; Line 2
+Cx = 400
+Cy = 300
+Dx = 210
+Dy = 300
+
+pen on
+while(!pen(12))
+
+  cls
+  print &quot;Move Mouse. Press Left Mouse Button to exit&quot;
+  
+  Dx = pen(10)
+  Dy = pen(11)
+  
+  ResultCos = SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+  ResultSin = SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+  print &quot;SEGCOS between the two segments: &quot;; ResultCos  ;&quot;
+  print &quot;SEGSIN between the two segments: &quot;; ResultSin  ;&quot;
+  print &quot;Angle between the two segments : &quot;; DEG(ACOS(ResultCos)); &quot; DEG&quot;
+  
+  &#39;Calc intersecton of both lines
+  &#39;f1(x) = a1*x+b1
+  &#39;f2(x) = a2*x+b2
+  &#39;f1 = f2
+  &#39;-&gt; x0 = (b2-b1) / (a1-a2)
+  &#39;-&gt; y0 = f1(x0)
+  &#39;  
+  if( (Bx - Ax) != 0 AND (Dx - Cx) != 0) then
+    a1 = (By - Ay) / (Bx - Ax)
+    a2 = (Dy - Cy) / (Dx - Cx)
+    b1 = Ay - a1 * Ax
+    b2 = Cy - a2 * Cx
+  
+    X0 = (b2-b1) / (a1-a2) 
+    Y0 = a1*X0 + b1
+  endif
+  
+  &#39; Draw
+  line X0, Y0, Ax, Ay color 2  &#39; Line segment 1
+  line X0, Y0, Cx, Cy color 2  &#39; Line segment 2
+  line Ax, Ay, Bx, By color 10 &#39; Line 1
+  line Cx, Cy, Dx, Dy color 10 &#39; Line 2
+  
+  
+  showpage
+  delay(50)
+  
+wend</code></pre>

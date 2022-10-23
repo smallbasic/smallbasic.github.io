@@ -3,3 +3,53 @@
 <p>PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)</p>
 </blockquote>
 <p>Distance of point A from line B, C.</p>
+<pre><code>&#39; Define line
+Bx = 100
+By = 100
+Cx = 200
+Cy = 150
+
+&#39; Define point
+Ax = 150
+Ay = 50
+
+Distance = ptdistln(Bx, By, Cx, Cy, Ax,Ay) 
+print &quot;Distant between line and point is &quot;; Distance  ;&quot; pixel&quot;</code></pre>
+<pre><code>&#39; Interactive example to illustrate the geometry of PTDISTLN
+
+Bx = 200
+By = 300
+Ax = 300
+Ay = 100
+
+pen on
+while(!pen(12))
+
+  cls
+  print &quot;Move Mouse. Press Left Mouse Button to exit&quot;
+  
+  Cx = pen(10)
+  Cy = pen(11)
+  
+  Distance = PTDISTLN (Bx,By,Cx,Cy,Ax,Ay) 
+  print &quot;Distant between line and point is &quot;; Distance  ;&quot; pixel&quot;
+  
+  Lx = Cx - Bx
+  Ly = Cy - By
+  
+  if(Lx != 0 AND Ly != 0) then
+    &#39; Calculate projection vector V using dot-product
+    Px = Ax - Bx
+    Py = Ay - By
+    Vx = Bx + (Lx * Px + Ly * Py) / (Lx^2 + Ly^2) * Lx
+    Vy = By + (Lx * Px + Ly * Py) / (Lx^2 + Ly^2) * Ly
+  endif
+
+  &#39; Draw
+  line Bx, By, Cx, Cy color 10   &#39; Line
+  line Ax, Ay, Vx, Vy color 2    &#39; Distant between line and point
+  circle Ax, Ay, 5 color 11      &#39; Cirlce at position of the point
+  showpage
+  delay(50)
+  
+wend</code></pre>
