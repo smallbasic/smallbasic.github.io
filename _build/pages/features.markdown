@@ -99,9 +99,9 @@ The unit file would be saved in $UNITPATH/other/something. If not defined, $UNIT
 When applied to arrays the IN operator now returns the 1 based index position, for example:
 
 ~~~
-a &lt;&lt; "cat"
-a &lt;&lt; "dog"
-? "dog" in a 'prints 2
+a << "cat"
+a << "dog"
+print "dog" in a ' prints 2
 ~~~
 
 ## Logical expression short-circuit evaluation ##
