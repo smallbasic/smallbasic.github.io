@@ -37,7 +37,7 @@ You can now press `F6` to step through program lines, or `F7` to continue. The p
 
 2. Adobe Source Code Pro
 
-- Download <http://dl.1001fonts.com/source-code-pro.zip>
+- Download https://www.1001fonts.com/download/source-code-pro.zip
 
 - Unzip and copy SourceCodePro-Regular.ttf and SourceCodePro-Bold.ttf
   into the same folder as sbasicg.exe.
