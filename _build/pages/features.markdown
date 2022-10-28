@@ -22,22 +22,28 @@ The SDL version now allow the window geometry to be set from your program.
 
 User defined structures in SmallBASIC are a form of compound variable allowing individual elements to be referenced.
 
-The following example loads the system password table and prints the contents:
+The following example loads the system password table and prints the contents of the first user (works only in Linux):
 
 ~~~
 tload "/etc/passwd", buffer
+
+dim users
+
 for row in buffer
+  
   split row, ":", fields()
-  if (len(fields) > 0) then
+  
+  if (ubound(fields) > 0) then
     local user
     user.name = fields(0)
     user.passwd = fields(1)
     user.userId = fields(2)
     user.groupId = fields(3)
-    users &lt;&lt; user
+    users << user
   fi
 next row
-? users
+
+print users(0)
 ~~~
 
 ## Associative arrays ##
@@ -48,19 +54,26 @@ The following example loads the system password table then prints the groupID va
 
 ~~~
 tload "/etc/passwd", buffer
-dim users
+
+users = {}
+
 for row in buffer
+  
   split row, ":", fields()
-  if (len(fields) > 0) then
+  
+  if (ubound(fields) > 0) then
     local user
     user.name = fields(0)
     user.passwd = fields(1)
     user.userId = fields(2)
     user.groupId = fields(3)
+  
     users(user.name) = user
+  
   fi
 next row
-? users("mail").userId
+
+print users("mail").userId
 ~~~
 
 ## Unit name pathing ##
