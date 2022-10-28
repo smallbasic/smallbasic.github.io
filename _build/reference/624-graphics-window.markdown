@@ -155,6 +155,16 @@ text "that can save her people and restore"
 text "freedom to the galaxy...."
 ```
 
+### setLocation(x, y)
+
+Sets the location of the window on the screen.
+
+```
+w = window()
+w.setLocation(100, 100)
+```
+
+
 ### setSize(w, h)
 
 Sets the width and height of the SmallBASIC window.
