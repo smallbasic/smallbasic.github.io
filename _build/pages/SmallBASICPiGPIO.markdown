@@ -1,8 +1,8 @@
-# SmallBASICPiGPIO - Plugin to use the GPIO pins of a Raspberry Pi
+# SmallBASIC-PiGPIO - Plugin to use the GPIO pins of a Raspberry Pi
 
 ![Logo](https://joe7m.github.io/SmallBasicPIGPIO/images/logo_smallbasicpigpio.png)
 
-SmallBASIC-PiGPIO is a plugin for SmallBASIC to use the GPIO connector of a Raspberry Pi. The following article will give you a short introduction of the plugin. Detailed information is available on the [project website](https://joe7m.github.io/SmallBasicPIGPIO)
+SmallBASIC-PiGPIO is a plugin for SmallBASIC to use the GPIO connector of a Raspberry Pi. The following article will give you a short introduction to the plugin. Detailed information is available on the [project website](https://joe7m.github.io/SmallBasicPIGPIO)
 
 ## Blinking LED
 
@@ -23,7 +23,7 @@ Connect the resistor to pin 4 and the LED to ground of the Raspberry Pi.
 
 To let the LED blink the following SmallBASIC program can be used.
 
-```
+```freebasic
 import SmallBasicPIGPIO as gpio
 
 ' LED is connected to pin GPIO4
@@ -45,7 +45,7 @@ next
 
 The plugin supports Pulse Width Modulation (PWM). Using this technique the intensity of the LED can tuned as shown in the next example.
 
-```
+```freebasic
 import SmallBasicPIGPIO as gpio
 
 ' LED is connected to pin GPIO4
@@ -80,7 +80,7 @@ In the following image you see the wiring of a push button. When you press the b
 
 To read the state of the button, the following example program can be used.
 
-```
+```freebasic
 import SmallBasicPIGPIO as gpio
 
 const PIN_GPIO4 = 4
@@ -104,11 +104,11 @@ until key <> ""
 
 ## OLED Display
 
-In case the Raspberry Pi is used without a big Screen, it would be great to have a small Display to print information or even show nice graphics. The plugin supports SSD1306 compatible OLED displays (quite common and really cheap).
+In case the Raspberry Pi is used without a big screen, it would be great to have a small display to print information or even show nice graphics. The plugin supports SSD1306 compatible OLED displays (quite common and really cheap).
 
 ### Wiring
 
-For running this example, you need a SSD1306 compatible OLED display. OLEDs with 128x64 or 128x32 pixels are supported. SmallBASICPiGPIO is using the I2C-protocol for communication.
+For running this example, you need a SSD1306 compatible OLED display. OLEDs with 128x64 or 128x32 pixels are supported. SmallBASIC-PiGPIO is using the I2C-protocol for communication.
 
 ![OLED wiring](https://joe7m.github.io/SmallBasicPIGPIO/images/ssd1306_wiring.png)
 
@@ -116,7 +116,7 @@ For running this example, you need a SSD1306 compatible OLED display. OLEDs with
 
 The following example shows how to use basic graphic commands to draw lines or print text.
 
-```
+```freebasic
 import SmallBasicPIGPIO as gpio
 
 gpio.OLED1_Open()
@@ -143,7 +143,7 @@ print("Done")
 
 # Supported Hardware
 
-The SmallBASIC PiGPIO pluging supports the following hardware. Support for more sensors and displays is planned.
+The SmallBASIC-PiGPIO plugin supports the following hardware. Support for more sensors and displays is planned.
 
 - LED
 - Push Button
