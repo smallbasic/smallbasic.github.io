@@ -25,6 +25,7 @@
 - [Nuklear: Create your own graphical user interface](/pages/plugins_nuklear.html)
 - [Clipboard: Copy and paste](/pages/plugins_clipboard.html)
 - [GIFenc: create animated GIFs](/pages/plugins_gifenc.html)
+- [PiGPIO: Use the GPIO pins of a Raspberry Pi](/pages/plugins_pigpio.html)
 
 
 ## Miscellaneous ##
