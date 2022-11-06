@@ -5,9 +5,15 @@
 Splits the string 'src' into variables which are separated by delimiters.
 
 ```
-SINPUT "if x>1 then y"; vif, " ", vcond, "then", vdo
-? vcond, vdo
-' result=
-' x>1   y
+src = "if x>1 then y"
+SINPUT src; vif, " ", vcond, "then", vdo
+print vif, vcond, vdo ' output: if    x>1    y
 ```
 
+```
+src = "1456,Peter,8"
+SINPUT src; id, ",", name, ",", age 
+print "ID: " + id
+print "Name: " + name
+print "Age: " + age
+```
