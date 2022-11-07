@@ -74,18 +74,43 @@
     </p>
   </div>
 </blockquote>
-<p>Returns the words of the specified string into array ‘words’.</p>
+<p>Splits “string” at the position of the given delimiters and returns the words of the specified string into array ‘words’. “pairs” can be used to group words. “Use expr” is applied to every splitted word.</p>
 <pre><code>s=&quot;/etc/temp/filename.ext&quot;
-SPLIT s, &quot;/.&quot;, v()
+SPLIT s, &quot;/.&quot;, v()  &#39; Splits the string using the delimiters &quot;/&quot; and &quot;.&quot;
 FOR i=0 TO UBOUND(v)
   PRINT i;&quot; [&quot;;v(i);&quot;]&quot;
-NEXT</code></pre>
-<p>displays:</p>
-<pre><code>0 []
-1 [etc]
-2 [temp]
-3 [filename]
-4 [ext]</code></pre>
+NEXT
+
+&#39; displays:
+&#39; 0 []
+&#39; 1 [etc]
+&#39; 2 [temp]
+&#39; 3 [filename]
+&#39; 4 [ext]</code></pre>
+<p>Example for using the argument “pairs”</p>
+<pre><code>s = &quot;/etc/temp/filename.ext&quot;
+SPLIT s, &quot;/&quot;, v(), &quot;temp&quot;
+FOR i = 0 TO UBOUND(v)
+  PRINT i;&quot; [&quot;;v(i);&quot;]&quot;
+NEXT
+
+&#39; Display
+0 []
+1 [etc/temp]
+2 [filename.ext]</code></pre>
+<p>Example for using “USE expr”</p>
+<pre><code>s = &quot;/etc/temp/filename1.ext  &quot;        &#39; additional spaces at the end of the string
+SPLIT s, &quot;/&quot;, v(), &quot;temp&quot; USE TRIM(x)  &#39; trim(x) will remove spaces at the beginning
+                                       &#39; and the end of the splitted strings;
+                                       &#39; try the example without &quot;USE TRIM(x)&quot;
+FOR i = 0 TO UBOUND(v)
+  PRINT i;&quot; [&quot;;v(i);&quot;]&quot;
+NEXT
+
+&#39; displays
+&#39; 0 []
+&#39; 1 [etc/temp]
+&#39; 2 [filename1.ext]</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using SPLIT</div>
     <div class="linklist">
@@ -177,7 +202,7 @@ SPLIT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Sun, 6 Nov 2022 22:59:25 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -76,37 +76,50 @@
 <pre><code>  option predef grmode 200x300</code></pre>
 <h2 id="user-defined-structures">User defined structures</h2>
 <p>User defined structures in SmallBASIC are a form of compound variable allowing individual elements to be referenced.</p>
-<p>The following example loads the system password table and prints the contents:</p>
+<p>The following example loads the system password table and prints the contents of the first user (works only in Linux):</p>
 <pre><code>tload &quot;/etc/passwd&quot;, buffer
+
+dim users
+
 for row in buffer
+  
   split row, &quot;:&quot;, fields()
-  if (len(fields) &gt; 0) then
+  
+  if (ubound(fields) &gt; 0) then
     local user
     user.name = fields(0)
     user.passwd = fields(1)
     user.userId = fields(2)
     user.groupId = fields(3)
-    users &amp;lt;&amp;lt; user
+    users &lt;&lt; user
   fi
 next row
-? users</code></pre>
+
+print users(0)</code></pre>
 <h2 id="associative-arrays">Associative arrays</h2>
 <p>Regular SmallBASIC arrays are indexed by integers within the upper and lower bounds of the array. Associative arrays take a string as the array index and like plain SmallBASIC variables, come into existence when ever they are referenced.</p>
 <p>The following example loads the system password table then prints the groupID value of the “mail” user account:</p>
 <pre><code>tload &quot;/etc/passwd&quot;, buffer
-dim users
+
+users = {}
+
 for row in buffer
+  
   split row, &quot;:&quot;, fields()
-  if (len(fields) &gt; 0) then
+  
+  if (ubound(fields) &gt; 0) then
     local user
     user.name = fields(0)
     user.passwd = fields(1)
     user.userId = fields(2)
     user.groupId = fields(3)
+  
     users(user.name) = user
+  
   fi
 next row
-? users(&quot;mail&quot;).userId</code></pre>
+
+print users(&quot;mail&quot;).userId</code></pre>
 <h2 id="unit-name-pathing">Unit name pathing</h2>
 <p>Units now have the ability to include a path component in a unit name.</p>
 <pre><code>import other.something.foo
@@ -117,9 +130,9 @@ export my_var</code></pre>
 <p>The unit file would be saved in $UNITPATH/other/something. If not defined, $UNITPATH is inferred from the host program directory.</p>
 <h2 id="in-operator">IN operator</h2>
 <p>When applied to arrays the IN operator now returns the 1 based index position, for example:</p>
-<pre><code>a &amp;lt;&amp;lt; &quot;cat&quot;
-a &amp;lt;&amp;lt; &quot;dog&quot;
-? &quot;dog&quot; in a &#39;prints 2</code></pre>
+<pre><code>a &lt;&lt; &quot;cat&quot;
+a &lt;&lt; &quot;dog&quot;
+print &quot;dog&quot; in a &#39; prints 2</code></pre>
 <h2 id="logical-expression-short-circuit-evaluation">Logical expression short-circuit evaluation</h2>
 <p>In the code fragment below, if A and B are both func’s and the A func returns TRUE, then the B func is not called since the expression outcome will still be the same, the expression will evaluate to TRUE.</p>
 <pre><code>if (A OR B) ...</code></pre>
@@ -159,7 +172,7 @@ if (a = &quot;cat&quot;): print &quot;cat&quot;: endif</code></pre>
 if (a == &quot;cat&quot;): print &quot;cat&quot;: endif</code></pre>
 </div>
     <div class="pagefooter">
-      This page was last edited on Mon, 19 Mar 2018 20:30:08 +1000
+      This page was last edited on Fri, 28 Oct 2022 19:37:20 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

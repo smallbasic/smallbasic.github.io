@@ -91,6 +91,6 @@ end
 print "import site"
 print "import page"
 print "split trim(command), \" \", args"
-print "if (exist(args[0])) then tload args[0], content, 1"
+print "if (len(args) > 0) then tload args[0], content, 1"
 process(trim(command))
 

@@ -4291,6 +4291,13 @@ any other value will cause size to be avaluated as pixels.
     text "that can save her people and restore"
     text "freedom to the galaxy...."
 
+setLocation(x, y)
+
+Sets the location of the window on the screen.
+
+    w = window()
+    w.setLocation(100, 100)
+
 setSize(w, h)
 
 Sets the width and height of the SmallBASIC window.
@@ -8595,10 +8602,15 @@ RTRIM (s)
 
 SINPUT src; var [, delim] [,var [, delim]] ...
 
-    SINPUT "if x>1 then y"; vif, " ", vcond, "then", vdo
-    ? vcond, vdo
-    ' result=
-    ' x>1   y
+    src = "if x>1 then y"
+    SINPUT src; vif, " ", vcond, "then", vdo
+    print vif, vcond, vdo ' output: if    x>1    y
+
+    src = "1456,Peter,8"
+    SINPUT src; id, ",", name, ",", age 
+    print "ID: " + id
+    print "Name: " + name
+    print "Age: " + age
 
 +========================================================================================+
 |                                   275. (String) SPACE                                  |
@@ -8650,19 +8662,48 @@ I think SPACE and SPC are both the same, see also SPACE.
 +========================================================================================+
 
 SPLIT string, delimiters, words() [, pairs] [USE expr]
+group words. “Use expr” is applied to every splitted word.
+
     s="/etc/temp/filename.ext"
-    SPLIT s, "/.", v()
+    SPLIT s, "/.", v()  ' Splits the string using the delimiters "/" and "."
     FOR i=0 TO UBOUND(v)
       PRINT i;" [";v(i);"]"
     NEXT
 
-displays:
+    ' displays:
+    ' 0 []
+    ' 1 [etc]
+    ' 2 [temp]
+    ' 3 [filename]
+    ' 4 [ext]
 
+Example for using the argument “pairs”
+
+    s = "/etc/temp/filename.ext"
+    SPLIT s, "/", v(), "temp"
+    FOR i = 0 TO UBOUND(v)
+      PRINT i;" [";v(i);"]"
+    NEXT
+
+    ' Display
     0 []
-    1 [etc]
-    2 [temp]
-    3 [filename]
-    4 [ext]
+    1 [etc/temp]
+    2 [filename.ext]
+
+Example for using “USE expr”
+
+    s = "/etc/temp/filename1.ext  "        ' additional spaces at the end of the string
+    SPLIT s, "/", v(), "temp" USE TRIM(x)  ' trim(x) will remove spaces at the beginning
+                                           ' and the end of the splitted strings;
+                                           ' try the example without "USE TRIM(x)"
+    FOR i = 0 TO UBOUND(v)
+      PRINT i;" [";v(i);"]"
+    NEXT
+
+    ' displays
+    ' 0 []
+    ' 1 [etc/temp]
+    ' 2 [filename1.ext]
 
 +========================================================================================+
 |                                   278. (String) SPRINT                                 |

@@ -3,7 +3,11 @@
 <p>SINPUT src; var [, delim] [,var [, delim]] …</p>
 </blockquote>
 <p>Splits the string ‘src’ into variables which are separated by delimiters.</p>
-<pre><code>SINPUT &quot;if x&gt;1 then y&quot;; vif, &quot; &quot;, vcond, &quot;then&quot;, vdo
-? vcond, vdo
-&#39; result=
-&#39; x&gt;1   y</code></pre>
+<pre><code>src = &quot;if x&gt;1 then y&quot;
+SINPUT src; vif, &quot; &quot;, vcond, &quot;then&quot;, vdo
+print vif, vcond, vdo &#39; output: if    x&gt;1    y</code></pre>
+<pre><code>src = &quot;1456,Peter,8&quot;
+SINPUT src; id, &quot;,&quot;, name, &quot;,&quot;, age 
+print &quot;ID: &quot; + id
+print &quot;Name: &quot; + name
+print &quot;Age: &quot; + age</code></pre>
