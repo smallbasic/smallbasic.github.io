@@ -74,7 +74,7 @@ sub mk_ref(package)
     fileName = "_out/reference_txt/" + item.nodeID + "-" + lower(package) + "-" + lower(translate(item.keyword, " ", "")) + ".txt"
     try 
       tload fileName, buffer, 0
-      for j = 6 to len(buffer) - 1
+      for j = 3 to len(buffer) - 1
         out buffer[j]
       next j
     catch e
