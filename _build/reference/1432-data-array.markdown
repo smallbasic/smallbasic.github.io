@@ -7,6 +7,20 @@ Creates a ARRAY or MAP variable from the given string or expression.
 The ARRAY command supports JSON (Javascript object notation) syntax. The MAP provides value-key pair access along with array or dotted notation.
 The MAP can be converted back into a JSON string using the STR command. You can test whether a variable is a MAP using the ISMAP command.
 
+```
+a = array("{Name: Alice, Age: 20}")
+print a
+print a.Name + " is " + a.Age + " years old"
+```
+
+Instead of using ARRAY, the following shorter syntax will give the same result:
+
+```
+a = {Name: Alice, Age: 20}
+print a
+print a.Name + " is " + a.Age + " years old"
+```
+
 The following example shows a possible JSON representation describing a person:
 
 ~~~
@@ -113,101 +127,4 @@ b.title = "Top-Left"
 ?
 ?:?:? " Press any key..."
 Pause
-~~~
-
-Example 2:
-
-~~~
-REM SmallBASIC
-REM created: 03/04/2016
-? "Let's test reading files"
-? "FREEFILE is ", FREEFILE
-? "OPEN file [FOR INPUT|OUTPUT|APPEND] AS #fileN"
-? "OPEN \\"jump\\" FOR INPUT AS #1"
-OPEN "jump" FOR INPUT AS #1
-? "==================="
-? "Test TLOAD to array"
-? "==================="
-? "TLOAD file, BYREF var [, type]"
-? "Loads a text file into array variable."
-? "Each text-line is an array element."
-? "type 0 = load into array (default)"
-?
-? "TLOAD #1, i,0"
-TLOAD #1,i,0
-? "CLOSE file 1 for INPUT"
-CLOSE #1
-? "========================================"
-?
-? "ISARRAY ",ISARRAY (i)
-? "Process values & instructions"
-? "Check for the @ sign"
-? "Convert dec2bin"
-? "Pad out to 16 bits"
-?
-? "REDIM i to split destination table"
-? "& make dictionary"
-REDIM i(1,7)
-?
-? "Print array contents"
-?
-? "No","jump",,"bin"
-For j=0 to 7
-  ? j,i(0,j),,i(1,j)
-  next j
-?
-? "SEARCH list (above) for Assembler"
-? "SEARCH i, \\"JEQ\\", r"
-SEARCH i, "JEQ", r
-? "r = ", r
-? "jump   = ",i(0,r)
-? "binary = ",i(1,r)
-
-~~~
-
-Example 3:
-
-~~~
-? "OPEN \\"dest\\" FOR INPUT AS #1"
-OPEN "dest" FOR INPUT AS #1
-? "TLOAD #1, i,0"
-TLOAD #1,i,0
-? "CLOSE file 1 for INPUT"
-CLOSE #1
-? "Print the dest file shown below.
-? 
-? "null"
-? "M"
-? "D"
-? "MD"
-? "A"
-? "AM"
-? "AD"
-? "AMD"
-? "000"
-? "001"
-? "010"
-? "011"
-? "100"
-? "101"
-? "110"
-? "111"
-?
-? "REDIM i to split destination table"
-? "& make dictionary"
-REDIM i(1,7)
-?
-? "Print array contents"
-?
-? "No","func",,"bin"
-For j=0 to 7
-  ? j,i(0,j),,i(1,j)
-  next j
-?
-? "SEARCH list (above) for Assembler"
-? "SEARCH i, \\"AM\\", r"
-SEARCH i, "AM", r
-? "r = ", r
-? "destination = ",i(0,r)
-? "binary      = ",i(1,r)
 ~~~
