@@ -4,22 +4,19 @@
 
 Branch condition for a SELECT statement.
 
+See SELECT for more information and examples.
 
-~~~
+```
+x = 1 ' Change to see what happens
+select case x
+    case 1
+        print "x is 1"
+    case 2,3,4
+        print "x is 2,3 or 4"
+    case else
+        print "x is not 1, 2, 3 or 4"
+end select
+```
 
-' * See also IF...THEN...ELSE keywords.
-' * Currently CASE is not supporting QB style expressions (e.g. CASE IS > 1).
- 
-x = 0 ' try using different values for x, such as 1, 2, "1", "ABC", etc
-Select Case x
-Case 0: Print "x = 0"
-Case Len("a"): Print "x = 1"
-Case 2, 3: Print "x = 2 or x = 3"
-Case 4, 5, 6: Print "x >= 4 and x <= 6"
-Case Else
-  Print "Else: x = "; x
-End Select
-
-~~~
 
 
