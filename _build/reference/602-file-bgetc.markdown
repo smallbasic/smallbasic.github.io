@@ -2,7 +2,9 @@
 
 > BGETC (fileN)
 
-Reads and returns a byte from file or device (Binary mode) .
+Reads and returns a byte from file or device (Binary mode).
+
+See BPUTC for writing bytes to a file or device.
 
 ```
 ' create a binary file
