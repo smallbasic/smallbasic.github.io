@@ -4,11 +4,11 @@
 
 Specifies the foreground and background colors.
 
+See RGB and RGBF to create colors.
+
+Example 1: Assigning SmallBASIC standard colors to text
 
 ~~~
-
-Print "0 to 15 colors available for printing text..."
-Print
 For back = 0 To 7 Do
   text = back Xor 15 ' count down text color (15 to 8)
   
@@ -18,11 +18,9 @@ For back = 0 To 7 Do
   Color back, text ' reverse colors
   Print Using " text_, back COLOR ##, ## "; back, text
 Next
-Pause
-
 ~~~
 
-
+Example 2: Assigning RGB-colors to text
 
 ~~~
 
@@ -39,28 +37,33 @@ For shade = 0 To 10
   print
 Next
 Pause
-
 ~~~
 
-Here is chart of the 16 QB colors and their numbers:
+Example 3: Using RGB and RGBF to draw a magenta filled rectangle with white boarder
+
+```
+color rgb(255,67,133)
+rect 10, 10, 100, 100 filled  ' filling always with foreground color
+
+color rgbf(1,1,1)
+rect 10, 10, 100, 100
+```
+
+Here is a chart of the 16 SmallBASIC standard colors and their numbers:
 
 ~~~
-
-'QB color chart of 16 colors for 0 = black to 15 = bright white
+' Color chart of the 16 SmallBASIC standard colors
+' for 0 = black to 15 = bright white
 dy=ymax/16
 for i=0 to 15
   rect 0,i*dy,xmax,i*dy+dy,i filled
   at 0,i*dy:? i;
 next
-pause
-
 ~~~
 
-SmallBASIC recognizes two color Systems RGB(red,green,blue) and QB colors 0-15 (3 systems if you count RGBF which is like RGB but instead of 0-255 for each of red, green blue in RGB, the RGBF uses scale 0-1 for each of red,green, blue).
-You may Include> "color_const.bas" file in another file to make your code more clear.
+You may Include "color_const.bas" file in another file to make your code more clear.
 
 ~~~
-
 ' demo - add these lines to another BAS file:
 ' ------------------------------------------
 '  Include "color_const.bas" ' actuall filename must be lower case for Linux.
@@ -69,23 +72,22 @@ You may Include> "color_const.bas" file in another file to make your code more c
 '  Color BRIGHT_MAGENTA, BLUE: ? "Bright Magenta on Blue"
 ' ------------------------------------------
 ' color_const.bas - COLOR values for characters and pixels:
-Const BLACK   = 0
-Const BLUE    = 1
-Const GREEN   = 2
-Const CYAN    = 3
-Const RED     = 4
-Const MAGENTA = 5
-Const BROWN   = 6
-Const WHITE   = 7
-Const GRAY    = 8
-Const BRIGHT_BLUE  = 9
-Const BRIGHT_GREEN = 10
-Const BRIGHT_CYAN  = 11
-Const BRIGHT_RED   = 12
-Const BRIGHT_MAGENTA = 13
-Const YELLOW       = 14
-Const BRIGHT_WHITE = 15
-
+Const BLACK           = 0
+Const BLUE            = 1
+Const GREEN           = 2
+Const CYAN            = 3
+Const RED             = 4
+Const MAGENTA         = 5
+Const BROWN           = 6
+Const WHITE           = 7
+Const GRAY            = 8
+Const BRIGHT_BLUE     = 9
+Const BRIGHT_GREEN    = 10
+Const BRIGHT_CYAN     = 11
+Const BRIGHT_RED      = 12
+Const BRIGHT_MAGENTA  = 13
+Const YELLOW          = 14
+Const BRIGHT_WHITE    = 15
 ~~~
 
 
