@@ -4,4 +4,10 @@
 
 Chops off the last character of the string 'source' and returns the result.
 
+```
+s = "Test"
+print chop(s)
+
+' Output: Tes
+```
 
