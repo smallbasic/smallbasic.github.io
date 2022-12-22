@@ -75,10 +75,9 @@
   </div>
 </blockquote>
 <p>Specifies the foreground and background colors.</p>
-<pre><code>
-Print &quot;0 to 15 colors available for printing text...&quot;
-Print
-For back = 0 To 7 Do
+<p>See RGB and RGBF to create colors.</p>
+<p>Example 1: Assigning SmallBASIC standard colors to text</p>
+<pre><code>For back = 0 To 7 Do
   text = back Xor 15 &#39; count down text color (15 to 8)
   
   Color text, back
@@ -86,9 +85,8 @@ For back = 0 To 7 Do
   
   Color back, text &#39; reverse colors
   Print Using &quot; text_, back COLOR ##, ## &quot;; back, text
-Next
-Pause
-</code></pre>
+Next</code></pre>
+<p>Example 2: Assigning RGB-colors to text</p>
 <pre><code>
 Print &quot;Try color printing with some RGB shades&quot;
 Print
@@ -102,21 +100,23 @@ For shade = 0 To 10
   Print &quot;Here is reverse white to black  on black  to red.&quot;
   print
 Next
-Pause
-</code></pre>
-<p>Here is chart of the 16 QB colors and their numbers:</p>
-<pre><code>
-&#39;QB color chart of 16 colors for 0 = black to 15 = bright white
+Pause</code></pre>
+<p>Example 3: Using RGB and RGBF to draw a magenta filled rectangle with white boarder</p>
+<pre><code>color rgb(255,67,133)
+rect 10, 10, 100, 100 filled  &#39; filling always with foreground color
+
+color rgbf(1,1,1)
+rect 10, 10, 100, 100</code></pre>
+<p>Here is a chart of the 16 SmallBASIC standard colors and their numbers:</p>
+<pre><code>&#39; Color chart of the 16 SmallBASIC standard colors
+&#39; for 0 = black to 15 = bright white
 dy=ymax/16
 for i=0 to 15
   rect 0,i*dy,xmax,i*dy+dy,i filled
   at 0,i*dy:? i;
-next
-pause
-</code></pre>
-<p>SmallBASIC recognizes two color Systems RGB(red,green,blue) and QB colors 0-15 (3 systems if you count RGBF which is like RGB but instead of 0-255 for each of red, green blue in RGB, the RGBF uses scale 0-1 for each of red,green, blue). You may Include&gt; “color_const.bas” file in another file to make your code more clear.</p>
-<pre><code>
-&#39; demo - add these lines to another BAS file:
+next</code></pre>
+<p>You may Include “color_const.bas” file in another file to make your code more clear.</p>
+<pre><code>&#39; demo - add these lines to another BAS file:
 &#39; ------------------------------------------
 &#39;  Include &quot;color_const.bas&quot; &#39; actuall filename must be lower case for Linux.
 &#39;
@@ -124,23 +124,22 @@ pause
 &#39;  Color BRIGHT_MAGENTA, BLUE: ? &quot;Bright Magenta on Blue&quot;
 &#39; ------------------------------------------
 &#39; color_const.bas - COLOR values for characters and pixels:
-Const BLACK   = 0
-Const BLUE    = 1
-Const GREEN   = 2
-Const CYAN    = 3
-Const RED     = 4
-Const MAGENTA = 5
-Const BROWN   = 6
-Const WHITE   = 7
-Const GRAY    = 8
-Const BRIGHT_BLUE  = 9
-Const BRIGHT_GREEN = 10
-Const BRIGHT_CYAN  = 11
-Const BRIGHT_RED   = 12
-Const BRIGHT_MAGENTA = 13
-Const YELLOW       = 14
-Const BRIGHT_WHITE = 15
-</code></pre>
+Const BLACK           = 0
+Const BLUE            = 1
+Const GREEN           = 2
+Const CYAN            = 3
+Const RED             = 4
+Const MAGENTA         = 5
+Const BROWN           = 6
+Const WHITE           = 7
+Const GRAY            = 8
+Const BRIGHT_BLUE     = 9
+Const BRIGHT_GREEN    = 10
+Const BRIGHT_CYAN     = 11
+Const BRIGHT_RED      = 12
+Const BRIGHT_MAGENTA  = 13
+Const YELLOW          = 14
+Const BRIGHT_WHITE    = 15</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using COLOR</div>
     <div class="linklist">
@@ -226,7 +225,7 @@ COLOR by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sun, 18 Dec 2022 20:03:01 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

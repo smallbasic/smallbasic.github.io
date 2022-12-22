@@ -75,20 +75,23 @@
   </div>
 </blockquote>
 <p>SmallBASIC startup command line options.</p>
-<p>SDL version (GUI):&gt; Running the following line from the command line:</p>
-<pre><code>sbasicg -r test.bas &quot;abc xyz fileName&quot;</code></pre>
+<h3 id="sdl-version-gui">SDL version (GUI):</h3>
+<p>Running the following line from the command line:</p>
+<pre><code>LINUX:   sbasicg -r test.bas &quot;abc xyz fileName&quot;
+WINDOWS: sbasicg.exe -r test.bas &quot;abc xyz fileName&quot;</code></pre>
 <p>When “test.bas” is:</p>
-<pre><code>
-?  COMMAND
-Pause
-</code></pre>
-<p>Will print “abc xyz fileName” Note: Run ~~~ sbasicg -e test.bas ~~~ to enable ‘Edit’ mode again.&gt; Non-graphical console version (cygwin or linux):&gt; (Download from: https://github.com/smallbasic/SmallBASIC) (Build the source, then run: ./SmallBASIC/src/platform/unix/sbasic) Running the following line from the command line:</p>
-<pre><code>sbasic test.bas &quot;abc xyz fileName&quot;</code></pre>
+<pre><code>? COMMAND</code></pre>
+<p>Will print “abc xyz fileName”</p>
+<p>Note: Run</p>
+<pre><code>LINUX:   sbasicg -e test.bas
+WINDOWS: sbasicg.exe -e test.bas</code></pre>
+<p>to enable ‘Edit’ mode again.</p>
+<h3 id="non-graphical-console-version-cygwin-or-linux">Non-graphical console version (cygwin or linux):</h3>
+<p>Running the following line from the command line:</p>
+<pre><code>LINUX:   sbasic test.bas &quot;abc xyz fileName&quot;
+WINDOWS: sbasic.exe test.bas &quot;abc xyz fileName&quot;</code></pre>
 <p>When “test.bas” is:</p>
-<pre><code>
-?  COMMAND
-&#39; if you add PAUSE keyword then press Ctrl+C to return to command prompt.
-</code></pre>
+<pre><code>?  COMMAND</code></pre>
 <p>Will print “abc xyz fileName”</p>
   <div class="lavenderBox">
     <div class="header">Code samples using COMMAND</div>
@@ -160,7 +163,7 @@ COMMAND by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sun, 18 Dec 2022 20:16:29 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

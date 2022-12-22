@@ -75,6 +75,11 @@
   </div>
 </blockquote>
 <p>Draws a circle (or an ellipse if the aspect is specified).</p>
+<p>Example 1: Draw a filled white circle</p>
+<pre><code>circle 200, 200, 150 COLOR 15 FILLED</code></pre>
+<p>Example 2: Draw a ellipse with aspect ration 1:2</p>
+<pre><code>circle 200, 200, 150, 0.5</code></pre>
+<p>Example 3: Draw a flower</p>
 <pre><code>
 &#39; Aspect ratio is relation between width-height of a circle,
 &#39; for example:
@@ -117,13 +122,11 @@ Circle Step -c, +c, r, a Color  9 FILLED: Pause &#39; down-left
 &#39; draw the main circle:
 Circle CENTER, RADIUS, ASPECT_RATIO Color 14
 &#39; print text in the middle of main circle:
-At CENTER(0) - (Txtw(TEXT) \\ 2), CENTER(1) - (Txth(TEXT) \\ 2)
-Color 15: Print TEXT;
-Pause
-</code></pre>
-<pre><code>
-&#39;Another aspect or circle.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
-&#39;with aspect it is not the same old circle
+At CENTER(0) - (Txtw(TEXT) \ 2), CENTER(1) - (Txth(TEXT) \ 2)
+Color 15: Print TEXT;</code></pre>
+<p>Example 4: Smiley Face</p>
+<pre><code>&#39; SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
+&#39; Smiley Face
 cx=xmax/2:cy=ymax/2:rface=250:reye=50:xle=cx-100:xre=cx+100:dir=1
 while 1
   cls
@@ -138,11 +141,10 @@ while 1
   a+=.002*dir
   if a=.26 then dir=dir*-1
   if a=-.1 then dir=dir*-1
-wend
-</code></pre>
-<p>By default CIRCLE draws with anti-aliasing. For details, see: <a href="https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/" target="_blank">Fast, Antialiased Circles and Ellipses</a></p>
+wend</code></pre>
+<p>By default CIRCLE draws with anti-aliasing. For details, see: <a href="https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/">Fast, Antialiased Circles and Ellipses</a></p>
 <p>To turn off anti-aliasing, add this to the start of your program:</p>
-<pre><code> option predef antialias off</code></pre>
+<pre><code>option predef antialias off</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using CIRCLE</div>
     <div class="linklist">
@@ -228,7 +230,7 @@ CIRCLE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 5 Mar 2019 19:17:36 +1000
+      This page was last edited on Sun, 18 Dec 2022 18:29:00 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

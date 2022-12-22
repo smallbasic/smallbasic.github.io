@@ -65,15 +65,14 @@
     </div>
 <div class="article">
 <h1 id="escape-codes">Escape codes</h1>
-<p>SmallBASIC supports a number of escape codes for controlling the display. The codes allow you to set foreground and background colors, change the font and also set underline and inverse text display.</p>
-<p>The escape codes are based on <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes</a>. SmallBASIC also support a number of additional codes which are not part of the standard.</p>
-<p>Escape sequences start with the characters ESC (ASCII 27d / 1Bh / 033o ) and [ (left bracket). This sequence is called CSI for “Control Sequence Introducer”.</p>
-<p>The supported standard codes are:</p>
+<p>SmallBASIC supports a number of escape codes for controlling the display. The codes allow you to set foreground and background colors, change the font and also set underline and inverse text display. The escape codes are based on <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes</a>.</p>
+<h2 id="the-supported-standard-codes-are">The supported standard codes are:</h2>
 <pre><code>  \a      beep
   \t      tab (20 px)
   \r      return
   \n      next line
-  \xC     clear screen (new page)
+  \&quot;      quote &quot;
+  \\      Backslash \
   \e[K    clear to end of line
   \e[nG   move to column n
   \e[s    save cursor position
@@ -88,21 +87,61 @@
   \e[24m  set underline off
   \e[27m  set reverse off
   \e[nm   n colors - 30..37 foreground, 40..47 background</code></pre>
-<p>Useful non-standard codes include:</p>
-<pre><code>  \003    end of text (flush buffer)
-  \m      scroll to the top
-  \&lt;1     select backscreen 1
-  \&lt;2     select backscreen 2
-  \&gt;1     select frontscreen 1
-  \&lt;2     select frontscreen 2</code></pre>
-<p>The CHR command is useful for obtaining and printing the escape character (ASCII 27)</p>
-<p>For example:</p>
-<pre><code>10 PRINT CHR(27) + &quot;[1mTHIS IS BOLD&quot; + CHR(27) + &quot;[0m&quot;
-20 PRINT CHR(27) + &quot;[3mThis is italic&quot;  + CHR(27) + &quot;[0m&quot;
-30 PRINT CHR(27) + &quot;[4mThis is underline&quot;</code></pre>
+<h2 id="using-the-escape-codes-directly">Using the escape codes directly</h2>
+<p>The instead of “” the CHR command is useful for obtaining and printing the escape character (ASCII 27)</p>
+<pre class="freebasic"><code>PRINT CHR(27) + &quot;[1mTHIS IS BOLD&quot; + CHR(27) + &quot;[0m&quot;
+PRINT CHR(27) + &quot;[3mThis is italic&quot;  + CHR(27) + &quot;[0m&quot;
+PRINT CHR(27) + &quot;[4mThis is underline&quot;
+
+PRINT &quot;\e[32mGreen text&quot;
+PRINT &quot;\e[32m\e[47mGreen text on white background&quot;
+PRINT &quot;First line\nSecond Line&quot;</code></pre>
+<h2 id="using-the-escapecode-unit">Using the EscapeCode Unit</h2>
+<p>The EscapeCode Unit makes it easier to use the escape codes and to deal with the different colors for foreground and background. The uint can be downloaded or copy pasted from the <a href="https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas">SmallBASIC Github website</a>. Please save the unit in the same directory as you basic file.</p>
+<p>Here an example on how to use the unit.</p>
+<pre class="freebasic"><code>&#39; SmallBASIC 12.25
+&#39; Example for using UNIT &quot;EscapeCodes&quot;
+&#39; For more information see: https://smallbasic.github.io/pages/escape.html
+
+import EscapeCodes as esc
+
+print &quot;FORMATING TEXT:&quot;
+print
+print esc.NORMAL + &quot;WITHOUT ANY FORMAT &quot; + esc.ITALIC + &quot;ITALIC &quot; + esc.ITALIC_OFF + esc.BOLD + &quot;BOLD &quot; + esc.BOLD_OFF + esc.UNDERLINE + &quot;UNDERLINE &quot; + esc.UNDERLINE_OFF + esc.REVERSE + &quot;REVERSE&quot; + esc.REVERSE_OFF
+print
+print &quot;USE COLORS:&quot;
+print
+print esc.BG_BLACK   + esc.BLACK + &quot;  BLACK  &quot; + esc.RED + &quot;   RED   &quot; + esc.GREEN + &quot;  GREEN  &quot; + esc.YELLOW + &quot; YELLOW &quot; + esc.BLUE + &quot;  BLUE    &quot; + esc.MAGENTA + &quot; MAGENTA &quot; + esc.CYAN + &quot;  CYAN  &quot; + esc.WHITE + &quot;  WHITE  &quot; + esc.NORMAL
+print esc.BG_RED     + esc.BLACK + &quot;  BLACK  &quot; + esc.RED + &quot;   RED   &quot; + esc.GREEN + &quot;  GREEN  &quot; + esc.YELLOW + &quot; YELLOW &quot; + esc.BLUE + &quot;  BLUE    &quot; + esc.MAGENTA + &quot; MAGENTA &quot; + esc.CYAN + &quot;  CYAN  &quot; + esc.WHITE + &quot;  WHITE  &quot; + esc.NORMAL
+print esc.BG_GREEN   + esc.BLACK + &quot;  BLACK  &quot; + esc.RED + &quot;   RED   &quot; + esc.GREEN + &quot;  GREEN  &quot; + esc.YELLOW + &quot; YELLOW &quot; + esc.BLUE + &quot;  BLUE    &quot; + esc.MAGENTA + &quot; MAGENTA &quot; + esc.CYAN + &quot;  CYAN  &quot; + esc.WHITE + &quot;  WHITE  &quot; + esc.NORMAL
+print esc.BG_YELLOW  + esc.BLACK + &quot;  BLACK  &quot; + esc.RED + &quot;   RED   &quot; + esc.GREEN + &quot;  GREEN  &quot; + esc.YELLOW + &quot; YELLOW &quot; + esc.BLUE + &quot;  BLUE    &quot; + esc.MAGENTA + &quot; MAGENTA &quot; + esc.CYAN + &quot;  CYAN  &quot; + esc.WHITE + &quot;  WHITE  &quot; + esc.NORMAL
+print esc.BG_BLUE    + esc.BLACK + &quot;  BLACK  &quot; + esc.RED + &quot;   RED   &quot; + esc.GREEN + &quot;  GREEN  &quot; + esc.YELLOW + &quot; YELLOW &quot; + esc.BLUE + &quot;  BLUE    &quot; + esc.MAGENTA + &quot; MAGENTA &quot; + esc.CYAN + &quot;  CYAN  &quot; + esc.WHITE + &quot;  WHITE  &quot; + esc.NORMAL
+print esc.BG_MAGENTA + esc.BLACK + &quot;  BLACK  &quot; + esc.RED + &quot;   RED   &quot; + esc.GREEN + &quot;  GREEN  &quot; + esc.YELLOW + &quot; YELLOW &quot; + esc.BLUE + &quot;  BLUE    &quot; + esc.MAGENTA + &quot; MAGENTA &quot; + esc.CYAN + &quot;  CYAN  &quot; + esc.WHITE + &quot;  WHITE  &quot; + esc.NORMAL
+print esc.BG_CYAN    + esc.BLACK + &quot;  BLACK  &quot; + esc.RED + &quot;   RED   &quot; + esc.GREEN + &quot;  GREEN  &quot; + esc.YELLOW + &quot; YELLOW &quot; + esc.BLUE + &quot;  BLUE    &quot; + esc.MAGENTA + &quot; MAGENTA &quot; + esc.CYAN + &quot;  CYAN  &quot; + esc.WHITE + &quot;  WHITE  &quot; + esc.NORMAL
+print esc.BG_WHITE   + esc.BLACK + &quot;  BLACK  &quot; + esc.RED + &quot;   RED   &quot; + esc.GREEN + &quot;  GREEN  &quot; + esc.YELLOW + &quot; YELLOW &quot; + esc.BLUE + &quot;  BLUE    &quot; + esc.MAGENTA + &quot; MAGENTA &quot; + esc.CYAN + &quot;  CYAN  &quot; + esc.WHITE + &quot;  WHITE  &quot; + esc.NORMAL
+print esc.NORMAL
+print &quot;USE COLORS AND FORMATS:&quot;
+print
+print esc.NORMAL + esc.BOLD + esc.UNDERLINE + esc.GREEN + esc.BG_WHITE + &quot;BOLD + UNDELINE + COLOR&quot; + esc.NORMAL
+print
+print &quot;CONTROL THE CURSOR:&quot;
+print
+print esc.MOVE_TO_COLUMN(4) + &quot;MOVE TO COLUMN 4&quot;
+print &quot;TABS:&quot; + esc.TB + &quot;ONE TAB&quot; + esc.TB + esc.TB + &quot;TWO MORE TABS&quot;
+print &quot;YOU SHOULD NOT READ THIS&quot; + esc.RET + &quot;RETURN TO BEGIN OF LINE &quot;
+print &quot;FIRST LINE&quot; + esc.NEXTLINE + &quot;NEXT LINE&quot;
+print esc.SAVECURSOR + &quot;YOU SHOULD NOT READ THIS&quot; 
+print esc.RESTORECURSOR + esc.CLEAR_LINE + &quot;SAVE AND RESTORE THE CURSOR POSITION&quot;
+print
+print &quot;OTHER:&quot;
+print
+print esc.QUOTE + &quot;YOU CAN USE QUOTES&quot; + esc.QUOTE
+print esc.BP + &quot;A BEEP SHOULD BE AUDIBLE&quot;</code></pre>
+<h2 id="escape-codes-in-smallbasic-console-version">Escape codes in SmallBASIC console version</h2>
+<p>In the console version of SmallBASIC (sbasic.exe or sbasic) most of the escape codes, for example <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes at wikipedia</a>, can be used in version 12.25 or later. The support of the escape codes depends on the operating system and the terminal you are using.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Fri, 30 Mar 2018 12:09:12 +1000
+      This page was last edited on Tue, 20 Dec 2022 23:03:24 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

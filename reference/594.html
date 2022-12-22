@@ -74,21 +74,27 @@
     </p>
   </div>
 </blockquote>
-<p>Makes a file or device available for sequential input, sequential output.</p>
+<p>Makes a file, device or network connection available for sequential input, sequential output.</p>
 <ul>
 <li>file - A string expression that follows OS file naming conventions.</li>
 <li>fileN - A file-handle (integer 1 to 256).</li>
 </ul>
 <p>FOR</p>
 <table>
+<thead>
+<tr class="header">
+<th>Expression</th>
+<th>Description</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td>INPUT</td>
-<td>Sequential input</td>
+<td>Sequential input (reading from file)</td>
 </tr>
 <tr class="even">
 <td>OUTPUT</td>
-<td>Sequential output</td>
+<td>Sequential output ( writing to file)</td>
 </tr>
 <tr class="odd">
 <td>APPEND</td>
@@ -96,7 +102,55 @@
 </tr>
 </tbody>
 </table>
-<p>The files are always opened as shared.</p>
+<p>If an existing file is opened for output, the file will be deleted and an empty file will be created. The files are always opened as shared. You can use FREEFILE to get the next unused file-handle. Use PRINT, INPUT, BGETC and BPUTC to read from or write to a file or device.</p>
+<p>With OPEN you can also open a network connection. Depending on the kind of connection the following file names can be used:</p>
+<table>
+<colgroup>
+<col style="width: 65%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Connection Type</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>URL</td>
+<td>open “http://api.duckduckgo.com/?q=Cars&amp;format=json” as #1</td>
+</tr>
+<tr class="even">
+<td>Image</td>
+<td>open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1</td>
+</tr>
+<tr class="odd">
+<td>Socket</td>
+<td>open “SOCL:192.168.178.76:8080” as #1</td>
+</tr>
+</tbody>
+</table>
+<p>More information with examples can be found in the article “Network programming”.</p>
+<p>You can open a connection to a device using the serial port with <code>open "COMn:speed" AS #1</code>, where n is the number of the port and speed is the baud rate. To open the first serial port with a baud rate of 19200 use: <code>open "COM1:19200" as #1</code>. In Windows COM1 and in Linux /dev/ttys1 would be opened.</p>
+<p>Example to open a file:</p>
+<pre><code>&#39; create a text file
+open &quot;MyDemoFile.txt&quot; for output as #1
+
+for i = 1 to 10
+    print #1, i 
+next
+
+close #1
+
+&#39; open text file and print content line by line
+open &quot;MyDemoFile.txt&quot; for input as #1
+
+while(!eof(1))   &#39; eof works only without #
+    input #1, c
+    print c
+wend
+
+close #1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using OPEN</div>
     <div class="linklist">
@@ -183,7 +237,7 @@ OPEN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 07:05:30 +1000
+      This page was last edited on Tue, 20 Dec 2022 23:42:24 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

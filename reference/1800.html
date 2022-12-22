@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SmallBASIC | MIN</title>
-  <meta name="description" content="Minimum value of parameters. Parameters can be anything (arrays, ints, reals, strings).">
-  <link rel="canonical" href="740">
-  <link rel="keywords" href="MIN (...)">
+  <title>SmallBASIC | STATSTD</title>
+  <meta name="description" content="Standard deviation.">
+  <link rel="canonical" href="1800">
+  <link rel="keywords" href="STATSTD (...)">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
   <script src="/clipboard.js"></script>
@@ -58,14 +58,14 @@
       </div>
       <div class="tabsRight">
         <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/740-math-min.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/740-math-min.markdown">View history</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/1800-math-statstd.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/1800-math-statstd.markdown">View history</a></li>
         </ul>
       </div>
     </div>
 <div class="article">
-  <h1>MIN</h1>
-  <blockquote>MIN (...)</blockquote>
+  <h1>STATSTD</h1>
+  <blockquote>STATSTD (...)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -74,48 +74,10 @@
     </p>
   </div>
 </blockquote>
-<p>Minimum value of parameters. Parameters can be numbers, arrays or strings.</p>
-<pre><code>print MAX(3, 4, 8)
-print MAX(&quot;abc&quot;,&quot;def&quot;)
-x = [-1, 5, 8]: print MAX(x, 2, 3)
-
-print MIN(3, 4, 8)
-print MIN(&quot;abc&quot;,&quot;def&quot;)
-x = [-1, 5, 8]: print MIN(x, 2, 3)</code></pre>
-  <div class="lavenderBox">
-    <div class="header">Code samples using MIN</div>
-    <div class="linklist">
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//000 getting started/006 arrays+.bas">006 arrays+.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/2048.bas">2048.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/2048.bas">2048.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 2/3d rotating cube with message.bas">3d rotating cube with message.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/analog clock.bas">analog clock.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Misc Bpf/Balleta 2-11-15.bas">Balleta 2-11-15.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/betrayal: crows ii.bas">betrayal: crows ii.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/blackbox.bas">blackbox.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/Blackbox.bas">Blackbox.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 2/blushing snowflakes.bas">blushing snowflakes.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/bolmo.bas">bolmo.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/bowling7.bas">bowling7.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/bpf1.bas">bpf1.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/bpf2.bas">bpf2.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/Chaos_1xt.bas">Chaos_1xt.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/Chaos_NPhase.bas">Chaos_NPhase.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/checkers.bas">checkers.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/checkers.bas">checkers.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/chess.bas">chess.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/chess.bas">chess.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/clock.bas">clock.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 4/clock.bas">clock.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/conrec-sb-v01.bas">conrec-sb-v01.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//gp utm package/coordplot.bas">coordplot.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//units section/crgb.bas">crgb.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/crow.bas">crow.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//mathematics/dataminmax.bas">dataminmax.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//utilities/dia de una fecha.bas">dia de una fecha.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//gp utm package/dmsareaplot.bas">dmsareaplot.bas </a>&nbsp;
-    </div>
-  </div>
+<p>(Corrected sample) standard deviation.</p>
+<p>see: <a href="https://en.wikipedia.org/wiki/Standard_deviation">Wikipedia - Standard Deviation</a></p>
+<pre><code>a = [2, 4, 4, 4, 5, 5, 7, 9]
+print statstd(a)</code></pre>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -164,7 +126,7 @@ x = [-1, 5, 8]: print MIN(x, 2, 3)</code></pre>
       <a href="/reference/700.html">M3SCALE </a>&nbsp;
       <a href="/reference/701.html">M3TRANS </a>&nbsp;
       <a href="/reference/739.html">MAX </a>&nbsp;
-      <a href="/reference/740.html"><strong>MIN</strong> </a>&nbsp;
+      <a href="/reference/740.html">MIN </a>&nbsp;
       <a href="/reference/741.html">POLYAREA </a>&nbsp;
       <a href="/reference/742.html">POLYCENT </a>&nbsp;
       <a href="/reference/702.html">POLYEXT </a>&nbsp;
@@ -190,16 +152,16 @@ x = [-1, 5, 8]: print MIN(x, 2, 3)</code></pre>
       <a href="/reference/761.html">STATMEANDEV </a>&nbsp;
       <a href="/reference/762.html">STATSPREADP </a>&nbsp;
       <a href="/reference/763.html">STATSPREADS </a>&nbsp;
-      <a href="/reference/1800.html">STATSTD </a>&nbsp;
+      <a href="/reference/1800.html"><strong>STATSTD</strong> </a>&nbsp;
       <a href="/reference/764.html">SUM </a>&nbsp;
       <a href="/reference/765.html">SUMSQ </a>&nbsp;
       <a href="/reference/766.html">TAN </a>&nbsp;
       <a href="/reference/767.html">TANH </a>&nbsp;
     </div>
     <div class="subtitle">
-      If there is insufficient information on this page and you wish learn more about MIN,
+      If there is insufficient information on this page and you wish learn more about STATSTD,
       please send an email to smallbasic@gmail.com. You can help to improve information about
-MIN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/pulls">pull request</a>,
+STATSTD by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/pulls">pull request</a>,
       click View Source for details. Note, an offline language reference text file is also available - see the Download section.
     </div>
   </div>
@@ -216,7 +178,7 @@ MIN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 18 Oct 2022 22:13:03 +0200
+      This page was last edited on Thu, 22 Dec 2022 14:45:55 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

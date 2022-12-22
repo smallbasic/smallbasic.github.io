@@ -75,53 +75,56 @@
   </div>
 </blockquote>
 <p>Compile and run the given source. Source can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process.</p>
-<pre><code>
-&#39; Note: CHAIN behaves like EVAL function in other languages.
-Option Base 1 &#39; (for &#39;IN&#39; keyword which is 1-Based)
-&#39; Code using constants:
-Chain &quot;? \\&quot;100 + 50 is: \\&quot;; 100 + 50: Pause&quot; &#39; (100 + 50 = 150)
+<p>Example 1: Using constants; Note: <code>\"</code> is used to create a quote inside the string</p>
+<pre><code>Chain &quot;? \&quot;100 + 50 is: \&quot;; 100 + 50&quot; 
 
-&#39; Code using variables:
-Env &quot;SB1=6&quot; &#39; add two unique variables (for reuse)
+&#39; Output: 100 + 50 is: 150</code></pre>
+<p>Example 2: Using variables</p>
+<pre><code>Env &quot;SB1=6&quot;
 Env &quot;SB2=2&quot;
-Chain &quot;? Env(\\&quot;SB1\\&quot;) ^ Env(\\&quot;SB2\\&quot;): Pause&quot; &#39; (SB1 ^ SB2 = 36)
+Chain &quot;? Env(\&quot;SB1\&quot;) ^ Env(\&quot;SB2\&quot;)&quot; 
 
-&#39; Code using an array:
-Env &quot;SB1=3&quot;  &#39; reuse SB1 variable
-Dim a()          &#39; append code to array a
-a &lt;&lt; &quot;x = Env(\\&quot;SB1\\&quot;)&quot;
+&#39; Output: 36</code></pre>
+<p>Example 3: Using an array</p>
+<pre><code>Env &quot;SB1=3&quot;
+  
+Dim a()          
+a &lt;&lt; &quot;x = Env(\&quot;SB1\&quot;)&quot;
 a &lt;&lt; &quot;For i = 1 To 5&quot;
 a &lt;&lt; &quot;? i * x; Spc(1);&quot;
 a &lt;&lt; &quot;Next i&quot;
-a &lt;&lt; &quot;Pause&quot;
-Chain a &#39; prints 3 6 9 12 15
 
-&#39; Code using a file name (output a array to demo file):
-Const FILE_NAME = &quot;demo.bas&quot;
-Env &quot;SB1=4&quot;  &#39; reuse SB1 variable
-Open FILE_NAME For Output as #1
-For i In a
-  ? #1, i; &quot;:&quot;; &#39; output all code as a single string, &quot;:&quot;;
-Next i
-Close #1
-?
-Chain FILE_NAME &#39; prints 4 8 12 16 20
+Chain a 
 
-&#39; Now append to file name a return value (on the same line):
-Env &quot;SB1=5&quot;  &#39; reuse SB1 variable
-Open FILE_NAME For Append As #1
-? #1, &quot;Env \\&quot;SB1=\\&quot; + Str(i):&quot;; &#39; add extra space or &quot;:&quot;
-Close #1
-?
-Chain FILE_NAME &#39; prints 5 10 15 20 25
-Color 15 &#39; print the return value from file
-? &quot; (Return value SB1 is: &quot;; Env(&quot;SB1&quot;); &quot;)&quot; &#39; (i is 6)
-Pause
-</code></pre>
-<pre><code>
-Const FILENAME = &quot;demo.bas&quot;
-&#39; Create demo bas file (could be any SmallBASIC file):
-Open FILENAME For Output As #1
+&#39; Output: 3 6 9 12 15</code></pre>
+<p>Example 4: Using a file and returning a value</p>
+<pre><code>&#39; First we have to create a bas-file to show how chain works with files
+
+&#39; Create an array
+Env &quot;SB1=4&quot;  
+
+Dim a()      
+a &lt;&lt; &quot;x = Env(\&quot;SB1\&quot;)&quot;
+a &lt;&lt; &quot;For i = 1 To 5&quot;
+a &lt;&lt; &quot;? i * x; Spc(1);&quot;
+a &lt;&lt; &quot;Next i&quot;
+a &lt;&lt; &quot;Env \&quot;SB1=\&quot; + Str(i):&quot;    &#39; Return value using SB1
+
+&#39; Write array to file
+tsave(&quot;chaindemo.bas&quot;, a)
+
+&#39; Peparations are done. Now a bas-file can be chained
+Chain &quot;chaindemo.bas&quot; 
+
+print
+print &quot;Return value SB1 is: &quot;; Env(&quot;SB1&quot;); 
+
+&#39; Output: 
+&#39; 4 8 12 16 20
+&#39; Return value SB1 is: 6</code></pre>
+<p>Example 5:</p>
+<pre><code>&#39; Create demo bas file (could be any SmallBASIC file):
+Open &quot;chaindemo.bas&quot; For Output As #1
 ? #1, &quot;Sub count10(n)&quot;
 ? #1, &quot;  Local i&quot;
 ? #1, &quot;  Color 14&quot;
@@ -139,37 +142,33 @@ Open FILENAME For Output As #1
 ? #1, 
 ? #1, &quot;?:?&quot;
 Close #1
+
 &#39; Load demo bas file into array:
-Tload FILENAME, lines
+Tload &quot;chaindemo.bas&quot;, lines
 Env &quot;SB1=2&quot; &#39; Set value for child program (1..10)
 &#39; Execute the demo bas file (the array):
 Chain lines
 &#39; now print the return value from child program:
 Color 7:  ? &quot;I&#39;m The Parent Program...&quot;
 ?
-Color 15: ? &quot;Child program returned value: &quot;; Env(&quot;SB1&quot;)
-Pause
-</code></pre>
-<pre><code>
-&#39; Dedicated to MGA.
+Color 15: ? &quot;Child program returned value: &quot;; Env(&quot;SB1&quot;)</code></pre>
+<p>Example 6: Creating an eval function</p>
+<pre><code>&#39; Dedicated to MGA.
 &#39; s is any legal SmallBASIC Math Expression as String, e.g. &quot;1 + 2 / 4&quot;
-Func EVAL(s)
-  &#39; It takes 2 lines of SmallBASIC code to implement Math EVAL Function:
+Func eval(s)
   Chain &quot;Env &quot; + Enclose(&quot;SBEVAL=&quot;) + &quot; + Str(&quot; + s + &quot;)&quot;
   eval = Val(Env(&quot;SBEVAL&quot;))
 End Func
 
 &#39; now run few demos:
-? eval(&quot;1+2&quot;) &#39; prints 3, ...
+? eval(&quot;1+2&quot;) 
 ? eval(&quot;Rad(45) * 2&quot;) 
 ? eval(&quot;PI / 2 + PI&quot;)
 ? eval(&quot;0b1111 * Pow(2, 4)&quot;)
 ? eval(&quot;Sin(2) * Tan(4) / Cos(6)&quot;)
 ? eval(&quot;1 + 2 / 4&quot;)
 ? eval(&quot;6 * (Pow(2, 4) * 8)&quot;)
-? eval(&quot;Rad((45 * 3) - 20) * 2&quot;)
-Pause
-</code></pre>
+? eval(&quot;Rad((45 * 3) - 20) * 2&quot;)</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using CHAIN</div>
     <div class="linklist">
@@ -226,7 +225,7 @@ CHAIN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sat, 17 Dec 2022 20:08:20 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

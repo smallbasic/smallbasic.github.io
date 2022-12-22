@@ -3,3 +3,48 @@
 <p>CALL (fp)</p>
 </blockquote>
 <p>Invoke a sub or func by address pointer.</p>
+<p>Example 1: CALL with a subroutine pointer</p>
+<pre><code>sub MyPrint(i)
+  print i
+end
+
+a = @MyPrint
+call a, &quot;test&quot;      &#39; when using CALL for subroutines,
+                    &#39; please use CALL without brakets</code></pre>
+<p>Example 2: CALL with a function pointer</p>
+<pre><code>func Increment(i, b)
+  return  i + b
+end
+
+x = 1
+a = @Increment
+y = call(a,x,2)     &#39; when using CALL for functions,
+                    &#39; please use CALL with brakets
+print y</code></pre>
+<p>Example 3: CALL with a subroutine pointer and BYREF:</p>
+<pre><code>sub Increment(byref i, b)
+  i = i + b
+end
+
+x = 1
+a = @Increment
+call a,x,2
+print x</code></pre>
+<p>Example 4: Passing function pointer to a function</p>
+<pre><code>func Increment(i)
+  return i + 1
+end
+
+func Decrement(i)
+  return i - 1
+end
+
+func MyFunc(f, i)
+  return call(f,i)
+end
+
+a = @Increment
+b = @Decrement
+x = 2
+x = MyFunc(a,x): print x
+x = MyFunc(b,x): print x</code></pre>

@@ -2,33 +2,25 @@
 <blockquote>
 <p>CBS (s)</p>
 </blockquote>
-<p>Converts (C)-style strings to (B)ASIC-style (S)trings.</p>
-<pre><code>
-&#39; See &#39;C - Strings&#39; (http://www.tutorialspoint.com/cprogramming/c_strings.htm)
-&#39; to learn about strings in C language.
-&#39; See &#39;Escape sequences in C&#39; (https://en.wikipedia.org/wiki/Escape_sequences_in_C)
-&#39; for &quot;Table of escape sequences&quot;.
+<p>Converts (C)-style strings to (B)ASIC-style (S)trings by unmasking escape codes. Escape codes in the string will be applied to format the string when printed on the screen.</p>
+<p>See BCS to masked a Basic-style string, and see article “Escape codes” for more information about escape codes.</p>
+<pre><code>&#39; define some escape codes
+const NORMAL             = &quot;\e[0m&quot;  &#39; = Cat(0)
+const BOLD               = &quot;\e[1m&quot;  &#39; = Cat(1)
+const BOLD_OFF           = &quot;\e[21m&quot; &#39; = Cat(-1)
+const BG_CYAN            = &quot;\e[46m&quot;
+const TB                 = &quot;\t&quot;
 
-&#39; --- Compare C string to SmallBASIC string (code...):
- &#39; C string (very compact):
-? Cbs(&quot;         \\r\\n\\n\\t\\x22No \\tmore \\tCoffee...??!\\x22\\a&quot;)
-Pause
-&#39; The equivalent SmallBASIC string (code): 
-? &quot;         &quot;;
-Locate Ypos, 0: ?: ?: ? ,; &#39; \\r\\n\\n\\t
-? Chr(34); &quot;No &quot;, &quot;more&quot;, &quot;Coffee...??!&quot; + Chr(34) + Chr(7) &#39; \\x22No \\tmore \\tCoffee...??!\\x22\\a&quot;
-Pause
+&#39; Create a string with escape codes
+BasicStyleString               = BOLD + &quot;BOLD&quot; + BOLD_OFF + TB + TB + BG_CYAN + &quot;COLORFULL BG&quot; + NORMAL
+CStyleString                   = bcs(BasicStyleString)
+BackConverted_BasicStyleString = cbs(CStyleString)
 
-&#39; --- Print few demo strings as SmallBASIC and C: 
-Def cs(s) = Cat(3) + Cbs(s) + Cat(-3) &#39; C string in reverse color
-Const SP = &quot; &lt;--&gt; &quot;
-&#39; &quot;SmallBASIC string&quot; &lt;--&gt; &quot;C string&quot;:
-? &quot;Hello\\f World!&quot;; SP; cs(&quot;Hello\\f World!&quot;)  &#39; \\f = Formfeed (clear screen)
-? &quot;Hello\\0 World!&quot;; SP; cs(&quot;Hello\\0 World!&quot;)  &#39; \\0 = null-terminated string
-? &quot;\\tHello World!&quot;; SP; cs(&quot;\\tHello World!&quot;)  &#39; \\t = Horizontal Tab
-? &quot;Hello\\n World!&quot;; SP; cs(&quot;Hello\\n World!&quot;)  &#39; \\n = Newline
-? &quot;Hello World\\r!&quot;; SP; cs(&quot;Hello World\\r!&quot;)  &#39; \\r = Carriage Return (home pos)
-? &quot;Hello World\\a!&quot;; SP; cs(&quot;Hello World\\a!&quot;)  &#39; \\a = Alarm (Beep, Bell)
-? &quot;Hello \\x22World!\\x22&quot;; SP; cs(&quot;Hello \\x22World!\\x22&quot;)  &#39; \\xhh char as hexadecimal number
-Pause 
-</code></pre>
+print &quot;Basic-style string            : &quot;; BasicStyleString
+print &quot;C-style string                : &quot;; CStyleString
+print &quot;Back conversion to basic style: &quot;; BackConverted_BasicStyleString
+
+&#39; Output will be (with colors and in bold)
+&#39; Basic-style string            : BOLD      COLORFULL BG
+&#39; C-style string                : \e[1mBOLD\e[21m\t\t\e[46mCOLORFULL BG\e[0m
+&#39; Back conversion to basic style: BOLD      COLORFULL BG</code></pre>

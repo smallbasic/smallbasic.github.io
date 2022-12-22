@@ -2,4 +2,23 @@
 <blockquote>
 <p>BGETC (fileN)</p>
 </blockquote>
-<p>Reads and returns a byte from file or device (Binary mode) .</p>
+<p>Reads and returns a byte from file or device (Binary mode).</p>
+<p>See BPUTC for writing bytes to a file or device.</p>
+<pre><code>&#39; create a binary file
+open &quot;BinaryFile.txt&quot; for output as #1
+
+for c = 0 to 255
+    bputc #1, c
+next
+
+close #1
+
+&#39; open binary file and print content
+open &quot;BinaryFile.txt&quot; for input as #1
+
+for i = 0 to 255
+    c = bgetc(1)
+    print CHR(c);
+next
+
+close #1</code></pre>

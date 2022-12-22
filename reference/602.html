@@ -74,7 +74,26 @@
     </p>
   </div>
 </blockquote>
-<p>Reads and returns a byte from file or device (Binary mode) .</p>
+<p>Reads and returns a byte from file or device (Binary mode).</p>
+<p>See BPUTC for writing bytes to a file or device.</p>
+<pre><code>&#39; create a binary file
+open &quot;BinaryFile.txt&quot; for output as #1
+
+for c = 0 to 255
+    bputc #1, c
+next
+
+close #1
+
+&#39; open binary file and print content
+open &quot;BinaryFile.txt&quot; for input as #1
+
+for i = 0 to 255
+    c = bgetc(1)
+    print CHR(c);
+next
+
+close #1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using BGETC</div>
     <div class="linklist">
@@ -135,7 +154,7 @@ BGETC by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sat, 17 Dec 2022 15:54:13 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -75,6 +75,13 @@
   </div>
 </blockquote>
 <p>Sub/func argument declaration. Changes to the variable will be passed back to the caller. Equivalent syntax to the @ character.</p>
+<pre><code>sub Increment(BYREF i)
+  i = i + 1
+end
+
+x = 1
+Increment(x)
+print x         &#39; output: 2</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using BYREF</div>
     <div class="linklist">
@@ -198,7 +205,7 @@ BYREF by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sat, 3 Dec 2022 11:16:46 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

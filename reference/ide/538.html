@@ -2,10 +2,47 @@
 <blockquote>
 <p>CAT (x)</p>
 </blockquote>
-<p>Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline, -2 = underline-off, 3 = reverse, -3 = reverse-off.</p>
-<pre><code>
-&#39; Note: tested and works with SB 0.12.2 on Linux 64-bit.
-Color 14, 1
+<p>Returns an escape code to format a string.</p>
+<table>
+<thead>
+<tr class="header">
+<th>x</th>
+<th>format</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>reset</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>bold</td>
+</tr>
+<tr class="odd">
+<td>-1</td>
+<td>bold off</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>underline</td>
+</tr>
+<tr class="odd">
+<td>-2</td>
+<td>underline off</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>reverse</td>
+</tr>
+<tr class="odd">
+<td>-3</td>
+<td>reverse off</td>
+</tr>
+</tbody>
+</table>
+<p>For more information about escape codes please see the article “Escape codes”.</p>
+<pre><code>Color 14, 1
 ? Cat(1); &quot;This is Bold text&quot;; Cat(-1)
 ?
 ? Cat(2); &quot;This is Underline text&quot;; Cat(-2)
@@ -15,111 +52,4 @@ Color 14, 1
 &#39; Cat(0) resets ALL attributes, including colors.
 ? Cat(1); Cat(2); &quot;This is Bold &amp; Underline text&quot;; Cat(0) 
 ?
-? Cat(2); Cat(3); &quot;This is Underline &amp; Reverse text (with default colors)&quot;; Cat(0)
-Pause
-</code></pre>
-<pre><code>
-&#39; Note: tested and works with SB 0.12.2 on Linux 64-bit.
-&#39; See also Article &quot;ESCAPE codes&quot; for more codes.
-Const ESCS = Chr(27) + &quot;[&quot; &#39; Escape sequence prefix.
-Const BG_BLACK = ESCS + &quot;40m&quot; &#39; background colors
-Const BG_GREEN = ESCS + &quot;42m&quot;
-Const ATTR_OFF = ESCS + &quot;0m&quot;  &#39; reset ALL console attributes
-Const BOLD_ON  = ESCS + &quot;1m&quot;  &#39; strong
-Const BOLD_OFF = ESCS + &quot;21m&quot;
-Const LINE_ON  = ESCS + &quot;4m&quot;  &#39; underline
-Const LINE_OFF = ESCS + &quot;24m&quot;
-Const REVE_ON  = ESCS + &quot;7m&quot;  &#39; reverse
-Const REVE_OFF = ESCS + &quot;27m&quot;
-Def green(text)   = BG_GREEN + text + BG_BLACK
-Def bold(text)    = BOLD_ON + text + BOLD_OFF
-Def uline(text)   = LINE_ON + text + LINE_OFF
-Def reverse(text) = REVE_ON + text + REVE_OFF
-
-? green(bold(&quot;This is Green Bold text&quot;))
-?
-? uline(&quot;This is Underline text&quot;)
-?
-? reverse(&quot;This is Reverse text&quot;)
-? 
-Color 14 &#39; yellow text color
-&#39; ATTR_OFF resets ALL attributes, including colors.
-? green(bold(uline(&quot;This is Green, Bold &amp; Underline text&quot;))) + ATTR_OFF
-?
-? reverse(uline(&quot;This is Underline &amp; Reverse text (with default colors)&quot;))
-Pause
-</code></pre>
-<pre><code>
-&#39; Note:
-&#39; * You may Include &quot;csi_const.bas&quot; file in another file to make your code more clear.
-&#39;
-&#39; * &quot;Supported&quot; codes, are those supported by SmallBASIC IDE (not by another Terminal Emulator).
-&#39; * CSI is &quot;Control Sequence Introducer&quot; (or &quot;Control Sequence Initiator&quot;), i.e. Chr(27) + &quot;[&quot;.
-&#39; * See also: Home -- Articles -- ESCAPE codes
-&#39; * See also: Home -- Language reference -- Graphics -- COLOR -- color_const.bas
-&#39; * See  https://en.wikipedia.org/wiki/ANSI_escape_code  for more Escape codes.
-&#39;
-&#39; demo - add these lines to another BAS file:
-&#39; ------------------------------------------
-&#39;  Include &quot;csi_const.bas&quot; &#39; actuall filename must be lower case for Linux.
-&#39;
-&#39;  Color 14: ? &quot;Press a key to start...&quot;
-&#39;  Pause
-&#39;  ? C0_FF + CSI_UNDERLINE + CSI_BG_BLUE + &quot;It&#39;s me...!&quot; + CSI_NORMAL
-&#39;  ? &quot;It&#39;s me again...!&quot; + C0_BEL
-&#39; ------------------------------------------
-
-&#39; csi_const.bas constants:
-Const CSI = Chr(27) + &quot;[&quot; &#39; Control Sequence Introducer
-&#39; Reset all terminal attributes to their defaults:
-Const CSI_NORMAL = CSI + &quot;0m&quot;
-&#39; Supported foreground color values for characters (30m-37m):
-Const CSI_BLACK   = CSI + &quot;30m&quot;
-Const CSI_RED     = CSI + &quot;31m&quot;
-Const CSI_GREEN   = CSI + &quot;32m&quot;
-Const CSI_YELLOW  = CSI + &quot;33m&quot;
-Const CSI_BLUE    = CSI + &quot;34m&quot;
-Const CSI_MAGENTA = CSI + &quot;35m&quot;
-Const CSI_CYAN    = CSI + &quot;36m&quot;
-Const CSI_WHITE   = CSI + &quot;37m&quot;
-&#39; Supported background color values for characters (40m-47m):
-Const CSI_BG_BLACK   = CSI + &quot;40m&quot;
-Const CSI_BG_RED     = CSI + &quot;41m&quot;
-Const CSI_BG_GREEN   = CSI + &quot;42m&quot;
-Const CSI_BG_YELLOW  = CSI + &quot;43m&quot;
-Const CSI_BG_BLUE    = CSI + &quot;44m&quot;
-Const CSI_BG_MAGENTA = CSI + &quot;45m&quot;
-Const CSI_BG_CYAN    = CSI + &quot;46m&quot;
-Const CSI_BG_WHITE   = CSI + &quot;47m&quot;
-&#39; Supported font attributes (these returned by CAT as well):
-Const CSI_BOLD          = CSI + &quot;1m&quot;  &#39; = Cat(1)
-Const CSI_BOLD_OFF      = CSI + &quot;21m&quot; &#39; = Cat(-1)
-Const CSI_UNDERLINE     = CSI + &quot;4m&quot;  &#39; = Cat(2)
-Const CSI_UNDERLINE_OFF = CSI + &quot;24m&quot; &#39; = Cat(-2)
-Const CSI_REVERSE       = CSI + &quot;7m&quot;  &#39; = Cat(3)
-Const CSI_REVERSE_OFF   = CSI + &quot;27m&quot; &#39; = Cat(-3)
-&#39; Other font attributes:
-Const CSI_ITALIC        = CSI + &quot;3m&quot;
-Const CSI_ITALIC_OFF    = CSI + &quot;23m&quot;
-Const CSI_BLINK         = CSI + &quot;5m&quot;
-Const CSI_BLINK_OFF     = CSI + &quot;25m&quot;
-&#39; Supported cursor movment:
-Const CSI_EL  = CSI + &quot;K&quot;    &#39; EL - Erase in Line (clear to end of line).
-&#39; Supported C0 Control Codes (See https://en.wikipedia.org/wiki/C0_and_C1_control_codes):
-Const C0_BEL = Chr(7)         &#39; BEL - bell (beep) (-C- \\a)
-Const C0_HT  = Chr(9)         &#39; HT  - Horizontal Tabulation (tab) (-C- \\t)
-Const C0_LF  = Chr(10)        &#39; LF  - Line Feed (-C- \\n)
-Const C0_FF  = Chr(12)        &#39; FF  - Form Feed (clear screen) (-C- \\f)
-Const C0_CR  = Chr(13)        &#39; CR  - Carriage Return (-C- \\r)
-Const C0_NL  = C0_CR + C0_LF  &#39; CNL - Cursor Next Line (Windows style for \\n)
-&#39; Note: New-Line (or line-break) character(s) is different on each system:
-&#39;       Windows and DOS uses a pair of CR and LF characters to terminate lines.
-&#39;       UNIX, Linux, FreeBSD and OS X uses a single LF character only.
-&#39;       Classic Mac operating system uses a single CR character only.
-&#39;       ... And the list goes on (https://en.wikipedia.org/wiki/Newline).
-
-&#39; Useful non-standard codes (for Android and FLTK versions):
-Const CSI_ALERTBOX = CSI + &quot; A&quot;  &#39; Displays an Alert Box
-Const CSI_KEYBOARD = CSI + &quot; K&quot;  &#39; Displays the Virtual Keyboard
-Const CSI_LABEL    = CSI + &quot; L&quot;  &#39; Displays a Label at the bottom of the screen
-</code></pre>
+? Cat(2); Cat(3); &quot;This is Underline &amp; Reverse text (with default colors)&quot;; Cat(0)</code></pre>

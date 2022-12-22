@@ -1,10 +1,59 @@
 <h1 id="chart">CHART</h1>
 <blockquote>
-<p>CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]</p>
+<p>CHART charttype, array() [, style [, x1, y1, x2, y2]]</p>
 </blockquote>
-<p>Draws a chart of array values in the rectangular area x1,y1,x2,y2. Styles: 0 = simple, 1 = with-marks, 2 = with ruler, 3 = with marks and ruler.</p>
-<pre><code>Const LINECHART = 1
-Const BARCHART = 2</code></pre>
+<p>Draws a chart of array values in the rectangular area x1,y1,x2,y2. The array stores y-values only: [y1, y2, y3, … yn]. The x-axis of the chart has the values 1,2,3,…n.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Charttype</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Linechart</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td>Barchart</td>
+<td style="text-align: center;">2</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Style</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>simple</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td>with marks</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td>with ruler</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td>with marks and ruler</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
+<p>See PLOT for plotting functions.</p>
+<p>Example 1: Linechart with marks and ruler</p>
+<pre><code>demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]
+Color 0, 15
+cls
+Chart 1, demo, 3, 150, 150, 750, 550</code></pre>
+<p>Example 2: All charttypes and styles in one glance</p>
 <pre><code>Const LINE_CHART = 1
 Const BAR_CHART  = 2
 demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]

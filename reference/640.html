@@ -75,20 +75,16 @@
   </div>
 </blockquote>
 <p>Branch condition for a SELECT statement.</p>
-<pre><code>
-&#39; * See also IF...THEN...ELSE keywords.
-&#39; * Currently CASE is not supporting QB style expressions (e.g. CASE IS &gt; 1).
- 
-x = 0 &#39; try using different values for x, such as 1, 2, &quot;1&quot;, &quot;ABC&quot;, etc
-Select Case x
-Case 0: Print &quot;x = 0&quot;
-Case Len(&quot;a&quot;): Print &quot;x = 1&quot;
-Case 2, 3: Print &quot;x = 2 or x = 3&quot;
-Case 4, 5, 6: Print &quot;x &gt;= 4 and x &lt;= 6&quot;
-Case Else
-  Print &quot;Else: x = &quot;; x
-End Select
-</code></pre>
+<p>See SELECT for more information and examples.</p>
+<pre><code>x = 1 &#39; Change to see what happens
+select case x
+    case 1
+        print &quot;x is 1&quot;
+    case 2,3,4
+        print &quot;x is 2,3 or 4&quot;
+    case else
+        print &quot;x is not 1, 2, 3 or 4&quot;
+end select</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using CASE</div>
     <div class="linklist">
@@ -212,7 +208,7 @@ CASE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sat, 17 Dec 2022 16:49:07 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

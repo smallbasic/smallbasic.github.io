@@ -76,6 +76,13 @@
 </blockquote>
 <p>Creates a ARRAY or MAP variable from the given string or expression.</p>
 <p>The ARRAY command supports JSON (Javascript object notation) syntax. The MAP provides value-key pair access along with array or dotted notation. The MAP can be converted back into a JSON string using the STR command. You can test whether a variable is a MAP using the ISMAP command.</p>
+<pre><code>a = array(&quot;{Name: Alice, Age: 20}&quot;)
+print a
+print a.Name + &quot; is &quot; + a.Age + &quot; years old&quot;</code></pre>
+<p>Instead of using ARRAY, the following shorter syntax will give the same result:</p>
+<pre><code>a = {Name: Alice, Age: 20}
+print a
+print a.Name + &quot; is &quot; + a.Age + &quot; years old&quot;</code></pre>
 <p>The following example shows a possible JSON representation describing a person:</p>
 <pre><code>{
   &quot;firstName&quot;: &quot;John&quot;,
@@ -176,95 +183,6 @@ b.title = &quot;Top-Left&quot;
 ?
 ?:?:? &quot; Press any key...&quot;
 Pause</code></pre>
-<p>Example 2:</p>
-<pre><code>REM SmallBASIC
-REM created: 03/04/2016
-? &quot;Let&#39;s test reading files&quot;
-? &quot;FREEFILE is &quot;, FREEFILE
-? &quot;OPEN file [FOR INPUT|OUTPUT|APPEND] AS #fileN&quot;
-? &quot;OPEN \\&quot;jump\\&quot; FOR INPUT AS #1&quot;
-OPEN &quot;jump&quot; FOR INPUT AS #1
-? &quot;===================&quot;
-? &quot;Test TLOAD to array&quot;
-? &quot;===================&quot;
-? &quot;TLOAD file, BYREF var [, type]&quot;
-? &quot;Loads a text file into array variable.&quot;
-? &quot;Each text-line is an array element.&quot;
-? &quot;type 0 = load into array (default)&quot;
-?
-? &quot;TLOAD #1, i,0&quot;
-TLOAD #1,i,0
-? &quot;CLOSE file 1 for INPUT&quot;
-CLOSE #1
-? &quot;========================================&quot;
-?
-? &quot;ISARRAY &quot;,ISARRAY (i)
-? &quot;Process values &amp; instructions&quot;
-? &quot;Check for the @ sign&quot;
-? &quot;Convert dec2bin&quot;
-? &quot;Pad out to 16 bits&quot;
-?
-? &quot;REDIM i to split destination table&quot;
-? &quot;&amp; make dictionary&quot;
-REDIM i(1,7)
-?
-? &quot;Print array contents&quot;
-?
-? &quot;No&quot;,&quot;jump&quot;,,&quot;bin&quot;
-For j=0 to 7
-  ? j,i(0,j),,i(1,j)
-  next j
-?
-? &quot;SEARCH list (above) for Assembler&quot;
-? &quot;SEARCH i, \\&quot;JEQ\\&quot;, r&quot;
-SEARCH i, &quot;JEQ&quot;, r
-? &quot;r = &quot;, r
-? &quot;jump   = &quot;,i(0,r)
-? &quot;binary = &quot;,i(1,r)
-</code></pre>
-<p>Example 3:</p>
-<pre><code>? &quot;OPEN \\&quot;dest\\&quot; FOR INPUT AS #1&quot;
-OPEN &quot;dest&quot; FOR INPUT AS #1
-? &quot;TLOAD #1, i,0&quot;
-TLOAD #1,i,0
-? &quot;CLOSE file 1 for INPUT&quot;
-CLOSE #1
-? &quot;Print the dest file shown below.
-? 
-? &quot;null&quot;
-? &quot;M&quot;
-? &quot;D&quot;
-? &quot;MD&quot;
-? &quot;A&quot;
-? &quot;AM&quot;
-? &quot;AD&quot;
-? &quot;AMD&quot;
-? &quot;000&quot;
-? &quot;001&quot;
-? &quot;010&quot;
-? &quot;011&quot;
-? &quot;100&quot;
-? &quot;101&quot;
-? &quot;110&quot;
-? &quot;111&quot;
-?
-? &quot;REDIM i to split destination table&quot;
-? &quot;&amp; make dictionary&quot;
-REDIM i(1,7)
-?
-? &quot;Print array contents&quot;
-?
-? &quot;No&quot;,&quot;func&quot;,,&quot;bin&quot;
-For j=0 to 7
-  ? j,i(0,j),,i(1,j)
-  next j
-?
-? &quot;SEARCH list (above) for Assembler&quot;
-? &quot;SEARCH i, \\&quot;AM\\&quot;, r&quot;
-SEARCH i, &quot;AM&quot;, r
-? &quot;r = &quot;, r
-? &quot;destination = &quot;,i(0,r)
-? &quot;binary      = &quot;,i(1,r)</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using ARRAY</div>
     <div class="linklist">
@@ -347,7 +265,7 @@ ARRAY by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 16 Jun 2021 20:35:19 +1000
+      This page was last edited on Thu, 1 Dec 2022 20:52:00 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -81,59 +81,65 @@
 <p>Returns file permissions as per chmod() and stat() system calls.</p>
 <p>The bits (in octal):</p>
 <table>
+<thead>
+<tr class="header">
+<th>Bits</th>
+<th>Permission</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td>04000</td>
-<td style="text-align: right;">set user ID on execution</td>
+<td>0o4000</td>
+<td>set user ID on execution</td>
 </tr>
 <tr class="even">
-<td>02000</td>
-<td style="text-align: right;">set group ID on execution</td>
+<td>0o2000</td>
+<td>set group ID on execution</td>
 </tr>
 <tr class="odd">
-<td>01000</td>
-<td style="text-align: right;">sticky bit</td>
+<td>0o1000</td>
+<td>sticky bit</td>
 </tr>
 <tr class="even">
-<td>00400</td>
-<td style="text-align: right;">read by owner</td>
+<td>0o400</td>
+<td>read by owner</td>
 </tr>
 <tr class="odd">
-<td>00200</td>
-<td style="text-align: right;">write by owner</td>
+<td>0o200</td>
+<td>write by owner</td>
 </tr>
 <tr class="even">
-<td>00100</td>
-<td style="text-align: right;">execute/search by owner</td>
+<td>0o100</td>
+<td>execute/search by owner</td>
 </tr>
 <tr class="odd">
-<td>00040</td>
-<td style="text-align: right;">read by group</td>
+<td>0o40</td>
+<td>read by group</td>
 </tr>
 <tr class="even">
-<td>00020</td>
-<td style="text-align: right;">write by group</td>
+<td>0o20</td>
+<td>write by group</td>
 </tr>
 <tr class="odd">
-<td>00010</td>
-<td style="text-align: right;">execute/search by group</td>
+<td>0o10</td>
+<td>execute/search by group</td>
 </tr>
 <tr class="even">
-<td>00004</td>
-<td style="text-align: right;">read by others</td>
+<td>0o4</td>
+<td>read by others</td>
 </tr>
 <tr class="odd">
-<td>00002</td>
-<td style="text-align: right;">write by others</td>
+<td>0o2</td>
+<td>write by others</td>
 </tr>
 <tr class="even">
-<td>00001</td>
-<td style="text-align: right;">execute/search by others</td>
+<td>0o1</td>
+<td>execute/search by others</td>
 </tr>
 </tbody>
 </table>
 <pre><code>IF ACCESS(&quot;/bin/sh&quot;) AND 0o4 THEN
- PRINT &quot;I can read it!&quot;
+   PRINT &quot;Others can read the file&quot;
 ENDIF</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using ACCESS</div>
@@ -205,7 +211,7 @@ ACCESS by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 07:05:30 +1000
+      This page was last edited on Wed, 30 Nov 2022 22:52:46 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

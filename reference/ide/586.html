@@ -7,8 +7,57 @@
 <li>file - A string expression that follows OS file naming conventions.</li>
 <li>mode - Compatible with system call chmod()‘s ’mode’ parameter.</li>
 </ul>
+<p>Linux:</p>
+<p>mode is a number best represented in octal: 0oUGO with U: User; G: Group; O: Other</p>
+<p>U, G and O are each defined the following way:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Value</th>
+<th style="text-align: center;">Permission</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">no</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">x (execute)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">w (write)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">w + x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">r (read)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">r + x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">r + w</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">r + w + x</td>
+</tr>
+</tbody>
+</table>
 <pre><code>&#39; Make myfile available to anyone (read/write)
 CHMOD &quot;myfile.bas&quot;, 0o666
-...
+
 &#39; Make myfile available to anyone (execute/read/write)
-CHMOD &quot;myfile.bas&quot;, 0o777</code></pre>
+CHMOD &quot;myfile.bas&quot;, 0o777
+
+&#39; Make myfile available to user (read/write)
+&#39; All others only read
+CHMOD &quot;myfile.bas&quot;, 0o644</code></pre>

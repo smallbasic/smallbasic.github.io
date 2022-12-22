@@ -5,6 +5,18 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.25 (23 December 2022)**
+
+- Implemented a new web service for managing files via desktop browser
+- Fixed a problem with TRIM which broke the TinyBASIC.bas sample
+- Fixed RECT FILLED when the coordinates are inverted
+- Fixed SPLIT command - empty input now gives zero length output
+- Fixed display of floating point numbers with high precision
+- Fixed functions Polyarea, Polycent
+- Fixed crash with INPUT command while scrolled #160
+- Updated CHART line drawing to use current foreground color
+- Added link from About screen to privacy page
+
 **12.23 (31 August 2021)**
 
 - Fix array append regression #122

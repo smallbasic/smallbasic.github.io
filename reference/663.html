@@ -75,28 +75,30 @@
   </div>
 </blockquote>
 <p>Bitwise AND.</p>
-<pre><code>
-Def shl(n, c) = n * Pow(2, c) &#39; shift-left c bits in n
-Def shr(n, c) = n \\ Pow(2, c) &#39; shift-right c bits in n
-Def mask(c) = Pow(2, c) - 1   &#39; return a mask of c bits
+<pre><code>print &quot;1011 AND 1101 = &quot;; bin(0b1011 band 0b1101)</code></pre>
+<p>The following example will first pack a date into a single integer and then unpack the integer to get the original date using bitwise operations.</p>
+<pre><code>Def shl(n, c) = n * Pow(2, c)         &#39; shift-left c bits in n
+Def shr(n, c) = n \ Pow(2, c)         &#39; shift-right c bits in n
+Def mask(c) = Pow(2, c) - 1           &#39; return a mask of c bits
+
 &#39; get the current date as three integers:
 now = Date &#39; now is &quot;dd/mm/yyyy&quot;
 day = Left(now, 2) * 1
 month = Mid(now, 4, 2) * 1
 year = Right(now, 4) * 1
+
 &#39; pack the date in one integer:
-p = day &#39; packing 5 bits (days 1..31)
-p = shl(p, 4) Bor month &#39; packing 4 bits (months 1..12)
-p = shl(p, 12) Bor year &#39; packing 12 bits (years 0..4095)
+p = day                                &#39; packing 5 bits (days 1..31)
+p = shl(p, 4) Bor month                &#39; packing 4 bits (months 1..12)
+p = shl(p, 12) Bor year                &#39; packing 12 bits (years 0..4095)
 Print Using &quot;The current date : 00/00/0000&quot;; day, month, year;
 Print &quot; -&gt; Packed as: &quot;; p; &quot; (0x&quot;; Hex(p); &quot;)&quot;
+
 &#39; unpack the date from one integer:
-p_day = shr(p, 12 + 4) &#39; packed in bits 16..20
-p_month = shr(p, 12) Band mask(4) &#39; packed in bits 12..15
-p_year = p Band mask(12) &#39; packed in bits 0..11
-Print Using &quot;The Unpacked date: 00/00/0000&quot;; p_day, p_month, p_year;
-Pause
-</code></pre>
+p_day = shr(p, 12 + 4)                 &#39; packed in bits 16..20
+p_month = shr(p, 12) Band mask(4)      &#39; packed in bits 12..15
+p_year = p Band mask(12)               &#39; packed in bits 0..11
+Print Using &quot;The Unpacked date: 00/00/0000&quot;; p_day, p_month, p_year;</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using BAND</div>
     <div class="linklist">
@@ -206,7 +208,7 @@ BAND by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Thu, 1 Dec 2022 21:27:47 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

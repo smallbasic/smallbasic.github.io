@@ -2,8 +2,26 @@
 <blockquote>
 <p>TRY</p>
 </blockquote>
-<p>The TRY statement introduces a TRY/CATCH BLOCK</p>
-<p>Note: If this demo program crashes… then run it again. It seems that TRY / CATCH block might be unstable within a function or sub… (?)</p>
+<p><strong>TRY</strong></p>
+<p>The TRY statement introduces a TRY/CATCH block.</p>
+<p><strong>CATCH [var | expr]</strong></p>
+<p>The CATCH statement is used to CATCH an run-time error. This is typically used with errors raised when calling a file system command that cannot be completed, for example attempting to open a non-existent file.</p>
+<p>The CATCH statement has two modes. You can supply a variable argument to store the error string. Alternatively you can supply an expression. When the raised error matches the (String) expression, the error will be caught.</p>
+<p>When using the expression mode, you can supply a succession of CATCH statements to handle various error messages separately.</p>
+<p><strong>END TRY</strong></p>
+<p>The END TRY statement marks the end of a TRY/CATCH block.</p>
+<h3 id="example-1-opening-a-non-existing-file-for-reading">Example 1: Opening a non-existing file for reading</h3>
+<pre><code>try
+    &#39; DON&#39;T use existing file for demo.
+    open &quot;try demo.tmp&quot; for input  as #1
+catch err
+    print err; &quot; &quot;
+    &#39; Some error handling could be implemented here
+    &#39; i.e: if(err = &quot;...&quot;) then ...
+end try
+
+print &quot;This point is reach, even if opening the file was not possible&quot;</code></pre>
+<h3 id="example-2-advanced-error-handling-for-opening-files">Example 2: Advanced error handling for opening files</h3>
 <pre><code>
 &#39; See also: Home -- Articles -- TRY / CATCH
 Const FILE_NAME = &quot;try demo.tmp&quot; &#39; -- DON&#39;T use existing file for demo.
@@ -15,7 +33,7 @@ Func opens(filename, mode)
     Case &quot;input&quot; : Open filename For Input  As #fn
     Case &quot;output&quot;: Open filename For Output As #fn
     Case &quot;append&quot;: Open filename For Append As #fn
-    Case Else: ? &quot;opens(): Bad open mode at line &quot; + Progline: Pause: Stop
+    Case Else: ? &quot;opens(): Bad open mode at line &quot; + Progline: Stop
     End Select
     opens = fn &#39; file opened, return file-handle (integer 1 to 256)
   Catch err
@@ -65,6 +83,10 @@ If fn Then
   Tload #fn, lines
   ? lines;
   Close #fn
-Fi
-Pause
-</code></pre>
+Fi</code></pre>
+<h3 id="example-3-open-com-port">Example 3: Open COM-Port</h3>
+<pre><code>try
+  open &quot;com2000:&quot; AS #1
+catch err
+  ? &quot;in catch: open failed&quot;;err
+end try</code></pre>

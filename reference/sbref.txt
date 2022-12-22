@@ -20,11 +20,11 @@ TO TRUE TRY UNTIL USE USG USING WEND WHILE XNOR XOR ABS ABSMAX ABSMIN ACOS ACOSH
 ASEC ASECH ASIN ASINH ATAN ATAN2 ATANH ATN CEIL COS COSH COT COTH CSC CSCH DEG DERIV DETERM DIFFEQN EXP 
 EXPRSEQ FIX FLOOR FRAC INT INTERSECT INVERSE LINEQN LOG LOG10 M3APPLY M3IDENT M3ROTATE M3SCALE M3TRANS 
 MAX MIN POLYAREA POLYCENT POLYEXT POW PTDISTLN PTDISTSEG PTSIGN RAD RND ROOT ROUND SEC SECH SEGCOS SEGLEN 
-SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATSPREADP STATSPREADS SUM SUMSQ TAN TANH ASC BCS BIN 
-CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST LOWER LTRIM MID OCT 
-REPLACE RIGHT RIGHTOF RIGHTOFLAST RINSTR RTRIM SINPUT SPACE SPC SPLIT SPRINT SQUEEZE STR STRING TRANSLATE 
-TRIM UCASE UPPER VAL CHAIN COMMAND CWD DELAY ENV ENV EXEC EXPORT FRE HOME IMPORT INCLUDE MAXINT NIL OPTION 
-PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON UNIT 
+SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATSPREADP STATSPREADS STATSTD SUM SUMSQ TAN TANH ASC 
+BCS BIN CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST LOWER LTRIM 
+MID OCT REPLACE RIGHT RIGHTOF RIGHTOFLAST RINSTR RTRIM SINPUT SPACE SPC SPLIT SPRINT SQUEEZE STR STRING 
+TRANSLATE TRIM UCASE UPPER VAL CHAIN COMMAND CWD DELAY ENV ENV EXEC EXPORT FRE HOME IMPORT INCLUDE MAXINT 
+NIL OPTION PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON UNIT 
 
 +========================================================================================+
 |                                     1. (Console) AT                                    |
@@ -33,6 +33,9 @@ PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON UNIT
 AT x, y
 
 Moves the console cursor to the specified position. x,y are in pixels.
+
+    at 100,100
+    print "This text starts at pixel 100,100"
 
 +========================================================================================+
 |                                    2. (Console) BEEP                                   |
@@ -48,11 +51,21 @@ Generates a beep sound.
 
 CAT (x)
 
-Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline,
--2 = underline-off, 3 = reverse, -3 = reverse-off.
+Returns an escape code to format a string.
 
+  x    format
+  ---- ---------------
+  0    reset
+  1    bold
+  -1   bold off
+  2    underline
+  -2   underline off
+  3    reverse
+  -3   reverse off
 
-    ' Note: tested and works with SB 0.12.2 on Linux 64-bit.
+For more information about escape codes please see the article “Escape
+codes”.
+
     Color 14, 1
     ? Cat(1); "This is Bold text"; Cat(-1)
     ?
@@ -64,112 +77,6 @@ Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline,
     ? Cat(1); Cat(2); "This is Bold & Underline text"; Cat(0) 
     ?
     ? Cat(2); Cat(3); "This is Underline & Reverse text (with default colors)"; Cat(0)
-    Pause
-
-
-    ' Note: tested and works with SB 0.12.2 on Linux 64-bit.
-    ' See also Article "ESCAPE codes" for more codes.
-    Const ESCS = Chr(27) + "[" ' Escape sequence prefix.
-    Const BG_BLACK = ESCS + "40m" ' background colors
-    Const BG_GREEN = ESCS + "42m"
-    Const ATTR_OFF = ESCS + "0m"  ' reset ALL console attributes
-    Const BOLD_ON  = ESCS + "1m"  ' strong
-    Const BOLD_OFF = ESCS + "21m"
-    Const LINE_ON  = ESCS + "4m"  ' underline
-    Const LINE_OFF = ESCS + "24m"
-    Const REVE_ON  = ESCS + "7m"  ' reverse
-    Const REVE_OFF = ESCS + "27m"
-    Def green(text)   = BG_GREEN + text + BG_BLACK
-    Def bold(text)    = BOLD_ON + text + BOLD_OFF
-    Def uline(text)   = LINE_ON + text + LINE_OFF
-    Def reverse(text) = REVE_ON + text + REVE_OFF
-
-    ? green(bold("This is Green Bold text"))
-    ?
-    ? uline("This is Underline text")
-    ?
-    ? reverse("This is Reverse text")
-    ? 
-    Color 14 ' yellow text color
-    ' ATTR_OFF resets ALL attributes, including colors.
-    ? green(bold(uline("This is Green, Bold & Underline text"))) + ATTR_OFF
-    ?
-    ? reverse(uline("This is Underline & Reverse text (with default colors)"))
-    Pause
-
-
-    ' Note:
-    ' * You may Include "csi_const.bas" file in another file to make your code more clear.
-    '
-    ' * "Supported" codes, are those supported by SmallBASIC IDE (not by another Terminal Emulator).
-    ' * CSI is "Control Sequence Introducer" (or "Control Sequence Initiator"), i.e. Chr(27) + "[".
-    ' * See also: Home -- Articles -- ESCAPE codes
-    ' * See also: Home -- Language reference -- Graphics -- COLOR -- color_const.bas
-    ' * See  https://en.wikipedia.org/wiki/ANSI_escape_code  for more Escape codes.
-    '
-    ' demo - add these lines to another BAS file:
-    ' ------------------------------------------
-    '  Include "csi_const.bas" ' actuall filename must be lower case for Linux.
-    '
-    '  Color 14: ? "Press a key to start..."
-    '  Pause
-    '  ? C0_FF + CSI_UNDERLINE + CSI_BG_BLUE + "It's me...!" + CSI_NORMAL
-    '  ? "It's me again...!" + C0_BEL
-    ' ------------------------------------------
-
-    ' csi_const.bas constants:
-    Const CSI = Chr(27) + "[" ' Control Sequence Introducer
-    ' Reset all terminal attributes to their defaults:
-    Const CSI_NORMAL = CSI + "0m"
-    ' Supported foreground color values for characters (30m-37m):
-    Const CSI_BLACK   = CSI + "30m"
-    Const CSI_RED     = CSI + "31m"
-    Const CSI_GREEN   = CSI + "32m"
-    Const CSI_YELLOW  = CSI + "33m"
-    Const CSI_BLUE    = CSI + "34m"
-    Const CSI_MAGENTA = CSI + "35m"
-    Const CSI_CYAN    = CSI + "36m"
-    Const CSI_WHITE   = CSI + "37m"
-    ' Supported background color values for characters (40m-47m):
-    Const CSI_BG_BLACK   = CSI + "40m"
-    Const CSI_BG_RED     = CSI + "41m"
-    Const CSI_BG_GREEN   = CSI + "42m"
-    Const CSI_BG_YELLOW  = CSI + "43m"
-    Const CSI_BG_BLUE    = CSI + "44m"
-    Const CSI_BG_MAGENTA = CSI + "45m"
-    Const CSI_BG_CYAN    = CSI + "46m"
-    Const CSI_BG_WHITE   = CSI + "47m"
-    ' Supported font attributes (these returned by CAT as well):
-    Const CSI_BOLD          = CSI + "1m"  ' = Cat(1)
-    Const CSI_BOLD_OFF      = CSI + "21m" ' = Cat(-1)
-    Const CSI_UNDERLINE     = CSI + "4m"  ' = Cat(2)
-    Const CSI_UNDERLINE_OFF = CSI + "24m" ' = Cat(-2)
-    Const CSI_REVERSE       = CSI + "7m"  ' = Cat(3)
-    Const CSI_REVERSE_OFF   = CSI + "27m" ' = Cat(-3)
-    ' Other font attributes:
-    Const CSI_ITALIC        = CSI + "3m"
-    Const CSI_ITALIC_OFF    = CSI + "23m"
-    Const CSI_BLINK         = CSI + "5m"
-    Const CSI_BLINK_OFF     = CSI + "25m"
-    ' Supported cursor movment:
-    Const CSI_EL  = CSI + "K"    ' EL - Erase in Line (clear to end of line).
-    ' Supported C0 Control Codes (See https://en.wikipedia.org/wiki/C0_and_C1_control_codes):
-    Const C0_BEL = Chr(7)         ' BEL - bell (beep) (-C- \\a)
-    Const C0_HT  = Chr(9)         ' HT  - Horizontal Tabulation (tab) (-C- \\t)
-    Const C0_LF  = Chr(10)        ' LF  - Line Feed (-C- \\n)
-    Const C0_FF  = Chr(12)        ' FF  - Form Feed (clear screen) (-C- \\f)
-    Const C0_CR  = Chr(13)        ' CR  - Carriage Return (-C- \\r)
-    Const C0_NL  = C0_CR + C0_LF  ' CNL - Cursor Next Line (Windows style for \\n)
-    ' Note: New-Line (or line-break) character(s) is different on each system:
-    '       Windows and DOS uses a pair of CR and LF characters to terminate lines.
-    '       UNIX, Linux, FreeBSD and OS X uses a single LF character only.
-    '       Classic Mac operating system uses a single CR character only.
-    '       ... And the list goes on (https://en.wikipedia.org/wiki/Newline).
-
-    ' Useful non-standard codes (for Android and FLTK versions):
-    Const CSI_ALERTBOX = CSI + " A"  ' Displays an Alert Box
-    Const CSI_KEYBOARD = CSI + " K"  ' Displays the Virtual Keyboard
-    Const CSI_LABEL    = CSI + " L"  ' Displays a Label at the bottom of the screen
 
 +========================================================================================+
 |                                     4. (Console) CLS                                   |
@@ -178,6 +85,9 @@ Returns a console code. 0 = reset, 1 = bold, -1 bold-off, 2 = underline,
 CLS 
 
 Clears the screen.
+
+    print "Test"
+    CLS
 
 +========================================================================================+
 |                                  5. (Console) DEFINEKEY                                |
@@ -1017,6 +927,20 @@ Inserts the values at the end of the specified array.
 -   a - An array-variable.
 -   val - Any value or expression
 
+    a = [1,2,3]
+    print "Before APPEND: "; a
+
+    APPEND a, 4
+    print "After APPEND : "; a
+
+Instead of APPEND the << Operator can be used.
+
+    a = [1,2,3]
+    print "Before << operaror: "; a
+
+    a << 4
+    print "After << operator : "; a
+
 +========================================================================================+
 |                                     20. (Data) ARRAY                                   |
 +========================================================================================+
@@ -1029,6 +953,17 @@ The ARRAY command supports JSON (Javascript object notation) syntax. The
 MAP provides value-key pair access along with array or dotted notation.
 The MAP can be converted back into a JSON string using the STR command.
 You can test whether a variable is a MAP using the ISMAP command.
+
+    a = array("{Name: Alice, Age: 20}")
+    print a
+    print a.Name + " is " + a.Age + " years old"
+
+Instead of using ARRAY, the following shorter syntax will give the same
+result:
+
+    a = {Name: Alice, Age: 20}
+    print a
+    print a.Name + " is " + a.Age + " years old"
 
 The following example shows a possible JSON representation describing a
 person:
@@ -1134,98 +1069,6 @@ Example 1:
     ?
     ?:?:? " Press any key..."
     Pause
-
-Example 2:
-
-    REM SmallBASIC
-    REM created: 03/04/2016
-    ? "Let's test reading files"
-    ? "FREEFILE is ", FREEFILE
-    ? "OPEN file [FOR INPUT|OUTPUT|APPEND] AS #fileN"
-    ? "OPEN \\"jump\\" FOR INPUT AS #1"
-    OPEN "jump" FOR INPUT AS #1
-    ? "==================="
-    ? "Test TLOAD to array"
-    ? "==================="
-    ? "TLOAD file, BYREF var [, type]"
-    ? "Loads a text file into array variable."
-    ? "Each text-line is an array element."
-    ? "type 0 = load into array (default)"
-    ?
-    ? "TLOAD #1, i,0"
-    TLOAD #1,i,0
-    ? "CLOSE file 1 for INPUT"
-    CLOSE #1
-    ? "========================================"
-    ?
-    ? "ISARRAY ",ISARRAY (i)
-    ? "Process values & instructions"
-    ? "Check for the @ sign"
-    ? "Convert dec2bin"
-    ? "Pad out to 16 bits"
-    ?
-    ? "REDIM i to split destination table"
-    ? "& make dictionary"
-    REDIM i(1,7)
-    ?
-    ? "Print array contents"
-    ?
-    ? "No","jump",,"bin"
-    For j=0 to 7
-      ? j,i(0,j),,i(1,j)
-      next j
-    ?
-    ? "SEARCH list (above) for Assembler"
-    ? "SEARCH i, \\"JEQ\\", r"
-    SEARCH i, "JEQ", r
-    ? "r = ", r
-    ? "jump   = ",i(0,r)
-    ? "binary = ",i(1,r)
-
-Example 3:
-
-    ? "OPEN \\"dest\\" FOR INPUT AS #1"
-    OPEN "dest" FOR INPUT AS #1
-    ? "TLOAD #1, i,0"
-    TLOAD #1,i,0
-    ? "CLOSE file 1 for INPUT"
-    CLOSE #1
-    ? "Print the dest file shown below.
-    ? 
-    ? "null"
-    ? "M"
-    ? "D"
-    ? "MD"
-    ? "A"
-    ? "AM"
-    ? "AD"
-    ? "AMD"
-    ? "000"
-    ? "001"
-    ? "010"
-    ? "011"
-    ? "100"
-    ? "101"
-    ? "110"
-    ? "111"
-    ?
-    ? "REDIM i to split destination table"
-    ? "& make dictionary"
-    REDIM i(1,7)
-    ?
-    ? "Print array contents"
-    ?
-    ? "No","func",,"bin"
-    For j=0 to 7
-      ? j,i(0,j),,i(1,j)
-      next j
-    ?
-    ? "SEARCH list (above) for Assembler"
-    ? "SEARCH i, \\"AM\\", r"
-    SEARCH i, "AM", r
-    ? "r = ", r
-    ? "destination = ",i(0,r)
-    ? "binary      = ",i(1,r)
 
 +========================================================================================+
 |                                     21. (Data) DATA                                    |
@@ -1923,23 +1766,23 @@ Returns file permissions as per chmod() and stat() system calls.
 
 The bits (in octal):
 
-  ------- ---------------------------
-  04000      set user ID on execution
-  02000     set group ID on execution
-  01000                    sticky bit
-  00400                 read by owner
-  00200                write by owner
-  00100       execute/search by owner
-  00040                 read by group
-  00020                write by group
-  00010       execute/search by group
-  00004                read by others
-  00002               write by others
-  00001      execute/search by others
-  ------- ---------------------------
+  Bits     Permission
+  -------- ---------------------------
+  0o4000   set user ID on execution
+  0o2000   set group ID on execution
+  0o1000   sticky bit
+  0o400    read by owner
+  0o200    write by owner
+  0o100    execute/search by owner
+  0o40     read by group
+  0o20     write by group
+  0o10     execute/search by group
+  0o4      read by others
+  0o2      write by others
+  0o1      execute/search by others
 
     IF ACCESS("/bin/sh") AND 0o4 THEN
-     PRINT "I can read it!"
+       PRINT "Others can read the file"
     ENDIF
 
 +========================================================================================+
@@ -1948,7 +1791,28 @@ The bits (in octal):
 
 BGETC (fileN)
 
-Reads and returns a byte from file or device (Binary mode) .
+Reads and returns a byte from file or device (Binary mode).
+
+See BPUTC for writing bytes to a file or device.
+
+    ' create a binary file
+    open "BinaryFile.txt" for output as #1
+
+    for c = 0 to 255
+        bputc #1, c
+    next
+
+    close #1
+
+    ' open binary file and print content
+    open "BinaryFile.txt" for input as #1
+
+    for i = 0 to 255
+        c = bgetc(1)
+        print CHR(c);
+    next
+
+    close #1
 
 +========================================================================================+
 |                                     55. (File) BLOAD                                   |
@@ -1966,6 +1830,27 @@ BPUTC# fileN; byte
 
 Writes a byte on file or device. (Binary mode).
 
+See BGETC for reading bytes from a file or device.
+
+    ' create a binary file
+    open "BinaryFile.txt" for output as #1
+
+    for c = 0 to 255
+        bputc #1, c
+    next
+
+    close #1
+
+    ' open binary file and print content
+    open "BinaryFile.txt" for input as #1
+
+    for i = 0 to 255
+        c = bgetc(1)
+        print CHR(c);
+    next
+
+    close #1
+
 +========================================================================================+
 |                                     57. (File) BSAVE                                   |
 +========================================================================================+
@@ -1982,6 +1867,14 @@ CHDIR dir
 
 Changes the current working directory.
 
+See CWD to get the current working directory.
+
+Example 1: Linux
+
+    print cwd
+    chdir "/usr/bin"
+    print cwd
+
 +========================================================================================+
 |                                     59. (File) CHMOD                                   |
 +========================================================================================+
@@ -1993,11 +1886,33 @@ Change permissions of a file. See also ACCESS.
 -   file - A string expression that follows OS file naming conventions.
 -   mode - Compatible with system call chmod()‘s ’mode’ parameter.
 
+Linux:
+
+mode is a number best represented in octal: 0oUGO with U: User; G:
+Group; O: Other
+
+U, G and O are each defined the following way:
+
+   Value   Permission
+  ------- -------------
+     0         no
+     1     x (execute)
+     2      w (write)
+     3        w + x
+     4      r (read)
+     5        r + x
+     6        r + w
+     7      r + w + x
+
     ' Make myfile available to anyone (read/write)
     CHMOD "myfile.bas", 0o666
-    ...
+
     ' Make myfile available to anyone (execute/read/write)
     CHMOD "myfile.bas", 0o777
+
+    ' Make myfile available to user (read/write)
+    ' All others only read
+    CHMOD "myfile.bas", 0o644
 
 +========================================================================================+
 |                                     60. (File) CLOSE                                   |
@@ -2005,7 +1920,28 @@ Change permissions of a file. See also ACCESS.
 
 CLOSE #fileN
 
-Close a file or device.
+Close a file or device with file-handle #fileN.
+
+See OPEN for more information on how to read or write files.
+
+    ' create a text file
+    open "MyDemoFile.txt" for output as #1
+
+    for i = 1 to 10
+        print #1, i 
+    next
+
+    close #1
+
+    ' open text file and print content line by line
+    open "MyDemoFile.txt" for input as #1
+
+    while(!eof(1))   ' eof works only without #
+        input #1, c
+        print c
+    wend
+
+    close #1
 
 +========================================================================================+
 |                                     61. (File) COPY                                    |
@@ -2013,7 +1949,9 @@ Close a file or device.
 
 COPY \"file\", \"newfile\"
 
-Makes a copy of specified file to the ‘newfile’.
+Makes a copy of specified file the newfile.
+
+    copy "test.txt", "test_backup.txt"
 
 +========================================================================================+
 |                                    62. (File) DIRWALK                                  |
@@ -2273,21 +2211,69 @@ Create a directory.
 
 OPEN file [FOR {INPUT|OUTPUT|APPEND}] AS #fileN
 
-Makes a file or device available for sequential input, sequential
-output.
+Makes a file, device or network connection available for sequential
+input, sequential output.
 
 -   file - A string expression that follows OS file naming conventions.
 -   fileN - A file-handle (integer 1 to 256).
 
 FOR
 
-  -------- ---------------------------------------------
-  INPUT    Sequential input
-  OUTPUT   Sequential output
-  APPEND   Sequential output, beginning at current EOF
-  -------- ---------------------------------------------
+  Expression   Description
+  ------------ ---------------------------------------------
+  INPUT        Sequential input (reading from file)
+  OUTPUT       Sequential output ( writing to file)
+  APPEND       Sequential output, beginning at current EOF
 
-The files are always opened as shared.
+If an existing file is opened for output, the file will be deleted and
+an empty file will be created. The files are always opened as shared.
+You can use FREEFILE to get the next unused file-handle. Use PRINT,
+INPUT, BGETC and BPUTC to read from or write to a file or device.
+
+With OPEN you can also open a network connection. Depending on the kind
+of connection the following file names can be used:
+
+  ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Connection Type                                Example
+  ---------------------------------------------- -----------------------------------------------------------------------------------------------------
+  URL                                            open “http://api.duckduckgo.com/?q=Cars&format=json” as #1
+
+  Image                                          open
+                                                 "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png"
+                                                 as #1
+
+  Socket                                         open “SOCL:192.168.178.76:8080” as #1
+  ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+More information with examples can be found in the article “Network
+programming”.
+
+You can open a connection to a device using the serial port with
+open "COMn:speed" AS #1, where n is the number of the port and speed is
+the baud rate. To open the first serial port with a baud rate of 19200
+use: open "COM1:19200" as #1. In Windows COM1 and in Linux /dev/ttys1
+would be opened.
+
+Example to open a file:
+
+    ' create a text file
+    open "MyDemoFile.txt" for output as #1
+
+    for i = 1 to 10
+        print #1, i 
+    next
+
+    close #1
+
+    ' open text file and print content line by line
+    open "MyDemoFile.txt" for input as #1
+
+    while(!eof(1))   ' eof works only without #
+        input #1, c
+        print c
+    wend
+
+    close #1
 
 +========================================================================================+
 |                                    74. (File) RENAME                                   |
@@ -2616,7 +2602,16 @@ utility…
 
 ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]
 
-Draws an arc. astart, aend = first,last angle in radians.
+Draws an arc. - x, y: center point - r: radius - astart, aend:
+first,last angle in radians - aspect: aspect ratio - color: line color
+
+    x = 100
+    y = 100
+    r = 50
+    astart = 0
+    aend = rad(90)
+
+    ARC x,y,r,astart,aend
 
 +========================================================================================+
 |                                   82. (Graphics) CHART                                 |
@@ -2624,12 +2619,32 @@ Draws an arc. astart, aend = first,last angle in radians.
 
 CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]
 
-Draws a chart of array values in the rectangular area x1,y1,x2,y2.
-Styles: 0 = simple, 1 = with-marks, 2 = with ruler, 3 = with marks and
-ruler.
+Draws a chart of array values in the rectangular area x1,y1,x2,y2. The
+array stores y-values only: [y1, y2, y3, … yn]. The x-axis of the chart
+has the values 1,2,3,…n.
 
-    Const LINECHART = 1
-    Const BARCHART = 2
+  Charttype    Value
+  ----------- -------
+  Linechart      1
+  Barchart       2
+
+  Style                   Value
+  ---------------------- -------
+  simple                    0
+  with marks                1
+  with ruler                2
+  with marks and ruler      3
+
+See PLOT for plotting functions.
+
+Example 1: Linechart with marks and ruler
+
+    demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]
+    Color 0, 15
+    cls
+    Chart 1, demo, 3, 150, 150, 750, 550
+
+Example 2: All charttypes and styles in one glance
 
     Const LINE_CHART = 1
     Const BAR_CHART  = 2
@@ -2655,6 +2670,16 @@ ruler.
 CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]
 
 Draws a circle (or an ellipse if the aspect is specified).
+
+Example 1: Draw a filled white circle
+
+    circle 200, 200, 150 COLOR 15 FILLED
+
+Example 2: Draw a ellipse with aspect ration 1:2
+
+    circle 200, 200, 150, 0.5
+
+Example 3: Draw a flower
 
 
     ' Aspect ratio is relation between width-height of a circle,
@@ -2698,13 +2723,13 @@ Draws a circle (or an ellipse if the aspect is specified).
     ' draw the main circle:
     Circle CENTER, RADIUS, ASPECT_RATIO Color 14
     ' print text in the middle of main circle:
-    At CENTER(0) - (Txtw(TEXT) \\ 2), CENTER(1) - (Txth(TEXT) \\ 2)
+    At CENTER(0) - (Txtw(TEXT) \ 2), CENTER(1) - (Txth(TEXT) \ 2)
     Color 15: Print TEXT;
-    Pause
 
+Example 4: Smiley Face
 
-    'Another aspect or circle.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
-    'with aspect it is not the same old circle
+    ' SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
+    ' Smiley Face
     cx=xmax/2:cy=ymax/2:rface=250:reye=50:xle=cx-100:xre=cx+100:dir=1
     while 1
       cls
@@ -2726,7 +2751,7 @@ Antialiased Circles and Ellipses
 
 To turn off anti-aliasing, add this to the start of your program:
 
-     option predef antialias off
+    option predef antialias off
 
 +========================================================================================+
 |                                   84. (Graphics) COLOR                                 |
@@ -2736,9 +2761,10 @@ COLOR foreground-color [, background-color]
 
 Specifies the foreground and background colors.
 
+See RGB and RGBF to create colors.
 
-    Print "0 to 15 colors available for printing text..."
-    Print
+Example 1: Assigning SmallBASIC standard colors to text
+
     For back = 0 To 7 Do
       text = back Xor 15 ' count down text color (15 to 8)
       
@@ -2748,7 +2774,8 @@ Specifies the foreground and background colors.
       Color back, text ' reverse colors
       Print Using " text_, back COLOR ##, ## "; back, text
     Next
-    Pause
+
+Example 2: Assigning RGB-colors to text
 
 
     Print "Try color printing with some RGB shades"
@@ -2765,23 +2792,27 @@ Specifies the foreground and background colors.
     Next
     Pause
 
-Here is chart of the 16 QB colors and their numbers:
+Example 3: Using RGB and RGBF to draw a magenta filled rectangle with
+white boarder
 
+    color rgb(255,67,133)
+    rect 10, 10, 100, 100 filled  ' filling always with foreground color
 
-    'QB color chart of 16 colors for 0 = black to 15 = bright white
+    color rgbf(1,1,1)
+    rect 10, 10, 100, 100
+
+Here is a chart of the 16 SmallBASIC standard colors and their numbers:
+
+    ' Color chart of the 16 SmallBASIC standard colors
+    ' for 0 = black to 15 = bright white
     dy=ymax/16
     for i=0 to 15
       rect 0,i*dy,xmax,i*dy+dy,i filled
       at 0,i*dy:? i;
     next
-    pause
 
-SmallBASIC recognizes two color Systems RGB(red,green,blue) and QB
-colors 0-15 (3 systems if you count RGBF which is like RGB but instead
-of 0-255 for each of red, green blue in RGB, the RGBF uses scale 0-1 for
-each of red,green, blue). You may Include> “color_const.bas” file in
-another file to make your code more clear.
-
+You may Include “color_const.bas” file in another file to make your code
+more clear.
 
     ' demo - add these lines to another BAS file:
     ' ------------------------------------------
@@ -2791,22 +2822,22 @@ another file to make your code more clear.
     '  Color BRIGHT_MAGENTA, BLUE: ? "Bright Magenta on Blue"
     ' ------------------------------------------
     ' color_const.bas - COLOR values for characters and pixels:
-    Const BLACK   = 0
-    Const BLUE    = 1
-    Const GREEN   = 2
-    Const CYAN    = 3
-    Const RED     = 4
-    Const MAGENTA = 5
-    Const BROWN   = 6
-    Const WHITE   = 7
-    Const GRAY    = 8
-    Const BRIGHT_BLUE  = 9
-    Const BRIGHT_GREEN = 10
-    Const BRIGHT_CYAN  = 11
-    Const BRIGHT_RED   = 12
-    Const BRIGHT_MAGENTA = 13
-    Const YELLOW       = 14
-    Const BRIGHT_WHITE = 15
+    Const BLACK           = 0
+    Const BLUE            = 1
+    Const GREEN           = 2
+    Const CYAN            = 3
+    Const RED             = 4
+    Const MAGENTA         = 5
+    Const BROWN           = 6
+    Const WHITE           = 7
+    Const GRAY            = 8
+    Const BRIGHT_BLUE     = 9
+    Const BRIGHT_GREEN    = 10
+    Const BRIGHT_CYAN     = 11
+    Const BRIGHT_RED      = 12
+    Const BRIGHT_MAGENTA  = 13
+    Const YELLOW          = 14
+    Const BRIGHT_WHITE    = 15
 
 +========================================================================================+
 |                                   85. (Graphics) DRAW                                  |
@@ -4694,55 +4725,18 @@ a AND b
 Logical AND. Right side is not evaluated if left side evaluates to
 False.
 
-The Sign-Bit Bug (part 2): Ways to workaround this bug:
+    a = 1
+    b = 0
 
-1)  It is Safe to manipulate the lower bits, 0 to 30. If your program
-    don’t need to manipulate whole 32-bits of integer, then you can
-    safely BAND numbers with 0x7FFFFFFF to create 31-bit unsigned
-    integers (bit-31+ are cleared). But you must make sure when using
-    math functions or bitwise NOT (~) that the sign bit (bit-31) always
-    remains intact, i.e. = 0.
+    print a and b   ' output is 0
 
-2)  A slower way, but safe, is to manipulate 32 bits using BIN()
-    function. In this way you can temporarily convert a number to binary
-    string of 32-bits, manipulate whole 32 bits using regular string
-    manipulation, and then convert the binary string back to number, for
-    example: assuming that BIN() returns 32-bits binary string (as it
-    should):
+    if(a == 1 and b == 0) then print "if statement 1"
+    if(a == 1 and b == 1) then print "if statement 2"       ' "if statement 2" will not be printed to the screen
 
-    s = Bin(number)         ' convert number to binary string
-    s = Replace(s, 1, "1")  ' set bit-31
-    s = Replace(s, 32, "0") ' reset bit-0
-    number = Val(s)         ' convert binary string back to number
+    c = "test"
 
-This code will work the same way on both 64-bit and 32-bit systems. It
-allows you to Shift/Rotate 32-bit numbers safely. So if you don’t need
-the speed of bitwise operators, then this is easy and safe way.
-
-3)  If you still need to manipulate whole 32 bits, using fast bitwise
-    operators, in a safe way that will give the same results on 32-bit
-    and 64-bit systems, then it’s possible. Just be aware of the
-    following:
-
--   Never change the sign bit (bit-31 of integer) by using Math
-    operators or function; or by using bitwise NOT (~). This leads to
-    arithmetic result as opposed to bitwise result.
-
--   Trim double number to integer using ‘n = n BAND 0xFFFFFFFF’; save
-    the sign-bit using ‘save_sign = n BAND 0x80000000’; then mask the
-    lower 31 bits using ‘n = n BAND 0x7FFFFFFF’; then manipulate Only
-    these 31 bits; then restore the sign-bit using ‘n = n BOR
-    save_sign’.
-
--   To shift bits left: clear the upper bits including the sign bit;
-    then multiply by POW(2, bits) to shift left Only bits-0..30; then
-    set the sign bit (bit-31) using ‘n = n BOR bit’.
-
--   To shift bits right: clear the upper bits including the sign bit;
-    then divide by POW(2, bits).
-
--   Unverified: use CDBL to avoid saving, clearing, restoring bit-31.
-    Finally, debug your code on both 32-bit and 64-bit systems.
+    if(a == 1 and c == "test") then print "if statement 3"
+    if(a == 1 and c == "test2") then print "if statement 4" ' "if statement 4" will not be printed to the screen
 
     ? " < SmallBASIC - Truth Table > "
     ?
@@ -4780,84 +4774,55 @@ the speed of bitwise operators, then this is easy and safe way.
     ? " * For Logical operators 0 is False and any other value is True."
     ? " * NOT, ~ (Bitwise NOT), operators using only right side value/expression."
     ? " * XNOR and EQV is the same gate (both return the same result)."
-    ? " * Note: in SB 0.12.2 XNOR, EQV, IMP return wrong result (see bug report)."
-    Pause
 
-I am trying to figure out what Usg is and found out USING isn’t listed
-either. Ah ha: SB ref txt: The symbol ? can be used instead of keyword
-PRINT You can use ‘USG’ instead of ‘USING’. > I have not seen USING used
-in this way before, but I am a bit behind. shian, you must be working
-with assembler or electronic boards like Raspberry Pi (or both). I found
-another keyword which is not listed (I don’t remember which); I found
-that keyword only through pressing F1 in SmallBASIC editor. I also found
-wrong/unclear syntax, such as
+For experts:
 
-    a NOT b
+The Sign-Bit Bug (part 2): Ways to workaround this bug:
 
-in the reference. As far as I know and understand NOT takes only the
-right-side argument, i.e.
+1.  It is Safe to manipulate the lower bits, 0 to 30. If your program
+    don’t need to manipulate whole 32-bits of integer, then you can
+    safely BAND numbers with 0x7FFFFFFF to create 31-bit unsigned
+    integers (bit-31+ are cleared). But you must make sure when using
+    math functions or bitwise NOT (~) that the sign bit (bit-31) always
+    remains intact, i.e. = 0.
 
-    NOT expr
+2.  A slower way, but safe, is to manipulate 32 bits using BIN()
+    function. In this way you can temporarily convert a number to binary
+    string of 32-bits, manipulate whole 32 bits using regular string
+    manipulation, and then convert the binary string back to number, for
+    example: assuming that BIN() returns 32-bits binary string (as it
+    should):
 
-And I found lots and lots of partial descriptions as well, which may
-lead to frustration until you figure it out by your self… That’s why I
-wish to write more short examples for each command, to clarify its use.
-But certainly, the terse description of each command is very
-intimidating for a novice user.
+        s = Bin(number)         ' convert number to binary string
+        s = Replace(s, 1, "1")  ' set bit-31
+        s = Replace(s, 32, "0") ' reset bit-0
+        number = Val(s)         ' convert binary string back to number
 
-… I used to program industrial PLCs and controllers, and programs for
-customers, usually for free, but my jobs were always simple physical
-jobs - not intellectual.
+    This code will work the same way on both 64-bit and 32-bit systems.
+    It allows you to Shift/Rotate 32-bit numbers safely. So if you don’t
+    need the speed of bitwise operators, then this is easy and safe way.
 
-SmallBASIC is much more fun then the popular languages, where you have
-to read a manual for 2 days just to be able to use a single object. For
-popular languages, such as Java, you better be a clerk - since there is
-not much to program - it’s more about searching in a hug library what
-you need for specific task… Language reference is perfect place to
-create extended definitions and examples of keywords and their use. They
-are most useful when short and focused on the keyword. Or, like here,
-when the keyword is put into perspective with a slew of other keywords.
-Using the search feature is very time consuming and often fruitless,
-some code examples are outdated (if you can even find the keyword buried
-in the code).
+3.  If you still need to manipulate whole 32 bits, using fast bitwise
+    operators, in a safe way that will give the same results on 32-bit
+    and 64-bit systems, then it’s possible. Just be aware of the
+    following:
 
-Terseness is crucial in Help from built in editor but as you say
-frustrating if you are unfamiliar with keyword and usage. In other
-words, the built in Help makes for excellent cheat sheet to remind of
-spelling/meaning and parameter order.
+    -   Never change the sign bit (bit-31 of integer) by using Math
+        operators or function; or by using bitwise NOT (~). This leads
+        to arithmetic result as opposed to bitwise result.
 
-I remember stumbling upon one of the constants xmax or ymax, trying to
-reassign the value of one of these built in constants. They are very
-handy but should also be included in language reference so one doesn’t
-try and use them for variables.
+    -   Trim double number to integer using ‘n = n BAND 0xFFFFFFFF’;
+        save the sign-bit using ‘save_sign = n BAND 0x80000000’; then
+        mask the lower 31 bits using ‘n = n BAND 0x7FFFFFFF’; then
+        manipulate Only these 31 bits; then restore the sign-bit using
+        ‘n = n BOR save_sign’.
 
-I agree with what you say. Unlike other popular languages, with 50,000
-or more “members”, i.e. keywords, objects, constants, and other esoteric
-and mystical structures of bits and bytes - SmallBASIC has a very small
-and quite standard vocabulary that needs to be documented.
+    -   To shift bits left: clear the upper bits including the sign bit;
+        then multiply by POW(2, bits) to shift left Only bits-0..30;
+        then set the sign bit (bit-31) using ‘n = n BOR bit’.
 
-Keyword’s documentation must include:
-
-1.  Syntax (any formal syntax and abbreviation)
-2.  Description (exact behaviour, constants)
-3.  Comments (stuff you better know)
-4.  Example(s) (short, clear, useful)
-5.  See also (the actual keyword you were looking for…)
-
-Usually programmers dislike documentation; so this work should be done
-by another positive soul, who knows the language well enough, and with a
-bit of discipline and consistency in semantic.
-
-The built-in help (F1) must be terse; yet the online help (F2) should
-include the above 5 sections, again, straight to the point and not too
-wordy. p.s. the SmallBASIC editor tells you that you “Cannot change a
-constant” when running
-
-    xmax = 4
-
-hich is great, yet built-in constants must be included in the language
-reference, since these are actually keywords (hopefully there aren’t too
-many, in that case just add them to a separate section).
+    -   To shift bits right: clear the upper bits including the sign
+        bit; then divide by POW(2, bits).
 
     REM SmallBASIC
     REM created: 11/03/2016
@@ -4889,7 +4854,7 @@ many, in that case just add them to a separate section).
     ' On 64-bit system n is: 11111111111111111111111111111111
     ?
     ? "Using 64-bit double number instead of 32-bit integer:"
-    n = Cdbl(0xFFFFFFFF)
+    n = 0xFFFFFFFF
     ? Bin(n)
     '  The same result on both systems:
     ' On 32-bit system n is: 11111111111111111111111111111111
@@ -4915,25 +4880,6 @@ SmallBASIC integer is bit-31 (base 0). It is Safe to manipulate only
 bits 0 to 30, on both 64-bit and 32-bit systems. But it is Not safe to
 manipulate the sign bit, bit-31.
 
-It would be easier if SmallBASIC would have used double numbers (not
-integers) for bitwise operators. In that case bit-31 would have been a
-regular bit (not sign bit). But integer manipulation is faster then
-double number manipulation.
-
-It’s interesting…
-
-I know at least one language that solved this conflict internally:
-Instead of using 32-Bit signed integers, it uses virtual 31-Bit signed
-integers. It allows that programming language to avoid any conflicts
-with the sign bit-31; i.e. whenever the number is too big to fit into 31
-bits integer, it’s converted to double; so bitwise operators are using
-31-bit integers (which are Actually unsigned) Or double.
-
-This internal solution is hidden from the users of the language,
-i.e. they continue to use the language as usual; but at the same time it
-solves lots of bit-level conflicts between 32-bit systems and 64-bit
-systems.
-
 +========================================================================================+
 |                                    109. (Language) AS                                  |
 +========================================================================================+
@@ -4950,27 +4896,34 @@ a BAND b
 
 Bitwise AND.
 
+    print "1011 AND 1101 = "; bin(0b1011 band 0b1101)
 
-    Def shl(n, c) = n * Pow(2, c) ' shift-left c bits in n
-    Def shr(n, c) = n \\ Pow(2, c) ' shift-right c bits in n
-    Def mask(c) = Pow(2, c) - 1   ' return a mask of c bits
+The following example will first pack a date into a single integer and
+then unpack the integer to get the original date using bitwise
+operations.
+
+    Def shl(n, c) = n * Pow(2, c)         ' shift-left c bits in n
+    Def shr(n, c) = n \ Pow(2, c)         ' shift-right c bits in n
+    Def mask(c) = Pow(2, c) - 1           ' return a mask of c bits
+
     ' get the current date as three integers:
     now = Date ' now is "dd/mm/yyyy"
     day = Left(now, 2) * 1
     month = Mid(now, 4, 2) * 1
     year = Right(now, 4) * 1
+
     ' pack the date in one integer:
-    p = day ' packing 5 bits (days 1..31)
-    p = shl(p, 4) Bor month ' packing 4 bits (months 1..12)
-    p = shl(p, 12) Bor year ' packing 12 bits (years 0..4095)
+    p = day                                ' packing 5 bits (days 1..31)
+    p = shl(p, 4) Bor month                ' packing 4 bits (months 1..12)
+    p = shl(p, 12) Bor year                ' packing 12 bits (years 0..4095)
     Print Using "The current date : 00/00/0000"; day, month, year;
     Print " -> Packed as: "; p; " (0x"; Hex(p); ")"
+
     ' unpack the date from one integer:
-    p_day = shr(p, 12 + 4) ' packed in bits 16..20
-    p_month = shr(p, 12) Band mask(4) ' packed in bits 12..15
-    p_year = p Band mask(12) ' packed in bits 0..11
+    p_day = shr(p, 12 + 4)                 ' packed in bits 16..20
+    p_month = shr(p, 12) Band mask(4)      ' packed in bits 12..15
+    p_year = p Band mask(12)               ' packed in bits 0..11
     Print Using "The Unpacked date: 00/00/0000"; p_day, p_month, p_year;
-    Pause
 
 +========================================================================================+
 |                                    111. (Language) BG                                  |
@@ -4978,8 +4931,12 @@ Bitwise AND.
 
 SOUND frq, dur [, vol] [BG]
 
-Play sound in the background. This prevent the program from blocking
+Play sound in the background. BG prevents the program from blocking
 while the sound plays.
+
+See SOUND.
+
+    SOUND 1000, 1000 BG
 
 +========================================================================================+
 |                                   112. (Language) BOR                                  |
@@ -4988,6 +4945,8 @@ while the sound plays.
 a BOR b
 
 Bitwise OR.
+
+    print "1001 OR 1110 = "; bin(0b1001 BOR 0b1100)
 
 +========================================================================================+
 |                                  113. (Language) BYREF                                 |
@@ -4998,6 +4957,14 @@ BYREF
 Sub/func argument declaration. Changes to the variable will be passed
 back to the caller. Equivalent syntax to the @ character.
 
+    sub Increment(BYREF i)
+      i = i + 1
+    end
+
+    x = 1
+    Increment(x)
+    print x         ' output: 2
+
 +========================================================================================+
 |                                   114. (Language) CALL                                 |
 +========================================================================================+
@@ -5005,6 +4972,59 @@ back to the caller. Equivalent syntax to the @ character.
 CALL (fp)
 
 Invoke a sub or func by address pointer.
+
+Example 1: CALL with a subroutine pointer
+
+    sub MyPrint(i)
+      print i
+    end
+
+    a = @MyPrint
+    call a, "test"      ' when using CALL for subroutines,
+                        ' please use CALL without brakets
+
+Example 2: CALL with a function pointer
+
+    func Increment(i, b)
+      return  i + b
+    end
+
+    x = 1
+    a = @Increment
+    y = call(a,x,2)     ' when using CALL for functions,
+                        ' please use CALL with brakets
+    print y
+
+Example 3: CALL with a subroutine pointer and BYREF:
+
+    sub Increment(byref i, b)
+      i = i + b
+    end
+
+    x = 1
+    a = @Increment
+    call a,x,2
+    print x
+
+Example 4: Passing function pointer to a function
+
+    func Increment(i)
+      return i + 1
+    end
+
+    func Decrement(i)
+      return i - 1
+    end
+
+    func MyFunc(f, i)
+      return call(f,i)
+    end
+
+    a = @Increment
+    b = @Decrement
+    x = 2
+    x = MyFunc(a,x): print x
+    x = MyFunc(b,x): print x
 
 +========================================================================================+
 |                                   115. (Language) CASE                                 |
@@ -5014,19 +5034,17 @@ CASE expr
 
 Branch condition for a SELECT statement.
 
+See SELECT for more information and examples.
 
-    ' * See also IF...THEN...ELSE keywords.
-    ' * Currently CASE is not supporting QB style expressions (e.g. CASE IS > 1).
-     
-    x = 0 ' try using different values for x, such as 1, 2, "1", "ABC", etc
-    Select Case x
-    Case 0: Print "x = 0"
-    Case Len("a"): Print "x = 1"
-    Case 2, 3: Print "x = 2 or x = 3"
-    Case 4, 5, 6: Print "x >= 4 and x <= 6"
-    Case Else
-      Print "Else: x = "; x
-    End Select
+    x = 1 ' Change to see what happens
+    select case x
+        case 1
+            print "x is 1"
+        case 2,3,4
+            print "x is 2,3 or 4"
+        case else
+            print "x is not 1, 2, 3 or 4"
+    end select
 
 +========================================================================================+
 |                                  116. (Language) CATCH                                 |
@@ -5034,18 +5052,17 @@ Branch condition for a SELECT statement.
 
 CATCH [var | expr]
 
-The CATCH statement is used to CATCH an run-time error.
-
-This is typically used with errors raised when calling a file system
-command that cannot be completed, for example attempting to open a
-non-existent file.
+The CATCH statement is used to CATCH a run-time error. This is typically
+used with errors raised when calling a file system command that cannot
+be completed, for example attempting to open a non-existent file.
 
 The CATCH statement has two modes. You can supply a variable argument to
-store the error string. Alternatively you can supply an expression.
-
-When the raised error matches the (String) expression, the error will be
+store the error string. Alternatively you can supply an expression. When
+the raised error matches the (String) expression, the error will be
 caught. When using the expression mode, you can supply a succession of
 CATCH statements to handle various error messages separately.
+
+For more information and examples please see TRY.
 
 +========================================================================================+
 |                                  117. (Language) CONST                                 |
@@ -5058,7 +5075,10 @@ Declare a variable who’s value does not change during program execution.
 -   name - An identifier that follows the rules for naming BASIC
     variables.
 -   expr - An expression consisting of literals, with or without
-    operators, only. COSNT G = 6.67259E-11
+    operators, only.
+
+    CONST G = 6.67259E-11
+    CONST PI = 3.1415
 
 +========================================================================================+
 |                                 118. (Language) DECLARE                                |
@@ -6177,98 +6197,75 @@ Performs an arithmetic right shift on a bit pattern.
 SELECT CASE expr
 
 Perform multiple tests on the expression. Offers a more concise syntax
-to writing successive IF tests.
+to writing successive IF tests. Once a case statement is fullfilled the
+select-case structure will be exited and all following case statements
+will not anymore be tested.
 
-(see also CASE and the alternate IF THEN ELIF ELSE FI structure) just
-one example:
+See also IF … THEN … ELIF … ELSE … FI structure.
 
+Example 1: Basic select-case expression
 
-    x = 17
+    x = 12 ' Change value to see what happens
     select case x
-    case is < 10
-    ? "x is less than 10"
-    case 12
-    ? "x is 12"
-    case 13,14,15
-    ? "x is 13,14,or 15"
-    case 16 to 20
-    ? "x is between 16 and 20"
+        case 12
+            print "x is 12"
+        case 13,14,15
+            print "x is 13,14,or 15"
+        case else
+            print "x is not 12,13,14,15"        
     end select
 
-There are no error messages, but nothing is printed. It has been my
-experience that Select Case does not work well with ranges and multiple
-conditions. In my opinion, it is only helpful for single case items.
-Here is same code in at least a concise form as SELECT CASE using IF
-THEN ELIF ELSE FI code block structure:
+Example 2: Exit of a select structure once a test was successful
 
-
-    x = 17
-    if x<10 then
-      ? "x is less than 10"
-    elif x=12
-      ? "x is 12"
-    elif x=13 or x=14 or x=15
-      ? "x is 13,14,or 15"
-    elif x>=16 and x<=20
-    ? "x is between 16 and 20"
-    else
-      ? "didn't catch x"
-    fi
-    pause
-
-SELECT/CASE was originally intended for single values, but the
-multi-item syntax was recently added: case 13,14,15 These lines from
-your example are not (yet) supported: case is < 10 case 16 to 20 I think
-the ‘is’, ‘<’ and ‘to’ symbols are being incorrectly evaluated as
-multi-term elements, so there is no error reported. The case item can be
-any expression that evaluates to a single term, for example: (this is
-example that Chris found later for work around to extend range in one
-case):
-
-
-    How about this:
-    for x = 0 to 20
-    ? x;
+    x = 2
     select case x
-    case iff(x >= 1 AND x <= 5, x, x+1)   '<=== checks several values, a range from 1 to 5
-    ? " = 1-5"
-    case 5+1
-    ? " = 6"
-    case 5+2
-    ? " = 7"
-    case 13,14,15,16,17
-    ? " = 13,14,15,16,17"
-    case else
-    ? " = other"
+        case 2
+            print "x is 2"
+        case 2
+            print "This will never be printed"
     end select
-    next x
-    pause
 
-This will work too for work around to add range to a CASE block:
+Example 3: Use IFF to check a range
 
+    x = 4 ' Change value to see what happens
+    select case x
+        case iff(x <= 4, x, x + 1)
+            print "x <= 4"
+        case iff(x > 4 AND x < 12, x, x + 1)
+            print "4 < x < 12"     
+    end select
 
-    const notlikelyever=-9999999.1234
-    def ao(a,o,x)=iff(x>a and x<=o,x,notlikelyever)
-    'I call the alpha omega function ao.
-    for i=1 to 20
-      x=int(rnd*60)-10
-      ? x;
-      select case x
-      case ao(-100,0,x)
-        ? " x is >-100 and <=0"
-      case ao(0,10,x)
-        ? " x is >0 and <=10"
-      case ao(10,20,x)
-        ? " x is >10 and <=20"
-      case ao(20,30,x)
-        ? " x is >20 and <=30"
-      case ao(30,40,x)
-        ? " x is >30 and <=40"
-      case else
-        ? " did not catch x"
-      end select
-    next
-    pause
+Example 4: Using functions
+
+    func even(x) 
+        local r
+        if(x mod 2 == 0 AND x != 0)
+            r = x
+        else
+            r = x + 1
+        endif
+        return r
+    end
+
+    func uneven(x) 
+        local r
+        if(x mod 2 != 0)
+            r = x
+        else
+            r = x + 1
+        endif
+        return r
+    end
+
+    x = 2 ' Change value to see what happens
+    select case x
+        case even(x)
+            print "x is even"
+        case uneven(x)
+            print "x is uneven"
+        case else
+            print "x is 0"
+    end select
 
 +========================================================================================+
 |                                   157. (Language) STEP                                 |
@@ -6435,10 +6432,43 @@ TRUE
 
 TRY
 
-The TRY statement introduces a TRY/CATCH BLOCK
+TRY
 
-Note: If this demo program crashes… then run it again. It seems that TRY
-/ CATCH block might be unstable within a function or sub… (?)
+The TRY statement introduces a TRY/CATCH block.
+
+CATCH [var | expr]
+
+The CATCH statement is used to CATCH an run-time error. This is
+typically used with errors raised when calling a file system command
+that cannot be completed, for example attempting to open a non-existent
+file.
+
+The CATCH statement has two modes. You can supply a variable argument to
+store the error string. Alternatively you can supply an expression. When
+the raised error matches the (String) expression, the error will be
+caught.
+
+When using the expression mode, you can supply a succession of CATCH
+statements to handle various error messages separately.
+
+END TRY
+
+The END TRY statement marks the end of a TRY/CATCH block.
+
+Example 1: Opening a non-existing file for reading
+
+    try
+        ' DON'T use existing file for demo.
+        open "try demo.tmp" for input  as #1
+    catch err
+        print err; " "
+        ' Some error handling could be implemented here
+        ' i.e: if(err = "...") then ...
+    end try
+
+    print "This point is reach, even if opening the file was not possible"
+
+Example 2: Advanced error handling for opening files
 
 
     ' See also: Home -- Articles -- TRY / CATCH
@@ -6451,7 +6481,7 @@ Note: If this demo program crashes… then run it again. It seems that TRY
         Case "input" : Open filename For Input  As #fn
         Case "output": Open filename For Output As #fn
         Case "append": Open filename For Append As #fn
-        Case Else: ? "opens(): Bad open mode at line " + Progline: Pause: Stop
+        Case Else: ? "opens(): Bad open mode at line " + Progline: Stop
         End Select
         opens = fn ' file opened, return file-handle (integer 1 to 256)
       Catch err
@@ -6502,7 +6532,14 @@ Note: If this demo program crashes… then run it again. It seems that TRY
       ? lines;
       Close #fn
     Fi
-    Pause
+
+Example 3: Open COM-Port
+
+    try
+      open "com2000:" AS #1
+    catch err
+      ? "in catch: open failed";err
+    end try
 
 +========================================================================================+
 |                                  165. (Language) UNTIL                                 |
@@ -7753,12 +7790,16 @@ strings.
 
 POLYAREA (poly)
 
-Returns the area of the polyline poly.
+Returns the area of the polyline poly. The algebraic sign of the area is
+positive for counterclockwise ordering of vertices in x-y plane;
+otherwise negative.
 
     polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
     drawpoly polygon color 12
 
-    Area = polyarea(polygon) / 2  ' Bug, please divide area always by 2
+    Area = abs(polyarea(polygon))     ' absolute value of the area, because
+                                      ' we are not interested in the
+                                      ' ordering of the vertices.
 
     print "Polyarea() returns: "; Area
     print "Exact area is 50x50 = 2500"
@@ -7771,15 +7812,16 @@ POLYCENT
 
 returns the centroid of a polygon.
 
-Polycent is based on code from the article “Centroid of a Polygon” by
+POLYCENT is based on code from the article “Centroid of a Polygon” by
 Gerard Bashein and Paul R. Detmer.
 
-Polycent calculates the centroid (xCentroid, yCentroid) and area of a
-polygon, given its vertices (x[0], y[0]) … (x[n-1], y[n-1]). It is
-assumed that the contour is closed, i.e., that the vertex following
-(x[n-1], y[n-1]) is (x[0], y[0]). The algebraic sign of the area is
-positive for counterclockwise ordering of vertices in x-y plane;
-otherwise negative.
+POLYCENT calculates the centroid (xCentroid, yCentroid) of a polygon,
+given its vertices (x[0], y[0]) … (x[n-1], y[n-1]). It is assumed that
+the contour is closed, i.e., that the vertex following (x[n-1], y[n-1])
+is (x[0], y[0]).
+
+POLYCENT will return an empty array if the area of the polygon is zero
+and the centroid is undefined.
 
     polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
 
@@ -8599,7 +8641,20 @@ See: https://en.wikipedia.org/wiki/Variance#Sample_variance
     print "Unbiased sample variance: "; statspreads(A)
 
 +========================================================================================+
-|                                     244. (Math) SUM                                    |
+|                                   244. (Math) STATSTD                                  |
++========================================================================================+
+
+STATSTD (...)
+
+(Corrected sample) standard deviation.
+
+see: Wikipedia - Standard Deviation
+
+    a = [2, 4, 4, 4, 5, 5, 7, 9]
+    print statstd(a)
+
++========================================================================================+
+|                                     245. (Math) SUM                                    |
 +========================================================================================+
 
 SUM (...)
@@ -8612,7 +8667,7 @@ Sum of value(s).
     print sum(A,1,2,3)
 
 +========================================================================================+
-|                                    245. (Math) SUMSQ                                   |
+|                                    246. (Math) SUMSQ                                   |
 +========================================================================================+
 
 SUMSQ (...)
@@ -8625,7 +8680,7 @@ Sum of square value(s).
     print sumsq(A,1,2,3)
 
 +========================================================================================+
-|                                     246. (Math) TAN                                    |
+|                                     247. (Math) TAN                                    |
 +========================================================================================+
 
 TAN (x)
@@ -8757,7 +8812,7 @@ is going on or it would be void of meaning.
     pause
 
 +========================================================================================+
-|                                     247. (Math) TANH                                   |
+|                                     248. (Math) TANH                                   |
 +========================================================================================+
 
 TANH (x)
@@ -8771,7 +8826,7 @@ Hyperbolic tangent.
     print b
 
 +========================================================================================+
-|                                    248. (String) ASC                                   |
+|                                    249. (String) ASC                                   |
 +========================================================================================+
 
 ASC (s)
@@ -8779,6 +8834,10 @@ ASC (s)
 Returns the ASCII code of first character of the string s.
 
 Also see CHR
+
+    print "ASCII value of A is "; ASC("A")
+
+The following example prints an ASCII table.
 
 
     ' LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
@@ -8794,142 +8853,103 @@ Also see CHR
     ' : - code statement seperator often used with LOCATE row, column : ? string
     ' PAUSE optional-number-of-secs - waits for key press or mouse click and/or for a number seconds 
     ' so lets user decide how long to wait
+
     LOCATE 1,16 : ? "ASC Table 30-129:"  ' locate print spot, print title for our app
-    FOR column=0 to 9 'print a header, 10 numbers plus + (to add to row value)
+    FOR column=0 to 9                    ' print a header, 10 numbers plus + (to add to row value)
       LOCATE 2,column*5+4 : ? "+";column
     NEXT
     FOR row=3 to 12
       LOCATE row,0 : ? RIGHT(" "+STR(row*10)+":",4)
     NEXT
     'main table
-    FOR ASCnumber=30 to 129   'note ASC(32) = space so wont see anything in Table
-      row=ASCnumber\\10 ' \\ rounds division down to integer
-      column=(ASCnumber MOD 10)*5+5  'times 5 to space out the characters printed plus 5 for column labels
+    FOR ASCnumber=30 to 129              ' note ASC(32) = space so wont see anything in Table
+      row=ASCnumber\10                   ' \ rounds division down to integer
+      column=(ASCnumber MOD 10)*5+5      ' times 5 to space out the characters printed plus 5 for column labels
       LOCATE row,column : ? CHR(ASCnumber)
     NEXT
     PAUSE
 
 +========================================================================================+
-|                                    249. (String) BCS                                   |
+|                                    250. (String) BCS                                   |
 +========================================================================================+
 
 BCS (s)
 
-Converts (B)ASIC-style strings to (C)-style (S)trings.
+Converts (B)ASIC-style strings to (C)-style (S)trings by masking escape
+codes. Escape codes in the string will not be applied to format the
+string when printed on the screen. Instead escape codes will be printed
+as they are.
 
+See CBS to unmasked a c-style string, and see article “Escape codes” for
+more information about escape codes.
 
-    ' Note: BCS allows to save special formatting characters as a regular text (or
-    '       you could directly use C-Style formatting without using BCS at all).
-    ' --- Formatting strings/characters/functions:
-    ' " and \\ are common to SB and C - so to avoid problems use C-Style directly:
-    Const DQM = "\\x22" ' " character as C-Style string (Double Quotation Mark)
-    Const BKS = "\\x5C" ' \\ character as C-Style string (Back Slash)
-    ' CHR(0) signals the End-Of-String in C-String (Null-Terminated-String):
-    Const NTS = "\\0"   
-    ' Special formating strings:
-    Const CSI = Chr(27) + "["      ' Control Sequence Introducer
-    Const CSI_NORMAL = CSI + "0m"  ' Reset all terminal attributes
-    Const CSI_YELLOW = CSI + "33m" ' Supported foreground colors (30m-37m)
-    Const CSI_CYAN   = CSI + "36m"
-    Const CSI_WHITE  = CSI + "37m"
-    Const CSI_BOLD   = CSI + "1m"  ' = Cat(1)
-    Const CSI_ULINE  = CSI + "4m"  ' = Cat(2)
-    ' Special formating characters:
-    Const C0_HT = Chr(9)           ' HT  - Horizontal Tabulation (tab) (-C- \\t)
-    Const C0_LF = Chr(10)          ' LF  - Line Feed (-C- \\n)
-    Const C0_FF = Chr(12)          ' FF  - Form Feed (clear screen) (-C- \\f)
-    Const C0_CR = Chr(13)          ' CR  - Carriage Return (-C- \\r)
-    Const C0_NL = C0_CR + C0_LF    ' CNL - Cursor Next Line (Windows style for \\n)
-    Def tb(n) = String(n, C0_HT)   ' few tabs (HT)
-    Def nl(n) = String(n, C0_NL)   ' few New lines (CNL)
-    ' Headings text formats:
-    Const NEW_PAGE = Bcs(CSI_NORMAL + C0_FF)
-    Def H1(s) = Bcs(nl(2) + tb(5) + CSI_BOLD + CSI_WHITE + s + CSI_NORMAL + nl(1))
-    Def H2(s) = Bcs(nl(1) + tb(1) + CSI_ULINE + CSI_YELLOW + s + CSI_NORMAL + nl(1))
-    Def H3(s) = Bcs(nl(1) + tb(2) + CSI_ULINE + CSI_CYAN + s + CSI_NORMAL + nl(1))
-    ' Normal text formats:
-    Func T2(s) = Bcs(tb(1) + s)
-    Func T3(s) = Bcs(tb(2) + s)
+    ' define some escape codes
+    const NORMAL             = "\e[0m"  ' = Cat(0)
+    const BOLD               = "\e[1m"  ' = Cat(1)
+    const BOLD_OFF           = "\e[21m" ' = Cat(-1)
+    const BG_CYAN            = "\e[46m"
+    const TB                 = "\t"
 
-    ' --- Start demo:
-    ' Convert some text to C-Style strings, and append to t array:
-    t << NEW_PAGE
-    t << H1("Main Title")
-    t << H2("Sub Title")
-    t << T2("Some " + DQM + "text" + DQM + " in English,")
-    t << T2("Some " + BKS + "more text" + BKS + " in English -")
-    t << T2("And even more text in English.")
-    t << H3("Sub-Sub Title")
-    t << T3("And again! text in English;")
-    t << T3("That's it." + NTS + "This text is hidden from C ... :)")
-    ' Save t array in a Regular text file (as C-Style strings):
-    Tsave "demo-doc.txt", t
-    ' Load lines from text file into a array:
-    Tload "demo-doc.txt", a 
-    ' Convert C-Style strings back to Basic-Style strings and print them:
-    For i in a
-      ? Cbs(i)
-    Next
-    Pause
-    ' "demo-doc.txt" file will contain these lines:
-    ' ---------------------------------------------
-    ' \\e[0m\\f
-    ' \\r\\n\\r\\n\\t\\t\\t\\t\\t\\e[1m\\e[37mMain Title\\e[0m\\r\\n
-    ' \\r\\n\\t\\e[4m\\e[33mSub Title\\e[0m\\r\\n
-    ' \\tSome \\x22text\\x22 in English,
-    ' \\tSome \\x5Cmore text\\x5C in English -
-    ' \\tAnd even more text in English.
-    ' \\r\\n\\t\\t\\e[4m\\e[36mSub-Sub Title\\e[0m\\r\\n
-    ' \\t\\tAnd again! text in English;
-    ' \\t\\tThat's it.\\0This text is hidden from C ... :)
+    ' Create a string with escape codes
+    BasicStyleString               = BOLD + "BOLD" + BOLD_OFF + TB + TB + BG_CYAN + "COLORFULL BG" + NORMAL
+    CStyleString                   = bcs(BasicStyleString)
+    BackConverted_BasicStyleString = cbs(CStyleString)
+
+    print "Basic-style string            : "; BasicStyleString
+    print "C-style string                : "; CStyleString
+    print "Back conversion to basic style: "; BackConverted_BasicStyleString
+
+    ' Output will be (with colors and in bold)
+    ' Basic-style string            : BOLD      COLORFULL BG
+    ' C-style string                : \e[1mBOLD\e[21m\t\t\e[46mCOLORFULL BG\e[0m
+    ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    250. (String) BIN                                   |
+|                                    251. (String) BIN                                   |
 +========================================================================================+
 
 BIN (x)
 
 Returns the binary value of x as string.
 
+    print bin(123)
+
 +========================================================================================+
-|                                    251. (String) CBS                                   |
+|                                    252. (String) CBS                                   |
 +========================================================================================+
 
 CBS (s)
 
-Converts (C)-style strings to (B)ASIC-style (S)trings.
+Converts (C)-style strings to (B)ASIC-style (S)trings by unmasking
+escape codes. Escape codes in the string will be applied to format the
+string when printed on the screen.
 
+See BCS to masked a Basic-style string, and see article “Escape codes”
+for more information about escape codes.
 
-    ' See 'C - Strings' (http://www.tutorialspoint.com/cprogramming/c_strings.htm)
-    ' to learn about strings in C language.
-    ' See 'Escape sequences in C' (https://en.wikipedia.org/wiki/Escape_sequences_in_C)
-    ' for "Table of escape sequences".
+    ' define some escape codes
+    const NORMAL             = "\e[0m"  ' = Cat(0)
+    const BOLD               = "\e[1m"  ' = Cat(1)
+    const BOLD_OFF           = "\e[21m" ' = Cat(-1)
+    const BG_CYAN            = "\e[46m"
+    const TB                 = "\t"
 
-    ' --- Compare C string to SmallBASIC string (code...):
-     ' C string (very compact):
-    ? Cbs("         \\r\\n\\n\\t\\x22No \\tmore \\tCoffee...??!\\x22\\a")
-    Pause
-    ' The equivalent SmallBASIC string (code): 
-    ? "         ";
-    Locate Ypos, 0: ?: ?: ? ,; ' \\r\\n\\n\\t
-    ? Chr(34); "No ", "more", "Coffee...??!" + Chr(34) + Chr(7) ' \\x22No \\tmore \\tCoffee...??!\\x22\\a"
-    Pause
+    ' Create a string with escape codes
+    BasicStyleString               = BOLD + "BOLD" + BOLD_OFF + TB + TB + BG_CYAN + "COLORFULL BG" + NORMAL
+    CStyleString                   = bcs(BasicStyleString)
+    BackConverted_BasicStyleString = cbs(CStyleString)
 
-    ' --- Print few demo strings as SmallBASIC and C: 
-    Def cs(s) = Cat(3) + Cbs(s) + Cat(-3) ' C string in reverse color
-    Const SP = " <--> "
-    ' "SmallBASIC string" <--> "C string":
-    ? "Hello\\f World!"; SP; cs("Hello\\f World!")  ' \\f = Formfeed (clear screen)
-    ? "Hello\\0 World!"; SP; cs("Hello\\0 World!")  ' \\0 = null-terminated string
-    ? "\\tHello World!"; SP; cs("\\tHello World!")  ' \\t = Horizontal Tab
-    ? "Hello\\n World!"; SP; cs("Hello\\n World!")  ' \\n = Newline
-    ? "Hello World\\r!"; SP; cs("Hello World\\r!")  ' \\r = Carriage Return (home pos)
-    ? "Hello World\\a!"; SP; cs("Hello World\\a!")  ' \\a = Alarm (Beep, Bell)
-    ? "Hello \\x22World!\\x22"; SP; cs("Hello \\x22World!\\x22")  ' \\xhh char as hexadecimal number
-    Pause 
+    print "Basic-style string            : "; BasicStyleString
+    print "C-style string                : "; CStyleString
+    print "Back conversion to basic style: "; BackConverted_BasicStyleString
+
+    ' Output will be (with colors and in bold)
+    ' Basic-style string            : BOLD      COLORFULL BG
+    ' C-style string                : \e[1mBOLD\e[21m\t\t\e[46mCOLORFULL BG\e[0m
+    ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    252. (String) CHOP                                  |
+|                                    253. (String) CHOP                                  |
 +========================================================================================+
 
 CHOP (source)
@@ -8937,20 +8957,36 @@ CHOP (source)
 Chops off the last character of the string ‘source’ and returns the
 result.
 
+    s = "Test"
+    print chop(s)
+
+    ' Output: Tes
+
 +========================================================================================+
-|                                    253. (String) CHR                                   |
+|                                    254. (String) CHR                                   |
 +========================================================================================+
 
 CHR (x)
 
 Returns one-char string of character with ASCII code x.
 
-The CHR command is useful for obtaining and printing the escape
-character (ASCII 27) For example:
+See ASC to convert a character to ASCII code.
 
-    10 PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
-    20 PRINT CHR(27) + "[3mThis is italic" + CHR(27) + "[0m"
-    30 PRINT CHR(27) + "[4mThis is underline"
+Example 1:
+
+    print "ASCII code 65 is '" + chr(65) + "'"
+
+    ' Output ASCII code 65 is 'A'
+
+Example 2: The CHR command is useful for obtaining and printing the
+escape character (ASCII 27). For more information about escape codes see
+article “Escape Codes”
+
+    PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
+    PRINT CHR(27) + "[3mThis is italic" + CHR(27) + "[0m"
+    PRINT CHR(27) + "[4mThis is underline"
+
+Example 3: Print ASCII table
 
     rem display the ASCII and the extended tables
     For n = 0 To 255
@@ -8958,7 +8994,9 @@ character (ASCII 27) For example:
         Color 15, 0: Locate 1, 1
         Print "Standard 7-bit ASCII table (character codes 0 - 127):";
       Elseif n = 128 Then
-        Pause
+        print
+        print
+        Input "Press return to see nonstandard table", k
         Color 15, 0: Cls: Locate 1, 1
         Print "Nonstandard 8-bit Extended table (character codes 128 - 255):";
       Endif
@@ -8971,14 +9009,14 @@ character (ASCII 27) For example:
       Else
         c = Chr(n) ' ASCII code --> character
       Endif
-      Locate (n Mod 16) + 3, (((n \\ 16) Mod 8) * 9) + 1
+      Locate (n Mod 16) + 3, (((n \ 16) Mod 8) * 9) + 1
 
       Color 7: Print Using "000 "; n; ' ASCII code
       Color 14: Print c; ' ASCII (or ANSI) character
     Next
     Color 7, 0: Print: Print
     Print " * Nonstandard characters might look different on another system."
-    Pause
+
     End
     ' nonprintable control characters (ASCII codes 0..31):
     Data "nul", "soh", "stx", "etx", "eot" ' 0..4
@@ -8990,7 +9028,7 @@ character (ASCII 27) For example:
     Data "rs" , "us"  ' 30..31
 
 +========================================================================================+
-|                                  254. (String) DISCLOSE                                |
+|                                  255. (String) DISCLOSE                                |
 +========================================================================================+
 
 DISCLOSE (str[, pairs [, ignore-pairs]])
@@ -9022,7 +9060,7 @@ Default pairs and ignore pairs
     ' prints a='(bc)', nothing
 
 +========================================================================================+
-|                                  255. (String) ENCLOSE                                 |
+|                                  256. (String) ENCLOSE                                 |
 +========================================================================================+
 
 ENCLOSE (str[, pair])
@@ -9042,7 +9080,7 @@ ENCLOSE defaults to double quotes if the [pair] option is not used.
     pause
 
 +========================================================================================+
-|                                   256. (String) FORMAT                                 |
+|                                   257. (String) FORMAT                                 |
 +========================================================================================+
 
 FORMAT (format, val)
@@ -9132,7 +9170,7 @@ Must add extra space after ‘\’, if not there is an error:
     ? Usg "\\  _ \\ "; "abcde" ' --> "abc_de "
 
 +========================================================================================+
-|                                    257. (String) HEX                                   |
+|                                    258. (String) HEX                                   |
 +========================================================================================+
 
 HEX (x)
@@ -9140,7 +9178,7 @@ HEX (x)
 Returns the hexadecimal value of x as string.
 
 +========================================================================================+
-|                                   258. (String) INSTR                                  |
+|                                   259. (String) INSTR                                  |
 +========================================================================================+
 
 INSTR ([start,] s1, s2)
@@ -9173,7 +9211,7 @@ INSTR returns 0
     wend
 
 +========================================================================================+
-|                                    259. (String) JOIN                                  |
+|                                    260. (String) JOIN                                  |
 +========================================================================================+
 
 JOIN words(), delimiters, string
@@ -9188,7 +9226,7 @@ Returns the words of the specified string into array ‘words’.
     [/etc/temp/filename/ext]
 
 +========================================================================================+
-|                                   260. (String) LCASE                                  |
+|                                   261. (String) LCASE                                  |
 +========================================================================================+
 
 LCASE (s)
@@ -9196,7 +9234,7 @@ LCASE (s)
 Converts the string s to lower case.
 
 +========================================================================================+
-|                                    261. (String) LEFT                                  |
+|                                    262. (String) LEFT                                  |
 +========================================================================================+
 
 LEFT (s [,n])
@@ -9205,7 +9243,7 @@ Returns the n number of leftmost chars of string s. if not specified n =
 1.
 
 +========================================================================================+
-|                                   262. (String) LEFTOF                                 |
+|                                   263. (String) LEFTOF                                 |
 +========================================================================================+
 
 LEFTOF (s1, s2)
@@ -9240,7 +9278,7 @@ the string s2 into string s1.
     Pause
 
 +========================================================================================+
-|                                 263. (String) LEFTOFLAST                               |
+|                                 264. (String) LEFTOFLAST                               |
 +========================================================================================+
 
 LEFTOFLAST (s1, s2)
@@ -9249,7 +9287,7 @@ Returns the left part of s1 at the position of the last occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                   264. (String) LOWER                                  |
+|                                   265. (String) LOWER                                  |
 +========================================================================================+
 
 LOWER (s)
@@ -9257,7 +9295,7 @@ LOWER (s)
 Converts the string s to lower case.
 
 +========================================================================================+
-|                                   265. (String) LTRIM                                  |
+|                                   266. (String) LTRIM                                  |
 +========================================================================================+
 
 LTRIM (s)
@@ -9265,7 +9303,7 @@ LTRIM (s)
 Removes leading white-spaces from string s.
 
 +========================================================================================+
-|                                    266. (String) MID                                   |
+|                                    267. (String) MID                                   |
 +========================================================================================+
 
 MID (s, start [,length])
@@ -9277,7 +9315,7 @@ If the ‘length’ parameter is omitted, MID returns the whole string from
 the position ‘start’.
 
 +========================================================================================+
-|                                    267. (String) OCT                                   |
+|                                    268. (String) OCT                                   |
 +========================================================================================+
 
 OCT (x)
@@ -9285,7 +9323,7 @@ OCT (x)
 Returns the octal value of x as string.
 
 +========================================================================================+
-|                                  268. (String) REPLACE                                 |
+|                                  269. (String) REPLACE                                 |
 +========================================================================================+
 
 REPLACE (source, pos, str [, len])
@@ -9370,7 +9408,7 @@ the length of str.
     Pause
 
 +========================================================================================+
-|                                   269. (String) RIGHT                                  |
+|                                   270. (String) RIGHT                                  |
 +========================================================================================+
 
 RIGHT (s[,n])
@@ -9379,7 +9417,7 @@ Returns the n number of rightmost chars of string s. if not specified n
 = 1.
 
 +========================================================================================+
-|                                  270. (String) RIGHTOF                                 |
+|                                  271. (String) RIGHTOF                                 |
 +========================================================================================+
 
 RIGHTOF (s1, s2)
@@ -9388,7 +9426,7 @@ Returns the right part of s1 at the position of the first occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                271. (String) RIGHTOFLAST                               |
+|                                272. (String) RIGHTOFLAST                               |
 +========================================================================================+
 
 RIGHTOFLAST (s1, s2)
@@ -9397,7 +9435,7 @@ Returns the right part of s1 at the position of the last occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                   272. (String) RINSTR                                 |
+|                                   273. (String) RINSTR                                 |
 +========================================================================================+
 
 RINSTR ([start,] s1, s2)
@@ -9408,7 +9446,7 @@ s1 (starting from the position ‘start’).
 If there is no match, RINSTR returns 0
 
 +========================================================================================+
-|                                   273. (String) RTRIM                                  |
+|                                   274. (String) RTRIM                                  |
 +========================================================================================+
 
 RTRIM (s)
@@ -9416,7 +9454,7 @@ RTRIM (s)
 Removes trailing white-spaces from string s.
 
 +========================================================================================+
-|                                   274. (String) SINPUT                                 |
+|                                   275. (String) SINPUT                                 |
 +========================================================================================+
 
 SINPUT src; var [, delim] [,var [, delim]] ...
@@ -9435,7 +9473,7 @@ delimiters.
     print "Age: " + age
 
 +========================================================================================+
-|                                   275. (String) SPACE                                  |
+|                                   276. (String) SPACE                                  |
 +========================================================================================+
 
 SPACE (n)
@@ -9463,7 +9501,7 @@ Returns a string of n spaces.
     Wend
 
 +========================================================================================+
-|                                    276. (String) SPC                                   |
+|                                    277. (String) SPC                                   |
 +========================================================================================+
 
 SPC (n)
@@ -9486,7 +9524,7 @@ Left Center or Right aligning text.
 I think SPACE and SPC are both the same, see also SPACE.
 
 +========================================================================================+
-|                                   277. (String) SPLIT                                  |
+|                                   278. (String) SPLIT                                  |
 +========================================================================================+
 
 SPLIT string, delimiters, words() [, pairs] [USE expr]
@@ -9537,7 +9575,7 @@ Example for using “USE expr”
     ' 2 [filename1.ext]
 
 +========================================================================================+
-|                                   278. (String) SPRINT                                 |
+|                                   279. (String) SPRINT                                 |
 +========================================================================================+
 
 SPRINT var; [USING...;] ...
@@ -9549,7 +9587,7 @@ Create formated string and storing it to var. See also: PRINT command.
 Note: you can use ‘USG’ instead of ‘USING’.
 
 +========================================================================================+
-|                                  279. (String) SQUEEZE                                 |
+|                                  280. (String) SQUEEZE                                 |
 +========================================================================================+
 
 SQUEEZE (s)
@@ -9560,7 +9598,7 @@ Removes all leading, trailing and duplicated white-space.
     ' Result: [Hi there]
 
 +========================================================================================+
-|                                    280. (String) STR                                   |
+|                                    281. (String) STR                                   |
 +========================================================================================+
 
 STR (n)
@@ -9568,7 +9606,7 @@ STR (n)
 Converts the number n into a string.
 
 +========================================================================================+
-|                                   281. (String) STRING                                 |
+|                                   282. (String) STRING                                 |
 +========================================================================================+
 
 STRING ( count [,start | s] )
@@ -9630,7 +9668,7 @@ How to understand this syntax “STRING ( count [,start | s] )”:
     ? x ' --> x is "Hello Hello "
 
 +========================================================================================+
-|                                 282. (String) TRANSLATE                                |
+|                                 283. (String) TRANSLATE                                |
 +========================================================================================+
 
 TRANSLATE (source, what [, with])
@@ -9642,7 +9680,7 @@ string ‘with’ and returns the new string.
     ' displays: HellO wOrld
 
 +========================================================================================+
-|                                    283. (String) TRIM                                  |
+|                                    284. (String) TRIM                                  |
 +========================================================================================+
 
 TRIM(s)
@@ -9650,7 +9688,7 @@ TRIM(s)
 Removes all leading and trailing white-space.
 
 +========================================================================================+
-|                                   284. (String) UCASE                                  |
+|                                   285. (String) UCASE                                  |
 +========================================================================================+
 
 UCASE (s)
@@ -9667,7 +9705,7 @@ Converts the string s to upper case.
 output: UPPER and UCASE do the same thing.
 
 +========================================================================================+
-|                                   285. (String) UPPER                                  |
+|                                   286. (String) UPPER                                  |
 +========================================================================================+
 
 UPPER (s)
@@ -9677,7 +9715,7 @@ Converts the string s to upper case.
 Yes, you should see the comment in UCASE.
 
 +========================================================================================+
-|                                    286. (String) VAL                                   |
+|                                    287. (String) VAL                                   |
 +========================================================================================+
 
 VAL (s)
@@ -9734,7 +9772,7 @@ The VAL command just converts a string to a number. For EVAL type
 functionality, the CHAIN command is somewhat similar.
 
 +========================================================================================+
-|                                   287. (System) CHAIN                                  |
+|                                   288. (System) CHAIN                                  |
 +========================================================================================+
 
 CHAIN source
@@ -9743,53 +9781,66 @@ Compile and run the given source. Source can be a file name, a line of
 code or an array of code. Use ENV to share variables with the parent
 process.
 
+Example 1: Using constants; Note: \" is used to create a quote inside
+the string
 
-    ' Note: CHAIN behaves like EVAL function in other languages.
-    Option Base 1 ' (for 'IN' keyword which is 1-Based)
-    ' Code using constants:
-    Chain "? \\"100 + 50 is: \\"; 100 + 50: Pause" ' (100 + 50 = 150)
+    Chain "? \"100 + 50 is: \"; 100 + 50" 
 
-    ' Code using variables:
-    Env "SB1=6" ' add two unique variables (for reuse)
+    ' Output: 100 + 50 is: 150
+
+Example 2: Using variables
+
+    Env "SB1=6"
     Env "SB2=2"
-    Chain "? Env(\\"SB1\\") ^ Env(\\"SB2\\"): Pause" ' (SB1 ^ SB2 = 36)
+    Chain "? Env(\"SB1\") ^ Env(\"SB2\")" 
 
-    ' Code using an array:
-    Env "SB1=3"  ' reuse SB1 variable
-    Dim a()          ' append code to array a
-    a << "x = Env(\\"SB1\\")"
+    ' Output: 36
+
+Example 3: Using an array
+
+    Env "SB1=3"
+      
+    Dim a()          
+    a << "x = Env(\"SB1\")"
     a << "For i = 1 To 5"
     a << "? i * x; Spc(1);"
     a << "Next i"
-    a << "Pause"
-    Chain a ' prints 3 6 9 12 15
 
-    ' Code using a file name (output a array to demo file):
-    Const FILE_NAME = "demo.bas"
-    Env "SB1=4"  ' reuse SB1 variable
-    Open FILE_NAME For Output as #1
-    For i In a
-      ? #1, i; ":"; ' output all code as a single string, ":";
-    Next i
-    Close #1
-    ?
-    Chain FILE_NAME ' prints 4 8 12 16 20
+    Chain a 
 
-    ' Now append to file name a return value (on the same line):
-    Env "SB1=5"  ' reuse SB1 variable
-    Open FILE_NAME For Append As #1
-    ? #1, "Env \\"SB1=\\" + Str(i):"; ' add extra space or ":"
-    Close #1
-    ?
-    Chain FILE_NAME ' prints 5 10 15 20 25
-    Color 15 ' print the return value from file
-    ? " (Return value SB1 is: "; Env("SB1"); ")" ' (i is 6)
-    Pause
+    ' Output: 3 6 9 12 15
 
+Example 4: Using a file and returning a value
 
-    Const FILENAME = "demo.bas"
+    ' First we have to create a bas-file to show how chain works with files
+
+    ' Create an array
+    Env "SB1=4"  
+
+    Dim a()      
+    a << "x = Env(\"SB1\")"
+    a << "For i = 1 To 5"
+    a << "? i * x; Spc(1);"
+    a << "Next i"
+    a << "Env \"SB1=\" + Str(i):"    ' Return value using SB1
+
+    ' Write array to file
+    tsave("chaindemo.bas", a)
+
+    ' Peparations are done. Now a bas-file can be chained
+    Chain "chaindemo.bas" 
+
+    print
+    print "Return value SB1 is: "; Env("SB1"); 
+
+    ' Output: 
+    ' 4 8 12 16 20
+    ' Return value SB1 is: 6
+
+Example 5:
+
     ' Create demo bas file (could be any SmallBASIC file):
-    Open FILENAME For Output As #1
+    Open "chaindemo.bas" For Output As #1
     ? #1, "Sub count10(n)"
     ? #1, "  Local i"
     ? #1, "  Color 14"
@@ -9807,8 +9858,9 @@ process.
     ? #1, 
     ? #1, "?:?"
     Close #1
+
     ' Load demo bas file into array:
-    Tload FILENAME, lines
+    Tload "chaindemo.bas", lines
     Env "SB1=2" ' Set value for child program (1..10)
     ' Execute the demo bas file (the array):
     Chain lines
@@ -9816,19 +9868,18 @@ process.
     Color 7:  ? "I'm The Parent Program..."
     ?
     Color 15: ? "Child program returned value: "; Env("SB1")
-    Pause
 
+Example 6: Creating an eval function
 
     ' Dedicated to MGA.
     ' s is any legal SmallBASIC Math Expression as String, e.g. "1 + 2 / 4"
-    Func EVAL(s)
-      ' It takes 2 lines of SmallBASIC code to implement Math EVAL Function:
+    Func eval(s)
       Chain "Env " + Enclose("SBEVAL=") + " + Str(" + s + ")"
       eval = Val(Env("SBEVAL"))
     End Func
 
     ' now run few demos:
-    ? eval("1+2") ' prints 3, ...
+    ? eval("1+2") 
     ? eval("Rad(45) * 2") 
     ? eval("PI / 2 + PI")
     ? eval("0b1111 * Pow(2, 4)")
@@ -9836,52 +9887,60 @@ process.
     ? eval("1 + 2 / 4")
     ? eval("6 * (Pow(2, 4) * 8)")
     ? eval("Rad((45 * 3) - 20) * 2")
-    Pause
 
 +========================================================================================+
-|                                  288. (System) COMMAND                                 |
+|                                  289. (System) COMMAND                                 |
 +========================================================================================+
 
 COMMAND
 
 SmallBASIC startup command line options.
 
-SDL version (GUI):> Running the following line from the command line:
+SDL version (GUI):
 
-    sbasicg -r test.bas "abc xyz fileName"
-
-When “test.bas” is:
-
-
-    ?  COMMAND
-    Pause
-
-Will print “abc xyz fileName” Note: Run ~~~ sbasicg -e test.bas ~~~ to
-enable ‘Edit’ mode again.> Non-graphical console version (cygwin or
-linux):> (Download from: https://github.com/smallbasic/SmallBASIC)
-(Build the source, then run: ./SmallBASIC/src/platform/unix/sbasic)
 Running the following line from the command line:
 
-    sbasic test.bas "abc xyz fileName"
+    LINUX:   sbasicg -r test.bas "abc xyz fileName"
+    WINDOWS: sbasicg.exe -r test.bas "abc xyz fileName"
 
 When “test.bas” is:
 
+    ? COMMAND
+
+Will print “abc xyz fileName”
+
+Note: Run
+
+    LINUX:   sbasicg -e test.bas
+    WINDOWS: sbasicg.exe -e test.bas
+
+to enable ‘Edit’ mode again.
+
+Non-graphical console version (cygwin or linux):
+
+Running the following line from the command line:
+
+    LINUX:   sbasic test.bas "abc xyz fileName"
+    WINDOWS: sbasic.exe test.bas "abc xyz fileName"
+
+When “test.bas” is:
 
     ?  COMMAND
-    ' if you add PAUSE keyword then press Ctrl+C to return to command prompt.
 
 Will print “abc xyz fileName”
 
 +========================================================================================+
-|                                    289. (System) CWD                                   |
+|                                    290. (System) CWD                                   |
 +========================================================================================+
 
 CWD
 
-Current working directory
+Gets current working directory.
+
+    print cwd
 
 +========================================================================================+
-|                                   290. (System) DELAY                                  |
+|                                   291. (System) DELAY                                  |
 +========================================================================================+
 
 DELAY ms
@@ -9890,7 +9949,7 @@ Delay for a specified amount of milliseconds. Note ‘delay’ depends on
 the system clock.
 
 +========================================================================================+
-|                                    291. (System) ENV                                   |
+|                                    292. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -9969,7 +10028,7 @@ i.e. “SB1” may be different then “sb1” on some systems (Linux for
 example).
 
 +========================================================================================+
-|                                    292. (System) ENV                                   |
+|                                    293. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -10021,7 +10080,7 @@ whole set of them into an array using: EVarray=ENV("")
     ' so it didn't just LOOK erased from a bad call
 
 +========================================================================================+
-|                                    293. (System) EXEC                                  |
+|                                    294. (System) EXEC                                  |
 +========================================================================================+
 
 EXEC file
@@ -10089,7 +10148,7 @@ Note: In the android version you can use v=RUN to look at interesting
 things in the /proc file system.
 
 +========================================================================================+
-|                                   294. (System) EXPORT                                 |
+|                                   295. (System) EXPORT                                 |
 +========================================================================================+
 
 EXPORT thing
@@ -10098,7 +10157,7 @@ Export a SUB, FUNC or variable from a UNIT to be used by the unit
 consumer.
 
 +========================================================================================+
-|                                    295. (System) FRE                                   |
+|                                    296. (System) FRE                                   |
 +========================================================================================+
 
 FRE (x)
@@ -10145,7 +10204,7 @@ Optional-set #2:
 The optional values will return 0 if not supported.
 
 +========================================================================================+
-|                                    296. (System) HOME                                  |
+|                                    297. (System) HOME                                  |
 +========================================================================================+
 
 HOME
@@ -10153,7 +10212,7 @@ HOME
 User HOME folder
 
 +========================================================================================+
-|                                   297. (System) IMPORT                                 |
+|                                   298. (System) IMPORT                                 |
 +========================================================================================+
 
 IMPORT
@@ -10161,7 +10220,7 @@ IMPORT
 Import an exported UNIT variable, SUB or FUNC.
 
 +========================================================================================+
-|                                  298. (System) INCLUDE                                 |
+|                                  299. (System) INCLUDE                                 |
 +========================================================================================+
 
 INCLUDE source-file.bas
@@ -10209,7 +10268,7 @@ Here is part_2.bas, the second (and startup) part of our long program:
     Pause
 
 +========================================================================================+
-|                                   299. (System) MAXINT                                 |
+|                                   300. (System) MAXINT                                 |
 +========================================================================================+
 
 MAXINT
@@ -10218,7 +10277,7 @@ Holds the maximum value for an integer. The value depends on whether you
 are using a 32 or 64 bit build of SmallBASIC.
 
 +========================================================================================+
-|                                    300. (System) NIL                                   |
+|                                    301. (System) NIL                                   |
 +========================================================================================+
 
 NIL
@@ -10226,7 +10285,7 @@ NIL
 NIL is used to mean ‘not set’ as distinct from having an INT set to 0
 
 +========================================================================================+
-|                                   301. (System) OPTION                                 |
+|                                   302. (System) OPTION                                 |
 +========================================================================================+
 
 OPTION keyword
@@ -10234,7 +10293,7 @@ OPTION keyword
 Used to pass parameters to the run-time environment.
 
 +========================================================================================+
-|                                   302. (System) PAUSE                                  |
+|                                   303. (System) PAUSE                                  |
 +========================================================================================+
 
 PAUSE [secs]
@@ -10267,7 +10326,7 @@ halt program execution (for the user to see the output screen).
     wend
 
 +========================================================================================+
-|                                     303. (System) PI                                   |
+|                                     304. (System) PI                                   |
 +========================================================================================+
 
 PI
@@ -10277,7 +10336,7 @@ Holds PI
 See: https://en.wikipedia.org/wiki/Pi
 
 +========================================================================================+
-|                                  304. (System) PROGLINE                                |
+|                                  305. (System) PROGLINE                                |
 +========================================================================================+
 
 PROGLINE
@@ -10285,7 +10344,7 @@ PROGLINE
 Returns the current program line number.
 
 +========================================================================================+
-|                                 305. (System) RANDOMIZE                                |
+|                                 306. (System) RANDOMIZE                                |
 +========================================================================================+
 
 RANDOMIZE [int]
@@ -10293,7 +10352,7 @@ RANDOMIZE [int]
 Seeds the random number generator.
 
 +========================================================================================+
-|                                    306. (System) RUN                                   |
+|                                    307. (System) RUN                                   |
 +========================================================================================+
 
 RUN cmdstr
@@ -10448,7 +10507,7 @@ will verify that the command was executed well.
     book to understand the basics).
 
 +========================================================================================+
-|                                   307. (System) SBVER                                  |
+|                                   308. (System) SBVER                                  |
 +========================================================================================+
 
 SBVER
@@ -10456,7 +10515,7 @@ SBVER
 Version and build information
 
 +========================================================================================+
-|                                    308. (System) SELF                                  |
+|                                    309. (System) SELF                                  |
 +========================================================================================+
 
 SELF
@@ -10474,14 +10533,45 @@ variant.
 Example:
 
     SUB hello
-    print "hello " + self.world
+      print "hello " + self.world
     END
-    a.world="world"
-    a.foo=@hello
+
+    a.world = "world"
+    a.foo = @hello
     a.foo()
 
+
+    func SimpleClass(i)
+
+      sub Increment(i)
+        self.x = self.x + i
+      end
+
+      sub Decrement(i)
+        self.x = self.x - i
+      end
+
+      func GetX()
+        return self.x
+      end
+
+      local temp
+      temp.x         = i
+      temp.Increment = @Increment
+      temp.Decrement = @Decrement
+      temp.GetX      = @GetX
+
+      return temp
+    end
+
+
+    A = SimpleClass(1)
+    print A.GetX()
+    A.Increment(5) : print A.GetX()
+    A.Decrement(4) : print A.GetX()
+
 +========================================================================================+
-|                                  309. (System) STKDUMP                                 |
+|                                  310. (System) STKDUMP                                 |
 +========================================================================================+
 
 STKDUMP
@@ -10489,7 +10579,7 @@ STKDUMP
 Display internal execution stack.
 
 +========================================================================================+
-|                                   310. (System) TROFF                                  |
+|                                   311. (System) TROFF                                  |
 +========================================================================================+
 
 TROFF
@@ -10497,7 +10587,7 @@ TROFF
 See TRON.
 
 +========================================================================================+
-|                                    311. (System) TRON                                  |
+|                                    312. (System) TRON                                  |
 +========================================================================================+
 
 TRON
@@ -10506,7 +10596,7 @@ When trace mechanism is ON, displays each line number as the program is
 executed.
 
 +========================================================================================+
-|                                    312. (System) UNIT                                  |
+|                                    313. (System) UNIT                                  |
 +========================================================================================+
 
 UNIT name

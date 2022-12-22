@@ -2,11 +2,13 @@
 <blockquote>
 <p>POLYAREA (poly)</p>
 </blockquote>
-<p>Returns the area of the polyline poly.</p>
+<p>Returns the area of the polyline poly. The algebraic sign of the area is positive for counterclockwise ordering of vertices in x-y plane; otherwise negative.</p>
 <pre><code>polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
 drawpoly polygon color 12
 
-Area = polyarea(polygon) / 2  &#39; Bug, please divide area always by 2
+Area = abs(polyarea(polygon))     &#39; absolute value of the area, because
+                                  &#39; we are not interested in the
+                                  &#39; ordering of the vertices.
 
 print &quot;Polyarea() returns: &quot;; Area
 print &quot;Exact area is 50x50 = 2500&quot;</code></pre>

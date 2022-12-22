@@ -140,6 +140,10 @@ x = 1.2</code></pre>
 <h3 id="Strings">Strings</h3>
 <p>Strings may be appended to one another using the + operator.</p>
 <pre><code>b = &quot;Hello, &quot; + &quot;world!&quot;</code></pre>
+<pre><code>b = &quot;&quot;&quot;This is
+a string
+over several lines
+with line breaks&quot;&quot;&quot;</code></pre>
 <h3 id="Constants">Constants</h3>
 <p>Constant variables can be declared by using the keyword CONST.</p>
 <pre><code>CONST my_pi = 3.14</code></pre>
@@ -336,14 +340,13 @@ x = 1.2</code></pre>
 <h3 id="Statement4">Statement OPTION PREDEF parameter</h3>
 <p>Sets parameters of the compiler. Where <span class="code">parameter</span></p>
 <ul>
-<li>QUIET Sets the quiet flag (-q option)</li>
-<li>COMMAND cmdstr Sets the <span class="code">COMMAND$</span> string to <span class="code">var</span> (useful for debug reasons)</li>
-<li>GRMODE [widthxheight[xbpp]] Sets the graphics mode flag (-g option) or sets the preferred screen resolution. Example: (Clie HiRes)</li>
-</ul>
-<pre><code>OPTION PREDEF GRMODE 320x320x16</code></pre>
-<ul>
-<li>TEXTMODE Sets the text mode flag (-g- option)</li>
-<li>CSTR Sets as default string style the C-style special character encoding (‘\’)</li>
+<li><p>QUIET Sets the quiet flag (-q option)</p></li>
+<li><p>COMMAND cmdstr Sets the <span class="code">COMMAND$</span> string to <span class="code">var</span> (useful for debug reasons)</p></li>
+<li><p>GRMODE [widthxheight[xbpp]] Sets the graphics mode flag (-g option) or sets the preferred screen resolution. Example: (Clie HiRes)</p>
+<pre><code>OPTION PREDEF GRMODE 320x320x16</code></pre></li>
+<li><p>TEXTMODE Sets the text mode flag (-g- option)</p></li>
+<li><p>CSTR Sets as default string style the C-style special character encoding (‘\’)</p></li>
+<li><p>ANTIALIAS off : Disable anti-aliasing for drawing commands like CIRCEL or LINE</p></li>
 </ul>
 <h3 id="Meta">Meta-commands</h3>
 <p>#!…</p>
@@ -743,7 +746,7 @@ NEXT</code></pre>
 <p>Of course, it is much faster too.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 20 Mar 2018 20:01:10 +1000
+      This page was last edited on Thu, 22 Dec 2022 14:05:08 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

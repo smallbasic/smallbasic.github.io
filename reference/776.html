@@ -75,17 +75,25 @@
   </div>
 </blockquote>
 <p>Returns one-char string of character with ASCII code x.</p>
-<p>The CHR command is useful for obtaining and printing the escape character (ASCII 27) For example:</p>
-<pre><code>10 PRINT CHR(27) + &quot;[1mTHIS IS BOLD&quot; + CHR(27) + &quot;[0m&quot;
-20 PRINT CHR(27) + &quot;[3mThis is italic&quot; + CHR(27) + &quot;[0m&quot;
-30 PRINT CHR(27) + &quot;[4mThis is underline&quot;</code></pre>
+<p>See ASC to convert a character to ASCII code.</p>
+<p>Example 1:</p>
+<pre><code>print &quot;ASCII code 65 is &#39;&quot; + chr(65) + &quot;&#39;&quot;
+
+&#39; Output ASCII code 65 is &#39;A&#39;</code></pre>
+<p>Example 2: The CHR command is useful for obtaining and printing the escape character (ASCII 27). For more information about escape codes see article “Escape Codes”</p>
+<pre><code>PRINT CHR(27) + &quot;[1mTHIS IS BOLD&quot; + CHR(27) + &quot;[0m&quot;
+PRINT CHR(27) + &quot;[3mThis is italic&quot; + CHR(27) + &quot;[0m&quot;
+PRINT CHR(27) + &quot;[4mThis is underline&quot;</code></pre>
+<p>Example 3: Print ASCII table</p>
 <pre><code>rem display the ASCII and the extended tables
 For n = 0 To 255
   If n = 0 Then
     Color 15, 0: Locate 1, 1
     Print &quot;Standard 7-bit ASCII table (character codes 0 - 127):&quot;;
   Elseif n = 128 Then
-    Pause
+    print
+    print
+    Input &quot;Press return to see nonstandard table&quot;, k
     Color 15, 0: Cls: Locate 1, 1
     Print &quot;Nonstandard 8-bit Extended table (character codes 128 - 255):&quot;;
   Endif
@@ -98,14 +106,14 @@ For n = 0 To 255
   Else
     c = Chr(n) &#39; ASCII code --&gt; character
   Endif
-  Locate (n Mod 16) + 3, (((n \\ 16) Mod 8) * 9) + 1
+  Locate (n Mod 16) + 3, (((n \ 16) Mod 8) * 9) + 1
 
   Color 7: Print Using &quot;000 &quot;; n; &#39; ASCII code
   Color 14: Print c; &#39; ASCII (or ANSI) character
 Next
 Color 7, 0: Print: Print
 Print &quot; * Nonstandard characters might look different on another system.&quot;
-Pause
+
 End
 &#39; nonprintable control characters (ASCII codes 0..31):
 Data &quot;nul&quot;, &quot;soh&quot;, &quot;stx&quot;, &quot;etx&quot;, &quot;eot&quot; &#39; 0..4
@@ -212,7 +220,7 @@ CHR by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Sun, 18 Dec 2022 17:53:26 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
