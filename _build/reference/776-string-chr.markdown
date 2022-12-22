@@ -4,14 +4,25 @@
 
 Returns one-char string of character with ASCII code x.
 
-The CHR command is useful for obtaining and printing the escape character (ASCII 27)
-For example:
+See ASC to convert a character to ASCII code.
+
+Example 1:
 
 ```
-10 PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
-20 PRINT CHR(27) + "[3mThis is italic" + CHR(27) + "[0m"
-30 PRINT CHR(27) + "[4mThis is underline"
+print "ASCII code 65 is '" + chr(65) + "'"
+
+' Output ASCII code 65 is 'A'
 ```
+
+Example 2: The CHR command is useful for obtaining and printing the escape character (ASCII 27). For more information about escape codes see article "Escape Codes"
+
+```
+PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
+PRINT CHR(27) + "[3mThis is italic" + CHR(27) + "[0m"
+PRINT CHR(27) + "[4mThis is underline"
+```
+
+Example 3: Print ASCII table
 
 ```
 rem display the ASCII and the extended tables
@@ -20,7 +31,9 @@ For n = 0 To 255
     Color 15, 0: Locate 1, 1
     Print "Standard 7-bit ASCII table (character codes 0 - 127):";
   Elseif n = 128 Then
-    Pause
+    print
+    print
+    Input "Press return to see nonstandard table", k
     Color 15, 0: Cls: Locate 1, 1
     Print "Nonstandard 8-bit Extended table (character codes 128 - 255):";
   Endif
@@ -33,14 +46,14 @@ For n = 0 To 255
   Else
     c = Chr(n) ' ASCII code --> character
   Endif
-  Locate (n Mod 16) + 3, (((n \\ 16) Mod 8) * 9) + 1
+  Locate (n Mod 16) + 3, (((n \ 16) Mod 8) * 9) + 1
 
   Color 7: Print Using "000 "; n; ' ASCII code
   Color 14: Print c; ' ASCII (or ANSI) character
 Next
 Color 7, 0: Print: Print
 Print " * Nonstandard characters might look different on another system."
-Pause
+
 End
 ' nonprintable control characters (ASCII codes 0..31):
 Data "nul", "soh", "stx", "etx", "eot" ' 0..4

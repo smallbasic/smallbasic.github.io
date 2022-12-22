@@ -4,6 +4,20 @@
 
 Draws a circle (or an ellipse if the aspect is specified).
 
+Example 1: Draw a filled white circle
+
+```
+circle 200, 200, 150 COLOR 15 FILLED
+```
+
+Example 2: Draw a ellipse with aspect ration 1:2
+
+```
+circle 200, 200, 150, 0.5
+```
+
+Example 3: Draw a flower
+
 ~~~
 
 ' Aspect ratio is relation between width-height of a circle,
@@ -47,17 +61,15 @@ Circle Step -c, +c, r, a Color  9 FILLED: Pause ' down-left
 ' draw the main circle:
 Circle CENTER, RADIUS, ASPECT_RATIO Color 14
 ' print text in the middle of main circle:
-At CENTER(0) - (Txtw(TEXT) \\ 2), CENTER(1) - (Txth(TEXT) \\ 2)
+At CENTER(0) - (Txtw(TEXT) \ 2), CENTER(1) - (Txth(TEXT) \ 2)
 Color 15: Print TEXT;
-Pause
-
 ~~~
 
+Example 4: Smiley Face
 
 ~~~
-
-'Another aspect or circle.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
-'with aspect it is not the same old circle
+' SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
+' Smiley Face
 cx=xmax/2:cy=ymax/2:rface=250:reye=50:xle=cx-100:xre=cx+100:dir=1
 while 1
   cls
@@ -73,14 +85,13 @@ while 1
   if a=.26 then dir=dir*-1
   if a=-.1 then dir=dir*-1
 wend
-
 ~~~
 
-By default CIRCLE draws with anti-aliasing. For details, see: [Fast, Antialiased Circles and Ellipses](https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/){target=_blank}
+By default CIRCLE draws with anti-aliasing. For details, see: [Fast, Antialiased Circles and Ellipses](https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/)
 
 To turn off anti-aliasing, add this to the start of your program:
 
 ```
- option predef antialias off
+option predef antialias off
 ```
 

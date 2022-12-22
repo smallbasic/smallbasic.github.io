@@ -2,8 +2,9 @@
 
 > CWD
 
-Current working directory
+Gets current working directory.
 
-
-
+```
+print cwd
+```
 

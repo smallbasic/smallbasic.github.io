@@ -4,4 +4,8 @@
 
 Clears the screen.
 
+```
+print "Test"
+CLS
+```
 

@@ -103,6 +103,14 @@ Strings may be appended to one another using the + operator.
 b = "Hello, " + "world!"
 ```
 
+```
+b = """This is
+a string
+over several lines
+with line breaks"""
+```
+
+
 ### Constants {#Constants}
 
 Constant variables can be declared by using the keyword CONST.
@@ -204,12 +212,13 @@ Sets parameters of the compiler. Where [parameter]{.code}
 * COMMAND cmdstr Sets the [COMMAND$]{.code} string to [var]{.code} (useful for debug reasons)
 * GRMODE [widthxheight[xbpp]] Sets the graphics mode flag (-g option) or sets the preferred screen resolution. Example: (Clie HiRes)
 
-~~~
-OPTION PREDEF GRMODE 320x320x16
-~~~
+  ~~~
+  OPTION PREDEF GRMODE 320x320x16
+  ~~~
 
 * TEXTMODE Sets the text mode flag (-g- option)
 * CSTR Sets as default string style the C-style special character encoding ('\\')
+* ANTIALIAS off : Disable anti-aliasing for drawing commands like CIRCEL or LINE
 
 ### Meta-commands {#Meta}
 

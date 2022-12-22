@@ -1,13 +1,34 @@
 # CHART
 
-> CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]
+> CHART charttype, array() [, style [, x1, y1, x2, y2]]
 
-Draws a chart of array values in the rectangular area x1,y1,x2,y2. Styles: 0 = simple, 1 = with-marks, 2 = with ruler, 3 = with marks and ruler.
+Draws a chart of array values in the rectangular area x1,y1,x2,y2. The array stores y-values only: [y1, y2, y3, ... yn].
+The x-axis of the chart has the values 1,2,3,...n.
+
+| Charttype            | Value |
+| -------------------- |:-----:|
+| Linechart            | 1     |
+| Barchart             | 2     |
+
+| Style                | Value |
+|----------------------|:-----:|
+| simple               | 0     |
+| with marks           | 1     |
+| with ruler           | 2     |
+| with marks and ruler | 3     |
+
+See PLOT for plotting functions.
+
+Example 1: Linechart with marks and ruler
 
 ```
-Const LINECHART = 1
-Const BARCHART = 2
+demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]
+Color 0, 15
+cls
+Chart 1, demo, 3, 150, 150, 750, 550
 ```
+
+Example 2: All charttypes and styles in one glance
 
 ~~~
 Const LINE_CHART = 1

@@ -4,59 +4,74 @@
 
 Compile and run the given source. Source can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process.
 
+Example 1: Using constants; Note: `\"` is used to create a quote inside the string
 
-~~~
+```
+Chain "? \"100 + 50 is: \"; 100 + 50" 
 
-' Note: CHAIN behaves like EVAL function in other languages.
-Option Base 1 ' (for 'IN' keyword which is 1-Based)
-' Code using constants:
-Chain "? \\"100 + 50 is: \\"; 100 + 50: Pause" ' (100 + 50 = 150)
+' Output: 100 + 50 is: 150
+```
 
-' Code using variables:
-Env "SB1=6" ' add two unique variables (for reuse)
+Example 2: Using variables
+
+```
+Env "SB1=6"
 Env "SB2=2"
-Chain "? Env(\\"SB1\\") ^ Env(\\"SB2\\"): Pause" ' (SB1 ^ SB2 = 36)
+Chain "? Env(\"SB1\") ^ Env(\"SB2\")" 
 
-' Code using an array:
-Env "SB1=3"  ' reuse SB1 variable
-Dim a()          ' append code to array a
-a << "x = Env(\\"SB1\\")"
+' Output: 36
+```
+
+Example 3: Using an array
+
+```
+Env "SB1=3"
+  
+Dim a()          
+a << "x = Env(\"SB1\")"
 a << "For i = 1 To 5"
 a << "? i * x; Spc(1);"
 a << "Next i"
-a << "Pause"
-Chain a ' prints 3 6 9 12 15
 
-' Code using a file name (output a array to demo file):
-Const FILE_NAME = "demo.bas"
-Env "SB1=4"  ' reuse SB1 variable
-Open FILE_NAME For Output as #1
-For i In a
-  ? #1, i; ":"; ' output all code as a single string, ":";
-Next i
-Close #1
-?
-Chain FILE_NAME ' prints 4 8 12 16 20
+Chain a 
 
-' Now append to file name a return value (on the same line):
-Env "SB1=5"  ' reuse SB1 variable
-Open FILE_NAME For Append As #1
-? #1, "Env \\"SB1=\\" + Str(i):"; ' add extra space or ":"
-Close #1
-?
-Chain FILE_NAME ' prints 5 10 15 20 25
-Color 15 ' print the return value from file
-? " (Return value SB1 is: "; Env("SB1"); ")" ' (i is 6)
-Pause
+' Output: 3 6 9 12 15
+```
 
-~~~
+Example 4: Using a file and returning a value
 
+```
+' First we have to create a bas-file to show how chain works with files
 
-~~~
+' Create an array
+Env "SB1=4"  
 
-Const FILENAME = "demo.bas"
+Dim a()      
+a << "x = Env(\"SB1\")"
+a << "For i = 1 To 5"
+a << "? i * x; Spc(1);"
+a << "Next i"
+a << "Env \"SB1=\" + Str(i):"    ' Return value using SB1
+
+' Write array to file
+tsave("chaindemo.bas", a)
+
+' Peparations are done. Now a bas-file can be chained
+Chain "chaindemo.bas" 
+
+print
+print "Return value SB1 is: "; Env("SB1"); 
+
+' Output: 
+' 4 8 12 16 20
+' Return value SB1 is: 6
+```
+
+Example 5:
+
+```
 ' Create demo bas file (could be any SmallBASIC file):
-Open FILENAME For Output As #1
+Open "chaindemo.bas" For Output As #1
 ? #1, "Sub count10(n)"
 ? #1, "  Local i"
 ? #1, "  Color 14"
@@ -74,8 +89,9 @@ Open FILENAME For Output As #1
 ? #1, 
 ? #1, "?:?"
 Close #1
+
 ' Load demo bas file into array:
-Tload FILENAME, lines
+Tload "chaindemo.bas", lines
 Env "SB1=2" ' Set value for child program (1..10)
 ' Execute the demo bas file (the array):
 Chain lines
@@ -83,23 +99,20 @@ Chain lines
 Color 7:  ? "I'm The Parent Program..."
 ?
 Color 15: ? "Child program returned value: "; Env("SB1")
-Pause
+```
 
-~~~
+Example 6: Creating an eval function
 
-
-~~~
-
+```
 ' Dedicated to MGA.
 ' s is any legal SmallBASIC Math Expression as String, e.g. "1 + 2 / 4"
-Func EVAL(s)
-  ' It takes 2 lines of SmallBASIC code to implement Math EVAL Function:
+Func eval(s)
   Chain "Env " + Enclose("SBEVAL=") + " + Str(" + s + ")"
   eval = Val(Env("SBEVAL"))
 End Func
 
 ' now run few demos:
-? eval("1+2") ' prints 3, ...
+? eval("1+2") 
 ? eval("Rad(45) * 2") 
 ? eval("PI / 2 + PI")
 ? eval("0b1111 * Pow(2, 4)")
@@ -107,8 +120,7 @@ End Func
 ? eval("1 + 2 / 4")
 ? eval("6 * (Pow(2, 4) * 8)")
 ? eval("Rad((45 * 3) - 20) * 2")
-Pause
+```
 
-~~~
 
 

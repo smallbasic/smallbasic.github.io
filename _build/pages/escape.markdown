@@ -1,19 +1,16 @@
 # Escape codes
 
-SmallBASIC supports a number of escape codes for controlling the display. The codes allow you to set foreground and background colors, change the font and also set underline and inverse text display.
+SmallBASIC supports a number of escape codes for controlling the display. The codes allow you to set foreground and background colors, change the font and also set underline and inverse text display. The escape codes are based on [ANSI Codes](http://en.wikipedia.org/wiki/ANSI_escape_code).
 
-The escape codes are based on [ANSI Codes](http://en.wikipedia.org/wiki/ANSI_escape_code). SmallBASIC also support a number of additional codes which are not part of the standard.
-
-Escape sequences start with the characters ESC (ASCII 27d / 1Bh / 033o )  and [ (left bracket). This sequence is called CSI for  "Control Sequence Introducer".
-
-The supported standard codes are:
+## The supported standard codes are:
 
 ```
   \a      beep
   \t      tab (20 px)
   \r      return
   \n      next line
-  \xC     clear screen (new page)
+  \"      quote "
+  \\      Backslash \
   \e[K    clear to end of line
   \e[nG   move to column n
   \e[s    save cursor position
@@ -30,23 +27,69 @@ The supported standard codes are:
   \e[nm   n colors - 30..37 foreground, 40..47 background
 ```
 
-Useful non-standard codes include:
+## Using the escape codes directly
 
-```
-  \003    end of text (flush buffer)
-  \m      scroll to the top
-  \<1     select backscreen 1
-  \<2     select backscreen 2
-  \>1     select frontscreen 1
-  \<2     select frontscreen 2
+The instead of "\e" the CHR command is useful for obtaining and printing the escape character (ASCII 27)
+
+```Freebasic
+PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
+PRINT CHR(27) + "[3mThis is italic"  + CHR(27) + "[0m"
+PRINT CHR(27) + "[4mThis is underline"
+
+PRINT "\e[32mGreen text"
+PRINT "\e[32m\e[47mGreen text on white background"
+PRINT "First line\nSecond Line"
 ```
 
-The CHR command is useful for obtaining and printing the escape character (ASCII 27)
+## Using the EscapeCode Unit
 
-For example:
+The EscapeCode Unit makes it easier to use the escape codes and to deal with the different colors for foreground and background. The uint can be downloaded  or copy pasted from the [SmallBASIC Github website](https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas). Please save the unit in the same directory as you basic file.
 
+Here an example on how to use the unit.
+
+```Freebasic
+' SmallBASIC 12.25
+' Example for using UNIT "EscapeCodes"
+' For more information see: https://smallbasic.github.io/pages/escape.html
+
+import EscapeCodes as esc
+
+print "FORMATING TEXT:"
+print
+print esc.NORMAL + "WITHOUT ANY FORMAT " + esc.ITALIC + "ITALIC " + esc.ITALIC_OFF + esc.BOLD + "BOLD " + esc.BOLD_OFF + esc.UNDERLINE + "UNDERLINE " + esc.UNDERLINE_OFF + esc.REVERSE + "REVERSE" + esc.REVERSE_OFF
+print
+print "USE COLORS:"
+print
+print esc.BG_BLACK   + esc.BLACK + "  BLACK  " + esc.RED + "   RED   " + esc.GREEN + "  GREEN  " + esc.YELLOW + " YELLOW " + esc.BLUE + "  BLUE    " + esc.MAGENTA + " MAGENTA " + esc.CYAN + "  CYAN  " + esc.WHITE + "  WHITE  " + esc.NORMAL
+print esc.BG_RED     + esc.BLACK + "  BLACK  " + esc.RED + "   RED   " + esc.GREEN + "  GREEN  " + esc.YELLOW + " YELLOW " + esc.BLUE + "  BLUE    " + esc.MAGENTA + " MAGENTA " + esc.CYAN + "  CYAN  " + esc.WHITE + "  WHITE  " + esc.NORMAL
+print esc.BG_GREEN   + esc.BLACK + "  BLACK  " + esc.RED + "   RED   " + esc.GREEN + "  GREEN  " + esc.YELLOW + " YELLOW " + esc.BLUE + "  BLUE    " + esc.MAGENTA + " MAGENTA " + esc.CYAN + "  CYAN  " + esc.WHITE + "  WHITE  " + esc.NORMAL
+print esc.BG_YELLOW  + esc.BLACK + "  BLACK  " + esc.RED + "   RED   " + esc.GREEN + "  GREEN  " + esc.YELLOW + " YELLOW " + esc.BLUE + "  BLUE    " + esc.MAGENTA + " MAGENTA " + esc.CYAN + "  CYAN  " + esc.WHITE + "  WHITE  " + esc.NORMAL
+print esc.BG_BLUE    + esc.BLACK + "  BLACK  " + esc.RED + "   RED   " + esc.GREEN + "  GREEN  " + esc.YELLOW + " YELLOW " + esc.BLUE + "  BLUE    " + esc.MAGENTA + " MAGENTA " + esc.CYAN + "  CYAN  " + esc.WHITE + "  WHITE  " + esc.NORMAL
+print esc.BG_MAGENTA + esc.BLACK + "  BLACK  " + esc.RED + "   RED   " + esc.GREEN + "  GREEN  " + esc.YELLOW + " YELLOW " + esc.BLUE + "  BLUE    " + esc.MAGENTA + " MAGENTA " + esc.CYAN + "  CYAN  " + esc.WHITE + "  WHITE  " + esc.NORMAL
+print esc.BG_CYAN    + esc.BLACK + "  BLACK  " + esc.RED + "   RED   " + esc.GREEN + "  GREEN  " + esc.YELLOW + " YELLOW " + esc.BLUE + "  BLUE    " + esc.MAGENTA + " MAGENTA " + esc.CYAN + "  CYAN  " + esc.WHITE + "  WHITE  " + esc.NORMAL
+print esc.BG_WHITE   + esc.BLACK + "  BLACK  " + esc.RED + "   RED   " + esc.GREEN + "  GREEN  " + esc.YELLOW + " YELLOW " + esc.BLUE + "  BLUE    " + esc.MAGENTA + " MAGENTA " + esc.CYAN + "  CYAN  " + esc.WHITE + "  WHITE  " + esc.NORMAL
+print esc.NORMAL
+print "USE COLORS AND FORMATS:"
+print
+print esc.NORMAL + esc.BOLD + esc.UNDERLINE + esc.GREEN + esc.BG_WHITE + "BOLD + UNDELINE + COLOR" + esc.NORMAL
+print
+print "CONTROL THE CURSOR:"
+print
+print esc.MOVE_TO_COLUMN(4) + "MOVE TO COLUMN 4"
+print "TABS:" + esc.TB + "ONE TAB" + esc.TB + esc.TB + "TWO MORE TABS"
+print "YOU SHOULD NOT READ THIS" + esc.RET + "RETURN TO BEGIN OF LINE "
+print "FIRST LINE" + esc.NEXTLINE + "NEXT LINE"
+print esc.SAVECURSOR + "YOU SHOULD NOT READ THIS" 
+print esc.RESTORECURSOR + esc.CLEAR_LINE + "SAVE AND RESTORE THE CURSOR POSITION"
+print
+print "OTHER:"
+print
+print esc.QUOTE + "YOU CAN USE QUOTES" + esc.QUOTE
+print esc.BP + "A BEEP SHOULD BE AUDIBLE"
 ```
-10 PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
-20 PRINT CHR(27) + "[3mThis is italic"  + CHR(27) + "[0m"
-30 PRINT CHR(27) + "[4mThis is underline"
-```
+
+## Escape codes in SmallBASIC console version
+
+In the console version of SmallBASIC (sbasic.exe or sbasic) most of the escape codes, for example [ANSI Codes at wikipedia](http://en.wikipedia.org/wiki/ANSI_escape_code), can be used in version 12.25 or later. The support of the escape codes depends on the operating system and the terminal you are using.
+
+

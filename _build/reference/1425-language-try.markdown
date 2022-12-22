@@ -2,12 +2,39 @@
 
 > TRY
 
-The TRY statement introduces a TRY/CATCH BLOCK
+__TRY__
+
+The TRY statement introduces a TRY/CATCH block.
+
+__CATCH [var | expr]__
+
+The CATCH statement is used to CATCH an run-time error. This is typically used with errors raised when calling a file system command that cannot be completed, for example attempting to open a non-existent file.
+
+The CATCH statement has two modes. You can supply a variable argument to store the error string. Alternatively you can supply an expression. When the raised error matches the (String) expression, the error will be caught.
+
+When using the expression mode, you can supply a succession of CATCH statements to handle various error messages separately.
+
+__END TRY__
+
+The END TRY statement marks the end of a TRY/CATCH block.
 
 
+### Example 1: Opening a non-existing file for reading
 
-Note:
-If this demo program crashes... then run it again. It seems that TRY / CATCH block might be unstable within a function or sub... (?)
+```
+try
+    ' DON'T use existing file for demo.
+    open "try demo.tmp" for input  as #1
+catch err
+    print err; " "
+    ' Some error handling could be implemented here
+    ' i.e: if(err = "...") then ...
+end try
+
+print "This point is reach, even if opening the file was not possible"
+```
+
+### Example 2: Advanced error handling for opening files
 
 ~~~
 
@@ -21,7 +48,7 @@ Func opens(filename, mode)
     Case "input" : Open filename For Input  As #fn
     Case "output": Open filename For Output As #fn
     Case "append": Open filename For Append As #fn
-    Case Else: ? "opens(): Bad open mode at line " + Progline: Pause: Stop
+    Case Else: ? "opens(): Bad open mode at line " + Progline: Stop
     End Select
     opens = fn ' file opened, return file-handle (integer 1 to 256)
   Catch err
@@ -72,8 +99,14 @@ If fn Then
   ? lines;
   Close #fn
 Fi
-Pause
-
 ~~~
 
+### Example 3: Open COM-Port
 
+```
+try
+  open "com2000:" AS #1
+catch err
+  ? "in catch: open failed";err
+end try
+```
