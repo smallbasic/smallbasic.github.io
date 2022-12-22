@@ -1322,7 +1322,7 @@
             "type": "function"
         },
         {
-            "help": "Inverse cosine.",
+            "help": "Inverse hyperbolic cosine.",
             "keyword": "ACOSH",
             "nodeID": "708",
             "signature": "ACOSH (x)",
@@ -1336,7 +1336,7 @@
             "type": "function"
         },
         {
-            "help": "Inverse cotangent.",
+            "help": "Inverse hyperbolic cotangent.",
             "keyword": "ACOTH",
             "nodeID": "710",
             "signature": "ACOTH (x)",
@@ -1350,7 +1350,7 @@
             "type": "function"
         },
         {
-            "help": "Inverse co secant.",
+            "help": "Inverse hyperbolic co secant.",
             "keyword": "ACSCH",
             "nodeID": "712",
             "signature": "ACSCH (x)",
@@ -1364,7 +1364,7 @@
             "type": "function"
         },
         {
-            "help": "Inverse secant.",
+            "help": "Inverse hyperbolic secant.",
             "keyword": "ASECH",
             "nodeID": "714",
             "signature": "ASECH (x)",
@@ -1378,7 +1378,7 @@
             "type": "function"
         },
         {
-            "help": "Inverse sine.",
+            "help": "Inverse hyperbolic sine.",
             "keyword": "ASINH",
             "nodeID": "716",
             "signature": "ASINH (x)",
@@ -1399,7 +1399,7 @@
             "type": "function"
         },
         {
-            "help": "Inverse tangent.",
+            "help": "Inverse hyperbolic tangent.",
             "keyword": "ATANH",
             "nodeID": "719",
             "signature": "ATANH (x)",
@@ -1427,7 +1427,7 @@
             "type": "function"
         },
         {
-            "help": "Cosine.",
+            "help": "Hyperbolic cosine.",
             "keyword": "COSH",
             "nodeID": "723",
             "signature": "COSH (x)",
@@ -1441,7 +1441,7 @@
             "type": "function"
         },
         {
-            "help": "Cotangent.",
+            "help": "Hyperbolic cotangent.",
             "keyword": "COTH",
             "nodeID": "725",
             "signature": "COTH (x)",
@@ -1455,7 +1455,7 @@
             "type": "function"
         },
         {
-            "help": "Co secant.",
+            "help": "Hyperbolic co secant.",
             "keyword": "CSCH",
             "nodeID": "727",
             "signature": "CSCH (x)",
@@ -1623,7 +1623,7 @@
             "type": "function"
         },
         {
-            "help": "Secant.",
+            "help": "Hyperbolic secant.",
             "keyword": "SECH",
             "nodeID": "751",
             "signature": "SECH (x)",
@@ -1672,7 +1672,7 @@
             "type": "function"
         },
         {
-            "help": "Sine.",
+            "help": "Hyperbolic sine.",
             "keyword": "SINH",
             "nodeID": "758",
             "signature": "SINH (x)",
@@ -1693,21 +1693,28 @@
             "type": "function"
         },
         {
-            "help": "Mean deviation.",
+            "help": "Standard deviation.",
+            "keyword": "STATSTD",
+            "nodeID": "1800",
+            "signature": "STATSTD (...)",
+            "type": "function"
+        },
+        {
+            "help": "Mean absolute deviation around arithmetic mean.",
             "keyword": "STATMEANDEV",
             "nodeID": "761",
             "signature": "STATMEANDEV (...)",
             "type": "function"
         },
         {
-            "help": "Sample spread.",
+            "help": "Biased sample variance.",
             "keyword": "STATSPREADP",
             "nodeID": "762",
             "signature": "STATSPREADS (...)",
             "type": "function"
         },
         {
-            "help": "Population spread.",
+            "help": "Unbiased sample variance.",
             "keyword": "STATSPREADS",
             "nodeID": "763",
             "signature": "STATSPREADP (...)",
