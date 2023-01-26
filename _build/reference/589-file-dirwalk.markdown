@@ -3,15 +3,82 @@
 > DIRWALK directory [, wildcards] [USE ...]
 
 Walk through the specified directories. The user-defined function must returns zero to stop the process.
+The user defined function takes `x` as a parameter. `x` contains information about the current file.
+
+## Example 1: Print all files
 
 ```
 FUNC PRNF(x)
   ? x
   PRNF=TRUE
 END
-...
+
 DIRWALK "." USE PRNF(x)
 ```
+
+## Example 2: Create a list of all files
+
+```
+FUNC ListFiles(x)
+  FileList << x
+  return true
+END
+
+DIRWALK "." USE ListFiles(x)
+
+for n in FileList
+  print n.path, n.name
+next
+```
+
+## Example 3: Search for a certain file using wildcards
+
+```
+FUNC ListFiles(x)
+  FileList << x
+  return true
+END
+
+DIRWALK ".", "scratch.bas" USE ListFiles(x)
+
+for n in FileList
+  print n.path
+next
+```
+
+## Example 4: Search a certain file using user defined function
+
+```
+func SearchFile(x)
+  if(x.name == "scratch.bas")
+    path = x.path
+    return false   ' file found, stop dirwalk
+  endif
+
+  return true      ' file not found yet, continue dirwalk
+end
+
+DIRWALK "." USE SearchFile(x)
+
+print path
+```
+
+## Example 5: Using wilcards
+
+```
+FUNC ListFiles(x)
+  FileList << x
+  return true
+END
+
+DIRWALK ".", "*.bas" USE ListFiles(x)
+
+for n in FileList
+  print n.path, n.name
+next
+```
+
+## Example 6: File list utility
 
 ~~~
 
