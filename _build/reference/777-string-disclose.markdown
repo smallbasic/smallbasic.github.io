@@ -6,26 +6,28 @@ Discloses a string.
 
 Default pairs and ignore pairs
 
-------------------------------- ----- ------
-First non white-space character Check Ignore
-"                               ""    ''
-'                               ''    ""
-(                               ()    ""''
-[                               []    ""''
-{                               {}    ""''
-<                               <>    ""''
-"                               ""    ''
-------------------------------- ----- ------
+| First non white-space character | Check | Ignore  |
+|---------------------------------|-------|---------|
+| "                               | " "   | ' '     |
+| '                               | ' '   | " "     |
+| (                               | ()    | " " ' ' |
+| [                               | []    | " " ' ' |
+| {                               | {}    | " " ' ' |
+| <                               | <>    | " " ' ' |
+| "                               | " "   | ' '     |
+
+## Example
 
 ```
 s = "abc (abc)"
-? s; tab(26); disclose(s, "()")
-' prints abc
+? "1. "; s; tab(20); " -> "; disclose(s, "()")                  ' prints abc
+
 s = "abc (a(bc))"
-? s; tab(26); disclose(s, "()"); tab(40); disclose(disclose(s, "()"), "()")
-' prints a(bc), bc
+? "2. "; s; tab(20); " -> "; disclose(s, "()")                  ' prints a(bc)
+? "3. "; s; tab(20); " -> "; disclose(disclose(s, "()"), "()")  ' prints bc
+
 s = "abc (a='(bc)')"
-? s; tab(26); disclose(s, "()", "''"); tab(40); &
-    disclose(disclose(s, "()", "''"), "()", "''")
-' prints a='(bc)', nothing
+? "4. "; s; tab(20); " -> "; disclose(s, "()", "''")             ' prints a='(bc)'
+? "5. "; s; tab(20); " -> "; disclose(disclose(s, "()", "''"), "()", "''")
+' prints nothing
 ```
