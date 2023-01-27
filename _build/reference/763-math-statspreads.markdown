@@ -1,6 +1,6 @@
 # STATSPREADS
 
-> STATSPREADP (...)
+> STATSPREADS (...)
 
 Unbiased sample variance.
 

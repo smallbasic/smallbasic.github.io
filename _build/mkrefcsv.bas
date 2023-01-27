@@ -5,6 +5,7 @@ rem
 tload "reference.json", s, 1
 ref = array(s)
 counter = 0
+const maxHelp = 120
 
 func cmpfunc(a, b)
   local keyword = iff(a.keyword == b.keyword, 0, iff(a.keyword < b.keyword, -1, 1))
@@ -48,6 +49,12 @@ sub mk_ref(package)
       '
       signature = translate(translate(mid(buffer[2], 3), "\"", "\"\""), "`", "")
       help = translate(translate(buffer[4], "\"", "\"\""), "`", "")
+      for h = 5 to min(15, len(buffer) - 5)
+        help = help + " " + translate(translate(translate(translate(buffer[h], "\"", "\"\""), "`", ""), "-", ""), "~", "")
+      next
+      if (len(help) > maxHelp) then
+        help = left(help, maxHelp) + " ..."
+      endif
       row = package + "," + item.type + "," + item.keyword + "," + item.nodeID + ",\"" + signature + "\",\"" + help + "\""
       out row
     catch e
