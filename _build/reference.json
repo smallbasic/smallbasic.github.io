@@ -1721,6 +1721,20 @@
             "type": "function"
         },
         {
+            "help": "The median of a finite list of numbers is the middle number, when those numbers are listed in order from smallest to greatest.",
+            "keyword": "STATMEDIAN",
+            "nodeID": "1801",
+            "signature": "STATMEDIAN (...)",
+            "type": "function"
+        },
+        {
+            "help": "In statistics, the standard deviation is a measure of the amount of variation or dispersion of a set of values",
+            "keyword": "STATSTD",
+            "nodeID": "1800",
+            "signature": "STATSTD (...)",
+            "type": "function"
+        },
+        {
             "help": "Sum of value.",
             "keyword": "SUM",
             "nodeID": "764",

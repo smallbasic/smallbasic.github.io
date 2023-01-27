@@ -1,6 +1,6 @@
 # STATSPREADP
 
-> STATSPREADS (...)
+> STATSPREADP (...)
 
 Biased sample variance.
 

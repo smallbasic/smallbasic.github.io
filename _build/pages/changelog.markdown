@@ -1,6 +1,24 @@
 Changelog
 =========
 
+**12.26 (TBA) **
+
+- Fixed DIM lower bound
+- Fixed RECT FILLED when the coordinates are inverted
+- Fixed SPLIT command - empty input now gives zero length output
+- Fixed a problem with TRIM which broke the TinyBASIC.bas sample
+- Fixed crash with INPUT command while scrolled #160
+- Fixed display of floating point numbers with high precision
+- Fixed for BIN and changes to return values of POLYCENT and POLYAREA
+- Fixed functions Polyarea, Polycent
+- Fixed printing chr(0) into a file or network interface
+- INPUT #F; now supports up to 64 parameters
+- Implemented STATMEDIAN() to calculate the median of a data sample in statistics.
+- Implemented STATSTD() to calculate standard deviation
+- RGB and RGBF now clamp parameters
+- Updated CHART line drawing to use current foreground color
+- Added link from About screen to privacy page (for google+android)
+
 **12.24 (19 June 2022) **
 
 - Implemented emscripten web version

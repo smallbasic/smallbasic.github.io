@@ -20,11 +20,11 @@ TO TRUE TRY UNTIL USE USG USING WEND WHILE XNOR XOR ABS ABSMAX ABSMIN ACOS ACOSH
 ASEC ASECH ASIN ASINH ATAN ATAN2 ATANH ATN CEIL COS COSH COT COTH CSC CSCH DEG DERIV DETERM DIFFEQN EXP 
 EXPRSEQ FIX FLOOR FRAC INT INTERSECT INVERSE LINEQN LOG LOG10 M3APPLY M3IDENT M3ROTATE M3SCALE M3TRANS 
 MAX MIN POLYAREA POLYCENT POLYEXT POW PTDISTLN PTDISTSEG PTSIGN RAD RND ROOT ROUND SEC SECH SEGCOS SEGLEN 
-SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATSPREADP STATSPREADS STATSTD SUM SUMSQ TAN TANH ASC 
-BCS BIN CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST LOWER LTRIM 
-MID OCT REPLACE RIGHT RIGHTOF RIGHTOFLAST RINSTR RTRIM SINPUT SPACE SPC SPLIT SPRINT SQUEEZE STR STRING 
-TRANSLATE TRIM UCASE UPPER VAL CHAIN COMMAND CWD DELAY ENV ENV EXEC EXPORT FRE HOME IMPORT INCLUDE MAXINT 
-NIL OPTION PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON UNIT 
+SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATMEDIAN STATSPREADP STATSPREADS STATSTD STATSTD SUM 
+SUMSQ TAN TANH ASC BCS BIN CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST 
+LOWER LTRIM MID OCT REPLACE RIGHT RIGHTOF RIGHTOFLAST RINSTR RTRIM SINPUT SPACE SPC SPLIT SPRINT SQUEEZE 
+STR STRING TRANSLATE TRIM UCASE UPPER VAL CHAIN COMMAND CWD DELAY ENV ENV EXEC EXPORT FRE HOME IMPORT 
+INCLUDE MAXINT NIL OPTION PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON UNIT 
 
 +========================================================================================+
 |                                     1. (Console) AT                                    |
@@ -8613,7 +8613,21 @@ See: https://en.wikipedia.org/wiki/Average_absolute_deviation
     print statmeandev(A)
 
 +========================================================================================+
-|                                 242. (Math) STATSPREADP                                |
+|                                  242. (Math) STATMEDIAN                                |
++========================================================================================+
+
+STATMEDIAN (...)
+
+The median of a finite list of numbers is the “middle” number, when
+those numbers are listed in order from smallest to greatest.
+
+see: Wikipedia - Median
+
+    a = [1, 3, 3, 6, 7, 8, 9]
+    print statmedian(6)
+
++========================================================================================+
+|                                 243. (Math) STATSPREADP                                |
 +========================================================================================+
 
 STATSPREADS (...)
@@ -8627,7 +8641,7 @@ See: https://en.wikipedia.org/wiki/Variance#Sample_variance
     print "Unbiased sample variance: "; statspreads(A)
 
 +========================================================================================+
-|                                 243. (Math) STATSPREADS                                |
+|                                 244. (Math) STATSPREADS                                |
 +========================================================================================+
 
 STATSPREADP (...)
@@ -8641,7 +8655,7 @@ See: https://en.wikipedia.org/wiki/Variance#Sample_variance
     print "Unbiased sample variance: "; statspreads(A)
 
 +========================================================================================+
-|                                   244. (Math) STATSTD                                  |
+|                                   245. (Math) STATSTD                                  |
 +========================================================================================+
 
 STATSTD (...)
@@ -8654,7 +8668,20 @@ see: Wikipedia - Standard Deviation
     print statstd(a)
 
 +========================================================================================+
-|                                     245. (Math) SUM                                    |
+|                                   246. (Math) STATSTD                                  |
++========================================================================================+
+
+STATSTD (...)
+
+(Corrected sample) standard deviation.
+
+see: Wikipedia - Standard Deviation
+
+    a = [2, 4, 4, 4, 5, 5, 7, 9]
+    print statstd(a)
+
++========================================================================================+
+|                                     247. (Math) SUM                                    |
 +========================================================================================+
 
 SUM (...)
@@ -8667,7 +8694,7 @@ Sum of value(s).
     print sum(A,1,2,3)
 
 +========================================================================================+
-|                                    246. (Math) SUMSQ                                   |
+|                                    248. (Math) SUMSQ                                   |
 +========================================================================================+
 
 SUMSQ (...)
@@ -8680,7 +8707,7 @@ Sum of square value(s).
     print sumsq(A,1,2,3)
 
 +========================================================================================+
-|                                     247. (Math) TAN                                    |
+|                                     249. (Math) TAN                                    |
 +========================================================================================+
 
 TAN (x)
@@ -8812,7 +8839,7 @@ is going on or it would be void of meaning.
     pause
 
 +========================================================================================+
-|                                     248. (Math) TANH                                   |
+|                                     250. (Math) TANH                                   |
 +========================================================================================+
 
 TANH (x)
@@ -8826,7 +8853,7 @@ Hyperbolic tangent.
     print b
 
 +========================================================================================+
-|                                    249. (String) ASC                                   |
+|                                    251. (String) ASC                                   |
 +========================================================================================+
 
 ASC (s)
@@ -8870,7 +8897,7 @@ The following example prints an ASCII table.
     PAUSE
 
 +========================================================================================+
-|                                    250. (String) BCS                                   |
+|                                    252. (String) BCS                                   |
 +========================================================================================+
 
 BCS (s)
@@ -8905,7 +8932,7 @@ more information about escape codes.
     ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    251. (String) BIN                                   |
+|                                    253. (String) BIN                                   |
 +========================================================================================+
 
 BIN (x)
@@ -8915,7 +8942,7 @@ Returns the binary value of x as string.
     print bin(123)
 
 +========================================================================================+
-|                                    252. (String) CBS                                   |
+|                                    254. (String) CBS                                   |
 +========================================================================================+
 
 CBS (s)
@@ -8949,7 +8976,7 @@ for more information about escape codes.
     ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    253. (String) CHOP                                  |
+|                                    255. (String) CHOP                                  |
 +========================================================================================+
 
 CHOP (source)
@@ -8963,7 +8990,7 @@ result.
     ' Output: Tes
 
 +========================================================================================+
-|                                    254. (String) CHR                                   |
+|                                    256. (String) CHR                                   |
 +========================================================================================+
 
 CHR (x)
@@ -9028,7 +9055,7 @@ Example 3: Print ASCII table
     Data "rs" , "us"  ' 30..31
 
 +========================================================================================+
-|                                  255. (String) DISCLOSE                                |
+|                                  257. (String) DISCLOSE                                |
 +========================================================================================+
 
 DISCLOSE (str[, pairs [, ignore-pairs]])
@@ -9060,7 +9087,7 @@ Default pairs and ignore pairs
     ' prints a='(bc)', nothing
 
 +========================================================================================+
-|                                  256. (String) ENCLOSE                                 |
+|                                  258. (String) ENCLOSE                                 |
 +========================================================================================+
 
 ENCLOSE (str[, pair])
@@ -9080,7 +9107,7 @@ ENCLOSE defaults to double quotes if the [pair] option is not used.
     pause
 
 +========================================================================================+
-|                                   257. (String) FORMAT                                 |
+|                                   259. (String) FORMAT                                 |
 +========================================================================================+
 
 FORMAT (format, val)
@@ -9170,7 +9197,7 @@ Must add extra space after ‘\’, if not there is an error:
     ? Usg "\\  _ \\ "; "abcde" ' --> "abc_de "
 
 +========================================================================================+
-|                                    258. (String) HEX                                   |
+|                                    260. (String) HEX                                   |
 +========================================================================================+
 
 HEX (x)
@@ -9178,7 +9205,7 @@ HEX (x)
 Returns the hexadecimal value of x as string.
 
 +========================================================================================+
-|                                   259. (String) INSTR                                  |
+|                                   261. (String) INSTR                                  |
 +========================================================================================+
 
 INSTR ([start,] s1, s2)
@@ -9211,7 +9238,7 @@ INSTR returns 0
     wend
 
 +========================================================================================+
-|                                    260. (String) JOIN                                  |
+|                                    262. (String) JOIN                                  |
 +========================================================================================+
 
 JOIN words(), delimiters, string
@@ -9226,7 +9253,7 @@ Returns the words of the specified string into array ‘words’.
     [/etc/temp/filename/ext]
 
 +========================================================================================+
-|                                   261. (String) LCASE                                  |
+|                                   263. (String) LCASE                                  |
 +========================================================================================+
 
 LCASE (s)
@@ -9234,7 +9261,7 @@ LCASE (s)
 Converts the string s to lower case.
 
 +========================================================================================+
-|                                    262. (String) LEFT                                  |
+|                                    264. (String) LEFT                                  |
 +========================================================================================+
 
 LEFT (s [,n])
@@ -9243,7 +9270,7 @@ Returns the n number of leftmost chars of string s. if not specified n =
 1.
 
 +========================================================================================+
-|                                   263. (String) LEFTOF                                 |
+|                                   265. (String) LEFTOF                                 |
 +========================================================================================+
 
 LEFTOF (s1, s2)
@@ -9278,7 +9305,7 @@ the string s2 into string s1.
     Pause
 
 +========================================================================================+
-|                                 264. (String) LEFTOFLAST                               |
+|                                 266. (String) LEFTOFLAST                               |
 +========================================================================================+
 
 LEFTOFLAST (s1, s2)
@@ -9287,7 +9314,7 @@ Returns the left part of s1 at the position of the last occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                   265. (String) LOWER                                  |
+|                                   267. (String) LOWER                                  |
 +========================================================================================+
 
 LOWER (s)
@@ -9295,7 +9322,7 @@ LOWER (s)
 Converts the string s to lower case.
 
 +========================================================================================+
-|                                   266. (String) LTRIM                                  |
+|                                   268. (String) LTRIM                                  |
 +========================================================================================+
 
 LTRIM (s)
@@ -9303,7 +9330,7 @@ LTRIM (s)
 Removes leading white-spaces from string s.
 
 +========================================================================================+
-|                                    267. (String) MID                                   |
+|                                    269. (String) MID                                   |
 +========================================================================================+
 
 MID (s, start [,length])
@@ -9315,7 +9342,7 @@ If the ‘length’ parameter is omitted, MID returns the whole string from
 the position ‘start’.
 
 +========================================================================================+
-|                                    268. (String) OCT                                   |
+|                                    270. (String) OCT                                   |
 +========================================================================================+
 
 OCT (x)
@@ -9323,7 +9350,7 @@ OCT (x)
 Returns the octal value of x as string.
 
 +========================================================================================+
-|                                  269. (String) REPLACE                                 |
+|                                  271. (String) REPLACE                                 |
 +========================================================================================+
 
 REPLACE (source, pos, str [, len])
@@ -9408,7 +9435,7 @@ the length of str.
     Pause
 
 +========================================================================================+
-|                                   270. (String) RIGHT                                  |
+|                                   272. (String) RIGHT                                  |
 +========================================================================================+
 
 RIGHT (s[,n])
@@ -9417,7 +9444,7 @@ Returns the n number of rightmost chars of string s. if not specified n
 = 1.
 
 +========================================================================================+
-|                                  271. (String) RIGHTOF                                 |
+|                                  273. (String) RIGHTOF                                 |
 +========================================================================================+
 
 RIGHTOF (s1, s2)
@@ -9426,7 +9453,7 @@ Returns the right part of s1 at the position of the first occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                272. (String) RIGHTOFLAST                               |
+|                                274. (String) RIGHTOFLAST                               |
 +========================================================================================+
 
 RIGHTOFLAST (s1, s2)
@@ -9435,7 +9462,7 @@ Returns the right part of s1 at the position of the last occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                   273. (String) RINSTR                                 |
+|                                   275. (String) RINSTR                                 |
 +========================================================================================+
 
 RINSTR ([start,] s1, s2)
@@ -9446,7 +9473,7 @@ s1 (starting from the position ‘start’).
 If there is no match, RINSTR returns 0
 
 +========================================================================================+
-|                                   274. (String) RTRIM                                  |
+|                                   276. (String) RTRIM                                  |
 +========================================================================================+
 
 RTRIM (s)
@@ -9454,7 +9481,7 @@ RTRIM (s)
 Removes trailing white-spaces from string s.
 
 +========================================================================================+
-|                                   275. (String) SINPUT                                 |
+|                                   277. (String) SINPUT                                 |
 +========================================================================================+
 
 SINPUT src; var [, delim] [,var [, delim]] ...
@@ -9473,7 +9500,7 @@ delimiters.
     print "Age: " + age
 
 +========================================================================================+
-|                                   276. (String) SPACE                                  |
+|                                   278. (String) SPACE                                  |
 +========================================================================================+
 
 SPACE (n)
@@ -9501,7 +9528,7 @@ Returns a string of n spaces.
     Wend
 
 +========================================================================================+
-|                                    277. (String) SPC                                   |
+|                                    279. (String) SPC                                   |
 +========================================================================================+
 
 SPC (n)
@@ -9524,7 +9551,7 @@ Left Center or Right aligning text.
 I think SPACE and SPC are both the same, see also SPACE.
 
 +========================================================================================+
-|                                   278. (String) SPLIT                                  |
+|                                   280. (String) SPLIT                                  |
 +========================================================================================+
 
 SPLIT string, delimiters, words() [, pairs] [USE expr]
@@ -9575,7 +9602,7 @@ Example for using “USE expr”
     ' 2 [filename1.ext]
 
 +========================================================================================+
-|                                   279. (String) SPRINT                                 |
+|                                   281. (String) SPRINT                                 |
 +========================================================================================+
 
 SPRINT var; [USING...;] ...
@@ -9587,7 +9614,7 @@ Create formated string and storing it to var. See also: PRINT command.
 Note: you can use ‘USG’ instead of ‘USING’.
 
 +========================================================================================+
-|                                  280. (String) SQUEEZE                                 |
+|                                  282. (String) SQUEEZE                                 |
 +========================================================================================+
 
 SQUEEZE (s)
@@ -9598,7 +9625,7 @@ Removes all leading, trailing and duplicated white-space.
     ' Result: [Hi there]
 
 +========================================================================================+
-|                                    281. (String) STR                                   |
+|                                    283. (String) STR                                   |
 +========================================================================================+
 
 STR (n)
@@ -9606,7 +9633,7 @@ STR (n)
 Converts the number n into a string.
 
 +========================================================================================+
-|                                   282. (String) STRING                                 |
+|                                   284. (String) STRING                                 |
 +========================================================================================+
 
 STRING ( count [,start | s] )
@@ -9668,7 +9695,7 @@ How to understand this syntax “STRING ( count [,start | s] )”:
     ? x ' --> x is "Hello Hello "
 
 +========================================================================================+
-|                                 283. (String) TRANSLATE                                |
+|                                 285. (String) TRANSLATE                                |
 +========================================================================================+
 
 TRANSLATE (source, what [, with])
@@ -9680,7 +9707,7 @@ string ‘with’ and returns the new string.
     ' displays: HellO wOrld
 
 +========================================================================================+
-|                                    284. (String) TRIM                                  |
+|                                    286. (String) TRIM                                  |
 +========================================================================================+
 
 TRIM(s)
@@ -9688,7 +9715,7 @@ TRIM(s)
 Removes all leading and trailing white-space.
 
 +========================================================================================+
-|                                   285. (String) UCASE                                  |
+|                                   287. (String) UCASE                                  |
 +========================================================================================+
 
 UCASE (s)
@@ -9705,7 +9732,7 @@ Converts the string s to upper case.
 output: UPPER and UCASE do the same thing.
 
 +========================================================================================+
-|                                   286. (String) UPPER                                  |
+|                                   288. (String) UPPER                                  |
 +========================================================================================+
 
 UPPER (s)
@@ -9715,7 +9742,7 @@ Converts the string s to upper case.
 Yes, you should see the comment in UCASE.
 
 +========================================================================================+
-|                                    287. (String) VAL                                   |
+|                                    289. (String) VAL                                   |
 +========================================================================================+
 
 VAL (s)
@@ -9772,7 +9799,7 @@ The VAL command just converts a string to a number. For EVAL type
 functionality, the CHAIN command is somewhat similar.
 
 +========================================================================================+
-|                                   288. (System) CHAIN                                  |
+|                                   290. (System) CHAIN                                  |
 +========================================================================================+
 
 CHAIN source
@@ -9889,7 +9916,7 @@ Example 6: Creating an eval function
     ? eval("Rad((45 * 3) - 20) * 2")
 
 +========================================================================================+
-|                                  289. (System) COMMAND                                 |
+|                                  291. (System) COMMAND                                 |
 +========================================================================================+
 
 COMMAND
@@ -9930,7 +9957,7 @@ When “test.bas” is:
 Will print “abc xyz fileName”
 
 +========================================================================================+
-|                                    290. (System) CWD                                   |
+|                                    292. (System) CWD                                   |
 +========================================================================================+
 
 CWD
@@ -9940,7 +9967,7 @@ Gets current working directory.
     print cwd
 
 +========================================================================================+
-|                                   291. (System) DELAY                                  |
+|                                   293. (System) DELAY                                  |
 +========================================================================================+
 
 DELAY ms
@@ -9949,7 +9976,7 @@ Delay for a specified amount of milliseconds. Note ‘delay’ depends on
 the system clock.
 
 +========================================================================================+
-|                                    292. (System) ENV                                   |
+|                                    294. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -10028,7 +10055,7 @@ i.e. “SB1” may be different then “sb1” on some systems (Linux for
 example).
 
 +========================================================================================+
-|                                    293. (System) ENV                                   |
+|                                    295. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -10080,7 +10107,7 @@ whole set of them into an array using: EVarray=ENV("")
     ' so it didn't just LOOK erased from a bad call
 
 +========================================================================================+
-|                                    294. (System) EXEC                                  |
+|                                    296. (System) EXEC                                  |
 +========================================================================================+
 
 EXEC file
@@ -10148,7 +10175,7 @@ Note: In the android version you can use v=RUN to look at interesting
 things in the /proc file system.
 
 +========================================================================================+
-|                                   295. (System) EXPORT                                 |
+|                                   297. (System) EXPORT                                 |
 +========================================================================================+
 
 EXPORT thing
@@ -10157,7 +10184,7 @@ Export a SUB, FUNC or variable from a UNIT to be used by the unit
 consumer.
 
 +========================================================================================+
-|                                    296. (System) FRE                                   |
+|                                    298. (System) FRE                                   |
 +========================================================================================+
 
 FRE (x)
@@ -10204,7 +10231,7 @@ Optional-set #2:
 The optional values will return 0 if not supported.
 
 +========================================================================================+
-|                                    297. (System) HOME                                  |
+|                                    299. (System) HOME                                  |
 +========================================================================================+
 
 HOME
@@ -10212,7 +10239,7 @@ HOME
 User HOME folder
 
 +========================================================================================+
-|                                   298. (System) IMPORT                                 |
+|                                   300. (System) IMPORT                                 |
 +========================================================================================+
 
 IMPORT
@@ -10220,7 +10247,7 @@ IMPORT
 Import an exported UNIT variable, SUB or FUNC.
 
 +========================================================================================+
-|                                  299. (System) INCLUDE                                 |
+|                                  301. (System) INCLUDE                                 |
 +========================================================================================+
 
 INCLUDE source-file.bas
@@ -10268,7 +10295,7 @@ Here is part_2.bas, the second (and startup) part of our long program:
     Pause
 
 +========================================================================================+
-|                                   300. (System) MAXINT                                 |
+|                                   302. (System) MAXINT                                 |
 +========================================================================================+
 
 MAXINT
@@ -10277,7 +10304,7 @@ Holds the maximum value for an integer. The value depends on whether you
 are using a 32 or 64 bit build of SmallBASIC.
 
 +========================================================================================+
-|                                    301. (System) NIL                                   |
+|                                    303. (System) NIL                                   |
 +========================================================================================+
 
 NIL
@@ -10285,7 +10312,7 @@ NIL
 NIL is used to mean ‘not set’ as distinct from having an INT set to 0
 
 +========================================================================================+
-|                                   302. (System) OPTION                                 |
+|                                   304. (System) OPTION                                 |
 +========================================================================================+
 
 OPTION keyword
@@ -10293,7 +10320,7 @@ OPTION keyword
 Used to pass parameters to the run-time environment.
 
 +========================================================================================+
-|                                   303. (System) PAUSE                                  |
+|                                   305. (System) PAUSE                                  |
 +========================================================================================+
 
 PAUSE [secs]
@@ -10326,7 +10353,7 @@ halt program execution (for the user to see the output screen).
     wend
 
 +========================================================================================+
-|                                     304. (System) PI                                   |
+|                                     306. (System) PI                                   |
 +========================================================================================+
 
 PI
@@ -10336,7 +10363,7 @@ Holds PI
 See: https://en.wikipedia.org/wiki/Pi
 
 +========================================================================================+
-|                                  305. (System) PROGLINE                                |
+|                                  307. (System) PROGLINE                                |
 +========================================================================================+
 
 PROGLINE
@@ -10344,7 +10371,7 @@ PROGLINE
 Returns the current program line number.
 
 +========================================================================================+
-|                                 306. (System) RANDOMIZE                                |
+|                                 308. (System) RANDOMIZE                                |
 +========================================================================================+
 
 RANDOMIZE [int]
@@ -10352,7 +10379,7 @@ RANDOMIZE [int]
 Seeds the random number generator.
 
 +========================================================================================+
-|                                    307. (System) RUN                                   |
+|                                    309. (System) RUN                                   |
 +========================================================================================+
 
 RUN cmdstr
@@ -10507,7 +10534,7 @@ will verify that the command was executed well.
     book to understand the basics).
 
 +========================================================================================+
-|                                   308. (System) SBVER                                  |
+|                                   310. (System) SBVER                                  |
 +========================================================================================+
 
 SBVER
@@ -10515,7 +10542,7 @@ SBVER
 Version and build information
 
 +========================================================================================+
-|                                    309. (System) SELF                                  |
+|                                    311. (System) SELF                                  |
 +========================================================================================+
 
 SELF
@@ -10571,7 +10598,7 @@ Example:
     A.Decrement(4) : print A.GetX()
 
 +========================================================================================+
-|                                  310. (System) STKDUMP                                 |
+|                                  312. (System) STKDUMP                                 |
 +========================================================================================+
 
 STKDUMP
@@ -10579,7 +10606,7 @@ STKDUMP
 Display internal execution stack.
 
 +========================================================================================+
-|                                   311. (System) TROFF                                  |
+|                                   313. (System) TROFF                                  |
 +========================================================================================+
 
 TROFF
@@ -10587,7 +10614,7 @@ TROFF
 See TRON.
 
 +========================================================================================+
-|                                    312. (System) TRON                                  |
+|                                    314. (System) TRON                                  |
 +========================================================================================+
 
 TRON
@@ -10596,7 +10623,7 @@ When trace mechanism is ON, displays each line number as the program is
 executed.
 
 +========================================================================================+
-|                                    313. (System) UNIT                                  |
+|                                    315. (System) UNIT                                  |
 +========================================================================================+
 
 UNIT name
