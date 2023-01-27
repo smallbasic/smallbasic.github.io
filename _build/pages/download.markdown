@@ -2,7 +2,7 @@
 
 ## Emscripten
 
-[Online - 12.24](https://smallbasic.github.io/online/sbasic.html){target="_blank"}
+[Online - 12.26](https://smallbasic.github.io/online/sbasic.html){target="_blank"}
 
 ## Android
 
