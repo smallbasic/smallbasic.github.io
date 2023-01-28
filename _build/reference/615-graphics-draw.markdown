@@ -1,55 +1,38 @@
 # DRAW
 
-> DRAW "commands"
+> DRAW CommandString
 
-Draw lines as specified by the given directional commands.
+Draw lines as specified by the given CommandString. The CommandString is created using commands from the Graphics Definition Language.
+The start point for drawing can be defined using the PSET command. COLOR can be used to change the color of the lines.
 
-*Graphics Definition Language*
-In the movement instructions below, n specifies a distance to move. The number of pixels moved is equal to n multiplied by the current scaling factor, which is set by the S command.
+## Graphics Definition Language
 
---- ---------
-Un  Move up.
-Dn  Move down.
-Ln  Move left.
-Rn  Move right.
-En  Move diagonally up and right.
-Fn  Move diagonally down and right.
-Gn  Move diagonally down and left.
-Hn  Move diagonally up and left.
-Mxy Move to coordinate x,y. If x is preceded by a + or -, the movement is relative to the last point referenced.
-B   A prefix command. Next movement command moves but doesn't plot.
-N   A prefix command. Next movement command moves, but returns immediately to previous point.
---- ---------
+In the movement instructions below, n specifies a distance to move in pixel.
+
+| Command | Description 
+|---------| ---------
+| Un      | Move up.
+| Dn      | Move down.
+| Ln      | Move left.
+| Rn      | Move right.
+| En      | Move diagonally up and right.
+| Fn      | Move diagonally down and right.
+| Gn      | Move diagonally down and left.
+| Hn      | Move diagonally up and left.
+| Mxy     | Move to coordinate x,y. If x is preceded by a + or -, the movement is relative to the last point referenced.
+| B       | A prefix command. Next movement command moves but doesn't plot.
+| N       | A prefix command. Next movement command moves, but returns immediately to previous point.
+
+
+## Example 1: Let's draw a house
 
 ```
-COLOR 9:PSET 80,80
-DRAW "R50D70L25U25L15D25NR15"
-DRAW "L10U50E25F25"
+COLOR 9
+PSET 80,80
+DRAW "R50D70L25U25L15D25NR15"   ' House part 1
+DRAW "L10U70E25F25"             ' House part 2
 PSET 118,105
-DRAW "R8U16L16D16R8U10NR8U6"
-COLOR 12:PSET 100,117
-INPUT "Who are you"; A$
-? "Hello, ";A$;"!"
+COLOR 3
+DRAW "R8U16L16D16R8U10NR8U6"    ' Window
 ```
-
-How does S command work? I just tried it in the DRAW example in first DRAW string and I get error: "DRAW: Command 'S' unsupported."
-This is how S command work in QBASIC (quote):
-
-~~~
-
-Sn  Determines the drawing scale by setting the length
-     of a unit of cursor movement. The default n is 4,
-     which is equivalent to 1 pixel.
-
-~~~
-
-So this should work just fine:
-
-~~~
-
-DRAW "S8L10U50E25F25"
-
-~~~
-
-But apparently S command is unsupported.
 
