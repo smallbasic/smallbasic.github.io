@@ -1693,13 +1693,6 @@
             "type": "function"
         },
         {
-            "help": "Standard deviation.",
-            "keyword": "STATSTD",
-            "nodeID": "1800",
-            "signature": "STATSTD (...)",
-            "type": "function"
-        },
-        {
             "help": "Mean absolute deviation around arithmetic mean.",
             "keyword": "STATMEANDEV",
             "nodeID": "761",
