@@ -8,5 +8,5 @@ see: [Wikipedia - Median](https://en.wikipedia.org/wiki/Median)
 
 ```
 a = [1, 3, 3, 6, 7, 8, 9]
-print statmedian(6)
+print statmedian(a)   ' output: 6
 ```
