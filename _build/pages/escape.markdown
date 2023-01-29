@@ -29,7 +29,7 @@ SmallBASIC supports a number of escape codes for controlling the display. The co
 
 ## Using the escape codes directly
 
-The instead of "\e" the CHR command is useful for obtaining and printing the escape character (ASCII 27)
+The instead of `\e` the CHR command is useful for obtaining and printing the escape character (ASCII 27)
 
 ```Freebasic
 PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
@@ -43,7 +43,7 @@ PRINT "First line\nSecond Line"
 
 ## Using the EscapeCode Unit
 
-The EscapeCode Unit makes it easier to use the escape codes and to deal with the different colors for foreground and background. The uint can be downloaded  or copy pasted from the [SmallBASIC Github website](https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas). Please save the unit in the same directory as you basic file.
+The EscapeCode Unit makes it easier to use escape codes and to deal with different colors for foreground and background. The unit can be downloaded  or copy pasted from the [SmallBASIC Github website](https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas). Please save the unit in the same directory as you basic file.
 
 Here an example on how to use the unit.
 
@@ -90,6 +90,6 @@ print esc.BP + "A BEEP SHOULD BE AUDIBLE"
 
 ## Escape codes in SmallBASIC console version
 
-In the console version of SmallBASIC (sbasic.exe or sbasic) most of the escape codes, for example [ANSI Codes at wikipedia](http://en.wikipedia.org/wiki/ANSI_escape_code), can be used in version 12.25 or later. The support of the escape codes depends on the operating system and the terminal you are using.
+In the console version of SmallBASIC (sbasic.exe or sbasic) most of the escape codes, for example [ANSI Codes at wikipedia](http://en.wikipedia.org/wiki/ANSI_escape_code), can be used in version 12.25 or later. Support of escape codes depends on the operating system and the terminal you are using.
 
 

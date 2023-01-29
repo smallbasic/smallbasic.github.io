@@ -2,36 +2,40 @@
 
 > DEF name[(par1[,...])] = expression
 
-Defines a single line function. eg, DEF MySin(x) = SIN(x): ? MySin(pi/2)
+Defines a single line function. 
 
-This might come in handy sometime.
+See FUNC for multiline functions and SUB for multiline subroutines.
 
-~~~
-
-' RND - returns a number from 0 to almost 1
-' DEF - one line function definition
-'A function for random numbers (integers) between low and high (inclusive)
-'here is that function
-DEF rand(lo,hi)=(RND*(hi-lo+1))\\1+lo '<======================= RND and DEF
-'test the distribution of these numbers with 1000 trials
-low=1100:high=1150
-DIM a(low-1 TO high+1)
-FOR i=1 to 1000
-  index=rand(low,high)
-  a(index)++
-NEXT
-total=0
-FOR i=low-1 TO high+1
-  ? i;":";a(i);", ";
-  total+=a(i)
-  IF i MOD 10=9 THEN ?
-NEXT
-?:? "total trials=";total
-'result: pretty even spread between two numbers inclusive.
-PAUSE
+Example 1: Function with one parameter
 
 ~~~
+def f(x) = 2*x+3
 
+print f(3)
+~~~
+
+Example 2: Function with two parameters
+
+~~~
+def f(x,y) = 2*x + 3*sin(y)
+
+print f(1,2)
+~~~
+
+Example 3: Random number between low and high
+
+~~~
+' A function for random integer numbers between low and high (inclusive)
+DEF randi(lo, hi) = (RND * (hi - lo + 1))\1 + lo
+
+' A function for random float numbers between low and high (inclusive)
+DEF randf(lo, hi) = (RND * (hi - lo + 1)) + lo
+
+print randi(0, 100)
+print randf(0, 100)
+~~~
+
+Example 4: DEF and LOCAL
 
 ~~~
 

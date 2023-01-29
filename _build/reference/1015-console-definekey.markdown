@@ -2,25 +2,68 @@
 
 > DEFINEKEY k, sub
 
-Binds a keystroke to a user defined function,
+Binds a keystroke to a user defined function. To unbind the keystroke definition pass 0 as the `sub` argument.
+
+Keycodes for PC keyboard
+
+| Key              | Keycode                                        |
+|------------------|------------------------------------------------|
+| A to Z           | asc("a") to asc("z")                           |
+| 0 to 9           | asc("0") to asc("9")                           |
+| Backspace        | 8                                              |
+| Delete           | 127                                            |
+| Break            | 3                                              |
+| Tab              | 9                                              |
+| Enter / Return   | 13                                             |
+| Space            | 32                                             |
+| Escape           | 27                                             |
+| Page Up / Prior  | 0xFF01                                         |
+| Page Down / Next | 0xFF02                                         |
+| Left             | 0xFF04                                         |
+| Right            | 0xFF05                                         |
+| Up               | 0xFF09                                         |
+| Down             | 0xFF0A                                         |
+| Insert           | 0xFF10                                         |
+| Home             | 0xFF11                                         |
+| End              | 0xFF12                                         |
+| Menu             | 0xFF1F                                         |
+| F1 to F15        | 0xFFF0+1 to 0xFFF0+15                          |
+| Ctrl + A to Z    | 0x71000000 + asc("a") to 0x71000000 + asc("z") |
+| Alt + A to Z     | 0x72000000 + asc("a") to 0x72000000 + asc("z") |
+| Shift + A to Z   | asc("A") to asc("Z")                           |
+
+
+## Examples
+
+Example 1: Bind keystroke for left and right arrow key
 
 ~~~
-sub moveLeft
-   if (block.x > 0) then
-     moveBlock -1, 0
-   fi
+defineKey 0xFF04, Increase      'Left arrow
+defineKey 0xFF05, Decrease      'Right arrow
+
+sub Increase
+   x = x + 1
 end
-defineKey 0xFF04, moveLeft
+
+sub Decrease
+   x = x - 1
+end
+
+while(1)
+    t = ticks()
+    at 0,0: print t + ": " + x + "    "
+    delay(50)
+wend
 ~~~
 
-To unbind the keystroke definition pass 0 as the `sub` argument, for example:
 
+Example 2: Unbind a keystroke
 
 ```
 DEFINEKEY 0xFF04, 0
 ```
 
-## Example 1:
+Example 3: Etch-a-Sketch
 
 ~~~
 ' DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
@@ -88,7 +131,7 @@ sub quit
 end
 ~~~
 
-## Example 2:
+Example 4: This example is outdated and just a reference for buttons in PALM OS
 
 ~~~
 ' Note:

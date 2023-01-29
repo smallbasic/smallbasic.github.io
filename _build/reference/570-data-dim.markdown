@@ -6,21 +6,47 @@ Reserves storage space for an array.
 
 The array will have (upper-lower)+1 elements. If `lower` is not specified, and `OPTION BASE` hasn't used, elements start at 0.
 
+## Example 1: One dimensional arrays
+
 ```
-REM One dimension array of 7 elements, starting from 0
+REM One dimensional array of 7 elements, starting from 0
+REM with elements A(0), A(1), ... , A(6)
 DIM A(6)
-...
-REM One dimension array of 6 elements, starting from 1
-DIM A(1 TO 6)
-...
-REM Three dimension array
-DIM A(1 TO 6, 1 TO 4, 1 TO 8)
-...
+```
+
+```
+REM One dimensional array of 7 elements, starting from 3
+REM with elements A(3), A(4), ... , A(9)
+DIM A(3 TO 9)
+```
+
+```
+REM One dimensional array of 6 elements, starting from 1
+REM with elements A(1), A(2), ... , A(6)
+option base 1
+DIM A(6)
+```
+
+## Example 2: Multi dimensional arrays
+
+```
+REM Two dimensional array
+DIM A(3, 4)
+```
+
+```
+REM Three dimensional array
+DIM A(2 TO 6, 5 TO 9, 1 TO 8)
+```
+
+## Example 3: Empty array
+
+```
 REM Allocating zero-length arrays:
 DIM z()
-...
-IF LEN(Z)=0 THE APPEND Z, "The first element"
 ```
+
+## Example 4: Creating and accessing arrays
 
 ~~~
 
@@ -78,9 +104,6 @@ For i = 1 To 10
   a(i).z = i + 100
 Next
 ? a(5).x, a(5).y, a(5).z,, "(map array)"
-
-Pause
-
 ~~~
 
 

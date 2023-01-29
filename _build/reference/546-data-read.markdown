@@ -8,12 +8,27 @@ var - Any variable.
 
 Unless a RESTORE command is executed, SmallBASIC moves to the next DATA item with each READ assignment. If SmallBASIC runs out of DATA items to READ, an run-time error occurs.
 
+See DATA and RESTORE for more information.
+
 ```
-FOR c=1 TO 6
+FOR c = 1 TO 6
    READ x
    PRINT x
 NEXT
-...
+
+DATA "a,b,c", 2
+DATA 3, 4
+DATA "fifth", 6
+```
+
+Example 2: READ with two variables
+
+```
+FOR c = 1 TO 3
+   READ x, y
+   PRINT x, y
+NEXT
+
 DATA "a,b,c", 2
 DATA 3, 4
 DATA "fifth", 6
