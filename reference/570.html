@@ -76,19 +76,26 @@
 </blockquote>
 <p>Reserves storage space for an array.</p>
 <p>The array will have (upper-lower)+1 elements. If <code>lower</code> is not specified, and <code>OPTION BASE</code> hasn’t used, elements start at 0.</p>
-<pre><code>REM One dimension array of 7 elements, starting from 0
-DIM A(6)
-...
-REM One dimension array of 6 elements, starting from 1
-DIM A(1 TO 6)
-...
-REM Three dimension array
-DIM A(1 TO 6, 1 TO 4, 1 TO 8)
-...
-REM Allocating zero-length arrays:
-DIM z()
-...
-IF LEN(Z)=0 THE APPEND Z, &quot;The first element&quot;</code></pre>
+<h2 id="example-1-one-dimensional-arrays">Example 1: One dimensional arrays</h2>
+<pre><code>REM One dimensional array of 7 elements, starting from 0
+REM with elements A(0), A(1), ... , A(6)
+DIM A(6)</code></pre>
+<pre><code>REM One dimensional array of 7 elements, starting from 3
+REM with elements A(3), A(4), ... , A(9)
+DIM A(3 TO 9)</code></pre>
+<pre><code>REM One dimensional array of 6 elements, starting from 1
+REM with elements A(1), A(2), ... , A(6)
+option base 1
+DIM A(6)</code></pre>
+<h2 id="example-2-multi-dimensional-arrays">Example 2: Multi dimensional arrays</h2>
+<pre><code>REM Two dimensional array
+DIM A(3, 4)</code></pre>
+<pre><code>REM Three dimensional array
+DIM A(2 TO 6, 5 TO 9, 1 TO 8)</code></pre>
+<h2 id="example-3-empty-array">Example 3: Empty array</h2>
+<pre><code>REM Allocating zero-length arrays:
+DIM z()</code></pre>
+<h2 id="example-4-creating-and-accessing-arrays">Example 4: Creating and accessing arrays</h2>
 <pre><code>
 Option Base 1 &#39; Set default lower bound of arrays to 1
 ? &quot;Showing x,y,z elements of index 5:&quot;
@@ -143,10 +150,7 @@ For i = 1 To 10
   a(i).y = i + 10
   a(i).z = i + 100
 Next
-? a(5).x, a(5).y, a(5).z,, &quot;(map array)&quot;
-
-Pause
-</code></pre>
+? a(5).x, a(5).y, a(5).z,, &quot;(map array)&quot;</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using DIM</div>
     <div class="linklist">
@@ -229,7 +233,7 @@ DIM by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 22:05:29 +1000
+      This page was last edited on Thu, 26 Jan 2023 20:57:17 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

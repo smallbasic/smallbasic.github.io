@@ -74,31 +74,26 @@
     </p>
   </div>
 </blockquote>
-<p>Defines a single line function. eg, DEF MySin(x) = SIN(x): ? MySin(pi/2)</p>
-<p>This might come in handy sometime.</p>
-<pre><code>
-&#39; RND - returns a number from 0 to almost 1
-&#39; DEF - one line function definition
-&#39;A function for random numbers (integers) between low and high (inclusive)
-&#39;here is that function
-DEF rand(lo,hi)=(RND*(hi-lo+1))\\1+lo &#39;&lt;======================= RND and DEF
-&#39;test the distribution of these numbers with 1000 trials
-low=1100:high=1150
-DIM a(low-1 TO high+1)
-FOR i=1 to 1000
-  index=rand(low,high)
-  a(index)++
-NEXT
-total=0
-FOR i=low-1 TO high+1
-  ? i;&quot;:&quot;;a(i);&quot;, &quot;;
-  total+=a(i)
-  IF i MOD 10=9 THEN ?
-NEXT
-?:? &quot;total trials=&quot;;total
-&#39;result: pretty even spread between two numbers inclusive.
-PAUSE
-</code></pre>
+<p>Defines a single line function.</p>
+<p>See FUNC for multiline functions and SUB for multiline subroutines.</p>
+<p>Example 1: Function with one parameter</p>
+<pre><code>def f(x) = 2*x+3
+
+print f(3)</code></pre>
+<p>Example 2: Function with two parameters</p>
+<pre><code>def f(x,y) = 2*x + 3*sin(y)
+
+print f(1,2)</code></pre>
+<p>Example 3: Random number between low and high</p>
+<pre><code>&#39; A function for random integer numbers between low and high (inclusive)
+DEF randi(lo, hi) = (RND * (hi - lo + 1))\1 + lo
+
+&#39; A function for random float numbers between low and high (inclusive)
+DEF randf(lo, hi) = (RND * (hi - lo + 1)) + lo
+
+print randi(0, 100)
+print randf(0, 100)</code></pre>
+<p>Example 4: DEF and LOCAL</p>
 <pre><code>
 &#39; DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
 &#39;can I use DEF locally in a sub without interfering with main variable or DEF names
@@ -237,7 +232,7 @@ DEF by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Mon, 26 Dec 2022 12:08:00 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

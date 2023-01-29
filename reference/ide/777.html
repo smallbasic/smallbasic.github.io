@@ -5,56 +5,60 @@
 <p>Discloses a string.</p>
 <p>Default pairs and ignore pairs</p>
 <table>
+<thead>
+<tr class="header">
+<th>First non white-space character</th>
+<th>Check</th>
+<th>Ignore</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td>First non white-space character</td>
-<td>Check</td>
-<td>Ignore</td>
+<td>"</td>
+<td>" "</td>
+<td>’ ’</td>
 </tr>
 <tr class="even">
-<td>"</td>
-<td>""</td>
-<td>’’</td>
+<td>’</td>
+<td>’ ’</td>
+<td>" "</td>
 </tr>
 <tr class="odd">
-<td>’</td>
-<td>’’</td>
-<td>""</td>
-</tr>
-<tr class="even">
 <td>(</td>
 <td>()</td>
-<td>""’’</td>
+<td>" " ’ ’</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>[</td>
 <td>[]</td>
-<td>""’’</td>
-</tr>
-<tr class="even">
-<td>{</td>
-<td>{}</td>
-<td>""’’</td>
+<td>" " ’ ’</td>
 </tr>
 <tr class="odd">
-<td>&lt;</td>
-<td>&lt;&gt;</td>
-<td>""’’</td>
+<td>{</td>
+<td>{}</td>
+<td>" " ’ ’</td>
 </tr>
 <tr class="even">
+<td>&lt;</td>
+<td>&lt;&gt;</td>
+<td>" " ’ ’</td>
+</tr>
+<tr class="odd">
 <td>"</td>
-<td>""</td>
-<td>’’</td>
+<td>" "</td>
+<td>’ ’</td>
 </tr>
 </tbody>
 </table>
+<h2 id="example">Example</h2>
 <pre><code>s = &quot;abc (abc)&quot;
-? s; tab(26); disclose(s, &quot;()&quot;)
-&#39; prints abc
+? &quot;1. &quot;; s; tab(20); &quot; -&gt; &quot;; disclose(s, &quot;()&quot;)                  &#39; prints abc
+
 s = &quot;abc (a(bc))&quot;
-? s; tab(26); disclose(s, &quot;()&quot;); tab(40); disclose(disclose(s, &quot;()&quot;), &quot;()&quot;)
-&#39; prints a(bc), bc
+? &quot;2. &quot;; s; tab(20); &quot; -&gt; &quot;; disclose(s, &quot;()&quot;)                  &#39; prints a(bc)
+? &quot;3. &quot;; s; tab(20); &quot; -&gt; &quot;; disclose(disclose(s, &quot;()&quot;), &quot;()&quot;)  &#39; prints bc
+
 s = &quot;abc (a=&#39;(bc)&#39;)&quot;
-? s; tab(26); disclose(s, &quot;()&quot;, &quot;&#39;&#39;&quot;); tab(40); &amp;
-    disclose(disclose(s, &quot;()&quot;, &quot;&#39;&#39;&quot;), &quot;()&quot;, &quot;&#39;&#39;&quot;)
-&#39; prints a=&#39;(bc)&#39;, nothing</code></pre>
+? &quot;4. &quot;; s; tab(20); &quot; -&gt; &quot;; disclose(s, &quot;()&quot;, &quot;&#39;&#39;&quot;)             &#39; prints a=&#39;(bc)&#39;
+? &quot;5. &quot;; s; tab(20); &quot; -&gt; &quot;; disclose(disclose(s, &quot;()&quot;, &quot;&#39;&#39;&quot;), &quot;()&quot;, &quot;&#39;&#39;&quot;)
+&#39; prints nothing</code></pre>

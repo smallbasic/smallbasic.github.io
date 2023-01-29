@@ -2,13 +2,61 @@
 <blockquote>
 <p>DIRWALK directory [, wildcards] [USE …]</p>
 </blockquote>
-<p>Walk through the specified directories. The user-defined function must returns zero to stop the process.</p>
+<p>Walk through the specified directories. The user-defined function must returns zero to stop the process. The user defined function takes <code>x</code> as a parameter. <code>x</code> contains information about the current file.</p>
+<h2 id="example-1-print-all-files">Example 1: Print all files</h2>
 <pre><code>FUNC PRNF(x)
   ? x
   PRNF=TRUE
 END
-...
+
 DIRWALK &quot;.&quot; USE PRNF(x)</code></pre>
+<h2 id="example-2-create-a-list-of-all-files">Example 2: Create a list of all files</h2>
+<pre><code>FUNC ListFiles(x)
+  FileList &lt;&lt; x
+  return true
+END
+
+DIRWALK &quot;.&quot; USE ListFiles(x)
+
+for n in FileList
+  print n.path, n.name
+next</code></pre>
+<h2 id="example-3-search-for-a-certain-file-using-wildcards">Example 3: Search for a certain file using wildcards</h2>
+<pre><code>FUNC ListFiles(x)
+  FileList &lt;&lt; x
+  return true
+END
+
+DIRWALK &quot;.&quot;, &quot;scratch.bas&quot; USE ListFiles(x)
+
+for n in FileList
+  print n.path
+next</code></pre>
+<h2 id="example-4-search-a-certain-file-using-user-defined-function">Example 4: Search a certain file using user defined function</h2>
+<pre><code>func SearchFile(x)
+  if(x.name == &quot;scratch.bas&quot;)
+    path = x.path
+    return false   &#39; file found, stop dirwalk
+  endif
+
+  return true      &#39; file not found yet, continue dirwalk
+end
+
+DIRWALK &quot;.&quot; USE SearchFile(x)
+
+print path</code></pre>
+<h2 id="example-5-using-wilcards">Example 5: Using wilcards</h2>
+<pre><code>FUNC ListFiles(x)
+  FileList &lt;&lt; x
+  return true
+END
+
+DIRWALK &quot;.&quot;, &quot;*.bas&quot; USE ListFiles(x)
+
+for n in FileList
+  print n.path, n.name
+next</code></pre>
+<h2 id="example-6-file-list-utility">Example 6: File list utility</h2>
 <pre><code>
 &#39; Note: this demo is also a useful utility (version 2)
 

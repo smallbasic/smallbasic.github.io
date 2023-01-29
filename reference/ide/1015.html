@@ -2,16 +2,131 @@
 <blockquote>
 <p>DEFINEKEY k, sub</p>
 </blockquote>
-<p>Binds a keystroke to a user defined function,</p>
-<pre><code>sub moveLeft
-   if (block.x &gt; 0) then
-     moveBlock -1, 0
-   fi
+<p>Binds a keystroke to a user defined function. To unbind the keystroke definition pass 0 as the <code>sub</code> argument.</p>
+<p>Keycodes for PC keyboard</p>
+<table>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Keycode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A to Z</td>
+<td>asc(“a”) to asc(“z”)</td>
+</tr>
+<tr class="even">
+<td>0 to 9</td>
+<td>asc(“0”) to asc(“9”)</td>
+</tr>
+<tr class="odd">
+<td>Backspace</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>Delete</td>
+<td>127</td>
+</tr>
+<tr class="odd">
+<td>Break</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Tab</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>Enter / Return</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>Space</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>Escape</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>Page Up / Prior</td>
+<td>0xFF01</td>
+</tr>
+<tr class="odd">
+<td>Page Down / Next</td>
+<td>0xFF02</td>
+</tr>
+<tr class="even">
+<td>Left</td>
+<td>0xFF04</td>
+</tr>
+<tr class="odd">
+<td>Right</td>
+<td>0xFF05</td>
+</tr>
+<tr class="even">
+<td>Up</td>
+<td>0xFF09</td>
+</tr>
+<tr class="odd">
+<td>Down</td>
+<td>0xFF0A</td>
+</tr>
+<tr class="even">
+<td>Insert</td>
+<td>0xFF10</td>
+</tr>
+<tr class="odd">
+<td>Home</td>
+<td>0xFF11</td>
+</tr>
+<tr class="even">
+<td>End</td>
+<td>0xFF12</td>
+</tr>
+<tr class="odd">
+<td>Menu</td>
+<td>0xFF1F</td>
+</tr>
+<tr class="even">
+<td>F1 to F15</td>
+<td>0xFFF0+1 to 0xFFF0+15</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + A to Z</td>
+<td>0x71000000 + asc(“a”) to 0x71000000 + asc(“z”)</td>
+</tr>
+<tr class="even">
+<td>Alt + A to Z</td>
+<td>0x72000000 + asc(“a”) to 0x72000000 + asc(“z”)</td>
+</tr>
+<tr class="odd">
+<td>Shift + A to Z</td>
+<td>asc(“A”) to asc(“Z”)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>Example 1: Bind keystroke for left and right arrow key</p>
+<pre><code>defineKey 0xFF04, Increase      &#39;Left arrow
+defineKey 0xFF05, Decrease      &#39;Right arrow
+
+sub Increase
+   x = x + 1
 end
-defineKey 0xFF04, moveLeft</code></pre>
-<p>To unbind the keystroke definition pass 0 as the <code>sub</code> argument, for example:</p>
+
+sub Decrease
+   x = x - 1
+end
+
+while(1)
+    t = ticks()
+    at 0,0: print t + &quot;: &quot; + x + &quot;    &quot;
+    delay(50)
+wend</code></pre>
+<p>Example 2: Unbind a keystroke</p>
 <pre><code>DEFINEKEY 0xFF04, 0</code></pre>
-<h2 id="example-1">Example 1:</h2>
+<p>Example 3: Etch-a-Sketch</p>
 <pre><code>&#39; DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
 &#39;remember Etch-A-Sketch?
 &#39;definekey key,sub
@@ -75,7 +190,7 @@ end
 sub quit
   stop
 end</code></pre>
-<h2 id="example-2">Example 2:</h2>
+<p>Example 4: This example is outdated and just a reference for buttons in PALM OS</p>
 <pre><code>&#39; Note:
 &#39; * You may Include &quot;definekey_const.bas&quot; file in another file to make your code more clear.
 &#39;

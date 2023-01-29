@@ -88,7 +88,7 @@
   \e[27m  set reverse off
   \e[nm   n colors - 30..37 foreground, 40..47 background</code></pre>
 <h2 id="using-the-escape-codes-directly">Using the escape codes directly</h2>
-<p>The instead of “” the CHR command is useful for obtaining and printing the escape character (ASCII 27)</p>
+<p>The instead of <code>\e</code> the CHR command is useful for obtaining and printing the escape character (ASCII 27)</p>
 <pre class="freebasic"><code>PRINT CHR(27) + &quot;[1mTHIS IS BOLD&quot; + CHR(27) + &quot;[0m&quot;
 PRINT CHR(27) + &quot;[3mThis is italic&quot;  + CHR(27) + &quot;[0m&quot;
 PRINT CHR(27) + &quot;[4mThis is underline&quot;
@@ -97,7 +97,7 @@ PRINT &quot;\e[32mGreen text&quot;
 PRINT &quot;\e[32m\e[47mGreen text on white background&quot;
 PRINT &quot;First line\nSecond Line&quot;</code></pre>
 <h2 id="using-the-escapecode-unit">Using the EscapeCode Unit</h2>
-<p>The EscapeCode Unit makes it easier to use the escape codes and to deal with the different colors for foreground and background. The uint can be downloaded or copy pasted from the <a href="https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas">SmallBASIC Github website</a>. Please save the unit in the same directory as you basic file.</p>
+<p>The EscapeCode Unit makes it easier to use escape codes and to deal with different colors for foreground and background. The unit can be downloaded or copy pasted from the <a href="https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas">SmallBASIC Github website</a>. Please save the unit in the same directory as you basic file.</p>
 <p>Here an example on how to use the unit.</p>
 <pre class="freebasic"><code>&#39; SmallBASIC 12.25
 &#39; Example for using UNIT &quot;EscapeCodes&quot;
@@ -138,10 +138,10 @@ print
 print esc.QUOTE + &quot;YOU CAN USE QUOTES&quot; + esc.QUOTE
 print esc.BP + &quot;A BEEP SHOULD BE AUDIBLE&quot;</code></pre>
 <h2 id="escape-codes-in-smallbasic-console-version">Escape codes in SmallBASIC console version</h2>
-<p>In the console version of SmallBASIC (sbasic.exe or sbasic) most of the escape codes, for example <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes at wikipedia</a>, can be used in version 12.25 or later. The support of the escape codes depends on the operating system and the terminal you are using.</p>
+<p>In the console version of SmallBASIC (sbasic.exe or sbasic) most of the escape codes, for example <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes at wikipedia</a>, can be used in version 12.25 or later. Support of escape codes depends on the operating system and the terminal you are using.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 20 Dec 2022 23:03:24 +0100
+      This page was last edited on Thu, 26 Jan 2023 12:38:05 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

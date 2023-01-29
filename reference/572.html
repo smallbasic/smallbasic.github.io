@@ -75,6 +75,20 @@
   </div>
 </blockquote>
 <p>Specifies the position of the next data to be read.</p>
+<p>See DATA for more information.</p>
+<pre><code>RESTORE MyDataBlock
+
+FOR I = 1 TO 3
+    READ v
+    PRINT v
+NEXT
+END
+
+DATA 1,2,3
+LABEL MyDataBlock
+DATA 4,5,6
+
+&#39; Output: 4 5 6</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using RESTORE</div>
     <div class="linklist">
@@ -155,7 +169,7 @@ RESTORE by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sat, 24 Dec 2022 15:17:05 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

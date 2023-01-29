@@ -74,8 +74,25 @@
     </p>
   </div>
 </blockquote>
-<p>Draws a polyline.</p>
-<p>If the array does not use points as element arrays, then even elements for x (starting from 0), odd elements for y</p>
+<p>Draws a polyline. The array contains all the vertices of the polyline and can be defined as follow:</p>
+<ul>
+<li>[[x1,y1], [x2,y2], … ,[xn,yn]]</li>
+<li>[x1,y1, x2,y2, … , xn,yn]</li>
+</ul>
+<p>Scaling factor scalef is applied after moving to the x- and y-origin.</p>
+<h2 id="example-1-polygon-array-with-points">Example 1: Polygon array with points</h2>
+<pre><code>P = [[0,50], [50,0], [100,50], [0,50]]
+                                    
+drawpoly P                          &#39; Draw poly
+drawpoly P, 200,200                 &#39; Draw poly with offset
+drawpoly P, 200,200, 1.5 COLOR 4    &#39; Draw poly with offset, scaling and color</code></pre>
+<h2 id="example-2-polygon-array-without-points">Example 2: Polygon array without points</h2>
+<pre><code>P = [0,50, 50,0, 100,50, 0,50]      &#39; Even elements -&gt; x
+                                    &#39; Uneven elements -&gt; y
+                                    
+drawpoly P                          &#39; Draw poly
+drawpoly P, 200,200                 &#39; Draw poly with offset
+drawpoly P, 200,200, 1.5 COLOR 4    &#39; Draw poly with offset, scaling and color</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using DRAWPOLY</div>
     <div class="linklist">
@@ -147,7 +164,7 @@ DRAWPOLY by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sat, 28 Jan 2023 22:27:45 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
