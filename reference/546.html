@@ -77,11 +77,21 @@
 <p>Assigns values in DATA items to specified variables.</p>
 <p>var - Any variable.</p>
 <p>Unless a RESTORE command is executed, SmallBASIC moves to the next DATA item with each READ assignment. If SmallBASIC runs out of DATA items to READ, an run-time error occurs.</p>
-<pre><code>FOR c=1 TO 6
+<p>See DATA and RESTORE for more information.</p>
+<pre><code>FOR c = 1 TO 6
    READ x
    PRINT x
 NEXT
-...
+
+DATA &quot;a,b,c&quot;, 2
+DATA 3, 4
+DATA &quot;fifth&quot;, 6</code></pre>
+<p>Example 2: READ with two variables</p>
+<pre><code>FOR c = 1 TO 3
+   READ x, y
+   PRINT x, y
+NEXT
+
 DATA &quot;a,b,c&quot;, 2
 DATA 3, 4
 DATA &quot;fifth&quot;, 6</code></pre>
@@ -167,7 +177,7 @@ READ by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 22:05:29 +1000
+      This page was last edited on Sun, 25 Dec 2022 18:22:18 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

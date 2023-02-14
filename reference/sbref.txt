@@ -20,8 +20,8 @@ TO TRUE TRY UNTIL USE USG USING WEND WHILE XNOR XOR ABS ABSMAX ABSMIN ACOS ACOSH
 ASEC ASECH ASIN ASINH ATAN ATAN2 ATANH ATN CEIL COS COSH COT COTH CSC CSCH DEG DERIV DETERM DIFFEQN EXP 
 EXPRSEQ FIX FLOOR FRAC INT INTERSECT INVERSE LINEQN LOG LOG10 M3APPLY M3IDENT M3ROTATE M3SCALE M3TRANS 
 MAX MIN POLYAREA POLYCENT POLYEXT POW PTDISTLN PTDISTSEG PTSIGN RAD RND ROOT ROUND SEC SECH SEGCOS SEGLEN 
-SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATMEDIAN STATSPREADP STATSPREADS STATSTD STATSTD SUM 
-SUMSQ TAN TANH ASC BCS BIN CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST 
+SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATMEDIAN STATSPREADP STATSPREADS STATSTD SUM SUMSQ 
+TAN TANH ASC BCS BIN CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST 
 LOWER LTRIM MID OCT REPLACE RIGHT RIGHTOF RIGHTOFLAST RINSTR RTRIM SINPUT SPACE SPC SPLIT SPRINT SQUEEZE 
 STR STRING TRANSLATE TRIM UCASE UPPER VAL CHAIN COMMAND CWD DELAY ENV ENV EXEC EXPORT FRE HOME IMPORT 
 INCLUDE MAXINT NIL OPTION PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON UNIT 
@@ -95,21 +95,63 @@ Clears the screen.
 
 DEFINEKEY k,sub
 
-Binds a keystroke to a user defined function,
+Binds a keystroke to a user defined function. To unbind the keystroke
+definition pass 0 as the sub argument.
 
-    sub moveLeft
-       if (block.x > 0) then
-         moveBlock -1, 0
-       fi
+Keycodes for PC keyboard
+
+  Key                Keycode
+  ------------------ ------------------------------------------------
+  A to Z             asc(“a”) to asc(“z”)
+  0 to 9             asc(“0”) to asc(“9”)
+  Backspace          8
+  Delete             127
+  Break              3
+  Tab                9
+  Enter / Return     13
+  Space              32
+  Escape             27
+  Page Up / Prior    0xFF01
+  Page Down / Next   0xFF02
+  Left               0xFF04
+  Right              0xFF05
+  Up                 0xFF09
+  Down               0xFF0A
+  Insert             0xFF10
+  Home               0xFF11
+  End                0xFF12
+  Menu               0xFF1F
+  F1 to F15          0xFFF0+1 to 0xFFF0+15
+  Ctrl + A to Z      0x71000000 + asc(“a”) to 0x71000000 + asc(“z”)
+  Alt + A to Z       0x72000000 + asc(“a”) to 0x72000000 + asc(“z”)
+  Shift + A to Z     asc(“A”) to asc(“Z”)
+
+Examples
+
+Example 1: Bind keystroke for left and right arrow key
+
+    defineKey 0xFF04, Increase      'Left arrow
+    defineKey 0xFF05, Decrease      'Right arrow
+
+    sub Increase
+       x = x + 1
     end
-    defineKey 0xFF04, moveLeft
 
-To unbind the keystroke definition pass 0 as the sub argument, for
-example:
+    sub Decrease
+       x = x - 1
+    end
+
+    while(1)
+        t = ticks()
+        at 0,0: print t + ": " + x + "    "
+        delay(50)
+    wend
+
+Example 2: Unbind a keystroke
 
     DEFINEKEY 0xFF04, 0
 
-Example 1:
+Example 3: Etch-a-Sketch
 
     ' DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
     'remember Etch-A-Sketch?
@@ -175,7 +217,8 @@ Example 1:
       stop
     end
 
-Example 2:
+Example 4: This example is outdated and just a reference for buttons in
+PALM OS
 
     ' Note:
     ' * You may Include "definekey_const.bas" file in another file to make your code more clear.
@@ -1083,16 +1126,45 @@ DATA commands are non executable statements that supply a stream of data
 constants for use by READ commands. All the items supplied by all the
 DATA commands in a program make up one continuous “string” of
 information that is accessed in order by your program’s READ commands.
+Use RESTORE ro specify which data block should be read next.
 
-    RESTORE MyDataBlock
-    FOR I=1 TO 3
+Example 1:
+
+    FOR I = 1 TO 3
         READ v
         PRINT v
     NEXT
     END
-    ...
-    LABEL MyDataBlock
+
     DATA 1,2,3
+
+Example 2: Using several data commands.
+
+    FOR I = 1 TO 6
+        READ v
+        PRINT v
+    NEXT
+    END
+
+    DATA 1,2
+    DATA 3,4,5
+    DATA 6
+
+Example 3: Specify which data block should be read.
+
+    RESTORE MyDataBlock
+
+    FOR I = 1 TO 3
+        READ v
+        PRINT v
+    NEXT
+    END
+
+    DATA 1,2,3
+    LABEL MyDataBlock
+    DATA 4,5,6
+
+    ' Output: 4 5 6
 
 +========================================================================================+
 |                                    22. (Data) DELETE                                   |
@@ -1106,6 +1178,20 @@ Deletes ‘count’ elements at position ‘idx’ of array ‘a’.
 -   idx - Position in the array.
 -   count - The number of the elements to be deleted.
 
+Example 1: Delete element at position 2
+
+    a = [1,2,3,4,5]
+    print a
+    delete a, 2
+    print a
+
+Example 2: Delete two elements starting at position 2
+
+    b = [1,2,3,4,5]
+    print b
+    delete b, 2, 2
+    print b
+
 +========================================================================================+
 |                                      23. (Data) DIM                                    |
 +========================================================================================+
@@ -1117,19 +1203,35 @@ Reserves storage space for an array.
 The array will have (upper-lower)+1 elements. If lower is not specified,
 and OPTION BASE hasn’t used, elements start at 0.
 
-    REM One dimension array of 7 elements, starting from 0
+Example 1: One dimensional arrays
+
+    REM One dimensional array of 7 elements, starting from 0
+    REM with elements A(0), A(1), ... , A(6)
     DIM A(6)
-    ...
-    REM One dimension array of 6 elements, starting from 1
-    DIM A(1 TO 6)
-    ...
-    REM Three dimension array
-    DIM A(1 TO 6, 1 TO 4, 1 TO 8)
-    ...
+
+    REM One dimensional array of 7 elements, starting from 3
+    REM with elements A(3), A(4), ... , A(9)
+    DIM A(3 TO 9)
+
+    REM One dimensional array of 6 elements, starting from 1
+    REM with elements A(1), A(2), ... , A(6)
+    option base 1
+    DIM A(6)
+
+Example 2: Multi dimensional arrays
+
+    REM Two dimensional array
+    DIM A(3, 4)
+
+    REM Three dimensional array
+    DIM A(2 TO 6, 5 TO 9, 1 TO 8)
+
+Example 3: Empty array
+
     REM Allocating zero-length arrays:
     DIM z()
-    ...
-    IF LEN(Z)=0 THE APPEND Z, "The first element"
+
+Example 4: Creating and accessing arrays
 
 
     Option Base 1 ' Set default lower bound of arrays to 1
@@ -1186,8 +1288,6 @@ and OPTION BASE hasn’t used, elements start at 0.
       a(i).z = i + 100
     Next
     ? a(5).x, a(5).y, a(5).z,, "(map array)"
-
-    Pause
 
 +========================================================================================+
 |                                     24. (Data) EMPTY                                   |
@@ -1406,11 +1506,24 @@ Unless a RESTORE command is executed, SmallBASIC moves to the next DATA
 item with each READ assignment. If SmallBASIC runs out of DATA items to
 READ, an run-time error occurs.
 
-    FOR c=1 TO 6
+See DATA and RESTORE for more information.
+
+    FOR c = 1 TO 6
        READ x
        PRINT x
     NEXT
-    ...
+
+    DATA "a,b,c", 2
+    DATA 3, 4
+    DATA "fifth", 6
+
+Example 2: READ with two variables
+
+    FOR c = 1 TO 3
+       READ x, y
+       PRINT x, y
+    NEXT
+
     DATA "a,b,c", 2
     DATA 3, 4
     DATA "fifth", 6
@@ -1468,6 +1581,22 @@ used the file number from OPEN to do the TLOAD. Very interesting…
 RESTORE label
 
 Specifies the position of the next data to be read.
+
+See DATA for more information.
+
+    RESTORE MyDataBlock
+
+    FOR I = 1 TO 3
+        READ v
+        PRINT v
+    NEXT
+    END
+
+    DATA 1,2,3
+    LABEL MyDataBlock
+    DATA 4,5,6
+
+    ' Output: 4 5 6
 
 +========================================================================================+
 |                                    39. (Data) SEARCH                                   |
@@ -1602,6 +1731,12 @@ DATE
 
 Returns the current date as string “DD/MM/YYYY”.
 
+See DATEDMY for splitting a date to integers.
+
+    DateString = date
+    datedmy DateString, d, m, y
+    print DateString + " -> Day: " + d + " Month: " + m + " Year: " + y
+
 +========================================================================================+
 |                                    44. (Date) DATEDMY                                  |
 +========================================================================================+
@@ -1609,6 +1744,12 @@ Returns the current date as string “DD/MM/YYYY”.
 DATEDMY dmy| julian_date, BYREF d, BYREF m, BYREF y
 
 Returns the day, month and the year as integers.
+
+See also DATE.
+
+    DateString = date
+    datedmy DateString, d, m, y
+    print DateString + " -> Day: " + d + " Month: " + m + " Year: " + y
 
 +========================================================================================+
 |                                    45. (Date) DATEFMT                                  |
@@ -1618,20 +1759,20 @@ DATEFMT (format, dmy| (d,m,y)| julian_date)
 
 Returns formatted date string.
 
-Format:
+  Format   Desription
+  -------- --------------------------
+  D        one or two digits of Day
+  DD       2-digit day
+  DDD      3-char day name
+  DDDD     full day name
+  M        1 or 2 digits of month
+  MM       2-digit month
+  MMM      3-char month name
+  MMMM     full month name
+  YY       2-digit year (2K)
+  YYYY     4-digit year
 
-  ------ --------------------------
-  D      one or two digits of Day
-  DD     2-digit day
-  DDD    3-char day name
-  DDDD   full day name
-  M      1 or 2 digits of month
-  MM     2-digit month
-  MMM    3-char month name
-  MMMM   full month name
-  YY     2-digit year (2K)
-  YYYY   4-digit year
-  ------ --------------------------
+See also DATE and DATEDMY.
 
     PRINT DATEFMT("ddd dd, mm/yy", "23/11/2001")
     REM prints "Fri 23, 11/01"
@@ -1960,14 +2101,73 @@ Makes a copy of specified file the newfile.
 DIRWALK directory [, wildcards] [USE ...]
 
 Walk through the specified directories. The user-defined function must
-returns zero to stop the process.
+returns zero to stop the process. The user defined function takes x as a
+parameter. x contains information about the current file.
+
+Example 1: Print all files
 
     FUNC PRNF(x)
       ? x
       PRNF=TRUE
     END
-    ...
+
     DIRWALK "." USE PRNF(x)
+
+Example 2: Create a list of all files
+
+    FUNC ListFiles(x)
+      FileList << x
+      return true
+    END
+
+    DIRWALK "." USE ListFiles(x)
+
+    for n in FileList
+      print n.path, n.name
+    next
+
+Example 3: Search for a certain file using wildcards
+
+    FUNC ListFiles(x)
+      FileList << x
+      return true
+    END
+
+    DIRWALK ".", "scratch.bas" USE ListFiles(x)
+
+    for n in FileList
+      print n.path
+    next
+
+Example 4: Search a certain file using user defined function
+
+    func SearchFile(x)
+      if(x.name == "scratch.bas")
+        path = x.path
+        return false   ' file found, stop dirwalk
+      endif
+
+      return true      ' file not found yet, continue dirwalk
+    end
+
+    DIRWALK "." USE SearchFile(x)
+
+    print path
+
+Example 5: Using wilcards
+
+    FUNC ListFiles(x)
+      FileList << x
+      return true
+    END
+
+    DIRWALK ".", "*.bas" USE ListFiles(x)
+
+    for n in FileList
+      print n.path, n.name
+    next
+
+Example 6: File list utility
 
 
     ' Note: this demo is also a useful utility (version 2)
@@ -2845,50 +3045,57 @@ more clear.
 
 DRAW \"commands\"
 
-Draw lines as specified by the given directional commands.
+Draw lines as specified by the given CommandString. The CommandString is
+created using commands from the Graphics Definition Language. The start
+point for drawing can be defined using the PSET command. COLOR can be
+used to change the color of the lines.
 
-Graphics Definition Language In the movement instructions below, n
-specifies a distance to move. The number of pixels moved is equal to n
-multiplied by the current scaling factor, which is set by the S command.
+Graphics Definition Language
 
-  ----- --------------------------------------------------------------------------------------------------------------
-  Un    Move up.
-  Dn    Move down.
-  Ln    Move left.
-  Rn    Move right.
-  En    Move diagonally up and right.
-  Fn    Move diagonally down and right.
-  Gn    Move diagonally down and left.
-  Hn    Move diagonally up and left.
-  Mxy   Move to coordinate x,y. If x is preceded by a + or -, the movement is relative to the last point referenced.
-  B     A prefix command. Next movement command moves but doesn’t plot.
-  N     A prefix command. Next movement command moves, but returns immediately to previous point.
-  ----- --------------------------------------------------------------------------------------------------------------
+In the movement instructions below, n specifies a distance to move in
+pixel.
 
-    COLOR 9:PSET 80,80
-    DRAW "R50D70L25U25L15D25NR15"
-    DRAW "L10U50E25F25"
+  -----------------------------------------------------------------------
+  Command                             Description
+  ----------------------------------- -----------------------------------
+  Un                                  Move up.
+
+  Dn                                  Move down.
+
+  Ln                                  Move left.
+
+  Rn                                  Move right.
+
+  En                                  Move diagonally up and right.
+
+  Fn                                  Move diagonally down and right.
+
+  Gn                                  Move diagonally down and left.
+
+  Hn                                  Move diagonally up and left.
+
+  Mxy                                 Move to coordinate x,y. If x is
+                                      preceded by a + or -, the movement
+                                      is relative to the last point
+                                      referenced.
+
+  B                                   A prefix command. Next movement
+                                      command moves but doesn’t plot.
+
+  N                                   A prefix command. Next movement
+                                      command moves, but returns
+                                      immediately to previous point.
+  -----------------------------------------------------------------------
+
+Example 1: Let’s draw a house
+
+    COLOR 9
+    PSET 80,80
+    DRAW "R50D70L25U25L15D25NR15"   ' House part 1
+    DRAW "L10U70E25F25"             ' House part 2
     PSET 118,105
-    DRAW "R8U16L16D16R8U10NR8U6"
-    COLOR 12:PSET 100,117
-    INPUT "Who are you"; A$
-    ? "Hello, ";A$;"!"
-
-How does S command work? I just tried it in the DRAW example in first
-DRAW string and I get error: “DRAW: Command ‘S’ unsupported.” This is
-how S command work in QBASIC (quote):
-
-
-    Sn  Determines the drawing scale by setting the length
-         of a unit of cursor movement. The default n is 4,
-         which is equivalent to 1 pixel.
-
-So this should work just fine:
-
-
-    DRAW "S8L10U50E25F25"
-
-But apparently S command is unsupported.
+    COLOR 3
+    DRAW "R8U16L16D16R8U10NR8U6"    ' Window
 
 +========================================================================================+
 |                                 86. (Graphics) DRAWPOLY                                |
@@ -2897,10 +3104,30 @@ But apparently S command is unsupported.
 DRAWPOLY array [,x-origin,y-origin [, scalef [, color]]] [COLOR color] [FILLED]
   [FILLED]
 
-Draws a polyline.
+Draws a polyline. The array contains all the vertices of the polyline
+and can be defined as follow:
 
-If the array does not use points as element arrays, then even elements
-for x (starting from 0), odd elements for y
+-   [[x1,y1], [x2,y2], … ,[xn,yn]]
+-   [x1,y1, x2,y2, … , xn,yn]
+
+Scaling factor scalef is applied after moving to the x- and y-origin.
+
+Example 1: Polygon array with points
+
+    P = [[0,50], [50,0], [100,50], [0,50]]
+                                        
+    drawpoly P                          ' Draw poly
+    drawpoly P, 200,200                 ' Draw poly with offset
+    drawpoly P, 200,200, 1.5 COLOR 4    ' Draw poly with offset, scaling and color
+
+Example 2: Polygon array without points
+
+    P = [0,50, 50,0, 100,50, 0,50]      ' Even elements -> x
+                                        ' Uneven elements -> y
+                                        
+    drawpoly P                          ' Draw poly
+    drawpoly P, 200,200                 ' Draw poly with offset
+    drawpoly P, 200,200, 1.5 COLOR 4    ' Draw poly with offset, scaling and color
 
 +========================================================================================+
 |                                   87. (Graphics) IMAGE                                 |
@@ -5094,32 +5321,34 @@ Forward declare SUB or FUNC. Obsolete QB compatibility
 
 DEF name[(par1[,...])] = expression
 
-Defines a single line function. eg, DEF MySin(x) = SIN(x): ? MySin(pi/2)
+Defines a single line function.
 
-This might come in handy sometime.
+See FUNC for multiline functions and SUB for multiline subroutines.
 
+Example 1: Function with one parameter
 
-    ' RND - returns a number from 0 to almost 1
-    ' DEF - one line function definition
-    'A function for random numbers (integers) between low and high (inclusive)
-    'here is that function
-    DEF rand(lo,hi)=(RND*(hi-lo+1))\\1+lo '<======================= RND and DEF
-    'test the distribution of these numbers with 1000 trials
-    low=1100:high=1150
-    DIM a(low-1 TO high+1)
-    FOR i=1 to 1000
-      index=rand(low,high)
-      a(index)++
-    NEXT
-    total=0
-    FOR i=low-1 TO high+1
-      ? i;":";a(i);", ";
-      total+=a(i)
-      IF i MOD 10=9 THEN ?
-    NEXT
-    ?:? "total trials=";total
-    'result: pretty even spread between two numbers inclusive.
-    PAUSE
+    def f(x) = 2*x+3
+
+    print f(3)
+
+Example 2: Function with two parameters
+
+    def f(x,y) = 2*x + 3*sin(y)
+
+    print f(1,2)
+
+Example 3: Random number between low and high
+
+    ' A function for random integer numbers between low and high (inclusive)
+    DEF randi(lo, hi) = (RND * (hi - lo + 1))\1 + lo
+
+    ' A function for random float numbers between low and high (inclusive)
+    DEF randf(lo, hi) = (RND * (hi - lo + 1)) + lo
+
+    print randi(0, 100)
+    print randf(0, 100)
+
+Example 4: DEF and LOCAL
 
 
     ' DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
@@ -5142,7 +5371,20 @@ This might come in handy sometime.
 
 DO
 
-FOR f IN files("*.txt") DO PRINT f
+This keyword is used to declare single-line commands. It can be used
+with WHILE and FOR-family commands.
+
+Example 1
+
+    For i = 1 to 10 do print i 
+
+Example 2
+
+    FOR f IN files("*.txt") DO PRINT f
+
+Example 3
+
+    While(i < 10) do i++
 
 +========================================================================================+
 |                                   121. (Language) ELIF                                 |
@@ -8624,7 +8866,7 @@ those numbers are listed in order from smallest to greatest.
 see: Wikipedia - Median
 
     a = [1, 3, 3, 6, 7, 8, 9]
-    print statmedian(6)
+    print statmedian(a)   ' output: 6
 
 +========================================================================================+
 |                                 243. (Math) STATSPREADP                                |
@@ -8668,20 +8910,7 @@ see: Wikipedia - Standard Deviation
     print statstd(a)
 
 +========================================================================================+
-|                                   246. (Math) STATSTD                                  |
-+========================================================================================+
-
-STATSTD (...)
-
-(Corrected sample) standard deviation.
-
-see: Wikipedia - Standard Deviation
-
-    a = [2, 4, 4, 4, 5, 5, 7, 9]
-    print statstd(a)
-
-+========================================================================================+
-|                                     247. (Math) SUM                                    |
+|                                     246. (Math) SUM                                    |
 +========================================================================================+
 
 SUM (...)
@@ -8694,7 +8923,7 @@ Sum of value(s).
     print sum(A,1,2,3)
 
 +========================================================================================+
-|                                    248. (Math) SUMSQ                                   |
+|                                    247. (Math) SUMSQ                                   |
 +========================================================================================+
 
 SUMSQ (...)
@@ -8707,7 +8936,7 @@ Sum of square value(s).
     print sumsq(A,1,2,3)
 
 +========================================================================================+
-|                                     249. (Math) TAN                                    |
+|                                     248. (Math) TAN                                    |
 +========================================================================================+
 
 TAN (x)
@@ -8839,7 +9068,7 @@ is going on or it would be void of meaning.
     pause
 
 +========================================================================================+
-|                                     250. (Math) TANH                                   |
+|                                     249. (Math) TANH                                   |
 +========================================================================================+
 
 TANH (x)
@@ -8853,7 +9082,7 @@ Hyperbolic tangent.
     print b
 
 +========================================================================================+
-|                                    251. (String) ASC                                   |
+|                                    250. (String) ASC                                   |
 +========================================================================================+
 
 ASC (s)
@@ -8897,7 +9126,7 @@ The following example prints an ASCII table.
     PAUSE
 
 +========================================================================================+
-|                                    252. (String) BCS                                   |
+|                                    251. (String) BCS                                   |
 +========================================================================================+
 
 BCS (s)
@@ -8932,7 +9161,7 @@ more information about escape codes.
     ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    253. (String) BIN                                   |
+|                                    252. (String) BIN                                   |
 +========================================================================================+
 
 BIN (x)
@@ -8942,7 +9171,7 @@ Returns the binary value of x as string.
     print bin(123)
 
 +========================================================================================+
-|                                    254. (String) CBS                                   |
+|                                    253. (String) CBS                                   |
 +========================================================================================+
 
 CBS (s)
@@ -8976,7 +9205,7 @@ for more information about escape codes.
     ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    255. (String) CHOP                                  |
+|                                    254. (String) CHOP                                  |
 +========================================================================================+
 
 CHOP (source)
@@ -8990,7 +9219,7 @@ result.
     ' Output: Tes
 
 +========================================================================================+
-|                                    256. (String) CHR                                   |
+|                                    255. (String) CHR                                   |
 +========================================================================================+
 
 CHR (x)
@@ -9055,7 +9284,7 @@ Example 3: Print ASCII table
     Data "rs" , "us"  ' 30..31
 
 +========================================================================================+
-|                                  257. (String) DISCLOSE                                |
+|                                  256. (String) DISCLOSE                                |
 +========================================================================================+
 
 DISCLOSE (str[, pairs [, ignore-pairs]])
@@ -9064,30 +9293,32 @@ Discloses a string.
 
 Default pairs and ignore pairs
 
-  --------------------------------- ------- --------
   First non white-space character   Check   Ignore
-  "                                 ""      ’’
-  ’                                 ’’      ""
-  (                                 ()      ""’’
-  [                                 []      ""’’
-  {                                 {}      ""’’
-  <                                 <>      ""’’
-  "                                 ""      ’’
-  --------------------------------- ------- --------
+  --------------------------------- ------- ---------
+  "                                 " "     ’ ’
+  ’                                 ’ ’     " "
+  (                                 ()      " " ’ ’
+  [                                 []      " " ’ ’
+  {                                 {}      " " ’ ’
+  <                                 <>      " " ’ ’
+  "                                 " "     ’ ’
+
+Example
 
     s = "abc (abc)"
-    ? s; tab(26); disclose(s, "()")
-    ' prints abc
+    ? "1. "; s; tab(20); " -> "; disclose(s, "()")                  ' prints abc
+
     s = "abc (a(bc))"
-    ? s; tab(26); disclose(s, "()"); tab(40); disclose(disclose(s, "()"), "()")
-    ' prints a(bc), bc
+    ? "2. "; s; tab(20); " -> "; disclose(s, "()")                  ' prints a(bc)
+    ? "3. "; s; tab(20); " -> "; disclose(disclose(s, "()"), "()")  ' prints bc
+
     s = "abc (a='(bc)')"
-    ? s; tab(26); disclose(s, "()", "''"); tab(40); &
-        disclose(disclose(s, "()", "''"), "()", "''")
-    ' prints a='(bc)', nothing
+    ? "4. "; s; tab(20); " -> "; disclose(s, "()", "''")             ' prints a='(bc)'
+    ? "5. "; s; tab(20); " -> "; disclose(disclose(s, "()", "''"), "()", "''")
+    ' prints nothing
 
 +========================================================================================+
-|                                  258. (String) ENCLOSE                                 |
+|                                  257. (String) ENCLOSE                                 |
 +========================================================================================+
 
 ENCLOSE (str[, pair])
@@ -9107,7 +9338,7 @@ ENCLOSE defaults to double quotes if the [pair] option is not used.
     pause
 
 +========================================================================================+
-|                                   259. (String) FORMAT                                 |
+|                                   258. (String) FORMAT                                 |
 +========================================================================================+
 
 FORMAT (format, val)
@@ -9197,7 +9428,7 @@ Must add extra space after ‘\’, if not there is an error:
     ? Usg "\\  _ \\ "; "abcde" ' --> "abc_de "
 
 +========================================================================================+
-|                                    260. (String) HEX                                   |
+|                                    259. (String) HEX                                   |
 +========================================================================================+
 
 HEX (x)
@@ -9205,7 +9436,7 @@ HEX (x)
 Returns the hexadecimal value of x as string.
 
 +========================================================================================+
-|                                   261. (String) INSTR                                  |
+|                                   260. (String) INSTR                                  |
 +========================================================================================+
 
 INSTR ([start,] s1, s2)
@@ -9238,7 +9469,7 @@ INSTR returns 0
     wend
 
 +========================================================================================+
-|                                    262. (String) JOIN                                  |
+|                                    261. (String) JOIN                                  |
 +========================================================================================+
 
 JOIN words(), delimiters, string
@@ -9253,7 +9484,7 @@ Returns the words of the specified string into array ‘words’.
     [/etc/temp/filename/ext]
 
 +========================================================================================+
-|                                   263. (String) LCASE                                  |
+|                                   262. (String) LCASE                                  |
 +========================================================================================+
 
 LCASE (s)
@@ -9261,7 +9492,7 @@ LCASE (s)
 Converts the string s to lower case.
 
 +========================================================================================+
-|                                    264. (String) LEFT                                  |
+|                                    263. (String) LEFT                                  |
 +========================================================================================+
 
 LEFT (s [,n])
@@ -9270,7 +9501,7 @@ Returns the n number of leftmost chars of string s. if not specified n =
 1.
 
 +========================================================================================+
-|                                   265. (String) LEFTOF                                 |
+|                                   264. (String) LEFTOF                                 |
 +========================================================================================+
 
 LEFTOF (s1, s2)
@@ -9305,7 +9536,7 @@ the string s2 into string s1.
     Pause
 
 +========================================================================================+
-|                                 266. (String) LEFTOFLAST                               |
+|                                 265. (String) LEFTOFLAST                               |
 +========================================================================================+
 
 LEFTOFLAST (s1, s2)
@@ -9314,7 +9545,7 @@ Returns the left part of s1 at the position of the last occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                   267. (String) LOWER                                  |
+|                                   266. (String) LOWER                                  |
 +========================================================================================+
 
 LOWER (s)
@@ -9322,7 +9553,7 @@ LOWER (s)
 Converts the string s to lower case.
 
 +========================================================================================+
-|                                   268. (String) LTRIM                                  |
+|                                   267. (String) LTRIM                                  |
 +========================================================================================+
 
 LTRIM (s)
@@ -9330,7 +9561,7 @@ LTRIM (s)
 Removes leading white-spaces from string s.
 
 +========================================================================================+
-|                                    269. (String) MID                                   |
+|                                    268. (String) MID                                   |
 +========================================================================================+
 
 MID (s, start [,length])
@@ -9342,7 +9573,7 @@ If the ‘length’ parameter is omitted, MID returns the whole string from
 the position ‘start’.
 
 +========================================================================================+
-|                                    270. (String) OCT                                   |
+|                                    269. (String) OCT                                   |
 +========================================================================================+
 
 OCT (x)
@@ -9350,7 +9581,7 @@ OCT (x)
 Returns the octal value of x as string.
 
 +========================================================================================+
-|                                  271. (String) REPLACE                                 |
+|                                  270. (String) REPLACE                                 |
 +========================================================================================+
 
 REPLACE (source, pos, str [, len])
@@ -9435,7 +9666,7 @@ the length of str.
     Pause
 
 +========================================================================================+
-|                                   272. (String) RIGHT                                  |
+|                                   271. (String) RIGHT                                  |
 +========================================================================================+
 
 RIGHT (s[,n])
@@ -9444,7 +9675,7 @@ Returns the n number of rightmost chars of string s. if not specified n
 = 1.
 
 +========================================================================================+
-|                                  273. (String) RIGHTOF                                 |
+|                                  272. (String) RIGHTOF                                 |
 +========================================================================================+
 
 RIGHTOF (s1, s2)
@@ -9453,7 +9684,7 @@ Returns the right part of s1 at the position of the first occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                274. (String) RIGHTOFLAST                               |
+|                                273. (String) RIGHTOFLAST                               |
 +========================================================================================+
 
 RIGHTOFLAST (s1, s2)
@@ -9462,7 +9693,7 @@ Returns the right part of s1 at the position of the last occurrence of
 the string s2 into string s1.
 
 +========================================================================================+
-|                                   275. (String) RINSTR                                 |
+|                                   274. (String) RINSTR                                 |
 +========================================================================================+
 
 RINSTR ([start,] s1, s2)
@@ -9473,7 +9704,7 @@ s1 (starting from the position ‘start’).
 If there is no match, RINSTR returns 0
 
 +========================================================================================+
-|                                   276. (String) RTRIM                                  |
+|                                   275. (String) RTRIM                                  |
 +========================================================================================+
 
 RTRIM (s)
@@ -9481,7 +9712,7 @@ RTRIM (s)
 Removes trailing white-spaces from string s.
 
 +========================================================================================+
-|                                   277. (String) SINPUT                                 |
+|                                   276. (String) SINPUT                                 |
 +========================================================================================+
 
 SINPUT src; var [, delim] [,var [, delim]] ...
@@ -9500,7 +9731,7 @@ delimiters.
     print "Age: " + age
 
 +========================================================================================+
-|                                   278. (String) SPACE                                  |
+|                                   277. (String) SPACE                                  |
 +========================================================================================+
 
 SPACE (n)
@@ -9528,7 +9759,7 @@ Returns a string of n spaces.
     Wend
 
 +========================================================================================+
-|                                    279. (String) SPC                                   |
+|                                    278. (String) SPC                                   |
 +========================================================================================+
 
 SPC (n)
@@ -9551,7 +9782,7 @@ Left Center or Right aligning text.
 I think SPACE and SPC are both the same, see also SPACE.
 
 +========================================================================================+
-|                                   280. (String) SPLIT                                  |
+|                                   279. (String) SPLIT                                  |
 +========================================================================================+
 
 SPLIT string, delimiters, words() [, pairs] [USE expr]
@@ -9602,7 +9833,7 @@ Example for using “USE expr”
     ' 2 [filename1.ext]
 
 +========================================================================================+
-|                                   281. (String) SPRINT                                 |
+|                                   280. (String) SPRINT                                 |
 +========================================================================================+
 
 SPRINT var; [USING...;] ...
@@ -9614,7 +9845,7 @@ Create formated string and storing it to var. See also: PRINT command.
 Note: you can use ‘USG’ instead of ‘USING’.
 
 +========================================================================================+
-|                                  282. (String) SQUEEZE                                 |
+|                                  281. (String) SQUEEZE                                 |
 +========================================================================================+
 
 SQUEEZE (s)
@@ -9625,7 +9856,7 @@ Removes all leading, trailing and duplicated white-space.
     ' Result: [Hi there]
 
 +========================================================================================+
-|                                    283. (String) STR                                   |
+|                                    282. (String) STR                                   |
 +========================================================================================+
 
 STR (n)
@@ -9633,7 +9864,7 @@ STR (n)
 Converts the number n into a string.
 
 +========================================================================================+
-|                                   284. (String) STRING                                 |
+|                                   283. (String) STRING                                 |
 +========================================================================================+
 
 STRING ( count [,start | s] )
@@ -9695,7 +9926,7 @@ How to understand this syntax “STRING ( count [,start | s] )”:
     ? x ' --> x is "Hello Hello "
 
 +========================================================================================+
-|                                 285. (String) TRANSLATE                                |
+|                                 284. (String) TRANSLATE                                |
 +========================================================================================+
 
 TRANSLATE (source, what [, with])
@@ -9707,7 +9938,7 @@ string ‘with’ and returns the new string.
     ' displays: HellO wOrld
 
 +========================================================================================+
-|                                    286. (String) TRIM                                  |
+|                                    285. (String) TRIM                                  |
 +========================================================================================+
 
 TRIM(s)
@@ -9715,7 +9946,7 @@ TRIM(s)
 Removes all leading and trailing white-space.
 
 +========================================================================================+
-|                                   287. (String) UCASE                                  |
+|                                   286. (String) UCASE                                  |
 +========================================================================================+
 
 UCASE (s)
@@ -9732,7 +9963,7 @@ Converts the string s to upper case.
 output: UPPER and UCASE do the same thing.
 
 +========================================================================================+
-|                                   288. (String) UPPER                                  |
+|                                   287. (String) UPPER                                  |
 +========================================================================================+
 
 UPPER (s)
@@ -9742,7 +9973,7 @@ Converts the string s to upper case.
 Yes, you should see the comment in UCASE.
 
 +========================================================================================+
-|                                    289. (String) VAL                                   |
+|                                    288. (String) VAL                                   |
 +========================================================================================+
 
 VAL (s)
@@ -9799,7 +10030,7 @@ The VAL command just converts a string to a number. For EVAL type
 functionality, the CHAIN command is somewhat similar.
 
 +========================================================================================+
-|                                   290. (System) CHAIN                                  |
+|                                   289. (System) CHAIN                                  |
 +========================================================================================+
 
 CHAIN source
@@ -9916,7 +10147,7 @@ Example 6: Creating an eval function
     ? eval("Rad((45 * 3) - 20) * 2")
 
 +========================================================================================+
-|                                  291. (System) COMMAND                                 |
+|                                  290. (System) COMMAND                                 |
 +========================================================================================+
 
 COMMAND
@@ -9957,7 +10188,7 @@ When “test.bas” is:
 Will print “abc xyz fileName”
 
 +========================================================================================+
-|                                    292. (System) CWD                                   |
+|                                    291. (System) CWD                                   |
 +========================================================================================+
 
 CWD
@@ -9967,16 +10198,20 @@ Gets current working directory.
     print cwd
 
 +========================================================================================+
-|                                   293. (System) DELAY                                  |
+|                                   292. (System) DELAY                                  |
 +========================================================================================+
 
 DELAY ms
 
-Delay for a specified amount of milliseconds. Note ‘delay’ depends on
-the system clock.
+Delay for a specified amount of milliseconds. Note DELAY depends on the
+system clock.
+
+    print "Wait 1000ms..."
+    delay(1000)
+    print "done"
 
 +========================================================================================+
-|                                    294. (System) ENV                                   |
+|                                    293. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -10055,7 +10290,7 @@ i.e. “SB1” may be different then “sb1” on some systems (Linux for
 example).
 
 +========================================================================================+
-|                                    295. (System) ENV                                   |
+|                                    294. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -10107,7 +10342,7 @@ whole set of them into an array using: EVarray=ENV("")
     ' so it didn't just LOOK erased from a bad call
 
 +========================================================================================+
-|                                    296. (System) EXEC                                  |
+|                                    295. (System) EXEC                                  |
 +========================================================================================+
 
 EXEC file
@@ -10175,7 +10410,7 @@ Note: In the android version you can use v=RUN to look at interesting
 things in the /proc file system.
 
 +========================================================================================+
-|                                   297. (System) EXPORT                                 |
+|                                   296. (System) EXPORT                                 |
 +========================================================================================+
 
 EXPORT thing
@@ -10184,7 +10419,7 @@ Export a SUB, FUNC or variable from a UNIT to be used by the unit
 consumer.
 
 +========================================================================================+
-|                                    298. (System) FRE                                   |
+|                                    297. (System) FRE                                   |
 +========================================================================================+
 
 FRE (x)
@@ -10231,7 +10466,7 @@ Optional-set #2:
 The optional values will return 0 if not supported.
 
 +========================================================================================+
-|                                    299. (System) HOME                                  |
+|                                    298. (System) HOME                                  |
 +========================================================================================+
 
 HOME
@@ -10239,7 +10474,7 @@ HOME
 User HOME folder
 
 +========================================================================================+
-|                                   300. (System) IMPORT                                 |
+|                                   299. (System) IMPORT                                 |
 +========================================================================================+
 
 IMPORT
@@ -10247,7 +10482,7 @@ IMPORT
 Import an exported UNIT variable, SUB or FUNC.
 
 +========================================================================================+
-|                                  301. (System) INCLUDE                                 |
+|                                  300. (System) INCLUDE                                 |
 +========================================================================================+
 
 INCLUDE source-file.bas
@@ -10295,7 +10530,7 @@ Here is part_2.bas, the second (and startup) part of our long program:
     Pause
 
 +========================================================================================+
-|                                   302. (System) MAXINT                                 |
+|                                   301. (System) MAXINT                                 |
 +========================================================================================+
 
 MAXINT
@@ -10304,7 +10539,7 @@ Holds the maximum value for an integer. The value depends on whether you
 are using a 32 or 64 bit build of SmallBASIC.
 
 +========================================================================================+
-|                                    303. (System) NIL                                   |
+|                                    302. (System) NIL                                   |
 +========================================================================================+
 
 NIL
@@ -10312,7 +10547,7 @@ NIL
 NIL is used to mean ‘not set’ as distinct from having an INT set to 0
 
 +========================================================================================+
-|                                   304. (System) OPTION                                 |
+|                                   303. (System) OPTION                                 |
 +========================================================================================+
 
 OPTION keyword
@@ -10320,7 +10555,7 @@ OPTION keyword
 Used to pass parameters to the run-time environment.
 
 +========================================================================================+
-|                                   305. (System) PAUSE                                  |
+|                                   304. (System) PAUSE                                  |
 +========================================================================================+
 
 PAUSE [secs]
@@ -10353,7 +10588,7 @@ halt program execution (for the user to see the output screen).
     wend
 
 +========================================================================================+
-|                                     306. (System) PI                                   |
+|                                     305. (System) PI                                   |
 +========================================================================================+
 
 PI
@@ -10363,7 +10598,7 @@ Holds PI
 See: https://en.wikipedia.org/wiki/Pi
 
 +========================================================================================+
-|                                  307. (System) PROGLINE                                |
+|                                  306. (System) PROGLINE                                |
 +========================================================================================+
 
 PROGLINE
@@ -10371,7 +10606,7 @@ PROGLINE
 Returns the current program line number.
 
 +========================================================================================+
-|                                 308. (System) RANDOMIZE                                |
+|                                 307. (System) RANDOMIZE                                |
 +========================================================================================+
 
 RANDOMIZE [int]
@@ -10379,7 +10614,7 @@ RANDOMIZE [int]
 Seeds the random number generator.
 
 +========================================================================================+
-|                                    309. (System) RUN                                   |
+|                                    308. (System) RUN                                   |
 +========================================================================================+
 
 RUN cmdstr
@@ -10534,7 +10769,7 @@ will verify that the command was executed well.
     book to understand the basics).
 
 +========================================================================================+
-|                                   310. (System) SBVER                                  |
+|                                   309. (System) SBVER                                  |
 +========================================================================================+
 
 SBVER
@@ -10542,7 +10777,7 @@ SBVER
 Version and build information
 
 +========================================================================================+
-|                                    311. (System) SELF                                  |
+|                                    310. (System) SELF                                  |
 +========================================================================================+
 
 SELF
@@ -10598,7 +10833,7 @@ Example:
     A.Decrement(4) : print A.GetX()
 
 +========================================================================================+
-|                                  312. (System) STKDUMP                                 |
+|                                  311. (System) STKDUMP                                 |
 +========================================================================================+
 
 STKDUMP
@@ -10606,7 +10841,7 @@ STKDUMP
 Display internal execution stack.
 
 +========================================================================================+
-|                                   313. (System) TROFF                                  |
+|                                   312. (System) TROFF                                  |
 +========================================================================================+
 
 TROFF
@@ -10614,7 +10849,7 @@ TROFF
 See TRON.
 
 +========================================================================================+
-|                                    314. (System) TRON                                  |
+|                                    313. (System) TRON                                  |
 +========================================================================================+
 
 TRON
@@ -10623,7 +10858,7 @@ When trace mechanism is ON, displays each line number as the program is
 executed.
 
 +========================================================================================+
-|                                    315. (System) UNIT                                  |
+|                                    314. (System) UNIT                                  |
 +========================================================================================+
 
 UNIT name

@@ -75,16 +75,39 @@
   </div>
 </blockquote>
 <p>Stores one or more constants, of any type, for subsequent access via READ command.</p>
-<p>DATA commands are non executable statements that supply a stream of data constants for use by READ commands. All the items supplied by all the DATA commands in a program make up one continuous “string” of information that is accessed in order by your program’s READ commands.</p>
-<pre><code>RESTORE MyDataBlock
-FOR I=1 TO 3
+<p>DATA commands are non executable statements that supply a stream of data constants for use by READ commands. All the items supplied by all the DATA commands in a program make up one continuous “string” of information that is accessed in order by your program’s READ commands. Use RESTORE ro specify which data block should be read next.</p>
+<p>Example 1:</p>
+<pre><code>FOR I = 1 TO 3
     READ v
     PRINT v
 NEXT
 END
-...
-LABEL MyDataBlock
+
 DATA 1,2,3</code></pre>
+<p>Example 2: Using several data commands.</p>
+<pre><code>FOR I = 1 TO 6
+    READ v
+    PRINT v
+NEXT
+END
+
+DATA 1,2
+DATA 3,4,5
+DATA 6</code></pre>
+<p>Example 3: Specify which data block should be read.</p>
+<pre><code>RESTORE MyDataBlock
+
+FOR I = 1 TO 3
+    READ v
+    PRINT v
+NEXT
+END
+
+DATA 1,2,3
+LABEL MyDataBlock
+DATA 4,5,6
+
+&#39; Output: 4 5 6</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using DATA</div>
     <div class="linklist">
@@ -167,7 +190,7 @@ DATA by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 22:05:29 +1000
+      This page was last edited on Sat, 24 Dec 2022 15:11:22 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
