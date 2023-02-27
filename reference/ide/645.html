@@ -2,4 +2,20 @@
 <blockquote>
 <p>ELSEIF</p>
 </blockquote>
-<p>foo = 2: if foo==1: ? “one”: ELSEIF foo==2: ? “two”: fi</p>
+<p>Alternative condition in an IF statement.</p>
+<h3 id="example-1">Example 1</h3>
+<pre><code>foo = 2
+if foo == 1
+  print &quot;one&quot;
+ELSEIF foo == 2
+  print &quot;two&quot;
+endif</code></pre>
+<h3 id="example-2-using-if-else-if-instead-of-elseif">Example 2: using IF … ELSE … IF instead of ELSEIF</h3>
+<pre><code>foo = 2
+if foo == 1
+  print &quot;one&quot;
+else
+  if foo == 2
+    print &quot;two&quot;
+  endif
+endif</code></pre>

@@ -81,6 +81,35 @@
 <li>SUB - Return from the current routine</li>
 <li>FUNC - Return from the current function</li>
 </ul>
+<h3 id="example-1-for">Example 1: for</h3>
+<pre><code>for i = 1 to 100
+    print i
+    exit for
+next
+
+&#39; Output: 1</code></pre>
+<h3 id="example-2-while">Example 2: while</h3>
+<pre><code>while(i)
+    i++
+    print i
+    exit loop
+wend
+
+&#39; Output: 1</code></pre>
+<h3 id="example-3-sub">Example 3: sub</h3>
+<pre><code>sub MySub(a)
+    exit sub
+    print a
+end
+
+MySub(10)  &#39; No output, because print in MySub will not be reached</code></pre>
+<h3 id="example-4-func">Example 4: func</h3>
+<pre><code>func MyFunc(a)
+    exit func
+    return a + 10
+end
+
+print MyFunc(10)  &#39; Output: 0, because return command in MyFunc will not be reached</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using EXIT</div>
     <div class="linklist">
@@ -204,7 +233,7 @@ EXIT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sun, 26 Feb 2023 20:10:23 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

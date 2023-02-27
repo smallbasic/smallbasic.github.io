@@ -75,27 +75,10 @@
   </div>
 </blockquote>
 <p>Returns true if file exists.</p>
-<pre><code>
-&#39; Return nonexisting file or directory name (12 A..Z letters + extension)
-&#39; in the current directory; e.g. filename = tempfile(&quot;-me.tmp&quot;) 
-Func tempfile(ext)
-  Local i, f = Space(12) + ext
-  Repeat
-    For i = 1 To 12 
-      f = Replace(f, i, Chr(floor((Rnd * 25.5) + 65)))
-    Next
-  Until Not Exist(f)
-  tempfile = f
-End Func
-&#39; demo:
-filename = tempfile(&quot;.bak&quot;)
-a &lt;&lt; &quot;This is a backup file: &quot; + filename &#39; append one line
-Tsave filename, a
-Tload filename, b
-? b
-Pause
-Kill filename &#39; delete demo file
-</code></pre>
+<h3 id="example">Example</h3>
+<pre><code>if(exist(&quot;test.bas&quot;)) then
+    print &quot;test.bas exists&quot;
+endif</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using EXIST</div>
     <div class="linklist">
@@ -182,7 +165,7 @@ EXIST by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sun, 26 Feb 2023 20:01:37 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

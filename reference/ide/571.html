@@ -3,9 +3,12 @@
 <p>ERASE var[, var[, … var]]</p>
 </blockquote>
 <p>Deallocates the memory used by the specified arrays or variables. After that these variables turned to simple integers with zero value.</p>
+<h3 id="example">Example</h3>
 <pre><code>DIM x(100)
-...
-PRINT FRE(0)
+
+x(1) = 1
+x(2) = 2
+
 ERASE x
-PRINT FRE(0)
-PRINT x(1):REM ERROR</code></pre>
+
+PRINT x(1)    &#39; This will create an error</code></pre>

@@ -3,4 +3,55 @@
 <p>a EQV b</p>
 </blockquote>
 <p>Bitwise equivalence.</p>
-<p>EQV and IMP manipulating only the lower 4 bits</p>
+<p>Truth table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">a</th>
+<th style="text-align: center;">b</th>
+<th style="text-align: center;">a EQV b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-1-print-truth-table">Example 1: Print truth table</h3>
+<pre><code>print &quot;0 eqv 0 = &quot; + bin(0 eqv 0)
+print &quot;0 eqv 1 = &quot; + bin(0 eqv 1)
+print &quot;1 eqv 0 = &quot; + bin(1 eqv 0)
+print &quot;1 eqv 1 = &quot; + bin(1 eqv 1)</code></pre>
+<h3 id="example-2-bitwise-equivalence-of-two-numbers">Example 2: Bitwise equivalence of two numbers</h3>
+<pre><code>a = 0b110010011111000010101011
+b = 0b101010010101011100010101
+
+print &quot;    &quot; + bin(a)
+print &quot;EQV &quot; + bin(b)
+print &quot;----------------------------&quot;
+print &quot;    &quot; + bin(a eqv b)
+
+&#39; Output:
+&#39;
+&#39;     110010011111000010101011
+&#39; EQV 101010010101011100010101
+&#39; ----------------------------
+&#39;     100111110101100001000001</code></pre>

@@ -1295,13 +1295,20 @@ Example 4: Creating and accessing arrays
 
 EMPTY (x)
 
-Returns true if x is: a zero length array, an empty string, an integer
-or real with the value 0.
+Returns true if x is * a zero length array * an empty string * a number
+with the value 0.
 
--   If x is a string, returns true if the len(x) is 0.
--   If x is an integer or a real returns true if the x = 0.
--   If x is an array, returns true if x is a zero-length array (array
-    without elements).
+Example
+
+    s = ""
+    a = []
+    dim b
+    i = 0
+
+    if(empty(s)) then print "s is empty"
+    if(empty(a)) then print "a is empty"
+    if(empty(b)) then print "b is empty"
+    if(empty(i)) then print "i is empty"
 
 +========================================================================================+
 |                                     25. (Data) ERASE                                   |
@@ -1312,12 +1319,16 @@ ERASE var[, var[, ... var]]
 Deallocates the memory used by the specified arrays or variables. After
 that these variables turned to simple integers with zero value.
 
+Example
+
     DIM x(100)
-    ...
-    PRINT FRE(0)
+
+    x(1) = 1
+    x(2) = 2
+
     ERASE x
-    PRINT FRE(0)
-    PRINT x(1):REM ERROR
+
+    PRINT x(1)    ' This will create an error
 
 +========================================================================================+
 |                                    26. (Data) INSERT                                   |
@@ -2298,6 +2309,53 @@ EOF (fileN)
 Returns true if the file pointer is at end of the file. For COMx and
 SOCL VFS returns true if the connection is broken.
 
+Example 1: Reading data from a file
+
+    ' create a text file
+    open "MyDemoFile.txt" for output as #1
+
+    for i = 1 to 10
+        print #1, i 
+    next
+
+    close #1
+
+    ' open text file and print content line by line
+    open "MyDemoFile.txt" for input as #1
+
+    while(!eof(1))   ' eof works only without #
+        input #1, c
+        print c
+    wend
+
+    close #1
+
+Example 2: Reading from a TCP/IP socket
+
+    rem Print a date string like '29 SEP 2018 09:31:49 ACST'
+    func get_time
+      local today = julian(date)
+      local start = timer
+      local t_hour, t_min, t_sec, t_str
+      timehms start, t_hour, t_min, t_sec
+      rem TODO, format should support multiple arguments
+      t_str = format(" ##:", t_hour) + format("##:", t_min) + format("##", t_sec)
+      return datefmt("dd mmm yyyy", today) + t_str
+    end
+
+    while 1
+      open "SOCL:8080" as #1
+      while (not eof(1))
+        lineinput #1, s
+        if (s == "time")
+          print #1, get_time
+        else
+          print #1, "unknown command"
+        endif
+      wend
+      close #1
+    wend
+
 +========================================================================================+
 |                                     64. (File) EXIST                                   |
 +========================================================================================+
@@ -2306,26 +2364,11 @@ EXIST (file)
 
 Returns true if file exists.
 
+Example
 
-    ' Return nonexisting file or directory name (12 A..Z letters + extension)
-    ' in the current directory; e.g. filename = tempfile("-me.tmp") 
-    Func tempfile(ext)
-      Local i, f = Space(12) + ext
-      Repeat
-        For i = 1 To 12 
-          f = Replace(f, i, Chr(floor((Rnd * 25.5) + 65)))
-        Next
-      Until Not Exist(f)
-      tempfile = f
-    End Func
-    ' demo:
-    filename = tempfile(".bak")
-    a << "This is a backup file: " + filename ' append one line
-    Tsave filename, a
-    Tload filename, b
-    ? b
-    Pause
-    Kill filename ' delete demo file
+    if(exist("test.bas")) then
+        print "test.bas exists"
+    endif
 
 +========================================================================================+
 |                                     65. (File) FILES                                   |
@@ -5392,7 +5435,27 @@ Example 3
 
 ELIF
 
-foo = 2: if foo==1: ? “one”: ELIF foo==2: ? “two”: fi
+Short for ELSEIF.
+
+Example 1
+
+    foo = 2
+    if foo == 1
+      print "one"
+    ELIF foo == 2
+      print "two"
+    fi
+
+Example 2: using IF … ELSE … IF instead of ELIF
+
+    foo = 2
+    if foo == 1
+      print "one"
+    else
+      if foo == 2
+        print "two"
+      fi
+    fi
 
 +========================================================================================+
 |                                   122. (Language) ELSE                                 |
@@ -5400,7 +5463,16 @@ foo = 2: if foo==1: ? “one”: ELIF foo==2: ? “two”: fi
 
 ELSE
 
-foo = 2: if foo==1: ? “one”: ELSE: ? “not one”: fi
+Part of an if … then … else statement. For more information see IF.
+
+Example
+
+    foo = 2
+    if foo == 1
+      print "one"
+    else
+      print "not one"
+    fi
 
 +========================================================================================+
 |                                  123. (Language) ELSEIF                                |
@@ -5408,7 +5480,27 @@ foo = 2: if foo==1: ? “one”: ELSE: ? “not one”: fi
 
 ELSEIF
 
-foo = 2: if foo==1: ? “one”: ELSEIF foo==2: ? “two”: fi
+Alternative condition in an IF statement.
+
+Example 1
+
+    foo = 2
+    if foo == 1
+      print "one"
+    ELSEIF foo == 2
+      print "two"
+    endif
+
+Example 2: using IF … ELSE … IF instead of ELSEIF
+
+    foo = 2
+    if foo == 1
+      print "one"
+    else
+      if foo == 2
+        print "two"
+      endif
+    endif
 
 +========================================================================================+
 |                                   124. (Language) END                                  |
@@ -5416,7 +5508,37 @@ foo = 2: if foo==1: ? “one”: ELSEIF foo==2: ? “two”: fi
 
 END
 
-Declares the END of a SUB or FUNC.
+Declares the END of a SUB, a FUNC or the program.
+
+Example 1: Sub
+
+    sub MySub(a)
+        print a + 10
+    end
+
+    MySub(10)
+
+Example 2: Func
+
+    func MyFunc(a)
+        return a + 10
+    end
+
+    Result = MyFunc(10)
+    print Result
+
+Example 3: End of the program
+
+    while(1)
+        ii = ii + 1
+        print ii
+        
+        if(ii == 5) then
+            end             ' end program
+        endif
+        
+        delay(500)
+    wend
 
 +========================================================================================+
 |                                 125. (Language) END TRY                                |
@@ -5424,7 +5546,8 @@ Declares the END of a SUB or FUNC.
 
 END TRY
 
-The END TRY statement marks the end of a TRY/CATCH block.
+The END TRY statement marks the end of a TRY/CATCH block. For more
+information and examples please see TRY.
 
 +========================================================================================+
 |                                  126. (Language) ENDIF                                 |
@@ -5432,7 +5555,14 @@ The END TRY statement marks the end of a TRY/CATCH block.
 
 ENDIF
 
-foo = 1: if foo==1: ? “one”: ENDIF
+ENDIF ends an if statement. For more information see IF.
+
+Example
+
+    foo = 1
+    if foo == 1 then
+      print "one"
+    endif
 
 +========================================================================================+
 |                                   127. (Language) EQV                                  |
@@ -5442,7 +5572,38 @@ a EQV b
 
 Bitwise equivalence.
 
-EQV and IMP manipulating only the lower 4 bits
+Truth table:
+
+   a   b   a EQV b
+  --- --- ---------
+   0   0      1
+   0   1      0
+   1   0      0
+   1   1      1
+
+Example 1: Print truth table
+
+    print "0 eqv 0 = " + bin(0 eqv 0)
+    print "0 eqv 1 = " + bin(0 eqv 1)
+    print "1 eqv 0 = " + bin(1 eqv 0)
+    print "1 eqv 1 = " + bin(1 eqv 1)
+
+Example 2: Bitwise equivalence of two numbers
+
+    a = 0b110010011111000010101011
+    b = 0b101010010101011100010101
+
+    print "    " + bin(a)
+    print "EQV " + bin(b)
+    print "----------------------------"
+    print "    " + bin(a eqv b)
+
+    ' Output:
+    '
+    '     110010011111000010101011
+    ' EQV 101010010101011100010101
+    ' ----------------------------
+    '     100111110101100001000001
 
 +========================================================================================+
 |                                   128. (Language) EXIT                                 |
@@ -5458,6 +5619,43 @@ default (if no parameter is specified) exits from last command block
 -   LOOP - Exit from the last WHILE-WEND or REPEAT-UNTIL loop
 -   SUB - Return from the current routine
 -   FUNC - Return from the current function
+
+Example 1: for
+
+    for i = 1 to 100
+        print i
+        exit for
+    next
+
+    ' Output: 1
+
+Example 2: while
+
+    while(i)
+        i++
+        print i
+        exit loop
+    wend
+
+    ' Output: 1
+
+Example 3: sub
+
+    sub MySub(a)
+        exit sub
+        print a
+    end
+
+    MySub(10)  ' No output, because print in MySub will not be reached
+
+Example 4: func
+
+    func MyFunc(a)
+        exit func
+        return a + 10
+    end
+
+    print MyFunc(10)  ' Output: 0, because return command in MyFunc will not be reached
 
 +========================================================================================+
 |                                  129. (Language) FALSE                                 |
@@ -9323,19 +9521,24 @@ Example
 
 ENCLOSE (str[, pair])
 
-Encloses a string.
+Encloses a string using the two characters in string pair. ENCLOSE
+defaults to double quotes if pair is not used.
 
-    ? enclose("abc", "()")
-    ' Result: (abc)
+Example 1: Enclose brackets
 
-ENCLOSE defaults to double quotes if the [pair] option is not used.
+    print enclose("abc", "()")  ' output: (abc)
 
+Example 2: Enclose quotes using default setting
 
     test=10
     myStr="myStr"
-    ? enclose(test)
-    ? enclose(myStr)
-    pause
+    print enclose(test)         ' output: "10"
+    print enclose(myStr)        ' output: "myStr"
+
+Example 2: Enclose letters
+
+    test = 10
+    print enclose(test, "aB")   ' output: a10B
 
 +========================================================================================+
 |                                   258. (String) FORMAT                                 |
@@ -10216,78 +10419,78 @@ system clock.
 
 ENV expr
 
-Adds a variable to or deletes a variable from the current environment
-variable-table.
+Adds a variable to the current environment variable-table.
 
-ENV can be used as SUB for setting or erasing Environment Variables (EV)
-and ENV can be used as a FUNCtion for returning a particular EV or the
-whole set of them into an array using: EVarray=ENV("")
+ENV can be used as SUB for setting and deleting Environment Variables
+and ENV can be used as a FUNCtion for returning a particular Environmet
+Variable or the whole set of them into an array.
 
+Example 1: Setting and getting Evironment Variables
 
-    ' ENV test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-10
-    'OK this works
-    'OK this is supposed to return an array of my Environment variables
-    EVS=ENV("")
-    for e in EVS
-      ? e
+    SB1 = 5
+    SB2 = "My evironment variable"
+
+    'Set Environmet Variables
+    ENV("SB1=" + SB1)
+    ENV("SB2=" + SB2)
+    ENV("SB3=6")
+    ENV("SB4=\"test\"")
+
+    ' Get Environment Variables
+    print ENV("SB1")
+    print ENV("SB2")
+    print ENV("SB3")
+    print ENV("SB4")
+
+Example 2: Querry all Environment Variables
+
+    AllEnv = ENV("")
+
+    for a in AllEnv
+        print a
     next
-    ?:? "press any..."
-    pause
-    'wow it worked! I have a load of them...
-    'OK now try and set one of my own
-    cls
-    myEV1="This is a test of ENV."
-    ENV "myEV1="+myEV1
-    'did it get added to list?
-    EVS=ENV("")
-    for e in EVS
-      ? e
-    next
-    ?:? "press any..."
-    pause
-    'YES!
-    'OK let's see it
-    myEV1return=ENV("myEV1")
-    cls
-    ? myEV1return
-    ?:? "press any..."
-    pause
-    'now can we erase it?
-    ENV "myEV1="
-    cls
-    ? "myEV1 should be erased, it is now '";ENV("myEV1");"'"
-    ?:? "Test of ENV is complete."
-    pause
-    'yes, it was erased because when I ran same code a second time, it wasn't there THEN!
-    ' so it didn't just LOOK erased from a bad call
 
-    ENV "myEV1="
+Example 3: (Linux) Querry DESKTOP_SESSION
 
-does not erase the variable on Linux… On Linux I could only erase the
-variable from a terminal:
+    print ENV("DESKTOP_SESSION")    'i.e will print "plasma" if using KDE
 
-    unset $myEV1
+Example 4: Delete a Environment Variable (doesn’t work in Linux)
 
-In general: 1. Never use names which are already used by the system or
-another process, such as “PATH”, “HOME”, “PWD”, etc. You can check which
-variable names are already used, from SmallBASIC:
+    ENV("SB1=")   ' Deletes SB1
 
-    ? Environ("")
+Example 5: Using ENV and CHAIN to create a eval-function
 
+    ' Dedicated to MGA.
+    ' s is any legal SmallBASIC Math Expression as String, e.g. "1 + 2 / 4"
+    Func eval(s)
+      Chain "Env " + Enclose("SBEVAL=") + " + Str(" + s + ")"
+      eval = Val(Env("SBEVAL"))
+    End Func
+
+    ' now run few demos:
+    ? eval("1+2") 
+    ? eval("Rad(45) * 2") 
+    ? eval("PI / 2 + PI")
+    ? eval("0b1111 * Pow(2, 4)")
+    ? eval("Sin(2) * Tan(4) / Cos(6)")
+    ? eval("1 + 2 / 4")
+    ? eval("6 * (Pow(2, 4) * 8)")
+    ? eval("Rad((45 * 3) - 20) * 2")
+
+General suggestions using Environment Variables
+
+1.  Never use names which are already used by the system or another
+    process, such as “PATH”, “HOME”, “PWD”, etc. You should check which
+    variable names are already in use.
 2.  Use short and unique names, such as: “SB1”, SB2" or “SBv1”, “SBv2”,
     etc. It will keep the environment-variables-table readable, and will
     save space in the table.
 3.  Don’t create more variables then you need. Reuse any variable which
-    is not used. i.e. if “SB1” is unused anymore, then reuse it:
-
-    Environ "SB1=5"
-
-. Again, it keeps the environment-variables-table readable, and saves
-space in the table. 4. On some systems the environment-variables-table
-is unique for each session (Linux for example) and this may be a bit
-confusing. 5. Environment variables may or may not be case sensitive,
-i.e. “SB1” may be different then “sb1” on some systems (Linux for
-example).
+    is not used. i.e. if “SB1” is unused anymore, then reuse it.
+4.  On some systems the environment-variables-table is unique for each
+    session (Linux for example) and this may be a bit confusing.
+5.  Environment variables may or may not be case sensitive, i.e. “SB1”
+    may be different then “sb1” on some systems (Linux for example).
 
 +========================================================================================+
 |                                    294. (System) ENV                                   |
@@ -10295,51 +10498,79 @@ example).
 
 ENV expr
 
-Returns the value of a specified entry in the current environment table.
-If the parameter is empty ("") then returns an array of the environment
-variables (in var=value form).
+Reads an Environment Variable from the current environment
+variable-table.
 
-ENV can be used as SUB for setting or erasing Environment Variables (EV)
-and ENV can be used as a FUNCtion for returning a particular EV or the
-whole set of them into an array using: EVarray=ENV("")
+ENV can be used as SUB for setting and deleting Environment Variables
+and ENV can be used as a FUNCtion for returning a particular Environmet
+Variable or the whole set of them into an array.
 
+Example 1: Setting and getting Evironment Variables
 
-    ' ENV test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-10
-    'OK this works 
-    'OK this is supposed to return an array of my Environment variables
-    EVS=ENV("")
-    for e in EVS
-      ? e
+    SB1 = 5
+    SB2 = "My evironment variable"
+
+    'Set Environmet Variables
+    ENV("SB1=" + SB1)
+    ENV("SB2=" + SB2)
+    ENV("SB3=6")
+    ENV("SB4=\"test\"")
+
+    ' Get Environment Variables
+    print ENV("SB1")
+    print ENV("SB2")
+    print ENV("SB3")
+    print ENV("SB4")
+
+Example 2: Querry all Environment Variables
+
+    AllEnv = ENV("")
+
+    for a in AllEnv
+        print a
     next
-    ?:? "press any..."
-    pause
-    'wow it worked! I have a load of them...
-    'OK now try and set one of my own
-    cls
-    myEV1="This is a test of ENV."
-    ENV "myEV1="+myEV1
-    'did it get added to list?
-    EVS=ENV("")
-    for e in EVS
-      ? e
-    next
-    ?:? "press any..."
-    pause
-    'YES!
-    'OK let's see it 
-    myEV1return=ENV("myEV1")
-    cls
-    ? myEV1return
-    ?:? "press any..."
-    pause
-    'now can we erase it?
-    ENV "myEV1="
-    cls
-    ? "myEV1 should be erased, it is now '";ENV("myEV1");"'"
-    ?:? "Test of ENV is complete."
-    pause
-    'yes, it was erased because when I ran same code a second time, it wasn't there THEN!
-    ' so it didn't just LOOK erased from a bad call
+
+Example 3: (Linux) Querry DESKTOP_SESSION
+
+    print ENV("DESKTOP_SESSION")    'i.e will print "plasma" if using KDE
+
+Example 4: Delete a Environment Variable (doesn’t work in Linux)
+
+    ENV("SB1=")   ' Deletes SB1
+
+Example 5: Using ENV and CHAIN to create a eval-function
+
+    ' Dedicated to MGA.
+    ' s is any legal SmallBASIC Math Expression as String, e.g. "1 + 2 / 4"
+    Func eval(s)
+      Chain "Env " + Enclose("SBEVAL=") + " + Str(" + s + ")"
+      eval = Val(Env("SBEVAL"))
+    End Func
+
+    ' now run few demos:
+    ? eval("1+2") 
+    ? eval("Rad(45) * 2") 
+    ? eval("PI / 2 + PI")
+    ? eval("0b1111 * Pow(2, 4)")
+    ? eval("Sin(2) * Tan(4) / Cos(6)")
+    ? eval("1 + 2 / 4")
+    ? eval("6 * (Pow(2, 4) * 8)")
+    ? eval("Rad((45 * 3) - 20) * 2")
+
+General suggestions using Environment Variables
+
+1.  Never use names which are already used by the system or another
+    process, such as “PATH”, “HOME”, “PWD”, etc. You should check which
+    variable names are already in use.
+2.  Use short and unique names, such as: “SB1”, SB2" or “SBv1”, “SBv2”,
+    etc. It will keep the environment-variables-table readable, and will
+    save space in the table.
+3.  Don’t create more variables then you need. Reuse any variable which
+    is not used. i.e. if “SB1” is unused anymore, then reuse it.
+4.  On some systems the environment-variables-table is unique for each
+    session (Linux for example) and this may be a bit confusing.
+5.  Environment variables may or may not be case sensitive, i.e. “SB1”
+    may be different then “sb1” on some systems (Linux for example).
 
 +========================================================================================+
 |                                    295. (System) EXEC                                  |
@@ -10347,67 +10578,19 @@ whole set of them into an array using: EVarray=ENV("")
 
 EXEC file
 
-Transfers control to another operating system program.
+Transfers control to another operating system program. Control returns
+to the .bas immediately and the system command is executed parallel and
+independent to SmallBASIC. File name is case sensitive in Linux.
 
+See run for starting an external program and wait until program finished
+execution.
 
-    Const IS_LINUX = (Left(HOME, 1) = "/")  ' Check if it's Linux system
-    Const IS_WINDOWS = Not IS_LINUX
-    Const FILE_NAME = "demo.bas"  ' demo file name
+                    ' Select your editor for testing
+    exec "kate"     ' Editor KDE
+    'exec "gedit"   ' Editor Gnome
+    'exec "Notepad" ' Editor Windows
 
-    ' Print header before each mission:
-    Sub header(text)
-      ? Cbs("\\n\\n" + Cat(0) + Cat(3) + Enclose(text, " ") + Cat(0) + Chr(7))
-      Pause
-    End Sub
-
-    ' Create demo SmallBASIC file:
-    code << "Color 15, 1: ? " + Enclose("Hello World") + ": Pause" ' append line
-    Tsave FILE_NAME, code
-
-    ' CHAIN(source)
-    '
-    '  Compile and run the given source. Source can be a file name, a line of code
-    '  or an array of code. Use ENV to share variables with the parent process.
-    header "Press a key to Chain another SB program and return afterwards..."
-    Chain FILE_NAME ' Chain only executes another SmallBASIC code.
-
-    ' RUN(command)     ' invoked as a COMMAND
-    ' x = RUN(command) ' invoked as a FUNC, returning the results of the sub process
-    '
-    '  With both of these, control returns to the .bas once system 'command'
-    '  has completed.
-    header "Press a key to Run another program and return afterwards..."
-    Select Case 1
-      Case IS_LINUX:   Run "gedit " + FILE_NAME
-      Case IS_WINDOWS: Run "Notepad " + FILE_NAME
-    End Select
-    ? "OK."
-
-    ' EXEC(command)
-    '
-    '  Invoked as a COMMAND, control returns to the .bas immediately and the
-    '  system command does it's own thing external to SmallBASIC:
-    header "Press a key to Execute another program in the background..."
-    Select Case 1
-      Case IS_LINUX:   Exec "gedit"
-      Case IS_WINDOWS: Exec "Notepad"
-    End Select
-    ? "Done.";
-    Pause
-
-Apparently, RUN/EXEC have bugs in SmallBASIC version 0.12.2…:
-
-RUN/EXEC
-
-There are three modes: 1. RUN(command) ’ invoked as a COMMAND 2.
-v=RUN(command) ‘invoked as a FUNC, returning the results of the sub
-process With both of these, control returns to the .bas once system
-’command’ has completed. 3. EXEC(command) ’invoked as a COMMAND, control
-returns to the .bas immediately and the system command does it’s own
-thing external to SmallBASIC.
-
-Note: In the android version you can use v=RUN to look at interesting
-things in the /proc file system.
+    print "This line will be printed immediately without delay"
 
 +========================================================================================+
 |                                   296. (System) EXPORT                                 |
@@ -10417,6 +10600,25 @@ EXPORT thing
 
 Export a SUB, FUNC or variable from a UNIT to be used by the unit
 consumer.
+
+See UNIT for more information.
+
+Example: Create an unit
+
+    UNIT MyTestUnit
+
+    export const my_pi = 3.145
+    export my_two_pi = 6.29
+    export MyFunc
+    export MySub
+
+    func MyFunc(a)
+      return a + 10
+    end
+
+    sub MySub(a)
+      print a + 10
+    end
 
 +========================================================================================+
 |                                    297. (System) FRE                                   |

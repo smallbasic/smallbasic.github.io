@@ -74,7 +74,23 @@
     </p>
   </div>
 </blockquote>
-<p>foo = 2: if foo==1: ? “one”: ELIF foo==2: ? “two”: fi</p>
+<p>Short for ELSEIF.</p>
+<h3 id="example-1">Example 1</h3>
+<pre><code>foo = 2
+if foo == 1
+  print &quot;one&quot;
+ELIF foo == 2
+  print &quot;two&quot;
+fi</code></pre>
+<h3 id="example-2-using-if-else-if-instead-of-elif">Example 2: using IF … ELSE … IF instead of ELIF</h3>
+<pre><code>foo = 2
+if foo == 1
+  print &quot;one&quot;
+else
+  if foo == 2
+    print &quot;two&quot;
+  fi
+fi</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using ELIF</div>
     <div class="linklist">
@@ -198,7 +214,7 @@ ELIF by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Mon, 30 Jan 2023 20:25:52 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

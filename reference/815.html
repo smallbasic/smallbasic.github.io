@@ -74,46 +74,58 @@
     </p>
   </div>
 </blockquote>
-<p>Returns the value of a specified entry in the current environment table. If the parameter is empty ("") then returns an array of the environment variables (in var=value form).</p>
-<p>ENV can be used as SUB for setting or erasing Environment Variables (EV) and ENV can be used as a FUNCtion for returning a particular EV or the whole set of them into an array using: EVarray=ENV("")</p>
-<pre><code>
-&#39; ENV test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-10
-&#39;OK this works 
-&#39;OK this is supposed to return an array of my Environment variables
-EVS=ENV(&quot;&quot;)
-for e in EVS
-  ? e
-next
-?:? &quot;press any...&quot;
-pause
-&#39;wow it worked! I have a load of them...
-&#39;OK now try and set one of my own
-cls
-myEV1=&quot;This is a test of ENV.&quot;
-ENV &quot;myEV1=&quot;+myEV1
-&#39;did it get added to list?
-EVS=ENV(&quot;&quot;)
-for e in EVS
-  ? e
-next
-?:? &quot;press any...&quot;
-pause
-&#39;YES!
-&#39;OK let&#39;s see it 
-myEV1return=ENV(&quot;myEV1&quot;)
-cls
-? myEV1return
-?:? &quot;press any...&quot;
-pause
-&#39;now can we erase it?
-ENV &quot;myEV1=&quot;
-cls
-? &quot;myEV1 should be erased, it is now &#39;&quot;;ENV(&quot;myEV1&quot;);&quot;&#39;&quot;
-?:? &quot;Test of ENV is complete.&quot;
-pause
-&#39;yes, it was erased because when I ran same code a second time, it wasn&#39;t there THEN!
-&#39; so it didn&#39;t just LOOK erased from a bad call
-</code></pre>
+<p>Reads an Environment Variable from the current environment variable-table.</p>
+<p>ENV can be used as SUB for setting and deleting Environment Variables and ENV can be used as a FUNCtion for returning a particular Environmet Variable or the whole set of them into an array.</p>
+<h3 id="example-1-setting-and-getting-evironment-variables">Example 1: Setting and getting Evironment Variables</h3>
+<pre><code>SB1 = 5
+SB2 = &quot;My evironment variable&quot;
+
+&#39;Set Environmet Variables
+ENV(&quot;SB1=&quot; + SB1)
+ENV(&quot;SB2=&quot; + SB2)
+ENV(&quot;SB3=6&quot;)
+ENV(&quot;SB4=\&quot;test\&quot;&quot;)
+
+&#39; Get Environment Variables
+print ENV(&quot;SB1&quot;)
+print ENV(&quot;SB2&quot;)
+print ENV(&quot;SB3&quot;)
+print ENV(&quot;SB4&quot;)</code></pre>
+<h3 id="example-2-querry-all-environment-variables">Example 2: Querry all Environment Variables</h3>
+<pre><code>AllEnv = ENV(&quot;&quot;)
+
+for a in AllEnv
+    print a
+next</code></pre>
+<h3 id="example-3-linux-querry-desktop_session">Example 3: (Linux) Querry DESKTOP_SESSION</h3>
+<pre><code>print ENV(&quot;DESKTOP_SESSION&quot;)    &#39;i.e will print &quot;plasma&quot; if using KDE</code></pre>
+<h3 id="example-4-delete-a-environment-variable-doesnt-work-in-linux">Example 4: Delete a Environment Variable (doesn’t work in Linux)</h3>
+<pre><code>ENV(&quot;SB1=&quot;)   &#39; Deletes SB1</code></pre>
+<h3 id="example-5-using-env-and-chain-to-create-a-eval-function">Example 5: Using ENV and CHAIN to create a eval-function</h3>
+<pre><code>&#39; Dedicated to MGA.
+&#39; s is any legal SmallBASIC Math Expression as String, e.g. &quot;1 + 2 / 4&quot;
+Func eval(s)
+  Chain &quot;Env &quot; + Enclose(&quot;SBEVAL=&quot;) + &quot; + Str(&quot; + s + &quot;)&quot;
+  eval = Val(Env(&quot;SBEVAL&quot;))
+End Func
+
+&#39; now run few demos:
+? eval(&quot;1+2&quot;) 
+? eval(&quot;Rad(45) * 2&quot;) 
+? eval(&quot;PI / 2 + PI&quot;)
+? eval(&quot;0b1111 * Pow(2, 4)&quot;)
+? eval(&quot;Sin(2) * Tan(4) / Cos(6)&quot;)
+? eval(&quot;1 + 2 / 4&quot;)
+? eval(&quot;6 * (Pow(2, 4) * 8)&quot;)
+? eval(&quot;Rad((45 * 3) - 20) * 2&quot;)</code></pre>
+<h3 id="general-suggestions-using-environment-variables">General suggestions using Environment Variables</h3>
+<ol type="1">
+<li>Never use names which are already used by the system or another process, such as “PATH”, “HOME”, “PWD”, etc. You should check which variable names are already in use.</li>
+<li>Use short and unique names, such as: “SB1”, SB2" or “SBv1”, “SBv2”, etc. It will keep the environment-variables-table readable, and will save space in the table.</li>
+<li>Don’t create more variables then you need. Reuse any variable which is not used. i.e. if “SB1” is unused anymore, then reuse it.</li>
+<li>On some systems the environment-variables-table is unique for each session (Linux for example) and this may be a bit confusing.</li>
+<li>Environment variables may or may not be case sensitive, i.e. “SB1” may be different then “sb1” on some systems (Linux for example).</li>
+</ol>
   <div class="lavenderBox">
     <div class="header">Code samples using ENV</div>
     <div class="linklist">
@@ -174,7 +186,7 @@ ENV by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sun, 26 Feb 2023 16:18:33 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

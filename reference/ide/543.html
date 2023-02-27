@@ -2,9 +2,14 @@
 <blockquote>
 <p>EMPTY (x)</p>
 </blockquote>
-<p>Returns true if x is: a zero length array, an empty string, an integer or real with the value 0.</p>
-<ul>
-<li>If x is a string, returns true if the len(x) is 0.</li>
-<li>If x is an integer or a real returns true if the x = 0.</li>
-<li>If x is an array, returns true if x is a zero-length array (array without elements).</li>
-</ul>
+<p>Returns true if x is * a zero length array * an empty string * a number with the value 0.</p>
+<h3 id="example">Example</h3>
+<pre><code>s = &quot;&quot;
+a = []
+dim b
+i = 0
+
+if(empty(s)) then print &quot;s is empty&quot;
+if(empty(a)) then print &quot;a is empty&quot;
+if(empty(b)) then print &quot;b is empty&quot;
+if(empty(i)) then print &quot;i is empty&quot;</code></pre>

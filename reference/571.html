@@ -75,12 +75,15 @@
   </div>
 </blockquote>
 <p>Deallocates the memory used by the specified arrays or variables. After that these variables turned to simple integers with zero value.</p>
+<h3 id="example">Example</h3>
 <pre><code>DIM x(100)
-...
-PRINT FRE(0)
+
+x(1) = 1
+x(2) = 2
+
 ERASE x
-PRINT FRE(0)
-PRINT x(1):REM ERROR</code></pre>
+
+PRINT x(1)    &#39; This will create an error</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using ERASE</div>
     <div class="linklist">
@@ -163,7 +166,7 @@ ERASE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 22:05:29 +1000
+      This page was last edited on Sun, 26 Feb 2023 19:17:02 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
