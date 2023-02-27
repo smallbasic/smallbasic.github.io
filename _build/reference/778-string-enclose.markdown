@@ -2,23 +2,29 @@
 
 > ENCLOSE (str[, pair])
 
-Encloses a string.
+Encloses a string using the two characters in string `pair`. ENCLOSE defaults to double quotes if `pair` is not used.
+
+### Example 1: Enclose brackets
 
 ```
-? enclose("abc", "()")
-' Result: (abc)
+print enclose("abc", "()")  ' output: (abc)
 ```
 
-ENCLOSE defaults to double quotes if the [pair] option is not used.
+### Example 2: Enclose quotes using default setting
 
-~~~
-
+```
 test=10
 myStr="myStr"
-? enclose(test)
-? enclose(myStr)
-pause
+print enclose(test)         ' output: "10"
+print enclose(myStr)        ' output: "myStr"
+```
 
-~~~
+### Example 2: Enclose letters
+
+```
+test = 10
+print enclose(test, "aB")   ' output: a10B
+```
+
 
 

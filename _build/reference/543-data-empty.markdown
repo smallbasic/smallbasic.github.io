@@ -2,11 +2,22 @@
 
 > EMPTY (x)
 
-Returns true if x is: a zero length array, an empty string, an integer or real with the value 0.
+Returns true if x is
+* a zero length array
+* an empty string
+* a number with the value 0.
 
+### Example
 
-* If x is a string, returns true if the len(x) is 0.
-* If x is an integer or a real returns true if the x = 0.
-* If x is an array, returns true if x is a zero-length array (array without elements).
+```
+s = ""
+a = []
+dim b
+i = 0
 
+if(empty(s)) then print "s is empty"
+if(empty(a)) then print "a is empty"
+if(empty(b)) then print "b is empty"
+if(empty(i)) then print "i is empty"
+```
 
