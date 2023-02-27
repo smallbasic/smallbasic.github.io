@@ -1,18 +1,36 @@
 # FILES
 
-> FILES (wildcards)
+> FILES (exp)
 
-Returns an array with the filenames. If there are no files returns an empty array.
+Returns an array with the filenames. If there are no files, `FILES` returns an empty array. `exp` can contain the wildcards `*` and `?`. `exp` can include a path.
 
-The directory listing, if assigned to a string, will create a string array. Each filename is assigned to its own element in the string array.
-sample program example:
+### Example 1: List all files in the current directory
 
-~~~
+```
+FileNames = files("*.*")
 
-20 a$=FILES("*.*")
-30 n=LEN(a$)
-40 FOR i = 0 to n-1
-50 PRINT a$(i)
-60 NEXT i
+for f in FileNames
+    print f
+next
+```
 
-~~~
+### Example 2: List all files matching search string
+
+```
+FileNames = files("t?st.bas")
+
+for f in FileNames
+    print f
+next
+```
+
+### Example 3: Using a path
+
+```
+FileNames = files("/usr/bin/*")    ' Linux
+' FileNames = files("C:\*.*")      ' Windows
+
+for f in FileNames
+    print f
+next
+```
