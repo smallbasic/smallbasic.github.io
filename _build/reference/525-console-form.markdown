@@ -1,70 +1,251 @@
 # FORM
 
-> FORM(map)
+> FORM(formMap)
 
-Creates a form object from a MAP variable. This provides access to the following sub-commands:
+Creates a form object `f` from a MAP variable `formMap`. Form object `f` gives access to the following GUI elements:
 
----------- -------------------------------
-doEvents() Process system events for mouse and keyboard handling.
-close()    Closes the active FORM.
-refresh(n) n=1 Copy the UI state into the FORM input variables. n=0 Update the UI state using the FORM input variables.
----------- -------------------------------
+- Push button
+- Label
+- Hyperlinked text
+- Listbox
+- Dropdown listbox
+- Single or multi-line text input
+- Image button
 
-The form MAP may contain the following properties
+In listboxes and dropdown listboxes press and hold mouse button to scroll through the items. Alternatively arrow keys can be used. Press return or space for selecting the highlighted item.
 
------- ---------------
-value  The value from the active input field.
-inputs Array of inputs.
-focus  Index to the focused input.
------- ---------------
+### The form object
 
-`Inputs` is an array of type MAP, each element may contain the following properties
+`f = form(formMAP)` provides access to the following sub-commands of the form object `f`:
 
---------------- ---------------
-x               X coordinate.
-y               Y coordinate.
-width           Input width.
-height          Input height.
-value           The internal value associated with the input.
-label           The display label for the input.
-name            The name of the input.
-type            The type of input, see below.
-help            Listbox or single line text input help text.
-backgroundColor Background color.
-color           Forground color.
-isExit          Whether clicking the input exits the current program.
-isExternal      Whether the `link` field opens in an external browser.
-resizable       Whether the field can be resized.
-visible         Whether the input field is visible.
-selectedIndex   The selected item in a listbox or choice.
-length          Length of an TEXT input field.
-noFocus         The input cannot receive focus.
-onclick         SUB to invoke when clicked.
---------------- ---------------
+| Sub-command | Description                   |
+|-------------|-------------------------------|
+| doEvents()  | Process system events for mouse and keyboard handling.
+| close()     | Closes the active FORM.
+| refresh(n)  | n = 1 Copy the UI state into the FORM input variables. n = 0 Update the UI state using the FORM input variables.
 
-The type attribute can be one of the following
+The form object `f` may contain the following properties:
 
-------- --------------
-button  Push button.
-label   Display label.
-link    Hyperlinked text.
-listbox Listbox.
-choice  Dropdown listbox.
-text    Single or multi-line text input.
-image   Image button.
-------- --------------
+| Property   | Description   |
+|------------|---------------|
+| value      | The value from the active input field.
+| **inputs** | Array of inputs.
+| focus      | Index to the focused input.
 
-Example
--------
+### Defining the input fields
+
+`inputs` is an array of type MAP, each element may contain the following attributes:
+
+| Attribute       | Description
+|-----------------|---------------
+| x               | X coordinate.
+| y               | Y coordinate.
+| width           | Width.
+| height          | Height.
+| value           | The internal value associated with the input.
+| label           | The display label for the input.
+| name            | The name of the input.
+| **type**        | The type of input, see below.
+| help            | Listbox or single line text input help text.
+| backgroundColor | Background color.
+| color           | Forground color.
+| isExit          | Whether clicking the input exits the current program.
+| isExternal      | Whether the `link` field opens in an external browser.
+| resizable       | Whether the field can be resized.
+| visible         | Whether the input field is visible.
+| selectedIndex   | The selected item in a listbox or choice.
+| length          | Length of a TEXT input field in number of characters.
+| noFocus         | The input cannot receive focus.
+| onclick         | SUB to invoke when clicked.
+
+The type attribute can be one of the following:
+
+| Type      | Description
+|-----------| --------------
+| "button"  | Push button.
+| "label"   | Display label.
+| "link"    | Hyperlinked text.
+| "listbox" | Listbox.
+| "choice"  | Dropdown listbox.
+| "text"    | Single or multi-line text input.
+| "image"   | Image button.
+
+### Example 1: Creating a push button
+
+```
+button.type = "button"
+button.x = 120
+button.y = 120
+button.label = "Button"
+button.backgroundcolor = rgb(60, 60, 60)
+button.onclick = @ButtonClicked     ' Callback function, definition see below
+
+formMAP.inputs << button
+
+f = form(formMAP)
+
+while 1
+  f.doEvents()
+wend
+
+f.close()
+
+sub ButtonClicked()
+  at 0,0
+  Clicked++
+  print "Button clicked " + Clicked + " times"
+end
+```
+
+### Example 2: creating a label
+
+```
+l.type = "label"
+l.x = 120
+l.y = 120
+l.label = "Label"
+l.color = rgb(255, 60, 60)
+
+f.inputs << l
+
+f = form(f)
+
+while 1
+  f.doEvents()
+wend
+
+f.close()
+```
+
+### Example 3: Creating a link to an external website
+
+```
+l.type = "link"
+l.x = 120
+l.y = 120
+l.label = "Link to SmallBASIC website"
+l.value = "https://smallbasic.github.io"
+l.isExternal = true
+l.color = rgb(100, 100, 255)
+
+f.inputs << l
+
+f = form(f)
+
+while 1
+  f.doEvents()
+wend
+
+f.close()
+```
+
+### Example 4: Creating a listbox
+
+```
+l.type = "listbox"
+l.x = 120
+l.y = 120
+l.height = 200
+l.width = 100
+l.value = "cats|dogs|fish|birds|insects"
+l.color = rgb(255, 255, 255)
+l.backgroundColor = rgb(100, 100, 100)
+
+f.inputs << l
+
+f = form(f)
+
+while 1
+  f.doEvents()
+  
+  ' Check for value of the active input field
+  if (len(f.value) > 0) then
+    at 0,0
+    print f.value; "                  "
+  end if  
+wend
+
+f.close()
+```
+
+### Example 5: Creating a dropdown listbox
+
+```
+l.type = "choice"
+l.x = 120
+l.y = 120
+l.width = 100
+l.value = "cats|dogs|fish|birds|insects"
+l.color = rgb(255, 255, 255)
+l.backgroundColor = rgb(100, 100, 100)
+
+f.inputs << l
+
+f = form(f)
+
+while 1
+  f.doEvents()
+  
+  ' Check for value of the active input field
+  if (len(f.value) > 0) then
+    at 0,0
+    print f.value; "                  "
+  end if  
+wend
+
+f.close()
+```
+
+### Example 6: Creating a text input field
+
+```
+t.type = "text"
+t.x = 120
+t.y = 120
+t.width = 300
+t.value = "Add more text"
+' t.height = 100  ' if hight is not defined, single line field
+t.color = rgb(255, 255, 255)
+t.backgroundColor = rgb(100, 100, 100)
+t.length = 50 ' number of characters
+
+' create additionally an OK-Button to update the form object
+' otherwise the text field blocks loop
+b.type = "button"
+b.x = 120 + t.width + 10
+b.y = 120 
+b.label = "OK"
+b.backgroundcolor = rgb(60, 60, 60)
+b.onclick = @OKButtonClicked
+f.inputs << t
+f.inputs << b
+
+f = form(f)
+
+while 1
+  f.doEvents()  
+wend
+
+f.close()
+
+sub OKButtonClicked()
+   f.refresh(1)              ' Update the form object
+   at 0,0
+   print f.inputs[0].value   ' Text field is the first element added to the formMAP
+end
+```
+
+
+### Example: One more example
 
 ```
 f.handleKeys = 0
 ' create some buttons
 button1.y = 120
 button1.label = "Button1"
-button1.value = "valudofButton1"
+button1.value = "valueofButton1"
 button1.backgroundcolor = rgb(255,0,0)
-button1.onclick = HelloWorld 'this prints on load
+button1.onclick = @HelloWorld 'this prints on load
 button2.x = -1
 button2.y = 120
 button2.label = "Button2"
