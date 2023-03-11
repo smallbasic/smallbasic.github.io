@@ -6,78 +6,101 @@ Returns a formated string.
 
 Numbers:
 
-- '#' Digit or space
-- 0 Digit or zero
-- ^ Stores a number in exponential format. Unlike QB's USING format this is a place-holder like #.
-- . The position of the decimal point.
-- , Separator.
-- `-` Stores minus if the number is negative.
-- `+` Stores the sign of the number.
+| Format | Description                              |
+|:------:|------------------------------------------|
+| `#`    | Digit or space                           |
+| `0`    | Digit or zero                            |
+| `^`    | Stores a number in exponential format.   |
+| `.`    | The position of the decimal point.       |
+| `,`    | Separator                                |
+| `-`    | Stores minus if the number is negative.  |
+| `+`    | Stores the sign of the number.           |
 
 Strings:
 
-- & Stores a string expression without reformatting it.
-- ! Stores only the first character of a string expression.
-- \\\\  Stores only the first n + 2 characters of a string expression, where n is the number of spaces between the two backslashes.
+| Format | Description |
+|:------:|-------------|
+| `&`    | Stores a string expression without reformatting it.     |
+| `!`    | Stores only the first character of a string expression. |
+| `\\\\` | Stores only the first n + 2 characters of a string expression, where n is the number of spaces between the two backslashes. |
 
-Unlike QB, there can be literals inside the \\ \\. These literals are inserted in the final string.
+When using `\\\\`, literals can be inside the `\\` `\\`. These literals are inserted in the final string.
+
+### Example 1
 
 ```
-? FORMAT("#,##0", 1920.6) : REM prints 1,921
-? FORMAT("\\  - \\", "abcde") : REM prints "abc-de"
+PRINT FORMAT("####.##",    1920.64)  ' output 1920.64
+PRINT FORMAT("#######",    1920.64)  ' output    1921
+PRINT FORMAT("#,###.##",   1920.64)  ' output 1,920.64
+PRINT FORMAT("#,###.00",   1920.6 )  ' output 1,920.60
+PRINT FORMAT("#,###",      1920.6 )  ' output 1,921
+PRINT FORMAT("###,###.00", 1920.6 )  ' output   1,920.60
+PRINT FORMAT("00#,###.00", 1920.6 )  ' output 001,920.60
+
+PRINT FORMAT("#####^",     1920.6 )  ' output 1,9E+3
+
+PRINT FORMAT("+#,###.00",  1920.6 )  ' output +1,920.60
+PRINT FORMAT("+#,###.00", -1920.6 )  ' output -1,920.60
+
+PRINT FORMAT("-#,###.00",  1920.6 )  ' output  1,920.60
+PRINT FORMAT("-#,###.00", -1920.6 )  ' output -1,920.60
+
+PRINT FORMAT("!",     "Test")        ' output T
+PRINT FORMAT("\\\\",  "Test")        ' output Te
+PRINT FORMAT("\\ \\", "Test")        ' output Tes
+
+PRINT FORMAT("\\  X \\",   "abcde")  ' output abcXde
+PRINT FORMAT("\\ X Y \\",  "abcde")  ' output abXcYde
+PRINT FORMAT("&\\ X Y \\", "abcde")  ' output abcde
 ```
 
-PRINT USING and FORMAT use same or similar character codes, here are some practical examples of use, including the creating of a reusable Money function that returns a flexible length string for a money amount (dollars and cents format).
+### Example 2
 
-    rem USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
-    rem PRINT USING is excellent for columns of numbers
+PRINT USING and FORMAT use same or similar character codes, here are some practical examples of use, including the creating of a reusable money function that returns a flexible length string for a money amount (dollars and cents format).
 
-    columnformat="#,###,###.0000     " '<=== oh it does spaces too!
-    for i=1 to 50
-      print usg columnformat;rnd*10000000000/1000;
-      if i mod 5=0 then print '<== after printing 5 numbers on line use print to start next line
-    next
-    ?:?
-    'A problem with PRINT USING is that it needs a whole statement to itself,
-    ' unlike PRINT that can print a list of expressions in a single statement (with ; , or +)
-    ' another problem with USING, # is that they are place holders which is nice
-    ' for column of numbers but not in following:
-    currency="$-###,###,###,###,###,###.00"
-    bignumber="###,###,###,###,###,###"
-    onetrillion=1000000000000
-    workers=150000000
-    ? using currency;onetrillion;
-    ?" divided by ";
-    ? usg bignumber;workers;  '<=== usg is short for using
-    ?" working people is ";
-    ? usg currency;onetrillion/workers;
-    ?" per working person."
-    ?:?
-    'Yuck! we need to trim things up, FORMAT works nicely with TRIM
-    division="$ "+trim(format(bignumber,onetrillion/workers))
-    onetrillion1="$ "+trim(format(bignumber,onetrillion))
-    workers1=trim(format(bignumber,workers))
-    ? onetrillion1+" divided by "+workers1;" working people is ";division;" per working person."
-    ?:?
-    'lets use what we learned here and make a reusable function: money
-    ? money(onetrillion);" divided by ";workers1;" working people is "+money(onetrillion/workers)+" per working person."
-    ?:?
-    'test money in columns, dang we need to have the same length strings use RIGHT and SPACE
-    for i=1 to 50
-      if rnd>.5 then posneg=1 else posneg=-1
-      print right(space(15)+money(rnd*10000000000/1000*posneg),20);
-      if i mod 5=0 then print '<== after printing 5 numbers on line use print to start next line
-    next
-    pause
-    func money(dollarsandcents) 'oh - numbers are saved
-      money="$ "+trim(format("###,###,###,###,###,###.00",dollarsandcents))
-    end
+```
+rem USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
+rem PRINT USING is excellent for columns of numbers
 
-Must add extra space after '\\', if not there is an error:
+columnformat="#,###,###.0000     " '<=== oh it does spaces too!
+for i=1 to 50
+  print usg columnformat;rnd*10000000000/1000;
+  if i mod 5=0 then print '<== after printing 5 numbers on line use print to start next line
+next
+?:?
+'A problem with PRINT USING is that it needs a whole statement to itself,
+' unlike PRINT that can print a list of expressions in a single statement (with ; , or +)
+' another problem with USING, # is that they are place holders which is nice
+' for column of numbers but not in following:
+currency="$-###,###,###,###,###,###.00"
+bignumber="###,###,###,###,###,###"
+onetrillion=1000000000000
+workers=150000000
+? using currency;onetrillion;
+?" divided by ";
+? usg bignumber;workers;  '<=== usg is short for using
+?" working people is ";
+? usg currency;onetrillion/workers;
+?" per working person."
+?:?
+'Yuck! we need to trim things up, FORMAT works nicely with TRIM
+division="$ "+trim(format(bignumber,onetrillion/workers))
+onetrillion1="$ "+trim(format(bignumber,onetrillion))
+workers1=trim(format(bignumber,workers))
+? onetrillion1+" divided by "+workers1;" working people is ";division;" per working person."
+?:?
+'lets use what we learned here and make a reusable function: money
+? money(onetrillion);" divided by ";workers1;" working people is "+money(onetrillion/workers)+" per working person."
+?:?
+'test money in columns, dang we need to have the same length strings use RIGHT and SPACE
+for i=1 to 50
+  if rnd>.5 then posneg=1 else posneg=-1
+  print right(space(15)+money(rnd*10000000000/1000*posneg),20);
+  if i mod 5=0 then print '<== after printing 5 numbers on line use print to start next line
+next
+pause
+func money(dollarsandcents) 'oh - numbers are saved
+  money="$ "+trim(format("###,###,###,###,###,###.00",dollarsandcents))
+end
+```
 
-    ? format("\\ _ \\", "abcde")   ' --> error missing ')'
-    ? format("\\ _ \\ ", "abcde")  ' --> "ab_cd "
-    ? format("\\  _ \\ ", "abcde") ' --> "abc_de "
-    ? Usg "\\ _ \\"; "abcde"   ' --> error or prints nothing
-    ? Usg "\\ _ \\ "; "abcde"  ' --> "ab_cd "
-    ? Usg "\\  _ \\ "; "abcde" ' --> "abc_de "
