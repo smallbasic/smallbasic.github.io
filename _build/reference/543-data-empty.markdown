@@ -3,9 +3,10 @@
 > EMPTY (x)
 
 Returns true if x is
-* a zero length array
-* an empty string
-* a number with the value 0.
+
+- a zero length array
+- an empty string
+- a number with the value 0.
 
 ### Example
 
