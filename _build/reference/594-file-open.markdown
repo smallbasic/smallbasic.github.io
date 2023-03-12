@@ -21,11 +21,12 @@ INPUT, BGETC and BPUTC to read from or write to a file or device.
 
 With OPEN you can also open a network connection. Depending on the kind of connection the following file names can be used:
 
-| Connection Type | Example |
-|-----------------|---------|
-| URL             | open "http://api.duckduckgo.com/?q=Cars&format=json" as #1
-| Image           | open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1 | 
-| Socket          | open "SOCL:192.168.178.76:8080" as #1 |
+| Connection Type     | Example |
+|---------------------|---------|
+| URL                 | `open "http://api.duckduckgo.com/?q=Cars&format=json" as #1`
+| Image               | `open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1` | 
+| Socket              | `open "SOCL:192.168.178.76:8080" as #1` |
+| Serial Port (RS232) | `open "COM1:19200" as # 1` |
 
 More information with examples can be found in the article "Network programming".
 
