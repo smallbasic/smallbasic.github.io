@@ -74,20 +74,26 @@
     </p>
   </div>
 </blockquote>
-<p>Declares a function. Return a value by assigning a ‘variable’ with the same name as the function.</p>
-<pre><code>&#39;Main program
+<p>Declares a function. Return a value by assigning a variable with the same name as the function or by using <code>RETURN</code>.</p>
+<h3 id="example-1">Example 1:</h3>
+<pre><code>&#39; Main program
 print MyAddFunction(10,20)
 
-
-&#39;Function definition
+&#39; Function definition
 FUNC MyAddFunction(a,b)
-
   local c   &#39;c is just known inside this function
-  
   c = a + b
-  
   MyAddFunction = c
+END</code></pre>
+<h3 id="example-2-using-return">Example 2: Using return</h3>
+<pre><code>&#39; Main program
+print MyAddFunction(10,20)
 
+&#39; Function definition
+FUNC MyAddFunction(a,b)
+  local c   &#39;c is just known inside this function
+  c = a + b
+  return c
 END</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using FUNC</div>
@@ -212,7 +218,7 @@ FUNC by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 26 Jun 2022 10:23:14 +0200
+      This page was last edited on Sun, 12 Mar 2023 14:56:32 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

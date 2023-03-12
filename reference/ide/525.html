@@ -1,9 +1,31 @@
 <h1 id="form">FORM</h1>
 <blockquote>
-<p>FORM(map)</p>
+<p>FORM(formMap)</p>
 </blockquote>
-<p>Creates a form object from a MAP variable. This provides access to the following sub-commands:</p>
+<p>Creates a form object <code>f</code> from a MAP variable <code>formMap</code>. Form object <code>f</code> gives access to the following GUI elements:</p>
+<ul>
+<li>Push button</li>
+<li>Label</li>
+<li>Hyperlinked text</li>
+<li>Listbox</li>
+<li>Dropdown listbox</li>
+<li>Single or multi-line text input</li>
+<li>Image button</li>
+</ul>
+<p>In listboxes and dropdown listboxes press and hold mouse button to scroll through the items. Alternatively arrow keys can be used. Press return or space for selecting the highlighted item.</p>
+<h3 id="the-form-object">The form object</h3>
+<p><code>f = form(formMAP)</code> provides access to the following sub-commands of the form object <code>f</code>:</p>
 <table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sub-command</th>
+<th>Description</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td>doEvents()</td>
@@ -15,149 +37,309 @@
 </tr>
 <tr class="odd">
 <td>refresh(n)</td>
-<td>n=1 Copy the UI state into the FORM input variables. n=0 Update the UI state using the FORM input variables.</td>
+<td>n = 1 Copy the UI state into the FORM input variables. n = 0 Update the UI state using the FORM input variables.</td>
 </tr>
 </tbody>
 </table>
-<p>The form MAP may contain the following properties</p>
+<p>The form object <code>f</code> may contain the following properties:</p>
 <table>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">value</td>
+<td>value</td>
 <td>The value from the active input field.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">inputs</td>
+<td><strong>inputs</strong></td>
 <td>Array of inputs.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">focus</td>
+<td>focus</td>
 <td>Index to the focused input.</td>
 </tr>
 </tbody>
 </table>
-<p><code>Inputs</code> is an array of type MAP, each element may contain the following properties</p>
+<h3 id="defining-the-input-fields">Defining the input fields</h3>
+<p><code>inputs</code> is an array of type MAP, each element may contain the following attributes:</p>
 <table>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">x</td>
-<td style="text-align: left;">X coordinate.</td>
+<td>x</td>
+<td>X coordinate.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">y</td>
-<td style="text-align: left;">Y coordinate.</td>
+<td>y</td>
+<td>Y coordinate.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">width</td>
-<td style="text-align: left;">Input width.</td>
+<td>width</td>
+<td>Width.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">height</td>
-<td style="text-align: left;">Input height.</td>
+<td>height</td>
+<td>Height.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">value</td>
-<td style="text-align: left;">The internal value associated with the input.</td>
+<td>value</td>
+<td>The internal value associated with the input.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">label</td>
-<td style="text-align: left;">The display label for the input.</td>
+<td>label</td>
+<td>The display label for the input.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">name</td>
-<td style="text-align: left;">The name of the input.</td>
+<td>name</td>
+<td>The name of the input.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">type</td>
-<td style="text-align: left;">The type of input, see below.</td>
+<td><strong>type</strong></td>
+<td>The type of input, see below.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">help</td>
-<td style="text-align: left;">Listbox or single line text input help text.</td>
+<td>help</td>
+<td>Listbox or single line text input help text.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">backgroundColor</td>
-<td style="text-align: left;">Background color.</td>
+<td>backgroundColor</td>
+<td>Background color.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">color</td>
-<td style="text-align: left;">Forground color.</td>
+<td>color</td>
+<td>Forground color.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">isExit</td>
-<td style="text-align: left;">Whether clicking the input exits the current program.</td>
+<td>isExit</td>
+<td>Whether clicking the input exits the current program.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">isExternal</td>
-<td style="text-align: left;">Whether the <code>link</code> field opens in an external browser.</td>
+<td>isExternal</td>
+<td>Whether the <code>link</code> field opens in an external browser.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">resizable</td>
-<td style="text-align: left;">Whether the field can be resized.</td>
+<td>resizable</td>
+<td>Whether the field can be resized.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">visible</td>
-<td style="text-align: left;">Whether the input field is visible.</td>
+<td>visible</td>
+<td>Whether the input field is visible.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">selectedIndex</td>
-<td style="text-align: left;">The selected item in a listbox or choice.</td>
+<td>selectedIndex</td>
+<td>The selected item in a listbox or choice.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">length</td>
-<td style="text-align: left;">Length of an TEXT input field.</td>
+<td>length</td>
+<td>Length of a TEXT input field in number of characters.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">noFocus</td>
-<td style="text-align: left;">The input cannot receive focus.</td>
+<td>noFocus</td>
+<td>The input cannot receive focus.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">onclick</td>
-<td style="text-align: left;">SUB to invoke when clicked.</td>
+<td>onclick</td>
+<td>SUB to invoke when clicked.</td>
 </tr>
 </tbody>
 </table>
-<p>The type attribute can be one of the following</p>
+<p>The type attribute can be one of the following:</p>
 <table>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">button</td>
-<td style="text-align: left;">Push button.</td>
+<td>“button”</td>
+<td>Push button.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">label</td>
-<td style="text-align: left;">Display label.</td>
+<td>“label”</td>
+<td>Display label.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">link</td>
-<td style="text-align: left;">Hyperlinked text.</td>
+<td>“link”</td>
+<td>Hyperlinked text.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">listbox</td>
-<td style="text-align: left;">Listbox.</td>
+<td>“listbox”</td>
+<td>Listbox.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">choice</td>
-<td style="text-align: left;">Dropdown listbox.</td>
+<td>“choice”</td>
+<td>Dropdown listbox.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">text</td>
-<td style="text-align: left;">Single or multi-line text input.</td>
+<td>“text”</td>
+<td>Single or multi-line text input.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">image</td>
-<td style="text-align: left;">Image button.</td>
+<td>“image”</td>
+<td>Image button.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
+<h3 id="example-1-creating-a-push-button">Example 1: Creating a push button</h3>
+<pre><code>button.type = &quot;button&quot;
+button.x = 120
+button.y = 120
+button.label = &quot;Button&quot;
+button.backgroundcolor = rgb(60, 60, 60)
+button.onclick = @ButtonClicked     &#39; Callback function, definition see below
+
+formMAP.inputs &lt;&lt; button
+
+f = form(formMAP)
+
+while 1
+  f.doEvents()
+wend
+
+f.close()
+
+sub ButtonClicked()
+  at 0,0
+  Clicked++
+  print &quot;Button clicked &quot; + Clicked + &quot; times&quot;
+end</code></pre>
+<h3 id="example-2-creating-a-label">Example 2: creating a label</h3>
+<pre><code>l.type = &quot;label&quot;
+l.x = 120
+l.y = 120
+l.label = &quot;Label&quot;
+l.color = rgb(255, 60, 60)
+
+f.inputs &lt;&lt; l
+
+f = form(f)
+
+while 1
+  f.doEvents()
+wend
+
+f.close()</code></pre>
+<h3 id="example-3-creating-a-link-to-an-external-website">Example 3: Creating a link to an external website</h3>
+<pre><code>l.type = &quot;link&quot;
+l.x = 120
+l.y = 120
+l.label = &quot;Link to SmallBASIC website&quot;
+l.value = &quot;https://smallbasic.github.io&quot;
+l.isExternal = true
+l.color = rgb(100, 100, 255)
+
+f.inputs &lt;&lt; l
+
+f = form(f)
+
+while 1
+  f.doEvents()
+wend
+
+f.close()</code></pre>
+<h3 id="example-4-creating-a-listbox">Example 4: Creating a listbox</h3>
+<pre><code>l.type = &quot;listbox&quot;
+l.x = 120
+l.y = 120
+l.height = 200
+l.width = 100
+l.value = &quot;cats|dogs|fish|birds|insects&quot;
+l.color = rgb(255, 255, 255)
+l.backgroundColor = rgb(100, 100, 100)
+
+f.inputs &lt;&lt; l
+
+f = form(f)
+
+while 1
+  f.doEvents()
+  
+  &#39; Check for value of the active input field
+  if (len(f.value) &gt; 0) then
+    at 0,0
+    print f.value; &quot;                  &quot;
+  end if  
+wend
+
+f.close()</code></pre>
+<h3 id="example-5-creating-a-dropdown-listbox">Example 5: Creating a dropdown listbox</h3>
+<pre><code>l.type = &quot;choice&quot;
+l.x = 120
+l.y = 120
+l.width = 100
+l.value = &quot;cats|dogs|fish|birds|insects&quot;
+l.color = rgb(255, 255, 255)
+l.backgroundColor = rgb(100, 100, 100)
+
+f.inputs &lt;&lt; l
+
+f = form(f)
+
+while 1
+  f.doEvents()
+  
+  &#39; Check for value of the active input field
+  if (len(f.value) &gt; 0) then
+    at 0,0
+    print f.value; &quot;                  &quot;
+  end if  
+wend
+
+f.close()</code></pre>
+<h3 id="example-6-creating-a-text-input-field">Example 6: Creating a text input field</h3>
+<pre><code>t.type = &quot;text&quot;
+t.x = 120
+t.y = 120
+t.width = 300
+t.value = &quot;Add more text&quot;
+&#39; t.height = 100  &#39; if hight is not defined, single line field
+t.color = rgb(255, 255, 255)
+t.backgroundColor = rgb(100, 100, 100)
+t.length = 50 &#39; number of characters
+
+&#39; create additionally an OK-Button to update the form object
+&#39; otherwise the text field blocks loop
+b.type = &quot;button&quot;
+b.x = 120 + t.width + 10
+b.y = 120 
+b.label = &quot;OK&quot;
+b.backgroundcolor = rgb(60, 60, 60)
+b.onclick = @OKButtonClicked
+f.inputs &lt;&lt; t
+f.inputs &lt;&lt; b
+
+f = form(f)
+
+while 1
+  f.doEvents()  
+wend
+
+f.close()
+
+sub OKButtonClicked()
+   f.refresh(1)              &#39; Update the form object
+   at 0,0
+   print f.inputs[0].value   &#39; Text field is the first element added to the formMAP
+end</code></pre>
+<h3 id="example-one-more-example">Example: One more example</h3>
 <pre><code>f.handleKeys = 0
 &#39; create some buttons
 button1.y = 120
 button1.label = &quot;Button1&quot;
-button1.value = &quot;valudofButton1&quot;
+button1.value = &quot;valueofButton1&quot;
 button1.backgroundcolor = rgb(255,0,0)
-button1.onclick = HelloWorld &#39;this prints on load
+button1.onclick = @HelloWorld &#39;this prints on load
 button2.x = -1
 button2.y = 120
 button2.label = &quot;Button2&quot;

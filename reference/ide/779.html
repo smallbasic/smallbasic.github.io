@@ -4,72 +4,152 @@
 </blockquote>
 <p>Returns a formated string.</p>
 <p>Numbers:</p>
-<ul>
-<li>‘#’ Digit or space</li>
-<li>0 Digit or zero</li>
-<li>^ Stores a number in exponential format. Unlike QB’s USING format this is a place-holder like #.</li>
-<li>. The position of the decimal point.</li>
-<li>, Separator.</li>
-<li><code>-</code> Stores minus if the number is negative.</li>
-<li><code>+</code> Stores the sign of the number.</li>
-</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>#</code></td>
+<td>Digit or space</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>0</code></td>
+<td>Digit or zero</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>^</code></td>
+<td>Stores a number in exponential format.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>.</code></td>
+<td>The position of the decimal point.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>,</code></td>
+<td>Separator</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>-</code></td>
+<td>Stores minus if the number is negative.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>+</code></td>
+<td>Stores the sign of the number.</td>
+</tr>
+</tbody>
+</table>
 <p>Strings:</p>
-<ul>
-<li>&amp; Stores a string expression without reformatting it.</li>
-<li>! Stores only the first character of a string expression.</li>
-<li>\\ Stores only the first n + 2 characters of a string expression, where n is the number of spaces between the two backslashes.</li>
-</ul>
-<p>Unlike QB, there can be literals inside the \ \. These literals are inserted in the final string.</p>
-<pre><code>? FORMAT(&quot;#,##0&quot;, 1920.6) : REM prints 1,921
-? FORMAT(&quot;\\  - \\&quot;, &quot;abcde&quot;) : REM prints &quot;abc-de&quot;</code></pre>
-<p>PRINT USING and FORMAT use same or similar character codes, here are some practical examples of use, including the creating of a reusable Money function that returns a flexible length string for a money amount (dollars and cents format).</p>
-<pre><code>rem USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
-rem PRINT USING is excellent for columns of numbers
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>&amp;</code></td>
+<td>Stores a string expression without reformatting it.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>!</code></td>
+<td>Stores only the first character of a string expression.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>\\ \\</code></td>
+<td>Stores only the first n + 2 characters of a string expression, where n is the number of spaces between the two pairs of backslashes.</td>
+</tr>
+</tbody>
+</table>
+<p>When using <code>\\ \\</code>, literals can be inside the <code>\\</code> <code>\\</code>. These literals are inserted in the final string.</p>
+<h3 id="example-1">Example 1</h3>
+<pre><code>PRINT FORMAT(&quot;####.##&quot;,    1920.64)  &#39; output 1920.64
+PRINT FORMAT(&quot;#######&quot;,    1920.64)  &#39; output    1921
+PRINT FORMAT(&quot;#,###.##&quot;,   1920.64)  &#39; output 1,920.64
+PRINT FORMAT(&quot;#,###.00&quot;,   1920.6 )  &#39; output 1,920.60
+PRINT FORMAT(&quot;#,###&quot;,      1920.6 )  &#39; output 1,921
+PRINT FORMAT(&quot;###,###.00&quot;, 1920.6 )  &#39; output   1,920.60
+PRINT FORMAT(&quot;00#,###.00&quot;, 1920.6 )  &#39; output 001,920.60
 
-columnformat=&quot;#,###,###.0000     &quot; &#39;&lt;=== oh it does spaces too!
-for i=1 to 50
-  print usg columnformat;rnd*10000000000/1000;
-  if i mod 5=0 then print &#39;&lt;== after printing 5 numbers on line use print to start next line
-next
-?:?
-&#39;A problem with PRINT USING is that it needs a whole statement to itself,
+PRINT FORMAT(&quot;#####^&quot;,     1920.6 )  &#39; output 1,9E+3
+
+PRINT FORMAT(&quot;+#,###.00&quot;,  1920.6 )  &#39; output +1,920.60
+PRINT FORMAT(&quot;+#,###.00&quot;, -1920.6 )  &#39; output -1,920.60
+
+PRINT FORMAT(&quot;-#,###.00&quot;,  1920.6 )  &#39; output  1,920.60
+PRINT FORMAT(&quot;-#,###.00&quot;, -1920.6 )  &#39; output -1,920.60
+
+PRINT FORMAT(&quot;!&quot;,     &quot;Test&quot;)        &#39; output T
+PRINT FORMAT(&quot;\\\\&quot;,  &quot;Test&quot;)        &#39; output Te
+PRINT FORMAT(&quot;\\ \\&quot;, &quot;Test&quot;)        &#39; output Tes
+
+PRINT FORMAT(&quot;\\  X \\&quot;,   &quot;abcde&quot;)  &#39; output abcXde
+PRINT FORMAT(&quot;\\ X Y \\&quot;,  &quot;abcde&quot;)  &#39; output abXcYde
+PRINT FORMAT(&quot;&amp;\\ X Y \\&quot;, &quot;abcde&quot;)  &#39; output abcde</code></pre>
+<h3 id="example-2-printing-numbers-in-columns">Example 2: Printing numbers in columns</h3>
+<pre><code>for y = 1 to 10
+    for x = 1 to 5
+        print format(&quot;#,###.00   &quot;, (rnd*200000 - 100000)/100);
+    next
+    print
+next</code></pre>
+<h3 id="example-3">Example 3</h3>
+<p>PRINT USING and FORMAT use same or similar character codes, here are some practical examples of use, including the creating of a reusable money function that returns a flexible length string for a money amount (dollars and cents format).</p>
+<pre><code>&#39; USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
+&#39; PRINT USING is excellent for columns of numbers
+
+&#39; A problem with PRINT USING is that it needs a whole statement to itself,
 &#39; unlike PRINT that can print a list of expressions in a single statement (with ; , or +)
 &#39; another problem with USING, # is that they are place holders which is nice
 &#39; for column of numbers but not in following:
-currency=&quot;$-###,###,###,###,###,###.00&quot;
-bignumber=&quot;###,###,###,###,###,###&quot;
-onetrillion=1000000000000
-workers=150000000
-? using currency;onetrillion;
-?&quot; divided by &quot;;
-? usg bignumber;workers;  &#39;&lt;=== usg is short for using
-?&quot; working people is &quot;;
-? usg currency;onetrillion/workers;
-?&quot; per working person.&quot;
+
+currency = &quot;$-###,###,###,###,###,###.00&quot;
+bignumber = &quot;###,###,###,###,###,###&quot;
+onetrillion = 1000000000000
+workers = 150000000
+
+? &quot;First version:&quot;
+? using currency; onetrillion;
+? &quot; divided by &quot;;
+? usg bignumber; workers;  &#39;&lt;=== usg is short for using
+? &quot; working people is &quot;;
+? usg currency; onetrillion / workers;
+? &quot; per working person.&quot;
 ?:?
-&#39;Yuck! we need to trim things up, FORMAT works nicely with TRIM
-division=&quot;$ &quot;+trim(format(bignumber,onetrillion/workers))
-onetrillion1=&quot;$ &quot;+trim(format(bignumber,onetrillion))
-workers1=trim(format(bignumber,workers))
-? onetrillion1+&quot; divided by &quot;+workers1;&quot; working people is &quot;;division;&quot; per working person.&quot;
+
+&#39; Yuck! we need to trim things up, FORMAT works nicely with TRIM
+division = &quot;$ &quot; + trim(format(bignumber, onetrillion / workers))
+onetrillion1 = &quot;$ &quot; + trim(format(bignumber, onetrillion))
+workers1 = trim(format(bignumber, workers))
+? &quot;Second version with trim:&quot;
+? onetrillion1 + &quot; divided by &quot; + workers1; &quot; working people is &quot;; division; &quot; per working person.&quot;
 ?:?
-&#39;lets use what we learned here and make a reusable function: money
-? money(onetrillion);&quot; divided by &quot;;workers1;&quot; working people is &quot;+money(onetrillion/workers)+&quot; per working person.&quot;
+
+&#39; lets use what we learned here and make a reusable function: money
+? &quot;Third version as a function:&quot;
+? money(onetrillion); &quot; divided by &quot;; workers1; &quot; working people is &quot; + money(onetrillion/workers) + &quot; per working person.&quot;
 ?:?
-&#39;test money in columns, dang we need to have the same length strings use RIGHT and SPACE
-for i=1 to 50
-  if rnd&gt;.5 then posneg=1 else posneg=-1
-  print right(space(15)+money(rnd*10000000000/1000*posneg),20);
-  if i mod 5=0 then print &#39;&lt;== after printing 5 numbers on line use print to start next line
+
+&#39; Print money as columns like in a table. We need to have the same length strings use RIGHT and SPACE
+? &quot;Money table:&quot;
+for i = 1 to 50
+  if rnd &gt; .5 then
+    posneg = 1
+  else 
+    posneg = -1
+  endif
+  print right(space(15) + money(rnd*10000000000/1000*posneg), 20);
+  if i mod 5=0 then print &#39;&lt;== after printing 5 numbers in one line use print to start next line
 next
-pause
-func money(dollarsandcents) &#39;oh - numbers are saved
-  money=&quot;$ &quot;+trim(format(&quot;###,###,###,###,###,###.00&quot;,dollarsandcents))
+
+func money(dollarsandcents)
+  money = &quot;$ &quot; + trim(format(&quot;###,###,###,###,###,###.00&quot;, dollarsandcents))
 end</code></pre>
-<p>Must add extra space after ‘\’, if not there is an error:</p>
-<pre><code>? format(&quot;\\ _ \\&quot;, &quot;abcde&quot;)   &#39; --&gt; error missing &#39;)&#39;
-? format(&quot;\\ _ \\ &quot;, &quot;abcde&quot;)  &#39; --&gt; &quot;ab_cd &quot;
-? format(&quot;\\  _ \\ &quot;, &quot;abcde&quot;) &#39; --&gt; &quot;abc_de &quot;
-? Usg &quot;\\ _ \\&quot;; &quot;abcde&quot;   &#39; --&gt; error or prints nothing
-? Usg &quot;\\ _ \\ &quot;; &quot;abcde&quot;  &#39; --&gt; &quot;ab_cd &quot;
-? Usg &quot;\\  _ \\ &quot;; &quot;abcde&quot; &#39; --&gt; &quot;abc_de &quot;</code></pre>

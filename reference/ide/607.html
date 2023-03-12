@@ -3,3 +3,26 @@
 <p>FREEFILE</p>
 </blockquote>
 <p>Returns an unused file handle.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; create a text file
+
+f = freefile()
+open &quot;MyDemoFile.txt&quot; for output as #f
+
+for i = 1 to 10
+    print #f, i 
+next
+
+close #f
+
+&#39; open text file and print content line by line
+
+f = freefile()
+open &quot;MyDemoFile.txt&quot; for input as #f
+
+while(!eof(f))   &#39; eof works only without #
+    input #f, c
+    print c
+wend
+
+close #f</code></pre>

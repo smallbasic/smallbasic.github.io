@@ -313,31 +313,58 @@ PALM OS
 
 FORM(map)
 
-Creates a form object from a MAP variable. This provides access to the
-following sub-commands:
+Creates a form object f from a MAP variable formMap. Form object f gives
+access to the following GUI elements:
 
-  ------------ --------------------------------------------------------------------------------------------------------------
-  doEvents()   Process system events for mouse and keyboard handling.
-  close()      Closes the active FORM.
-  refresh(n)   n=1 Copy the UI state into the FORM input variables. n=0 Update the UI state using the FORM input variables.
-  ------------ --------------------------------------------------------------------------------------------------------------
+-   Push button
+-   Label
+-   Hyperlinked text
+-   Listbox
+-   Dropdown listbox
+-   Single or multi-line text input
+-   Image button
 
-The form MAP may contain the following properties
+In listboxes and dropdown listboxes press and hold mouse button to
+scroll through the items. Alternatively arrow keys can be used. Press
+return or space for selecting the highlighted item.
 
-  -------- ----------------------------------------
-  value    The value from the active input field.
-  inputs   Array of inputs.
-  focus    Index to the focused input.
-  -------- ----------------------------------------
+The form object
 
-Inputs is an array of type MAP, each element may contain the following
-properties
+f = form(formMAP) provides access to the following sub-commands of the
+form object f:
 
+  -----------------------------------------------------------------------
+  Sub-command          Description
+  -------------------- --------------------------------------------------
+  doEvents()           Process system events for mouse and keyboard
+                       handling.
+
+  close()              Closes the active FORM.
+
+  refresh(n)           n = 1 Copy the UI state into the FORM input
+                       variables. n = 0 Update the UI state using the
+                       FORM input variables.
+  -----------------------------------------------------------------------
+
+The form object f may contain the following properties:
+
+  Property   Description
+  ---------- ----------------------------------------
+  value      The value from the active input field.
+  inputs     Array of inputs.
+  focus      Index to the focused input.
+
+Defining the input fields
+
+inputs is an array of type MAP, each element may contain the following
+attributes:
+
+  Attribute         Description
   ----------------- -------------------------------------------------------
   x                 X coordinate.
   y                 Y coordinate.
-  width             Input width.
-  height            Input height.
+  width             Width.
+  height            Height.
   value             The internal value associated with the input.
   label             The display label for the input.
   name              The name of the input.
@@ -350,32 +377,184 @@ properties
   resizable         Whether the field can be resized.
   visible           Whether the input field is visible.
   selectedIndex     The selected item in a listbox or choice.
-  length            Length of an TEXT input field.
+  length            Length of a TEXT input field in number of characters.
   noFocus           The input cannot receive focus.
   onclick           SUB to invoke when clicked.
-  ----------------- -------------------------------------------------------
 
-The type attribute can be one of the following
+The type attribute can be one of the following:
 
-  --------- ----------------------------------
-  button    Push button.
-  label     Display label.
-  link      Hyperlinked text.
-  listbox   Listbox.
-  choice    Dropdown listbox.
-  text      Single or multi-line text input.
-  image     Image button.
-  --------- ----------------------------------
+  Type        Description
+  ----------- ----------------------------------
+  “button”    Push button.
+  “label”     Display label.
+  “link”      Hyperlinked text.
+  “listbox”   Listbox.
+  “choice”    Dropdown listbox.
+  “text”      Single or multi-line text input.
+  “image”     Image button.
 
-Example
+Example 1: Creating a push button
+
+    button.type = "button"
+    button.x = 120
+    button.y = 120
+    button.label = "Button"
+    button.backgroundcolor = rgb(60, 60, 60)
+    button.onclick = @ButtonClicked     ' Callback function, definition see below
+
+    formMAP.inputs << button
+
+    f = form(formMAP)
+
+    while 1
+      f.doEvents()
+    wend
+
+    f.close()
+
+    sub ButtonClicked()
+      at 0,0
+      Clicked++
+      print "Button clicked " + Clicked + " times"
+    end
+
+Example 2: creating a label
+
+    l.type = "label"
+    l.x = 120
+    l.y = 120
+    l.label = "Label"
+    l.color = rgb(255, 60, 60)
+
+    f.inputs << l
+
+    f = form(f)
+
+    while 1
+      f.doEvents()
+    wend
+
+    f.close()
+
+Example 3: Creating a link to an external website
+
+    l.type = "link"
+    l.x = 120
+    l.y = 120
+    l.label = "Link to SmallBASIC website"
+    l.value = "https://smallbasic.github.io"
+    l.isExternal = true
+    l.color = rgb(100, 100, 255)
+
+    f.inputs << l
+
+    f = form(f)
+
+    while 1
+      f.doEvents()
+    wend
+
+    f.close()
+
+Example 4: Creating a listbox
+
+    l.type = "listbox"
+    l.x = 120
+    l.y = 120
+    l.height = 200
+    l.width = 100
+    l.value = "cats|dogs|fish|birds|insects"
+    l.color = rgb(255, 255, 255)
+    l.backgroundColor = rgb(100, 100, 100)
+
+    f.inputs << l
+
+    f = form(f)
+
+    while 1
+      f.doEvents()
+      
+      ' Check for value of the active input field
+      if (len(f.value) > 0) then
+        at 0,0
+        print f.value; "                  "
+      end if  
+    wend
+
+    f.close()
+
+Example 5: Creating a dropdown listbox
+
+    l.type = "choice"
+    l.x = 120
+    l.y = 120
+    l.width = 100
+    l.value = "cats|dogs|fish|birds|insects"
+    l.color = rgb(255, 255, 255)
+    l.backgroundColor = rgb(100, 100, 100)
+
+    f.inputs << l
+
+    f = form(f)
+
+    while 1
+      f.doEvents()
+      
+      ' Check for value of the active input field
+      if (len(f.value) > 0) then
+        at 0,0
+        print f.value; "                  "
+      end if  
+    wend
+
+    f.close()
+
+Example 6: Creating a text input field
+
+    t.type = "text"
+    t.x = 120
+    t.y = 120
+    t.width = 300
+    t.value = "Add more text"
+    ' t.height = 100  ' if hight is not defined, single line field
+    t.color = rgb(255, 255, 255)
+    t.backgroundColor = rgb(100, 100, 100)
+    t.length = 50 ' number of characters
+
+    ' create additionally an OK-Button to update the form object
+    ' otherwise the text field blocks loop
+    b.type = "button"
+    b.x = 120 + t.width + 10
+    b.y = 120 
+    b.label = "OK"
+    b.backgroundcolor = rgb(60, 60, 60)
+    b.onclick = @OKButtonClicked
+    f.inputs << t
+    f.inputs << b
+
+    f = form(f)
+
+    while 1
+      f.doEvents()  
+    wend
+
+    f.close()
+
+    sub OKButtonClicked()
+       f.refresh(1)              ' Update the form object
+       at 0,0
+       print f.inputs[0].value   ' Text field is the first element added to the formMAP
+    end
+
+Example: One more example
 
     f.handleKeys = 0
     ' create some buttons
     button1.y = 120
     button1.label = "Button1"
-    button1.value = "valudofButton1"
+    button1.value = "valueofButton1"
     button1.backgroundcolor = rgb(255,0,0)
-    button1.onclick = HelloWorld 'this prints on load
+    button1.onclick = @HelloWorld 'this prints on load
     button2.x = -1
     button2.y = 120
     button2.label = "Button2"
@@ -1295,8 +1474,11 @@ Example 4: Creating and accessing arrays
 
 EMPTY (x)
 
-Returns true if x is * a zero length array * an empty string * a number
-with the value 0.
+Returns true if x is
+
+-   a zero length array
+-   an empty string
+-   a number with the value 0.
 
 Example
 
@@ -2376,19 +2558,34 @@ Example
 
 FILES (wildcards)
 
-Returns an array with the filenames. If there are no files returns an
-empty array.
+Returns an array with the filenames. If there are no files, FILES
+returns an empty array. exp can contain the wildcards * and ?. exp can
+include a path.
 
-The directory listing, if assigned to a string, will create a string
-array. Each filename is assigned to its own element in the string array.
-sample program example:
+Example 1: List all files in the current directory
 
+    FileNames = files("*.*")
 
-    20 a$=FILES("*.*")
-    30 n=LEN(a$)
-    40 FOR i = 0 to n-1
-    50 PRINT a$(i)
-    60 NEXT i
+    for f in FileNames
+        print f
+    next
+
+Example 2: List all files matching search string
+
+    FileNames = files("t?st.bas")
+
+    for f in FileNames
+        print f
+    next
+
+Example 3: Using a path
+
+    FileNames = files("/usr/bin/*")    ' Linux
+    ' FileNames = files("C:\*.*")      ' Windows
+
+    for f in FileNames
+        print f
+    next
 
 +========================================================================================+
 |                                   66. (File) FREEFILE                                  |
@@ -2397,6 +2594,31 @@ sample program example:
 FREEFILE
 
 Returns an unused file handle.
+
+Example
+
+    ' create a text file
+
+    f = freefile()
+    open "MyDemoFile.txt" for output as #f
+
+    for i = 1 to 10
+        print #f, i 
+    next
+
+    close #f
+
+    ' open text file and print content line by line
+
+    f = freefile()
+    open "MyDemoFile.txt" for input as #f
+
+    while(!eof(f))   ' eof works only without #
+        input #f, c
+        print c
+    wend
+
+    close #f
 
 +========================================================================================+
 |                                     67. (File) INPUT                                   |
@@ -2476,17 +2698,17 @@ INPUT, BGETC and BPUTC to read from or write to a file or device.
 With OPEN you can also open a network connection. Depending on the kind
 of connection the following file names can be used:
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------
-  Connection Type                                Example
-  ---------------------------------------------- -----------------------------------------------------------------------------------------------------
-  URL                                            open “http://api.duckduckgo.com/?q=Cars&format=json” as #1
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Connection Type                                   Example
+  ------------------------------------------------- ----------------------------------------------------------------------------------------------------------------
+  URL                                               open "http://api.duckduckgo.com/?q=Cars&format=json" as #1
 
-  Image                                          open
-                                                 "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png"
-                                                 as #1
+  Image                                             open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1
 
-  Socket                                         open “SOCL:192.168.178.76:8080” as #1
-  ----------------------------------------------------------------------------------------------------------------------------------------------------
+  Socket                                            open "SOCL:192.168.178.76:8080" as #1
+
+  Serial Port (RS232)                               open "COM1:19200" as # 1
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 More information with examples can be found in the article “Network
 programming”.
@@ -5663,7 +5885,34 @@ Example 4: func
 
 FALSE
 
-FALSE
+Boolean FALSE.
+
+Example 1: Assign FALSE to a variable
+
+    a = true
+    b = false
+
+    print a  ' output: 1
+    print b  ' output: 2
+
+Example 2: Use in a while loop
+
+    IsRunning = true
+
+    while(IsRunning)
+        i++
+        print i
+        
+        if(i == 5) then IsRunning = false
+    wend
+
+    'Output: 1 2 3 4 5
+
+Example 3: Use in a if statement
+
+    ButtonPressed = false   ' replace false with true
+
+    if(ButtonPressed) then print "Button was pressed"
 
 +========================================================================================+
 |                                    130. (Language) FI                                  |
@@ -5671,7 +5920,14 @@ FALSE
 
 FI
 
-Declares the end of an IF statement. Same as ENDIF.
+FI ends an if statement. Same as ENDIF. For more information see IF.
+
+Example
+
+    foo = 1
+    if foo == 1 then
+      print "one"
+    fi
 
 +========================================================================================+
 |                                   131. (Language) FOR                                  |
@@ -5679,52 +5935,130 @@ Declares the end of an IF statement. Same as ENDIF.
 
 FOR expr
 
-Defines a FOR/NEXT loop. FOR counter = start TO end [STEP incr] … NEXT.
-FOR element IN array (or map) … NEXT.
+  FOR element IN array (or map) … NEXT
 
-Begins the definition of a FOR/NEXT loop. * counter - A numeric variable
-to be used as the loop counter. * start - A numeric expression; the
-starting value of counter. * end - A numeric expression; the ending
-value of counter. * incr - A numeric expression; the value by which
-counter is incremented or decremented with each iteration of the loo The
-default value is +1.
+Defines a FOR/NEXT loop.
+
+-   counter - A numeric variable to be used as the loop counter.
+-   start - A numeric expression; the starting value of counter.
+-   end - A numeric expression; the ending value of counter.
+-   incr - A numeric expression; the value by which counter is
+    incremented or decremented with each iteration of the loop. The
+    default value is 1.
+-   element - A variable to be used as the copy of the current element.
+-   array - An array or map variable
+
+FOR counter = start TO end [STEP incr] … NEXT
 
 SmallBASIC begins processing of the FOR/NEXT block by setting counter
 equal to start. Then, if ‘incr’ is positive and counter is not greater
-than end, the commands between the FOR and the NEXT are executed.
-
-When the NEXT is encountered, counter is increased by ‘incr’, and the
-process is repeated. Execution passes to the command following the NEXT
-if counter is greater than end.
+than end, the commands between the FOR and the NEXT are executed. When
+the NEXT is encountered, counter is increased by ‘incr’, and the process
+is repeated. Execution passes to the command following the NEXT if
+counter is greater than end.
 
 If increment is negative, execution of the FOR/NEXT loop is terminated
 whenever counter becomes less than end. FOR/NEXT loops may be nested to
 any level of complexity, but there must be a NEXT for each FOR.
 
+FOR element IN array … NEXT
 
-    FOR C=1 TO 9
-        PRINT C
-    NEXT
+The commands-block will be repeated for LEN(array) times. Each time the
+‘element’ will holds the value of the current element of the array.
+FOR/NEXT loops may be nested to any level of complexity, but there must
+be a NEXT for each FOR.
 
-Statement FOR element IN array … NEXT Begins the definition of a
-FOR/NEXT loop. * element - A variable to be used as the copy of the
-current element. * array - An array expression The commands-block will
-repeated for LEN(array) times. Each time the ‘element’ will holds the
-value of the current element of the array. FOR/NEXT loops may be nested
-to any level of complexity, but there must be a NEXT for each FOR.
+Example 1
 
+    for i = 1 to 9
+        print i
+    next
 
-    A=[1,2,3]
-    FOR E IN A
-        PRINT E
-    NEXT
-    ...
-    ' This is the same with that
-    A=[1,2,3]
-    FOR I=LBOUND(A) TO UBOUND(A)
-        E=A(I)
-        PRINT E
-    NEXT
+    ' Output 1 2 3 4 5 6 7 8 9
+
+Example 2
+
+    for i = 1 to 9 Step 2
+        print i
+    next
+
+    ' Output: 1 3 5 7 9
+
+Example 3
+
+    for i = 9 to 1 Step -1
+        print i
+    next
+
+    ' Output 9 8 7 6 5 4 3 2 1
+
+Example 4
+
+    a =  [12, 6, 23, -4]
+
+    for i in a
+        print i
+    next
+
+    ' Output 12 6 23 -4
+
+Example 5
+
+    a =  ["car", "tree", "house"]
+
+    for i in a
+        print i
+    next
+
+    ' Output car tree house
+
+Example 6
+
+    a = {x:1, s:"test1"}
+    b = {x:2, s:"test2"}
+    c = {x:3, s:"test3"}
+
+    MapVar = [a,b,c]
+
+    for i in MapVar    
+        print i.x, i.s
+    next
+
+    ' Output:   1 test1
+    '           2 test2
+    '           3 test3
+
+Example 7
+
+    a = {x:1, y:2, s:"test1"}
+
+    for i in a
+        print i + " = " + a(i)
+    next
+
+    ' Output:   y = 2
+    '           x = 1
+    '           s = test1
+
+Example 8: Changing counter inside the loop
+
+    for i = 1 to 10
+        i = i + 1
+        print i
+    next
+
+    ' Output: 2 4 6 8 10
+
+Example 8: Changing stop parameter inside the loop
+
+    e = 10
+
+    for i = 1 to e
+        e = 5
+        print i
+    next
+
+    ' Output: 1 2 3 4 5
 
 +========================================================================================+
 |                                   132. (Language) FUNC                                 |
@@ -5732,22 +6066,31 @@ to any level of complexity, but there must be a NEXT for each FOR.
 
 FUNC foo (a, b)
 
-Declares a function. Return a value by assigning a ‘variable’ with the
-same name as the function.
+Declares a function. Return a value by assigning a variable with the
+same name as the function or by using RETURN.
 
-    'Main program
+Example 1:
+
+    ' Main program
     print MyAddFunction(10,20)
 
-
-    'Function definition
+    ' Function definition
     FUNC MyAddFunction(a,b)
-
       local c   'c is just known inside this function
-      
       c = a + b
-      
       MyAddFunction = c
+    END
 
+Example 2: Using return
+
+    ' Main program
+    print MyAddFunction(10,20)
+
+    ' Function definition
+    FUNC MyAddFunction(a,b)
+      local c   'c is just known inside this function
+      c = a + b
+      return c
     END
 
 +========================================================================================+
@@ -7885,7 +8228,7 @@ FRAC (x)
 
 Fractional part of x.
 
-    print frac(71.901)
+    print frac(71.901)  ' Output: 0.901
 
 +========================================================================================+
 |                                     206. (Math) INT                                    |
@@ -9550,85 +9893,128 @@ Returns a formated string.
 
 Numbers:
 
--   ‘#’ Digit or space
--   0 Digit or zero
--   ^ Stores a number in exponential format. Unlike QB’s USING format
-    this is a place-holder like #.
--   . The position of the decimal point.
--   , Separator.
--   - Stores minus if the number is negative.
--   + Stores the sign of the number.
+   Format  Description
+  -------- -----------------------------------------
+     #     Digit or space
+     0     Digit or zero
+     ^     Stores a number in exponential format.
+     .     The position of the decimal point.
+     ,     Separator
+     -     Stores minus if the number is negative.
+     +     Stores the sign of the number.
 
 Strings:
 
--   & Stores a string expression without reformatting it.
--   ! Stores only the first character of a string expression.
--   \\ Stores only the first n + 2 characters of a string expression,
-    where n is the number of spaces between the two backslashes.
+  -----------------------------------------------------------------------
+            Format            Description
+  --------------------------- -------------------------------------------
+               &              Stores a string expression without
+                              reformatting it.
 
-Unlike QB, there can be literals inside the \ \. These literals are
+               !              Stores only the first character of a string
+                              expression.
+
+             \\ \\            Stores only the first n + 2 characters of a
+                              string expression, where n is the number of
+                              spaces between the two pairs of
+                              backslashes.
+  -----------------------------------------------------------------------
+
+When using \\ \\, literals can be inside the \\ \\. These literals are
 inserted in the final string.
 
-    ? FORMAT("#,##0", 1920.6) : REM prints 1,921
-    ? FORMAT("\\  - \\", "abcde") : REM prints "abc-de"
+Example 1
+
+    PRINT FORMAT("####.##",    1920.64)  ' output 1920.64
+    PRINT FORMAT("#######",    1920.64)  ' output    1921
+    PRINT FORMAT("#,###.##",   1920.64)  ' output 1,920.64
+    PRINT FORMAT("#,###.00",   1920.6 )  ' output 1,920.60
+    PRINT FORMAT("#,###",      1920.6 )  ' output 1,921
+    PRINT FORMAT("###,###.00", 1920.6 )  ' output   1,920.60
+    PRINT FORMAT("00#,###.00", 1920.6 )  ' output 001,920.60
+
+    PRINT FORMAT("#####^",     1920.6 )  ' output 1,9E+3
+
+    PRINT FORMAT("+#,###.00",  1920.6 )  ' output +1,920.60
+    PRINT FORMAT("+#,###.00", -1920.6 )  ' output -1,920.60
+
+    PRINT FORMAT("-#,###.00",  1920.6 )  ' output  1,920.60
+    PRINT FORMAT("-#,###.00", -1920.6 )  ' output -1,920.60
+
+    PRINT FORMAT("!",     "Test")        ' output T
+    PRINT FORMAT("\\\\",  "Test")        ' output Te
+    PRINT FORMAT("\\ \\", "Test")        ' output Tes
+
+    PRINT FORMAT("\\  X \\",   "abcde")  ' output abcXde
+    PRINT FORMAT("\\ X Y \\",  "abcde")  ' output abXcYde
+    PRINT FORMAT("&\\ X Y \\", "abcde")  ' output abcde
+
+Example 2: Printing numbers in columns
+
+    for y = 1 to 10
+        for x = 1 to 5
+            print format("#,###.00   ", (rnd*200000 - 100000)/100);
+        next
+        print
+    next
+
+Example 3
 
 PRINT USING and FORMAT use same or similar character codes, here are
 some practical examples of use, including the creating of a reusable
-Money function that returns a flexible length string for a money amount
+money function that returns a flexible length string for a money amount
 (dollars and cents format).
 
-    rem USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
-    rem PRINT USING is excellent for columns of numbers
+    ' USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
+    ' PRINT USING is excellent for columns of numbers
 
-    columnformat="#,###,###.0000     " '<=== oh it does spaces too!
-    for i=1 to 50
-      print usg columnformat;rnd*10000000000/1000;
-      if i mod 5=0 then print '<== after printing 5 numbers on line use print to start next line
-    next
-    ?:?
-    'A problem with PRINT USING is that it needs a whole statement to itself,
+    ' A problem with PRINT USING is that it needs a whole statement to itself,
     ' unlike PRINT that can print a list of expressions in a single statement (with ; , or +)
     ' another problem with USING, # is that they are place holders which is nice
     ' for column of numbers but not in following:
-    currency="$-###,###,###,###,###,###.00"
-    bignumber="###,###,###,###,###,###"
-    onetrillion=1000000000000
-    workers=150000000
-    ? using currency;onetrillion;
-    ?" divided by ";
-    ? usg bignumber;workers;  '<=== usg is short for using
-    ?" working people is ";
-    ? usg currency;onetrillion/workers;
-    ?" per working person."
+
+    currency = "$-###,###,###,###,###,###.00"
+    bignumber = "###,###,###,###,###,###"
+    onetrillion = 1000000000000
+    workers = 150000000
+
+    ? "First version:"
+    ? using currency; onetrillion;
+    ? " divided by ";
+    ? usg bignumber; workers;  '<=== usg is short for using
+    ? " working people is ";
+    ? usg currency; onetrillion / workers;
+    ? " per working person."
     ?:?
-    'Yuck! we need to trim things up, FORMAT works nicely with TRIM
-    division="$ "+trim(format(bignumber,onetrillion/workers))
-    onetrillion1="$ "+trim(format(bignumber,onetrillion))
-    workers1=trim(format(bignumber,workers))
-    ? onetrillion1+" divided by "+workers1;" working people is ";division;" per working person."
+
+    ' Yuck! we need to trim things up, FORMAT works nicely with TRIM
+    division = "$ " + trim(format(bignumber, onetrillion / workers))
+    onetrillion1 = "$ " + trim(format(bignumber, onetrillion))
+    workers1 = trim(format(bignumber, workers))
+    ? "Second version with trim:"
+    ? onetrillion1 + " divided by " + workers1; " working people is "; division; " per working person."
     ?:?
-    'lets use what we learned here and make a reusable function: money
-    ? money(onetrillion);" divided by ";workers1;" working people is "+money(onetrillion/workers)+" per working person."
+
+    ' lets use what we learned here and make a reusable function: money
+    ? "Third version as a function:"
+    ? money(onetrillion); " divided by "; workers1; " working people is " + money(onetrillion/workers) + " per working person."
     ?:?
-    'test money in columns, dang we need to have the same length strings use RIGHT and SPACE
-    for i=1 to 50
-      if rnd>.5 then posneg=1 else posneg=-1
-      print right(space(15)+money(rnd*10000000000/1000*posneg),20);
-      if i mod 5=0 then print '<== after printing 5 numbers on line use print to start next line
+
+    ' Print money as columns like in a table. We need to have the same length strings use RIGHT and SPACE
+    ? "Money table:"
+    for i = 1 to 50
+      if rnd > .5 then
+        posneg = 1
+      else 
+        posneg = -1
+      endif
+      print right(space(15) + money(rnd*10000000000/1000*posneg), 20);
+      if i mod 5=0 then print '<== after printing 5 numbers in one line use print to start next line
     next
-    pause
-    func money(dollarsandcents) 'oh - numbers are saved
-      money="$ "+trim(format("###,###,###,###,###,###.00",dollarsandcents))
+
+    func money(dollarsandcents)
+      money = "$ " + trim(format("###,###,###,###,###,###.00", dollarsandcents))
     end
-
-Must add extra space after ‘\’, if not there is an error:
-
-    ? format("\\ _ \\", "abcde")   ' --> error missing ')'
-    ? format("\\ _ \\ ", "abcde")  ' --> "ab_cd "
-    ? format("\\  _ \\ ", "abcde") ' --> "abc_de "
-    ? Usg "\\ _ \\"; "abcde"   ' --> error or prints nothing
-    ? Usg "\\ _ \\ "; "abcde"  ' --> "ab_cd "
-    ? Usg "\\  _ \\ "; "abcde" ' --> "abc_de "
 
 +========================================================================================+
 |                                    259. (String) HEX                                   |
@@ -10626,46 +11012,53 @@ Example: Create an unit
 
 FRE (x)
 
-Returns system information. eg, 0 = free memory,
+Returns system memory information. eg, 0 = free memory. If a value is
+not supported by the operating system, fre will return 0. fre() without
+a parameter returns the free physical memory.
 
-Where x: QB-standard:
+Windows
 
+    x   Description
   ----- ---------------------------
-  0 f   ree memory
-  -1    largest block of integers
-  -2    free stack
-  -3    largest free block
-  ----- ---------------------------
+    0   free memory
+   -1   largest block of integers
+   -2   free stack
+   -3   largest free block
+   -12  free memory same as 0
 
-Our standard (it is optional for now):
+LINUX and ANDROID
 
-  ----- -----------------------
-  -10   total physical memory
-  -11   used physical memory
-  -12   free physical memory
-  ----- -----------------------
-
-Optional-set #1:
-
-  ----- ---------------------------
-  -13   shared memory size
-  -14   buffers
-  -15   cached
-  -16   total virtual memory size
-  -17   used virtual memory
-  -18   free virtual memory
-  ----- ---------------------------
-
-Optional-set #2:
-
+    x   Description
   ----- --------------------------------
-  -40   battery voltage * 1000
-  -41   battery percent
-  -42   critical voltage value (*1000)
-  -43   warning voltage value (*1000)
-  ----- --------------------------------
+    0   free memory
+   -10  total physical memory
+   -11  used physical memory
+   -12  free physical memory same as 0
 
-The optional values will return 0 if not supported.
+Alternative for LINUX with kernel > 3.x and ANDROID
+
+fre can be used to read the values of the file /proc/meminfo. In a
+console please type cat /proc/meminfo. Output should look similar to
+this (but more lines):
+
+    MemTotal:        3630512 kB
+    MemFree:          117204 kB
+    MemAvailable:     601308 kB
+    Buffers:           52680 kB
+    Cached:          1002608 kB
+    SwapCached:        58640 kB
+    Active:           857224 kB
+    Inactive:        1781244 kB
+
+To querry with fre the value of the first line, use fre(0), for second
+line fre(1), and so on.
+
+Example
+
+    print "Free memory: "; fre()
+    print "Total RAM: "; fre(-10)
+    print "Used RAM: "; fre(-11)
+    print "Free RAM: "; fre(-12)
 
 +========================================================================================+
 |                                    298. (System) HOME                                  |

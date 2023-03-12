@@ -74,96 +74,81 @@
     </p>
   </div>
 </blockquote>
-<p>Returns system information. eg, 0 = free memory,</p>
-<p>Where x: QB-standard:</p>
+<p>Returns system memory information. eg, 0 = free memory. If a value is not supported by the operating system, <code>fre</code> will return 0. <code>fre()</code> without a parameter returns the free physical memory.</p>
+<h3 id="windows">Windows</h3>
 <table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">x</th>
+<th>Description</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td>0 f</td>
-<td style="text-align: left;">ree memory</td>
+<td style="text-align: center;">0</td>
+<td>free memory</td>
 </tr>
 <tr class="even">
-<td>-1</td>
-<td style="text-align: left;">largest block of integers</td>
+<td style="text-align: center;">-1</td>
+<td>largest block of integers</td>
 </tr>
 <tr class="odd">
-<td>-2</td>
-<td style="text-align: left;">free stack</td>
+<td style="text-align: center;">-2</td>
+<td>free stack</td>
 </tr>
 <tr class="even">
-<td>-3</td>
-<td style="text-align: left;">largest free block</td>
+<td style="text-align: center;">-3</td>
+<td>largest free block</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">-12</td>
+<td>free memory same as 0</td>
 </tr>
 </tbody>
 </table>
-<p>Our standard (it is optional for now):</p>
+<h3 id="linux-and-android">LINUX and ANDROID</h3>
 <table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">x</th>
+<th>Description</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">-10</td>
-<td style="text-align: left;">total physical memory</td>
+<td style="text-align: center;">0</td>
+<td>free memory</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">-11</td>
-<td style="text-align: left;">used physical memory</td>
+<td style="text-align: center;">-10</td>
+<td>total physical memory</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">-12</td>
-<td style="text-align: left;">free physical memory</td>
+<td style="text-align: center;">-11</td>
+<td>used physical memory</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">-12</td>
+<td>free physical memory same as 0</td>
 </tr>
 </tbody>
 </table>
-<p>Optional-set #1:</p>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">-13</td>
-<td style="text-align: left;">shared memory size</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">-14</td>
-<td style="text-align: left;">buffers</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">-15</td>
-<td style="text-align: left;">cached</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">-16</td>
-<td style="text-align: left;">total virtual memory size</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">-17</td>
-<td style="text-align: left;">used virtual memory</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">-18</td>
-<td style="text-align: left;">free virtual memory</td>
-</tr>
-</tbody>
-</table>
-<p>Optional-set #2:</p>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">-40</td>
-<td style="text-align: left;">battery voltage * 1000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">-41</td>
-<td style="text-align: left;">battery percent</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">-42</td>
-<td style="text-align: left;">critical voltage value (*1000)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">-43</td>
-<td style="text-align: left;">warning voltage value (*1000)</td>
-</tr>
-</tbody>
-</table>
-<p>The optional values will return 0 if not supported.</p>
+<h3 id="alternative-for-linux-with-kernel-3.x-and-android">Alternative for LINUX with kernel &gt; 3.x and ANDROID</h3>
+<p><code>fre</code> can be used to read the values of the file <code>/proc/meminfo</code>. In a console please type <code>cat /proc/meminfo</code>. Output should look similar to this (but more lines):</p>
+<pre><code>MemTotal:        3630512 kB
+MemFree:          117204 kB
+MemAvailable:     601308 kB
+Buffers:           52680 kB
+Cached:          1002608 kB
+SwapCached:        58640 kB
+Active:           857224 kB
+Inactive:        1781244 kB</code></pre>
+<p>To querry with <code>fre</code> the value of the first line, use <code>fre(0)</code>, for second line <code>fre(1)</code>, and so on.</p>
+<h3 id="example">Example</h3>
+<pre><code>print &quot;Free memory: &quot;; fre()
+print &quot;Total RAM: &quot;; fre(-10)
+print &quot;Used RAM: &quot;; fre(-11)
+print &quot;Free RAM: &quot;; fre(-12)</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using FRE</div>
     <div class="linklist">
@@ -248,7 +233,7 @@ FRE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Sun, 12 Mar 2023 14:43:52 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
