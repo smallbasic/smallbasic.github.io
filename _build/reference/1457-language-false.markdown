@@ -11,7 +11,7 @@ a = true
 b = false
 
 print a  ' output: 1
-print b  ' output: 2
+print b  ' output: 0
 ```
 
 Example 2: Use in a while loop
@@ -21,8 +21,7 @@ IsRunning = true
 
 while(IsRunning)
     i++
-    print i
-    
+    print i    
     if(i == 5) then IsRunning = false
 wend
 
@@ -33,7 +32,6 @@ Example 3: Use in a if statement
 
 ```
 ButtonPressed = false   ' replace false with true
-
 if(ButtonPressed) then print "Button was pressed"
 ```
 
