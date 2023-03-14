@@ -70,7 +70,7 @@ The type attribute can be one of the following:
 | "text"    | Single or multi-line text input.
 | "image"   | Image button.
 
-### Example 1: Creating a push button
+### Example 1: Creating a push button using callback function
 
 ```
 button.type = "button"
@@ -97,7 +97,7 @@ sub ButtonClicked()
 end
 ```
 
-### Example 2: creating a label
+### Example 2: Creating a label
 
 ```
 l.type = "label"
@@ -235,6 +235,40 @@ sub OKButtonClicked()
 end
 ```
 
+### Example 7: Image button using callback function
+
+```
+' Create a simple button and save it as png
+' If you have already an image for you button,
+' this part is not necessary.
+circle 100,100,100 color 15 filled
+ButtonImage = image(0,0,200,200)
+ButtonImage.save("button.png")
+cls
+ 
+' Define image button
+button.type = "image"
+button.name = "button.png"
+button.x = 120
+button.y = 120
+button.onclick = @ButtonClicked     ' Callback function, definition see below.
+ 
+formMAP.inputs << button
+ 
+f = form(formMAP)
+ 
+while 1
+  f.doEvents()
+wend
+ 
+f.close()
+ 
+sub ButtonClicked()
+  at 0,0
+  Clicked++
+  print "Button clicked " + Clicked + " times"
+end
+```
 
 ### Example: One more example
 
