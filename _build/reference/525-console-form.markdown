@@ -97,7 +97,33 @@ sub ButtonClicked()
 end
 ```
 
-### Example 2: Creating a label
+### Example 2: Creating a push button using doEvents result
+
+```
+button.type = "button"
+button.x = 120
+button.y = 120
+button.label = "Button"
+button.backgroundcolor = rgb(60, 60, 60)
+button.value = 1  ' unique value to identify the button
+
+formMAP.inputs << button
+
+f = form(formMAP)
+
+while 1
+  f.doEvents()
+  if(f.value == 1) then
+    ii++
+    at 0,0
+    print "Button cklicked " + ii + " times."
+  endif 
+wend
+
+f.close()
+```
+
+### Example 3: Creating a label
 
 ```
 l.type = "label"
@@ -117,7 +143,7 @@ wend
 f.close()
 ```
 
-### Example 3: Creating a link to an external website
+### Example 4: Creating a link to an external website
 
 ```
 l.type = "link"
@@ -139,7 +165,7 @@ wend
 f.close()
 ```
 
-### Example 4: Creating a listbox
+### Example 5: Creating a listbox
 
 ```
 l.type = "listbox"
@@ -168,7 +194,7 @@ wend
 f.close()
 ```
 
-### Example 5: Creating a dropdown listbox
+### Example 6: Creating a dropdown listbox
 
 ```
 l.type = "choice"
@@ -196,7 +222,7 @@ wend
 f.close()
 ```
 
-### Example 6: Creating a text input field
+### Example 7: Creating a text input field
 
 ```
 t.type = "text"
@@ -235,7 +261,10 @@ sub OKButtonClicked()
 end
 ```
 
-### Example 7: Image button using callback function
+### Example 8: Image button using callback function
+
+In this example a callback function will be used. If you want to use the doEvents result instead,
+have a look at example 2.
 
 ```
 ' Create a simple button and save it as png
@@ -270,7 +299,7 @@ sub ButtonClicked()
 end
 ```
 
-### Example: One more example
+### Example 9: One more example
 
 ```
 f.handleKeys = 0
