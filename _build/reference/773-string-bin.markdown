@@ -5,5 +5,7 @@
 Returns the binary value of x as string.
 
 ```
-print bin(123)
+print hex(255)      ' output: FF
+print bin(8)        ' output: 1000
+print oct(16)       ' output: 20
 ```
