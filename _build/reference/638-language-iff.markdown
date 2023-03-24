@@ -1,23 +1,43 @@
 # IFF
 
-> IFF expr
+> IFF (condition, return_value_true, return_value_false)
 
-Inline version of IF. eg, `animal = "cat": fur = IFF( animal = "cat", "yes", "no"): ? fur`
+Inline version of IF.
 
-`animal=IFF(HasFur=1,"Cat","Fish")` or `? IFF(animal="cat"," has fur.", " might not have fur.")`
+### Example 1
 
-    ' RND - returns a number from 0 to almost 1
-    ' IFF - IFF(conditional statement to evaluate, return this if evaluates true, returns this if evaluates false)
-    FOR i=1 TO 20 'need a random true/false, subst 0 or 1 (or -1)  ;)
-      ? IFF(rnd<.5,"True ","False ");   '<======================== RND and IFF
-    next
-    ?:?
-    FOR i=1 TO 10  'need a random direction back and forth
-      dir=IFF(RND<.5,-360*RND,360*RND)  '<======================== RND and IFF
-      ? USING " ####.0000"; dir;
-    NEXT
-    ?:?
-    PAUSE
+```
+animal = "cat"
+fur = IFF( animal == "cat", "yes", "no")
+print fur
+```
 
+### Example 2
 
+```
+Eq = "sin"
+x = 5
+
+ans = iff(Eq == "sin", sin(x), cos(x))
+print ans
+
+' Alternative syntax:
+
+if(Eq == "sin") then
+    ans = sin(x)
+else
+    ans = cos(x)
+endif
+
+print ans
+```
+
+### Example 3
+
+```
+x = 4
+
+ans = iff(x <= 5, 0, 10)
+print ans 
+```
 
