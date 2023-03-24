@@ -2,7 +2,9 @@
 
 > IF expr
 
-Tests the expression and IF it evaluates to a non-zero value program flow will resume after the following THEN statement.
+Tests the expression and if it evaluates to a non-zero value, program flow will resume after the following THEN statement.
+
+### Block-style IF
 
 ```
 IF expression1 [THEN]
@@ -22,7 +24,6 @@ IF expression1 [THEN]
 ENDIF| FI
 ```
 
-Block-style IF.
 Causes SmallBASIC to make a decision based on the value of an expression.
 
 * expression  - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.
@@ -41,24 +42,7 @@ line; if anything other than a comment follows on the same line with
 THEN, BASIC thinks it's reading a single-line IF/THEN/ELSE construct.
 IF blocks may be nested.
 
-```
-x=1
-IF x=1 THEN
-    PRINT "true"
-ELSE
-    PRINT "false"
-ENDIF
-...
-' Alternate syntax:
-x=1
-IF x=1
-    PRINT "true"
-ELSE
-    PRINT "false"
-FI
-```
-
-**Single-line IF**
+### Single-line IF
 
 ```
 IF expression THEN [num-label]|[command] [ELSE [num-label]|[command]]
@@ -69,13 +53,68 @@ Causes SmallBASIC to make a decision based on the value of an expression.
 * expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.
 * command - Any legal command or a numeric label. If a number is specified, it is equivalent to a GOTO command with the specified numeric-label.
 
+### Example 1: Block-style IF
+
 ```
-' Single-line IF
-x=1
-IF x=1 THEN PRINT "true" ELSE PRINT "false"
-...
-IF x=1 THEN 1000
-...
+x = 1
+IF x = 1 THEN
+    PRINT "true"
+ELSE
+    PRINT "false"
+ENDIF
+
+' Alternate syntax:
+x = 1
+IF x = 1
+    PRINT "true"
+ELSE
+    PRINT "false"
+FI
+```
+
+### Example 2: Single-line IF
+
+```
+x = 1
+IF x = 1 THEN PRINT "true" ELSE PRINT "false"
+
+IF x = 1 THEN 1000
+
+end ' ends the program
+
 1000 PRINT "true"
 ```
 
+### Example 3: Nested IF
+
+```
+x = 1
+y = 2
+
+IF x == 1 THEN 
+    PRINT "x equals 1"
+    
+    if y == 2 THEN
+        PRINT "y equals 2"
+    ELSE
+        PRINT "y not 2"
+    ENDIF
+    
+ELSE
+    PRINT "x not 1"
+ENDIF
+```
+
+### Example 4: IF ... ELSEIF ... ELSE
+
+```
+foo = 1     ' change value to 1,2,3
+
+IF foo == 1
+    PRINT "one"
+ELSEIF foo == 2
+    PRINT "two"
+ELSE
+    PRINT "something else"
+ENDIF
+```
