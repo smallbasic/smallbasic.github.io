@@ -30,14 +30,14 @@ print "1 IMP 1 = "; 1 IMP 1
 a = 0b10011101
 b = 0b11010011
 
-print "        "; bin(a)
-print "        "; bin(b)
-print "----------------"
-print "a IMP b "; bin(a IMP b)
+print "    "; bin(a)
+print "IMP "; bin(b)
+print "------------"
+print "    "; bin(a IMP b)
 
 ' output:
-'         10011101
-'         11010011
-' ----------------
-' a IMP b 11110011
+'     10011101
+' IMP 11010011
+' ------------
+'     11110011
 ```
