@@ -2,7 +2,42 @@
 
 > a IMP b
 
-Used to perform a logical implication on two expressions.
+Perform a logical implication on two expressions. IMP is equivalent to (NOT a) OR b.
 
-EQV and IMP manipulating only the lower 4 bits:
+### Truth table
 
+| a | b | a IMP b |
+|:-:|:-:|:--------|
+| 0 | 0 | 1       |
+| 0 | 1 | 1       |
+| 1 | 0 | 0       |
+| 1 | 1 | 1       |
+
+### Example 1
+
+```
+print "Truth table"
+print
+print "0 IMP 0 = "; 0 IMP 0
+print "0 IMP 1 = "; 0 IMP 1
+print "1 IMP 0 = "; 1 IMP 0
+print "1 IMP 1 = "; 1 IMP 1
+```
+
+### Example 2
+
+```
+a = 0b10011101
+b = 0b11010011
+
+print "        "; bin(a)
+print "        "; bin(b)
+print "----------------"
+print "a IMP b "; bin(a IMP b)
+
+' output:
+'         10011101
+'         11010011
+' ----------------
+' a IMP b 11110011
+```
