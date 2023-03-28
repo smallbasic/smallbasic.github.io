@@ -36,6 +36,14 @@ SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for ever
 
 [Read more](/pages/guide.html)
 
+## SmallBASIC version 12.26 has been released for Windows, Linux and web browser
+
+::: date
+| March 26, 2023
+:::
+
+For details see: [Latest release](https://github.com/smallbasic/SmallBASIC/releases/tag/12_26). Please report any issues to either the forum, email or github issues page.
+
 ## SmallBASIC version 12.24 has been released for Windows, Linux and web browser
 
 ::: date
