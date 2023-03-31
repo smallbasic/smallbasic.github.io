@@ -34,7 +34,7 @@
 
 ## Source code
 
-[12.26](https://github.com/smallbasic/SmallBASIC/releases/download/12_26/smallbasic_12.26.zip){target="_blank"}
+[12.26](https://github.com/smallbasic/SmallBASIC/releases/download/12_26/smallbasic-12.26.tar.gz){target="_blank"}
 
 ## Other releases
 
