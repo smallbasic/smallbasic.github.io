@@ -2,7 +2,8 @@
 
 ## Emscripten
 
-[Online - 12.26](https://smallbasic.github.io/online/sbasic.html){target="_blank"}
+- [Online - 12.26](https://smallbasic.github.io/online/sbasic.html){target="_blank"}
+- [Online - 12.26 - large font](https://smallbasic.github.io/online/sbasic.html?fontSize=34){target="_blank"}
 
 ## Android
 
