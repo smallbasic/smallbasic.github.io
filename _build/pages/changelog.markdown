@@ -1,23 +1,29 @@
 Changelog
 =========
 
-**12.26 (TBA) **
+**12.26 (26 March 2023) **
 
-- Fixed DIM lower bound
+- FLTK and SDL version numbers now included in SBVER
+- Fixed "0 IMP 0" returns now correct result 1 (Joe7M)
+- Fixed BIN and changes to return values of POLYCENT and POLYAREA (Joe7M)
+- Fixed DIM lower bound (Joe7M)
+- Fixed EQV bug. "0 EQV 0" will return correct result "1" (Joe7M)
 - Fixed RECT FILLED when the coordinates are inverted
 - Fixed SPLIT command - empty input now gives zero length output
 - Fixed a problem with TRIM which broke the TinyBASIC.bas sample
-- Fixed crash with INPUT command while scrolled #160
+- Fixed an issue with window resizing #144
+- Fixed bug in BGETC when using sockets (Joe7M)
 - Fixed display of floating point numbers with high precision
-- Fixed for BIN and changes to return values of POLYCENT and POLYAREA
-- Fixed functions Polyarea, Polycent
+- Fixed editor display issues with DOS line-endings
+- Fixed for BIN and changes to return values of POLYCENT and POLYAREA (Joe7M)
+- Fixed functions Polyarea, Polycent (Joe7M)
+- Fixed line-chart line drawing to use current foreground color
 - Fixed printing chr(0) into a file or network interface
 - INPUT #F; now supports up to 64 parameters
-- Implemented STATMEDIAN() to calculate the median of a data sample in statistics.
-- Implemented STATSTD() to calculate standard deviation
-- RGB and RGBF now clamp parameters
+- Implemented STATMEDIAN() to calculate the median of a data sample in statistics  (Joe7M)
+- Implemented STATSTD() to calculate standard deviation (Joe7M)
+- RGB and RGBF now clamp parameters  (Joe7M)
 - Updated CHART line drawing to use current foreground color
-- Added link from About screen to privacy page (for google+android)
 
 **12.24 (19 June 2022) **
 

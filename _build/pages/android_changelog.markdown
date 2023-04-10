@@ -5,6 +5,22 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.26 (31 March 2023)**
+
+- Fixed "0 IMP 0" returns now correct result 1 (Joe7M)
+- Fixed DIM lower bound (Joe7M)
+- Fixed EQV bug. "0 EQV 0" will return correct result "1" (Joe7M)
+- Fixed INPUT #F; now supports up to 64 parameters
+- Fixed RGB and RGBF now clamp parameters (Joe7M)
+- Fixed bug in BGETC when using sockets (Joe7M)
+- Fixed editor display issues with DOS line-endings
+- Fixed for BIN and changes to return values of POLYCENT and POLYAREA (Joe7M)
+- Fixed line-chart line drawing to use current foreground color
+- Fixed printing chr(0) into a file or network interface
+- Fixed setenv error #187
+- Implemented STATMEDIAN() to calculate the median of a data sample in statistics (Joe7M)
+- Implemented STATSTD() to calculate standard deviation (Joe7M)
+
 **12.25 (23 December 2022)**
 
 - Implemented a new web service for managing files via desktop browser
