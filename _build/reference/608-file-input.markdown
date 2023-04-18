@@ -4,7 +4,7 @@
 
 Reads 'len' bytes from file or console (if fileN is omitted) and returns the result as sting s. This function does not convert the data or remove spaces.
 
-Example 1: Read from a file
+### Example 1: Read from a file
 
 ```
 ' Create a file and write 10 bytes
@@ -24,5 +24,13 @@ A = input(5, 1)
 print A
 
 close #1
+```
+
+### Example 2: Read from console
+
+```
+' Read three characters from keyboard
+A = input(3)
+print A
 ```
 
