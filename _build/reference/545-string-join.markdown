@@ -1,15 +1,20 @@
 # JOIN
 
-> JOIN words(), delimiters, string
+> JOIN words, delimiter, s
 
-Returns the words of the specified string into array 'words'.
+Join the elements of the array `words` with the delimiter `delimiter` and return the result as string `s`.
+
+### Example
 
 ```
-s="/etc/temp/filename.ext"
-SPLIT s, "/.", v()
-JOIN v(), "/", s
-PRINT "[";s;"]"
-displays:
-[/etc/temp/filename/ext]
+' Create an array
+words << "etc"
+words << "temp"
+words << 1
+words << "filename.ext"
+
+' Join then array elements
+JOIN words, "/", s
+PRINT s
 ```
 
