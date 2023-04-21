@@ -45,7 +45,7 @@ print u.MyVar
 ```
 
 
-### Example 2: A unit for using sring
+### Example 2: An unit for using string
 
 
 The UNIT file is strlib.bas:
