@@ -2,12 +2,51 @@
 
 > UNIT name
 
-Declares the source module as a unit. Units are a set of procedures, functions and/or variables that can be used by another program or unit.
+Declares the source module as a unit. Units are a set of procedures, functions, constants or variables that can be used by another program or unit.
 
-As of SmallBASIC version 0.12.6:
+- UNIT supports 'namespace' (Namespaces allow reuse of same names in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both using a function with the same name, "Set", but in different contexts).
+- While UNIT can be used as a collection of sub-routines for your own program, UNIT is particularly useful for creating a general-purpose library. General purpose libraries can be useful for many programs or projects, the same way the internal routine “PRINT” is useful for many programs, and not only for specific one.
 
-#. UNIT supports 'namespace' (Namespaces allow reuse of same names in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both using a function with the same name, "Set", but in different contexts).
-#. UNIT name on Linux system is no longer case sensitive (which makes life easier for Linux users).
+Use EXPORT to export procedured, functions, constants or variables. Only exported names can be access in the main program.
+
+### Example 1: Simple Unit
+
+First an example of the unit. Please save it with the filename "MyTestUnit.bas"
+
+```
+UNIT MyTestUnit
+
+export MyFunc
+export MySub
+export MyConst = 3.1415
+export MyVar = 5
+
+func MyFunc(a,b)
+    return a + b
+end
+
+sub MySub(a,b)
+    print "a + b = "; a + b
+end
+```
+
+Second an example on how to use the unit.
+
+```
+import MyTestUnit as u
+
+u.MySub(1,2)
+
+print u.MyFunc(2,3)
+print u.MyConst
+
+u.MyVar = u.MyVar + 5
+print u.MyVar
+```
+
+
+### Example 2: An unit for using string
+
 
 The UNIT file is strlib.bas:
 
@@ -83,122 +122,4 @@ Print Strlib.Rset("-->>  ", 25)
 Pause
 ~~~
 
-#. While UNIT can be used as a collection of sub-routines for your own
-   program, UNIT is particularly useful for creating a general-purpose
-   library.
-   General purpose library can be useful for many programs or projects,
-   the same way the internal routine "PRINT" is useful for many programs,
-   and not only for specific one.
-
-#. It is very important to keep the syntax of EXPORTed routines fixed.
-   For example:
-   Imagine that the internal routine "PRINT" will use a new syntax in
-   future version of SmallBASIC, something like:
-
-~~~
-PRINT [fileN,] x, y, color, "string"  ' the "new" syntax
-~~~
-
-   In this case many older programs will not work with the new version
-   of SmallBASIC.
-
-   The same way, when you create a UNIT to be used as a general-purpose
-   library, you must keep the syntax of EXPORTed routines fixed, so old
-   programs will continue to work well with newer versions of your UNIT.
-
-3. If you modify an existing UNIT, you should assign to it a new version number.
-   The easy way to maintain a <a href=https://en.wikipedia.org/wiki/Software_versioning> Software versioning</a> is like this:
-
-   "Unit Name", Version major.minor.revision, Release_Date
-
-   For example:
-
-~~~
-REM Unit "StrLib" Version 1.15.11, 20/3/2016
-~~~
-
-   major number:> is increased when there are significant jumps in functionality such as changing the framework which could cause incompatibility with interfacing programs.
-   minor number:> is incremented when only minor features or significant fixes have been added.
-
-   revision number:> is incremented when minor bugs are fixed.
-
-   By assigning a version number, other users will know what to expect from the
-   modified version. You should also add a short description of the changes
-   that you have made.
-
-4. If your UNIT is quite advanced, and you expect it to work differently in
-   future versions, you can use the following method which allows Old & New
-   programs to work with your unit correctly:
-
-   Instead of using a fixed syntax for sub routines, such as:
-
-
-~~~
-ZipText(string, method, fileName)
-~~~
-
-
-   Use a single object parameter which has a default value of 0:
-
-
-~~~
-ZipText(x)
-~~~
-
-
-   Now, in version 1.0.0 for example, x might have this syntax as an array:
-
-
-~~~
-x is [string, method, fileName] ' Version 1.0.0
-~~~
-
-   And in some future version, x might have another syntax, such as:
-
-
-~~~
-x is [string, method, fileName, format] ' Version 1.1.0
-~~~
-
-   Or...
-
-~~~
-x is [string, fileName] ' Version 1.14.5
-~~~
-
-   Etc.
-
-   The
-
-~~~
-ZipText(x)
-~~~
-
-routine will verify the number of arguments
-and/or their type (array, string, etc) and execute the correct code for this
-version's-syntax.
-
-   This method is especially useful for maintaining a big project for a long
-   time, which is going to offer more and more features in the future. It will
-   allow old programs to work as usual, and new programs to benefit from the
-   new features.
-
-#. UNIT should Export only> routines or constants (variables)
-   which related to the specific use of that unit.
-   For example, UNIT which offers string manipulation routines should only>
-   Export string manipulation routines or string constants.
-
-   If UNITs contain routines for many different uses, it is likely that two
-   UNITs will have to IMPORT each other - and this is basically illogical.
-
-#. * UNIT must be documented well, so other users can use it.
-   * UNIT should be efficient, because it should serves many other programs.
-   * Routines syntax should be consistent and standard, to be easy to use.
-   * UNIT is saved as Byte-Code (SBU), which is fast and does not include
-     spaces, comments, etc. So feel free to add enough comments and spaces...
-
-There are more about UNITs (shared libraries), but the most important:
- When you write a UNIT to be used by others, try to be merciful... i.e.
- write clear and documented code, and make it easy for others to use your
- UNIT.
 

@@ -1,16 +1,18 @@
 # ISNUMBER
 
-> ISNUMBER (x)
+> b = ISNUMBER (x)
 
-Returns true if x is a number (or it can be converted to a number).
+Returns true if x is a number or can be converted to a number.
+
+### Example 
 
 ```
-? ISNUMBER(12)          :REM true
-? ISNUMBER("12")        :REM true
-? ISNUMBER("12E+2")     :REM true
-? ISNUMBER("abc")       :REM false
-? ISNUMBER("1+2")       :REM false
-? ISNUMBER("int(2.4)")  :REM false
+print ISNUMBER(12)          ' Output 1
+print ISNUMBER("12")        ' Output 1
+print ISNUMBER("12E+2")     ' Output 1
+print ISNUMBER("abc")       ' Output 0
+print ISNUMBER("1+2")       ' Output 0
+print ISNUMBER("int(2.4)")  ' Output 0
 ```
 
 

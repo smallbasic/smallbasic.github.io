@@ -1,11 +1,21 @@
 # INT
 
-> INT (x)
+> i = INT (x)
 
 Rounds x downwards to the nearest integer.
 
-x\1 will convert a x to an integer in less keystrokes than INT, they both round down for positives and up for negatives.
-In other words, they both drop the fractional part of the number.
+`x\1` will convert `x` to an integer in less keystrokes than INT, they both round down for positives and up for negatives.
+They both drop the fractional part of the number.
+
+### Example 1
+
+```
+print int(3.3)      ' Output 3
+print int(3.7)      ' Output 3
+print int(-3.3)     ' Output -3
+print int(-3.7)     ' Output -3
+```
+### Example 2
 
 ```
 'INT or alternate.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]

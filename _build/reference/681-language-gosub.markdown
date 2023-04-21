@@ -2,36 +2,38 @@
 
 > GOSUB label
 
-Causes program execution to branch to the specified label; when the RETURN command is encountered, execution branches to the command immediately following the most recent GOSUB command.
+Causes program execution to branch to the specified label;
+when the RETURN command is encountered, execution branches
+to the command immediately following the most recent GOSUB command.
 
+GOSUB should be used with caution. Using subroutines is more versatile
+and much easier to read.
 
-~~~
-
-' Note: using SUB instead of GOSUB is much more easy and modular.
-  
-x = 50
-Gosub routine1 ' prints 100
-Print x        ' prints 50
-routine2 x     ' prints -50
-Print x        ' prints 50
-' Using GOSUB inside SUB:
-Sub routine2(x)
-  Gosub routine3
-  Exit Sub
-  
-Label routine3
-  x = -x
-  Print x      
-Return
-End Sub
-Pause
-End ' End of program
-' Using GOSUB with LOCAL variables:
-Label routine1
-  Local x = 100
-  Print x
-Return
+### Example 1: Using GOSUB
 
 ~~~
+while(ii < 20)
+  gosub Inc
+wend
 
+end ' ends the program
+  
+label Inc
+ii++
+print ii
+return
+~~~
+
+### Example 2: Same as example 1, but using a subroutine instead of GOSUB
+
+~~~
+while(ii < 20)
+  Inc()
+wend
+  
+sub Inc()
+  ii++
+  print ii
+end
+~~~
 

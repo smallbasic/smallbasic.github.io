@@ -4,21 +4,82 @@
 
 Returns the last key-code in keyboard buffer, or an empty string if there are no keys. Special key-codes like the function-keys are returned as 2-byte string.
 
+### Example 1
+
 ```
-k=INKEY
-IF LEN(k)
-  IF LEN(k)=2
-    ? "H/W #"+ASC(RIGHT(k,1))
-  ELSE
-    ? k; " "; ASC(k)
+WHILE(1)
+  k = INKEY
+  IF LEN(k)
+    IF LEN(k)=2
+      ? "H/W #"+ASC(RIGHT(k,1))
+    ELSE
+      ? k; " "; ASC(k)
+    FI
   FI
-ELSE
-  ? "keyboard buffer is empty"
-FI
+  SHOWPAGE
+WEND
 ```
 
-~~~
+### Example 2
 
+The following program will return the keycode and a string for every pressed key. The string can be used in an if-statement to querry if the key was pressed. See example 3 how to use the string.
+
+```
+while(1)
+  k = INKEY
+
+  if len(k)
+    if len(k) == 2        
+      print "2-Byte key code   : " + asc(mid(k,1,1)) + "  " + asc(mid(k,2,1));
+      print " -> s = chr(";asc(mid(k,1,1));") + chr(";asc(mid(k,2,1));")" 
+    else
+      if(asc(k) > 37)
+        print "Printable key code: "; asc(k); " -> s = \"";k;"\"" 
+      else
+        print "1-Byte key code   : "; asc(k);
+        print " -> s = chr(";asc(k);")"
+      endif
+    endif
+  endif
+  
+  showpage
+wend
+```
+
+### Example 3: Querry if a key was pressed
+
+See example 2 to get the keycodes for the keys.
+
+```
+const KeyUp = chr(27) + chr(9)
+const KeyDown = chr(27) + chr(10)
+const KeySpace = " "
+const KeyEsc = chr(27)
+const KeyReturn = chr(13)
+
+while(1)
+  k = INKEY
+
+  if len(k)
+    select case k
+        case KeyUp:     print "Up"
+        case KeyDown:   print "Down"
+        case KeySpace:  print "Space"
+        case KeyEsc:    print "Esc"
+        case KeyReturn: print "Return"
+        case "a":       print "a"
+        case "A":       print "A"
+        case else:      print "other key"
+    end select
+  endif
+  
+  showpage
+wend
+```
+
+### Example 4: Input form
+
+```
 ' Key values:
 Const K_BKSP   = Chr(0x08)  ' BackSpace
 Const K_TAB    = Chr(0x09)
@@ -105,16 +166,11 @@ While True
     Fi
   End Select
 Wend
+```
 
-~~~
+### Example 5: A basic key code UNIT
 
-I have been a bit stuck with INKEY for some time. I started building a little TextBox editor over a year ago and got stuck on something with INKEY and moved on. As I recall INKEY was not returning unique key numbers but I forget which... posted sometime ago on this issue.
-Anyway, this demo is exactly the kind of thing I had in mind! Thank you shian!!!
-I wonder if text selecting is also possible, eg [ctrl+]shft+ home | end ?
-BTW is CAT working for anyone? I was testing it last night and couldn't get anything going (Windows 10-64 and SB 0.12.2).
-
-~~~
-
+```
 REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
 REM Purpose:   Special key values returned by INKEY.
 REM            (Values returned by INKEY cannot be used for DEFINEKEY).
@@ -202,19 +258,4 @@ Def CTRL_SHIFT(c) = CTRL_SHIFT_CHR + Lcase(c)  ' Ctrl+Shift+a, etc
 '   Fi
 ' Wend
 
-~~~
-
-When the first character in the two character code is 27, the second character is a code for the given special key. You would need to inspect the SB source to work out the equivalent SmallBASIC key constants, but I'll have a look at generating a constants.bas file that you can include in your programs.
-
-As reported by Shian (thanks Shian!), there are a few problems with INKEY. I'll fix these in the next update. There is supposed to be a different first character code for SHIFT/ALT etc states.
-
-Also, INKEY needs to read from the system event queue to get the next keystroke. It currently does a pause for key, but I think it should actually block in the call to read the queue, that way when you type a key there would be no delay. Either way this doesn't work well for shooter type games, but there is a better way. Have a look at:
-
-https://github.com/smallbasic/SmallBASIC/blob/master/samples/distro-exam...
-
-This uses the DEFINEKEY command to register keystroke handlers for game keys. When you hit the game key, the registered FUNC will get called more or less immediately, somewhere inside the game main looI think this should work well in the space shooter (which is awesome by the way).
-
-Code for quick lookup of a key code:
-
-http://smallbasic.sourceforge.net/?q=node/1583
-
+```

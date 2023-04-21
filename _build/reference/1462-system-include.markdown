@@ -1,52 +1,35 @@
 # INCLUDE
 
-> INCLUDE source-file.bas
+> INCLUDE SourceFile
 
-Inserts code in the named file when the program is compiled. 
+Inserts code from SourceFile when the program is compiled.
 
-INCLUDE is not in the main list for the Language reference. But here it is, right after IMPORT under the System category!
-Here is part_1.bas, the first part of our long program:
+INCLUDE can be used to split a large file into smaller parts. If you want to use include to create a library, then you should consider to use an UNIT instead.
 
-~~~
+### Example
 
-' "part_1.bas" demo file for INCLUDE keyword.
-Label startProgram
-Print "i is: "; i
+Create first file and save it as part1.bas.
 
-~~~
+```
+Print "This is part1.bas"
+for i = 1 to 5
+  print i
+next
+```
 
-Here is part_2.bas, the second (and startup) part of our long program:
+Create second file wich will include part1.bas.
 
-~~~
+```
+include part1.bas
 
-' "part_2.bas" demo file for INCLUDE keyword - This is the startup file
-' to run the demo program.
-' -------------
-' Include keyword allows us to merge another SmallBASIC source file into 
-' our file, which means that any code is common to all files.
-' It's useful when the program is too long and we simply want to divide it
-' into "pages", instead of one single long "page".
-' 
-' See also Home -- Language reference -- Graphics -- COLOR -- color_const.bas
-' for practical example of Include.
-'
-' Note: INCLUDE keyword is very different from UNIT keyword. 
-'       UNIT allows us to use only specific code, therefore it is more suitable 
-'       for modular programming.
-'       UNIT also supports "Namespaces": Namespaces allow reuse of same names 
-'       in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both 
-'       using a function with the same name, "Set", but in different contexts.
-' -------------
+print "This is part2.bas"
+for i = 5 to 1 step -1
+    print i
+next
 
-' Here we include (merge) another file in our program:
-' Note: actuall filename must be lower case for Linux.
-Include "part_1.bas" 
-
-' demo:
-i += 1
-If i <= 10 Then Goto startProgram ' startProgram label is in part_1.bas
-Pause
-
-~~~
-
-
+' Output:
+' This is part1.bas
+' 1 2 3 4 5
+' This is part2.bas
+' 5 4 3 2 1
+```
