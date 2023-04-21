@@ -74,7 +74,27 @@
     </p>
   </div>
 </blockquote>
+<p>Used in combination with OPEN to open a file using a file number.</p>
 <p>See: OPEN</p>
+<h3 id="example">Example:</h3>
+<pre><code>&#39; create a text file
+open &quot;MyDemoFile.txt&quot; for output as #1
+
+for i = 1 to 10
+    print #1, i 
+next
+
+close #1
+
+&#39; open text file and print content line by line
+open &quot;MyDemoFile.txt&quot; for input as #1
+
+while(!eof(1))   &#39; eof works only without #
+    input #1, c
+    print c
+wend
+
+close #1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using AS</div>
     <div class="linklist">
@@ -198,7 +218,7 @@ AS by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/p
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Thu, 13 Apr 2023 13:46:35 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -2,12 +2,39 @@
 <blockquote>
 <p>UNIT name</p>
 </blockquote>
-<p>Declares the source module as a unit. Units are a set of procedures, functions and/or variables that can be used by another program or unit.</p>
-<p>As of SmallBASIC version 0.12.6:</p>
-<ol>
+<p>Declares the source module as a unit. Units are a set of procedures, functions, constants or variables that can be used by another program or unit.</p>
+<ul>
 <li>UNIT supports ‘namespace’ (Namespaces allow reuse of same names in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both using a function with the same name, “Set”, but in different contexts).</li>
-<li>UNIT name on Linux system is no longer case sensitive (which makes life easier for Linux users).</li>
-</ol>
+<li>While UNIT can be used as a collection of sub-routines for your own program, UNIT is particularly useful for creating a general-purpose library. General purpose libraries can be useful for many programs or projects, the same way the internal routine “PRINT” is useful for many programs, and not only for specific one.</li>
+</ul>
+<p>Use EXPORT to export procedured, functions, constants or variables. Only exported names can be access in the main program.</p>
+<h3 id="example-1-simple-unit">Example 1: Simple Unit</h3>
+<p>First an example of the unit. Please save it with the filename “MyTestUnit.bas”</p>
+<pre><code>UNIT MyTestUnit
+
+export MyFunc
+export MySub
+export MyConst = 3.1415
+export MyVar = 5
+
+func MyFunc(a,b)
+    return a + b
+end
+
+sub MySub(a,b)
+    print &quot;a + b = &quot;; a + b
+end</code></pre>
+<p>Second an example on how to use the unit.</p>
+<pre><code>import MyTestUnit as u
+
+u.MySub(1,2)
+
+print u.MyFunc(2,3)
+print u.MyConst
+
+u.MyVar = u.MyVar + 5
+print u.MyVar</code></pre>
+<h3 id="example-2-an-unit-for-using-string">Example 2: An unit for using string</h3>
 <p>The UNIT file is strlib.bas:</p>
 <pre><code>
 &#39; File: strlib.bas
@@ -74,48 +101,3 @@ Print Strlib.Lset(Strlib.Rset(&quot;This way...&quot;, 18), 25)
 Locate 6, 30
 Print Strlib.Rset(&quot;--&gt;&gt;  &quot;, 25)
 Pause</code></pre>
-<ol>
-<li><p>While UNIT can be used as a collection of sub-routines for your own program, UNIT is particularly useful for creating a general-purpose library. General purpose library can be useful for many programs or projects, the same way the internal routine “PRINT” is useful for many programs, and not only for specific one.</p></li>
-<li><p>It is very important to keep the syntax of EXPORTed routines fixed. For example: Imagine that the internal routine “PRINT” will use a new syntax in future version of SmallBASIC, something like:</p></li>
-</ol>
-<pre><code>PRINT [fileN,] x, y, color, &quot;string&quot;  &#39; the &quot;new&quot; syntax</code></pre>
-<p>In this case many older programs will not work with the new version of SmallBASIC.</p>
-<p>The same way, when you create a UNIT to be used as a general-purpose library, you must keep the syntax of EXPORTed routines fixed, so old programs will continue to work well with newer versions of your UNIT.</p>
-<ol start="3" type="1">
-<li><p>If you modify an existing UNIT, you should assign to it a new version number. The easy way to maintain a <a href=https://en.wikipedia.org/wiki/Software_versioning> Software versioning</a> is like this:</p>
-<p>“Unit Name”, Version major.minor.revision, Release_Date</p>
-<p>For example:</p></li>
-</ol>
-<pre><code>REM Unit &quot;StrLib&quot; Version 1.15.11, 20/3/2016</code></pre>
-<p>major number:&gt; is increased when there are significant jumps in functionality such as changing the framework which could cause incompatibility with interfacing programs. minor number:&gt; is incremented when only minor features or significant fixes have been added.</p>
-<p>revision number:&gt; is incremented when minor bugs are fixed.</p>
-<p>By assigning a version number, other users will know what to expect from the modified version. You should also add a short description of the changes that you have made.</p>
-<ol start="4" type="1">
-<li><p>If your UNIT is quite advanced, and you expect it to work differently in future versions, you can use the following method which allows Old &amp; New programs to work with your unit correctly:</p>
-<p>Instead of using a fixed syntax for sub routines, such as:</p></li>
-</ol>
-<pre><code>ZipText(string, method, fileName)</code></pre>
-<p>Use a single object parameter which has a default value of 0:</p>
-<pre><code>ZipText(x)</code></pre>
-<p>Now, in version 1.0.0 for example, x might have this syntax as an array:</p>
-<pre><code>x is [string, method, fileName] &#39; Version 1.0.0</code></pre>
-<p>And in some future version, x might have another syntax, such as:</p>
-<pre><code>x is [string, method, fileName, format] &#39; Version 1.1.0</code></pre>
-<p>Or…</p>
-<pre><code>x is [string, fileName] &#39; Version 1.14.5</code></pre>
-<p>Etc.</p>
-<p>The</p>
-<pre><code>ZipText(x)</code></pre>
-<p>routine will verify the number of arguments and/or their type (array, string, etc) and execute the correct code for this version’s-syntax.</p>
-<p>This method is especially useful for maintaining a big project for a long time, which is going to offer more and more features in the future. It will allow old programs to work as usual, and new programs to benefit from the new features.</p>
-<ol>
-<li><p>UNIT should Export only&gt; routines or constants (variables) which related to the specific use of that unit. For example, UNIT which offers string manipulation routines should only&gt; Export string manipulation routines or string constants.</p>
-<p>If UNITs contain routines for many different uses, it is likely that two UNITs will have to IMPORT each other - and this is basically illogical.</p></li>
-<li><ul>
-<li>UNIT must be documented well, so other users can use it.</li>
-<li>UNIT should be efficient, because it should serves many other programs.</li>
-<li>Routines syntax should be consistent and standard, to be easy to use.</li>
-<li>UNIT is saved as Byte-Code (SBU), which is fast and does not include spaces, comments, etc. So feel free to add enough comments and spaces…</li>
-</ul></li>
-</ol>
-<p>There are more about UNITs (shared libraries), but the most important: When you write a UNIT to be used by others, try to be merciful… i.e. write clear and documented code, and make it easy for others to use your UNIT.</p>

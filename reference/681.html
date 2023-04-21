@@ -75,32 +75,27 @@
   </div>
 </blockquote>
 <p>Causes program execution to branch to the specified label; when the RETURN command is encountered, execution branches to the command immediately following the most recent GOSUB command.</p>
-<pre><code>
-&#39; Note: using SUB instead of GOSUB is much more easy and modular.
+<p>GOSUB should be used with caution. Using subroutines is more versatile and much easier to read.</p>
+<h3 id="example-1-using-gosub">Example 1: Using GOSUB</h3>
+<pre><code>while(ii &lt; 20)
+  gosub Inc
+wend
+
+end &#39; ends the program
   
-x = 50
-Gosub routine1 &#39; prints 100
-Print x        &#39; prints 50
-routine2 x     &#39; prints -50
-Print x        &#39; prints 50
-&#39; Using GOSUB inside SUB:
-Sub routine2(x)
-  Gosub routine3
-  Exit Sub
+label Inc
+ii++
+print ii
+return</code></pre>
+<h3 id="example-2-same-as-example-1-but-using-a-subroutine-instead-of-gosub">Example 2: Same as example 1, but using a subroutine instead of GOSUB</h3>
+<pre><code>while(ii &lt; 20)
+  Inc()
+wend
   
-Label routine3
-  x = -x
-  Print x      
-Return
-End Sub
-Pause
-End &#39; End of program
-&#39; Using GOSUB with LOCAL variables:
-Label routine1
-  Local x = 100
-  Print x
-Return
-</code></pre>
+sub Inc()
+  ii++
+  print ii
+end</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using GOSUB</div>
     <div class="linklist">
@@ -224,7 +219,7 @@ GOSUB by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Thu, 23 Mar 2023 22:23:31 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

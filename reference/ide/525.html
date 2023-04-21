@@ -191,7 +191,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="example-1-creating-a-push-button">Example 1: Creating a push button</h3>
+<h3 id="example-1-creating-a-push-button-using-callback-function">Example 1: Creating a push button using callback function</h3>
 <pre><code>button.type = &quot;button&quot;
 button.x = 120
 button.y = 120
@@ -214,7 +214,29 @@ sub ButtonClicked()
   Clicked++
   print &quot;Button clicked &quot; + Clicked + &quot; times&quot;
 end</code></pre>
-<h3 id="example-2-creating-a-label">Example 2: creating a label</h3>
+<h3 id="example-2-creating-a-push-button-using-doevents-result">Example 2: Creating a push button using doEvents result</h3>
+<pre><code>button.type = &quot;button&quot;
+button.x = 120
+button.y = 120
+button.label = &quot;Button&quot;
+button.backgroundcolor = rgb(60, 60, 60)
+button.value = 1  &#39; unique value to identify the button
+
+formMAP.inputs &lt;&lt; button
+
+f = form(formMAP)
+
+while 1
+  f.doEvents()
+  if(f.value == 1) then
+    ii++
+    at 0,0
+    print &quot;Button cklicked &quot; + ii + &quot; times.&quot;
+  endif 
+wend
+
+f.close()</code></pre>
+<h3 id="example-3-creating-a-label">Example 3: Creating a label</h3>
 <pre><code>l.type = &quot;label&quot;
 l.x = 120
 l.y = 120
@@ -230,7 +252,7 @@ while 1
 wend
 
 f.close()</code></pre>
-<h3 id="example-3-creating-a-link-to-an-external-website">Example 3: Creating a link to an external website</h3>
+<h3 id="example-4-creating-a-link-to-an-external-website">Example 4: Creating a link to an external website</h3>
 <pre><code>l.type = &quot;link&quot;
 l.x = 120
 l.y = 120
@@ -248,7 +270,7 @@ while 1
 wend
 
 f.close()</code></pre>
-<h3 id="example-4-creating-a-listbox">Example 4: Creating a listbox</h3>
+<h3 id="example-5-creating-a-listbox">Example 5: Creating a listbox</h3>
 <pre><code>l.type = &quot;listbox&quot;
 l.x = 120
 l.y = 120
@@ -273,7 +295,7 @@ while 1
 wend
 
 f.close()</code></pre>
-<h3 id="example-5-creating-a-dropdown-listbox">Example 5: Creating a dropdown listbox</h3>
+<h3 id="example-6-creating-a-dropdown-listbox">Example 6: Creating a dropdown listbox</h3>
 <pre><code>l.type = &quot;choice&quot;
 l.x = 120
 l.y = 120
@@ -297,7 +319,7 @@ while 1
 wend
 
 f.close()</code></pre>
-<h3 id="example-6-creating-a-text-input-field">Example 6: Creating a text input field</h3>
+<h3 id="example-7-creating-a-text-input-field">Example 7: Creating a text input field</h3>
 <pre><code>t.type = &quot;text&quot;
 t.x = 120
 t.y = 120
@@ -332,7 +354,39 @@ sub OKButtonClicked()
    at 0,0
    print f.inputs[0].value   &#39; Text field is the first element added to the formMAP
 end</code></pre>
-<h3 id="example-one-more-example">Example: One more example</h3>
+<h3 id="example-8-image-button-using-callback-function">Example 8: Image button using callback function</h3>
+<p>In this example a callback function will be used. If you want to use the doEvents result instead, have a look at example 2.</p>
+<pre><code>&#39; Create a simple button and save it as png
+&#39; If you have already an image for you button,
+&#39; this part is not necessary.
+circle 100,100,100 color 15 filled
+ButtonImage = image(0,0,200,200)
+ButtonImage.save(&quot;button.png&quot;)
+cls
+ 
+&#39; Define image button
+button.type = &quot;image&quot;
+button.name = &quot;button.png&quot;
+button.x = 120
+button.y = 120
+button.onclick = @ButtonClicked     &#39; Callback function, definition see below.
+ 
+formMAP.inputs &lt;&lt; button
+ 
+f = form(formMAP)
+ 
+while 1
+  f.doEvents()
+wend
+ 
+f.close()
+ 
+sub ButtonClicked()
+  at 0,0
+  Clicked++
+  print &quot;Button clicked &quot; + Clicked + &quot; times&quot;
+end</code></pre>
+<h3 id="example-9-one-more-example">Example 9: One more example</h3>
 <pre><code>f.handleKeys = 0
 &#39; create some buttons
 button1.y = 120

@@ -393,7 +393,7 @@ The type attribute can be one of the following:
   “text”      Single or multi-line text input.
   “image”     Image button.
 
-Example 1: Creating a push button
+Example 1: Creating a push button using callback function
 
     button.type = "button"
     button.x = 120
@@ -418,7 +418,31 @@ Example 1: Creating a push button
       print "Button clicked " + Clicked + " times"
     end
 
-Example 2: creating a label
+Example 2: Creating a push button using doEvents result
+
+    button.type = "button"
+    button.x = 120
+    button.y = 120
+    button.label = "Button"
+    button.backgroundcolor = rgb(60, 60, 60)
+    button.value = 1  ' unique value to identify the button
+
+    formMAP.inputs << button
+
+    f = form(formMAP)
+
+    while 1
+      f.doEvents()
+      if(f.value == 1) then
+        ii++
+        at 0,0
+        print "Button cklicked " + ii + " times."
+      endif 
+    wend
+
+    f.close()
+
+Example 3: Creating a label
 
     l.type = "label"
     l.x = 120
@@ -436,7 +460,7 @@ Example 2: creating a label
 
     f.close()
 
-Example 3: Creating a link to an external website
+Example 4: Creating a link to an external website
 
     l.type = "link"
     l.x = 120
@@ -456,7 +480,7 @@ Example 3: Creating a link to an external website
 
     f.close()
 
-Example 4: Creating a listbox
+Example 5: Creating a listbox
 
     l.type = "listbox"
     l.x = 120
@@ -483,7 +507,7 @@ Example 4: Creating a listbox
 
     f.close()
 
-Example 5: Creating a dropdown listbox
+Example 6: Creating a dropdown listbox
 
     l.type = "choice"
     l.x = 120
@@ -509,7 +533,7 @@ Example 5: Creating a dropdown listbox
 
     f.close()
 
-Example 6: Creating a text input field
+Example 7: Creating a text input field
 
     t.type = "text"
     t.x = 120
@@ -546,7 +570,43 @@ Example 6: Creating a text input field
        print f.inputs[0].value   ' Text field is the first element added to the formMAP
     end
 
-Example: One more example
+Example 8: Image button using callback function
+
+In this example a callback function will be used. If you want to use the
+doEvents result instead, have a look at example 2.
+
+    ' Create a simple button and save it as png
+    ' If you have already an image for you button,
+    ' this part is not necessary.
+    circle 100,100,100 color 15 filled
+    ButtonImage = image(0,0,200,200)
+    ButtonImage.save("button.png")
+    cls
+     
+    ' Define image button
+    button.type = "image"
+    button.name = "button.png"
+    button.x = 120
+    button.y = 120
+    button.onclick = @ButtonClicked     ' Callback function, definition see below.
+     
+    formMAP.inputs << button
+     
+    f = form(formMAP)
+     
+    while 1
+      f.doEvents()
+    wend
+     
+    f.close()
+     
+    sub ButtonClicked()
+      at 0,0
+      Clicked++
+      print "Button clicked " + Clicked + " times"
+    end
+
+Example 9: One more example
 
     f.handleKeys = 0
     ' create some buttons
@@ -643,17 +703,76 @@ Returns the last key-code in keyboard buffer, or an empty string if
 there are no keys. Special key-codes like the function-keys are returned
 as 2-byte string.
 
-    k=INKEY
-    IF LEN(k)
-      IF LEN(k)=2
-        ? "H/W #"+ASC(RIGHT(k,1))
-      ELSE
-        ? k; " "; ASC(k)
-      FI
-    ELSE
-      ? "keyboard buffer is empty"
-    FI
+Example 1
 
+    WHILE(1)
+      k = INKEY
+      IF LEN(k)
+        IF LEN(k)=2
+          ? "H/W #"+ASC(RIGHT(k,1))
+        ELSE
+          ? k; " "; ASC(k)
+        FI
+      FI
+      SHOWPAGE
+    WEND
+
+Example 2
+
+The following program will return the keycode and a string for every
+pressed key. The string can be used in an if-statement to querry if the
+key was pressed. See example 3 how to use the string.
+
+    while(1)
+      k = INKEY
+
+      if len(k)
+        if len(k) == 2        
+          print "2-Byte key code   : " + asc(mid(k,1,1)) + "  " + asc(mid(k,2,1));
+          print " -> s = chr(";asc(mid(k,1,1));") + chr(";asc(mid(k,2,1));")" 
+        else
+          if(asc(k) > 37)
+            print "Printable key code: "; asc(k); " -> s = \"";k;"\"" 
+          else
+            print "1-Byte key code   : "; asc(k);
+            print " -> s = chr(";asc(k);")"
+          endif
+        endif
+      endif
+      
+      showpage
+    wend
+
+Example 3: Querry if a key was pressed
+
+See example 2 to get the keycodes for the keys.
+
+    const KeyUp = chr(27) + chr(9)
+    const KeyDown = chr(27) + chr(10)
+    const KeySpace = " "
+    const KeyEsc = chr(27)
+    const KeyReturn = chr(13)
+
+    while(1)
+      k = INKEY
+
+      if len(k)
+        select case k
+            case KeyUp:     print "Up"
+            case KeyDown:   print "Down"
+            case KeySpace:  print "Space"
+            case KeyEsc:    print "Esc"
+            case KeyReturn: print "Return"
+            case "a":       print "a"
+            case "A":       print "A"
+            case else:      print "other key"
+        end select
+      endif
+      
+      showpage
+    wend
+
+Example 4: Input form
 
     ' Key values:
     Const K_BKSP   = Chr(0x08)  ' BackSpace
@@ -742,15 +861,7 @@ as 2-byte string.
       End Select
     Wend
 
-I have been a bit stuck with INKEY for some time. I started building a
-little TextBox editor over a year ago and got stuck on something with
-INKEY and moved on. As I recall INKEY was not returning unique key
-numbers but I forget which… posted sometime ago on this issue. Anyway,
-this demo is exactly the kind of thing I had in mind! Thank you shian!!!
-I wonder if text selecting is also possible, eg [ctrl+]shft+ home | end
-? BTW is CAT working for anyone? I was testing it last night and
-couldn’t get anything going (Windows 10-64 and SB 0.12.2).
-
+Example 5: A basic key code UNIT
 
     REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
     REM Purpose:   Special key values returned by INKEY.
@@ -839,40 +950,26 @@ couldn’t get anything going (Windows 10-64 and SB 0.12.2).
     '   Fi
     ' Wend
 
-When the first character in the two character code is 27, the second
-character is a code for the given special key. You would need to inspect
-the SB source to work out the equivalent SmallBASIC key constants, but
-I’ll have a look at generating a constants.bas file that you can include
-in your programs.
-
-As reported by Shian (thanks Shian!), there are a few problems with
-INKEY. I’ll fix these in the next update. There is supposed to be a
-different first character code for SHIFT/ALT etc states.
-
-Also, INKEY needs to read from the system event queue to get the next
-keystroke. It currently does a pause for key, but I think it should
-actually block in the call to read the queue, that way when you type a
-key there would be no delay. Either way this doesn’t work well for
-shooter type games, but there is a better way. Have a look at:
-
-https://github.com/smallbasic/SmallBASIC/blob/master/samples/distro-exam…
-
-This uses the DEFINEKEY command to register keystroke handlers for game
-keys. When you hit the game key, the registered FUNC will get called
-more or less immediately, somewhere inside the game main looI think this
-should work well in the space shooter (which is awesome by the way).
-
-Code for quick lookup of a key code:
-
-http://smallbasic.sourceforge.net/?q=node/1583
-
 +========================================================================================+
 |                                    8. (Console) INPUT                                  |
 +========================================================================================+
 
 INPUT [prompt,|;] var[, var [, ...]]
 
-Reads from “keyboard” text and stores it in a variable.
+Reads text from keyboard and stores it in the variable var. The string
+prompt is printed on the screen. If promt is followed by a ;, a question
+mark and a space are printed additionally. If you want to input two or
+more variables, the input needs to be separated with ,.
+
+Example 1: Using a single var
+
+    input "How old are you?", age
+    print age
+
+Example 2: Using multiple vars
+
+    input "Input three numbers: ", a, b, c   ' Input i.e. 1,2,3
+    print a, b, c
 
 +========================================================================================+
 |                                  9. (Console) LINEINPUT                                |
@@ -1524,6 +1621,70 @@ Inserts the values to the specified array at the position idx.
 -   idx - Position in the array.
 -   val - Any value or expression.
 
+Please be aware, that multiple variables will be sequentially inserted
+each at position 3. This leads to a reverse order.
+
+Example 1: Insert one variable
+
+    a = [1,2,3,4,5]
+
+    print a
+    insert a, 3, 6
+    print a
+
+    ' Output:
+    ' [1,2,3,4,5]
+    ' [1,2,3,6,4,5]
+
+Example 2: Insert several variables
+
+    a = [1,2,3,4,5]
+
+    print a
+    insert a, 3, 6, 7, 8
+    print a
+
+    ' Output:
+    ' [1,2,3,4,5]
+    ' [1,2,3,8,7,6,4,5]
+
+Example 3: Insert an array
+
+    a = [1,2,3,4,5]
+
+    print a
+    insert a, 3, [6,7]
+    print a
+
+    ' Output:
+    ' [1,2,3,4,5]
+    ' [1,2,3,[6,7],4,5]
+
+Example 4: Insert a map variable
+
+    a = [1,2,3,4,5]
+    b = {x:6, y:7}
+
+    print a
+    insert a, 3, b
+    print a
+
+    ' Output:
+    ' [1,2,3,4,5]
+    ' [1,2,3,{"y":7, "x":6},4,5]
+
+Example 5: Append a variable (insert at last position)
+
+    a = [1,2,3,4,5]
+
+    print a
+    a << 6
+    print a
+
+    ' Output:
+    ' [1,2,3,4,5]
+    ' [1,2,3,4,5,6]
+
 +========================================================================================+
 |                                    27. (Data) ISARRAY                                  |
 +========================================================================================+
@@ -1532,13 +1693,32 @@ ISARRAY (x)
 
 Returns true if x is an array.
 
+Example
+
+    A = [1,2,3]
+    print IsArray(A)    ' Output 1
+
+    A = {"x":1, "y":2}
+    print IsArray(A)    ' Output 0 (is a map)
+
+    A = 1
+    print IsArray(A)    ' Output 0 (is a number)
+
+    A = "abc"
+    print IsArray(A)    ' Output 0 (is a string)
+
 +========================================================================================+
 |                                     28. (Data) ISDIR                                   |
 +========================================================================================+
 
 ISDIR (x)
 
-Returns true if x is a directory.
+Returns true if the string dir is a directory.
+
+Example
+
+    print IsDir("C:\users")        ' Output 1 on Windows, otherwise 0
+    print IsDir("/home")           ' Output 1 on Linux, otherwise 0
 
 +========================================================================================+
 |                                    29. (Data) ISFILE                                   |
@@ -1546,7 +1726,12 @@ Returns true if x is a directory.
 
 ISFILE (x)
 
-Returns true if x is a regular file.
+Returns true if the string “f” is a regular file.
+
+Example
+
+    print IsFile("C:\windows\EXPLORER.EXE")        ' Output 1 on Windows, otherwise 0
+    print IsFile("/etc/passwd")                    ' Output 1 on Linux, otherwise 0
 
 +========================================================================================+
 |                                    30. (Data) ISLINK                                   |
@@ -1554,7 +1739,8 @@ Returns true if x is a regular file.
 
 ISLINK (x)
 
-Returns true if x is a link.
+Returns true if string link is a link. Works only in Linux and Android.
+In Windows ISLINK will return false.
 
 +========================================================================================+
 |                                     31. (Data) ISMAP                                   |
@@ -1562,9 +1748,21 @@ Returns true if x is a link.
 
 ISMAP (x)
 
-Returns true if x is an MAP variable type. A MAP provides value-key pair
-access along with array or dotted notation. The MAP can be initialized
-from a String variable using the ARRAY command.
+Returns true if x is a MAP variable.
+
+Example
+
+    A = {"x":1, "y":2}
+    print IsMap(A)      ' Output 1
+
+    A = [1,2,3]
+    print IsMap(A)      ' Output 0 (is an array)
+
+    A = 1
+    print IsMap(A)      ' Output 0 (is a number)
+
+    A = "abc"
+    print IsMap(A)      ' Output 0 (is a string)
 
 +========================================================================================+
 |                                   32. (Data) ISNUMBER                                  |
@@ -1572,14 +1770,16 @@ from a String variable using the ARRAY command.
 
 ISNUMBER (x)
 
-Returns true if x is a number (or it can be converted to a number).
+Returns true if x is a number or can be converted to a number.
 
-    ? ISNUMBER(12)          :REM true
-    ? ISNUMBER("12")        :REM true
-    ? ISNUMBER("12E+2")     :REM true
-    ? ISNUMBER("abc")       :REM false
-    ? ISNUMBER("1+2")       :REM false
-    ? ISNUMBER("int(2.4)")  :REM false
+Example
+
+    print ISNUMBER(12)          ' Output 1
+    print ISNUMBER("12")        ' Output 1
+    print ISNUMBER("12E+2")     ' Output 1
+    print ISNUMBER("abc")       ' Output 0
+    print ISNUMBER("1+2")       ' Output 0
+    print ISNUMBER("int(2.4)")  ' Output 0
 
 +========================================================================================+
 |                                   33. (Data) ISSTRING                                  |
@@ -1587,13 +1787,16 @@ Returns true if x is a number (or it can be converted to a number).
 
 ISSTRING (x)
 
-Returns true if x is a string (and cannot be converted to a number).
+Returns true if x is a string and cannot be converted to a number.
 
-    ? ISSTRING(12)      :REM false
-    ? ISSTRING("12")    :REM false
-    ? ISSTRING("12E+2") :REM false
-    ? ISSTRING("abc")   :REM true
-    ? ISSTRING("1+2")   :REM true
+Example
+
+    print ISSTRING(12)          ' Output 0
+    print ISSTRING("12")        ' Output 0
+    print ISSTRING("12E+2")     ' Output 0
+    print ISSTRING("abc")       ' Output 1
+    print ISSTRING("1+2")       ' Output 1
+    print ISSTRING("int(2.4)")  ' Output 1
 
 +========================================================================================+
 |                                    34. (Data) LBOUND                                   |
@@ -1976,30 +2179,22 @@ See also DATE and DATEDMY.
 
 JULIAN (dmy| (d,m,y))
 
-Returns the Julian date. (dates must be greater than 1/1/100 AD).
+Returns the Julian date. Dates must be greater than 1/1/100 AD. The date
+can be passed as the string dmy with the format DD/MM/YYYY.
+Alternatively the date can be given by specificing the parameters d for
+days, m for months and y for years.
 
-    PRINT Julian(DATE)
+Example 1: Basic usage
+
+    PRINT Julian("31/12/2001")
     PRINT Julian(31, 12, 2001)
+    PRINT Julian(DATE)
 
-Earlier this month I had done some code to calculate Oil Tank usage and
-used a ridiculously long and complex formula for calculating the number
-of days between two dates. I should have used the julian date function:
+Example 2: Difference in days between two dates
 
-
-    REM julian demo.bas 2016-02-28 SmallBASIC 0.12.2 [B+=MGA]
-    'oh julian returns the number of days since 1/1/100
-    'it is perfect for calculating the number of days between two dates
-    'but the date given to the julian function must be in form dd/mm/yyyy or m,d,y (see help)
-    'Date just so happens also returns in dd/mm/yyyy format so...
-    ? "Today is ";date
-    input "To test what julian returns, enter a date dd/mm/yyyy ";adate
-    ? "julian(";adate;") returns: ";julian(adate)
-    ? "That is/was ";abs(julian(adate)-julian(date));" days from today."
-    ?:input "To test the other format julian accepts enter a date as: dd,mm,yyyy(enter) ";d,m,y
-    ? "That is/was ";abs(julian(d,m,y)-julian(date));" days from today."
-    ?:? "Again julian is excellent for calculating the number of days between two dates."
-    pause
-    end
+    today = Julian(Date())
+    past = Julian(31, 12, 2001)
+    print today - past; " days past since 31/12/2001"
 
 +========================================================================================+
 |                                     47. (Date) TICKS                                   |
@@ -2626,7 +2821,25 @@ Example
 
 INPUT #fileN; var1 [,delim] [, var2 [,delim]] ...
 
-Reads data from file.
+Reads data from file #fileN and stores the values in var1, var2 to varN.
+Specify a delimiter if necessary.
+
+Example: Read a comma-separated-value file (csv)
+
+    ' Create a csv-file
+    open "test.csv" for output as #1
+    for x = 1 to 10
+        print #1, x + "," + x^2 + "," + x^3
+    next
+    close #1
+
+    ' Open the file and read the values
+    open "test.csv" for input as #1
+    while(!eof(1))
+        input #1; x, ",", x2, ",", x3
+        print x, x2, x3
+    wend
+    close #1
 
 +========================================================================================+
 |                                     68. (File) INPUT                                   |
@@ -2634,8 +2847,35 @@ Reads data from file.
 
 INPUT (len [, fileN])
 
-Reads ‘len’ bytes from file or console (if fileN is omitted). This
-function does not convert the data or remove spaces.
+Reads ‘len’ bytes from file or console (if fileN is omitted) and returns
+the result as sting s. This function does not convert the data or remove
+spaces.
+
+Example 1: Read from a file
+
+    ' Create a file and write 10 bytes
+    open "test.txt" for output as #1
+    for byte = 100 to 110
+        bputc #1, byte
+    next
+    close #1
+
+    ' Open the file 
+    open "test.txt" for input as #1
+    ' Read the first 5 byte
+    A = input(5, 1)
+    print A
+    ' Read the second 5 byte
+    A = input(5, 1)
+    print A
+
+    close #1
+
+Example 2: Read from console
+
+    ' Read three characters from keyboard
+    A = input(3)
+    print A
 
 +========================================================================================+
 |                                     69. (File) KILL                                    |
@@ -4928,6 +5168,15 @@ SHOWPAGE
 This command is used to display pending graphics operations allowing for
 smooth animations.
 
+Example
+
+    for x = 10 to 100
+        cls
+        rect x, 10, x + 200, 200 filled
+        showpage
+        delay(20)
+    next
+
 +========================================================================================+
 |                                98. (Graphics) TEXTHEIGHT                               |
 +========================================================================================+
@@ -5378,7 +5627,30 @@ manipulate the sign bit, bit-31.
 
 AS #fileN
 
+Used in combination with OPEN to open a file using a file number.
+
 See: OPEN
+
+Example:
+
+    ' create a text file
+    open "MyDemoFile.txt" for output as #1
+
+    for i = 1 to 10
+        print #1, i 
+    next
+
+    close #1
+
+    ' open text file and print content line by line
+    open "MyDemoFile.txt" for input as #1
+
+    while(!eof(1))   ' eof works only without #
+        input #1, c
+        print c
+    wend
+
+    close #1
 
 +========================================================================================+
 |                                   110. (Language) BAND                                 |
@@ -5893,7 +6165,7 @@ Example 1: Assign FALSE to a variable
     b = false
 
     print a  ' output: 1
-    print b  ' output: 2
+    print b  ' output: 0
 
 Example 2: Use in a while loop
 
@@ -5901,8 +6173,7 @@ Example 2: Use in a while loop
 
     while(IsRunning)
         i++
-        print i
-        
+        print i    
         if(i == 5) then IsRunning = false
     wend
 
@@ -5911,7 +6182,6 @@ Example 2: Use in a while loop
 Example 3: Use in a if statement
 
     ButtonPressed = false   ' replace false with true
-
     if(ButtonPressed) then print "Button was pressed"
 
 +========================================================================================+
@@ -6103,31 +6373,32 @@ Causes program execution to branch to the specified label; when the
 RETURN command is encountered, execution branches to the command
 immediately following the most recent GOSUB command.
 
+GOSUB should be used with caution. Using subroutines is more versatile
+and much easier to read.
 
-    ' Note: using SUB instead of GOSUB is much more easy and modular.
+Example 1: Using GOSUB
+
+    while(ii < 20)
+      gosub Inc
+    wend
+
+    end ' ends the program
       
-    x = 50
-    Gosub routine1 ' prints 100
-    Print x        ' prints 50
-    routine2 x     ' prints -50
-    Print x        ' prints 50
-    ' Using GOSUB inside SUB:
-    Sub routine2(x)
-      Gosub routine3
-      Exit Sub
+    label Inc
+    ii++
+    print ii
+    return
+
+Example 2: Same as example 1, but using a subroutine instead of GOSUB
+
+    while(ii < 20)
+      Inc()
+    wend
       
-    Label routine3
-      x = -x
-      Print x      
-    Return
-    End Sub
-    Pause
-    End ' End of program
-    ' Using GOSUB with LOCAL variables:
-    Label routine1
-      Local x = 100
-      Print x
-    Return
+    sub Inc()
+      ii++
+      print ii
+    end
 
 +========================================================================================+
 |                                   134. (Language) GOTO                                 |
@@ -6137,15 +6408,29 @@ GOTO label
 
 Causes program execution to branch to a specified position (label).
 
+GOTO is known to create “spaghetti code”, i.e. winding code which is
+hard to follow, to understand, and to maintain. IF…THEN, SELELCT CASE,
+SUB, FUNC and DEF are much better ways to write branching code.
 
-    ' Note: GOTO is known to create "spaghetti code", i.e. winding code which is
-    '       hard to follow, to understand, and to maintain.
-    '       IF...THEN, SELELCT CASE, SUB, FUNC and DEF are much better ways to
-    '       write branching code.
-             
+Example 1
+
+    label FirstLine
+        
+    ii++
+    print ii
+    if(ii == 10) then goto LastLine 
+    goto FirstLine
+
+    label LastLine
+
+Example 2
+
+    randomize
+
     While True 
       x = Rnd
-      tries += 1
+      tries++
+      
       While True
         If x < 0.05 Then 
           Print "x < 0.05 (after "; tries; " tries)."
@@ -6157,29 +6442,12 @@ Causes program execution to branch to a specified position (label).
           Exit Loop ' here we exit only the inner WHILE loop
         Fi
       Wend
+      
     Wend
+
     Label exitLoops
     Print
     Print "Out of loops now."
-    Pause
-
-GOTO loop jumping is surest way to stack overflow error! Modular coding
-and GOTO do not mix well. Use GOTO with extreme caution within code
-blocks if you must. You probably should mean “GOSUB stack overflow
-error”; GOTO is a freelancer freak (like me…), he can change direction
-at any time. (unless you try to GOTO Label inside a sub routine, which
-is insane anyway). Only GOSUB must have obligations, and as human being,
-it leads to nervous breakdown… P.S. In Euphoria programming language the
-stack dynamically expends and shrinks forever.
-
-Hi shian, Well memory might be playing tricks with me because I don’t
-use GOSUB or GOTO that often except translating old code. It could very
-well be GOSUB I am remembering or any GOTO into or out of a subroutine.
-In your large industrial programs how many times do use GOTO and are
-confident you have written the best code possible? I never use GOTO. The
-best code is always relative to schedule. At certain moment the program
-must be finished, and sometimes you know very well that you could do
-MUCH better work if only you had more time… life.
 
 +========================================================================================+
 |                                    135. (Language) IF                                  |
@@ -6187,8 +6455,10 @@ MUCH better work if only you had more time… life.
 
 IF expr
 
-Tests the expression and IF it evaluates to a non-zero value program
+Tests the expression and if it evaluates to a non-zero value, program
 flow will resume after the following THEN statement.
+
+Block-style IF
 
     IF expression1 [THEN]
         .
@@ -6206,8 +6476,8 @@ flow will resume after the following THEN statement.
     ]
     ENDIF| FI
 
-Block-style IF. Causes SmallBASIC to make a decision based on the value
-of an expression.
+Causes SmallBASIC to make a decision based on the value of an
+expression.
 
 -   expression - An expression; 0 is equivalent to FALSE, while all
     other values are equivalent to TRUE.
@@ -6227,21 +6497,6 @@ line; if anything other than a comment follows on the same line with
 THEN, BASIC thinks it’s reading a single-line IF/THEN/ELSE construct. IF
 blocks may be nested.
 
-    x=1
-    IF x=1 THEN
-        PRINT "true"
-    ELSE
-        PRINT "false"
-    ENDIF
-    ...
-    ' Alternate syntax:
-    x=1
-    IF x=1
-        PRINT "true"
-    ELSE
-        PRINT "false"
-    FI
-
 Single-line IF
 
     IF expression THEN [num-label]|[command] [ELSE [num-label]|[command]]
@@ -6255,13 +6510,63 @@ expression.
     specified, it is equivalent to a GOTO command with the specified
     numeric-label.
 
-    ' Single-line IF
-    x=1
-    IF x=1 THEN PRINT "true" ELSE PRINT "false"
-    ...
-    IF x=1 THEN 1000
-    ...
+Example 1: Block-style IF
+
+    x = 1
+    IF x = 1 THEN
+        PRINT "true"
+    ELSE
+        PRINT "false"
+    ENDIF
+
+    ' Alternate syntax:
+    x = 1
+    IF x = 1
+        PRINT "true"
+    ELSE
+        PRINT "false"
+    FI
+
+Example 2: Single-line IF
+
+    x = 1
+    IF x = 1 THEN PRINT "true" ELSE PRINT "false"
+
+    IF x = 1 THEN 1000
+
+    end ' ends the program
+
     1000 PRINT "true"
+
+Example 3: Nested IF
+
+    x = 1
+    y = 2
+
+    IF x == 1 THEN 
+        PRINT "x equals 1"
+        
+        if y == 2 THEN
+            PRINT "y equals 2"
+        ELSE
+            PRINT "y not 2"
+        ENDIF
+        
+    ELSE
+        PRINT "x not 1"
+    ENDIF
+
+Example 4: IF … ELSEIF … ELSE
+
+    foo = 1     ' change value to 1,2,3
+
+    IF foo == 1
+        PRINT "one"
+    ELSEIF foo == 2
+        PRINT "two"
+    ELSE
+        PRINT "something else"
+    ENDIF
 
 +========================================================================================+
 |                                   136. (Language) IFF                                  |
@@ -6269,24 +6574,38 @@ expression.
 
 IFF expr
 
-Inline version of IF. eg,
-animal = "cat": fur = IFF( animal = "cat", "yes", "no"): ? fur
+Inline version of IF.
 
-animal=IFF(HasFur=1,"Cat","Fish") or
-? IFF(animal="cat"," has fur.", " might not have fur.")
+Example 1
 
-    ' RND - returns a number from 0 to almost 1
-    ' IFF - IFF(conditional statement to evaluate, return this if evaluates true, returns this if evaluates false)
-    FOR i=1 TO 20 'need a random true/false, subst 0 or 1 (or -1)  ;)
-      ? IFF(rnd<.5,"True ","False ");   '<======================== RND and IFF
-    next
-    ?:?
-    FOR i=1 TO 10  'need a random direction back and forth
-      dir=IFF(RND<.5,-360*RND,360*RND)  '<======================== RND and IFF
-      ? USING " ####.0000"; dir;
-    NEXT
-    ?:?
-    PAUSE
+    animal = "cat"
+    fur = IFF( animal == "cat", "yes", "no")
+    print fur
+
+Example 2
+
+    Eq = "sin"
+    x = 5
+
+    ans = iff(Eq == "sin", sin(x), cos(x))
+    print ans
+
+    ' Alternative syntax:
+
+    if(Eq == "sin") then
+        ans = sin(x)
+    else
+        ans = cos(x)
+    endif
+
+    print ans
+
+Example 3
+
+    x = 4
+
+    ans = iff(x <= 5, 0, 10)
+    print ans 
 
 +========================================================================================+
 |                                   137. (Language) IMP                                  |
@@ -6294,9 +6613,42 @@ animal=IFF(HasFur=1,"Cat","Fish") or
 
 a IMP b
 
-Used to perform a logical implication on two expressions.
+Perform a logical implication on two expressions. IMP is equivalent to
+(NOT a) OR b.
 
-EQV and IMP manipulating only the lower 4 bits:
+Truth table
+
+   a   b  a IMP b
+  --- --- ---------
+   0   0  1
+   0   1  1
+   1   0  0
+   1   1  1
+
+Example 1
+
+    print "Truth table"
+    print
+    print "0 IMP 0 = "; 0 IMP 0
+    print "0 IMP 1 = "; 0 IMP 1
+    print "1 IMP 0 = "; 1 IMP 0
+    print "1 IMP 1 = "; 1 IMP 1
+
+Example 2
+
+    a = 0b10011101
+    b = 0b11010011
+
+    print "    "; bin(a)
+    print "IMP "; bin(b)
+    print "------------"
+    print "    "; bin(a IMP b)
+
+    ' output:
+    '     10011101
+    ' IMP 11010011
+    ' ------------
+    '     11110011
 
 +========================================================================================+
 |                                    138. (Language) IN                                  |
@@ -6304,29 +6656,50 @@ EQV and IMP manipulating only the lower 4 bits:
 
 a IN b
 
-Returns an index (1 Based) to the matching element when b is an array.
-Returns TRUE if the value is contained within b as a string.
+-   b is an array: Returns the index (1 based) of the first matching
+    element. If no matching element, IN returns FALSE.
+-   b is a string: Returns TRUE if the value is contained within b.
+-   for loop: FOR i IN array will cycle through all elements of array, i
+    contains the element.
 
+Example 1: array
 
-    ' IN language ref.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-01
-    'IN may be used in a couple of ways:
-    '1) It can be used to access elements of an array: FOR i IN array 
-    '   without needing to know upper or lower bounds of the array
-    '   FOR i IN array will cycle through all elements of array, i is variable for element
-    '   example to follow...
-    '2) It can be used to report whether a string is within a string
-    '   also in example...
-    'FILES(wildcard) - will create an array of files that have wildcard pattern
-    ' myFiles=FILES("*.*")
-    ' pathTXTFiles=FILES(path+"/*.txt")
-    myFiles=FILES("*.*")
-    for fl IN myFiles
-      if ".bas" IN fl then ? fl
+    print 1   in [-2,-1,1,2]           ' Output 3
+    print "b" in ["a", "b", "c", "d"]  ' Output 2
+
+Example 2: string
+
+    print "a"  in "car"                ' Output 1
+    print "ar" in "car"                ' Output 1
+    print "d"  in "car"                ' Output 0
+
+Example 3: for loop
+
+    a = [4,8,2,3,9]
+    for i in a
+        print i
     next
-    pause
+    'Output 4 8 2 3 9
 
+    a = ["duck", "dog", "cat"]
+    for i in a
+        print i
+    next
+    ' Output duck dog cat
 
-    ' See also: Home -- Articles -- Welcome to SmallBASIC -- The operator IN
+Example 4: Count files
+
+    myFiles = FILES("*")
+
+    for fl IN myFiles
+      if ".bas" IN fl then NumBasFiles++
+      if ".txt" IN fl then NumTxtFiles++  
+    next
+
+    print "Number of .bas files: " + NumBasFiles
+    print "Number of .txt files: " + NumTxtFiles
+
+Example 5
 
     ' IN keyword is 1-Based, so using "Option Base 1" makes code more consistent:
     Option Base 1
@@ -6338,11 +6711,11 @@ Returns TRUE if the value is contained within b as a string.
 
     title "Use IN to check if sub-string exists within string (see also INSTR):"
     s = "Hello 5"
-    ? rev(" s =" + q(s))
-    ? q("ll") + "In s? "; "ll" In s,, ' (0=FALSE; 1=TRUE)
-    ? q("LL") + "In s? "; "LL" In s
-    ? q("l") + " In s? ";  "l" In s,,
-    ? "  5   In s? ";        5 In s
+    ? rev("   s =" + q(s))
+    ? "  "; q("ll") + "In s? "; "ll" In s,, ' (0=FALSE; 1=TRUE)
+    ? "  "; q("LL") + "In s? "; "LL" In s
+    ? "  "; q("l") + " In s? ";  "l" In s,,
+    ? "   5    In s? ";        5 In s
 
     title "Use IN to return the index of matching element in array (1-Based):"
     Dim a()
@@ -6350,42 +6723,44 @@ Returns TRUE if the value is contained within b as a string.
     a << "World"
     a << 123
     'a << [4,"x",6] ' nested array conflicts with the other types.
-    ? rev(" a = " + Str(a) + " ")
-    ? q("Hello") + "In a: "; "Hello" In a,,
-    ? q("ello") + " In a: ";  "ello" In a
-    ? q("HELLO") + "In a: "; "HELLO" In a,,
-    ? q("World") + "In a: "; "World" In a
-    ? "  123    In a: ";         123 In a,,
-    ? "  12     In a: ";         12  In a
+    ? rev("   a = " + Str(a) + " ")
+    ? "  "; q("Hello") + "In a: "; "Hello" In a,,
+    ? "  "; q("ello") + " In a: ";  "ello" In a
+    ? "  "; q("HELLO") + "In a: "; "HELLO" In a,,
+    ? "  "; q("World") + "In a: "; "World" In a
+    ? "    123    In a: ";         123 In a,,
+    ? "    12     In a: ";         12  In a
     '? "[4,\\"x\\",6] In a: "; [4,"x",6] In a ' (nested array)
 
     title "Use IN to flatten multi-dimension array:"
     a = [1, 2, 3; 4, 5, 6; 7, 8, 9, 10, 11; "Hello", "World"]
-    ? rev(" a = " + Str(a) + " ")
+    ? rev("   a = " + Str(a) + " ")
+    ? "   ";
     For i In a
       ? i; ", "; ' i is used as pointer to a array element inside FOR loop
     Next
     ?
     title "Use IN to print nested arrays:"
     a = [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10, 11], ["Hello", "World"]]
-    ? rev(" a = " + Str(a) + " ")
+    ? rev("   a = " + Str(a) + " ")
+    ? "   ";
     For i In a
       ? i; ", "; ' i is used as pointer to a(i) inside FOR loop
     Next
     ?
     title "Use IN to print map array:"
     a = Array("{x:100, y:300, point:Top-Left}")
-    ? rev(" a = " + Str(a) + " ")
+    ? rev("   a = " + Str(a) + " ")
+    ? "   ";
     For i In a
       ? i; ":"; a(i); ", "; ' i is used as pointer inside FOR loop
     Next
     ?
     title "Use IN to test equality of numbers:"
     n = 10.5
-    ? rev(" n = 10.5 ")
-    ? "n In 10   : "; n In 10    ' (0=FALSE; 1=TRUE)
-    ? "n In 10.5 : "; n In 10.5
-    Pause
+    ? rev("   n = 10.5 ")
+    ? "   n In 10   : "; n In 10    ' (0=FALSE; 1=TRUE)
+    ? "   n In 10.5 : "; n In 10.5
 
 +========================================================================================+
 |                                  139. (Language) LABEL                                 |
@@ -7058,6 +7433,22 @@ FOR t = 1 TO 10 STEP 2
 
 Specifies the loop counter increment in a FOR loop
 
+Example 1: Positive step
+
+    for t = 1 to 10 step 2
+        print t
+    next
+
+    ' Output: 1 3 5 7 9
+
+Example 2: Negative step
+
+    for t = 10 to 1 step -2
+        print t
+    next
+
+    ' Output: 10 8 6 4 2
+
 +========================================================================================+
 |                                   158. (Language) STOP                                 |
 +========================================================================================+
@@ -7200,6 +7591,12 @@ Example
 FOR t = 1 TO 10
 
 Specifies the loop counter end in a FOR loop
+
+Example
+
+    for t = 1 to 10
+        print t
+    next
 
 +========================================================================================+
 |                                   163. (Language) TRUE                                 |
@@ -8238,9 +8635,18 @@ INT (x)
 
 Rounds x downwards to the nearest integer.
 
-x\1 will convert a x to an integer in less keystrokes than INT, they
-both round down for positives and up for negatives. In other words, they
-both drop the fractional part of the number.
+x\1 will convert x to an integer in less keystrokes than INT, they both
+round down for positives and up for negatives. They both drop the
+fractional part of the number.
+
+Example 1
+
+    print int(3.3)      ' Output 3
+    print int(3.7)      ' Output 3
+    print int(-3.3)     ' Output -3
+    print int(-3.7)     ' Output -3
+
+Example 2
 
     'INT or alternate.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
     'I think number\1 is eqivalent to INT(number) in less keystrokes
@@ -8267,32 +8673,32 @@ both drop the fractional part of the number.
 INTERSECT Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, BYREF type, BYREF Rx, BYREF Ry
   Ry
 
-Calculates the intersection of the two line segments A-B and C-D.
-Returns: Rx,Ry = cross.
+Calculates the intersection of two line segments AB and CD given by the
+point Ax, Ay, Bx, By and Cx, Cy, Dx, Dy.
 
-type = cross-type:
+Returns:
 
--   0: No cross (R = external cross)
--   1: One cross
--   2: Parallel
--   3: Parallel (many crosses)
--   4: The cross is one of the line segments edges.
+-   Rx, Ry = coordinates of crossing point.
+-   type = cross-type:
+    -   0: No cross (R = external cross)
+    -   1: One cross
+    -   2: Parallel
+    -   3: Parallel (many crosses)
+    -   4: The cross is one of the line segments edges.
 
-    'Line segment AB
+Example
+
+    ' Line segment AB
     Ax = 50
     Ay = 50
     Bx = 100
     By = 100
 
-    'Line segment CD
+    ' Line segment CD
     Cx = 100
     Cy =  50
     Dx =  50
     Dy = 100
-
-    type = 0
-    Rx = 0
-    Ry = 0
 
     intersect Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, type, Rx, Ry
 
@@ -8309,7 +8715,9 @@ type = cross-type:
 
 INVERSE (A)
 
-Returns the inverse matrix of A.
+Returns the inverse matrix I of matrix A.
+
+Example
 
     A = [ 1, -1, 1; 2, -1, 2; 3, 2, -1]
     print INVERSE(A)
@@ -9709,7 +10117,9 @@ BIN (x)
 
 Returns the binary value of x as string.
 
-    print bin(123)
+    print hex(255)      ' output: FF
+    print bin(8)        ' output: 1000
+    print oct(16)       ' output: 20
 
 +========================================================================================+
 |                                    253. (String) CBS                                   |
@@ -10024,38 +10434,33 @@ HEX (x)
 
 Returns the hexadecimal value of x as string.
 
+Example
+
+    print hex(255)      ' output: FF
+    print bin(8)        ' output: 1000
+    print oct(16)       ' output: 20
+
 +========================================================================================+
 |                                   260. (String) INSTR                                  |
 +========================================================================================+
 
 INSTR ([start,] s1, s2)
 
-Returns the position of the first occurrence of the string s2 into
-string s1 (starting from the position ‘start’). If there is no match,
-INSTR returns 0
+Returns the position pos of the first occurrence of the string s2 in
+string s1 (starting from the position start). If there is no match,
+INSTR returns 0.
 
+Example 1: Get position starting a the beginning of the string
 
-    ' INSTR oddity.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-08
-    'this oddity was discovered with inkey failure to work as expected
-    ?instr("ABCD","")    'aha! returns 1
-    pause
-    'end
-    'I am trying to figure out why the following code wont work, it's because instr("anything","")=1
-    while 1
-    s=" x=exit n=nice r=random g=globe"
-    at (xmax-txtw(s))\\2,0:?s
-    repeat 
-      ink=inkey
-      ink=upper(ink)
-      delay 20
-    'until ink="X" or ink="Q" or ink="N" or ink="R" or ink="G" '<= this works great!
-    until instr("XQNRG",ink)>0 '<==== this refuses to work right
-    cls
-    at 0,3*txth("Q"):? "You pressed '";ink;"'"
-    ? " instr XQNRG,ink  '";instr("XQNRG",ink);"'  press any..."
-    pause
-    if ink="X" then ? "Goodbye":end
-    wend
+    s1 = "abcdef"
+    s2 = "cd"
+    print instr(s1, s2)  ' Output 3
+
+Example 2: Get position using a starting point
+
+    s1 = "abcdefabcd"
+    s2 = "ab"
+    print instr(3, s1, s2)  ' Output: 7  (instead of 1)
 
 +========================================================================================+
 |                                    261. (String) JOIN                                  |
@@ -10063,14 +10468,20 @@ INSTR returns 0
 
 JOIN words(), delimiters, string
 
-Returns the words of the specified string into array ‘words’.
+Join the elements of the array words with the delimiter delimiter and
+return the result as string s.
 
-    s="/etc/temp/filename.ext"
-    SPLIT s, "/.", v()
-    JOIN v(), "/", s
-    PRINT "[";s;"]"
-    displays:
-    [/etc/temp/filename/ext]
+Example
+
+    ' Create an array
+    words << "etc"
+    words << "temp"
+    words << 1
+    words << "filename.ext"
+
+    ' Join then array elements
+    JOIN words, "/", s
+    PRINT s                       ' Output: etc/temp/1/filename.ext
 
 +========================================================================================+
 |                                   262. (String) LCASE                                  |
@@ -10168,6 +10579,10 @@ the position ‘start’.
 OCT (x)
 
 Returns the octal value of x as string.
+
+    print hex(255)      ' output: FF
+    print bin(8)        ' output: 1000
+    print oct(16)       ' output: 20
 
 +========================================================================================+
 |                                  270. (String) REPLACE                                 |
@@ -11066,7 +11481,17 @@ Example
 
 HOME
 
-User HOME folder
+Returns the user home folder.
+
+Example 1: Get user home folder
+
+    print home()        ' output i.e: C:\Users\j7m
+
+Example 2: Change working directory to home directory
+
+    h = home()
+    chdir(h)
+    print cwd
 
 +========================================================================================+
 |                                   299. (System) IMPORT                                 |
@@ -11074,7 +11499,18 @@ User HOME folder
 
 IMPORT
 
-Import an exported UNIT variable, SUB or FUNC.
+Import an exported UNIT or a module with the name UnitName using the
+namespace MyName.
+
+See UNIT for an example on how to import an unit.
+
+Additionally, modules can be imported using IMPORT. Several modules are
+part of the release version. For more information on available modules
+and how to use them see the articels in the article section.
+
+Example 1: Import raylib module
+
+    import raylib as r
 
 +========================================================================================+
 |                                  300. (System) INCLUDE                                 |
@@ -11082,47 +11518,35 @@ Import an exported UNIT variable, SUB or FUNC.
 
 INCLUDE source-file.bas
 
-Inserts code in the named file when the program is compiled.
+Inserts code from SourceFile when the program is compiled.
 
-INCLUDE is not in the main list for the Language reference. But here it
-is, right after IMPORT under the System category! Here is part_1.bas,
-the first part of our long program:
+INCLUDE can be used to split a large file into smaller parts. If you
+want to use include to create a library, then you should consider to use
+an UNIT instead.
 
+Example
 
-    ' "part_1.bas" demo file for INCLUDE keyword.
-    Label startProgram
-    Print "i is: "; i
+Create first file and save it as part1.bas.
 
-Here is part_2.bas, the second (and startup) part of our long program:
+    Print "This is part1.bas"
+    for i = 1 to 5
+      print i
+    next
 
+Create second file wich will include part1.bas.
 
-    ' "part_2.bas" demo file for INCLUDE keyword - This is the startup file
-    ' to run the demo program.
-    ' -------------
-    ' Include keyword allows us to merge another SmallBASIC source file into 
-    ' our file, which means that any code is common to all files.
-    ' It's useful when the program is too long and we simply want to divide it
-    ' into "pages", instead of one single long "page".
-    ' 
-    ' See also Home -- Language reference -- Graphics -- COLOR -- color_const.bas
-    ' for practical example of Include.
-    '
-    ' Note: INCLUDE keyword is very different from UNIT keyword. 
-    '       UNIT allows us to use only specific code, therefore it is more suitable 
-    '       for modular programming.
-    '       UNIT also supports "Namespaces": Namespaces allow reuse of same names 
-    '       in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both 
-    '       using a function with the same name, "Set", but in different contexts.
-    ' -------------
+    include part1.bas
 
-    ' Here we include (merge) another file in our program:
-    ' Note: actuall filename must be lower case for Linux.
-    Include "part_1.bas" 
+    print "This is part2.bas"
+    for i = 5 to 1 step -1
+        print i
+    next
 
-    ' demo:
-    i += 1
-    If i <= 10 Then Goto startProgram ' startProgram label is in part_1.bas
-    Pause
+    ' Output:
+    ' This is part1.bas
+    ' 1 2 3 4 5
+    ' This is part2.bas
+    ' 5 4 3 2 1
 
 +========================================================================================+
 |                                   301. (System) MAXINT                                 |
@@ -11459,16 +11883,55 @@ executed.
 UNIT name
 
 Declares the source module as a unit. Units are a set of procedures,
-functions and/or variables that can be used by another program or unit.
+functions, constants or variables that can be used by another program or
+unit.
 
-As of SmallBASIC version 0.12.6:
-
-1.  UNIT supports ‘namespace’ (Namespaces allow reuse of same names in
+-   UNIT supports ‘namespace’ (Namespaces allow reuse of same names in
     different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both
     using a function with the same name, “Set”, but in different
     contexts).
-2.  UNIT name on Linux system is no longer case sensitive (which makes
-    life easier for Linux users).
+-   While UNIT can be used as a collection of sub-routines for your own
+    program, UNIT is particularly useful for creating a general-purpose
+    library. General purpose libraries can be useful for many programs
+    or projects, the same way the internal routine “PRINT” is useful for
+    many programs, and not only for specific one.
+
+Use EXPORT to export procedured, functions, constants or variables. Only
+exported names can be access in the main program.
+
+Example 1: Simple Unit
+
+First an example of the unit. Please save it with the filename
+“MyTestUnit.bas”
+
+    UNIT MyTestUnit
+
+    export MyFunc
+    export MySub
+    export MyConst = 3.1415
+    export MyVar = 5
+
+    func MyFunc(a,b)
+        return a + b
+    end
+
+    sub MySub(a,b)
+        print "a + b = "; a + b
+    end
+
+Second an example on how to use the unit.
+
+    import MyTestUnit as u
+
+    u.MySub(1,2)
+
+    print u.MyFunc(2,3)
+    print u.MyConst
+
+    u.MyVar = u.MyVar + 5
+    print u.MyVar
+
+Example 2: An unit for using string
 
 The UNIT file is strlib.bas:
 
@@ -11538,105 +12001,4 @@ Demo file, demo.bas, which is using strlib.bas above:
     Locate 6, 30
     Print Strlib.Rset("-->>  ", 25)
     Pause
-
-1.  While UNIT can be used as a collection of sub-routines for your own
-    program, UNIT is particularly useful for creating a general-purpose
-    library. General purpose library can be useful for many programs or
-    projects, the same way the internal routine “PRINT” is useful for
-    many programs, and not only for specific one.
-
-2.  It is very important to keep the syntax of EXPORTed routines fixed.
-    For example: Imagine that the internal routine “PRINT” will use a
-    new syntax in future version of SmallBASIC, something like:
-
-    PRINT [fileN,] x, y, color, "string"  ' the "new" syntax
-
-In this case many older programs will not work with the new version of
-SmallBASIC.
-
-The same way, when you create a UNIT to be used as a general-purpose
-library, you must keep the syntax of EXPORTed routines fixed, so old
-programs will continue to work well with newer versions of your UNIT.
-
-3.  If you modify an existing UNIT, you should assign to it a new
-    version number. The easy way to maintain a Software versioning is
-    like this:
-
-    “Unit Name”, Version major.minor.revision, Release_Date
-
-    For example:
-
-    REM Unit "StrLib" Version 1.15.11, 20/3/2016
-
-major number:> is increased when there are significant jumps in
-functionality such as changing the framework which could cause
-incompatibility with interfacing programs. minor number:> is incremented
-when only minor features or significant fixes have been added.
-
-revision number:> is incremented when minor bugs are fixed.
-
-By assigning a version number, other users will know what to expect from
-the modified version. You should also add a short description of the
-changes that you have made.
-
-4.  If your UNIT is quite advanced, and you expect it to work
-    differently in future versions, you can use the following method
-    which allows Old & New programs to work with your unit correctly:
-
-    Instead of using a fixed syntax for sub routines, such as:
-
-    ZipText(string, method, fileName)
-
-Use a single object parameter which has a default value of 0:
-
-    ZipText(x)
-
-Now, in version 1.0.0 for example, x might have this syntax as an array:
-
-    x is [string, method, fileName] ' Version 1.0.0
-
-And in some future version, x might have another syntax, such as:
-
-    x is [string, method, fileName, format] ' Version 1.1.0
-
-Or…
-
-    x is [string, fileName] ' Version 1.14.5
-
-Etc.
-
-The
-
-    ZipText(x)
-
-routine will verify the number of arguments and/or their type (array,
-string, etc) and execute the correct code for this version’s-syntax.
-
-This method is especially useful for maintaining a big project for a
-long time, which is going to offer more and more features in the future.
-It will allow old programs to work as usual, and new programs to benefit
-from the new features.
-
-1.  UNIT should Export only> routines or constants (variables) which
-    related to the specific use of that unit. For example, UNIT which
-    offers string manipulation routines should only> Export string
-    manipulation routines or string constants.
-
-    If UNITs contain routines for many different uses, it is likely that
-    two UNITs will have to IMPORT each other - and this is basically
-    illogical.
-
-2.  -   UNIT must be documented well, so other users can use it.
-    -   UNIT should be efficient, because it should serves many other
-        programs.
-    -   Routines syntax should be consistent and standard, to be easy to
-        use.
-    -   UNIT is saved as Byte-Code (SBU), which is fast and does not
-        include spaces, comments, etc. So feel free to add enough
-        comments and spaces…
-
-There are more about UNITs (shared libraries), but the most important:
-When you write a UNIT to be used by others, try to be merciful… i.e.
-write clear and documented code, and make it easy for others to use your
-UNIT.
 

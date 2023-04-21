@@ -1,5 +1,27 @@
 <h1 id="input">INPUT</h1>
 <blockquote>
-<p>INPUT (len [, fileN])</p>
+<p>s = INPUT (len [, fileN])</p>
 </blockquote>
-<p>Reads ‘len’ bytes from file or console (if fileN is omitted). This function does not convert the data or remove spaces.</p>
+<p>Reads ‘len’ bytes from file or console (if fileN is omitted) and returns the result as sting s. This function does not convert the data or remove spaces.</p>
+<h3 id="example-1-read-from-a-file">Example 1: Read from a file</h3>
+<pre><code>&#39; Create a file and write 10 bytes
+open &quot;test.txt&quot; for output as #1
+for byte = 100 to 110
+    bputc #1, byte
+next
+close #1
+
+&#39; Open the file 
+open &quot;test.txt&quot; for input as #1
+&#39; Read the first 5 byte
+A = input(5, 1)
+print A
+&#39; Read the second 5 byte
+A = input(5, 1)
+print A
+
+close #1</code></pre>
+<h3 id="example-2-read-from-console">Example 2: Read from console</h3>
+<pre><code>&#39; Read three characters from keyboard
+A = input(3)
+print A</code></pre>

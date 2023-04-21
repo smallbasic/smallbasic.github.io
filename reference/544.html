@@ -80,6 +80,58 @@
 <li>idx - Position in the array.</li>
 <li>val - Any value or expression.</li>
 </ul>
+<p>Please be aware, that multiple variables will be sequentially inserted each at position 3. This leads to a reverse order.</p>
+<h3 id="example-1-insert-one-variable">Example 1: Insert one variable</h3>
+<pre><code>a = [1,2,3,4,5]
+
+print a
+insert a, 3, 6
+print a
+
+&#39; Output:
+&#39; [1,2,3,4,5]
+&#39; [1,2,3,6,4,5]</code></pre>
+<h3 id="example-2-insert-several-variables">Example 2: Insert several variables</h3>
+<pre><code>a = [1,2,3,4,5]
+
+print a
+insert a, 3, 6, 7, 8
+print a
+
+&#39; Output:
+&#39; [1,2,3,4,5]
+&#39; [1,2,3,8,7,6,4,5]</code></pre>
+<h3 id="example-3-insert-an-array">Example 3: Insert an array</h3>
+<pre><code>a = [1,2,3,4,5]
+
+print a
+insert a, 3, [6,7]
+print a
+
+&#39; Output:
+&#39; [1,2,3,4,5]
+&#39; [1,2,3,[6,7],4,5]</code></pre>
+<h3 id="example-4-insert-a-map-variable">Example 4: Insert a map variable</h3>
+<pre><code>a = [1,2,3,4,5]
+b = {x:6, y:7}
+
+print a
+insert a, 3, b
+print a
+
+&#39; Output:
+&#39; [1,2,3,4,5]
+&#39; [1,2,3,{&quot;y&quot;:7, &quot;x&quot;:6},4,5]</code></pre>
+<h3 id="example-5-append-a-variable-insert-at-last-position">Example 5: Append a variable (insert at last position)</h3>
+<pre><code>a = [1,2,3,4,5]
+
+print a
+a &lt;&lt; 6
+print a
+
+&#39; Output:
+&#39; [1,2,3,4,5]
+&#39; [1,2,3,4,5,6]</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using INSERT</div>
     <div class="linklist">
@@ -147,7 +199,7 @@ INSERT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Tue, 18 Apr 2023 22:42:27 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

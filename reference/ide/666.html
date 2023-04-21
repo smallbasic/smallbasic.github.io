@@ -2,5 +2,57 @@
 <blockquote>
 <p>a IMP b</p>
 </blockquote>
-<p>Used to perform a logical implication on two expressions.</p>
-<p>EQV and IMP manipulating only the lower 4 bits:</p>
+<p>Perform a logical implication on two expressions. IMP is equivalent to (NOT a) OR b.</p>
+<h3 id="truth-table">Truth table</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">a</th>
+<th style="text-align: center;">b</th>
+<th style="text-align: left;">a IMP b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-1">Example 1</h3>
+<pre><code>print &quot;Truth table&quot;
+print
+print &quot;0 IMP 0 = &quot;; 0 IMP 0
+print &quot;0 IMP 1 = &quot;; 0 IMP 1
+print &quot;1 IMP 0 = &quot;; 1 IMP 0
+print &quot;1 IMP 1 = &quot;; 1 IMP 1</code></pre>
+<h3 id="example-2">Example 2</h3>
+<pre><code>a = 0b10011101
+b = 0b11010011
+
+print &quot;    &quot;; bin(a)
+print &quot;IMP &quot;; bin(b)
+print &quot;------------&quot;
+print &quot;    &quot;; bin(a IMP b)
+
+&#39; output:
+&#39;     10011101
+&#39; IMP 11010011
+&#39; ------------
+&#39;     11110011</code></pre>

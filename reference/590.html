@@ -74,7 +74,22 @@
     </p>
   </div>
 </blockquote>
-<p>Reads data from file.</p>
+<p>Reads data from file #fileN and stores the values in var1, var2 to varN. Specify a delimiter if necessary.</p>
+<h3 id="example-read-a-comma-separated-value-file-csv">Example: Read a comma-separated-value file (csv)</h3>
+<pre><code>&#39; Create a csv-file
+open &quot;test.csv&quot; for output as #1
+for x = 1 to 10
+    print #1, x + &quot;,&quot; + x^2 + &quot;,&quot; + x^3
+next
+close #1
+
+&#39; Open the file and read the values
+open &quot;test.csv&quot; for input as #1
+while(!eof(1))
+    input #1; x, &quot;,&quot;, x2, &quot;,&quot;, x3
+    print x, x2, x3
+wend
+close #1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using INPUT</div>
     <div class="linklist">
@@ -161,7 +176,7 @@ INPUT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Mon, 17 Apr 2023 22:50:15 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

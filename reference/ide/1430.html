@@ -1,5 +1,17 @@
 <h1 id="ismap">ISMAP</h1>
 <blockquote>
-<p>ISMAP (x)</p>
+<p>b = ISMAP (x)</p>
 </blockquote>
-<p>Returns true if x is an MAP variable type. A MAP provides value-key pair access along with array or dotted notation. The MAP can be initialized from a String variable using the ARRAY command.</p>
+<p>Returns true if <code>x</code> is a MAP variable.</p>
+<h3 id="example">Example</h3>
+<pre><code>A = {&quot;x&quot;:1, &quot;y&quot;:2}
+print IsMap(A)      &#39; Output 1
+
+A = [1,2,3]
+print IsMap(A)      &#39; Output 0 (is an array)
+
+A = 1
+print IsMap(A)      &#39; Output 0 (is a number)
+
+A = &quot;abc&quot;
+print IsMap(A)      &#39; Output 0 (is a string)</code></pre>

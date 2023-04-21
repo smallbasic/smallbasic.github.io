@@ -1,5 +1,25 @@
 <h1 id="as">AS</h1>
 <blockquote>
-<p>AS #fileN</p>
+<p>OPEN file AS #fileN</p>
 </blockquote>
+<p>Used in combination with OPEN to open a file using a file number.</p>
 <p>See: OPEN</p>
+<h3 id="example">Example:</h3>
+<pre><code>&#39; create a text file
+open &quot;MyDemoFile.txt&quot; for output as #1
+
+for i = 1 to 10
+    print #1, i 
+next
+
+close #1
+
+&#39; open text file and print content line by line
+open &quot;MyDemoFile.txt&quot; for input as #1
+
+while(!eof(1))   &#39; eof works only without #
+    input #1, c
+    print c
+wend
+
+close #1</code></pre>

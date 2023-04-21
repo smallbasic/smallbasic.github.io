@@ -74,7 +74,8 @@
     </p>
   </div>
 </blockquote>
-<p>Tests the expression and IF it evaluates to a non-zero value program flow will resume after the following THEN statement.</p>
+<p>Tests the expression and if it evaluates to a non-zero value, program flow will resume after the following THEN statement.</p>
+<h3 id="block-style-if">Block-style IF</h3>
 <pre><code>IF expression1 [THEN]
     .
     . [commands]
@@ -90,7 +91,7 @@
     .
 ]
 ENDIF| FI</code></pre>
-<p>Block-style IF. Causes SmallBASIC to make a decision based on the value of an expression.</p>
+<p>Causes SmallBASIC to make a decision based on the value of an expression.</p>
 <ul>
 <li>expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.</li>
 <li>commands - One or more commands.</li>
@@ -98,34 +99,63 @@ ENDIF| FI</code></pre>
 <p>Each expression in the IF/ELSEIF construct is tested in order. As soon as an expression is found to be TRUE, then its corresponding commands are executed. If no expressions are TRUE, then the commands following the ELSE keyword are executed. If ELSE is not specified, then execution continues with the command following the ENDIF.</p>
 <p>IF, ELSE, ELSEIF, and ENDIF must all be the first keywords on their respective lines.</p>
 <p>THEN is optional, but if its defined it must be the last keyword on its line; if anything other than a comment follows on the same line with THEN, BASIC thinks it’s reading a single-line IF/THEN/ELSE construct. IF blocks may be nested.</p>
-<pre><code>x=1
-IF x=1 THEN
-    PRINT &quot;true&quot;
-ELSE
-    PRINT &quot;false&quot;
-ENDIF
-...
-&#39; Alternate syntax:
-x=1
-IF x=1
-    PRINT &quot;true&quot;
-ELSE
-    PRINT &quot;false&quot;
-FI</code></pre>
-<p><strong>Single-line IF</strong></p>
+<h3 id="single-line-if">Single-line IF</h3>
 <pre><code>IF expression THEN [num-label]|[command] [ELSE [num-label]|[command]]</code></pre>
 <p>Causes SmallBASIC to make a decision based on the value of an expression.</p>
 <ul>
 <li>expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.</li>
 <li>command - Any legal command or a numeric label. If a number is specified, it is equivalent to a GOTO command with the specified numeric-label.</li>
 </ul>
-<pre><code>&#39; Single-line IF
-x=1
-IF x=1 THEN PRINT &quot;true&quot; ELSE PRINT &quot;false&quot;
-...
-IF x=1 THEN 1000
-...
+<h3 id="example-1-block-style-if">Example 1: Block-style IF</h3>
+<pre><code>x = 1
+IF x = 1 THEN
+    PRINT &quot;true&quot;
+ELSE
+    PRINT &quot;false&quot;
+ENDIF
+
+&#39; Alternate syntax:
+x = 1
+IF x = 1
+    PRINT &quot;true&quot;
+ELSE
+    PRINT &quot;false&quot;
+FI</code></pre>
+<h3 id="example-2-single-line-if">Example 2: Single-line IF</h3>
+<pre><code>x = 1
+IF x = 1 THEN PRINT &quot;true&quot; ELSE PRINT &quot;false&quot;
+
+IF x = 1 THEN 1000
+
+end &#39; ends the program
+
 1000 PRINT &quot;true&quot;</code></pre>
+<h3 id="example-3-nested-if">Example 3: Nested IF</h3>
+<pre><code>x = 1
+y = 2
+
+IF x == 1 THEN 
+    PRINT &quot;x equals 1&quot;
+    
+    if y == 2 THEN
+        PRINT &quot;y equals 2&quot;
+    ELSE
+        PRINT &quot;y not 2&quot;
+    ENDIF
+    
+ELSE
+    PRINT &quot;x not 1&quot;
+ENDIF</code></pre>
+<h3 id="example-4-if-elseif-else">Example 4: IF … ELSEIF … ELSE</h3>
+<pre><code>foo = 1     &#39; change value to 1,2,3
+
+IF foo == 1
+    PRINT &quot;one&quot;
+ELSEIF foo == 2
+    PRINT &quot;two&quot;
+ELSE
+    PRINT &quot;something else&quot;
+ENDIF</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using IF</div>
     <div class="linklist">
@@ -249,7 +279,7 @@ IF by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/p
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 20:56:17 +1000
+      This page was last edited on Fri, 24 Mar 2023 13:19:57 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

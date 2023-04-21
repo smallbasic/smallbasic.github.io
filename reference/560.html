@@ -74,12 +74,14 @@
     </p>
   </div>
 </blockquote>
-<p>Returns true if x is a string (and cannot be converted to a number).</p>
-<pre><code>? ISSTRING(12)      :REM false
-? ISSTRING(&quot;12&quot;)    :REM false
-? ISSTRING(&quot;12E+2&quot;) :REM false
-? ISSTRING(&quot;abc&quot;)   :REM true
-? ISSTRING(&quot;1+2&quot;)   :REM true</code></pre>
+<p>Returns true if x is a string and cannot be converted to a number.</p>
+<h3 id="example">Example</h3>
+<pre><code>print ISSTRING(12)          &#39; Output 0
+print ISSTRING(&quot;12&quot;)        &#39; Output 0
+print ISSTRING(&quot;12E+2&quot;)     &#39; Output 0
+print ISSTRING(&quot;abc&quot;)       &#39; Output 1
+print ISSTRING(&quot;1+2&quot;)       &#39; Output 1
+print ISSTRING(&quot;int(2.4)&quot;)  &#39; Output 1</code></pre>
   <div class="lavenderBox">
     <div class="header">Data</div>
     <div class="linklist">
@@ -128,7 +130,7 @@ ISSTRING by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 22:05:29 +1000
+      This page was last edited on Fri, 21 Apr 2023 11:22:09 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

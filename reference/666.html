@@ -74,8 +74,60 @@
     </p>
   </div>
 </blockquote>
-<p>Used to perform a logical implication on two expressions.</p>
-<p>EQV and IMP manipulating only the lower 4 bits:</p>
+<p>Perform a logical implication on two expressions. IMP is equivalent to (NOT a) OR b.</p>
+<h3 id="truth-table">Truth table</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">a</th>
+<th style="text-align: center;">b</th>
+<th style="text-align: left;">a IMP b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-1">Example 1</h3>
+<pre><code>print &quot;Truth table&quot;
+print
+print &quot;0 IMP 0 = &quot;; 0 IMP 0
+print &quot;0 IMP 1 = &quot;; 0 IMP 1
+print &quot;1 IMP 0 = &quot;; 1 IMP 0
+print &quot;1 IMP 1 = &quot;; 1 IMP 1</code></pre>
+<h3 id="example-2">Example 2</h3>
+<pre><code>a = 0b10011101
+b = 0b11010011
+
+print &quot;    &quot;; bin(a)
+print &quot;IMP &quot;; bin(b)
+print &quot;------------&quot;
+print &quot;    &quot;; bin(a IMP b)
+
+&#39; output:
+&#39;     10011101
+&#39; IMP 11010011
+&#39; ------------
+&#39;     11110011</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using IMP</div>
     <div class="linklist">
@@ -199,7 +251,7 @@ IMP by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sat, 25 Mar 2023 12:03:28 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

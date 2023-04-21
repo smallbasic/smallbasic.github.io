@@ -74,43 +74,27 @@
     </p>
   </div>
 </blockquote>
-<p>Inserts code in the named file when the program is compiled.</p>
-<p>INCLUDE is not in the main list for the Language reference. But here it is, right after IMPORT under the System category! Here is part_1.bas, the first part of our long program:</p>
-<pre><code>
-&#39; &quot;part_1.bas&quot; demo file for INCLUDE keyword.
-Label startProgram
-Print &quot;i is: &quot;; i
-</code></pre>
-<p>Here is part_2.bas, the second (and startup) part of our long program:</p>
-<pre><code>
-&#39; &quot;part_2.bas&quot; demo file for INCLUDE keyword - This is the startup file
-&#39; to run the demo program.
-&#39; -------------
-&#39; Include keyword allows us to merge another SmallBASIC source file into 
-&#39; our file, which means that any code is common to all files.
-&#39; It&#39;s useful when the program is too long and we simply want to divide it
-&#39; into &quot;pages&quot;, instead of one single long &quot;page&quot;.
-&#39; 
-&#39; See also Home -- Language reference -- Graphics -- COLOR -- color_const.bas
-&#39; for practical example of Include.
-&#39;
-&#39; Note: INCLUDE keyword is very different from UNIT keyword. 
-&#39;       UNIT allows us to use only specific code, therefore it is more suitable 
-&#39;       for modular programming.
-&#39;       UNIT also supports &quot;Namespaces&quot;: Namespaces allow reuse of same names 
-&#39;       in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both 
-&#39;       using a function with the same name, &quot;Set&quot;, but in different contexts.
-&#39; -------------
+<p>Inserts code from SourceFile when the program is compiled.</p>
+<p>INCLUDE can be used to split a large file into smaller parts. If you want to use include to create a library, then you should consider to use an UNIT instead.</p>
+<h3 id="example">Example</h3>
+<p>Create first file and save it as part1.bas.</p>
+<pre><code>Print &quot;This is part1.bas&quot;
+for i = 1 to 5
+  print i
+next</code></pre>
+<p>Create second file wich will include part1.bas.</p>
+<pre><code>include part1.bas
 
-&#39; Here we include (merge) another file in our program:
-&#39; Note: actuall filename must be lower case for Linux.
-Include &quot;part_1.bas&quot; 
+print &quot;This is part2.bas&quot;
+for i = 5 to 1 step -1
+    print i
+next
 
-&#39; demo:
-i += 1
-If i &lt;= 10 Then Goto startProgram &#39; startProgram label is in part_1.bas
-Pause
-</code></pre>
+&#39; Output:
+&#39; This is part1.bas
+&#39; 1 2 3 4 5
+&#39; This is part2.bas
+&#39; 5 4 3 2 1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using INCLUDE</div>
     <div class="linklist">
@@ -176,7 +160,7 @@ INCLUDE by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Fri, 14 Apr 2023 15:12:34 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

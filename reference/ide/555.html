@@ -1,5 +1,17 @@
 <h1 id="isarray">ISARRAY</h1>
 <blockquote>
-<p>ISARRAY (x)</p>
+<p>b = ISARRAY (x)</p>
 </blockquote>
 <p>Returns true if x is an array.</p>
+<h3 id="example">Example</h3>
+<pre><code>A = [1,2,3]
+print IsArray(A)    &#39; Output 1
+
+A = {&quot;x&quot;:1, &quot;y&quot;:2}
+print IsArray(A)    &#39; Output 0 (is a map)
+
+A = 1
+print IsArray(A)    &#39; Output 0 (is a number)
+
+A = &quot;abc&quot;
+print IsArray(A)    &#39; Output 0 (is a string)</code></pre>

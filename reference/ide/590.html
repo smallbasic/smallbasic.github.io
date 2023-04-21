@@ -2,4 +2,19 @@
 <blockquote>
 <p>INPUT #fileN; var1 [,delim] [, var2 [,delim]] …</p>
 </blockquote>
-<p>Reads data from file.</p>
+<p>Reads data from file #fileN and stores the values in var1, var2 to varN. Specify a delimiter if necessary.</p>
+<h3 id="example-read-a-comma-separated-value-file-csv">Example: Read a comma-separated-value file (csv)</h3>
+<pre><code>&#39; Create a csv-file
+open &quot;test.csv&quot; for output as #1
+for x = 1 to 10
+    print #1, x + &quot;,&quot; + x^2 + &quot;,&quot; + x^3
+next
+close #1
+
+&#39; Open the file and read the values
+open &quot;test.csv&quot; for input as #1
+while(!eof(1))
+    input #1; x, &quot;,&quot;, x2, &quot;,&quot;, x3
+    print x, x2, x3
+wend
+close #1</code></pre>

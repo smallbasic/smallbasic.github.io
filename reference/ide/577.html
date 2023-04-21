@@ -1,24 +1,13 @@
 <h1 id="julian">JULIAN</h1>
 <blockquote>
-<p>JULIAN (dmy| (d,m,y))</p>
+<p>j = JULIAN (dmy | (d,m,y))</p>
 </blockquote>
-<p>Returns the Julian date. (dates must be greater than 1/1/100 AD).</p>
-<pre><code>PRINT Julian(DATE)
-PRINT Julian(31, 12, 2001)</code></pre>
-<p>Earlier this month I had done some code to calculate Oil Tank usage and used a ridiculously long and complex formula for calculating the number of days between two dates. I should have used the julian date function:</p>
-<pre><code>
-REM julian demo.bas 2016-02-28 SmallBASIC 0.12.2 [B+=MGA]
-&#39;oh julian returns the number of days since 1/1/100
-&#39;it is perfect for calculating the number of days between two dates
-&#39;but the date given to the julian function must be in form dd/mm/yyyy or m,d,y (see help)
-&#39;Date just so happens also returns in dd/mm/yyyy format so...
-? &quot;Today is &quot;;date
-input &quot;To test what julian returns, enter a date dd/mm/yyyy &quot;;adate
-? &quot;julian(&quot;;adate;&quot;) returns: &quot;;julian(adate)
-? &quot;That is/was &quot;;abs(julian(adate)-julian(date));&quot; days from today.&quot;
-?:input &quot;To test the other format julian accepts enter a date as: dd,mm,yyyy(enter) &quot;;d,m,y
-? &quot;That is/was &quot;;abs(julian(d,m,y)-julian(date));&quot; days from today.&quot;
-?:? &quot;Again julian is excellent for calculating the number of days between two dates.&quot;
-pause
-end
-</code></pre>
+<p>Returns the Julian date. Dates must be greater than 1/1/100 AD. The date can be passed as the string <code>dmy</code> with the format <code>DD/MM/YYYY</code>. Alternatively the date can be given by specificing the parameters <code>d</code> for days, <code>m</code> for months and <code>y</code> for years.</p>
+<h3 id="example-1-basic-usage">Example 1: Basic usage</h3>
+<pre><code>PRINT Julian(&quot;31/12/2001&quot;)
+PRINT Julian(31, 12, 2001)
+PRINT Julian(DATE)</code></pre>
+<h3 id="example-2-difference-in-days-between-two-dates">Example 2: Difference in days between two dates</h3>
+<pre><code>today = Julian(Date())
+past = Julian(31, 12, 2001)
+print today - past; &quot; days past since 31/12/2001&quot;</code></pre>

@@ -1,11 +1,12 @@
 <h1 id="isnumber">ISNUMBER</h1>
 <blockquote>
-<p>ISNUMBER (x)</p>
+<p>b = ISNUMBER (x)</p>
 </blockquote>
-<p>Returns true if x is a number (or it can be converted to a number).</p>
-<pre><code>? ISNUMBER(12)          :REM true
-? ISNUMBER(&quot;12&quot;)        :REM true
-? ISNUMBER(&quot;12E+2&quot;)     :REM true
-? ISNUMBER(&quot;abc&quot;)       :REM false
-? ISNUMBER(&quot;1+2&quot;)       :REM false
-? ISNUMBER(&quot;int(2.4)&quot;)  :REM false</code></pre>
+<p>Returns true if x is a number or can be converted to a number.</p>
+<h3 id="example">Example</h3>
+<pre><code>print ISNUMBER(12)          &#39; Output 1
+print ISNUMBER(&quot;12&quot;)        &#39; Output 1
+print ISNUMBER(&quot;12E+2&quot;)     &#39; Output 1
+print ISNUMBER(&quot;abc&quot;)       &#39; Output 0
+print ISNUMBER(&quot;1+2&quot;)       &#39; Output 0
+print ISNUMBER(&quot;int(2.4)&quot;)  &#39; Output 0</code></pre>

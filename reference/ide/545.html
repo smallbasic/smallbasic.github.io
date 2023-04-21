@@ -1,11 +1,15 @@
 <h1 id="join">JOIN</h1>
 <blockquote>
-<p>JOIN words(), delimiters, string</p>
+<p>JOIN words, delimiter, s</p>
 </blockquote>
-<p>Returns the words of the specified string into array ‘words’.</p>
-<pre><code>s=&quot;/etc/temp/filename.ext&quot;
-SPLIT s, &quot;/.&quot;, v()
-JOIN v(), &quot;/&quot;, s
-PRINT &quot;[&quot;;s;&quot;]&quot;
-displays:
-[/etc/temp/filename/ext]</code></pre>
+<p>Join the elements of the array <code>words</code> with the delimiter <code>delimiter</code> and return the result as string <code>s</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; Create an array
+words &lt;&lt; &quot;etc&quot;
+words &lt;&lt; &quot;temp&quot;
+words &lt;&lt; 1
+words &lt;&lt; &quot;filename.ext&quot;
+
+&#39; Join then array elements
+JOIN words, &quot;/&quot;, s
+PRINT s                       &#39; Output: etc/temp/1/filename.ext</code></pre>

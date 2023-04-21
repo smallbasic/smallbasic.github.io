@@ -74,13 +74,17 @@
     </p>
   </div>
 </blockquote>
-<p>Returns the words of the specified string into array ‘words’.</p>
-<pre><code>s=&quot;/etc/temp/filename.ext&quot;
-SPLIT s, &quot;/.&quot;, v()
-JOIN v(), &quot;/&quot;, s
-PRINT &quot;[&quot;;s;&quot;]&quot;
-displays:
-[/etc/temp/filename/ext]</code></pre>
+<p>Join the elements of the array <code>words</code> with the delimiter <code>delimiter</code> and return the result as string <code>s</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; Create an array
+words &lt;&lt; &quot;etc&quot;
+words &lt;&lt; &quot;temp&quot;
+words &lt;&lt; 1
+words &lt;&lt; &quot;filename.ext&quot;
+
+&#39; Join then array elements
+JOIN words, &quot;/&quot;, s
+PRINT s                       &#39; Output: etc/temp/1/filename.ext</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using JOIN</div>
     <div class="linklist">
@@ -153,7 +157,7 @@ JOIN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Fri, 21 Apr 2023 12:47:09 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

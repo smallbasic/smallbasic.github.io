@@ -75,18 +75,67 @@
   </div>
 </blockquote>
 <p>Returns the last key-code in keyboard buffer, or an empty string if there are no keys. Special key-codes like the function-keys are returned as 2-byte string.</p>
-<pre><code>k=INKEY
-IF LEN(k)
-  IF LEN(k)=2
-    ? &quot;H/W #&quot;+ASC(RIGHT(k,1))
-  ELSE
-    ? k; &quot; &quot;; ASC(k)
+<h3 id="example-1">Example 1</h3>
+<pre><code>WHILE(1)
+  k = INKEY
+  IF LEN(k)
+    IF LEN(k)=2
+      ? &quot;H/W #&quot;+ASC(RIGHT(k,1))
+    ELSE
+      ? k; &quot; &quot;; ASC(k)
+    FI
   FI
-ELSE
-  ? &quot;keyboard buffer is empty&quot;
-FI</code></pre>
-<pre><code>
-&#39; Key values:
+  SHOWPAGE
+WEND</code></pre>
+<h3 id="example-2">Example 2</h3>
+<p>The following program will return the keycode and a string for every pressed key. The string can be used in an if-statement to querry if the key was pressed. See example 3 how to use the string.</p>
+<pre><code>while(1)
+  k = INKEY
+
+  if len(k)
+    if len(k) == 2        
+      print &quot;2-Byte key code   : &quot; + asc(mid(k,1,1)) + &quot;  &quot; + asc(mid(k,2,1));
+      print &quot; -&gt; s = chr(&quot;;asc(mid(k,1,1));&quot;) + chr(&quot;;asc(mid(k,2,1));&quot;)&quot; 
+    else
+      if(asc(k) &gt; 37)
+        print &quot;Printable key code: &quot;; asc(k); &quot; -&gt; s = \&quot;&quot;;k;&quot;\&quot;&quot; 
+      else
+        print &quot;1-Byte key code   : &quot;; asc(k);
+        print &quot; -&gt; s = chr(&quot;;asc(k);&quot;)&quot;
+      endif
+    endif
+  endif
+  
+  showpage
+wend</code></pre>
+<h3 id="example-3-querry-if-a-key-was-pressed">Example 3: Querry if a key was pressed</h3>
+<p>See example 2 to get the keycodes for the keys.</p>
+<pre><code>const KeyUp = chr(27) + chr(9)
+const KeyDown = chr(27) + chr(10)
+const KeySpace = &quot; &quot;
+const KeyEsc = chr(27)
+const KeyReturn = chr(13)
+
+while(1)
+  k = INKEY
+
+  if len(k)
+    select case k
+        case KeyUp:     print &quot;Up&quot;
+        case KeyDown:   print &quot;Down&quot;
+        case KeySpace:  print &quot;Space&quot;
+        case KeyEsc:    print &quot;Esc&quot;
+        case KeyReturn: print &quot;Return&quot;
+        case &quot;a&quot;:       print &quot;a&quot;
+        case &quot;A&quot;:       print &quot;A&quot;
+        case else:      print &quot;other key&quot;
+    end select
+  endif
+  
+  showpage
+wend</code></pre>
+<h3 id="example-4-input-form">Example 4: Input form</h3>
+<pre><code>&#39; Key values:
 Const K_BKSP   = Chr(0x08)  &#39; BackSpace
 Const K_TAB    = Chr(0x09)
 Const K_ENTER  = Chr(0x0D)
@@ -171,11 +220,9 @@ While True
       Fi
     Fi
   End Select
-Wend
-</code></pre>
-<p>I have been a bit stuck with INKEY for some time. I started building a little TextBox editor over a year ago and got stuck on something with INKEY and moved on. As I recall INKEY was not returning unique key numbers but I forget which… posted sometime ago on this issue. Anyway, this demo is exactly the kind of thing I had in mind! Thank you shian!!! I wonder if text selecting is also possible, eg [ctrl+]shft+ home | end ? BTW is CAT working for anyone? I was testing it last night and couldn’t get anything going (Windows 10-64 and SB 0.12.2).</p>
-<pre><code>
-REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
+Wend</code></pre>
+<h3 id="example-5-a-basic-key-code-unit">Example 5: A basic key code UNIT</h3>
+<pre><code>REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
 REM Purpose:   Special key values returned by INKEY.
 REM            (Values returned by INKEY cannot be used for DEFINEKEY).
 REM File name: key.bas
@@ -262,13 +309,6 @@ Def CTRL_SHIFT(c) = CTRL_SHIFT_CHR + Lcase(c)  &#39; Ctrl+Shift+a, etc
 &#39;   Fi
 &#39; Wend
 </code></pre>
-<p>When the first character in the two character code is 27, the second character is a code for the given special key. You would need to inspect the SB source to work out the equivalent SmallBASIC key constants, but I’ll have a look at generating a constants.bas file that you can include in your programs.</p>
-<p>As reported by Shian (thanks Shian!), there are a few problems with INKEY. I’ll fix these in the next update. There is supposed to be a different first character code for SHIFT/ALT etc states.</p>
-<p>Also, INKEY needs to read from the system event queue to get the next keystroke. It currently does a pause for key, but I think it should actually block in the call to read the queue, that way when you type a key there would be no delay. Either way this doesn’t work well for shooter type games, but there is a better way. Have a look at:</p>
-<p>https://github.com/smallbasic/SmallBASIC/blob/master/samples/distro-exam…</p>
-<p>This uses the DEFINEKEY command to register keystroke handlers for game keys. When you hit the game key, the registered FUNC will get called more or less immediately, somewhere inside the game main looI think this should work well in the space shooter (which is awesome by the way).</p>
-<p>Code for quick lookup of a key code:</p>
-<p>http://smallbasic.sourceforge.net/?q=node/1583</p>
   <div class="lavenderBox">
     <div class="header">Code samples using INKEY</div>
     <div class="linklist">
@@ -345,7 +385,7 @@ INKEY by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 22:05:29 +1000
+      This page was last edited on Fri, 14 Apr 2023 16:19:36 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
