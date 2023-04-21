@@ -15,6 +15,6 @@ words << "filename.ext"
 
 ' Join then array elements
 JOIN words, "/", s
-PRINT s
+PRINT s                       ' Output: etc/temp/1/filename.ext
 ```
 
