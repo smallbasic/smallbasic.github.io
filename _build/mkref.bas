@@ -6,7 +6,7 @@ tload "reference.json", s, 1
 ref = array(s)
 counter = 0
 
-out "SmallBASIC Language reference"
+out "SmallBASIC Language reference [" + date + "]"
 out ""
 out "░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 out "██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
