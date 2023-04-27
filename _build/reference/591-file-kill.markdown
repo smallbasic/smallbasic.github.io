@@ -1,7 +1,11 @@
 # KILL
 
-> KILL "file"
+> KILL FileName
 
-Deletes the specified file.
+Deletes the file specified by `FileName`.
 
+### Example
 
+```
+kill "test.txt"
+```
