@@ -1,16 +1,21 @@
 # LABEL
 
-> LABEL name
+> LABEL LabelName
 
-Defines a label. A label marks a position in the code.
+Defines a label with name `LabelName`. A label marks a position in the code. Use GOTO or GOSUB to continue program execution at that label. 
 
-There are two kinds of labels, 'numeric' and 'alphanumeric'. Unlike 'alphanumeric' labels, 'Numeric' labels do not require the keyword `LABEL`
+### Example
 
-    1000 ? "Hello"
-    ...
-    LABEL AlphaLabel: ? "Hello"
-    ...
-    GOTO 1000
-    GOTO AlphaLabel
+```
+label FirstLine
+    
+ii++
+print ii
+if(ii == 10) then goto LastLine 
+goto FirstLine
+
+label LastLine
+```
+
 
 
