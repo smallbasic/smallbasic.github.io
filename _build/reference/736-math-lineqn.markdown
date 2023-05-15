@@ -16,6 +16,8 @@ Solves linear equations using the Gauss-Jordan method.
 
 The tolerance number can be used to ensure, that no division by numbers smaller than `toler` will be performed. 
 
+### Example
+
 ```
 ' Solve:
 '  x -  y + 2z =  6
