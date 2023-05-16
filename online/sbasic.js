@@ -1,5 +1,4 @@
-
-
+// include: shell.js
 // The Module object: Our interface to the outside world. We import
 // and export values on it. There are various ways Module can be used:
 // 1. Not defined. We create it here
@@ -15,10 +14,6 @@
 // can continue to use Module afterwards as well.
 var Module = typeof Module != 'undefined' ? Module : {};
 
-// See https://caniuse.com/mdn-javascript_builtins_object_assign
-
-// See https://caniuse.com/mdn-javascript_builtins_bigint64array
-
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
 
@@ -28,9 +23,8 @@ var Module = typeof Module != 'undefined' ? Module : {};
 
   Module.expectedDataFileDownloads++;
   (function() {
-    // When running as a pthread, FS operations are proxied to the main thread, so we don't need to
-    // fetch the .data bundle on the worker
-    if (Module['ENVIRONMENT_IS_PTHREAD']) return;
+    // Do not attempt to redownload the virtual filesystem data when in a pthread or a Wasm Worker context.
+    if (Module['ENVIRONMENT_IS_PTHREAD'] || Module['$ww']) return;
     var loadPackage = function(metadata) {
 
       var PACKAGE_PATH = '';
@@ -242,20 +236,8 @@ var read_,
     readBinary,
     setWindowTitle;
 
-// Normally we don't log exceptions but instead let them bubble out the top
-// level where the embedding environment (e.g. the browser) can handle
-// them.
-// However under v8 and node we sometimes exit the process direcly in which case
-// its up to use us to log the exception before exiting.
-// If we fix https://github.com/emscripten-core/emscripten/issues/15080
-// this may no longer be needed under node.
-function logExceptionOnExit(e) {
-  if (e instanceof ExitStatus) return;
-  let toLog = e;
-  err('exiting due to exception: ' + toLog);
-}
-
 if (ENVIRONMENT_IS_NODE) {
+
   // `require()` is no-op in an ESM module, use `createRequire()` to construct
   // the require()` function.  This is only necessary for multi-environment
   // builds, `-sENVIRONMENT=node` emits a static import declaration instead.
@@ -272,8 +254,6 @@ if (ENVIRONMENT_IS_NODE) {
   }
 
 // include: node_shell_read.js
-
-
 read_ = (filename, binary) => {
   // We need to re-wrap `file://` strings to URLs. Normalizing isn't
   // necessary in that case, the path should already be absolute.
@@ -289,29 +269,29 @@ readBinary = (filename) => {
   return ret;
 };
 
-readAsync = (filename, onload, onerror) => {
+readAsync = (filename, onload, onerror, binary = true) => {
   // See the comment in the `read_` function.
   filename = isFileURI(filename) ? new URL(filename) : nodePath.normalize(filename);
-  fs.readFile(filename, function(err, data) {
+  fs.readFile(filename, binary ? undefined : 'utf8', (err, data) => {
     if (err) onerror(err);
-    else onload(data.buffer);
+    else onload(binary ? data.buffer : data);
   });
 };
 
 // end include: node_shell_read.js
-  if (process['argv'].length > 1) {
-    thisProgram = process['argv'][1].replace(/\\/g, '/');
+  if (!Module['thisProgram'] && process.argv.length > 1) {
+    thisProgram = process.argv[1].replace(/\\/g, '/');
   }
 
-  arguments_ = process['argv'].slice(2);
+  arguments_ = process.argv.slice(2);
 
   if (typeof module != 'undefined') {
     module['exports'] = Module;
   }
 
-  process['on']('uncaughtException', function(ex) {
+  process.on('uncaughtException', (ex) => {
     // suppress ExitStatus exceptions from showing an error
-    if (!(ex instanceof ExitStatus)) {
+    if (ex !== 'unwind' && !(ex instanceof ExitStatus) && !(ex.context instanceof ExitStatus)) {
       throw ex;
     }
   });
@@ -321,18 +301,17 @@ readAsync = (filename, onload, onerror) => {
   // not be needed with node v15 and about because it is now the default
   // behaviour:
   // See https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode
-  process['on']('unhandledRejection', function(reason) { throw reason; });
+  var nodeMajor = process.versions.node.split(".")[0];
+  if (nodeMajor < 15) {
+    process.on('unhandledRejection', (reason) => { throw reason; });
+  }
 
   quit_ = (status, toThrow) => {
-    if (keepRuntimeAlive()) {
-      process['exitCode'] = status;
-      throw toThrow;
-    }
-    logExceptionOnExit(toThrow);
-    process['exit'](status);
+    process.exitCode = status;
+    throw toThrow;
   };
 
-  Module['inspect'] = function () { return '[Emscripten Module object]'; };
+  Module['inspect'] = () => '[Emscripten Module object]';
 
 } else
 
@@ -361,9 +340,7 @@ if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
   // be done differently.
   {
 // include: web_or_worker_shell_read.js
-
-
-  read_ = (url) => {
+read_ = (url) => {
       var xhr = new XMLHttpRequest();
       xhr.open('GET', url, false);
       xhr.send(null);
@@ -425,42 +402,9 @@ if (Module['quit']) quit_ = Module['quit'];
 
 // perform assertions in shell.js after we set up out() and err(), as otherwise if an assertion fails it cannot print the message
 
-// include: support.js
 
-
-var STACK_ALIGN = 16;
-var POINTER_SIZE = 4;
-
-function getNativeTypeSize(type) {
-  switch (type) {
-    case 'i1': case 'i8': case 'u8': return 1;
-    case 'i16': case 'u16': return 2;
-    case 'i32': case 'u32': return 4;
-    case 'i64': case 'u64': return 8;
-    case 'float': return 4;
-    case 'double': return 8;
-    default: {
-      if (type[type.length - 1] === '*') {
-        return POINTER_SIZE;
-      }
-      if (type[0] === 'i') {
-        const bits = Number(type.substr(1));
-        assert(bits % 8 === 0, 'getNativeTypeSize invalid bits ' + bits + ', type ' + type);
-        return bits / 8;
-      }
-      return 0;
-    }
-  }
-}
-
-// include: runtime_debug.js
-
-
-// end include: runtime_debug.js
-// end include: support.js
-
-
-
+// end include: shell.js
+// include: preamble.js
 // === Preamble library stuff ===
 
 // Documentation for the public APIs defined in this file must be updated in:
@@ -506,194 +450,6 @@ function assert(condition, text) {
   }
 }
 
-// include: runtime_strings.js
-
-
-// runtime_strings.js: String related runtime functions that are part of both
-// MINIMAL_RUNTIME and regular runtime.
-
-var UTF8Decoder = typeof TextDecoder != 'undefined' ? new TextDecoder('utf8') : undefined;
-
-/**
- * Given a pointer 'idx' to a null-terminated UTF8-encoded string in the given
- * array that contains uint8 values, returns a copy of that string as a
- * Javascript String object.
- * heapOrArray is either a regular array, or a JavaScript typed array view.
- * @param {number} idx
- * @param {number=} maxBytesToRead
- * @return {string}
- */
-function UTF8ArrayToString(heapOrArray, idx, maxBytesToRead) {
-  var endIdx = idx + maxBytesToRead;
-  var endPtr = idx;
-  // TextDecoder needs to know the byte length in advance, it doesn't stop on
-  // null terminator by itself.  Also, use the length info to avoid running tiny
-  // strings through TextDecoder, since .subarray() allocates garbage.
-  // (As a tiny code save trick, compare endPtr against endIdx using a negation,
-  // so that undefined means Infinity)
-  while (heapOrArray[endPtr] && !(endPtr >= endIdx)) ++endPtr;
-
-  if (endPtr - idx > 16 && heapOrArray.buffer && UTF8Decoder) {
-    return UTF8Decoder.decode(heapOrArray.subarray(idx, endPtr));
-  }
-  var str = '';
-  // If building with TextDecoder, we have already computed the string length
-  // above, so test loop end condition against that
-  while (idx < endPtr) {
-    // For UTF8 byte structure, see:
-    // http://en.wikipedia.org/wiki/UTF-8#Description
-    // https://www.ietf.org/rfc/rfc2279.txt
-    // https://tools.ietf.org/html/rfc3629
-    var u0 = heapOrArray[idx++];
-    if (!(u0 & 0x80)) { str += String.fromCharCode(u0); continue; }
-    var u1 = heapOrArray[idx++] & 63;
-    if ((u0 & 0xE0) == 0xC0) { str += String.fromCharCode(((u0 & 31) << 6) | u1); continue; }
-    var u2 = heapOrArray[idx++] & 63;
-    if ((u0 & 0xF0) == 0xE0) {
-      u0 = ((u0 & 15) << 12) | (u1 << 6) | u2;
-    } else {
-      u0 = ((u0 & 7) << 18) | (u1 << 12) | (u2 << 6) | (heapOrArray[idx++] & 63);
-    }
-
-    if (u0 < 0x10000) {
-      str += String.fromCharCode(u0);
-    } else {
-      var ch = u0 - 0x10000;
-      str += String.fromCharCode(0xD800 | (ch >> 10), 0xDC00 | (ch & 0x3FF));
-    }
-  }
-  return str;
-}
-
-/**
- * Given a pointer 'ptr' to a null-terminated UTF8-encoded string in the
- * emscripten HEAP, returns a copy of that string as a Javascript String object.
- *
- * @param {number} ptr
- * @param {number=} maxBytesToRead - An optional length that specifies the
- *   maximum number of bytes to read. You can omit this parameter to scan the
- *   string until the first \0 byte. If maxBytesToRead is passed, and the string
- *   at [ptr, ptr+maxBytesToReadr[ contains a null byte in the middle, then the
- *   string will cut short at that byte index (i.e. maxBytesToRead will not
- *   produce a string of exact length [ptr, ptr+maxBytesToRead[) N.B. mixing
- *   frequent uses of UTF8ToString() with and without maxBytesToRead may throw
- *   JS JIT optimizations off, so it is worth to consider consistently using one
- * @return {string}
- */
-function UTF8ToString(ptr, maxBytesToRead) {
-  return ptr ? UTF8ArrayToString(HEAPU8, ptr, maxBytesToRead) : '';
-}
-
-/**
- * Copies the given Javascript String object 'str' to the given byte array at
- * address 'outIdx', encoded in UTF8 form and null-terminated. The copy will
- * require at most str.length*4+1 bytes of space in the HEAP.  Use the function
- * lengthBytesUTF8 to compute the exact number of bytes (excluding null
- * terminator) that this function will write.
- *
- * @param {string} str - The Javascript string to copy.
- * @param {ArrayBufferView|Array<number>} heap - The array to copy to. Each
- *                                               index in this array is assumed
- *                                               to be one 8-byte element.
- * @param {number} outIdx - The starting offset in the array to begin the copying.
- * @param {number} maxBytesToWrite - The maximum number of bytes this function
- *                                   can write to the array.  This count should
- *                                   include the null terminator, i.e. if
- *                                   maxBytesToWrite=1, only the null terminator
- *                                   will be written and nothing else.
- *                                   maxBytesToWrite=0 does not write any bytes
- *                                   to the output, not even the null
- *                                   terminator.
- * @return {number} The number of bytes written, EXCLUDING the null terminator.
- */
-function stringToUTF8Array(str, heap, outIdx, maxBytesToWrite) {
-  // Parameter maxBytesToWrite is not optional. Negative values, 0, null,
-  // undefined and false each don't write out any bytes.
-  if (!(maxBytesToWrite > 0))
-    return 0;
-
-  var startIdx = outIdx;
-  var endIdx = outIdx + maxBytesToWrite - 1; // -1 for string null terminator.
-  for (var i = 0; i < str.length; ++i) {
-    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
-    // unit, not a Unicode code point of the character! So decode
-    // UTF16->UTF32->UTF8.
-    // See http://unicode.org/faq/utf_bom.html#utf16-3
-    // For UTF8 byte structure, see http://en.wikipedia.org/wiki/UTF-8#Description
-    // and https://www.ietf.org/rfc/rfc2279.txt
-    // and https://tools.ietf.org/html/rfc3629
-    var u = str.charCodeAt(i); // possibly a lead surrogate
-    if (u >= 0xD800 && u <= 0xDFFF) {
-      var u1 = str.charCodeAt(++i);
-      u = 0x10000 + ((u & 0x3FF) << 10) | (u1 & 0x3FF);
-    }
-    if (u <= 0x7F) {
-      if (outIdx >= endIdx) break;
-      heap[outIdx++] = u;
-    } else if (u <= 0x7FF) {
-      if (outIdx + 1 >= endIdx) break;
-      heap[outIdx++] = 0xC0 | (u >> 6);
-      heap[outIdx++] = 0x80 | (u & 63);
-    } else if (u <= 0xFFFF) {
-      if (outIdx + 2 >= endIdx) break;
-      heap[outIdx++] = 0xE0 | (u >> 12);
-      heap[outIdx++] = 0x80 | ((u >> 6) & 63);
-      heap[outIdx++] = 0x80 | (u & 63);
-    } else {
-      if (outIdx + 3 >= endIdx) break;
-      heap[outIdx++] = 0xF0 | (u >> 18);
-      heap[outIdx++] = 0x80 | ((u >> 12) & 63);
-      heap[outIdx++] = 0x80 | ((u >> 6) & 63);
-      heap[outIdx++] = 0x80 | (u & 63);
-    }
-  }
-  // Null-terminate the pointer to the buffer.
-  heap[outIdx] = 0;
-  return outIdx - startIdx;
-}
-
-/**
- * Copies the given Javascript String object 'str' to the emscripten HEAP at
- * address 'outPtr', null-terminated and encoded in UTF8 form. The copy will
- * require at most str.length*4+1 bytes of space in the HEAP.
- * Use the function lengthBytesUTF8 to compute the exact number of bytes
- * (excluding null terminator) that this function will write.
- *
- * @return {number} The number of bytes written, EXCLUDING the null terminator.
- */
-function stringToUTF8(str, outPtr, maxBytesToWrite) {
-  return stringToUTF8Array(str, HEAPU8,outPtr, maxBytesToWrite);
-}
-
-/**
- * Returns the number of bytes the given Javascript string takes if encoded as a
- * UTF8 byte array, EXCLUDING the null terminator byte.
- *
- * @param {string} str - JavaScript string to operator on
- * @return {number} Length, in bytes, of the UTF8 encoded string.
- */
-function lengthBytesUTF8(str) {
-  var len = 0;
-  for (var i = 0; i < str.length; ++i) {
-    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
-    // unit, not a Unicode code point of the character! So decode
-    // UTF16->UTF32->UTF8.
-    // See http://unicode.org/faq/utf_bom.html#utf16-3
-    var c = str.charCodeAt(i); // possibly a lead surrogate
-    if (c <= 0x7F) {
-      len++;
-    } else if (c <= 0x7FF) {
-      len += 2;
-    } else if (c >= 0xD800 && c <= 0xDFFF) {
-      len += 4; ++i;
-    } else {
-      len += 3;
-    }
-  }
-  return len;
-}
-
-// end include: runtime_strings.js
 // Memory management
 
 var HEAP,
@@ -726,10 +482,6 @@ function updateMemoryViews() {
   Module['HEAPF64'] = HEAPF64 = new Float64Array(b);
 }
 
-var STACK_SIZE = 65536;
-
-var INITIAL_MEMORY = Module['INITIAL_MEMORY'] || 16777216;
-
 // include: runtime_init_table.js
 // In regular non-RELOCATABLE mode the table is exported
 // from the wasm module and this will be assigned once
@@ -738,12 +490,8 @@ var wasmTable;
 
 // end include: runtime_init_table.js
 // include: runtime_stack_check.js
-
-
 // end include: runtime_stack_check.js
 // include: runtime_assertions.js
-
-
 // end include: runtime_assertions.js
 var __ATPRERUN__  = []; // functions called before the runtime is initialized
 var __ATINIT__    = []; // functions called during startup
@@ -753,19 +501,19 @@ var __ATPOSTRUN__ = []; // functions called after the main() is called
 
 var runtimeInitialized = false;
 
+var runtimeKeepaliveCounter = 0;
+
 function keepRuntimeAlive() {
-  return noExitRuntime;
+  return noExitRuntime || runtimeKeepaliveCounter > 0;
 }
 
 function preRun() {
-
   if (Module['preRun']) {
     if (typeof Module['preRun'] == 'function') Module['preRun'] = [Module['preRun']];
     while (Module['preRun'].length) {
       addOnPreRun(Module['preRun'].shift());
     }
   }
-
   callRuntimeCallbacks(__ATPRERUN__);
 }
 
@@ -819,8 +567,6 @@ function addOnPostRun(cb) {
 }
 
 // include: runtime_math.js
-
-
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround
@@ -912,15 +658,9 @@ function abort(what) {
   throw e;
 }
 
-// {{MEM_INITIALIZER}}
-
 // include: memoryprofiler.js
-
-
 // end include: memoryprofiler.js
 // include: URIUtils.js
-
-
 // Prefix of data URIs emitted by SINGLE_FILE and related options.
 var dataURIPrefix = 'data:application/octet-stream;base64,';
 
@@ -936,6 +676,8 @@ function isFileURI(filename) {
 }
 
 // end include: URIUtils.js
+// include: runtime_exceptions.js
+// end include: runtime_exceptions.js
 var wasmBinaryFile;
   wasmBinaryFile = 'sbasic.wasm';
   if (!isDataURI(wasmBinaryFile)) {
@@ -957,37 +699,84 @@ function getBinary(file) {
   }
 }
 
-function getBinaryPromise() {
-  // If we don't have the binary yet, try to to load it asynchronously.
+function getBinaryPromise(binaryFile) {
+  // If we don't have the binary yet, try to load it asynchronously.
   // Fetch has some additional restrictions over XHR, like it can't be used on a file:// url.
   // See https://github.com/github/fetch/pull/92#issuecomment-140665932
   // Cordova or Electron apps are typically loaded from a file:// url.
   // So use fetch if it is available and the url is not a file, otherwise fall back to XHR.
   if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER)) {
     if (typeof fetch == 'function'
-      && !isFileURI(wasmBinaryFile)
+      && !isFileURI(binaryFile)
     ) {
-      return fetch(wasmBinaryFile, { credentials: 'same-origin' }).then(function(response) {
+      return fetch(binaryFile, { credentials: 'same-origin' }).then((response) => {
         if (!response['ok']) {
-          throw "failed to load wasm binary file at '" + wasmBinaryFile + "'";
+          throw "failed to load wasm binary file at '" + binaryFile + "'";
         }
         return response['arrayBuffer']();
-      }).catch(function () {
-          return getBinary(wasmBinaryFile);
-      });
+      }).catch(() => getBinary(binaryFile));
     }
     else {
       if (readAsync) {
         // fetch is not available or url is file => try XHR (readAsync uses XHR internally)
-        return new Promise(function(resolve, reject) {
-          readAsync(wasmBinaryFile, function(response) { resolve(new Uint8Array(/** @type{!ArrayBuffer} */(response))) }, reject)
+        return new Promise((resolve, reject) => {
+          readAsync(binaryFile, (response) => resolve(new Uint8Array(/** @type{!ArrayBuffer} */(response))), reject)
         });
       }
     }
   }
 
   // Otherwise, getBinary should be able to get it synchronously
-  return Promise.resolve().then(function() { return getBinary(wasmBinaryFile); });
+  return Promise.resolve().then(() => getBinary(binaryFile));
+}
+
+function instantiateArrayBuffer(binaryFile, imports, receiver) {
+  return getBinaryPromise(binaryFile).then((binary) => {
+    return WebAssembly.instantiate(binary, imports);
+  }).then((instance) => {
+    return instance;
+  }).then(receiver, (reason) => {
+    err('failed to asynchronously prepare wasm: ' + reason);
+
+    abort(reason);
+  });
+}
+
+function instantiateAsync(binary, binaryFile, imports, callback) {
+  if (!binary &&
+      typeof WebAssembly.instantiateStreaming == 'function' &&
+      !isDataURI(binaryFile) &&
+      // Don't use streaming for file:// delivered objects in a webview, fetch them synchronously.
+      !isFileURI(binaryFile) &&
+      // Avoid instantiateStreaming() on Node.js environment for now, as while
+      // Node.js v18.1.0 implements it, it does not have a full fetch()
+      // implementation yet.
+      //
+      // Reference:
+      //   https://github.com/emscripten-core/emscripten/pull/16917
+      !ENVIRONMENT_IS_NODE &&
+      typeof fetch == 'function') {
+    return fetch(binaryFile, { credentials: 'same-origin' }).then((response) => {
+      // Suppress closure warning here since the upstream definition for
+      // instantiateStreaming only allows Promise<Repsponse> rather than
+      // an actual Response.
+      // TODO(https://github.com/google/closure-compiler/pull/3913): Remove if/when upstream closure is fixed.
+      /** @suppress {checkTypes} */
+      var result = WebAssembly.instantiateStreaming(response, imports);
+
+      return result.then(
+        callback,
+        function(reason) {
+          // We expect the most common failure cause to be a bad MIME type for the binary,
+          // in which case falling back to ArrayBuffer instantiation should work.
+          err('wasm streaming compile failed: ' + reason);
+          err('falling back to ArrayBuffer instantiation');
+          return instantiateArrayBuffer(binaryFile, imports, callback);
+        });
+    });
+  } else {
+    return instantiateArrayBuffer(binaryFile, imports, callback);
+  }
 }
 
 // Create the wasm instance.
@@ -995,8 +784,8 @@ function getBinaryPromise() {
 function createWasm() {
   // prepare imports
   var info = {
-    'env': asmLibraryArg,
-    'wasi_snapshot_preview1': asmLibraryArg,
+    'env': wasmImports,
+    'wasi_snapshot_preview1': wasmImports,
   };
   // Load the wasm module and create an instance of using native support in the JS engine.
   // handle a generated wasm instance, receiving its exports and
@@ -1018,6 +807,7 @@ function createWasm() {
 
     removeRunDependency('wasm-instantiate');
 
+    return exports;
   }
   // wait for the pthread pool (if any)
   addRunDependency('wasm-instantiate');
@@ -1027,75 +817,27 @@ function createWasm() {
     // 'result' is a ResultObject object which has both the module and instance.
     // receiveInstance() will swap in the exports (to Module.asm) so they can be called
     // TODO: Due to Closure regression https://github.com/google/closure-compiler/issues/3193, the above line no longer optimizes out down to the following line.
-    // When the regression is fixed, can restore the above USE_PTHREADS-enabled path.
+    // When the regression is fixed, can restore the above PTHREADS-enabled path.
     receiveInstance(result['instance']);
   }
 
-  function instantiateArrayBuffer(receiver) {
-    return getBinaryPromise().then(function(binary) {
-      return WebAssembly.instantiate(binary, info);
-    }).then(function (instance) {
-      return instance;
-    }).then(receiver, function(reason) {
-      err('failed to asynchronously prepare wasm: ' + reason);
-
-      abort(reason);
-    });
-  }
-
-  function instantiateAsync() {
-    if (!wasmBinary &&
-        typeof WebAssembly.instantiateStreaming == 'function' &&
-        !isDataURI(wasmBinaryFile) &&
-        // Don't use streaming for file:// delivered objects in a webview, fetch them synchronously.
-        !isFileURI(wasmBinaryFile) &&
-        // Avoid instantiateStreaming() on Node.js environment for now, as while
-        // Node.js v18.1.0 implements it, it does not have a full fetch()
-        // implementation yet.
-        //
-        // Reference:
-        //   https://github.com/emscripten-core/emscripten/pull/16917
-        !ENVIRONMENT_IS_NODE &&
-        typeof fetch == 'function') {
-      return fetch(wasmBinaryFile, { credentials: 'same-origin' }).then(function(response) {
-        // Suppress closure warning here since the upstream definition for
-        // instantiateStreaming only allows Promise<Repsponse> rather than
-        // an actual Response.
-        // TODO(https://github.com/google/closure-compiler/pull/3913): Remove if/when upstream closure is fixed.
-        /** @suppress {checkTypes} */
-        var result = WebAssembly.instantiateStreaming(response, info);
-
-        return result.then(
-          receiveInstantiationResult,
-          function(reason) {
-            // We expect the most common failure cause to be a bad MIME type for the binary,
-            // in which case falling back to ArrayBuffer instantiation should work.
-            err('wasm streaming compile failed: ' + reason);
-            err('falling back to ArrayBuffer instantiation');
-            return instantiateArrayBuffer(receiveInstantiationResult);
-          });
-      });
-    } else {
-      return instantiateArrayBuffer(receiveInstantiationResult);
-    }
-  }
-
   // User shell pages can write their own Module.instantiateWasm = function(imports, successCallback) callback
-  // to manually instantiate the Wasm module themselves. This allows pages to run the instantiation parallel
-  // to any other async startup actions they are performing.
-  // Also pthreads and wasm workers initialize the wasm instance through this path.
+  // to manually instantiate the Wasm module themselves. This allows pages to
+  // run the instantiation parallel to any other async startup actions they are
+  // performing.
+  // Also pthreads and wasm workers initialize the wasm instance through this
+  // path.
   if (Module['instantiateWasm']) {
+
     try {
-      var exports = Module['instantiateWasm'](info, receiveInstance);
-      exports = Asyncify.instrumentWasmExports(exports);
-      return exports;
+      return Module['instantiateWasm'](info, receiveInstance);
     } catch(e) {
       err('Module.instantiateWasm callback failed with error: ' + e);
         return false;
     }
   }
 
-  instantiateAsync();
+  instantiateAsync(wasmBinary, wasmBinaryFile, info, receiveInstantiationResult);
   return {}; // no exports yet; we'll fill them in later
 }
 
@@ -1103,28 +845,30 @@ function createWasm() {
 var tempDouble;
 var tempI64;
 
+// include: runtime_debug.js
+// end include: runtime_debug.js
 // === Body ===
 
 var ASM_CONSTS = {
-  127096: () => { if (typeof window === 'undefined' || (window.AudioContext || window.webkitAudioContext) === undefined) { return 0; } if (typeof(window.miniaudio) === 'undefined') { window.miniaudio = { referenceCount: 0 }; miniaudio.devices = []; miniaudio.track_device = function(device) { for (var iDevice = 0; iDevice < miniaudio.devices.length; ++iDevice) { if (miniaudio.devices[iDevice] == null) { miniaudio.devices[iDevice] = device; return iDevice; } } miniaudio.devices.push(device); return miniaudio.devices.length - 1; }; miniaudio.untrack_device_by_index = function(deviceIndex) { miniaudio.devices[deviceIndex] = null; while (miniaudio.devices.length > 0) { if (miniaudio.devices[miniaudio.devices.length-1] == null) { miniaudio.devices.pop(); } else { break; } } }; miniaudio.untrack_device = function(device) { for (var iDevice = 0; iDevice < miniaudio.devices.length; ++iDevice) { if (miniaudio.devices[iDevice] == device) { return miniaudio.untrack_device_by_index(iDevice); } } }; miniaudio.get_device_by_index = function(deviceIndex) { return miniaudio.devices[deviceIndex]; }; miniaudio.unlock_event_types = (function(){ return ['touchstart', 'touchend', 'click']; })(); miniaudio.unlock = function() { for(var i = 0; i < miniaudio.devices.length; ++i) { var device = miniaudio.devices[i]; if (device != null && device.webaudio != null && device.state === 2 ) { device.webaudio.resume(); } } miniaudio.unlock_event_types.map(function(event_type) { document.removeEventListener(event_type, miniaudio.unlock, true); }); }; miniaudio.unlock_event_types.map(function(event_type) { document.addEventListener(event_type, miniaudio.unlock, true); }); } window.miniaudio.referenceCount++; return 1; },  
- 128795: () => { if (typeof(window.miniaudio) !== 'undefined') { window.miniaudio.referenceCount--; if (window.miniaudio.referenceCount === 0) { delete window.miniaudio; } } },  
- 128956: () => { return (navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia !== undefined); },  
- 129060: () => { try { var temp = new (window.AudioContext || window.webkitAudioContext)(); var sampleRate = temp.sampleRate; temp.close(); return sampleRate; } catch(e) { return 0; } },  
- 129231: ($0, $1, $2, $3, $4) => { var channels = $0; var sampleRate = $1; var bufferSize = $2; var isCapture = $3; var pDevice = $4; if (typeof(window.miniaudio) === 'undefined') { return -1; } var device = {}; device.webaudio = new (window.AudioContext || window.webkitAudioContext)({sampleRate:sampleRate}); device.webaudio.suspend(); device.state = 1; device.intermediaryBufferSizeInBytes = channels * bufferSize * 4; device.intermediaryBuffer = Module._malloc(device.intermediaryBufferSizeInBytes); device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes); device.scriptNode = device.webaudio.createScriptProcessor(bufferSize, (isCapture) ? channels : 0, (isCapture) ? 0 : channels); if (isCapture) { device.scriptNode.onaudioprocess = function(e) { if (device.intermediaryBuffer === undefined) { return; } if (device.intermediaryBufferView.length == 0) { device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes); } for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) { e.outputBuffer.getChannelData(iChannel).fill(0.0); } var sendSilence = false; if (device.streamNode === undefined) { sendSilence = true; } if (e.inputBuffer.numberOfChannels != channels) { console.log("Capture: Channel count mismatch. " + e.inputBufer.numberOfChannels + " != " + channels + ". Sending silence."); sendSilence = true; } var totalFramesProcessed = 0; while (totalFramesProcessed < e.inputBuffer.length) { var framesRemaining = e.inputBuffer.length - totalFramesProcessed; var framesToProcess = framesRemaining; if (framesToProcess > (device.intermediaryBufferSizeInBytes/channels/4)) { framesToProcess = (device.intermediaryBufferSizeInBytes/channels/4); } if (sendSilence) { device.intermediaryBufferView.fill(0.0); } else { for (var iFrame = 0; iFrame < framesToProcess; ++iFrame) { for (var iChannel = 0; iChannel < e.inputBuffer.numberOfChannels; ++iChannel) { device.intermediaryBufferView[iFrame*channels + iChannel] = e.inputBuffer.getChannelData(iChannel)[totalFramesProcessed + iFrame]; } } } _ma_device_process_pcm_frames_capture__webaudio(pDevice, framesToProcess, device.intermediaryBuffer); totalFramesProcessed += framesToProcess; } }; navigator.mediaDevices.getUserMedia({audio:true, video:false}) .then(function(stream) { device.streamNode = device.webaudio.createMediaStreamSource(stream); device.streamNode.connect(device.scriptNode); device.scriptNode.connect(device.webaudio.destination); }) .catch(function(error) { device.scriptNode.connect(device.webaudio.destination); }); } else { device.scriptNode.onaudioprocess = function(e) { if (device.intermediaryBuffer === undefined) { return; } if(device.intermediaryBufferView.length == 0) { device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes); } var outputSilence = false; if (e.outputBuffer.numberOfChannels != channels) { console.log("Playback: Channel count mismatch. " + e.outputBufer.numberOfChannels + " != " + channels + ". Outputting silence."); outputSilence = true; return; } var totalFramesProcessed = 0; while (totalFramesProcessed < e.outputBuffer.length) { var framesRemaining = e.outputBuffer.length - totalFramesProcessed; var framesToProcess = framesRemaining; if (framesToProcess > (device.intermediaryBufferSizeInBytes/channels/4)) { framesToProcess = (device.intermediaryBufferSizeInBytes/channels/4); } _ma_device_process_pcm_frames_playback__webaudio(pDevice, framesToProcess, device.intermediaryBuffer); if (outputSilence) { for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) { e.outputBuffer.getChannelData(iChannel).fill(0.0); } } else { for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) { var outputBuffer = e.outputBuffer.getChannelData(iChannel); var intermediaryBuffer = device.intermediaryBufferView; for (var iFrame = 0; iFrame < framesToProcess; ++iFrame) { outputBuffer[totalFramesProcessed + iFrame] = intermediaryBuffer[iFrame*channels + iChannel]; } } } totalFramesProcessed += framesToProcess; } }; device.scriptNode.connect(device.webaudio.destination); } return miniaudio.track_device(device); },  
- 133521: ($0) => { return miniaudio.get_device_by_index($0).webaudio.sampleRate; },  
- 133587: ($0) => { var device = miniaudio.get_device_by_index($0); if (device.scriptNode !== undefined) { device.scriptNode.onaudioprocess = function(e) {}; device.scriptNode.disconnect(); device.scriptNode = undefined; } if (device.streamNode !== undefined) { device.streamNode.disconnect(); device.streamNode = undefined; } device.webaudio.close(); device.webaudio = undefined; if (device.intermediaryBuffer !== undefined) { Module._free(device.intermediaryBuffer); device.intermediaryBuffer = undefined; device.intermediaryBufferView = undefined; device.intermediaryBufferSizeInBytes = undefined; } miniaudio.untrack_device_by_index($0); },  
- 134213: ($0) => { var device = miniaudio.get_device_by_index($0); device.webaudio.resume(); device.state = 2; },  
- 134309: ($0) => { var device = miniaudio.get_device_by_index($0); device.webaudio.resume(); device.state = 2; },  
- 134405: ($0) => { var device = miniaudio.get_device_by_index($0); device.webaudio.suspend(); device.state = 1; },  
- 134502: ($0) => { var device = miniaudio.get_device_by_index($0); device.webaudio.suspend(); device.state = 1; },  
- 134599: ($0) => { const parameters = new URLSearchParams(window.location.search); const result = parameters.get('fontSize') || $0; console.log(result); return result; },  
- 134752: ($0, $1) => { window.alert(UTF8ToString($0) + "\n" + UTF8ToString($1)); },  
- 134814: ($0, $1) => { return !window.confirm(UTF8ToString($0) + "\n" + UTF8ToString($1)); },  
- 134886: ($0) => { window.open(UTF8ToString($0)); },  
- 134921: ($0) => { navigator.clipboard.writeText(UTF8ToString($0)); },  
- 134974: ($0) => { document.body.style.cursor = UTF8ToString($0); },  
- 135025: ($0) => { var element = document.getElementById($0 == -1 ? "canvas" : "canvas_" + $0); document.body.removeChild(element); },  
- 135142: ($0, $1, $2) => { var canvas = document.createElement("canvas"); canvas.id = "canvas_" + $0; canvas.width = $1; canvas.height = $2; canvas.style.zIndex = 1; canvas.style.display = "none"; canvas.style.position = "absolute"; canvas.className = "emscripten"; document.body.appendChild(canvas); }
+  134568: () => { if (typeof window === 'undefined' || (window.AudioContext || window.webkitAudioContext) === undefined) { return 0; } if (typeof(window.miniaudio) === 'undefined') { window.miniaudio = { referenceCount: 0 }; miniaudio.devices = []; miniaudio.track_device = function(device) { for (var iDevice = 0; iDevice < miniaudio.devices.length; ++iDevice) { if (miniaudio.devices[iDevice] == null) { miniaudio.devices[iDevice] = device; return iDevice; } } miniaudio.devices.push(device); return miniaudio.devices.length - 1; }; miniaudio.untrack_device_by_index = function(deviceIndex) { miniaudio.devices[deviceIndex] = null; while (miniaudio.devices.length > 0) { if (miniaudio.devices[miniaudio.devices.length-1] == null) { miniaudio.devices.pop(); } else { break; } } }; miniaudio.untrack_device = function(device) { for (var iDevice = 0; iDevice < miniaudio.devices.length; ++iDevice) { if (miniaudio.devices[iDevice] == device) { return miniaudio.untrack_device_by_index(iDevice); } } }; miniaudio.get_device_by_index = function(deviceIndex) { return miniaudio.devices[deviceIndex]; }; miniaudio.unlock_event_types = (function(){ return ['touchstart', 'touchend', 'click']; })(); miniaudio.unlock = function() { for(var i = 0; i < miniaudio.devices.length; ++i) { var device = miniaudio.devices[i]; if (device != null && device.webaudio != null && device.state === 2 ) { device.webaudio.resume(); } } miniaudio.unlock_event_types.map(function(event_type) { document.removeEventListener(event_type, miniaudio.unlock, true); }); }; miniaudio.unlock_event_types.map(function(event_type) { document.addEventListener(event_type, miniaudio.unlock, true); }); } window.miniaudio.referenceCount++; return 1; },  
+ 136267: () => { if (typeof(window.miniaudio) !== 'undefined') { window.miniaudio.referenceCount--; if (window.miniaudio.referenceCount === 0) { delete window.miniaudio; } } },  
+ 136428: () => { return (navigator.mediaDevices !== undefined && navigator.mediaDevices.getUserMedia !== undefined); },  
+ 136532: () => { try { var temp = new (window.AudioContext || window.webkitAudioContext)(); var sampleRate = temp.sampleRate; temp.close(); return sampleRate; } catch(e) { return 0; } },  
+ 136703: ($0, $1, $2, $3, $4, $5) => { var channels = $0; var sampleRate = $1; var bufferSize = $2; var isCapture = $3; var pDevice = $4; var pAllocationCallbacks = $5; if (typeof(window.miniaudio) === 'undefined') { return -1; } var device = {}; device.webaudio = new (window.AudioContext || window.webkitAudioContext)({sampleRate:sampleRate}); device.webaudio.suspend(); device.state = 1; device.intermediaryBufferSizeInBytes = channels * bufferSize * 4; device.intermediaryBuffer = _ma_malloc_emscripten(device.intermediaryBufferSizeInBytes, pAllocationCallbacks); device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes); device.scriptNode = device.webaudio.createScriptProcessor(bufferSize, (isCapture) ? channels : 0, (isCapture) ? 0 : channels); if (isCapture) { device.scriptNode.onaudioprocess = function(e) { if (device.intermediaryBuffer === undefined) { return; } if (device.intermediaryBufferView.length == 0) { device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes); } for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) { e.outputBuffer.getChannelData(iChannel).fill(0.0); } var sendSilence = false; if (device.streamNode === undefined) { sendSilence = true; } if (e.inputBuffer.numberOfChannels != channels) { console.log("Capture: Channel count mismatch. " + e.inputBufer.numberOfChannels + " != " + channels + ". Sending silence."); sendSilence = true; } var totalFramesProcessed = 0; while (totalFramesProcessed < e.inputBuffer.length) { var framesRemaining = e.inputBuffer.length - totalFramesProcessed; var framesToProcess = framesRemaining; if (framesToProcess > (device.intermediaryBufferSizeInBytes/channels/4)) { framesToProcess = (device.intermediaryBufferSizeInBytes/channels/4); } if (sendSilence) { device.intermediaryBufferView.fill(0.0); } else { for (var iFrame = 0; iFrame < framesToProcess; ++iFrame) { for (var iChannel = 0; iChannel < e.inputBuffer.numberOfChannels; ++iChannel) { device.intermediaryBufferView[iFrame*channels + iChannel] = e.inputBuffer.getChannelData(iChannel)[totalFramesProcessed + iFrame]; } } } _ma_device_process_pcm_frames_capture__webaudio(pDevice, framesToProcess, device.intermediaryBuffer); totalFramesProcessed += framesToProcess; } }; navigator.mediaDevices.getUserMedia({audio:true, video:false}) .then(function(stream) { device.streamNode = device.webaudio.createMediaStreamSource(stream); device.streamNode.connect(device.scriptNode); device.scriptNode.connect(device.webaudio.destination); }) .catch(function(error) { device.scriptNode.connect(device.webaudio.destination); }); } else { device.scriptNode.onaudioprocess = function(e) { if (device.intermediaryBuffer === undefined) { return; } if(device.intermediaryBufferView.length == 0) { device.intermediaryBufferView = new Float32Array(Module.HEAPF32.buffer, device.intermediaryBuffer, device.intermediaryBufferSizeInBytes); } var outputSilence = false; if (e.outputBuffer.numberOfChannels != channels) { console.log("Playback: Channel count mismatch. " + e.outputBufer.numberOfChannels + " != " + channels + ". Outputting silence."); outputSilence = true; return; } var totalFramesProcessed = 0; while (totalFramesProcessed < e.outputBuffer.length) { var framesRemaining = e.outputBuffer.length - totalFramesProcessed; var framesToProcess = framesRemaining; if (framesToProcess > (device.intermediaryBufferSizeInBytes/channels/4)) { framesToProcess = (device.intermediaryBufferSizeInBytes/channels/4); } _ma_device_process_pcm_frames_playback__webaudio(pDevice, framesToProcess, device.intermediaryBuffer); if (outputSilence) { for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) { e.outputBuffer.getChannelData(iChannel).fill(0.0); } } else { for (var iChannel = 0; iChannel < e.outputBuffer.numberOfChannels; ++iChannel) { var outputBuffer = e.outputBuffer.getChannelData(iChannel); var intermediaryBuffer = device.intermediaryBufferView; for (var iFrame = 0; iFrame < framesToProcess; ++iFrame) { outputBuffer[totalFramesProcessed + iFrame] = intermediaryBuffer[iFrame*channels + iChannel]; } } } totalFramesProcessed += framesToProcess; } }; device.scriptNode.connect(device.webaudio.destination); } return miniaudio.track_device(device); },  
+ 141053: ($0) => { return miniaudio.get_device_by_index($0).webaudio.sampleRate; },  
+ 141119: ($0, $1, $2, $3) => { var device = miniaudio.get_device_by_index($0); var pAllocationCallbacks = $3; if (device.scriptNode !== undefined) { device.scriptNode.onaudioprocess = function(e) {}; device.scriptNode.disconnect(); device.scriptNode = undefined; } if (device.streamNode !== undefined) { device.streamNode.disconnect(); device.streamNode = undefined; } device.webaudio.close(); device.webaudio = undefined; if (device.intermediaryBuffer !== undefined) { _ma_free_emscripten(device.intermediaryBuffer, pAllocationCallbacks); device.intermediaryBuffer = undefined; device.intermediaryBufferView = undefined; device.intermediaryBufferSizeInBytes = undefined; } miniaudio.untrack_device_by_index($0); },  
+ 141805: ($0) => { var device = miniaudio.get_device_by_index($0); device.webaudio.resume(); device.state = 2; },  
+ 141901: ($0) => { var device = miniaudio.get_device_by_index($0); device.webaudio.resume(); device.state = 2; },  
+ 141997: ($0) => { var device = miniaudio.get_device_by_index($0); device.webaudio.suspend(); device.state = 1; },  
+ 142094: ($0) => { var device = miniaudio.get_device_by_index($0); device.webaudio.suspend(); device.state = 1; },  
+ 142191: ($0) => { const parameters = new URLSearchParams(window.location.search); const result = parameters.get('fontSize') || $0; console.log(result); return result; },  
+ 142344: ($0, $1) => { window.alert(UTF8ToString($0) + "\n" + UTF8ToString($1)); },  
+ 142406: ($0, $1) => { return !window.confirm(UTF8ToString($0) + "\n" + UTF8ToString($1)); },  
+ 142478: ($0) => { window.open(UTF8ToString($0)); },  
+ 142513: ($0) => { navigator.clipboard.writeText(UTF8ToString($0)); },  
+ 142566: ($0) => { document.body.style.cursor = UTF8ToString($0); },  
+ 142617: ($0) => { var element = document.getElementById($0 == -1 ? "canvas" : "canvas_" + $0); document.body.removeChild(element); },  
+ 142734: ($0, $1, $2) => { var canvas = document.createElement("canvas"); canvas.id = "canvas_" + $0; canvas.width = $1; canvas.height = $2; canvas.style.zIndex = 1; canvas.style.display = "none"; canvas.style.position = "absolute"; canvas.className = "emscripten"; document.body.appendChild(canvas); }
 };
 function get_screen_height() { return window.innerHeight; }
 function get_screen_width() { return window.innerWidth; }
@@ -1139,6 +883,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
 
 
 
+// end include: preamble.js
 
   /** @constructor */
   function ExitStatus(status) {
@@ -1160,20 +905,19 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
      * @param {string} type
      */
   function getValue(ptr, type = 'i8') {
-      if (type.endsWith('*')) type = '*';
-      switch (type) {
-        case 'i1': return HEAP8[((ptr)>>0)];
-        case 'i8': return HEAP8[((ptr)>>0)];
-        case 'i16': return HEAP16[((ptr)>>1)];
-        case 'i32': return HEAP32[((ptr)>>2)];
-        case 'i64': return HEAP32[((ptr)>>2)];
-        case 'float': return HEAPF32[((ptr)>>2)];
-        case 'double': return HEAPF64[((ptr)>>3)];
-        case '*': return HEAPU32[((ptr)>>2)];
-        default: abort('invalid type for getValue: ' + type);
-      }
-      return null;
+    if (type.endsWith('*')) type = '*';
+    switch (type) {
+      case 'i1': return HEAP8[((ptr)>>0)];
+      case 'i8': return HEAP8[((ptr)>>0)];
+      case 'i16': return HEAP16[((ptr)>>1)];
+      case 'i32': return HEAP32[((ptr)>>2)];
+      case 'i64': return HEAP32[((ptr)>>2)];
+      case 'float': return HEAPF32[((ptr)>>2)];
+      case 'double': return HEAPF64[((ptr)>>3)];
+      case '*': return HEAPU32[((ptr)>>2)];
+      default: abort('invalid type for getValue: ' + type);
     }
+  }
 
   
     /**
@@ -1182,22 +926,99 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
      * @param {string} type
      */
   function setValue(ptr, value, type = 'i8') {
-      if (type.endsWith('*')) type = '*';
-      switch (type) {
-        case 'i1': HEAP8[((ptr)>>0)] = value; break;
-        case 'i8': HEAP8[((ptr)>>0)] = value; break;
-        case 'i16': HEAP16[((ptr)>>1)] = value; break;
-        case 'i32': HEAP32[((ptr)>>2)] = value; break;
-        case 'i64': (tempI64 = [value>>>0,(tempDouble=value,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[((ptr)>>2)] = tempI64[0],HEAP32[(((ptr)+(4))>>2)] = tempI64[1]); break;
-        case 'float': HEAPF32[((ptr)>>2)] = value; break;
-        case 'double': HEAPF64[((ptr)>>3)] = value; break;
-        case '*': HEAPU32[((ptr)>>2)] = value; break;
-        default: abort('invalid type for setValue: ' + type);
+    if (type.endsWith('*')) type = '*';
+    switch (type) {
+      case 'i1': HEAP8[((ptr)>>0)] = value; break;
+      case 'i8': HEAP8[((ptr)>>0)] = value; break;
+      case 'i16': HEAP16[((ptr)>>1)] = value; break;
+      case 'i32': HEAP32[((ptr)>>2)] = value; break;
+      case 'i64': (tempI64 = [value>>>0,(tempDouble=value,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[((ptr)>>2)] = tempI64[0],HEAP32[(((ptr)+(4))>>2)] = tempI64[1]); break;
+      case 'float': HEAPF32[((ptr)>>2)] = value; break;
+      case 'double': HEAPF64[((ptr)>>3)] = value; break;
+      case '*': HEAPU32[((ptr)>>2)] = value; break;
+      default: abort('invalid type for setValue: ' + type);
+    }
+  }
+
+  var UTF8Decoder = typeof TextDecoder != 'undefined' ? new TextDecoder('utf8') : undefined;
+  
+    /**
+     * Given a pointer 'idx' to a null-terminated UTF8-encoded string in the given
+     * array that contains uint8 values, returns a copy of that string as a
+     * Javascript String object.
+     * heapOrArray is either a regular array, or a JavaScript typed array view.
+     * @param {number} idx
+     * @param {number=} maxBytesToRead
+     * @return {string}
+     */
+  function UTF8ArrayToString(heapOrArray, idx, maxBytesToRead) {
+      var endIdx = idx + maxBytesToRead;
+      var endPtr = idx;
+      // TextDecoder needs to know the byte length in advance, it doesn't stop on
+      // null terminator by itself.  Also, use the length info to avoid running tiny
+      // strings through TextDecoder, since .subarray() allocates garbage.
+      // (As a tiny code save trick, compare endPtr against endIdx using a negation,
+      // so that undefined means Infinity)
+      while (heapOrArray[endPtr] && !(endPtr >= endIdx)) ++endPtr;
+  
+      if (endPtr - idx > 16 && heapOrArray.buffer && UTF8Decoder) {
+        return UTF8Decoder.decode(heapOrArray.subarray(idx, endPtr));
       }
+      var str = '';
+      // If building with TextDecoder, we have already computed the string length
+      // above, so test loop end condition against that
+      while (idx < endPtr) {
+        // For UTF8 byte structure, see:
+        // http://en.wikipedia.org/wiki/UTF-8#Description
+        // https://www.ietf.org/rfc/rfc2279.txt
+        // https://tools.ietf.org/html/rfc3629
+        var u0 = heapOrArray[idx++];
+        if (!(u0 & 0x80)) { str += String.fromCharCode(u0); continue; }
+        var u1 = heapOrArray[idx++] & 63;
+        if ((u0 & 0xE0) == 0xC0) { str += String.fromCharCode(((u0 & 31) << 6) | u1); continue; }
+        var u2 = heapOrArray[idx++] & 63;
+        if ((u0 & 0xF0) == 0xE0) {
+          u0 = ((u0 & 15) << 12) | (u1 << 6) | u2;
+        } else {
+          u0 = ((u0 & 7) << 18) | (u1 << 12) | (u2 << 6) | (heapOrArray[idx++] & 63);
+        }
+  
+        if (u0 < 0x10000) {
+          str += String.fromCharCode(u0);
+        } else {
+          var ch = u0 - 0x10000;
+          str += String.fromCharCode(0xD800 | (ch >> 10), 0xDC00 | (ch & 0x3FF));
+        }
+      }
+      return str;
+    }
+  
+  
+    /**
+     * Given a pointer 'ptr' to a null-terminated UTF8-encoded string in the
+     * emscripten HEAP, returns a copy of that string as a Javascript String object.
+     *
+     * @param {number} ptr
+     * @param {number=} maxBytesToRead - An optional length that specifies the
+     *   maximum number of bytes to read. You can omit this parameter to scan the
+     *   string until the first 0 byte. If maxBytesToRead is passed, and the string
+     *   at [ptr, ptr+maxBytesToReadr[ contains a null byte in the middle, then the
+     *   string will cut short at that byte index (i.e. maxBytesToRead will not
+     *   produce a string of exact length [ptr, ptr+maxBytesToRead[) N.B. mixing
+     *   frequent uses of UTF8ToString() with and without maxBytesToRead may throw
+     *   JS JIT optimizations off, so it is worth to consider consistently using one
+     * @return {string}
+     */
+  function UTF8ToString(ptr, maxBytesToRead) {
+      return ptr ? UTF8ArrayToString(HEAPU8, ptr, maxBytesToRead) : '';
+    }
+  function ___assert_fail(condition, filename, line, func) {
+      abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
     }
 
-  function ___assert_fail(condition, filename, line, func) {
-      abort('Assertion failed: ' + UTF8ToString(condition) + ', at: ' + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
+  var dlopenMissingError =  'To use dlopen, you need enable dynamic linking, see https://emscripten.org/docs/compiling/Dynamic-Linking.html';
+  function ___dlsym(handle, symbol) {
+      abort(dlopenMissingError);
     }
 
   var PATH = {isAbs:(path) => path.charAt(0) === '/',splitPath:(filename) => {
@@ -1265,24 +1086,37 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         return PATH.normalize(l + '/' + r);
       }};
   
-  function getRandomDevice() {
+  function initRandomFill() {
       if (typeof crypto == 'object' && typeof crypto['getRandomValues'] == 'function') {
         // for modern web browsers
-        var randomBuffer = new Uint8Array(1);
-        return () => { crypto.getRandomValues(randomBuffer); return randomBuffer[0]; };
+        return (view) => crypto.getRandomValues(view);
       } else
       if (ENVIRONMENT_IS_NODE) {
         // for nodejs with or without crypto support included
         try {
           var crypto_module = require('crypto');
-          // nodejs has crypto support
-          return () => crypto_module['randomBytes'](1)[0];
+          var randomFillSync = crypto_module['randomFillSync'];
+          if (randomFillSync) {
+            // nodejs with LTS crypto support
+            return (view) => crypto_module['randomFillSync'](view);
+          }
+          // very old nodejs with the original crypto API
+          var randomBytes = crypto_module['randomBytes'];
+          return (view) => (
+            view.set(randomBytes(view.byteLength)),
+            // Return the original view to match modern native implementations.
+            view
+          );
         } catch (e) {
           // nodejs doesn't have crypto support
         }
       }
       // we couldn't find a proper implementation, as Math.random() is not suitable for /dev/random, see emscripten-core/emscripten/pull/7096
-      return () => abort("randomDevice");
+      abort("initRandomDevice");
+    }
+  function randomFill(view) {
+      // Lazily init on the first invocation.
+      return (randomFill = initRandomFill())(view);
     }
   
   
@@ -1339,6 +1173,72 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       }};
   
   
+  function lengthBytesUTF8(str) {
+      var len = 0;
+      for (var i = 0; i < str.length; ++i) {
+        // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
+        // unit, not a Unicode code point of the character! So decode
+        // UTF16->UTF32->UTF8.
+        // See http://unicode.org/faq/utf_bom.html#utf16-3
+        var c = str.charCodeAt(i); // possibly a lead surrogate
+        if (c <= 0x7F) {
+          len++;
+        } else if (c <= 0x7FF) {
+          len += 2;
+        } else if (c >= 0xD800 && c <= 0xDFFF) {
+          len += 4; ++i;
+        } else {
+          len += 3;
+        }
+      }
+      return len;
+    }
+  
+  function stringToUTF8Array(str, heap, outIdx, maxBytesToWrite) {
+      // Parameter maxBytesToWrite is not optional. Negative values, 0, null,
+      // undefined and false each don't write out any bytes.
+      if (!(maxBytesToWrite > 0))
+        return 0;
+  
+      var startIdx = outIdx;
+      var endIdx = outIdx + maxBytesToWrite - 1; // -1 for string null terminator.
+      for (var i = 0; i < str.length; ++i) {
+        // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
+        // unit, not a Unicode code point of the character! So decode
+        // UTF16->UTF32->UTF8.
+        // See http://unicode.org/faq/utf_bom.html#utf16-3
+        // For UTF8 byte structure, see http://en.wikipedia.org/wiki/UTF-8#Description
+        // and https://www.ietf.org/rfc/rfc2279.txt
+        // and https://tools.ietf.org/html/rfc3629
+        var u = str.charCodeAt(i); // possibly a lead surrogate
+        if (u >= 0xD800 && u <= 0xDFFF) {
+          var u1 = str.charCodeAt(++i);
+          u = 0x10000 + ((u & 0x3FF) << 10) | (u1 & 0x3FF);
+        }
+        if (u <= 0x7F) {
+          if (outIdx >= endIdx) break;
+          heap[outIdx++] = u;
+        } else if (u <= 0x7FF) {
+          if (outIdx + 1 >= endIdx) break;
+          heap[outIdx++] = 0xC0 | (u >> 6);
+          heap[outIdx++] = 0x80 | (u & 63);
+        } else if (u <= 0xFFFF) {
+          if (outIdx + 2 >= endIdx) break;
+          heap[outIdx++] = 0xE0 | (u >> 12);
+          heap[outIdx++] = 0x80 | ((u >> 6) & 63);
+          heap[outIdx++] = 0x80 | (u & 63);
+        } else {
+          if (outIdx + 3 >= endIdx) break;
+          heap[outIdx++] = 0xF0 | (u >> 18);
+          heap[outIdx++] = 0x80 | ((u >> 12) & 63);
+          heap[outIdx++] = 0x80 | ((u >> 6) & 63);
+          heap[outIdx++] = 0x80 | (u & 63);
+        }
+      }
+      // Null-terminate the pointer to the buffer.
+      heap[outIdx] = 0;
+      return outIdx - startIdx;
+    }
   /** @type {function(string, boolean=, number=)} */
   function intArrayFromString(stringy, dontAddNull, length) {
     var len = length > 0 ? length : lengthBytesUTF8(stringy)+1;
@@ -1347,6 +1247,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
     if (dontAddNull) u8array.length = numBytesWritten;
     return u8array;
   }
+  
   var TTY = {ttys:[],init:function () {
         // https://github.com/emscripten-core/emscripten/pull/1555
         // if (ENVIRONMENT_IS_NODE) {
@@ -1354,7 +1255,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         //   // device, it always assumes it's a TTY device. because of this, we're forcing
         //   // process.stdin to UTF8 encoding to at least make stdin reading compatible
         //   // with text files until FS.init can be refactored.
-        //   process['stdin']['setEncoding']('utf8');
+        //   process.stdin.setEncoding('utf8');
         // }
       },shutdown:function() {
         // https://github.com/emscripten-core/emscripten/pull/1555
@@ -1364,7 +1265,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         //   // inolen: I thought read() in that case was a synchronous operation that just grabbed some amount of buffered data if it exists?
         //   // isaacs: it is. but it also triggers a _read() call, which calls readStart() on the handle
         //   // isaacs: do process.stdin.pause() and i'd think it'd probably close the pending call
-        //   process['stdin']['pause']();
+        //   process.stdin.pause();
         // }
       },register:function(dev, ops) {
         TTY.ttys[dev] = { input: [], output: [], ops: ops };
@@ -1809,18 +1710,88 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
   function asyncLoad(url, onload, onerror, noRunDep) {
       var dep = !noRunDep ? getUniqueRunDependency('al ' + url) : '';
       readAsync(url, (arrayBuffer) => {
-        assert(arrayBuffer, 'Loading data file "' + url + '" failed (no arrayBuffer).');
+        assert(arrayBuffer, `Loading data file "${url}" failed (no arrayBuffer).`);
         onload(new Uint8Array(arrayBuffer));
         if (dep) removeRunDependency(dep);
       }, (event) => {
         if (onerror) {
           onerror();
         } else {
-          throw 'Loading data file "' + url + '" failed.';
+          throw `Loading data file "${url}" failed.`;
         }
       });
       if (dep) addRunDependency(dep);
     }
+  
+  var preloadPlugins = Module['preloadPlugins'] || [];
+  function FS_handledByPreloadPlugin(byteArray, fullname, finish, onerror) {
+      // Ensure plugins are ready.
+      if (typeof Browser != 'undefined') Browser.init();
+  
+      var handled = false;
+      preloadPlugins.forEach(function(plugin) {
+        if (handled) return;
+        if (plugin['canHandle'](fullname)) {
+          plugin['handle'](byteArray, fullname, finish, onerror);
+          handled = true;
+        }
+      });
+      return handled;
+    }
+  function FS_createPreloadedFile(parent, name, url, canRead, canWrite, onload, onerror, dontCreateFile, canOwn, preFinish) {
+      // TODO we should allow people to just pass in a complete filename instead
+      // of parent and name being that we just join them anyways
+      var fullname = name ? PATH_FS.resolve(PATH.join2(parent, name)) : parent;
+      var dep = getUniqueRunDependency('cp ' + fullname); // might have several active requests for the same fullname
+      function processData(byteArray) {
+        function finish(byteArray) {
+          if (preFinish) preFinish();
+          if (!dontCreateFile) {
+            FS.createDataFile(parent, name, byteArray, canRead, canWrite, canOwn);
+          }
+          if (onload) onload();
+          removeRunDependency(dep);
+        }
+        if (FS_handledByPreloadPlugin(byteArray, fullname, finish, () => {
+          if (onerror) onerror();
+          removeRunDependency(dep);
+        })) {
+          return;
+        }
+        finish(byteArray);
+      }
+      addRunDependency(dep);
+      if (typeof url == 'string') {
+        asyncLoad(url, (byteArray) => processData(byteArray), onerror);
+      } else {
+        processData(url);
+      }
+    }
+  
+  function FS_modeStringToFlags(str) {
+      var flagModes = {
+        'r': 0,
+        'r+': 2,
+        'w': 512 | 64 | 1,
+        'w+': 512 | 64 | 2,
+        'a': 1024 | 64 | 1,
+        'a+': 1024 | 64 | 2,
+      };
+      var flags = flagModes[str];
+      if (typeof flags == 'undefined') {
+        throw new Error('Unknown file open mode: ' + str);
+      }
+      return flags;
+    }
+  
+  function FS_getMode(canRead, canWrite) {
+      var mode = 0;
+      if (canRead) mode |= 292 | 73;
+      if (canWrite) mode |= 146;
+      return mode;
+    }
+  
+  
   
   var FS = {root:null,mounts:[],devices:{},streams:[],nextInode:1,nameTable:null,currentPath:"/",initialized:false,ignorePermissions:true,ErrnoError:null,genericErrors:{},filesystems:null,syncFSRequests:0,lookupPath:(path, opts = {}) => {
         path = PATH_FS.resolve(path);
@@ -1956,12 +1927,6 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         return (mode & 61440) === 4096;
       },isSocket:(mode) => {
         return (mode & 49152) === 49152;
-      },flagModes:{"r":0,"r+":2,"w":577,"w+":578,"a":1089,"a+":1090},modeStringToFlags:(str) => {
-        var flags = FS.flagModes[str];
-        if (typeof flags == 'undefined') {
-          throw new Error('Unknown file open mode: ' + str);
-        }
-        return flags;
       },flagsToPermissionString:(flag) => {
         var perms = ['r', 'w', 'rw'][flag & 3];
         if ((flag & 512)) {
@@ -2535,7 +2500,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         if (path === "") {
           throw new FS.ErrnoError(44);
         }
-        flags = typeof flags == 'string' ? FS.modeStringToFlags(flags) : flags;
+        flags = typeof flags == 'string' ? FS_modeStringToFlags(flags) : flags;
         mode = typeof mode == 'undefined' ? 438 /* 0666 */ : mode;
         if ((flags & 64)) {
           mode = (mode & 4095) | 32768;
@@ -2816,9 +2781,16 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         FS.mkdev('/dev/tty', FS.makedev(5, 0));
         FS.mkdev('/dev/tty1', FS.makedev(6, 0));
         // setup /dev/[u]random
-        var random_device = getRandomDevice();
-        FS.createDevice('/dev', 'random', random_device);
-        FS.createDevice('/dev', 'urandom', random_device);
+        // use a buffer to avoid overhead of individual crypto calls per byte
+        var randomBuffer = new Uint8Array(1024), randomLeft = 0;
+        var randomByte = () => {
+          if (randomLeft === 0) {
+            randomLeft = randomFill(randomBuffer).byteLength;
+          }
+          return randomBuffer[--randomLeft];
+        };
+        FS.createDevice('/dev', 'random', randomByte);
+        FS.createDevice('/dev', 'urandom', randomByte);
         // we're not going to emulate the actual shm device,
         // just create the tmp dirs that reside in it commonly
         FS.mkdir('/dev/shm');
@@ -2881,6 +2853,13 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       },ensureErrnoError:() => {
         if (FS.ErrnoError) return;
         FS.ErrnoError = /** @this{Object} */ function ErrnoError(errno, node) {
+          // We set the `name` property to be able to identify `FS.ErrnoError`
+          // - the `name` is a standard ECMA-262 property of error objects. Kind of good to have it anyway.
+          // - when using PROXYFS, an error can come from an underlying FS
+          // as different FS objects have their own FS.ErrnoError each,
+          // the test `err instanceof FS.ErrnoError` won't detect an error coming from another filesystem, causing bugs.
+          // we'll use the reliable test `err.name == "ErrnoError"` instead
+          this.name = 'ErrnoError';
           this.node = node;
           this.setErrno = /** @this{Object} */ function(errno) {
             this.errno = errno;
@@ -2932,11 +2911,6 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
           }
           FS.close(stream);
         }
-      },getMode:(canRead, canWrite) => {
-        var mode = 0;
-        if (canRead) mode |= 292 | 73;
-        if (canWrite) mode |= 146;
-        return mode;
       },findObject:(path, dontResolveLastLink) => {
         var ret = FS.analyzePath(path, dontResolveLastLink);
         if (!ret.exists) {
@@ -2987,7 +2961,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         return current;
       },createFile:(parent, name, properties, canRead, canWrite) => {
         var path = PATH.join2(typeof parent == 'string' ? parent : FS.getPath(parent), name);
-        var mode = FS.getMode(canRead, canWrite);
+        var mode = FS_getMode(canRead, canWrite);
         return FS.create(path, mode);
       },createDataFile:(parent, name, data, canRead, canWrite, canOwn) => {
         var path = name;
@@ -2995,7 +2969,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
           parent = typeof parent == 'string' ? parent : FS.getPath(parent);
           path = name ? PATH.join2(parent, name) : parent;
         }
-        var mode = FS.getMode(canRead, canWrite);
+        var mode = FS_getMode(canRead, canWrite);
         var node = FS.create(path, mode);
         if (data) {
           if (typeof data == 'string') {
@@ -3013,7 +2987,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         return node;
       },createDevice:(parent, name, input, output) => {
         var path = PATH.join2(typeof parent == 'string' ? parent : FS.getPath(parent), name);
-        var mode = FS.getMode(!!input, !!output);
+        var mode = FS_getMode(!!input, !!output);
         if (!FS.createDevice.major) FS.createDevice.major = 64;
         var dev = FS.makedev(FS.createDevice.major++, 0);
         // Create a fake device that a set of stream ops to emulate
@@ -3247,107 +3221,8 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         };
         node.stream_ops = stream_ops;
         return node;
-      },createPreloadedFile:(parent, name, url, canRead, canWrite, onload, onerror, dontCreateFile, canOwn, preFinish) => {
-        // TODO we should allow people to just pass in a complete filename instead
-        // of parent and name being that we just join them anyways
-        var fullname = name ? PATH_FS.resolve(PATH.join2(parent, name)) : parent;
-        var dep = getUniqueRunDependency('cp ' + fullname); // might have several active requests for the same fullname
-        function processData(byteArray) {
-          function finish(byteArray) {
-            if (preFinish) preFinish();
-            if (!dontCreateFile) {
-              FS.createDataFile(parent, name, byteArray, canRead, canWrite, canOwn);
-            }
-            if (onload) onload();
-            removeRunDependency(dep);
-          }
-          if (Browser.handledByPreloadPlugin(byteArray, fullname, finish, () => {
-            if (onerror) onerror();
-            removeRunDependency(dep);
-          })) {
-            return;
-          }
-          finish(byteArray);
-        }
-        addRunDependency(dep);
-        if (typeof url == 'string') {
-          asyncLoad(url, (byteArray) => processData(byteArray), onerror);
-        } else {
-          processData(url);
-        }
-      },indexedDB:() => {
-        return window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-      },DB_NAME:() => {
-        return 'EM_FS_' + window.location.pathname;
-      },DB_VERSION:20,DB_STORE_NAME:"FILE_DATA",saveFilesToDB:(paths, onload, onerror) => {
-        onload = onload || (() => {});
-        onerror = onerror || (() => {});
-        var indexedDB = FS.indexedDB();
-        try {
-          var openRequest = indexedDB.open(FS.DB_NAME(), FS.DB_VERSION);
-        } catch (e) {
-          return onerror(e);
-        }
-        openRequest.onupgradeneeded = () => {
-          out('creating db');
-          var db = openRequest.result;
-          db.createObjectStore(FS.DB_STORE_NAME);
-        };
-        openRequest.onsuccess = () => {
-          var db = openRequest.result;
-          var transaction = db.transaction([FS.DB_STORE_NAME], 'readwrite');
-          var files = transaction.objectStore(FS.DB_STORE_NAME);
-          var ok = 0, fail = 0, total = paths.length;
-          function finish() {
-            if (fail == 0) onload(); else onerror();
-          }
-          paths.forEach((path) => {
-            var putRequest = files.put(FS.analyzePath(path).object.contents, path);
-            putRequest.onsuccess = () => { ok++; if (ok + fail == total) finish() };
-            putRequest.onerror = () => { fail++; if (ok + fail == total) finish() };
-          });
-          transaction.onerror = onerror;
-        };
-        openRequest.onerror = onerror;
-      },loadFilesFromDB:(paths, onload, onerror) => {
-        onload = onload || (() => {});
-        onerror = onerror || (() => {});
-        var indexedDB = FS.indexedDB();
-        try {
-          var openRequest = indexedDB.open(FS.DB_NAME(), FS.DB_VERSION);
-        } catch (e) {
-          return onerror(e);
-        }
-        openRequest.onupgradeneeded = onerror; // no database to load from
-        openRequest.onsuccess = () => {
-          var db = openRequest.result;
-          try {
-            var transaction = db.transaction([FS.DB_STORE_NAME], 'readonly');
-          } catch(e) {
-            onerror(e);
-            return;
-          }
-          var files = transaction.objectStore(FS.DB_STORE_NAME);
-          var ok = 0, fail = 0, total = paths.length;
-          function finish() {
-            if (fail == 0) onload(); else onerror();
-          }
-          paths.forEach((path) => {
-            var getRequest = files.get(path);
-            getRequest.onsuccess = () => {
-              if (FS.analyzePath(path).exists) {
-                FS.unlink(path);
-              }
-              FS.createDataFile(PATH.dirname(path), PATH.basename(path), getRequest.result, true, true, true);
-              ok++;
-              if (ok + fail == total) finish();
-            };
-            getRequest.onerror = () => { fail++; if (ok + fail == total) finish() };
-          });
-          transaction.onerror = onerror;
-        };
-        openRequest.onerror = onerror;
       }};
+  
   var SYSCALLS = {DEFAULT_POLLMASK:5,calculateAt:function(dirfd, path, allowEmpty) {
         if (PATH.isAbs(path)) {
           return path;
@@ -3384,19 +3259,19 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         HEAP32[(((buf)+(20))>>2)] = stat.uid;
         HEAP32[(((buf)+(24))>>2)] = stat.gid;
         HEAP32[(((buf)+(28))>>2)] = stat.rdev;
-        (tempI64 = [stat.size>>>0,(tempDouble=stat.size,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[(((buf)+(40))>>2)] = tempI64[0],HEAP32[(((buf)+(44))>>2)] = tempI64[1]);
+        (tempI64 = [stat.size>>>0,(tempDouble=stat.size,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[(((buf)+(40))>>2)] = tempI64[0],HEAP32[(((buf)+(44))>>2)] = tempI64[1]);
         HEAP32[(((buf)+(48))>>2)] = 4096;
         HEAP32[(((buf)+(52))>>2)] = stat.blocks;
         var atime = stat.atime.getTime();
         var mtime = stat.mtime.getTime();
         var ctime = stat.ctime.getTime();
-        (tempI64 = [Math.floor(atime / 1000)>>>0,(tempDouble=Math.floor(atime / 1000),(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[(((buf)+(56))>>2)] = tempI64[0],HEAP32[(((buf)+(60))>>2)] = tempI64[1]);
+        (tempI64 = [Math.floor(atime / 1000)>>>0,(tempDouble=Math.floor(atime / 1000),(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[(((buf)+(56))>>2)] = tempI64[0],HEAP32[(((buf)+(60))>>2)] = tempI64[1]);
         HEAPU32[(((buf)+(64))>>2)] = (atime % 1000) * 1000;
-        (tempI64 = [Math.floor(mtime / 1000)>>>0,(tempDouble=Math.floor(mtime / 1000),(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[(((buf)+(72))>>2)] = tempI64[0],HEAP32[(((buf)+(76))>>2)] = tempI64[1]);
+        (tempI64 = [Math.floor(mtime / 1000)>>>0,(tempDouble=Math.floor(mtime / 1000),(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[(((buf)+(72))>>2)] = tempI64[0],HEAP32[(((buf)+(76))>>2)] = tempI64[1]);
         HEAPU32[(((buf)+(80))>>2)] = (mtime % 1000) * 1000;
-        (tempI64 = [Math.floor(ctime / 1000)>>>0,(tempDouble=Math.floor(ctime / 1000),(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[(((buf)+(88))>>2)] = tempI64[0],HEAP32[(((buf)+(92))>>2)] = tempI64[1]);
+        (tempI64 = [Math.floor(ctime / 1000)>>>0,(tempDouble=Math.floor(ctime / 1000),(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[(((buf)+(88))>>2)] = tempI64[0],HEAP32[(((buf)+(92))>>2)] = tempI64[1]);
         HEAPU32[(((buf)+(96))>>2)] = (ctime % 1000) * 1000;
-        (tempI64 = [stat.ino>>>0,(tempDouble=stat.ino,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[(((buf)+(104))>>2)] = tempI64[0],HEAP32[(((buf)+(108))>>2)] = tempI64[1]);
+        (tempI64 = [stat.ino>>>0,(tempDouble=stat.ino,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[(((buf)+(104))>>2)] = tempI64[0],HEAP32[(((buf)+(108))>>2)] = tempI64[1]);
         return 0;
       },doMsync:function(addr, stream, len, flags, offset) {
         if (!FS.isFile(stream.node.mode)) {
@@ -3429,7 +3304,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       // timeout is always 0 - fully async
   
       var total = 0;
-      
+  
       var srcReadLow = (readfds ? HEAP32[((readfds)>>2)] : 0),
           srcReadHigh = (readfds ? HEAP32[(((readfds)+(4))>>2)] : 0);
       var srcWriteLow = (writefds ? HEAP32[((writefds)>>2)] : 0),
@@ -3498,7 +3373,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
   
       return total;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -3506,7 +3381,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
   var SOCKFS = {mount:function(mount) {
         // If Module['websocket'] has already been defined (e.g. for configuring
         // the subprotocol/url) use that, if not initialise it to a new object.
-        Module['websocket'] = (Module['websocket'] && 
+        Module['websocket'] = (Module['websocket'] &&
                                ('object' === typeof Module['websocket'])) ? Module['websocket'] : {};
   
         // Add the Event registration mechanism to the exported websocket configuration
@@ -3784,7 +3659,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
             });
             peer.socket.on('error', function(error) {
               // Although the ws library may pass errors that may be more descriptive than
-              // ECONNREFUSED they are not necessarily the expected error code e.g. 
+              // ECONNREFUSED they are not necessarily the expected error code e.g.
               // ENOTFOUND on getaddrinfo seems to be node.js specific, so using ECONNREFUSED
               // is still probably the most useful thing to do.
               sock.error = 14; // Used in getsockopt for SOL_SOCKET/SO_ERROR test.
@@ -3888,7 +3763,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
             try {
               sock.sock_ops.listen(sock, 0);
             } catch (e) {
-              if (!(e instanceof FS.ErrnoError)) throw e;
+              if (!(e.name === 'ErrnoError')) throw e;
               if (e.errno !== 138) throw e;
             }
           }
@@ -3963,7 +3838,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
           });
           sock.server.on('error', function(error) {
             // Although the ws library may pass errors that may be more descriptive than
-            // ECONNREFUSED they are not necessarily the expected error code e.g. 
+            // ECONNREFUSED they are not necessarily the expected error code e.g.
             // ENOTFOUND on getaddrinfo seems to be node.js specific, so using EHOSTUNREACH
             // is still probably the most useful thing to do. This error shouldn't
             // occur in a well written app as errors should get trapped in the compiled
@@ -4187,6 +4062,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       ];
     }
   
+  
   /** @param {number=} addrlen */
   function writeSockaddr(sa, family, addr, port, addrlen) {
       switch (family) {
@@ -4255,7 +4131,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         return null;
       }};
   
-  function ___syscall_accept4(fd, addr, addrlen, flags) {
+  function ___syscall_accept4(fd, addr, addrlen, flags, d1, d2) {
   try {
   
       var sock = getSocketFromFD(fd);
@@ -4265,7 +4141,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       }
       return newsock.stream.fd;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4417,7 +4293,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       return info;
     }
   
-  function ___syscall_bind(fd, addr, addrlen) {
+  function ___syscall_bind(fd, addr, addrlen, d1, d2, d3) {
   try {
   
       var sock = getSocketFromFD(fd);
@@ -4425,7 +4301,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       sock.sock_ops.bind(sock, info.addr, info.port);
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4437,7 +4313,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       FS.chdir(path);
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4449,14 +4325,14 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       FS.chmod(path, mode);
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
 
   
   
-  function ___syscall_connect(fd, addr, addrlen) {
+  function ___syscall_connect(fd, addr, addrlen, d1, d2, d3) {
   try {
   
       var sock = getSocketFromFD(fd);
@@ -4464,7 +4340,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       sock.sock_ops.connect(sock, info.addr, info.port);
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4492,7 +4368,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       }
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4551,7 +4427,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         }
       }
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4562,11 +4438,16 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       var stream = SYSCALLS.getStreamFromFD(fd);
       return SYSCALLS.doStat(FS.stat, stream.path, buf);
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
 
+  
+  function stringToUTF8(str, outPtr, maxBytesToWrite) {
+      return stringToUTF8Array(str, HEAPU8,outPtr, maxBytesToWrite);
+    }
+  
   function ___syscall_getcwd(buf, size) {
   try {
   
@@ -4577,11 +4458,12 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       stringToUTF8(cwd, buf, size);
       return cwdLengthInBytes;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
 
+  
   function ___syscall_getdents64(fd, dirp, count) {
   try {
   
@@ -4617,8 +4499,8 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
                  FS.isLink(child.mode) ? 10 :   // DT_LNK, symbolic link.
                  8;                             // DT_REG, regular file.
         }
-        (tempI64 = [id>>>0,(tempDouble=id,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[((dirp + pos)>>2)] = tempI64[0],HEAP32[(((dirp + pos)+(4))>>2)] = tempI64[1]);
-        (tempI64 = [(idx + 1) * struct_size>>>0,(tempDouble=(idx + 1) * struct_size,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[(((dirp + pos)+(8))>>2)] = tempI64[0],HEAP32[(((dirp + pos)+(12))>>2)] = tempI64[1]);
+        (tempI64 = [id>>>0,(tempDouble=id,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[((dirp + pos)>>2)] = tempI64[0],HEAP32[(((dirp + pos)+(4))>>2)] = tempI64[1]);
+        (tempI64 = [(idx + 1) * struct_size>>>0,(tempDouble=(idx + 1) * struct_size,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[(((dirp + pos)+(8))>>2)] = tempI64[0],HEAP32[(((dirp + pos)+(12))>>2)] = tempI64[1]);
         HEAP16[(((dirp + pos)+(16))>>1)] = 280;
         HEAP8[(((dirp + pos)+(18))>>0)] = type;
         stringToUTF8(name, dirp + pos + 19, 256);
@@ -4628,7 +4510,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       FS.llseek(stream, idx * struct_size, 0);
       return pos;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4683,7 +4565,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         default: return -28; // not supported
       }
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4696,7 +4578,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       sock.sock_ops.listen(sock, backlog);
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4707,7 +4589,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       path = SYSCALLS.getStr(path);
       return SYSCALLS.doStat(FS.lstat, path, buf);
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4724,7 +4606,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       FS.mkdir(path, mode, 0);
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4739,7 +4621,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       path = SYSCALLS.calculateAt(dirfd, path, allowEmpty);
       return SYSCALLS.doStat(nofollow ? FS.lstat : FS.stat, path, buf);
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4753,11 +4635,13 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       var mode = varargs ? SYSCALLS.get() : 0;
       return FS.open(path, flags, mode).fd;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
 
+  
+  
   function ___syscall_readlinkat(dirfd, path, buf, bufsize) {
   try {
   
@@ -4774,7 +4658,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       HEAP8[buf+len] = endChar;
       return len;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4794,7 +4678,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       HEAPU8.set(msg.buffer, buf);
       return msg.buffer.byteLength;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4806,7 +4690,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       FS.rmdir(path);
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4825,7 +4709,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       // sendto an address
       return sock.sock_ops.sendmsg(sock, HEAP8,message, length, dest.addr, dest.port);
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4837,7 +4721,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       var sock = SOCKFS.createSocket(domain, type, protocol);
       return sock.stream.fd;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4848,7 +4732,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       path = SYSCALLS.getStr(path);
       return SYSCALLS.doStat(FS.stat, path, buf);
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
@@ -4867,21 +4751,10 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       }
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
   }
   }
-
-  function __dlinit(main_dso_handle) {}
-
-  var dlopenMissingError =  'To use dlopen, you need enable dynamic linking, see https://github.com/emscripten-core/emscripten/wiki/Linking';
-  function __dlopen_js(filename, flag) {
-      abort(dlopenMissingError);
-    }
-
-  function __dlsym_js(handle, symbol) {
-      abort(dlopenMissingError);
-    }
 
   function __embind_register_bigint(primitiveType, name, size, minRange, maxRange) {}
 
@@ -4935,14 +4808,13 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
     }
   function createNamedFunction(name, body) {
       name = makeLegalFunctionName(name);
-      /*jshint evil:true*/
-      return new Function(
-          "body",
-          "return function " + name + "() {\n" +
-          "    \"use strict\";" +
-          "    return body.apply(this, arguments);\n" +
-          "};\n"
-      )(body);
+      // Use an abject with a computed property name to create a new function with
+      // a name specified at runtime, but without using `new Function` or `eval`.
+      return {
+        [name]: function() {
+          return body.apply(this, arguments);
+        }
+      }[name];
     }
   function extendError(baseErrorType, errorName) {
       var errorClass = createNamedFunction(errorName, function(message) {
@@ -5021,19 +4893,19 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
   /** @param {Object=} options */
   function registerType(rawType, registeredInstance, options = {}) {
       if (!('argPackAdvance' in registeredInstance)) {
-          throw new TypeError('registerType registeredInstance requires argPackAdvance');
+        throw new TypeError('registerType registeredInstance requires argPackAdvance');
       }
   
       var name = registeredInstance.name;
       if (!rawType) {
-          throwBindingError('type "' + name + '" must have a positive integer typeid pointer');
+        throwBindingError(`type "${name}" must have a positive integer typeid pointer`);
       }
       if (registeredTypes.hasOwnProperty(rawType)) {
-          if (options.ignoreDuplicateRegistrations) {
-              return;
-          } else {
-              throwBindingError("Cannot register type '" + name + "' twice");
-          }
+        if (options.ignoreDuplicateRegistrations) {
+          return;
+        } else {
+          throwBindingError(`Cannot register type '${name}' twice`);
+        }
       }
   
       registeredTypes[rawType] = registeredInstance;
@@ -5078,46 +4950,62 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       });
     }
 
-  var emval_free_list = [];
-  
-  var emval_handle_array = [{},{value:undefined},{value:null},{value:true},{value:false}];
+  /** @constructor */
+  function HandleAllocator() {
+      // Reserve slot 0 so that 0 is always an invalid handle
+      this.allocated = [undefined];
+      this.freelist = [];
+      this.get = function(id) {
+        return this.allocated[id];
+      };
+      this.allocate = function(handle) {
+        var id = this.freelist.pop() || this.allocated.length;
+        this.allocated[id] = handle;
+        return id;
+      };
+      this.free = function(id) {
+        // Set the slot to `undefined` rather than using `delete` here since
+        // apparently arrays with holes in them can be less efficient.
+        this.allocated[id] = undefined;
+        this.freelist.push(id);
+      };
+    }
+  var emval_handles = new HandleAllocator();;
   function __emval_decref(handle) {
-      if (handle > 4 && 0 === --emval_handle_array[handle].refcount) {
-        emval_handle_array[handle] = undefined;
-        emval_free_list.push(handle);
+      if (handle >= emval_handles.reserved && 0 === --emval_handles.get(handle).refcount) {
+        emval_handles.free(handle);
       }
     }
   
   
   
-  
   function count_emval_handles() {
       var count = 0;
-      for (var i = 5; i < emval_handle_array.length; ++i) {
-        if (emval_handle_array[i] !== undefined) {
+      for (var i = emval_handles.reserved; i < emval_handles.allocated.length; ++i) {
+        if (emval_handles.allocated[i] !== undefined) {
           ++count;
         }
       }
       return count;
     }
   
-  function get_first_emval() {
-      for (var i = 5; i < emval_handle_array.length; ++i) {
-        if (emval_handle_array[i] !== undefined) {
-          return emval_handle_array[i];
-        }
-      }
-      return null;
-    }
   function init_emval() {
+      // reserve some special values. These never get de-allocated.
+      // The HandleAllocator takes care of reserving zero.
+      emval_handles.allocated.push(
+        {value: undefined},
+        {value: null},
+        {value: true},
+        {value: false},
+      );
+      emval_handles.reserved = emval_handles.allocated.length
       Module['count_emval_handles'] = count_emval_handles;
-      Module['get_first_emval'] = get_first_emval;
     }
   var Emval = {toValue:(handle) => {
         if (!handle) {
             throwBindingError('Cannot use deleted val. handle = ' + handle);
         }
-        return emval_handle_array[handle].value;
+        return emval_handles.get(handle).value;
       },toHandle:(value) => {
         switch (value) {
           case undefined: return 1;
@@ -5125,12 +5013,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
           case true: return 3;
           case false: return 4;
           default:{
-            var handle = emval_free_list.length ?
-                emval_free_list.pop() :
-                emval_handle_array.length;
-  
-            emval_handle_array[handle] = {refcount: 1, value: value};
-            return handle;
+            return emval_handles.allocate({refcount: 1, value: value});
           }
         }
       }};
@@ -5305,6 +5188,11 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       });
     }
 
+  
+  
+  
+  
+  
   
   
   
@@ -5615,16 +5503,16 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       return HEAPU32[ptr>>2] + HEAP32[ptr+4>>2] * 4294967296;
     }
   
-  function __isLeapYear(year) {
+  function isLeapYear(year) {
         return year%4 === 0 && (year%100 !== 0 || year%400 === 0);
     }
   
-  var __MONTH_DAYS_LEAP_CUMULATIVE = [0,31,60,91,121,152,182,213,244,274,305,335];
+  var MONTH_DAYS_LEAP_CUMULATIVE = [0,31,60,91,121,152,182,213,244,274,305,335];
   
-  var __MONTH_DAYS_REGULAR_CUMULATIVE = [0,31,59,90,120,151,181,212,243,273,304,334];
-  function __yday_from_date(date) {
-      var isLeapYear = __isLeapYear(date.getFullYear());
-      var monthDaysCumulative = (isLeapYear ? __MONTH_DAYS_LEAP_CUMULATIVE : __MONTH_DAYS_REGULAR_CUMULATIVE);
+  var MONTH_DAYS_REGULAR_CUMULATIVE = [0,31,59,90,120,151,181,212,243,273,304,334];
+  function ydayFromDate(date) {
+      var leap = isLeapYear(date.getFullYear());
+      var monthDaysCumulative = (leap ? MONTH_DAYS_LEAP_CUMULATIVE : MONTH_DAYS_REGULAR_CUMULATIVE);
       var yday = monthDaysCumulative[date.getMonth()] + date.getDate() - 1; // -1 since it's days since Jan 1
   
       return yday;
@@ -5639,7 +5527,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       HEAP32[(((tmPtr)+(20))>>2)] = date.getFullYear()-1900;
       HEAP32[(((tmPtr)+(24))>>2)] = date.getDay();
   
-      var yday = __yday_from_date(date)|0;
+      var yday = ydayFromDate(date)|0;
       HEAP32[(((tmPtr)+(28))>>2)] = yday;
       HEAP32[(((tmPtr)+(36))>>2)] = -(date.getTimezoneOffset() * 60);
   
@@ -5651,10 +5539,12 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       HEAP32[(((tmPtr)+(32))>>2)] = dst;
     }
 
-  function allocateUTF8(str) {
+  
+  
+  function stringToNewUTF8(str) {
       var size = lengthBytesUTF8(str) + 1;
       var ret = _malloc(size);
-      if (ret) stringToUTF8Array(str, HEAP8, ret, size);
+      if (ret) stringToUTF8(str, ret, size);
       return ret;
     }
   function __tzset_js(timezone, daylight, tzname) {
@@ -5685,8 +5575,8 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       };
       var winterName = extractZone(winter);
       var summerName = extractZone(summer);
-      var winterNamePtr = allocateUTF8(winterName);
-      var summerNamePtr = allocateUTF8(summerName);
+      var winterNamePtr = stringToNewUTF8(winterName);
+      var summerNamePtr = stringToNewUTF8(summerName);
       if (summerOffset < winterOffset) {
         // Northern hemisphere
         HEAPU32[((tzname)>>2)] = winterNamePtr;
@@ -5700,6 +5590,17 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
   function _abort() {
       abort('');
     }
+
+  function _dlopen(handle) {
+      abort(dlopenMissingError);
+    }
+
+
+
+
+
+
+
 
   var readEmAsmArgsArray = [];
   function readEmAsmArgs(sigPtr, buf) {
@@ -5734,7 +5635,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
 
   var _emscripten_get_now;if (ENVIRONMENT_IS_NODE) {
     _emscripten_get_now = () => {
-      var t = process['hrtime']();
+      var t = process.hrtime();
       return t[0] * 1e3 + t[1] / 1e6;
     };
   } else _emscripten_get_now = () => performance.now();
@@ -5908,7 +5809,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         return false;
       }
   
-      let alignUp = (x, multiple) => x + (multiple - x % multiple) % multiple;
+      var alignUp = (x, multiple) => x + (multiple - x % multiple) % multiple;
   
       // Loop through potential heap size increases. If we attempt a too eager
       // reservation that fails, cut down on the attempted size and reserve a
@@ -5944,6 +5845,8 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       var domElement = specialHTMLTargets[target] || (typeof document != 'undefined' ? document.querySelector(target) : undefined);
       return domElement;
     }
+  
+  
   function registerKeyEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
       if (!JSEvents.keyEvent) JSEvents.keyEvent = _malloc( 176 );
   
@@ -6018,13 +5921,12 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
   
     }
   
+  
   function registerMouseEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
       if (!JSEvents.mouseEvent) JSEvents.mouseEvent = _malloc( 72 );
       target = findEventTarget(target);
   
-      var mouseEventHandlerFunc = function(ev) {
-        var e = ev || event;
-  
+      var mouseEventHandlerFunc = function(e = event) {
         // TODO: Make this access thread safe, or this could update live while app is reading it.
         fillMouseEventData(JSEvents.mouseEvent, e, target);
   
@@ -6057,13 +5959,13 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
     }
 
   
+  
   function registerUiEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
       if (!JSEvents.uiEvent) JSEvents.uiEvent = _malloc( 36 );
   
       target = findEventTarget(target);
   
-      var uiEventHandlerFunc = function(ev) {
-        var e = ev || event;
+      var uiEventHandlerFunc = function(e = event) {
         if (e.target != target) {
           // Never take ui events such as scroll via a 'bubbled' route, but always from the direct element that
           // was targeted. Otherwise e.g. if app logs a message in response to a page scroll, the Emscripten log
@@ -6114,12 +6016,41 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       }
       quit_(1, e);
     }
+  
+  
+  function _proc_exit(code) {
+      EXITSTATUS = code;
+      if (!keepRuntimeAlive()) {
+        if (Module['onExit']) Module['onExit'](code);
+        ABORT = true;
+      }
+      quit_(code, new ExitStatus(code));
+    }
+  /** @suppress {duplicate } */
+  /** @param {boolean|number=} implicit */
+  function exitJS(status, implicit) {
+      EXITSTATUS = status;
+  
+      _proc_exit(status);
+    }
+  var _exit = exitJS;
+  
+  function maybeExit() {
+      if (!keepRuntimeAlive()) {
+        try {
+          _exit(EXITSTATUS);
+        } catch (e) {
+          handleException(e);
+        }
+      }
+    }
   function callUserCallback(func) {
       if (ABORT) {
         return;
       }
       try {
         func();
+        maybeExit();
       } catch (e) {
         handleException(e);
       }
@@ -6127,7 +6058,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
   /** @param {number=} timeout */
   function safeSetTimeout(func, timeout) {
       
-      return setTimeout(function() {
+      return setTimeout(() => {
         
         callUserCallback(func);
       }, timeout);
@@ -6139,6 +6070,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       // wasm VM to pause the stack.
       return Asyncify.handleSleep((wakeUp) => safeSetTimeout(wakeUp, ms));
     }
+  _emscripten_sleep.isAsync = true;
 
   var ENV = {};
   
@@ -6176,13 +6108,12 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       return getEnvStrings.strings;
     }
   
-  /** @param {boolean=} dontAddNull */
-  function writeAsciiToMemory(str, buffer, dontAddNull) {
+  function stringToAscii(str, buffer) {
       for (var i = 0; i < str.length; ++i) {
         HEAP8[((buffer++)>>0)] = str.charCodeAt(i);
       }
-      // Null-terminate the pointer to the HEAP.
-      if (!dontAddNull) HEAP8[((buffer)>>0)] = 0;
+      // Null-terminate the string
+      HEAP8[((buffer)>>0)] = 0;
     }
   
   function _environ_get(__environ, environ_buf) {
@@ -6190,7 +6121,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       getEnvStrings().forEach(function(string, i) {
         var ptr = environ_buf + bufSize;
         HEAPU32[(((__environ)+(i*4))>>2)] = ptr;
-        writeAsciiToMemory(string, ptr);
+        stringToAscii(string, ptr);
         bufSize += string.length + 1;
       });
       return 0;
@@ -6208,22 +6139,6 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       return 0;
     }
 
-  
-  function _proc_exit(code) {
-      EXITSTATUS = code;
-      if (!keepRuntimeAlive()) {
-        if (Module['onExit']) Module['onExit'](code);
-        ABORT = true;
-      }
-      quit_(code, new ExitStatus(code));
-    }
-  /** @param {boolean|number=} implicit */
-  function exitJS(status, implicit) {
-      EXITSTATUS = status;
-  
-      _proc_exit(status);
-    }
-  var _exit = exitJS;
 
   function _fd_close(fd) {
   try {
@@ -6232,7 +6147,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       FS.close(stream);
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return e.errno;
   }
   }
@@ -6263,7 +6178,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       HEAPU32[((pnum)>>2)] = num;
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return e.errno;
   }
   }
@@ -6281,11 +6196,11 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       var offset = convertI32PairToI53Checked(offset_low, offset_high); if (isNaN(offset)) return 61;
       var stream = SYSCALLS.getStreamFromFD(fd);
       FS.llseek(stream, offset, whence);
-      (tempI64 = [stream.position>>>0,(tempDouble=stream.position,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math.min((+(Math.floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[((newOffset)>>2)] = tempI64[0],HEAP32[(((newOffset)+(4))>>2)] = tempI64[1]);
+      (tempI64 = [stream.position>>>0,(tempDouble=stream.position,(+(Math.abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? (+(Math.floor((tempDouble)/4294967296.0)))>>>0 : (~~((+(Math.ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)], HEAP32[((newOffset)>>2)] = tempI64[0],HEAP32[(((newOffset)+(4))>>2)] = tempI64[1]);
       if (stream.getdents && offset === 0 && whence === 0) stream.getdents = null; // reset readdir state
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return e.errno;
   }
   }
@@ -6315,18 +6230,21 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       HEAPU32[((pnum)>>2)] = num;
       return 0;
     } catch (e) {
-    if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return e.errno;
   }
   }
 
+
+
+
+  
   
   
   function getHostByName(name) {
       // generate hostent
       var ret = _malloc(20); // XXX possibly leaked, as are others here
-      var nameBuf = _malloc(name.length+1);
-      stringToUTF8(name, nameBuf, name.length+1);
+      var nameBuf = stringToNewUTF8(name);
       HEAPU32[((ret)>>2)] = nameBuf;
       var aliasesBuf = _malloc(4);
       HEAPU32[((aliasesBuf)>>2)] = 0;
@@ -6341,12 +6259,13 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       HEAPU32[(((ret)+(16))>>2)] = addrListBuf;
       return ret;
     }
+  
   function _gethostbyname(name) {
       return getHostByName(UTF8ToString(name));
     }
 
   
-  function __arraySum(array, index) {
+  function arraySum(array, index) {
       var sum = 0;
       for (var i = 0; i <= index; sum += array[i++]) {
         // no-op
@@ -6355,15 +6274,15 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
     }
   
   
-  var __MONTH_DAYS_LEAP = [31,29,31,30,31,30,31,31,30,31,30,31];
+  var MONTH_DAYS_LEAP = [31,29,31,30,31,30,31,31,30,31,30,31];
   
-  var __MONTH_DAYS_REGULAR = [31,28,31,30,31,30,31,31,30,31,30,31];
-  function __addDays(date, days) {
+  var MONTH_DAYS_REGULAR = [31,28,31,30,31,30,31,31,30,31,30,31];
+  function addDays(date, days) {
       var newDate = new Date(date.getTime());
       while (days > 0) {
-        var leap = __isLeapYear(newDate.getFullYear());
+        var leap = isLeapYear(newDate.getFullYear());
         var currentMonth = newDate.getMonth();
-        var daysInCurrentMonth = (leap ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR)[currentMonth];
+        var daysInCurrentMonth = (leap ? MONTH_DAYS_LEAP : MONTH_DAYS_REGULAR)[currentMonth];
   
         if (days > daysInCurrentMonth-newDate.getDate()) {
           // we spill over to next month
@@ -6391,6 +6310,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
   function writeArrayToMemory(array, buffer) {
       HEAP8.set(array, buffer);
     }
+  
   function _strftime(s, maxsize, format, tm) {
       // size_t strftime(char *restrict s, size_t maxsize, const char *restrict format, const struct tm *restrict timeptr);
       // http://pubs.opengroup.org/onlinepubs/009695399/functions/strftime.html
@@ -6498,7 +6418,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       }
   
       function getWeekBasedYear(date) {
-          var thisDate = __addDays(new Date(date.tm_year+1900, 0, 1), date.tm_yday);
+          var thisDate = addDays(new Date(date.tm_year+1900, 0, 1), date.tm_yday);
   
           var janFourthThisYear = new Date(thisDate.getFullYear(), 0, 4);
           var janFourthNextYear = new Date(thisDate.getFullYear()+1, 0, 4);
@@ -6566,7 +6486,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         },
         '%j': function(date) {
           // Day of the year (001-366)
-          return leadingNulls(date.tm_mday+__arraySum(__isLeapYear(date.tm_year+1900) ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR, date.tm_mon-1), 3);
+          return leadingNulls(date.tm_mday + arraySum(isLeapYear(date.tm_year+1900) ? MONTH_DAYS_LEAP : MONTH_DAYS_REGULAR, date.tm_mon-1), 3);
         },
         '%m': function(date) {
           return leadingNulls(date.tm_mon+1, 2);
@@ -6613,14 +6533,14 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
             // If 31 December of prev year a Thursday, or Friday of a
             // leap year, then the prev year has 53 weeks.
             var dec31 = (date.tm_wday + 7 - date.tm_yday - 1) % 7;
-            if (dec31 == 4 || (dec31 == 5 && __isLeapYear(date.tm_year%400-1))) {
+            if (dec31 == 4 || (dec31 == 5 && isLeapYear(date.tm_year%400-1))) {
               val++;
             }
           } else if (val == 53) {
             // If 1 January is not a Thursday, and not a Wednesday of a
             // leap year, then this year has only 52 weeks.
             var jan1 = (date.tm_wday + 371 - date.tm_yday) % 7;
-            if (jan1 != 4 && (jan1 != 3 || !__isLeapYear(date.tm_year)))
+            if (jan1 != 4 && (jan1 != 3 || !isLeapYear(date.tm_year)))
               val = 1;
           }
           return leadingNulls(val, 2);
@@ -6677,6 +6597,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
       return bytes.length-1;
     }
 
+  
   function _system(command) {
       if (ENVIRONMENT_IS_NODE) {
         if (!command) return 1; // shell is available
@@ -6720,10 +6641,11 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
 
 
 
-  function allocateUTF8OnStack(str) {
+  
+  function stringToUTF8OnStack(str) {
       var size = lengthBytesUTF8(str) + 1;
       var ret = stackAlloc(size);
-      stringToUTF8Array(str, HEAP8, ret, size);
+      stringToUTF8(str, ret, size);
       return ret;
     }
 
@@ -6760,19 +6682,24 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
     }
   
   function runtimeKeepalivePush() {
+      runtimeKeepaliveCounter += 1;
     }
   
   function runtimeKeepalivePop() {
+      runtimeKeepaliveCounter -= 1;
     }
+  
+  
   var Asyncify = {instrumentWasmImports:function(imports) {
-        var ASYNCIFY_IMPORTS = ["env.invoke_*","env.emscripten_sleep","env.emscripten_wget","env.emscripten_wget_data","env.emscripten_idb_load","env.emscripten_idb_store","env.emscripten_idb_delete","env.emscripten_idb_exists","env.emscripten_idb_load_blob","env.emscripten_idb_store_blob","env.SDL_Delay","env.emscripten_scan_registers","env.emscripten_lazy_load_code","env.emscripten_fiber_swap","wasi_snapshot_preview1.fd_sync","env.__wasi_fd_sync","env._emval_await","env._dlopen_js","env.__asyncjs__*"].map((x) => x.split('.')[1]);
+        var importPatterns = [/^invoke_.*$/,/^fd_sync$/,/^__wasi_fd_sync$/,/^__asyncjs__.*$/,/^emscripten_idb_load$/,/^emscripten_idb_store$/,/^emscripten_idb_delete$/,/^emscripten_idb_exists$/,/^emscripten_idb_load_blob$/,/^emscripten_idb_store_blob$/,/^emscripten_sleep$/,/^emscripten_wget$/,/^emscripten_wget_data$/,/^emscripten_scan_registers$/,/^emscripten_lazy_load_code$/,/^_load_secondary_module$/,/^emscripten_fiber_swap$/,/^SDL_Delay$/,/^_emval_await$/];
+  
         for (var x in imports) {
           (function(x) {
             var original = imports[x];
             var sig = original.sig;
             if (typeof original == 'function') {
-              var isAsyncifyImport = ASYNCIFY_IMPORTS.indexOf(x) >= 0 ||
-                                     x.startsWith('__asyncjs__');
+              var isAsyncifyImport = original.isAsync ||
+                                     importPatterns.some(pattern => !!x.match(pattern));
             }
           })(x);
         }
@@ -6872,9 +6799,9 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
           // need to do anything.
           var reachedCallback = false;
           var reachedAfterCallback = false;
-          startAsync((handleSleepReturnValue) => {
+          startAsync((handleSleepReturnValue = 0) => {
             if (ABORT) return;
-            Asyncify.handleSleepReturnValue = handleSleepReturnValue || 0;
+            Asyncify.handleSleepReturnValue = handleSleepReturnValue;
             reachedCallback = true;
             if (!reachedAfterCallback) {
               // We are happening synchronously, so no need for async.
@@ -6951,6 +6878,7 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
         });
       }};
 
+
   var FSNode = /** @constructor */ function(parent, name, mode, rdev) {
     if (!parent) {
       parent = this;  // root node sets parent to itself
@@ -6996,13 +6924,13 @@ function draw_text(id,x,y,str,len,color,face) { var canvas = document.getElement
    }
   });
   FS.FSNode = FSNode;
+  FS.createPreloadedFile = FS_createPreloadedFile;
   FS.staticInit();Module["FS_createPath"] = FS.createPath;Module["FS_createDataFile"] = FS.createDataFile;Module["FS_createPreloadedFile"] = FS.createPreloadedFile;Module["FS_unlink"] = FS.unlink;Module["FS_createLazyFile"] = FS.createLazyFile;Module["FS_createDevice"] = FS.createDevice;;
 embind_init_charCodes();
 BindingError = Module['BindingError'] = extendError(Error, 'BindingError');;
 InternalError = Module['InternalError'] = extendError(Error, 'InternalError');;
 init_emval();;
-var ASSERTIONS = false;
-
+// include: base64Utils.js
 // Copied from https://github.com/strophe/strophejs/blob/e06d027/src/polyfills.js#L149
 
 // This code was written by Tyler Akins and has been placed in the
@@ -7075,8 +7003,10 @@ function tryParseAsDataURI(filename) {
 }
 
 
-var asmLibraryArg = {
+// end include: base64Utils.js
+var wasmImports = {
   "__assert_fail": ___assert_fail,
+  "__dlsym": ___dlsym,
   "__syscall__newselect": ___syscall__newselect,
   "__syscall_accept4": ___syscall_accept4,
   "__syscall_bind": ___syscall_bind,
@@ -7101,9 +7031,6 @@ var asmLibraryArg = {
   "__syscall_socket": ___syscall_socket,
   "__syscall_stat64": ___syscall_stat64,
   "__syscall_unlinkat": ___syscall_unlinkat,
-  "_dlinit": __dlinit,
-  "_dlopen_js": __dlopen_js,
-  "_dlsym_js": __dlsym_js,
   "_embind_register_bigint": __embind_register_bigint,
   "_embind_register_bool": __embind_register_bool,
   "_embind_register_emval": __embind_register_emval,
@@ -7117,6 +7044,7 @@ var asmLibraryArg = {
   "_localtime_js": __localtime_js,
   "_tzset_js": __tzset_js,
   "abort": _abort,
+  "dlopen": _dlopen,
   "draw_arc": draw_arc,
   "draw_ellipse": draw_ellipse,
   "draw_line": draw_line,
@@ -7152,23 +7080,33 @@ var asmLibraryArg = {
 };
 var asm = createWasm();
 /** @type {function(...*):?} */
-var ___wasm_call_ctors = Module["___wasm_call_ctors"] = function() {
-  return (___wasm_call_ctors = Module["___wasm_call_ctors"] = Module["asm"]["__wasm_call_ctors"]).apply(null, arguments);
+var ___wasm_call_ctors = function() {
+  return (___wasm_call_ctors = Module["asm"]["__wasm_call_ctors"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _malloc = Module["_malloc"] = function() {
-  return (_malloc = Module["_malloc"] = Module["asm"]["malloc"]).apply(null, arguments);
+var _malloc = function() {
+  return (_malloc = Module["asm"]["malloc"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _free = Module["_free"] = function() {
-  return (_free = Module["_free"] = Module["asm"]["free"]).apply(null, arguments);
+var _free = function() {
+  return (_free = Module["asm"]["free"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var ___errno_location = Module["___errno_location"] = function() {
-  return (___errno_location = Module["___errno_location"] = Module["asm"]["__errno_location"]).apply(null, arguments);
+var ___errno_location = function() {
+  return (___errno_location = Module["asm"]["__errno_location"]).apply(null, arguments);
+};
+
+/** @type {function(...*):?} */
+var _ma_malloc_emscripten = Module["_ma_malloc_emscripten"] = function() {
+  return (_ma_malloc_emscripten = Module["_ma_malloc_emscripten"] = Module["asm"]["ma_malloc_emscripten"]).apply(null, arguments);
+};
+
+/** @type {function(...*):?} */
+var _ma_free_emscripten = Module["_ma_free_emscripten"] = function() {
+  return (_ma_free_emscripten = Module["_ma_free_emscripten"] = Module["asm"]["ma_free_emscripten"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
@@ -7187,13 +7125,13 @@ var _main = Module["_main"] = function() {
 };
 
 /** @type {function(...*):?} */
-var _htons = Module["_htons"] = function() {
-  return (_htons = Module["_htons"] = Module["asm"]["htons"]).apply(null, arguments);
+var _htons = function() {
+  return (_htons = Module["asm"]["htons"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var ___getTypeName = Module["___getTypeName"] = function() {
-  return (___getTypeName = Module["___getTypeName"] = Module["asm"]["__getTypeName"]).apply(null, arguments);
+var ___getTypeName = function() {
+  return (___getTypeName = Module["asm"]["__getTypeName"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
@@ -7202,48 +7140,43 @@ var __embind_initialize_bindings = Module["__embind_initialize_bindings"] = func
 };
 
 /** @type {function(...*):?} */
-var ___dl_seterr = Module["___dl_seterr"] = function() {
-  return (___dl_seterr = Module["___dl_seterr"] = Module["asm"]["__dl_seterr"]).apply(null, arguments);
+var _ntohs = function() {
+  return (_ntohs = Module["asm"]["ntohs"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _ntohs = Module["_ntohs"] = function() {
-  return (_ntohs = Module["_ntohs"] = Module["asm"]["ntohs"]).apply(null, arguments);
+var _emscripten_stack_set_limits = function() {
+  return (_emscripten_stack_set_limits = Module["asm"]["emscripten_stack_set_limits"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _emscripten_stack_set_limits = Module["_emscripten_stack_set_limits"] = function() {
-  return (_emscripten_stack_set_limits = Module["_emscripten_stack_set_limits"] = Module["asm"]["emscripten_stack_set_limits"]).apply(null, arguments);
+var _emscripten_stack_get_base = function() {
+  return (_emscripten_stack_get_base = Module["asm"]["emscripten_stack_get_base"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _emscripten_stack_get_base = Module["_emscripten_stack_get_base"] = function() {
-  return (_emscripten_stack_get_base = Module["_emscripten_stack_get_base"] = Module["asm"]["emscripten_stack_get_base"]).apply(null, arguments);
+var _emscripten_stack_get_end = function() {
+  return (_emscripten_stack_get_end = Module["asm"]["emscripten_stack_get_end"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _emscripten_stack_get_end = Module["_emscripten_stack_get_end"] = function() {
-  return (_emscripten_stack_get_end = Module["_emscripten_stack_get_end"] = Module["asm"]["emscripten_stack_get_end"]).apply(null, arguments);
+var stackSave = function() {
+  return (stackSave = Module["asm"]["stackSave"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var stackSave = Module["stackSave"] = function() {
-  return (stackSave = Module["stackSave"] = Module["asm"]["stackSave"]).apply(null, arguments);
+var stackRestore = function() {
+  return (stackRestore = Module["asm"]["stackRestore"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var stackRestore = Module["stackRestore"] = function() {
-  return (stackRestore = Module["stackRestore"] = Module["asm"]["stackRestore"]).apply(null, arguments);
+var stackAlloc = function() {
+  return (stackAlloc = Module["asm"]["stackAlloc"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var stackAlloc = Module["stackAlloc"] = function() {
-  return (stackAlloc = Module["stackAlloc"] = Module["asm"]["stackAlloc"]).apply(null, arguments);
-};
-
-/** @type {function(...*):?} */
-var ___cxa_is_pointer_type = Module["___cxa_is_pointer_type"] = function() {
-  return (___cxa_is_pointer_type = Module["___cxa_is_pointer_type"] = Module["asm"]["__cxa_is_pointer_type"]).apply(null, arguments);
+var ___cxa_is_pointer_type = function() {
+  return (___cxa_is_pointer_type = Module["asm"]["__cxa_is_pointer_type"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
@@ -7322,13 +7255,13 @@ var dynCall_iiiji = Module["dynCall_iiiji"] = function() {
 };
 
 /** @type {function(...*):?} */
-var dynCall_iij = Module["dynCall_iij"] = function() {
-  return (dynCall_iij = Module["dynCall_iij"] = Module["asm"]["dynCall_iij"]).apply(null, arguments);
+var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = function() {
+  return (dynCall_iiiiiii = Module["dynCall_iiiiiii"] = Module["asm"]["dynCall_iiiiiii"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = function() {
-  return (dynCall_iiiiiii = Module["dynCall_iiiiiii"] = Module["asm"]["dynCall_iiiiiii"]).apply(null, arguments);
+var dynCall_iij = Module["dynCall_iij"] = function() {
+  return (dynCall_iij = Module["dynCall_iij"] = Module["asm"]["dynCall_iij"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
@@ -7352,40 +7285,39 @@ var dynCall_iidiiii = Module["dynCall_iidiiii"] = function() {
 };
 
 /** @type {function(...*):?} */
-var _asyncify_start_unwind = Module["_asyncify_start_unwind"] = function() {
-  return (_asyncify_start_unwind = Module["_asyncify_start_unwind"] = Module["asm"]["asyncify_start_unwind"]).apply(null, arguments);
+var _asyncify_start_unwind = function() {
+  return (_asyncify_start_unwind = Module["asm"]["asyncify_start_unwind"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _asyncify_stop_unwind = Module["_asyncify_stop_unwind"] = function() {
-  return (_asyncify_stop_unwind = Module["_asyncify_stop_unwind"] = Module["asm"]["asyncify_stop_unwind"]).apply(null, arguments);
+var _asyncify_stop_unwind = function() {
+  return (_asyncify_stop_unwind = Module["asm"]["asyncify_stop_unwind"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _asyncify_start_rewind = Module["_asyncify_start_rewind"] = function() {
-  return (_asyncify_start_rewind = Module["_asyncify_start_rewind"] = Module["asm"]["asyncify_start_rewind"]).apply(null, arguments);
+var _asyncify_start_rewind = function() {
+  return (_asyncify_start_rewind = Module["asm"]["asyncify_start_rewind"]).apply(null, arguments);
 };
 
 /** @type {function(...*):?} */
-var _asyncify_stop_rewind = Module["_asyncify_stop_rewind"] = function() {
-  return (_asyncify_stop_rewind = Module["_asyncify_stop_rewind"] = Module["asm"]["asyncify_stop_rewind"]).apply(null, arguments);
+var _asyncify_stop_rewind = function() {
+  return (_asyncify_stop_rewind = Module["asm"]["asyncify_stop_rewind"]).apply(null, arguments);
 };
 
-var ___start_em_js = Module['___start_em_js'] = 135420;
-var ___stop_em_js = Module['___stop_em_js'] = 138276;
+var ___start_em_js = Module['___start_em_js'] = 143012;
+var ___stop_em_js = Module['___stop_em_js'] = 145868;
 
-
-
+// include: postamble.js
 // === Auto-generated postamble setup entry stuff ===
 
 Module["addRunDependency"] = addRunDependency;
 Module["removeRunDependency"] = removeRunDependency;
 Module["FS_createPath"] = FS.createPath;
 Module["FS_createDataFile"] = FS.createDataFile;
-Module["FS_createPreloadedFile"] = FS.createPreloadedFile;
 Module["FS_createLazyFile"] = FS.createLazyFile;
 Module["FS_createDevice"] = FS.createDevice;
 Module["FS_unlink"] = FS.unlink;
+Module["FS_createPreloadedFile"] = FS.createPreloadedFile;
 
 
 var calledRun;
@@ -7396,18 +7328,17 @@ dependenciesFulfilled = function runCaller() {
   if (!calledRun) dependenciesFulfilled = runCaller; // try this again later, after new deps are fulfilled
 };
 
-function callMain(args) {
+function callMain(args = []) {
 
-  var entryFunction = Module['_main'];
+  var entryFunction = _main;
 
-  args = args || [];
   args.unshift(thisProgram);
 
   var argc = args.length;
   var argv = stackAlloc((argc + 1) * 4);
   var argv_ptr = argv >> 2;
   args.forEach((arg) => {
-    HEAP32[argv_ptr++] = allocateUTF8OnStack(arg);
+    HEAP32[argv_ptr++] = stringToUTF8OnStack(arg);
   });
   HEAP32[argv_ptr] = 0;
 
@@ -7415,8 +7346,6 @@ function callMain(args) {
 
     var ret = entryFunction(argc, argv);
 
-    // In PROXY_TO_PTHREAD builds, we should never exit the runtime below, as
-    // execution is asynchronously handed off to a pthread.
     // if we're not running an evented main loop, it's time to exit
     exitJS(ret, /* implicit = */ true);
     return ret;
@@ -7426,9 +7355,7 @@ function callMain(args) {
   }
 }
 
-/** @type {function(Array=)} */
-function run(args) {
-  args = args || arguments_;
+function run(args = arguments_) {
 
   if (runDependencies > 0) {
     return;
@@ -7490,4 +7417,4 @@ if (Module['noInitialRun']) shouldRunNow = false;
 run();
 
 
-
+// end include: postamble.js
