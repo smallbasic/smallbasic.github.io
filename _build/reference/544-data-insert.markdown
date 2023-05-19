@@ -8,8 +8,6 @@ Inserts the values to the specified array at the position idx.
 - idx - Position in the array.
 - val - Any value or expression.
 
-Please be aware, that multiple variables will be sequentially inserted each at position 3. This leads to a reverse order.
-
 ### Example 1: Insert one variable
 
 ```
@@ -37,6 +35,7 @@ print a
 ' [1,2,3,4,5]
 ' [1,2,3,8,7,6,4,5]
 ```
+Please be aware, that multiple variables will be sequentially inserted each at position 3. This leads to a reverse order.
 
 ### Example 3: Insert an array
 
