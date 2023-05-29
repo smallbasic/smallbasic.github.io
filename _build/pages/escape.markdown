@@ -43,9 +43,9 @@ PRINT "First line\nSecond Line"
 
 ## Using the EscapeCode Unit
 
-The EscapeCode Unit makes it easier to use escape codes and to deal with different colors for foreground and background. The unit can be downloaded  or copy pasted from the [SmallBASIC Github website](https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas). Please save the unit in the same directory as you basic file.
+The EscapeCode Unit makes it easier to use escape codes and to deal with different colors for foreground and background. The unit can be downloaded  or copy pasted from the [SmallBASIC Github website](https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas). Please save the unit in the same directory as your basic file.
 
-Here an example on how to use the unit.
+Here an example on how to use the unit:
 
 ```Freebasic
 ' SmallBASIC 12.25
