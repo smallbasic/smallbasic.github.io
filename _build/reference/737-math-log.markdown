@@ -8,8 +8,8 @@ Returns the natural logarithm of x.
 
 ```
 a = exp(2)
-print a
+print a       ' Output: 7.389....
 
 b = log(a)
-print b
+print b       ' Output: 2
 ```
