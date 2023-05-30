@@ -1,8 +1,10 @@
 # LOG
 
-> LOG (x)
+> f = LOG (x)
 
 Returns the natural logarithm of x.
+
+### Example:
 
 ```
 a = exp(2)
