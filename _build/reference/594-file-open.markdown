@@ -7,7 +7,7 @@ Makes a file, device or network connection available for sequential input, seque
 * file - A string expression that follows OS file naming conventions.
 * fileN - A file-handle (integer 1 to 256).
 
-FOR
+### File-mode
 
 | Expression | Description                                 |
 |------------|---------------------------------------------|
@@ -18,6 +18,8 @@ FOR
 If an existing file is opened for output, the file will be deleted and an empty file will be created.
 The files are always opened as shared. You can use FREEFILE to get the next unused file-handle. Use PRINT,
 INPUT, BGETC and BPUTC to read from or write to a file or device.
+
+### Open RS232, socket, URL or image
 
 With OPEN you can also open a network connection. Depending on the kind of connection the following file names can be used:
 
@@ -30,9 +32,13 @@ With OPEN you can also open a network connection. Depending on the kind of conne
 
 More information with examples can be found in the article "Network programming".
 
-You can open a connection to a device using the serial port with `open "COMn:speed" AS #1`, where n is the number of the port and speed is the baud rate. To open the first serial port with a baud rate of 19200 use: `open "COM1:19200" as #1`. In Windows COM1 and in Linux /dev/ttys1 would be opened.
+#### Open COM port (RS232)
 
-Example to open a file:
+You can open a connection to a device using the serial port with `open "COMn:speed" AS #1`, where n is the number of the port
+and speed is the baud rate. To open the first serial port with a baud rate of 19200 use: `open "COM1:19200" as #1`. In Windows
+COM1 and in Linux /dev/ttys1 would be opened.
+
+### Example 1: Open a file:
 
 ```
 ' create a text file
@@ -55,4 +61,41 @@ wend
 close #1
 ```
 
+### Example 2: Open a socket
+
+```
+open "SOCL:10000" as #1     ' Open socket at port 10000
+
+while (eof(1))              ' Loop until connection is closed
+
+    l = lof(1)              ' Querry how much data is in the queue
+
+    if(l) then              ' if data is available
+        s = INPUT(l, #1)    ' get all data
+        print s
+    endif
+
+wend
+
+close #1
+```
+
+### Example 3: Open a COM port (RS232)
+
+```
+open "COM1:19200" as # 1    ' Open COM1  with 19200 bauds
+
+while (eof(1))              ' Loop until connection is closed
+
+    l = lof(1)              ' Querry how much data is in the queue
+
+    if(l) then              ' if data is available
+        s = INPUT(l, #1)    ' get all data
+        print s
+    endif
+
+wend
+
+close #1
+```
 
