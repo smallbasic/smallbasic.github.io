@@ -12,7 +12,7 @@
 .PHONY : all clean spell
 
 # tools
-sbasic = /home/chrisws/src/SmallBASIC/src/platform/console/sbasic
+sbasic = sbasic
 pandoc = /usr/bin/pandoc
 
 # variables

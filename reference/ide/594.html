@@ -7,7 +7,7 @@
 <li>file - A string expression that follows OS file naming conventions.</li>
 <li>fileN - A file-handle (integer 1 to 256).</li>
 </ul>
-<p>FOR</p>
+<h3 id="file-mode">File-mode</h3>
 <table>
 <thead>
 <tr class="header">
@@ -31,6 +31,7 @@
 </tbody>
 </table>
 <p>If an existing file is opened for output, the file will be deleted and an empty file will be created. The files are always opened as shared. You can use FREEFILE to get the next unused file-handle. Use PRINT, INPUT, BGETC and BPUTC to read from or write to a file or device.</p>
+<h3 id="open-rs232-socket-url-or-image">Open RS232, socket, URL or image</h3>
 <p>With OPEN you can also open a network connection. Depending on the kind of connection the following file names can be used:</p>
 <table>
 <colgroup>
@@ -63,8 +64,9 @@
 </tbody>
 </table>
 <p>More information with examples can be found in the article “Network programming”.</p>
+<h4 id="open-com-port-rs232">Open COM port (RS232)</h4>
 <p>You can open a connection to a device using the serial port with <code>open "COMn:speed" AS #1</code>, where n is the number of the port and speed is the baud rate. To open the first serial port with a baud rate of 19200 use: <code>open "COM1:19200" as #1</code>. In Windows COM1 and in Linux /dev/ttys1 would be opened.</p>
-<p>Example to open a file:</p>
+<h3 id="example-1-open-a-file">Example 1: Open a file:</h3>
 <pre><code>&#39; create a text file
 open &quot;MyDemoFile.txt&quot; for output as #1
 
@@ -80,6 +82,36 @@ open &quot;MyDemoFile.txt&quot; for input as #1
 while(!eof(1))   &#39; eof works only without #
     input #1, c
     print c
+wend
+
+close #1</code></pre>
+<h3 id="example-2-open-a-socket">Example 2: Open a socket</h3>
+<pre><code>open &quot;SOCL:10000&quot; as #1     &#39; Open socket at port 10000
+
+while (eof(1))              &#39; Loop until connection is closed
+
+    l = lof(1)              &#39; Querry how much data is in the queue
+
+    if(l) then              &#39; if data is available
+        s = INPUT(l, #1)    &#39; get all data
+        print s
+    endif
+
+wend
+
+close #1</code></pre>
+<h3 id="example-3-open-a-com-port-rs232">Example 3: Open a COM port (RS232)</h3>
+<pre><code>open &quot;COM1:19200&quot; as # 1    &#39; Open COM1  with 19200 bauds
+
+while (eof(1))              &#39; Loop until connection is closed
+
+    l = lof(1)              &#39; Querry how much data is in the queue
+
+    if(l) then              &#39; if data is available
+        s = INPUT(l, #1)    &#39; get all data
+        print s
+    endif
+
 wend
 
 close #1</code></pre>

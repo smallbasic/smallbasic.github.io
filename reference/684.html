@@ -74,14 +74,16 @@
     </p>
   </div>
 </blockquote>
-<p>Defines a label. A label marks a position in the code.</p>
-<p>There are two kinds of labels, ‘numeric’ and ‘alphanumeric’. Unlike ‘alphanumeric’ labels, ‘Numeric’ labels do not require the keyword <code>LABEL</code></p>
-<pre><code>1000 ? &quot;Hello&quot;
-...
-LABEL AlphaLabel: ? &quot;Hello&quot;
-...
-GOTO 1000
-GOTO AlphaLabel</code></pre>
+<p>Defines a label with name <code>LabelName</code>. A label marks a position in the code. Use GOTO or GOSUB to continue program execution at that label.</p>
+<h3 id="example">Example</h3>
+<pre><code>label FirstLine
+    
+ii++
+print ii
+if(ii == 10) then goto LastLine 
+goto FirstLine
+
+label LastLine</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using LABEL</div>
     <div class="linklist">
@@ -205,7 +207,7 @@ LABEL by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Thu, 27 Apr 2023 11:30:28 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

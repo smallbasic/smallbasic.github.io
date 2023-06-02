@@ -1,5 +1,27 @@
 <h1 id="linput">LINPUT</h1>
 <blockquote>
-<p>LINPUT [#fileN] var</p>
+<p>LINPUT [#fileN,] var</p>
 </blockquote>
-<p>Reads a whole text line from file or console.</p>
+<p>Reads a whole text line from file or console and stores it in the string <code>var</code>. If a file handle <code>#fileN</code> is specified, LINPUT will read from the corresponding file otherwise it will read from the console. LINPUT has the same function as LINEINPUT.</p>
+<h3 id="example-1-read-from-console">Example 1: Read from console</h3>
+<pre><code>LINPUT S
+PRINT S</code></pre>
+<h3 id="example-2-read-from-file">Example 2: Read from file</h3>
+<pre><code>&#39; create a file
+open &quot;File.txt&quot; for output as #1
+
+print #1, &quot;First line&quot;
+print #1, &quot;Second line&quot;
+
+close #1
+
+
+&#39; open file and print content
+open &quot;File.txt&quot; for input as #1
+
+LINPUT #1, S
+Print S
+LINPUT #1, S
+Print S
+
+close #1</code></pre>

@@ -74,70 +74,48 @@
     </p>
   </div>
 </blockquote>
-<p>Returns the length of the value contained in the variable.</p>
-<ul>
-<li>If x is a string, returns the length of the string.</li>
-<li>If x is an array, returns the number of the elements.</li>
-<li>If x is an number, returns the length of the STR(x).</li>
-</ul>
-<pre><code>
-&#39; format text lines
-Def set(text, var) = Left(text + Space(60), 60) + Len(var)  
-Color 15 
-? &quot;var is...&quot; + Space(50) + &quot;Len(var):&quot;
-?
-Color 7
-var = 15.2 &#39; number
-? set(&quot;var = 15.2&quot;, var)
-?
-var = &quot;SmallBASIC&quot; &#39; string
-? set(&quot;var = \\&quot;SmallBASIC\\&quot;&quot;, var)
-?
-var = [1, 2, &quot;xyz&quot;] &#39; 1-dimension array
-? set(&quot;var = [1, 2, \\&quot;xyz\\&quot;]&quot;, var)
-var = [1, 2, [3, &quot;xyz&quot;]] &#39; 1-dimension array and 1 nested array
-? set(&quot;var = [1, 2, [3, \\&quot;xyz\\&quot;]]&quot;, var)
-var = [1, 2, [3, [4, &quot;xyz&quot;]]] &#39; 1-dimension array and 2 nested arrays
-? set(&quot;var = [1, 2, [3, [4, \\&quot;xyz\\&quot;]]]&quot;, var)
-?
-var = [] &#39; 1-dimension array
-? set(&quot;var = []&quot;, var)
-var = [1, 2; &quot;xyz&quot;] &#39; 2-dimension array
-? set(&quot;var = [1, 2; \\&quot;xyz\\&quot;]&quot;, var)
-var = [;;,] &#39; 3-dimension array
-? set(&quot;var = [;;,]&quot;, var)
-?
-Dim var() &#39; empty array
-? set(&quot;Dim var()&quot;, var)
-Dim var(16 To 20) &#39; 1-dimension array
-? set(&quot;Dim var(16 To 20)&quot;, var)
-Dim var(16 To 20, 1 To 2) &#39; 2-dimension array
-? set(&quot;Dim var(16 To 20, 1 To 2)&quot;, var)
-?
-var = Array(&quot;{x:1, y:3}&quot;) &#39; 1-dimension map array
-? set(&quot;var = Array(\\&quot;{x:1, y:3}\\&quot;)&quot;, var)
-&#39; 1-dimension map array and 1 nested map array:
-var = Array(&quot;{x:1, y:3, down:{x:4, y:7}}&quot;) 
-? set(&quot;var = Array(\\&quot;{x:1, y:3, down:{x:4, y:7}}\\&quot;)&quot;, var)
-&#39; 1-dimension map array and 1 nested map array:
-var = Array(&quot;{x:1, y:3, down:[{x:4, y:7}, {x:6, y:9}]}&quot;)
-? set(&quot;var = Array(\\&quot;{x:1, y:3, down:[{x:4, y:7}, {x:6, y:9}]}\\&quot;)&quot;, var)
-Pause
-</code></pre>
-<p>I added integer to list (50), and got len = 2 Now I wonder if Floats change according to precision needed. Now I wonder if integers change too… Append quick experiment: Oh, I guess it’s the length of the number as STR’d up to 17 …then it floats?</p>
-<pre><code>
-&#39; Len(number) = Len(Str(number))...
-&#39; but IEEE format for float and big numbers is hard to predict...
-&#39; few examples on 64-bit system:
-? Str(100)                  &#39; 100
-? Str(100.51)               &#39; 100.51000000000001
-? Str(-300.3)               &#39; -300.30000000000001
-? Str(0xFFFFFFFF)           &#39; 4294967295
-? Str(0xFFFFFFFFFFFFFFFF)   &#39; -1
-? Str(99999999999999.888888888888888) &#39; 99999999999999.890625
-? Str(1.999999E+302)        &#39; 1.999999E+302
-</code></pre>
-<p>Yes, I think it is the len of the string in exponent format when the number is too long to store as string without exponent notation. I was doing long integers and it was matching len(STR number) and when switched to e format it was still the len of the number as string only with e format (very much shorter). https:support.microsoft.com<em>en-us</em>kb<em>42980 (replace </em> with / to get the address) This article shows that it’s not easy to convert IEEE floating-point binary numbers to decimal numbers.</p>
+<p>Returns the length of the variable <code>x</code>.</p>
+<p>The return value <code>d</code> depends on the type of the variable <code>x</code>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Return Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>number</td>
+<td>length of the STR(x)</td>
+</tr>
+<tr class="even">
+<td>string</td>
+<td>length of the string</td>
+</tr>
+<tr class="odd">
+<td>array</td>
+<td>number of the elements</td>
+</tr>
+<tr class="even">
+<td>map</td>
+<td>number of the elements</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example">Example</h3>
+<pre><code>i = 10
+f = 1.234
+s = &quot;abc&quot;
+dim a1(9)           &#39; Array with 10 elements
+dim a2(9,9)         &#39; Array with 10x10 elements
+m = {x:1, y:2, z:3} &#39; Map variable with 3 elements
+
+print len(i)        &#39; Output: 2
+print len(f)        &#39; Output: 5
+print len(s)        &#39; Output: 3
+print len(a1)       &#39; Output: 10
+print len(a2)       &#39; Output: 100
+print len(m)        &#39; Output: 3</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using LEN</div>
     <div class="linklist">
@@ -220,7 +198,7 @@ LEN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Thu, 27 Apr 2023 15:32:03 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

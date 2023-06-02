@@ -1,43 +1,20 @@
 <h1 id="local">LOCAL</h1>
 <blockquote>
-<p>LOCAL</p>
+<p>LOCAL var1 [, var2, …, varn]</p>
 </blockquote>
-<p>Declare local variables inside a SUB or FUNC. Local variables no longer exist once the SUB or FUNC has returned.</p>
-<pre><code>
-&#39; LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
-&#39;with the LOCAL keyword varaibles are treated separately 
-&#39;from those in main code with the same name even in a GOSUB
-var=1
-? &quot;var before GOSUB gs1000 &quot;;var
-GOSUB gs1000
-? &quot;var after return from GOSUB gs1000 &quot;;var
-?
-var=1
-? &quot;var before GOSUB LOCAL_gs1000 &quot;;var
-GOSUB LOCAL_gs1000
-? &quot;var after return from GOSUB LOCAL_gs1000 &quot;;var
-pause
-end
-label gs1000
-var=1000
-return
-label LOCAL_gs1000
-local var
-var=1000
-return
-</code></pre>
-<pre><code>
-&#39; DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
-&#39;can I use DEF locally in a sub without interfering with main variable or DEF names
-def aboutMe() = &quot;I am texting from main code.&quot;
-? &quot;Hi, &quot;;aboutMe
-mySub
-? &quot;Goodbye, &quot;;aboutMe
-pause
-sub mySub()
-  &#39;local def aboutMe() = &quot;I am texting from mySub.&quot; &#39;&lt;=== note: this did not work 
-  local aboutMe
-  def aboutMe() = &quot;I am texting from mySub.&quot;
-? &quot;Hi, &quot;;aboutMe
-end
-</code></pre>
+<p>Declare local variables inside a SUB or FUNC. Local variables are independent of global variables of the same name.</p>
+<p>If inside a sub or a function a local variable with the same name as an already existing global variabale is declared, the global variable can’t be accessed inside that function or sub. Changing the local varibale will not change the global variable.</p>
+<p>Local variables no longer exist once the SUB or FUNC has returned.</p>
+<p>Use local variables insides subs or functions to make sure, that global variables with the same names are not accidentally changed.</p>
+<h3 id="example">Example:</h3>
+<pre><code>A = 1   &#39; global variable
+
+print &quot;Global variable before sub: A=&quot;; A
+MySub()
+print &quot;Global variable after sub : A=&quot;; A
+
+sub MySub()
+    local A    &#39; Comment this line to see the effect of a local variable
+    A = 2
+    print &quot;Local variable inside sub : A=&quot;; A
+end</code></pre>

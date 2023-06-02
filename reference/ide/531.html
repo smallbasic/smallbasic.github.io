@@ -2,4 +2,21 @@
 <blockquote>
 <p>LOGPRINT …</p>
 </blockquote>
-<p>PRINT to the application logfile. The syntax is the same as command PRINT.</p>
+<p>Prints to stderr. The syntax is the same as the command PRINT. LOGPRINT can be used to print log messages to a different output. The nicely formated output of your program will not be messed up by the log messages.</p>
+<h3 id="example">Example:</h3>
+<pre><code>logprint &quot;Error message goes to stderr&quot;
+print &quot;Normal text goes to sdtout&quot;</code></pre>
+<h3 id="stderr-with-sbasicg-sdl-version">stderr with sbasicg (SDL-version)</h3>
+<p>When starting sbasicg or sbasicg.exe from a command line, this command line will be the stderr output. When using PRINT the text will be displayed in the program window. When using LOGPRINT the text will be printed to the the command line window and not displayed in the program window.</p>
+<h3 id="stderr-with-sbasic-console-version">stderr with sbasic (console version)</h3>
+<p>The command line is usually stderr and stdout at the same time. Text printed with PRINT and text printed with LOGPRINT will be displayed in the command line window.</p>
+<h3 id="redirect-stderr-to-a-file-linux">Redirect stderr to a file (Linux)</h3>
+<p>In Linux sdterr can be easily redirected to a file (i.e. error.txt):</p>
+<p>Start the basic-file from a command line:</p>
+<pre><code>SDL-version    : sbasicg test.bas 2&gt;error.txt
+Console-version: sbasic test.bas 2&gt;error.txt</code></pre>
+<p>with test.bas:</p>
+<pre><code>logprint &quot;Error message goes to stderr&quot;
+print &quot;Normal text goes to sdtout&quot;</code></pre>
+<p>Afer running the program the file error.txt will appear with the content:</p>
+<pre><code>Error message goes to stderr</code></pre>

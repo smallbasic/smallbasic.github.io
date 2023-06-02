@@ -1,12 +1,14 @@
 <h1 id="label">LABEL</h1>
 <blockquote>
-<p>LABEL name</p>
+<p>LABEL LabelName</p>
 </blockquote>
-<p>Defines a label. A label marks a position in the code.</p>
-<p>There are two kinds of labels, ‘numeric’ and ‘alphanumeric’. Unlike ‘alphanumeric’ labels, ‘Numeric’ labels do not require the keyword <code>LABEL</code></p>
-<pre><code>1000 ? &quot;Hello&quot;
-...
-LABEL AlphaLabel: ? &quot;Hello&quot;
-...
-GOTO 1000
-GOTO AlphaLabel</code></pre>
+<p>Defines a label with name <code>LabelName</code>. A label marks a position in the code. Use GOTO or GOSUB to continue program execution at that label.</p>
+<h3 id="example">Example</h3>
+<pre><code>label FirstLine
+    
+ii++
+print ii
+if(ii == 10) then goto LastLine 
+goto FirstLine
+
+label LastLine</code></pre>

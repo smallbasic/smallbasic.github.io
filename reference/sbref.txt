@@ -1,4 +1,4 @@
-SmallBASIC Language reference [22/04/2023]
+SmallBASIC Language reference [02/06/2023]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -977,7 +977,35 @@ Example 2: Using multiple vars
 
 LINEINPUT [#fileN] var
 
-Reads a whole text line from file or console.
+Reads a whole text line from file or console and stores it in the string
+var. If a file handle #fileN is specified, LINEINPUT will read from the
+corresponding file otherwise it will read from the console.
+
+Example 1: Read from console
+
+    LINEINPUT S
+    PRINT S
+
+Example 2: Read from file
+
+    ' create a file
+    open "File.txt" for output as #1
+
+    print #1, "First line"
+    print #1, "Second line"
+
+    close #1
+
+
+    ' open file and print content
+    open "File.txt" for input as #1
+
+    LINEINPUT #1, S
+    Print S
+    LINEINPUT #1, S
+    Print S
+
+    close #1
 
 +========================================================================================+
 |                                   10. (Console) LINPUT                                 |
@@ -985,7 +1013,36 @@ Reads a whole text line from file or console.
 
 LINPUT [#fileN] var
 
-Reads a whole text line from file or console.
+Reads a whole text line from file or console and stores it in the string
+var. If a file handle #fileN is specified, LINPUT will read from the
+corresponding file otherwise it will read from the console. LINPUT has
+the same function as LINEINPUT.
+
+Example 1: Read from console
+
+    LINPUT S
+    PRINT S
+
+Example 2: Read from file
+
+    ' create a file
+    open "File.txt" for output as #1
+
+    print #1, "First line"
+    print #1, "Second line"
+
+    close #1
+
+
+    ' open file and print content
+    open "File.txt" for input as #1
+
+    LINPUT #1, S
+    Print S
+    LINPUT #1, S
+    Print S
+
+    close #1
 
 +========================================================================================+
 |                                   11. (Console) LOCATE                                 |
@@ -993,16 +1050,26 @@ Reads a whole text line from file or console.
 
 LOCATE y, x
 
-Moves the console cursor to the specified position. x,y are in character
-cells.
+Moves the console (text-mode) cursor to the specified position. row and
+column are in text-mode character cells.
 
+See AT for positioning the cursor in pixel.
 
-    ' calculate y and x in characters cells:
-    Def lines = (Ymax + 1) \\ Txth("x")   ' maximum lines in window
-    Def columns = (Xmax + 1) \\ Txtw("x") ' maximum columns in window
-    ' center line,column for printing "text" (top,left is 0,0):
-    Def center_line = lines \\ 2
-    Def center_column(text) = (columns \\ 2) - (Len(text) \\ 2)
+Example 1:
+
+    locate 5,7
+    print "text at row 5 and column 7"
+
+Example 2: Print text always in center of window
+
+    ' Define functions to calculate lines and columns
+    Def lines() = (Ymax + 1) \ Txth("x")   ' maximum lines in window
+    Def columns() = (Xmax + 1) \ Txtw("x") ' maximum columns in window
+
+    ' Define functions to calculate position of text
+    Def center_line() = lines \ 2
+    Def center_column(text) = (columns \ 2) - (Len(text) \ 2)
+
     ' attributes for printing text (ESCAPE codes):
     Const ESC = Chr(27)
     Const bold_on  = ESC + "[1m"  ' strong
@@ -1011,57 +1078,73 @@ cells.
     Const line_off = ESC + "[24m"
     Const reve_on  = ESC + "[7m"  ' reverse
     Const reve_off = ESC + "[27m"
+
     ' colors for printing text:
     Const WHITE = 7
     Const BLACK = 0
     Const YELLOW = 14
     Const BLUE = 1
+
     Const HELLO = "* Hello World! *" ' text to print.
+
     ' loop until user press Esc key:
     While Inkey <> Chr(27)
-      ' update screen if user resized the window:
-      If (x <> Xmax) Or (y <> Ymax) Then
-        Color WHITE, BLACK
-        Cls
-        Print Using "Please resize window (Esc=Stop) 000:0000"; lines, columns;
-        ' Print hello world:
-        l = center_line
-        c = center_column(HELLO)
-        Color YELLOW, BLUE
-        Locate l - 1, c: Print bold_on + HELLO + bold_off;
-        Locate l    , c: Print reve_on + HELLO + reve_off;
-        Locate l + 1, c: Print line_on + HELLO + line_off;
-        ' remember current windows size:
-        x = Xmax
-        y = Ymax
-      Endif
+        ' update screen if user resized the window:
+        If (x <> Xmax) Or (y <> Ymax) Then
+            Color WHITE, BLACK
+            Cls
+            
+            Print Using "Please resize window (Esc=Stop) 000:0000"; lines(), columns();
+            
+            ' Print hello world:
+            l = center_line()
+            c = center_column(HELLO)
+            
+            Color YELLOW, BLUE
+            Locate l - 1, c: Print bold_on + HELLO + bold_off;
+            Locate l    , c: Print reve_on + HELLO + reve_off;
+            Locate l + 1, c: Print line_on + HELLO + line_off;
+            
+            ' remember current windows size:
+            x = Xmax
+            y = Ymax
+        Endif
     Wend
 
+Example 3: Print ASCII table
 
     ' LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
-    ' LOCATE row, column - sets the next print location on screen, rows down, columns across
-    ' a MOD b - returns the remainder of a/b as integer 0 to b-1
-    '           for example odd number n mod 2 returns 1, while even number n mod 2 returns 0
-    '           n mod 10 returns 0,1,2,3,4,5,6,7,8 or 9  we will use this in demo
-    ' CHR - returns the CHaRracter for the ASC number, for demo we will print a chart of CHR for ASC numbers 30-129
-    ' ASC(Character) - is a number code for a print characters, 32 is the code for a space
-    ' ? - is shortcut for PRINT
-    ' RIGHT(string,n) - returns right most n characters of string
-    ' STR(n) - returns a number in string form
-    ' : - code statement seperator often used with LOCATE row, column : ? string
-    LOCATE 1,16 : ? "ASC Table 30-129:"  'locate print spot, print title for our chart
-    FOR column=0 to 9 'print a header, 10 numbers plus + (to add to row value)
-      LOCATE 2,column*5+4 : ? "+";column
+    '
+    ' LOCATE row, column: sets the next print location on screen,
+    '                     rows down, columns across
+    ' a MOD b           : returns the remainder of a/b as integer 0 to b-1
+    '                     for example odd number n mod 2 returns 1, whil
+    '                     even number n mod 2 returns 0
+    '                     n mod 10 returns 0,1,2,3,4,5,6,7,8 or 9 
+    '                     we will use this in demo
+    ' CHR(number)       : returns the CHaRracter for the ASC number,
+    '                     for demo we will print a chart of CHR for ASC
+    '                     numbers 30-129
+    ' ASC(Character)    : is a number code for a print characters, 32 is
+    '                     the code for a space
+    ' ?                 : is shortcut for PRINT
+    ' RIGHT(string,n)   : returns right most n characters of string
+    ' STR(n)            : returns a number in string form
+    ' :                 : code statement seperator often used with
+    '                     LOCATE row, column : ? string
+
+    LOCATE 1, 16 : ? "ASC Table 30-129:"        ' locate print spot, print title for our chart
+    FOR column = 0 to 9                         ' print a header, 10 numbers plus + (to add to row value)
+        LOCATE 2, column * 5 + 4 : ? "+";column
     NEXT
-    FOR row=3 to 12
-      LOCATE row,0 : ? RIGHT(" "+STR(row*10)+":",4)
+    FOR row = 3 to 12
+        LOCATE row, 0 : ? RIGHT(" " + STR(row * 10) + ":", 4)
     NEXT
-    FOR ASCnumber=30 to 129   'note ASC(32) = space so wont see anything in Table
-      row=ASCnumber\\10 ' \\ rounds division down to integer
-      column=(ASCnumber MOD 10)*5+5  'times 5 to space out the characters printed plus 5 for column labels
-      LOCATE row,column : ? CHR(ASCnumber)   '<=========== handy reference
+    FOR ASCnumber = 30 to 129                   ' note ASC(32) = space so wont see anything in Table
+        row = ASCnumber \ 10                      ' \ rounds division down to integer
+        column = (ASCnumber MOD 10) * 5 + 5       ' times 5 to space out the characters printed plus 5 for column labels
+        LOCATE row, column : ? CHR(ASCnumber)     '<=========== handy reference
     NEXT
-    PAUSE
 
 +========================================================================================+
 |                                  12. (Console) LOGPRINT                                |
@@ -1069,8 +1152,48 @@ cells.
 
 LOGPRINT ...
 
-PRINT to the application logfile. The syntax is the same as command
-PRINT.
+Prints to stderr. The syntax is the same as the command PRINT. LOGPRINT
+can be used to print log messages to a different output. The nicely
+formated output of your program will not be messed up by the log
+messages.
+
+Example:
+
+    logprint "Error message goes to stderr"
+    print "Normal text goes to sdtout"
+
+stderr with sbasicg (SDL-version)
+
+When starting sbasicg or sbasicg.exe from a command line, this command
+line will be the stderr output. When using PRINT the text will be
+displayed in the program window. When using LOGPRINT the text will be
+printed to the the command line window and not displayed in the program
+window.
+
+stderr with sbasic (console version)
+
+The command line is usually stderr and stdout at the same time. Text
+printed with PRINT and text printed with LOGPRINT will be displayed in
+the command line window.
+
+Redirect stderr to a file (Linux)
+
+In Linux sdterr can be easily redirected to a file (i.e. error.txt):
+
+Start the basic-file from a command line:
+
+    SDL-version    : sbasicg test.bas 2>error.txt
+    Console-version: sbasic test.bas 2>error.txt
+
+with test.bas:
+
+    logprint "Error message goes to stderr"
+    print "Normal text goes to sdtout"
+
+Afer running the program the file error.txt will appear with the
+content:
+
+    Error message goes to stderr
 
 +========================================================================================+
 |                                  13. (Console) NOSOUND                                 |
@@ -1621,9 +1744,6 @@ Inserts the values to the specified array at the position idx.
 -   idx - Position in the array.
 -   val - Any value or expression.
 
-Please be aware, that multiple variables will be sequentially inserted
-each at position 3. This leads to a reverse order.
-
 Example 1: Insert one variable
 
     a = [1,2,3,4,5]
@@ -1647,6 +1767,9 @@ Example 2: Insert several variables
     ' Output:
     ' [1,2,3,4,5]
     ' [1,2,3,8,7,6,4,5]
+
+Please be aware, that multiple variables will be sequentially inserted
+each at position 3. This leads to a reverse order.
 
 Example 3: Insert an array
 
@@ -1804,7 +1927,36 @@ Example
 
 LBOUND (array [, dim])
 
-Returns the lower bound of ‘array’.
+Returns the lower bound lb of an array array. dim can be used to
+specifiy, at which dimension the lower bound should be returned if array
+is a multi-dimensional array. If dim is not used the lower bound of the
+first dimension will be returned.
+
+Example 1: Lower bound of one-dimensional arrays
+
+    dim A(5)
+    dim B(5 to 10)
+
+    print lbound(A)     ' Output: 0
+    print lbound(B)     ' Output: 5
+
+Example 2: Lower bound of multi-dimensional arrays
+
+    dim A(5,6,7)
+    dim B(5 to 10, 7 to 12, 9 to 14)
+
+    print lbound(A, 2)     ' Output: 0
+    print lbound(B, 2)     ' Output: 7
+
+Example 3: Using option base 1
+
+    option base 1
+
+    dim A(5)
+    dim B(5 to 10)
+
+    print lbound(A)     ' Output: 1
+    print lbound(B)     ' Output: 5
 
 +========================================================================================+
 |                                      35. (Data) LEN                                    |
@@ -1812,81 +1964,32 @@ Returns the lower bound of ‘array’.
 
 LEN(d)
 
-Returns the length of the value contained in the variable.
+Returns the length of the variable x.
 
--   If x is a string, returns the length of the string.
--   If x is an array, returns the number of the elements.
--   If x is an number, returns the length of the STR(x).
+The return value d depends on the type of the variable x:
 
+  Type     Return Value
+  -------- ------------------------
+  number   length of the STR(x)
+  string   length of the string
+  array    number of the elements
+  map      number of the elements
 
-    ' format text lines
-    Def set(text, var) = Left(text + Space(60), 60) + Len(var)  
-    Color 15 
-    ? "var is..." + Space(50) + "Len(var):"
-    ?
-    Color 7
-    var = 15.2 ' number
-    ? set("var = 15.2", var)
-    ?
-    var = "SmallBASIC" ' string
-    ? set("var = \\"SmallBASIC\\"", var)
-    ?
-    var = [1, 2, "xyz"] ' 1-dimension array
-    ? set("var = [1, 2, \\"xyz\\"]", var)
-    var = [1, 2, [3, "xyz"]] ' 1-dimension array and 1 nested array
-    ? set("var = [1, 2, [3, \\"xyz\\"]]", var)
-    var = [1, 2, [3, [4, "xyz"]]] ' 1-dimension array and 2 nested arrays
-    ? set("var = [1, 2, [3, [4, \\"xyz\\"]]]", var)
-    ?
-    var = [] ' 1-dimension array
-    ? set("var = []", var)
-    var = [1, 2; "xyz"] ' 2-dimension array
-    ? set("var = [1, 2; \\"xyz\\"]", var)
-    var = [;;,] ' 3-dimension array
-    ? set("var = [;;,]", var)
-    ?
-    Dim var() ' empty array
-    ? set("Dim var()", var)
-    Dim var(16 To 20) ' 1-dimension array
-    ? set("Dim var(16 To 20)", var)
-    Dim var(16 To 20, 1 To 2) ' 2-dimension array
-    ? set("Dim var(16 To 20, 1 To 2)", var)
-    ?
-    var = Array("{x:1, y:3}") ' 1-dimension map array
-    ? set("var = Array(\\"{x:1, y:3}\\")", var)
-    ' 1-dimension map array and 1 nested map array:
-    var = Array("{x:1, y:3, down:{x:4, y:7}}") 
-    ? set("var = Array(\\"{x:1, y:3, down:{x:4, y:7}}\\")", var)
-    ' 1-dimension map array and 1 nested map array:
-    var = Array("{x:1, y:3, down:[{x:4, y:7}, {x:6, y:9}]}")
-    ? set("var = Array(\\"{x:1, y:3, down:[{x:4, y:7}, {x:6, y:9}]}\\")", var)
-    Pause
+Example
 
-I added integer to list (50), and got len = 2 Now I wonder if Floats
-change according to precision needed. Now I wonder if integers change
-too… Append quick experiment: Oh, I guess it’s the length of the number
-as STR’d up to 17 …then it floats?
+    i = 10
+    f = 1.234
+    s = "abc"
+    dim a1(9)           ' Array with 10 elements
+    dim a2(9,9)         ' Array with 10x10 elements
+    m = {x:1, y:2, z:3} ' Map variable with 3 elements
 
-
-    ' Len(number) = Len(Str(number))...
-    ' but IEEE format for float and big numbers is hard to predict...
-    ' few examples on 64-bit system:
-    ? Str(100)                  ' 100
-    ? Str(100.51)               ' 100.51000000000001
-    ? Str(-300.3)               ' -300.30000000000001
-    ? Str(0xFFFFFFFF)           ' 4294967295
-    ? Str(0xFFFFFFFFFFFFFFFF)   ' -1
-    ? Str(99999999999999.888888888888888) ' 99999999999999.890625
-    ? Str(1.999999E+302)        ' 1.999999E+302
-
-Yes, I think it is the len of the string in exponent format when the
-number is too long to store as string without exponent notation. I was
-doing long integers and it was matching len(STR number) and when
-switched to e format it was still the len of the number as string only
-with e format (very much shorter).
-https:support.microsoft.comen-uskb42980 (replace with / to get the
-address) This article shows that it’s not easy to convert IEEE
-floating-point binary numbers to decimal numbers.
+    print len(i)        ' Output: 2
+    print len(f)        ' Output: 5
+    print len(s)        ' Output: 3
+    print len(a1)       ' Output: 10
+    print len(a2)       ' Output: 100
+    print len(m)        ' Output: 3
 
 +========================================================================================+
 |                                     36. (Data) READ                                    |
@@ -2883,7 +2986,11 @@ Example 2: Read from console
 
 KILL \"file\"
 
-Deletes the specified file.
+Deletes the file specified by FileName.
+
+Example
+
+    kill "test.txt"
 
 +========================================================================================+
 |                                     70. (File) LOCK                                    |
@@ -2899,8 +3006,47 @@ Lock a record or an area (not yet implemented).
 
 LOF (fileN)
 
-Returns the length of file in bytes. For other devices, returns the
-number of available data.
+Returns the length l of a file with the file handle fileN in bytes. For
+other devices, returns the number of available data.
+
+Example 1: Length of a file
+
+    ' create a text file
+    open "MyDemoFile.txt" for output as #1
+
+    for i = 1 to 10
+        bputc #1, i 
+    next
+
+    close #1
+
+    ' open text file and print content byte by byte
+    open "MyDemoFile.txt" for input as #1
+
+    FileLength = LOF(1)       ' lof works only without #
+
+    for ii = 1 to  FileLength 
+        c = bgetc(1)
+        print c
+    next
+
+    close #1
+
+Example 2: Get available data for a socket connection
+
+    open "SOCL:10000" as #1     ' Open socket at port 10000
+
+    while (eof(1))              ' Loop until connection is closed
+
+        l = lof(1)              ' Querry how much data is in the queue
+        if(l) then              ' if data is available
+            s = INPUT(l, #1)    ' get all data
+            print s
+        endif
+
+    wend
+
+    close #1
 
 +========================================================================================+
 |                                     72. (File) MKDIR                                   |
@@ -2922,7 +3068,7 @@ input, sequential output.
 -   file - A string expression that follows OS file naming conventions.
 -   fileN - A file-handle (integer 1 to 256).
 
-FOR
+File-mode
 
   Expression   Description
   ------------ ---------------------------------------------
@@ -2934,6 +3080,8 @@ If an existing file is opened for output, the file will be deleted and
 an empty file will be created. The files are always opened as shared.
 You can use FREEFILE to get the next unused file-handle. Use PRINT,
 INPUT, BGETC and BPUTC to read from or write to a file or device.
+
+Open RS232, socket, URL or image
 
 With OPEN you can also open a network connection. Depending on the kind
 of connection the following file names can be used:
@@ -2953,13 +3101,15 @@ of connection the following file names can be used:
 More information with examples can be found in the article “Network
 programming”.
 
+Open COM port (RS232)
+
 You can open a connection to a device using the serial port with
 open "COMn:speed" AS #1, where n is the number of the port and speed is
 the baud rate. To open the first serial port with a baud rate of 19200
 use: open "COM1:19200" as #1. In Windows COM1 and in Linux /dev/ttys1
 would be opened.
 
-Example to open a file:
+Example 1: Open a file:
 
     ' create a text file
     open "MyDemoFile.txt" for output as #1
@@ -2976,6 +3126,40 @@ Example to open a file:
     while(!eof(1))   ' eof works only without #
         input #1, c
         print c
+    wend
+
+    close #1
+
+Example 2: Open a socket
+
+    open "SOCL:10000" as #1     ' Open socket at port 10000
+
+    while (eof(1))              ' Loop until connection is closed
+
+        l = lof(1)              ' Querry how much data is in the queue
+
+        if(l) then              ' if data is available
+            s = INPUT(l, #1)    ' get all data
+            print s
+        endif
+
+    wend
+
+    close #1
+
+Example 3: Open a COM port (RS232)
+
+    open "COM1:19200" as # 1    ' Open COM1  with 19200 bauds
+
+    while (eof(1))              ' Loop until connection is closed
+
+        l = lof(1)              ' Querry how much data is in the queue
+
+        if(l) then              ' if data is available
+            s = INPUT(l, #1)    ' get all data
+            print s
+        endif
+
     wend
 
     close #1
@@ -4476,21 +4660,39 @@ be used with cocos2d development
 
 LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]
 
-Draws a line.
-
-Example:
-
-    line 20,40,140,40 color 2
-    line 20,80,140,80 color 2
-    line 60,0,60,120 color 2
-    line 100,0,100,120 color 2
+Draws a line from the point (x,y) to the point (x2,y2). If STEP is used,
+the graphics cursor is moved by a step of x and y pixels. When color is
+specified, instead of the actual foreground color the line will be drawn
+with the color color.
 
 By default LINE draws with anti-aliasing. For details, see: Xiaolin Wu’s
-line algorithm
+line algorithm. To turn off anti-aliasing, add this to the start of your
+program:
 
-To turn off anti-aliasing, add this to the start of your program:
+    option predef antialias off
 
-     option predef antialias off
+Example 1: Line defined by two points
+
+    line 20, 20, 100, 100
+
+Example 2: Line defined using STEP
+
+    line 20, 20, STEP 80,80                      ' Line starts at point (20,20) 
+                                                 ' and ends at point (20+80, 20+80) -> (100,100)
+    line STEP -80, -70, STEP 80,80               ' Line starts at last graphics cursor position 
+                                                 ' plus step values (100-80,100-70) -> (20,30)
+                                                 ' and ends at last graphics cursor position 
+                                                 ' plus step values (20+80, 30+80) -> (100,110)
+    line STEP -80, -70, 100, 120                 ' Line starts at last graphics cursor position 
+                                                 ' plus step values (100-80,110-70) -> (20,40)
+                                                 ' and ends at the point (100,120) 
+
+Example 3: Using colors
+
+    line 20, 30, 100, 110 color 2
+    line 20, 40, 100, 120, 3
+    line 20, 50, 100, 130, rgb(0,255,0)
+    line 20, 60, 100, 140 color rgb(0,255,255)
 
 +========================================================================================+
 |                                   89. (Graphics) PAINT                                 |
@@ -6768,17 +6970,19 @@ Example 5
 
 LABEL name
 
-Defines a label. A label marks a position in the code.
+Defines a label with name LabelName. A label marks a position in the
+code. Use GOTO or GOSUB to continue program execution at that label.
 
-There are two kinds of labels, ‘numeric’ and ‘alphanumeric’. Unlike
-‘alphanumeric’ labels, ‘Numeric’ labels do not require the keyword LABEL
+Example
 
-    1000 ? "Hello"
-    ...
-    LABEL AlphaLabel: ? "Hello"
-    ...
-    GOTO 1000
-    GOTO AlphaLabel
+    label FirstLine
+        
+    ii++
+    print ii
+    if(ii == 10) then goto LastLine 
+    goto FirstLine
+
+    label LastLine
 
 +========================================================================================+
 |                                   140. (Language) LET                                  |
@@ -6786,17 +6990,13 @@ There are two kinds of labels, ‘numeric’ and ‘alphanumeric’. Unlike
 
 LET var=expr
 
-Assigns a value to the variable.
+Assigns a value or expression expr to the variable var. LET is used
+mainly for compatibility reasons and not necessary for programming in
+SmallBASIC.
 
--   var - A valid variable name.
--   expr - The value assigned to variable.
+Example
 
     LET x = 4
-    x = 1               ' Without the LET keyword
-    z = "String data"   ' Assign string
-    ...
-    DIM v(4)
-    z=v                 ' Assign array (z = clone of v)
 
 +========================================================================================+
 |                                   141. (Language) LIKE                                 |
@@ -6804,61 +7004,37 @@ Assigns a value to the variable.
 
 a LIKE b
 
-Regular-expression operator. Compares the left part of the expression
-with the right side regex pattern.
+Regular-expression operator. Compares the left part a of the expression
+with the right side regex pattern b and returns true or false.
 
+-   * matches any sequence of characters (zero or more)
+-   ? matches any character
+-   [SET] matches any character in the specified set
+-   [!SET] or [^SET] matches any character not in the specified set
 
-    ' From  Home -- Articles -- Welcome to SmallBASIC -- The operator LIKE :
-    ' LIKE is a regular-expression operator. It is compares the left part of the
-    ' expression with the pattern (right part).
-    '
-    ' Since the original regular expression code is too big (for handhelds),
-    ' I use only a subset of it, based on an excellent old stuff by J. Kercheval
-    ' (match.c, public-domain, 1991).
-    ' But there is an option to use PCRE (Perl-Compatible Regular Expression
-    ' library) on systems that is supported (Linux); ( see OPTION:
-    '
-    '    Statement OPTION MATCH PCRE [CASELESS]|SIMPLE
-    '
-    '     Sets as default matching algorithm to (P)erl-(C)ompatible (R)egular
-    '     (E)xpressions library or back to simple one.
-    '     Matching-algorithm is used in LIKE and FILES.
-    '
-    '     PRCE works only in systems with this library and it must be linked with.
-    '     Also, there is no extra code on compiler which means that SB compiles
-    '     the pattern every time it is used. ).
-    '
-    ' The same code is used for filenames (FILES, DIRWALK) too.
-    ' In the pattern string:
-    '
-    '  *    matches any sequence of characters (zero or more)
-    '  ?    matches any character
-    '  [SET]    matches any character in the specified set,
-    '  [!SET] or [^SET]     matches any character not in the specified set.
-    '
-    ' A set is composed of characters or ranges; a range looks like character
-    ' hyphen character (as in 0-9 or A-Z). [0-9a-zA-Z_] is the minimal set of
-    ' characters allowed in the [..] pattern construct.
-    '
-    ' To suppress the special syntactic significance of any of "[]*?!^-\\",
-    ' and match the character exactly, precede it with a  '\\'.
-    ? "Hello" LIKE "*[oO]" : REM TRUE
-    ? "Hello" LIKE "He??o" : REM TRUE
-    ? "Hello" LIKE "hello" : REM FALSE
-    ? "Hello" LIKE "[Hh]*" : REM TRUE
-    ' Few more...
-    ?
-    ? "-[Hello]-" Like "\\-\\[?*\\]\\-" ' True
-    ? Cbs("\\nFiles which start with Capital letter or _:\\n"); Files("[A-Z_]*")
-    ? Cbs("\\nFiles which are NOT .bas or .BAS files:\\n"); Files("*[!.bas][!.BAS]")
-    If "It wasn't> me!" Like "*<[!/]?*>*</?*>*" Then
-      ? Cbs("\\nTrue, someone is using HTML tag...!")
-    Fi
-    link = "See also: http://www.regular-expressions.info/examples.html for demos."
-    If link Like "*http*://?*.?*" Then
-      ? Cbs("\\nTrue, someone is advertising on our site...!")
-    Fi
-    Pause
+A set is composed of characters or ranges. A range is defined by
+character - hyphen - character (as in 0-9 or A-Z). [0-9a-zA-Z_] is the
+minimal set of characters allowed in the [..] pattern construct. To
+suppress the special syntactic significance of any of "[]*?!^-\, and
+match the character exactly, precede it with a \\.
+
+For more information about regular-expressions please see
+http://www.regular-expressions.info/examples.html.
+
+Option for matching algorithm
+
+  OPTION MATCH PCRE [CASELESS]|SIMPLE
+
+PCRE sets as default matching algorithm to (P)erl-(C)ompatible (R)egular
+(E)xpressions library or back to simple one with SIMPLE.
+
+Example 1
+
+    print "Hello" LIKE "*[oO]"                ' Output 1
+    print "Hello" LIKE "He??o"                ' Output 1
+    print "Hello" LIKE "hello"                ' Output 0
+    print "Hello" LIKE "[Hh]*"                ' Output 1
+    print "-[Hello]-" Like "\\-\\[?*\\]\\-"   ' Output 1
 
 +========================================================================================+
 |                                  142. (Language) LOCAL                                 |
@@ -6866,45 +7042,31 @@ with the right side regex pattern.
 
 LOCAL
 
-Declare local variables inside a SUB or FUNC. Local variables no longer
-exist once the SUB or FUNC has returned.
+Declare local variables inside a SUB or FUNC. Local variables are
+independent of global variables of the same name.
 
+If inside a sub or a function a local variable with the same name as an
+already existing global variabale is declared, the global variable can’t
+be accessed inside that function or sub. Changing the local varibale
+will not change the global variable.
 
-    ' LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
-    'with the LOCAL keyword varaibles are treated separately 
-    'from those in main code with the same name even in a GOSUB
-    var=1
-    ? "var before GOSUB gs1000 ";var
-    GOSUB gs1000
-    ? "var after return from GOSUB gs1000 ";var
-    ?
-    var=1
-    ? "var before GOSUB LOCAL_gs1000 ";var
-    GOSUB LOCAL_gs1000
-    ? "var after return from GOSUB LOCAL_gs1000 ";var
-    pause
-    end
-    label gs1000
-    var=1000
-    return
-    label LOCAL_gs1000
-    local var
-    var=1000
-    return
+Local variables no longer exist once the SUB or FUNC has returned.
 
+Use local variables insides subs or functions to make sure, that global
+variables with the same names are not accidentally changed.
 
-    ' DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
-    'can I use DEF locally in a sub without interfering with main variable or DEF names
-    def aboutMe() = "I am texting from main code."
-    ? "Hi, ";aboutMe
-    mySub
-    ? "Goodbye, ";aboutMe
-    pause
-    sub mySub()
-      'local def aboutMe() = "I am texting from mySub." '<=== note: this did not work 
-      local aboutMe
-      def aboutMe() = "I am texting from mySub."
-    ? "Hi, ";aboutMe
+Example:
+
+    A = 1   ' global variable
+
+    print "Global variable before sub: A="; A
+    MySub()
+    print "Global variable after sub : A="; A
+
+    sub MySub()
+        local A    ' Comment this line to see the effect of a local variable
+        A = 2
+        print "Local variable inside sub : A="; A
     end
 
 +========================================================================================+
@@ -6913,24 +7075,20 @@ exist once the SUB or FUNC has returned.
 
 result = LSHIFT number, amount
 
-Performs an arithmetic left shift on a bit pattern.
+Performs a bitwise operation that shifts all the bits of x to the left
+by an amount of n.
 
+Example 1:
 
-    ' Tested on 32-bit system (I'm not sure yet about the result on 64-bit system):
-    x = 1                 ' x = 1 (0b1)
-    ? Bin(x)
-    ?
-    x = x Lshift 1        ' Shift-Left x by 1
-    ? Bin(x)
-    x = x Lshift 30       ' Shift-Left x again by 30
-    ? Bin(x)
-    ?
-    x = 1 Lshift 33        ' The same as: x = 1 Lshift (33 Mod 32)
-    ? Bin(x)
-    ?
-    x = 0b1111 Lshift 30   ' The two upper bits are lost (on 32-bit system)
-    ? Bin(x)
-    ? x                    ' x is -1073741824  (on 32-bit system)
+    print 1 lshift 2            ' Output 4
+
+Example 2:
+
+    x = 1 
+    print bin(x)                ' Output: 1
+    print bin(x lshift 1)       ' Output: 10
+    print bin(x lshift 2)       ' Output: 100
+    print bin(x lshift 3)       ' Output: 1000
 
 +========================================================================================+
 |                                   144. (Language) MDL                                  |
@@ -8728,30 +8886,40 @@ Example
 
 LINEQN (a, b [, toler])
 
-Returns an array with the values of the unknowns. This function solves
-equations using the Gauss-Jordan method.
+Solves linear equations using the Gauss-Jordan method.
 
--   b equations
--   b results
--   toler tolerance number. (the absolute value of the lowest acceptable
-    number) default = 0 = none…
+-   A equation coefficience as a matrix
+-   B results of the equations as a column-vector
+-   C result as a Nx1 matrix with the values of the unknowns
+-   toler tolerance number (the absolute value of the lowest acceptable
+    number). Default value is 0 (tolerance not applied).
 
-    |x| <= toler : x = 0
+  One possible problem is numerical instability, caused by the
+  possibility of dividing by very small numbers. If, for example, the
+  leading coefficient of one of the rows is very close to zero, […] one
+  would need to divide by that number. This means that any error existed
+  for the number that was close to zero would be amplified. Wikipedia
 
-The result is a matrix Nx1. The array is two-dimensional.
+The tolerance number can be used to ensure, that no division by numbers
+smaller than toler will be performed.
 
-    print "Solve this:"
-    print "  5x - 2y + 3z = -2"
-    print " -2x + 7y + 5z =  7"
-    print "  3x + 5y + 6z =  9"
-    print
+Example
 
-    A = [ 5, -2, 3; -2, 7, 5; 3, 5, 6]
-    B = [ -2; 7; 9]
+    ' Solve:
+    '  x -  y + 2z =  6
+    ' 2x + 3y + 2z = 11
+    ' 3x + 2y +  z =  8
 
-    C = LinEqn(A, B)
+    A = [1,-1,2; 2,3,2; 3,2,1]
+    B = [6; 11; 8]
 
-    print "[x;y;z] = "; C
+    C = LINEQN(A, B)
+
+    print "x = "; C(0,0)
+    print "y = "; C(0,1)
+    print "z = "; C(0,2)
+
+    ' Output: x = 1; y = 1; z = 3
 
 +========================================================================================+
 |                                     210. (Math) LOG                                    |
@@ -8761,11 +8929,13 @@ LOG (x)
 
 Returns the natural logarithm of x.
 
+Example:
+
     a = exp(2)
-    print a
+    print a       ' Output: 7.389....
 
     b = log(a)
-    print b
+    print b       ' Output: 2
 
 +========================================================================================+
 |                                    211. (Math) LOG10                                   |
@@ -8775,11 +8945,13 @@ LOG10 (x)
 
 Returns the base-10 logarithm of x.
 
+Example:
+
     a = 10^2
-    print a
+    print a       ' Output: 100
 
     b = log10(a)
-    print b
+    print b       ' Output: 2
 
 +========================================================================================+
 |                                   212. (Math) M3APPLY                                  |
@@ -10489,7 +10661,12 @@ Example
 
 LCASE (s)
 
-Converts the string s to lower case.
+Converts the string s to a lower case string ls.
+
+Example
+
+    s = "ABC"
+    print lcase(s)      ' Output: abc
 
 +========================================================================================+
 |                                    263. (String) LEFT                                  |
@@ -10497,8 +10674,14 @@ Converts the string s to lower case.
 
 LEFT (s [,n])
 
-Returns the n number of leftmost chars of string s. if not specified n =
-1.
+Returns the n number of leftmost chars of string s as string ls. If n is
+not specified then n = 1.
+
+Example
+
+    s = "abcdef"
+    print LEFT(s)      ' Output: a
+    print LEFT(s, 3)   ' Output: abc
 
 +========================================================================================+
 |                                   264. (String) LEFTOF                                 |
@@ -10507,33 +10690,14 @@ Returns the n number of leftmost chars of string s. if not specified n =
 LEFTOF (s1, s2)
 
 Returns the left part of s1 at the position of the first occurrence of
-the string s2 into string s1.
+the string s2 in string s1. If s2 does not occure in string s1, an empty
+string will be returned.
 
+Example
 
-    s1 = "small*SMALL*BASIC*basic"
-    s2 = "*"
-    Color 15
-    ? "s1 parameter is:     "; s1
-    ?
-    ? "s2 parameter is:     "; s2
-    ?
-    ?
-    Color 7
-    ? "Leftof(s1, s2)                = "; Leftof(s1, s2)
-    ? "Left(s1, Instr(s1, s2) - 1)   = "; Left(s1, Instr(s1, s2) - 1)
-    ?
-    ? "Leftoflast(s1, s2)            = "; Leftoflast(s1, s2)
-    ? "Left(s1, Rinstr(s1, s2) - 1)  = "; Left(s1, Rinstr(s1, s2) - 1)
-    ?
-    ? "Rightof(s1, s2)               = "; Rightof(s1, s2)
-    ? "Right(s1, Rinstr(s1, s2) - 1) = "; Right(s1, Rinstr(s1, s2) - 1)
-    ?
-    ? "Rightoflast(s1, s2)           = "; Rightoflast(s1, s2)
-    ? "Right(s1, Instr(s1, s2) - 1)  = "; Right(s1, Instr(s1, s2) - 1)
-    ?
-    ?
-    ? "Leftof(s1, s2) + Rightoflast(s1, s2): "; Leftof(s1, s2) + Rightoflast(s1, s2)
-    Pause
+    s1 = "abcdef"
+    s2 = "de"
+    print LEFTOF(s1, s2)      ' Output: abc
 
 +========================================================================================+
 |                                 265. (String) LEFTOFLAST                               |
@@ -10542,7 +10706,14 @@ the string s2 into string s1.
 LEFTOFLAST (s1, s2)
 
 Returns the left part of s1 at the position of the last occurrence of
-the string s2 into string s1.
+the string s2 in string s1. If s2 does not occure in s1, an empty string
+will be returned.
+
+Example
+
+    s1 = "abcdefdeg"
+    s2 = "de"
+    print LEFTOFLAST(s1, s2)      ' Output: abcdef
 
 +========================================================================================+
 |                                   266. (String) LOWER                                  |
@@ -10550,7 +10721,12 @@ the string s2 into string s1.
 
 LOWER (s)
 
-Converts the string s to lower case.
+Converts the string s to the lower-case string lc.
+
+Example:
+
+    s = "TeSt-STrinG"
+    print lower(s)   ' Output: test-string
 
 +========================================================================================+
 |                                   267. (String) LTRIM                                  |
@@ -10559,6 +10735,17 @@ Converts the string s to lower case.
 LTRIM (s)
 
 Removes leading white-spaces from string s.
+
+Example:
+
+    s = "   test   "
+    t = ltrim(s)
+    print "-" + s + "-"
+    print "-" + t + "-"
+
+    ' Output:
+    ' -    test    -
+    ' -test    -
 
 +========================================================================================+
 |                                    268. (String) MID                                   |
@@ -11156,40 +11343,61 @@ Example 6: Creating an eval function
 
 COMMAND
 
-SmallBASIC startup command line options.
+Returns a string s containing the SmallBASIC startup command line
+options.
 
-SDL version (GUI):
+Example 1: SDL version (GUI)
 
 Running the following line from the command line:
 
-    LINUX:   sbasicg -r test.bas "abc xyz fileName"
-    WINDOWS: sbasicg.exe -r test.bas "abc xyz fileName"
+    LINUX:   sbasicg -r test.bas abc xyz fileName
+    WINDOWS: sbasicg.exe -r test.bas abc xyz fileName
 
 When “test.bas” is:
 
-    ? COMMAND
+    PRINT COMMAND
 
 Will print “abc xyz fileName”
 
-Note: Run
+Note: When using the paramter -r in the above shown example, sbasicg
+will from now on always start the programm. If you want, that sbasicg
+starts again in edit-mode, please use the parameter -e
 
     LINUX:   sbasicg -e test.bas
     WINDOWS: sbasicg.exe -e test.bas
 
-to enable ‘Edit’ mode again.
-
-Non-graphical console version (cygwin or linux):
+Example 2: Non-graphical console version (cygwin or linux)
 
 Running the following line from the command line:
 
-    LINUX:   sbasic test.bas "abc xyz fileName"
-    WINDOWS: sbasic.exe test.bas "abc xyz fileName"
+    LINUX:   sbasic test.bas abc xyz fileName
+    WINDOWS: sbasic.exe test.bas abc xyz fileName
 
 When “test.bas” is:
 
-    ?  COMMAND
+    PRINT  COMMAND
 
 Will print “abc xyz fileName”
+
+Example 3: Use SPLIT to separate parameters
+
+    LINUX:   sbasicg -r test.bas abc xyz fileName
+    WINDOWS: sbasicg.exe -r test.bas abc xyz fileName
+
+When “test.bas” is:
+
+    s = COMMAND()
+
+    split s, " ", parameters
+
+    print "First parameter : "; parameters[0]
+    print "Second parameter: "; parameters[1]
+    print "Third parameter : "; parameters[2]
+
+    ' Output:
+    ' First parameter : abc
+    ' Second parameter: xyz
+    ' Third parameter : fileName 
 
 +========================================================================================+
 |                                    291. (System) CWD                                   |

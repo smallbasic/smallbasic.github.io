@@ -1,31 +1,9 @@
 <h1 id="leftof">LEFTOF</h1>
 <blockquote>
-<p>LEFTOF (s1, s2)</p>
+<p>s = LEFTOF (s1, s2)</p>
 </blockquote>
-<p>Returns the left part of s1 at the position of the first occurrence of the string s2 into string s1.</p>
-<pre><code>
-s1 = &quot;small*SMALL*BASIC*basic&quot;
-s2 = &quot;*&quot;
-Color 15
-? &quot;s1 parameter is:     &quot;; s1
-?
-? &quot;s2 parameter is:     &quot;; s2
-?
-?
-Color 7
-? &quot;Leftof(s1, s2)                = &quot;; Leftof(s1, s2)
-? &quot;Left(s1, Instr(s1, s2) - 1)   = &quot;; Left(s1, Instr(s1, s2) - 1)
-?
-? &quot;Leftoflast(s1, s2)            = &quot;; Leftoflast(s1, s2)
-? &quot;Left(s1, Rinstr(s1, s2) - 1)  = &quot;; Left(s1, Rinstr(s1, s2) - 1)
-?
-? &quot;Rightof(s1, s2)               = &quot;; Rightof(s1, s2)
-? &quot;Right(s1, Rinstr(s1, s2) - 1) = &quot;; Right(s1, Rinstr(s1, s2) - 1)
-?
-? &quot;Rightoflast(s1, s2)           = &quot;; Rightoflast(s1, s2)
-? &quot;Right(s1, Instr(s1, s2) - 1)  = &quot;; Right(s1, Instr(s1, s2) - 1)
-?
-?
-? &quot;Leftof(s1, s2) + Rightoflast(s1, s2): &quot;; Leftof(s1, s2) + Rightoflast(s1, s2)
-Pause
-</code></pre>
+<p>Returns the left part of <code>s1</code> at the position of the first occurrence of the string <code>s2</code> in string <code>s1</code>. If <code>s2</code> does not occure in string <code>s1</code>, an empty string will be returned.</p>
+<h3 id="example">Example</h3>
+<pre><code>s1 = &quot;abcdef&quot;
+s2 = &quot;de&quot;
+print LEFTOF(s1, s2)      &#39; Output: abc</code></pre>

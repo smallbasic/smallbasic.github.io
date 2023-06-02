@@ -74,7 +74,42 @@
     </p>
   </div>
 </blockquote>
-<p>Returns the length of file in bytes. For other devices, returns the number of available data.</p>
+<p>Returns the length <code>l</code> of a file with the file handle <code>fileN</code> in bytes. For other devices, returns the number of available data.</p>
+<h3 id="example-1-length-of-a-file">Example 1: Length of a file</h3>
+<pre><code>&#39; create a text file
+open &quot;MyDemoFile.txt&quot; for output as #1
+
+for i = 1 to 10
+    bputc #1, i 
+next
+
+close #1
+
+&#39; open text file and print content byte by byte
+open &quot;MyDemoFile.txt&quot; for input as #1
+
+FileLength = LOF(1)       &#39; lof works only without #
+
+for ii = 1 to  FileLength 
+    c = bgetc(1)
+    print c
+next
+
+close #1</code></pre>
+<h3 id="example-2-get-available-data-for-a-socket-connection">Example 2: Get available data for a socket connection</h3>
+<pre><code>open &quot;SOCL:10000&quot; as #1     &#39; Open socket at port 10000
+
+while (eof(1))              &#39; Loop until connection is closed
+
+    l = lof(1)              &#39; Querry how much data is in the queue
+    if(l) then              &#39; if data is available
+        s = INPUT(l, #1)    &#39; get all data
+        print s
+    endif
+
+wend
+
+close #1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using LOF</div>
     <div class="linklist">
@@ -137,7 +172,7 @@ LOF by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Tue, 30 May 2023 15:32:29 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -1,23 +1,38 @@
 <h1 id="command">COMMAND</h1>
 <blockquote>
-<p>COMMAND</p>
+<p>s = COMMAND</p>
 </blockquote>
-<p>SmallBASIC startup command line options.</p>
-<h3 id="sdl-version-gui">SDL version (GUI):</h3>
+<p>Returns a string <code>s</code> containing the SmallBASIC startup command line options.</p>
+<h3 id="example-1-sdl-version-gui">Example 1: SDL version (GUI)</h3>
 <p>Running the following line from the command line:</p>
-<pre><code>LINUX:   sbasicg -r test.bas &quot;abc xyz fileName&quot;
-WINDOWS: sbasicg.exe -r test.bas &quot;abc xyz fileName&quot;</code></pre>
+<pre><code>LINUX:   sbasicg -r test.bas abc xyz fileName
+WINDOWS: sbasicg.exe -r test.bas abc xyz fileName</code></pre>
 <p>When “test.bas” is:</p>
-<pre><code>? COMMAND</code></pre>
+<pre><code>PRINT COMMAND</code></pre>
 <p>Will print “abc xyz fileName”</p>
-<p>Note: Run</p>
+<p>Note: When using the paramter <code>-r</code> in the above shown example, sbasicg will from now on always start the programm. If you want, that sbasicg starts again in edit-mode, please use the parameter <code>-e</code></p>
 <pre><code>LINUX:   sbasicg -e test.bas
 WINDOWS: sbasicg.exe -e test.bas</code></pre>
-<p>to enable ‘Edit’ mode again.</p>
-<h3 id="non-graphical-console-version-cygwin-or-linux">Non-graphical console version (cygwin or linux):</h3>
+<h3 id="example-2-non-graphical-console-version-cygwin-or-linux">Example 2: Non-graphical console version (cygwin or linux)</h3>
 <p>Running the following line from the command line:</p>
-<pre><code>LINUX:   sbasic test.bas &quot;abc xyz fileName&quot;
-WINDOWS: sbasic.exe test.bas &quot;abc xyz fileName&quot;</code></pre>
+<pre><code>LINUX:   sbasic test.bas abc xyz fileName
+WINDOWS: sbasic.exe test.bas abc xyz fileName</code></pre>
 <p>When “test.bas” is:</p>
-<pre><code>?  COMMAND</code></pre>
+<pre><code>PRINT  COMMAND</code></pre>
 <p>Will print “abc xyz fileName”</p>
+<h3 id="example-3-use-split-to-separate-parameters">Example 3: Use SPLIT to separate parameters</h3>
+<pre><code>LINUX:   sbasicg -r test.bas abc xyz fileName
+WINDOWS: sbasicg.exe -r test.bas abc xyz fileName</code></pre>
+<p>When “test.bas” is:</p>
+<pre><code>s = COMMAND()
+
+split s, &quot; &quot;, parameters
+
+print &quot;First parameter : &quot;; parameters[0]
+print &quot;Second parameter: &quot;; parameters[1]
+print &quot;Third parameter : &quot;; parameters[2]
+
+&#39; Output:
+&#39; First parameter : abc
+&#39; Second parameter: xyz
+&#39; Third parameter : fileName </code></pre>

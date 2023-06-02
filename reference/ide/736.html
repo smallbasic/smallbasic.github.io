@@ -1,24 +1,31 @@
 <h1 id="lineqn">LINEQN</h1>
 <blockquote>
-<p>LINEQN (a, b [, toler])</p>
+<p>C = LINEQN (A, B [, toler])</p>
 </blockquote>
-<p>Returns an array with the values of the unknowns. This function solves equations using the Gauss-Jordan method.</p>
+<p>Solves linear equations using the Gauss-Jordan method.</p>
 <ul>
-<li>b equations</li>
-<li>b results</li>
-<li>toler tolerance number. (the absolute value of the lowest acceptable number) default = 0 = none…</li>
+<li><code>A</code> equation coefficience as a matrix</li>
+<li><code>B</code> results of the equations as a column-vector</li>
+<li><code>C</code> result as a Nx1 matrix with the values of the unknowns</li>
+<li><code>toler</code> tolerance number (the absolute value of the lowest acceptable number). Default value is <code>0</code> (tolerance not applied).</li>
 </ul>
-<pre><code>|x| &lt;= toler : x = 0</code></pre>
-<p>The result is a matrix Nx1. The array is two-dimensional.</p>
-<pre><code>print &quot;Solve this:&quot;
-print &quot;  5x - 2y + 3z = -2&quot;
-print &quot; -2x + 7y + 5z =  7&quot;
-print &quot;  3x + 5y + 6z =  9&quot;
-print
+<blockquote>
+<p>One possible problem is numerical instability, caused by the possibility of dividing by very small numbers. If, for example, the leading coefficient of one of the rows is very close to zero, […] one would need to divide by that number. This means that any error existed for the number that was close to zero would be amplified. <a href="https://en.m.wikipedia.org/wiki/Gaussian_elimination">Wikipedia</a></p>
+</blockquote>
+<p>The tolerance number can be used to ensure, that no division by numbers smaller than <code>toler</code> will be performed.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; Solve:
+&#39;  x -  y + 2z =  6
+&#39; 2x + 3y + 2z = 11
+&#39; 3x + 2y +  z =  8
 
-A = [ 5, -2, 3; -2, 7, 5; 3, 5, 6]
-B = [ -2; 7; 9]
+A = [1,-1,2; 2,3,2; 3,2,1]
+B = [6; 11; 8]
 
-C = LinEqn(A, B)
+C = LINEQN(A, B)
 
-print &quot;[x;y;z] = &quot;; C</code></pre>
+print &quot;x = &quot;; C(0,0)
+print &quot;y = &quot;; C(0,1)
+print &quot;z = &quot;; C(0,2)
+
+&#39; Output: x = 1; y = 1; z = 3</code></pre>
