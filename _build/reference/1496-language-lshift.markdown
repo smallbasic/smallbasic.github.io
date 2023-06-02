@@ -1,30 +1,21 @@
 # LSHIFT
 
-> result = LSHIFT number, amount
+> result = x LSHIFT n
 
-Performs an arithmetic left shift on a bit pattern.
+Performs a bitwise operation that shifts all the bits of `x` to the left by an amount of `n`.
 
+### Example 1:
 
+```
+print 1 lshift 2            ' Output 4
+```
 
+### Example 2:
 
-~~~
-
-' Tested on 32-bit system (I'm not sure yet about the result on 64-bit system):
-x = 1                 ' x = 1 (0b1)
-? Bin(x)
-?
-x = x Lshift 1        ' Shift-Left x by 1
-? Bin(x)
-x = x Lshift 30       ' Shift-Left x again by 30
-? Bin(x)
-?
-x = 1 Lshift 33        ' The same as: x = 1 Lshift (33 Mod 32)
-? Bin(x)
-?
-x = 0b1111 Lshift 30   ' The two upper bits are lost (on 32-bit system)
-? Bin(x)
-? x                    ' x is -1073741824  (on 32-bit system)
-
-~~~
-
-
+```
+x = 1 
+print bin(x)                ' Output: 1
+print bin(x lshift 1)       ' Output: 10
+print bin(x lshift 2)       ' Output: 100
+print bin(x lshift 3)       ' Output: 1000
+```

@@ -2,7 +2,7 @@
 
 SmallBASIC supports a number of escape codes for controlling the display. The codes allow you to set foreground and background colors, change the font and also set underline and inverse text display. The escape codes are based on [ANSI Codes](http://en.wikipedia.org/wiki/ANSI_escape_code).
 
-## The supported standard codes are:
+## Supported standard codes
 
 ```
   \a      beep
@@ -27,9 +27,9 @@ SmallBASIC supports a number of escape codes for controlling the display. The co
   \e[nm   n colors - 30..37 foreground, 40..47 background
 ```
 
-## Using the escape codes directly
+## Using escape codes directly
 
-The instead of `\e` the CHR command is useful for obtaining and printing the escape character (ASCII 27)
+Instead of `\e` the command CHR(27) is useful for obtaining and printing the escape character.
 
 ```Freebasic
 PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
@@ -43,9 +43,9 @@ PRINT "First line\nSecond Line"
 
 ## Using the EscapeCode Unit
 
-The EscapeCode Unit makes it easier to use escape codes and to deal with different colors for foreground and background. The unit can be downloaded  or copy pasted from the [SmallBASIC Github website](https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas). Please save the unit in the same directory as you basic file.
+The EscapeCode Unit makes it easier to use escape codes and to deal with different colors for foreground and background. The unit can be downloaded  or copy pasted from the [SmallBASIC Github website](https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas). Please save the unit in the same directory as your basic file.
 
-Here an example on how to use the unit.
+Here an example on how to use the unit:
 
 ```Freebasic
 ' SmallBASIC 12.25

@@ -1,31 +1,38 @@
 # LINEQN
 
-> LINEQN (a, b [, toler])
+> C = LINEQN (A, B [, toler])
 
-Returns an array with the values of the unknowns. This function solves equations using the Gauss-Jordan method.
+Solves linear equations using the Gauss-Jordan method.
 
-- b equations
-- b results
-- toler tolerance number. (the absolute value of the lowest acceptable number) default = 0 = none...
+- `A` equation coefficience as a matrix
+- `B` results of the equations as a column-vector
+- `C` result as a Nx1 matrix with the values of the unknowns
+- `toler` tolerance number (the absolute value of the lowest acceptable number). Default value is `0` (tolerance not applied).
+
+>One possible problem is numerical instability, caused by the possibility
+>of dividing by very small numbers. If, for example, the leading coefficient of one of the rows is very
+>close to zero, [...] one would need to divide by that number. This means that any error existed for
+>the number that was close to zero would be amplified. [Wikipedia](https://en.m.wikipedia.org/wiki/Gaussian_elimination)
+
+The tolerance number can be used to ensure, that no division by numbers smaller than `toler` will be performed. 
+
+### Example
 
 ```
-|x| <= toler : x = 0
-```
+' Solve:
+'  x -  y + 2z =  6
+' 2x + 3y + 2z = 11
+' 3x + 2y +  z =  8
 
-The result is a matrix Nx1. The array is two-dimensional.
+A = [1,-1,2; 2,3,2; 3,2,1]
+B = [6; 11; 8]
 
-```
-print "Solve this:"
-print "  5x - 2y + 3z = -2"
-print " -2x + 7y + 5z =  7"
-print "  3x + 5y + 6z =  9"
-print
+C = LINEQN(A, B)
 
-A = [ 5, -2, 3; -2, 7, 5; 3, 5, 6]
-B = [ -2; 7; 9]
+print "x = "; C(0,0)
+print "y = "; C(0,1)
+print "z = "; C(0,2)
 
-C = LinEqn(A, B)
-
-print "[x;y;z] = "; C
+' Output: x = 1; y = 1; z = 3
 ```
 
