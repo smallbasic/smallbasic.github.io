@@ -1,14 +1,18 @@
 # M3TRANS
 
-> M3TRANS BYREF m3x3, Tx, Ty
+> M3TRANS BYREF M, Tx, Ty
 
-Multiply the given matrix by a 3x3 translation matrix.
+Multiply the 2D transformation matrix `M` by a translation matrix. `Tx` and `Ty` are the translations in x and y direction. `M` is a 3x3 matrix.
+
+The translation matrix has the form
 
 ```
          |  1  0  Tx |
 MTrans = |  0  1  Ty |
          |  0  0  1  |
 ```
+
+### Example
 
 ```
 DIM M(2,2)
