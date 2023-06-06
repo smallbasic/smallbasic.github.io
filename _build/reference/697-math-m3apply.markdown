@@ -1,8 +1,10 @@
 # M3APPLY
 
-> M3APPLY m3x3, BYREF poly
+> M3APPLY M, BYREF poly
 
-Apply matrix to poly-line.
+Apply 2D transformation matrix `M` to poly-line `poly`. Transformation matrix `M` is a 3x3 matrix.
+
+### Example 
 
 ```
 DIM M(2,2)
