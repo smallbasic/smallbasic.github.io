@@ -1,10 +1,11 @@
 # M3ROTATE
 
-> M3ROTATE BYREF m3x3, angle [, x, y]
+> M3ROTATE BYREF M, angle [, x, y]
 
-Multiply the given matrix by a rotation matrix with an angle and a rotation center x,y.
+Multiply the 2D transformation matrix `M` by a rotation matrix with an angle `angle` and a rotation center `x`,`y`. `M` is a 3x3 matrix.
 
-If x = 0 and y = 0:
+If x = 0 and y = 0 the rotation matrix has the form:
+
 ```
        | cos(angle) -sin(angle)  0 |
 MRot = | sin(angle)  cos(angle)  0 |
@@ -12,11 +13,14 @@ MRot = | sin(angle)  cos(angle)  0 |
 ```
 
 else:
+
 ```
        | cos(angle) -sin(angle)  (1 - cos(angle))*x + sin(angle) * y |
 MRot = | sin(angle)  cos(angle)  (1 - cos(angle))*y - sin(angle) * x |
        | 0           0           1 |
 ```
+
+### Example
 
 ```
 DIM M(2,2)
