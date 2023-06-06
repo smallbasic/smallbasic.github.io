@@ -1,14 +1,18 @@
 # M3IDENT
 
-> M3IDENT BYREF m3x3
+> M3IDENT BYREF M
 
-Resets matrix (Identity).
+Creates a 3x3 Identity matrix `M`:
 
 ```
     |1  0  0|
 M = |0  1  0|
     |0  0  1|
 ```
+
+The Identy matrix can be used with M3TRANS, M3SCALE, M3ROTATE and M3APPLY to perform 2D transformations of a poly-line.
+
+### Example
 
 ```
 DIM M(2,2)
