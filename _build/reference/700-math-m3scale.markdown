@@ -1,14 +1,26 @@
 # M3SCALE
 
-> M3SCALE BYREF m3x3, x, y, Sx, Sy
+> M3SCALE BYREF M, Ox, Oy, Sx, Sy
 
-Multiply the given matrix by a scale matrix. Sx and Sy are the scaling factors in x and y direction.
+Multiply the 2D transformation matrix `M` by a scale matrix. `Sx` and `Sy` are the scaling factors in x and y direction. `Ox` and `Oy` define the position of the origin. 
+
+If `Ox = 0` and `Oy = 0` then the scaling matrix `M` has the form:
 
 ```
-         | Sx  0  0|
-MScale = | 0  Sy  0|
-         | 0   0  1|
+         |Sx  0  0|
+MScale = |0  Sy  0|
+         |0   0  1|
 ```
+
+else:
+
+```
+         |1 0 Ox|   |Sx  0 0|   |1 0 -Ox|   |Sx  0 (1 - Sx) * Ox|   
+MScale = |0 1 Oy| * | 0 Sy 0| * |0 1 -Oy| = | 0 Sy (1 - Sy) * Oy|
+         |0 0  1|   | 0  0 1|   |0 0   1|   | 0  0             1|
+```
+
+### Example
 
 ```
 DIM M(2,2)
