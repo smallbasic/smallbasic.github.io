@@ -1,48 +1,49 @@
 # NOT
 
-> a NOT b
+> y = NOT {a|expr}
 
-Invert expression result. Equivalent syntax to the exclamation character, eg a ! b
+Logical operator to invert variable or expression result. Equivalent syntax to `y = !a`. NOT returns true if variable or expression result is false or zero. Otherwise it returns false.
 
-NOT and ! take only the right side argument:
-NOT b
-! b
-It's wrong to think that the left side argument (a) is part of the result.
-And in some cases it leads to an error, for example:
+For bitwise NOT use the ~ operator.
 
-~~~
-PRINT  BIN(1 Not 1) ' <-- this is error
-~~~
+### Example 1:
 
-Binary operators work on 2 arguments a,b: +,-,*,/^ are all binary operators needing 2 arguments to do their thing.
-shian is saying NOT or ! is NOT Binary but Unary using only 1 argument located at right of NOT or !
-So it is very misleading to show a NOT b If you actually try to print that you will get an error using (a not b) and gobbley-gook for ? a not b
+```
+print not true    ' Output: 0
+print not 100     ' Output: 0
+print not false   ' Output: 1
+print not 0       ' Output: 1
+```
 
-~~~
-'NOT is a Unary operator.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
-'it makes anything true > false = 0
-'it makes the one false=0 > true (and in SmallBASIC returns 1 as C developer would have it)
-? !true      'returns 0
-? NOT false  'returns 1
-b=45
-? b;"=b" '45 of course
-? !b;"=!b"  '<===========  important one, normal use of ! or NOT output is 0
-a=20
-? a;"=a" '20 of course
-'uncomment next line to see error,
-'? (a NOT b);" (a!b) should error because ! only works on b" '(EXPR): Missing ')'
-pause
+### Example 2: NOT in an if statement
 
-~~~
+```
+IsRunning = false                ' Replace with true
+if(NOT IsRunning) then print "Program is not running"
+```
 
-Thanks shian, on my own I would never have noticed this.
-to be precise: NOT is not Bitwise operator, it is a logical operator.
+```
+a = 0             ' Replace i.e. 10
+if(NOT a) then print "Value is zero"
+```
 
-There are two versions of NOT:
-NOT, which is logical not,
-~, which is bitwise not.
+### Example 3: Bitwise NOT using ~
 
-Both are using only the right side expression: NOT(b), ~(b)
-NOT inverts the expression b (e.g. true --> false)
-~  inverts each bit in b (e.g. 01011 --> 10100)
+The NOT-operation performs a bitwise inversion on all bits of a number. This leads to the following (maybe unexpected) result:
 
+```
+print bin(~0b1001)      ' Output: 11111111111111111111111111110110
+```
+
+### Example 4: Operate bitwise NOT only on last n bits
+
+If you want to operate NOT only on the last `n` bits of the numbers, you can use the following code:
+
+```
+n = 4
+a = 0b1010
+
+print bin((~a) BAND ((1 lshift n ) - 1)) 
+
+' Output 101
+```
