@@ -13,7 +13,7 @@ Truth table:
 | 1 | 0 | 1       |
 | 1 | 1 | 1       |
 
-Example 1:
+### Example:
 
 ```
 print "1001 BOR 1110 = "; bin(0b1001 BOR 0b1100)
