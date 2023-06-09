@@ -1,8 +1,10 @@
 # OCT
 
-> OCT (x)
+> s = OCT (x)
 
-Returns the octal value of x as string.
+Returns the octal value of `x` as string.
+
+### Example:
 
 ```
 print hex(255)      ' output: FF
