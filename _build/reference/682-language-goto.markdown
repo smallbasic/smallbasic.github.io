@@ -8,6 +8,8 @@ GOTO is known to create "spaghetti code", i.e. winding code which is
 hard to follow, to understand, and to maintain. IF...THEN, SELELCT CASE,
 SUB, FUNC and DEF are much better ways to write branching code.
 
+See ON for `ON n GOTO Label1` for branching depending on a number `n`.
+
 ### Example 1
 
 ```
