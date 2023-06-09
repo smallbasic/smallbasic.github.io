@@ -9,6 +9,8 @@ to the command immediately following the most recent GOSUB command.
 GOSUB should be used with caution. Using subroutines is more versatile
 and much easier to read.
 
+See ON for `ON n GOSUB Label1` for branching depending on a number `n`.
+
 ### Example 1: Using GOSUB
 
 ~~~
