@@ -21,6 +21,9 @@ Returns pen, mouse or tap data depending on `value`.
 
 PEN must be enabled prior to use of this function with `Pen ON|OFF`
 
+Most important values are 3, 4 and 5. With `PEN(3)` you will know, if the left mouse button was pressed or the screen was tapped.
+With `PEN(4)` and `PEN(5)` you will get the coordinates of that click or tap. See example 2 and 3.
+
 ### Example 1: Overview
 
 ```
@@ -75,6 +78,7 @@ pen on
 
 print "Press left mouse button or tab screen. Press q to quit."
 
+' Define button
 button.x = 100
 button.y = 100
 button.w = 100
@@ -82,13 +86,16 @@ button.h = 100
 
 while(1)
 
+    ' Draw button in dark yellow
     rect button.x, button.y STEP button.w, button.h color 6 filled
           
     if(pen(3)) then
         PosX = pen(4)
         PosY = pen(5)
         
+        ' Check if the click or tap is inside the button area
         if( (PosX > button.x) and (PosX < button.x + button.w) and (PosY > button.y) and (PosY < button.y + button.h) )
+            ' Draw button in red
             rect button.x, button.y STEP button.w, button.h color 12 filled 
         endif
         
