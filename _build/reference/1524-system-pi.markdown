@@ -1,8 +1,12 @@
 # PI
 
-> PI
+> n = PI
 
-Holds PI
+Returns PI. See: [Wikipedia](https://en.wikipedia.org/wiki/Pi)
 
-See: <https://en.wikipedia.org/wiki/Pi>
+### Example
 
+```
+print PI            ' Output 3.1415...
+print cos(2*PI)     ' Output: 1
+```
