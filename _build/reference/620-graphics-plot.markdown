@@ -2,21 +2,16 @@
 
 > PLOT xmin, xmax USE f(x)
 
-Graph of f(x).
+Plots the graph of `f(x)` in the range from `xmin` to `xmax`. The variable must be `x`.
 
+### Example
 
-PLOT 0, 2*PI USE SIN(x)
+```
+' Set wite background and drawing color to red
+color rgb(255,0,0), rgb(255,255,255)
+cls
 
-Apparently we are now plotting with black dots as default on default black background, so need a COLOR call to see the dots.
-
-~~~
-
-'plot test.bas from SmallBASIC ie PLOT minx, maxx, use f(x)
-color 0,15:cls  '<=========== plot use to work without need for this
-PLOT 0, 2*PI USE SIN(x)
-PLOT 0, 2*PI USE rnd*sin(x) '<==== this is cool!
-pause
-
-~~~
-
-
+' Define function and plot
+def f(x) = sin(x)
+plot 0, 2*pi USE f(x)
+```
