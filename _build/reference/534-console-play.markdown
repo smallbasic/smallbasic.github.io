@@ -7,7 +7,7 @@ Play musical notes. The music string is composed of the following building block
 
 | String               | Description                               
 | :-------------------:|:------------------------------------------
-| `A-G[-|+|#][nnn][.]` | Play note A..G, +|# is sharp, - is flat, . is multiplier 1.5
+| A-G[-|+|#][nnn][.]   | Play note A..G, +|# is sharp, - is flat, . is multiplier 1.5
 | On                   | Octave n = 0..6,  n = < moves down one octave, n = > moves up one octave
 | Nn                   | Play note n = 0..84 (0 = pause)
 | Pn                   | Pause n = 1..64
