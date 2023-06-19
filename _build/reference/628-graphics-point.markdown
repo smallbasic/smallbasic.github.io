@@ -1,75 +1,103 @@
 # POINT
 
-> POINT (x [, y])
+> n = POINT (x [, y])
 
-Returns the color of the pixel at x,y.
+Returns the color of the pixel at `x`,`y`.
 
+If the y-argument is not specified, `x` specifies the following info-code:
+- 0: returns the current graphics cursor X-position
+- 1: returns the current graphics cursor Y-position
 
-If the y argument is not specified, x specifies the following info-code:
-0 = returns the current X graphics position
-1 = returns the current Y graphics position
+### Example 1: Get color
+
+```
+print point(100,100)        ' Output: -2038815
+```
+
+### Example 2: Get graphics cursor position
+
+```
+x = point(0)
+y = point(1)
+print "Initial position: "; x, y     ' Output: 0,0
+
+line STEP 50,50 STEP 50,50
+
+x = point(0)
+y = point(1)
+print "Position after STEP: "; x, y  ' Output: 100,100
+```
+
+### Example 3
 
 This demonstrates saving a screen section and redrawing it at different places on screen, a tiling and a moving across the screen.
 
-~~~
-
+```
 ' POINT demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-07
 for objects = 1 to 300
-  if rnd>.5 then
-    circle rnd*xmax\\1, rnd*ymax\\1, rnd*50\\1, rnd*5, rnd*16/1 
+  if rnd > 0.5 then
+    circle rnd*xmax\1, rnd*ymax\1, rnd*50\1, rnd*5, rnd*16/1 
   else
-    rect rnd*xmax\\1, rnd*ymax\\1 step rnd*50\\1, rnd*50\\1, rnd*16/1
+    rect rnd*xmax\1, rnd*ymax\1 step rnd*50\1, rnd*50\1, rnd*16/1
   end if  
 next
-at 0,ymax-2*txth("Q"):?" press any..."
+
+at 0, ymax - 2*txth("Q") : print " press any..."
 showpage
 pause
-xw=350:yh=250
-bottle 0,0,xw,yh
+
+xw = 350
+yh = 250
+bottle 0, 0, xw, yh
 cls
-for y=0 to ymax step yh
-  for x=0 to xmax step xw
-    pour x,y,xw,yh
+
+for y = 0 to ymax step yh
+  for x = 0 to xmax step xw
+    pour x, y, xw, yh
     showpage
   next
 next
-at 0,ymax-2*txth("Q"):?" press any..."
+
+at 0, ymax - 2*txth("Q"): print " press any..."
 showpage
 pause
 cls
-for x=0 to xmax step 25
+
+for x = 0 to xmax step 25
   cls
-  pour x,ymax\\2-yh\\2,xw,yh
+  pour x, ymax\2 - yh\2, xw, yh
   showpage
   delay 10
 next
-at 0,ymax-2*txth("Q"):?"done, press any... "
+
+at 0, ymax - 2*txth("Q") : print "done, press any... "
 showpage
 pause 
-sub bottle(xleft,ytop,xwidth,yheight)
-  local x,y
-  dim screensection(xwidth,yheight)
-  for y=ytop to (ytop+yheight-1)
-    for x=xleft to (xleft+xwidth-1)
-      screensection(x,y)=POINT(x,y)
+
+sub bottle(xleft, ytop, xwidth, yheight)
+  local x, y
+  dim screensection(xwidth, yheight)
+  for y = ytop to (ytop + yheight - 1)
+    for x = xleft to (xleft + xwidth - 1)
+      screensection(x, y) = POINT(x, y)
     next
   next
 end
-sub pour(xoff,yoff,xwidth,yheight)
-  local x,y
-  for y=0 to yheight
-    for x=0 to xwidth
-      colr=screensection(x,y)
-      pset x+xoff,y+yoff,colr
+
+sub pour(xoff, yoff, xwidth, yheight)
+  local x, y
+  for y = 0 to yheight
+    for x = 0 to xwidth
+      colr = screensection(x, y)
+      pset x + xoff, y + yoff, colr
     next
   next
 end 
+```
 
-~~~
+### Example 4: Get graphics cursor and color 
 
-
-~~~
-
+```
 ' Note: POINT(x, y) returns the color of the pixel at x,y. But it's
 '       also possible to use POINT(0) and POINT(1) to return the current
 '       X,Y graphics position...:
@@ -105,7 +133,6 @@ For b = 7 To 1 Step -1   ' b = Background color
   Showpage
 Next
 Pause
-
-~~~
+```
 
 
