@@ -1,17 +1,58 @@
 # PRINT
 
-> PRINT [USING [format];] [expr|str [,|; [expr|str]] ...
+> PRINT [expr|str [,|; [expr|str] ...]  [USING [format];]
 
-Display text or the value of an expression.
+Display numbers, strings or values of expressions.
 
-**PRINT SEPARATORS**
+### Example 1: Basic usage
 
-------- ----------------------------------------- 
-TAB(n)  Moves cursor position to the nth column.
-SPC(n)  Prints a number of spaces specified by n.
-;       Carriage return/line feed suppressed after printing.
-,       Carriage return/line feed suppressed after printing.
-------- ----------------------------------------- 
+```
+print 1                             ' Output: 1
+print 1+1                           ' Output: 2
+print cos(pi)                       ' Output: -1
+print "Text"                        ' Output: Text
+```
+
+### Example 2: Print strings and numbers
+
+```
+print "abc" + "def"                 ' Output: adcdef
+print "abc" + " def"                ' Output: abc def
+print "abc" + 1 + "def" + cos(pi)   ' Output: abc1def-1
+print "abc" + 1 + 1 + "def"         ' Output: abc11def  <- 1 + 1 is treated as a string
+```
+
+### Example 3: Print strings and variables
+
+```
+a = 1
+b = 2
+c = a + b
+print "a = " + a                    ' Output a = 1
+print "b = " + b                    ' Output b = 2
+print "a + b = " + c                ' Output c = 3
+```
+
+# PRINT SEPARATORS
+
+| Separator | Description
+|:---------:|:---------------------------------------- 
+| TAB(n)    | Moves cursor position to the nth column.
+| SPC(n)    | Prints a number of spaces specified by n.
+| ;         | Separates numbers, expressions or string
+| ,         | Separates numbers, expressions or string and insert one TAB
+
+if ; and , are used as last character of a print command, carriage return/line feed (new line) will be suppressed after printing.
+
+### Example 1: Using TAB and SPC
+
+```
+print "1" + tab(5) + "2"       ' Output 1    2
+print "1" + spc(1) + "2"       ' Output 1 2
+```
+
+
+
 
 **PRINT USING**
 
