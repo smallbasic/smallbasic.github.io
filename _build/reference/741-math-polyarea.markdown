@@ -1,9 +1,13 @@
 # POLYAREA
 
-> POLYAREA (poly)
+> a = POLYAREA (poly)
 
-Returns the area of the polyline poly. The algebraic sign of the area is positive for counterclockwise ordering of vertices in x-y plane;
+Returns the area of the polyline `poly`. The algebraic sign of the area is positive for counterclockwise ordering of vertices in x-y plane;
 otherwise negative.
+
+See DRAWPOLY for more information on how to define the polyline.
+
+### Example
 
 ```
 polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
