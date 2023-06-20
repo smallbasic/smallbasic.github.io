@@ -1,8 +1,12 @@
 # PRINT
 
-> PRINT [USING [format];] [expr|str [,|; [expr|str] ...]
+> PRINT [#file] [USING [format];] [expr|str [,|; [expr|str] ...]
 
 Display numbers, strings or values of expressions. The symbol `?` can be used instead of keyword PRINT. You can use USG instead of USING.
+
+If a file handle `#file` is given, the output of print will be redirected to the corresponding file. See OPEN for more information on handling files.
+
+To gain more control of where your next PRINT statement will be placed on screen, see LOCATE and AT.
 
 ### Example 1: Basic usage
 
@@ -39,8 +43,8 @@ print "a + b = " + c                ' Output c = 3
 |:---------:|:---------------------------------------- 
 | TAB(n)    | Moves cursor position to the nth column.
 | SPC(n)    | Prints a number of spaces specified by n.
-| ;         | Separates numbers, expressions or string
-| ,         | Separates numbers, expressions or string and insert one TAB
+| ;         | Separates numbers, expressions or strings
+| ,         | Separates numbers, expressions or strings and insert one TAB
 
 If `;` and `,` are used as last character of a print command, carriage return/line feed (new line) will be suppressed after printing.
 
@@ -121,64 +125,45 @@ PRINT USING; b              ' Print with stored string
 
 ## Print using VT100 codes
 
+Escape codes can be used with PRINT. For more information please read the article "Escape codes"
 
-~~~
-REM 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
+
+## More Examples
+
+### Example 1: 3 ways to print hello
+
+```
+' 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
 'It's all in the punctuation at the end of a print statement
-'1) no punctiation  = whole print lines CR=carriage return and LF=line feed, ready to go on next line
-for i=1 to 5
+
+'1) no punctiation  = whole print lines CR=carriage return and
+' LF=line feed, ready to go on next line
+for i = 1 to 5
   print "hello"
 next
-?:? '2 blank lines
+print : print '2 blank lines
 
-'2) a comma which tabs to next avaiable tab column and will stay on same line until run out of coloumns
-for i=1 to 5
+'2) a comma which tabs to next avaiable tab column and will stay
+' on same line until run out of coloumns
+for i = 1 to 5
   print "hello",
 next
-? "& this will finish the hello, line."
-?:? 'the first ?=print will finish the print line, the 2 two are blank lines
+'the first print will finish the print line, the 2 two are blank lines
+print "& this will finish the hello, line."
+print : print 
 
 '3) a semicolon (and space after hello)
-for i=1 to 5
+for i = 1 to 5
   print "hello";" ";  'or just print "hello ";
 next
-? "... this line needs to be finsihed."
-pause
+print "... this line needs to be finsihed."
+```
 
-~~~
+### Example 2: Print to a file
 
-To gain even more control of where your next PRINT statement will end up on screen checkout the older LOCATE keyword and the more modern method of using AT.
-
-~~~
-
-' PRINT can also print to an open file or device (not only to console).
-' Note: new-line (or line-break) character(s) is different on each system:
-'       Windows and DOS uses a pair of CR and LF characters to terminate lines. 
-'       UNIX, Linux, FreeBSD and OS X uses a single LF character only. 
-'       Classic Mac operating system uses a single CR character only.
-'       * CR is CHR(13); LF is CHR(10).
-
-' Print lines to demo file:
-Open "PRINT.TMP" For Output As #1
-Print #1, "hello_1" ' print [hello new-line]
-Print #1, "Hello_2", "Hello_3"  ' print [hello tab hello new-line]
-Print #1, "Hello_4"; "Hello_5"; ' print [hello hello]
-Print #1, ' print [new-line]
-Print #1, ' print [new-line]
-Print #1, ; ' print [].
-Print #1, Using "000 &"; 55, "is my mailbox" ' print [055... new-line]
-? #1, "Hello_?" ' print [Hello_? new-line]
+```
+Open "PRINT.TXT" For Output As #1
+Print #1, "hello"
 Close #1
-' Load lines from demo file and print them to console:
-Open "PRINT.TMP" For Input As #1
-Color 0, 7
-While Not Eof(1) Do
-  Lineinput #1, s
-  Print s
-Wend
-Close #1
-Pause
-
-~~~
-
+```
 
