@@ -2,39 +2,17 @@
 
 > PSET [STEP] x,y [, color| COLOR color]
 
-Draw a pixel.
+Draws a pixel at coordinate `x`,`y` with color `color`. If `color` is not defined, the current foreground color will be used.
+If STEP is used, the graphics cursor will be moved by `x` pixels in x-direction and `y` pixel in y-direction and then the pixel
+will be drawn.
 
+### Example:
 
-~~~
-
-cx=xmax/2  'center x, xmax is built in constant that returns the screen width
-cy=ymax/2  'center y, ymax is built in constant that returns the screen height
-MyColor=RGB(255,128,0)  'orange?
-PSET cx,cy,MyColor   'draws an orange pixel at center of screen
-
-~~~
-
-(see also STEP that works off the last x,y graphic call)
-for instance now that one graphic call is made, we can draw a point 50 pixels directly to the right using STEP
-PSET STEP 50,0,MyColor
-Without a color specified in 3rd argument PSET will use foreground from last COLOR foreground, background statement.
-IF that had never been used it will default to screen printing colors 7,0 (QB scale)
-for Colors see RGB, RGBF, and ... hmmm do we have a QB color sampler?
-Here is QB color chart:
-
-~~~
-
-'QB color chart of 16 colors for 0 = black to 15 = bright white
-dy=ymax/16
-for i=0 to 15
-  rect 0,i*dy,xmax,i*dy+dy,i filled
-  at 0,i*dy:? i;
-next
-pause
-
-~~~
-
-Here is PSET with QB red at center screen:
-PSET xmax/2,ymax/2,12 
-12 is QB red, 9 is blue, 14 is yellow, 7 dull white, 0 black, 8 is darker gray than 7 usually the colors get brighter
-
+```
+color 10                    ' Set foreground color 10
+PSET 50,50                  ' Point at 50,50 with foreground color 
+PSET 60,60, 11              ' Point at 60,60 with color 5
+PSET 70,70 COLOR 12         ' Point at 70,70 with color 6
+PSET 80,80, rgb(255,255,0)  ' Point at 80,80 with color yellow
+PSET STEP 10,10 COLOR 13    ' Point at 90,90 with color 7
+```
