@@ -1,8 +1,8 @@
 # PRINT
 
-> PRINT [expr|str [,|; [expr|str] ...]  [USING [format];]
+> PRINT [USING [format];] [expr|str [,|; [expr|str] ...]
 
-Display numbers, strings or values of expressions.
+Display numbers, strings or values of expressions. The symbol `?` can be used instead of keyword PRINT. You can use USG instead of USING.
 
 ### Example 1: Basic usage
 
@@ -19,7 +19,7 @@ print "Text"                        ' Output: Text
 print "abc" + "def"                 ' Output: adcdef
 print "abc" + " def"                ' Output: abc def
 print "abc" + 1 + "def" + cos(pi)   ' Output: abc1def-1
-print "abc" + 1 + 1 + "def"         ' Output: abc11def  <- 1 + 1 is treated as a string
+print "abc" + 1 + 2 + "def"         ' Output: abc12def  <- 1 and 2 are treated as strings
 ```
 
 ### Example 3: Print strings and variables
@@ -33,7 +33,7 @@ print "b = " + b                    ' Output b = 2
 print "a + b = " + c                ' Output c = 3
 ```
 
-# PRINT SEPARATORS
+## PRINT SEPARATORS
 
 | Separator | Description
 |:---------:|:---------------------------------------- 
@@ -42,39 +42,85 @@ print "a + b = " + c                ' Output c = 3
 | ;         | Separates numbers, expressions or string
 | ,         | Separates numbers, expressions or string and insert one TAB
 
-if ; and , are used as last character of a print command, carriage return/line feed (new line) will be suppressed after printing.
+If `;` and `,` are used as last character of a print command, carriage return/line feed (new line) will be suppressed after printing.
 
-### Example 1: Using TAB and SPC
+In contrast to the `+` operator to concatenate the output as shown in the examples above, the `,` and `;` operators can be used to concatenate
+the output and at the same time evaluate expressions.
+
+### Example 1: Using , and ;
+
+```
+a = 1
+b = 2
+print "a + b = " + a + b    ' Output: a + b = 12      <- a and b treated as strings
+print "a + b = " ; a + b    ' Output: a + b = 3       <- a + b was evaluated
+print "a + b = " , a + b    ' Output: a + b =      3  <- a + b was evaluated
+```
+
+### Example 2: Suppress new line
+
+```
+print "abc";     ' <- new line suppressed
+print "def"
+
+' Output: abcdef
+```
+
+### Example 3: Using TAB and SPC
 
 ```
 print "1" + tab(5) + "2"       ' Output 1    2
 print "1" + spc(1) + "2"       ' Output 1 2
 ```
 
+## PRINT USING
 
+PRINT USING uses the FORMAT function to display numbers and strings. Unlike FORMAT it can also include literals.
 
+When a PRINT USING command is executed the format will remain in memory until a new format is passed. Calling `PRINT USING` without a format string specifies that PRINT will use the format of the previous call.
 
-**PRINT USING**
+Using `_` (underscore) will print the next character as a literal. The combination `_#`, for example, allows you to include a number sign as a literal in your numeric format.
 
-Print USING uses the FORMAT() function to display numbers and strings. Unlike FORMAT it can also include literals.
+See FORMAT for more information on how to define the format string.
 
-* [_] - Print next character as a literal. The combination _#, for example, allows you to include a number sign as a literal in your numeric format.
-* [other] Characters other than the foregoing may be included as literals in the format string.
-
-When a PRINT USING command is executed the format will remains on the memory until a new format is passed. Calling a PRINT USING without a new format specified the PRINT will use the format of previous call.
+### Example 1: Basic usage
 
 ```
-PRINT USING "##: #,###,##0.00";
-FOR i=0 TO 20
-    PRINT USING; i+1, A(i)
-NEXT
-....
-PRINT USING "Total ###,##0 of \\ \\"; number, "bytes"
+a = 1000
+b = 2000
+PRINT USING "#,###.##"; a                    
+PRINT USING "#,###.## "; a; b                ' <- Format is applied to all variables         
+PRINT USING "a = #####.00  b = #####"; a; b  ' <- One formated string with placeholders for two variables
+
+' Output: 1,000.
+' Output: 1,000. 2,000.             
+' Output: a =  1000.00  b =  2000   
 ```
 
-The symbol ? can be used instead of keyword PRINT You can use 'USG' instead of 'USING'.
+### Example 2: Apply format multiple times
 
-quote: **It's all in the punctuation at the end of a print statement**
+```
+a = 1000
+b = 2000
+PRINT USING "#,###.##"      ' Store format string
+
+PRINT        a              ' Print without format
+PRINT USING; a              ' Print with stored string
+PRINT USING; b              ' Print with stored string
+
+PRINT USING "####.00"; a    ' Print with new format string and store string
+PRINT USING; b              ' Print with stored string
+
+' Output:
+' 1000
+' 1,000.
+' 2,000.
+' 1000.00
+' 2000.00
+```
+
+## Print using VT100 codes
+
 
 ~~~
 REM 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
