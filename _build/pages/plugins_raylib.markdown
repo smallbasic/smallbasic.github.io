@@ -297,6 +297,11 @@ rectangle.height = 100
 ```
 rectangle = {x: 0, y: 0, width: 100, height: 100}
 ```
+```
+rectangle = [x, y, width, height]
+rectangle = [0, 0, 100, 100]
+```
+
 
 ### Vector2
 ```
@@ -306,6 +311,11 @@ vector2.y = 0
 ```
 vector2 = {x: 0, y: 0}
 ```
+```
+vector2 = [x, y]
+vector2 = [0, 0]
+```
+
 
 ### Vector3
 ```
@@ -315,6 +325,10 @@ vector3.z = 0
 ```
 ```
 vector3 = {x: 0, y: 0, z: 0}
+```
+```
+vector3 = [x, y, z]
+vector3 = [0, 0, 0]
 ```
 
 
