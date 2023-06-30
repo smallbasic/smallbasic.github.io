@@ -47,7 +47,7 @@ pause           ' make sure, that program will not end
 ### Example 4: Play a sound file
 
 ```
-' Copy a mp3 file the working directory and name it test.mp3
+' Copy a mp3 file to the working directory and name it test.mp3
 
 play "file://test.mp3"
 pause                    ' make sure, that program will not end
