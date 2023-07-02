@@ -1,12 +1,28 @@
 # BAND
 
-> a BAND b
+> y = a BAND b
 
 Bitwise AND.
 
+Truth table:
+
+| a | b | a BAND b |
+|:-:|:-:|:--------:|
+| 0 | 0 | 0        |
+| 0 | 1 | 0        |
+| 1 | 0 | 0        |
+| 1 | 1 | 1        |
+
+See AND for the logical operator.
+
+### Example 1
+
 ```
 print "1011 AND 1101 = "; bin(0b1011 band 0b1101)
+' Output: 1011 AND 1101 = 1001
 ```
+
+### Example 2
 
 The following example will first pack a date into a single integer
 and then unpack the integer to get the original date using bitwise operations.

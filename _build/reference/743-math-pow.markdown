@@ -1,10 +1,12 @@
 # POW
 
-> POW (x, y)
+> n = POW (x, y)
 
-x raised to power of y.
+returns `x` raised to power of `y`.
+
+### Example
 
 ```
-print pow(5,2)   ' same as 5^2
+print pow(5,2)   ' same as 5^2 = 25
 ```
 

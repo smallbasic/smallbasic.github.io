@@ -1,8 +1,10 @@
 # PTDISTLN
 
-> PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
+> d = PTDISTLN (Bx, By, Cx, Cy, Ax, Ay)
 
-Distance of point A from line B, C.
+Distance of point A from line B, C. Point A  is given by the coordinates (`Ax`, `Ay`), B by (`Bx`, `By`) and C by (`Cx`, `Cy`)
+
+### Example 1
 
 ```
 ' Define line
@@ -18,6 +20,8 @@ Ay = 50
 Distance = ptdistln(Bx, By, Cx, Cy, Ax,Ay) 
 print "Distant between line and point is "; Distance  ;" pixel"
 ```
+
+### Example 2: Interactive example to illustrate the geometry of PTDISTLN
 
 ```
 ' Interactive example to illustrate the geometry of PTDISTLN

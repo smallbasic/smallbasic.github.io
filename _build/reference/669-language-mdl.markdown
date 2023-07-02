@@ -1,13 +1,11 @@
 # MDL
 
-> MDL
+> m = x MDL y
 
-Modulus. 
+Returns the modulus. The difference to MOD and % is, that MDL works also with float numbers instead of only integers.
 
-The difference to MOD and % is, that MDL works also with float numbers instead of only integers.
+### Example
 
 ```
-Result =  2.3 MDL 1
-print Result
-'Output: "0.3"
+print 2.3 MDL 1     ' Output: 0.3
 ```

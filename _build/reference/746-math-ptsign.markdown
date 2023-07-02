@@ -1,8 +1,10 @@
 # PTSIGN
 
-> PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
+> s = PTSIGN (Ax, Ay, Bx, By, Qx, Qy)
 
-The sign of point Q from line segment A->B.
+The sign of point Q from line segment A->B. Point Q is given by the coordinates (Qx, Qy), A by (Ax, Ay) and B by (Bx, By).
+
+### Example 1:
 
 ```
 ' Define line
@@ -18,6 +20,8 @@ Ay = 50
 Sign = PTSIGN(Bx, By, Cx, Cy, Ax,Ay) 
 print "Sign of point relative to the line "; Sign
 ```
+
+### Example 2: Interactive example to illustrate the geometry of PTDISTLN
 
 ```
 ' Interactive example to illustrate the geometry of PTDISTLN
