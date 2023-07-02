@@ -1,9 +1,45 @@
 <h1 id="band">BAND</h1>
 <blockquote>
-<p>a BAND b</p>
+<p>y = a BAND b</p>
 </blockquote>
 <p>Bitwise AND.</p>
-<pre><code>print &quot;1011 AND 1101 = &quot;; bin(0b1011 band 0b1101)</code></pre>
+<p>Truth table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">a</th>
+<th style="text-align: center;">b</th>
+<th style="text-align: center;">a BAND b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>See AND for the logical operator.</p>
+<h3 id="example-1">Example 1</h3>
+<pre><code>print &quot;1011 AND 1101 = &quot;; bin(0b1011 band 0b1101)
+&#39; Output: 1011 AND 1101 = 1001</code></pre>
+<h3 id="example-2">Example 2</h3>
 <p>The following example will first pack a date into a single integer and then unpack the integer to get the original date using bitwise operations.</p>
 <pre><code>Def shl(n, c) = n * Pow(2, c)         &#39; shift-left c bits in n
 Def shr(n, c) = n \ Pow(2, c)         &#39; shift-right c bits in n

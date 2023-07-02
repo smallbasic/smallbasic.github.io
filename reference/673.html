@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>NOT</h1>
-  <blockquote>a NOT b</blockquote>
+  <blockquote>y = NOT {a|expr}</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,27 +73,29 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Invert expression result. Equivalent syntax to the exclamation character, eg a ! b</p>
-<p>NOT and ! take only the right side argument: NOT b ! b It’s wrong to think that the left side argument (a) is part of the result. And in some cases it leads to an error, for example:</p>
-<pre><code>PRINT  BIN(1 Not 1) &#39; &lt;-- this is error</code></pre>
-<p>Binary operators work on 2 arguments a,b: +,-,*,/^ are all binary operators needing 2 arguments to do their thing. shian is saying NOT or ! is NOT Binary but Unary using only 1 argument located at right of NOT or ! So it is very misleading to show a NOT b If you actually try to print that you will get an error using (a not b) and gobbley-gook for ? a not b</p>
-<pre><code>&#39;NOT is a Unary operator.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
-&#39;it makes anything true &gt; false = 0
-&#39;it makes the one false=0 &gt; true (and in SmallBASIC returns 1 as C developer would have it)
-? !true      &#39;returns 0
-? NOT false  &#39;returns 1
-b=45
-? b;&quot;=b&quot; &#39;45 of course
-? !b;&quot;=!b&quot;  &#39;&lt;===========  important one, normal use of ! or NOT output is 0
-a=20
-? a;&quot;=a&quot; &#39;20 of course
-&#39;uncomment next line to see error,
-&#39;? (a NOT b);&quot; (a!b) should error because ! only works on b&quot; &#39;(EXPR): Missing &#39;)&#39;
-pause
-</code></pre>
-<p>Thanks shian, on my own I would never have noticed this. to be precise: NOT is not Bitwise operator, it is a logical operator.</p>
-<p>There are two versions of NOT: NOT, which is logical not, ~, which is bitwise not.</p>
-<p>Both are using only the right side expression: NOT(b), ~(b) NOT inverts the expression b (e.g. true –&gt; false) ~ inverts each bit in b (e.g. 01011 –&gt; 10100)</p>
+<p>Logical operator to invert variable or expression result. Equivalent syntax to <code>y = !a</code>. NOT returns true if variable or expression result is false or zero. Otherwise it returns false.</p>
+<p>For bitwise NOT use the ~ operator.</p>
+<h3 id="example-1">Example 1:</h3>
+<pre><code>print not true    &#39; Output: 0
+print not 100     &#39; Output: 0
+print not false   &#39; Output: 1
+print not 0       &#39; Output: 1</code></pre>
+<h3 id="example-2-not-in-an-if-statement">Example 2: NOT in an if statement</h3>
+<pre><code>IsRunning = false                &#39; Replace with true
+if(NOT IsRunning) then print &quot;Program is not running&quot;</code></pre>
+<pre><code>a = 0             &#39; Replace i.e. 10
+if(NOT a) then print &quot;Value is zero&quot;</code></pre>
+<h3 id="example-3-bitwise-not-using">Example 3: Bitwise NOT using ~</h3>
+<p>The NOT-operation performs a bitwise inversion on all bits of a number. This leads to the following (maybe unexpected) result:</p>
+<pre><code>print bin(~0b1001)      &#39; Output: 11111111111111111111111111110110</code></pre>
+<h3 id="example-4-operate-bitwise-not-only-on-last-n-bits">Example 4: Operate bitwise NOT only on last n bits</h3>
+<p>If you want to operate NOT only on the last <code>n</code> bits of the numbers, you can use the following code:</p>
+<pre><code>n = 4
+a = 0b1010
+
+print bin((~a) BAND ((1 lshift n ) - 1)) 
+
+&#39; Output 101</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using NOT</div>
     <div class="linklist">
@@ -217,7 +219,7 @@ NOT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Thu, 8 Jun 2023 15:04:46 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

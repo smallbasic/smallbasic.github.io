@@ -1,8 +1,9 @@
 <h1 id="ptsign">PTSIGN</h1>
 <blockquote>
-<p>PTSIGN (Ax,Ay,Bx,By,Qx,Qy)</p>
+<p>s = PTSIGN (Ax, Ay, Bx, By, Qx, Qy)</p>
 </blockquote>
-<p>The sign of point Q from line segment A-&gt;B.</p>
+<p>The sign of point Q from line segment A-&gt;B. Point Q is given by the coordinates (Qx, Qy), A by (Ax, Ay) and B by (Bx, By).</p>
+<h3 id="example-1">Example 1:</h3>
 <pre><code>&#39; Define line
 Bx = 100
 By = 100
@@ -15,6 +16,7 @@ Ay = 50
 
 Sign = PTSIGN(Bx, By, Cx, Cy, Ax,Ay) 
 print &quot;Sign of point relative to the line &quot;; Sign</code></pre>
+<h3 id="example-2-interactive-example-to-illustrate-the-geometry-of-ptdistln">Example 2: Interactive example to illustrate the geometry of PTDISTLN</h3>
 <pre><code>&#39; Interactive example to illustrate the geometry of PTDISTLN
 
 Bx = 200

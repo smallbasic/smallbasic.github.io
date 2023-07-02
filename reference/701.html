@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>M3TRANS</h1>
-  <blockquote>M3TRANS BYREF m3x3, Tx, Ty</blockquote>
+  <blockquote>M3TRANS BYREF M, Tx, Ty</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,10 +73,12 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Multiply the given matrix by a 3x3 translation matrix.</p>
+<p>Multiply the 2D transformation matrix <code>M</code> by a translation matrix. <code>Tx</code> and <code>Ty</code> are the translations in x and y direction. <code>M</code> is a 3x3 matrix.</p>
+<p>The translation matrix has the form</p>
 <pre><code>         |  1  0  Tx |
 MTrans = |  0  1  Ty |
          |  0  0  1  |</code></pre>
+<h3 id="example">Example</h3>
 <pre><code>DIM M(2,2)
 
 Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon
@@ -192,7 +194,7 @@ M3TRANS by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 13 Jul 2022 23:14:27 +0200
+      This page was last edited on Tue, 6 Jun 2023 22:17:26 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

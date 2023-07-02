@@ -1,6 +1,9 @@
 <h1 id="mid">MID</h1>
 <blockquote>
-<p>MID (s, start [,length])</p>
+<p>r = MID (s, start [,length])</p>
 </blockquote>
-<p>Returns the part (length) of the string s starting from ‘start’ position.</p>
-<p>If the ‘length’ parameter is omitted, MID returns the whole string from the position ‘start’.</p>
+<p>Returns the substring of string <code>s</code> starting from the position <code>start</code> with length <code>length</code>. If the length parameter is omitted, MID returns the whole string from the position <code>start</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>s = &quot;abcd&quot;
+print MID(s, 3)         &#39; Output: cd
+print MID(s, 3, 1)      &#39; Output: c</code></pre>

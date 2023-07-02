@@ -1,124 +1,137 @@
 <h1 id="pen">PEN</h1>
 <blockquote>
-<p>PEN (0..14)</p>
+<p>n = PEN (value)</p>
 </blockquote>
-<p>Returns the PEN/MOUSE data.</p>
-<p>Values:</p>
+<p>Returns pen, mouse or tap data depending on <code>value</code>.</p>
 <table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Value</th>
+<th style="text-align: left;">Desription</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td>0</td>
+<td style="text-align: center;">0</td>
 <td style="text-align: left;">True (non zero) if there is a new pen or mouse event</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td style="text-align: left;">PEN: last pen down x; MOUSE: last mouse button down x</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">x position of last pen down, tap, mouse button down</td>
 </tr>
 <tr class="odd">
-<td>2</td>
-<td style="text-align: left;">Same as 1 for y</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">y position of last pen down, tap, mouse button down</td>
 </tr>
 <tr class="even">
-<td>3</td>
-<td style="text-align: left;">True if the PEN is down; MOUSE: mouse left button is pressed</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">True if pen is down, mouse left button is pressed or tap</td>
 </tr>
 <tr class="odd">
-<td>4</td>
-<td style="text-align: left;">PEN: last/current x, MOUSE: the current x position only if the left mouse button is pressed (like PEN is down)</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Pen, tap: last/current x position, MOUSE: the current x position only if the left mouse button is pressed</td>
 </tr>
 <tr class="even">
-<td>5</td>
-<td style="text-align: left;">PEN(4) for y</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Pen, tap: last/current y position, MOUSE: the current x position only if the left mouse button is pressed</td>
 </tr>
-</tbody>
-</table>
-<p>Mouse specific:</p>
-<table>
-<tbody>
 <tr class="odd">
-<td>10</td>
+<td style="text-align: center;">10</td>
 <td style="text-align: left;">current mouse x pos</td>
 </tr>
 <tr class="even">
-<td>11</td>
+<td style="text-align: center;">11</td>
 <td style="text-align: left;">current mouse y pos</td>
 </tr>
 <tr class="odd">
-<td>12</td>
+<td style="text-align: center;">12</td>
 <td style="text-align: left;">true if the left mouse button is pressed</td>
 </tr>
 <tr class="even">
-<td>13</td>
+<td style="text-align: center;">13</td>
 <td style="text-align: left;">true if the right mouse button is pressed</td>
 </tr>
 <tr class="odd">
-<td>14</td>
+<td style="text-align: center;">14</td>
 <td style="text-align: left;">true if the middle mouse button is pressed</td>
 </tr>
 </tbody>
 </table>
-<p>PEN must be enabled prior to use of this function. Pen ON|OFF</p>
+<p>PEN must be enabled prior to use of this function with <code>Pen ON|OFF</code></p>
+<p>Most important values are 3, 4 and 5. With <code>PEN(3)</code> you will know, if the left mouse button was pressed or the screen was tapped. With <code>PEN(4)</code> and <code>PEN(5)</code> you will get the coordinates of that click or tap. See example 2 and 3.</p>
+<h3 id="example-1-overview">Example 1: Overview</h3>
 <pre><code>Print &quot;  Move and click the Pen or Mouse [press Esc to stop]...&quot;
 Print
 Pen On
-Print Using &quot; ####x, ####y&quot;; &#39; format for x,y position
-While Inkey &lt;&gt; Chr(27) Do &#39; press Esc key to exit loop
+Print Using &quot; ####x, ####y&quot;;              &#39; Format for x,y position
+While Inkey &lt;&gt; Chr(27) Do                 &#39; Press Esc key to exit loop
   Locate 3, 0
-  ? &quot;Pen|Mouse new event:  &quot;; Pen(0)
-  ?
-  ? &quot;Pen last down|Mouse down:&quot;;: ? Usg; Pen(1), Pen(2)
-  ?
-  ? &quot;Pen down|Mouse Left down:  &quot;; Pen(3)
-  ?
-  ? &quot;Pen last/current|Mouse Left down:&quot;;: ? Usg; Pen(4), Pen(5)
-  ?
-  ? &quot;Mouse current:&quot;;: ? Usg; Pen(10), Pen(11)
-  ?
-  ? &quot;Mouse Left,Middle,Right down: &quot;, Pen(12), Pen(14), Pen(13);
-Wend
-</code></pre>
-<p>DELAY say 20 ms saves CPU and battery in a loop like the above reply. It also helps after a mouse click to not over report the same click again and again.</p>
-<pre><code>
-rem game loop example
-pen on
-quit=0
-x = pen(4)
-y = pen(5)
-repeat
-  if pen(0) then
-    rem mouse down - get click coordinates
-    x = pen(1)
-    y = pen(2)
-    logprint &quot;pointer down: x=&quot; + x + &quot; y=&quot; + y
-    rem process more events until mouse is released
-    mouse_down = true
-    while mouse_down
-      n = pen(0)
-      x_down = pen(4)
-      y_down = pen(5)
-      if (x_down != -1 &amp;&amp; y_down != -1) then
-        x = x_down
-        y = y_down
-        logprint &quot;pointer moved [down]: x=&quot; + x + &quot; y=&quot; + y
-      else
-        mouse_down = false
-      end if
-    wend
-    logprint &quot;pointer up: x=&quot; + x + &quot; y=&quot; + y
-  else
-    if (x != pen(4) &amp;&amp; x != pen(5)) then
-      x = pen(4)
-      y = pen(5)
-      logprint &quot;pointer moved [up]: x=&quot; + x + &quot; y=&quot; + y
-    else
-      rem other system event, most likely a keypress
-      k = inkey
-      if (k &gt; 0) then
-        logprint &quot;key event: k=&quot; + k
-        if (len(k)=1 and asc(k)=27) or k=&quot;q&quot; then quit=1
-      end if
-    end if
-  end if
-until quit
-pen off
-</code></pre>
+  print &quot;Pen|Mouse new event:  &quot;; Pen(0)
+  print
+  print &quot;Pen last down|Mouse down:&quot;;: ? Usg; Pen(1), Pen(2)
+  print
+  print &quot;Pen down|Mouse Left down:  &quot;; Pen(3)
+  print
+  print &quot;Pen last/current|Mouse Left down:&quot;;: ? Usg; Pen(4), Pen(5)
+  print
+  print &quot;Mouse current:&quot;;: ? Usg; Pen(10), Pen(11)
+  print
+  print &quot;Mouse Left, Middle, Right down: &quot;, Pen(12), Pen(14), Pen(13);
+Wend</code></pre>
+<h3 id="example-2-get-position-of-tap-or-mouse-click">Example 2: Get position of tap or mouse click</h3>
+<pre><code>pen on
+
+print &quot;Press left mouse button or tab screen. Press q to quit.&quot;
+
+while(1)          
+    if(pen(3)) then
+        PosX = pen(4)
+        PosY = pen(5)
+        locate 1,0: print &quot;Click/tap at position: &quot; + PosX + &quot; , &quot; + PosY
+    endif
+    
+    k = inkey()
+    if(len(k) == 1 AND k == &quot;q&quot;) then end
+    
+    showpage
+    delay(20)
+wend</code></pre>
+<p>DELAY 20 ms saves CPU and battery in a loop.</p>
+<h3 id="example-3-press-a-button">Example 3: Press a button</h3>
+<pre><code>pen on
+
+print &quot;Press left mouse button or tab screen. Press q to quit.&quot;
+
+&#39; Define button
+button.x = 100
+button.y = 100
+button.w = 100
+button.h = 100
+
+while(1)
+
+    &#39; Draw button in dark yellow
+    rect button.x, button.y STEP button.w, button.h color 6 filled
+          
+    if(pen(3)) then
+        PosX = pen(4)
+        PosY = pen(5)
+        
+        &#39; Check if the click or tap is inside the button area
+        if( (PosX &gt; button.x) and (PosX &lt; button.x + button.w) and (PosY &gt; button.y) and (PosY &lt; button.y + button.h) )
+            &#39; Draw button in red
+            rect button.x, button.y STEP button.w, button.h color 12 filled 
+        endif
+        
+    endif
+    
+    k = inkey()
+    if(len(k) == 1 AND k == &quot;q&quot;) then end
+    
+    showpage
+    delay(20)
+wend</code></pre>

@@ -2,19 +2,86 @@
 <blockquote>
 <p>PLAY string</p>
 </blockquote>
-<p>Play musical notes.</p>
-<ul>
-<li>A-G[-|+|#][nnn][.] Play note A..G, +|# is sharp, - is flat, . is multiplier 1.5</li>
-<li>On Octave 0..6, &lt; moves down one octave, &gt; moves up one octave</li>
-<li>Nnn Play note 0..84 (0 = pause)</li>
-<li>Pnnn Pause 1..64</li>
-<li>Lnnn Length of note 1..64 (1/nnn)</li>
-<li>Tnnn Tempo 32..255. Number of 1/4 notes per minute.</li>
-<li>MS Staccato (1/2)</li>
-<li>MN Normal (3/4)</li>
-<li>ML Legato</li>
-<li>Vnnn Volume 0..100</li>
-<li>MF Play on foreground</li>
-<li>MB Play on background</li>
-<li>Q Clear sound queue</li>
-</ul>
+<p>Play musical notes, a mp3 or ogg sound file. The music string is composed of the following building blocks:</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">String</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A-G[-</td>
+<td style="text-align: left;">+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">On</td>
+<td style="text-align: left;">Octave n = 0..6, n = &lt; moves down one octave, n = &gt; moves up one octave</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Nn</td>
+<td style="text-align: left;">Play note n = 0..84 (0 = pause)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Pn</td>
+<td style="text-align: left;">Pause n = 1..64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Ln</td>
+<td style="text-align: left;">Length of note n = 1..64 (1/nnn)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Tn</td>
+<td style="text-align: left;">Tempo n = 32..255. Number of 1/4 notes per minute.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">MS</td>
+<td style="text-align: left;">Staccato (1/2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">MN</td>
+<td style="text-align: left;">Normal (3/4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ML</td>
+<td style="text-align: left;">Legato</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Vn</td>
+<td style="text-align: left;">Volume n = 0..100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">MF</td>
+<td style="text-align: left;">Play on foreground</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">MB</td>
+<td style="text-align: left;">Play on background</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Q</td>
+<td style="text-align: left;">Clear sound queue</td>
+</tr>
+</tbody>
+</table>
+<p>To play a sound file use <code>file://filename</code> as string. When playing on background, program execution continuous. If the end of the program is reach, the playback will stop.</p>
+<h3 id="example-1-play-a-note">Example 1: Play a note</h3>
+<pre><code>play &quot;L2A&quot;    &#39; note A with length 1/2</code></pre>
+<h3 id="example-2-play-multiple-notes">Example 2: Play multiple notes</h3>
+<pre><code>&#39; Set volume to 50%
+play &quot;V10&quot;  
+&#39; Play Menuet by J. Sebastian Bach
+play &quot;T180L8O3MN O4D4O3MLGABO4C O4D4O3MNG4MLG4 O4MNE4MLCDEF# O4G4O3MNG4MLG4 O4MNC4MLDCO3BA O3MNB4MLO4CO3BAG O3MNA4MLBAGF# G2.MN&quot;</code></pre>
+<h3 id="example-3-play-notes-on-background">Example 3: Play notes on background</h3>
+<pre><code>play &quot;MBL2A&quot;    &#39; note A with length 1/2 on background
+pause           &#39; make sure, that program will not end</code></pre>
+<h3 id="example-4-play-a-sound-file">Example 4: Play a sound file</h3>
+<pre><code>&#39; Copy a mp3 file to the working directory and name it test.mp3
+
+play &quot;file://test.mp3&quot;
+pause                    &#39; make sure, that program will not end</code></pre>

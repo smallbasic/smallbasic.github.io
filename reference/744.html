@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>PTDISTLN</h1>
-  <blockquote>PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)</blockquote>
+  <blockquote>d = PTDISTLN (Bx, By, Cx, Cy, Ax, Ay)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,8 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Distance of point A from line B, C.</p>
+<p>Distance of point A from line B, C. Point A is given by the coordinates (<code>Ax</code>, <code>Ay</code>), B by (<code>Bx</code>, <code>By</code>) and C by (<code>Cx</code>, <code>Cy</code>)</p>
+<h3 id="example-1">Example 1</h3>
 <pre><code>&#39; Define line
 Bx = 100
 By = 100
@@ -86,6 +87,7 @@ Ay = 50
 
 Distance = ptdistln(Bx, By, Cx, Cy, Ax,Ay) 
 print &quot;Distant between line and point is &quot;; Distance  ;&quot; pixel&quot;</code></pre>
+<h3 id="example-2-interactive-example-to-illustrate-the-geometry-of-ptdistln">Example 2: Interactive example to illustrate the geometry of PTDISTLN</h3>
 <pre><code>&#39; Interactive example to illustrate the geometry of PTDISTLN
 
 Bx = 200
@@ -225,7 +227,7 @@ PTDISTLN by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 22 Oct 2022 19:23:08 +0200
+      This page was last edited on Tue, 20 Jun 2023 15:37:05 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>M3APPLY</h1>
-  <blockquote>M3APPLY m3x3, BYREF poly</blockquote>
+  <blockquote>M3APPLY M, BYREF poly</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,8 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Apply matrix to poly-line.</p>
+<p>Apply 2D transformation matrix <code>M</code> to poly-line <code>poly</code>. Transformation matrix <code>M</code> is a 3x3 matrix.</p>
+<h3 id="example">Example</h3>
 <pre><code>DIM M(2,2)
 
 Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon
@@ -189,7 +190,7 @@ M3APPLY by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 13 Jul 2022 23:35:26 +0200
+      This page was last edited on Tue, 6 Jun 2023 15:46:53 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

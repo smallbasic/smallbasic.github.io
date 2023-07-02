@@ -1,12 +1,15 @@
 <h1 id="polyext">POLYEXT</h1>
 <blockquote>
-<p>POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax</p>
+<p>POLYEXT poly, BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax</p>
 </blockquote>
-<p>Returns the polyline’s extents.</p>
+<p>Returns the extents of the polyline <code>poly</code>. <code>xmin</code> and <code>xmax</code> are extents in x-direction and <code>ymin</code> and <code>ymax</code> are the extents in y-direction.</p>
+<p>See DRAWPOLY on how to define a polyline.</p>
+<h3 id="example">Example</h3>
 <pre><code>polygon = [ [30,50], [100,70], [120,90], [50,100], [30,50]]
 
 polyext(polygon, PolyXmin, PolyYmin, PolyXmax, PolyYmax)
 
+&#39; Draw polygon and a rectangle for indicating the extents
 drawpoly polygon color 12
 rect PolyXmin, PolyYmin, PolyXmax, PolyYmax  color 5
 </code></pre>

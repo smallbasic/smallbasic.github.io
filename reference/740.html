@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>MIN</h1>
-  <blockquote>MIN (…)</blockquote>
+  <blockquote>m = MIN (var1 [, var2, …, varN])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,14 +73,13 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Minimum value of parameters. Parameters can be numbers, arrays or strings.</p>
-<pre><code>print MAX(3, 4, 8)
-print MAX(&quot;abc&quot;,&quot;def&quot;)
-x = [-1, 5, 8]: print MAX(x, 2, 3)
-
-print MIN(3, 4, 8)
-print MIN(&quot;abc&quot;,&quot;def&quot;)
-x = [-1, 5, 8]: print MIN(x, 2, 3)</code></pre>
+<p>Returns the minimum value of the given parameters <code>var1</code> to <code>varN</code>. Parameters can be numbers, arrays or strings.</p>
+<h3 id="example">Example</h3>
+<pre><code>print MIN(3, 4, 8)                  &#39; Output: 3
+print MIN(&quot;abc&quot;,&quot;def&quot;)              &#39; Output: abc
+x = [-1, 5, 8]
+print MIN(x)                        &#39; Output: -1
+print MIN(x, 2, -9)                 &#39; Output: -9</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using MIN</div>
     <div class="linklist">
@@ -216,7 +215,7 @@ MIN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 18 Oct 2022 22:13:03 +0200
+      This page was last edited on Tue, 6 Jun 2023 23:24:05 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

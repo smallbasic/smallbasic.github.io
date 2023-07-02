@@ -73,7 +73,17 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Create a directory.</p>
+<p>Creates the directory <code>dir</code>. <code>dir</code> is a string representing a valid directory name. <code>dir</code> can additionally contain a path. Without a path, the directory will be created in the current working directory. Errors can be catched using TRY … CATCH.</p>
+<h3 id="example-1">Example 1</h3>
+<pre><code>mkdir &quot;test&quot;
+mkdir &quot;C:\\test&quot;    &#39; In Windows use \\ instead of \</code></pre>
+<h3 id="example-2-use-try-catch">Example 2: Use TRY … CATCH</h3>
+<pre><code>&#39; Run this program two times to get the error messege &quot;FILE EXISTS&quot;
+try
+    mkdir &quot;test&quot;
+catch err
+    print err
+end try</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using MKDIR</div>
     <div class="linklist">
@@ -132,7 +142,7 @@ MKDIR by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Wed, 7 Jun 2023 13:02:43 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

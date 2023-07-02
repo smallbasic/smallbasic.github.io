@@ -1,12 +1,11 @@
 <h1 id="max">MAX</h1>
 <blockquote>
-<p>MAX (…)</p>
+<p>m = MAX (var1 [, var2, …, varN)</p>
 </blockquote>
-<p>Maximum value of parameters. Parameters can be numbers, arrays or strings.</p>
-<pre><code>print MAX(3, 4, 8)
-print MAX(&quot;abc&quot;,&quot;def&quot;)
-x = [-1, 5, 8]: print MAX(x, 2, 3)
-
-print MIN(3, 4, 8)
-print MIN(&quot;abc&quot;,&quot;def&quot;)
-x = [-1, 5, 8]: print MIN(x, 2, 3)</code></pre>
+<p>MAX returns the maximum value of the given parameters <code>var1</code> to <code>varN</code>. Parameters can be numbers, arrays or strings.</p>
+<h3 id="example">Example</h3>
+<pre><code>print MAX(3, 4, 8)                  &#39; Output: 8
+print MAX(&quot;abc&quot;,&quot;def&quot;)              &#39; Output: def
+x = [-1, 5, 8]
+print MAX(x)                        &#39; Output: 8
+print MAX(x, 2, 9)                  &#39; Output: 9</code></pre>

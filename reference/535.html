@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>PRINT</h1>
-  <blockquote>PRINT [USING [format];] [expr|str [,|; [expr|str]] …</blockquote>
+  <blockquote>PRINT [#file] [USING [format];] [expr|str [,|; [expr|str] …]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,95 +73,134 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Display text or the value of an expression.</p>
-<p><strong>PRINT SEPARATORS</strong></p>
+<p>Display numbers, strings or values of expressions. The symbol <code>?</code> can be used instead of keyword PRINT. You can use USG instead of USING.</p>
+<p>If a file handle <code>#file</code> is given, the output of print will be redirected to the corresponding file. See OPEN for more information on handling files.</p>
+<p>To gain more control of where your next PRINT statement will be placed on screen, see LOCATE and AT.</p>
+<h3 id="example-1-basic-usage">Example 1: Basic usage</h3>
+<pre><code>print 1                             &#39; Output: 1
+print 1+1                           &#39; Output: 2
+print cos(pi)                       &#39; Output: -1
+print &quot;Text&quot;                        &#39; Output: Text</code></pre>
+<h3 id="example-2-print-strings-and-numbers">Example 2: Print strings and numbers</h3>
+<pre><code>print &quot;abc&quot; + &quot;def&quot;                 &#39; Output: adcdef
+print &quot;abc&quot; + &quot; def&quot;                &#39; Output: abc def
+print &quot;abc&quot; + 1 + &quot;def&quot; + cos(pi)   &#39; Output: abc1def-1
+print &quot;abc&quot; + 1 + 2 + &quot;def&quot;         &#39; Output: abc12def  &lt;- 1 and 2 are treated as strings</code></pre>
+<h3 id="example-3-print-strings-and-variables">Example 3: Print strings and variables</h3>
+<pre><code>a = 1
+b = 2
+c = a + b
+print &quot;a = &quot; + a                    &#39; Output a = 1
+print &quot;b = &quot; + b                    &#39; Output b = 2
+print &quot;a + b = &quot; + c                &#39; Output c = 3</code></pre>
+<h2 id="print-separators">PRINT SEPARATORS</h2>
 <table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Separator</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">TAB(n)</td>
+<td style="text-align: center;">TAB(n)</td>
 <td style="text-align: left;">Moves cursor position to the nth column.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SPC(n)</td>
+<td style="text-align: center;">SPC(n)</td>
 <td style="text-align: left;">Prints a number of spaces specified by n.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">;</td>
-<td style="text-align: left;">Carriage return/line feed suppressed after printing.</td>
+<td style="text-align: center;">;</td>
+<td style="text-align: left;">Separates numbers, expressions or strings</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">,</td>
-<td style="text-align: left;">Carriage return/line feed suppressed after printing.</td>
+<td style="text-align: center;">,</td>
+<td style="text-align: left;">Separates numbers, expressions or strings and insert one TAB</td>
 </tr>
 </tbody>
 </table>
-<p><strong>PRINT USING</strong></p>
-<p>Print USING uses the FORMAT() function to display numbers and strings. Unlike FORMAT it can also include literals.</p>
-<ul>
-<li>[_] - Print next character as a literal. The combination _#, for example, allows you to include a number sign as a literal in your numeric format.</li>
-<li>[other] Characters other than the foregoing may be included as literals in the format string.</li>
-</ul>
-<p>When a PRINT USING command is executed the format will remains on the memory until a new format is passed. Calling a PRINT USING without a new format specified the PRINT will use the format of previous call.</p>
-<pre><code>PRINT USING &quot;##: #,###,##0.00&quot;;
-FOR i=0 TO 20
-    PRINT USING; i+1, A(i)
-NEXT
-....
-PRINT USING &quot;Total ###,##0 of \\ \\&quot;; number, &quot;bytes&quot;</code></pre>
-<p>The symbol ? can be used instead of keyword PRINT You can use ‘USG’ instead of ‘USING’.</p>
-<p>quote: <strong>It’s all in the punctuation at the end of a print statement</strong></p>
-<pre><code>REM 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
+<p>If <code>;</code> and <code>,</code> are used as last character of a print command, carriage return/line feed (new line) will be suppressed after printing.</p>
+<p>In contrast to the <code>+</code> operator to concatenate the output as shown in the examples above, the <code>,</code> and <code>;</code> operators can be used to concatenate the output and at the same time evaluate expressions.</p>
+<h3 id="example-1-using-and">Example 1: Using , and ;</h3>
+<pre><code>a = 1
+b = 2
+print &quot;a + b = &quot; + a + b    &#39; Output: a + b = 12      &lt;- a and b treated as strings
+print &quot;a + b = &quot; ; a + b    &#39; Output: a + b = 3       &lt;- a + b was evaluated
+print &quot;a + b = &quot; , a + b    &#39; Output: a + b =      3  &lt;- a + b was evaluated</code></pre>
+<h3 id="example-2-suppress-new-line">Example 2: Suppress new line</h3>
+<pre><code>print &quot;abc&quot;;     &#39; &lt;- new line suppressed
+print &quot;def&quot;
+
+&#39; Output: abcdef</code></pre>
+<h3 id="example-3-using-tab-and-spc">Example 3: Using TAB and SPC</h3>
+<pre><code>print &quot;1&quot; + tab(5) + &quot;2&quot;       &#39; Output 1    2
+print &quot;1&quot; + spc(1) + &quot;2&quot;       &#39; Output 1 2</code></pre>
+<h2 id="print-using">PRINT USING</h2>
+<p>PRINT USING uses the FORMAT function to display numbers and strings. Unlike FORMAT it can also include literals.</p>
+<p>When a PRINT USING command is executed the format will remain in memory until a new format is passed. Calling <code>PRINT USING</code> without a format string specifies that PRINT will use the format of the previous call.</p>
+<p>Using <code>_</code> (underscore) will print the next character as a literal. The combination <code>_#</code>, for example, allows you to include a number sign as a literal in your numeric format.</p>
+<p>See FORMAT for more information on how to define the format string.</p>
+<h3 id="example-1-basic-usage-1">Example 1: Basic usage</h3>
+<pre><code>a = 1000
+b = 2000
+PRINT USING &quot;#,###.##&quot;; a                    
+PRINT USING &quot;#,###.## &quot;; a; b                &#39; &lt;- Format is applied to all variables         
+PRINT USING &quot;a = #####.00  b = #####&quot;; a; b  &#39; &lt;- One formated string with placeholders for two variables
+
+&#39; Output: 1,000.
+&#39; Output: 1,000. 2,000.             
+&#39; Output: a =  1000.00  b =  2000   </code></pre>
+<h3 id="example-2-apply-format-multiple-times">Example 2: Apply format multiple times</h3>
+<pre><code>a = 1000
+b = 2000
+PRINT USING &quot;#,###.##&quot;      &#39; Store format string
+
+PRINT        a              &#39; Print without format
+PRINT USING; a              &#39; Print with stored string
+PRINT USING; b              &#39; Print with stored string
+
+PRINT USING &quot;####.00&quot;; a    &#39; Print with new format string and store string
+PRINT USING; b              &#39; Print with stored string
+
+&#39; Output:
+&#39; 1000
+&#39; 1,000.
+&#39; 2,000.
+&#39; 1000.00
+&#39; 2000.00</code></pre>
+<h2 id="print-using-vt100-codes">Print using VT100 codes</h2>
+<p>Escape codes can be used with PRINT. For more information please read the article “Escape codes”</p>
+<h2 id="more-examples">More Examples</h2>
+<h3 id="example-1-3-ways-to-print-hello">Example 1: 3 ways to print hello</h3>
+<pre><code>&#39; 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
 &#39;It&#39;s all in the punctuation at the end of a print statement
-&#39;1) no punctiation  = whole print lines CR=carriage return and LF=line feed, ready to go on next line
-for i=1 to 5
+
+&#39;1) no punctiation  = whole print lines CR=carriage return and
+&#39; LF=line feed, ready to go on next line
+for i = 1 to 5
   print &quot;hello&quot;
 next
-?:? &#39;2 blank lines
+print : print &#39;2 blank lines
 
-&#39;2) a comma which tabs to next avaiable tab column and will stay on same line until run out of coloumns
-for i=1 to 5
+&#39;2) a comma which tabs to next avaiable tab column and will stay
+&#39; on same line until run out of coloumns
+for i = 1 to 5
   print &quot;hello&quot;,
 next
-? &quot;&amp; this will finish the hello, line.&quot;
-?:? &#39;the first ?=print will finish the print line, the 2 two are blank lines
+&#39;the first print will finish the print line, the 2 two are blank lines
+print &quot;&amp; this will finish the hello, line.&quot;
+print : print 
 
 &#39;3) a semicolon (and space after hello)
-for i=1 to 5
+for i = 1 to 5
   print &quot;hello&quot;;&quot; &quot;;  &#39;or just print &quot;hello &quot;;
 next
-? &quot;... this line needs to be finsihed.&quot;
-pause
-</code></pre>
-<p>To gain even more control of where your next PRINT statement will end up on screen checkout the older LOCATE keyword and the more modern method of using AT.</p>
-<pre><code>
-&#39; PRINT can also print to an open file or device (not only to console).
-&#39; Note: new-line (or line-break) character(s) is different on each system:
-&#39;       Windows and DOS uses a pair of CR and LF characters to terminate lines. 
-&#39;       UNIX, Linux, FreeBSD and OS X uses a single LF character only. 
-&#39;       Classic Mac operating system uses a single CR character only.
-&#39;       * CR is CHR(13); LF is CHR(10).
-
-&#39; Print lines to demo file:
-Open &quot;PRINT.TMP&quot; For Output As #1
-Print #1, &quot;hello_1&quot; &#39; print [hello new-line]
-Print #1, &quot;Hello_2&quot;, &quot;Hello_3&quot;  &#39; print [hello tab hello new-line]
-Print #1, &quot;Hello_4&quot;; &quot;Hello_5&quot;; &#39; print [hello hello]
-Print #1, &#39; print [new-line]
-Print #1, &#39; print [new-line]
-Print #1, ; &#39; print [].
-Print #1, Using &quot;000 &amp;&quot;; 55, &quot;is my mailbox&quot; &#39; print [055... new-line]
-? #1, &quot;Hello_?&quot; &#39; print [Hello_? new-line]
-Close #1
-&#39; Load lines from demo file and print them to console:
-Open &quot;PRINT.TMP&quot; For Input As #1
-Color 0, 7
-While Not Eof(1) Do
-  Lineinput #1, s
-  Print s
-Wend
-Close #1
-Pause
-</code></pre>
+print &quot;... this line needs to be finsihed.&quot;</code></pre>
+<h3 id="example-2-print-to-a-file">Example 2: Print to a file</h3>
+<pre><code>Open &quot;PRINT.TXT&quot; For Output As #1
+Print #1, &quot;hello&quot;
+Close #1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using PRINT</div>
     <div class="linklist">
@@ -238,7 +277,7 @@ PRINT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 20:56:17 +1000
+      This page was last edited on Tue, 20 Jun 2023 11:33:20 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -1,8 +1,9 @@
 <h1 id="m3apply">M3APPLY</h1>
 <blockquote>
-<p>M3APPLY m3x3, BYREF poly</p>
+<p>M3APPLY M, BYREF poly</p>
 </blockquote>
-<p>Apply matrix to poly-line.</p>
+<p>Apply 2D transformation matrix <code>M</code> to poly-line <code>poly</code>. Transformation matrix <code>M</code> is a 3x3 matrix.</p>
+<h3 id="example">Example</h3>
 <pre><code>DIM M(2,2)
 
 Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon

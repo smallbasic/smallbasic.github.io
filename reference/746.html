@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>PTSIGN</h1>
-  <blockquote>PTSIGN (Ax,Ay,Bx,By,Qx,Qy)</blockquote>
+  <blockquote>s = PTSIGN (Ax, Ay, Bx, By, Qx, Qy)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,8 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>The sign of point Q from line segment A-&gt;B.</p>
+<p>The sign of point Q from line segment A-&gt;B. Point Q is given by the coordinates (Qx, Qy), A by (Ax, Ay) and B by (Bx, By).</p>
+<h3 id="example-1">Example 1:</h3>
 <pre><code>&#39; Define line
 Bx = 100
 By = 100
@@ -86,6 +87,7 @@ Ay = 50
 
 Sign = PTSIGN(Bx, By, Cx, Cy, Ax,Ay) 
 print &quot;Sign of point relative to the line &quot;; Sign</code></pre>
+<h3 id="example-2-interactive-example-to-illustrate-the-geometry-of-ptdistln">Example 2: Interactive example to illustrate the geometry of PTDISTLN</h3>
 <pre><code>&#39; Interactive example to illustrate the geometry of PTDISTLN
 
 Bx = 200
@@ -213,7 +215,7 @@ PTSIGN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 22 Oct 2022 19:30:18 +0200
+      This page was last edited on Tue, 20 Jun 2023 15:51:40 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

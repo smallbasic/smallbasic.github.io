@@ -1209,7 +1209,31 @@ Stop background sound and clear the sound queue.
 
 PEN ON|OFF
 
-Enables/Disables the PEN/MOUSE mechanism.
+Enables/Disables the pen/mouse/tap mechanism. See function
+n = PEN(value) for information on how to read data from tap, mouse or
+pen.
+
+Example
+
+    pen on
+
+    print "Press left mouse button or tab screen. Press q to quit."
+
+    while(1)          
+        if(pen(3)) then
+            PosX = pen(4)
+            PosY = pen(5)
+            locate 1,0: print "Click/tap at position: " + PosX + " , " + PosY
+        endif
+        
+        k = inkey()
+        if(len(k) == 1 AND k == "q") then end
+        
+        showpage
+        delay(20)
+    wend
+
+    pen off
 
 +========================================================================================+
 |                                    15. (Console) PLAY                                  |
@@ -1217,22 +1241,67 @@ Enables/Disables the PEN/MOUSE mechanism.
 
 PLAY string
 
-Play musical notes.
+Play musical notes, a mp3 or ogg sound file. The music string is
+composed of the following building blocks:
 
--   A-G[-|+|#][nnn][.] Play note A..G, +|# is sharp, - is flat, . is
-    multiplier 1.5
--   On Octave 0..6, < moves down one octave, > moves up one octave
--   Nnn Play note 0..84 (0 = pause)
--   Pnnn Pause 1..64
--   Lnnn Length of note 1..64 (1/nnn)
--   Tnnn Tempo 32..255. Number of 1/4 notes per minute.
--   MS Staccato (1/2)
--   MN Normal (3/4)
--   ML Legato
--   Vnnn Volume 0..100
--   MF Play on foreground
--   MB Play on background
--   Q Clear sound queue
+  -----------------------------------------------------------------------
+          String          Description
+  ----------------------- -----------------------------------------------
+           A-G[-          +
+
+            On            Octave n = 0..6, n = < moves down one octave, n
+                          = > moves up one octave
+
+            Nn            Play note n = 0..84 (0 = pause)
+
+            Pn            Pause n = 1..64
+
+            Ln            Length of note n = 1..64 (1/nnn)
+
+            Tn            Tempo n = 32..255. Number of 1/4 notes per
+                          minute.
+
+            MS            Staccato (1/2)
+
+            MN            Normal (3/4)
+
+            ML            Legato
+
+            Vn            Volume n = 0..100
+
+            MF            Play on foreground
+
+            MB            Play on background
+
+             Q            Clear sound queue
+  -----------------------------------------------------------------------
+
+To play a sound file use file://filename as string. When playing on
+background, program execution continuous. If the end of the program is
+reach, the playback will stop.
+
+Example 1: Play a note
+
+    play "L2A"    ' note A with length 1/2
+
+Example 2: Play multiple notes
+
+    ' Set volume to 50%
+    play "V10"  
+    ' Play Menuet by J. Sebastian Bach
+    play "T180L8O3MN O4D4O3MLGABO4C O4D4O3MNG4MLG4 O4MNE4MLCDEF# O4G4O3MNG4MLG4 O4MNC4MLDCO3BA O3MNB4MLO4CO3BAG O3MNA4MLBAGF# G2.MN"
+
+Example 3: Play notes on background
+
+    play "MBL2A"    ' note A with length 1/2 on background
+    pause           ' make sure, that program will not end
+
+Example 4: Play a sound file
+
+    ' Copy a mp3 file to the working directory and name it test.mp3
+
+    play "file://test.mp3"
+    pause                    ' make sure, that program will not end
 
 +========================================================================================+
 |                                   16. (Console) PRINT                                  |
@@ -1240,98 +1309,161 @@ Play musical notes.
 
 PRINT [USING [format];] [expr|str [,|; [expr|str]] ...
 
-Display text or the value of an expression.
+Display numbers, strings or values of expressions. The symbol ? can be
+used instead of keyword PRINT. You can use USG instead of USING.
+
+If a file handle #file is given, the output of print will be redirected
+to the corresponding file. See OPEN for more information on handling
+files.
+
+To gain more control of where your next PRINT statement will be placed
+on screen, see LOCATE and AT.
+
+Example 1: Basic usage
+
+    print 1                             ' Output: 1
+    print 1+1                           ' Output: 2
+    print cos(pi)                       ' Output: -1
+    print "Text"                        ' Output: Text
+
+Example 2: Print strings and numbers
+
+    print "abc" + "def"                 ' Output: adcdef
+    print "abc" + " def"                ' Output: abc def
+    print "abc" + 1 + "def" + cos(pi)   ' Output: abc1def-1
+    print "abc" + 1 + 2 + "def"         ' Output: abc12def  <- 1 and 2 are treated as strings
+
+Example 3: Print strings and variables
+
+    a = 1
+    b = 2
+    c = a + b
+    print "a = " + a                    ' Output a = 1
+    print "b = " + b                    ' Output b = 2
+    print "a + b = " + c                ' Output c = 3
 
 PRINT SEPARATORS
 
-  -------- ------------------------------------------------------
-  TAB(n)   Moves cursor position to the nth column.
-  SPC(n)   Prints a number of spaces specified by n.
-  ;        Carriage return/line feed suppressed after printing.
-  ,        Carriage return/line feed suppressed after printing.
-  -------- ------------------------------------------------------
+   Separator  Description
+  ----------- --------------------------------------------------------------
+    TAB(n)    Moves cursor position to the nth column.
+    SPC(n)    Prints a number of spaces specified by n.
+       ;      Separates numbers, expressions or strings
+       ,      Separates numbers, expressions or strings and insert one TAB
+
+If ; and , are used as last character of a print command, carriage
+return/line feed (new line) will be suppressed after printing.
+
+In contrast to the + operator to concatenate the output as shown in the
+examples above, the , and ; operators can be used to concatenate the
+output and at the same time evaluate expressions.
+
+Example 1: Using , and ;
+
+    a = 1
+    b = 2
+    print "a + b = " + a + b    ' Output: a + b = 12      <- a and b treated as strings
+    print "a + b = " ; a + b    ' Output: a + b = 3       <- a + b was evaluated
+    print "a + b = " , a + b    ' Output: a + b =      3  <- a + b was evaluated
+
+Example 2: Suppress new line
+
+    print "abc";     ' <- new line suppressed
+    print "def"
+
+    ' Output: abcdef
+
+Example 3: Using TAB and SPC
+
+    print "1" + tab(5) + "2"       ' Output 1    2
+    print "1" + spc(1) + "2"       ' Output 1 2
 
 PRINT USING
 
-Print USING uses the FORMAT() function to display numbers and strings.
+PRINT USING uses the FORMAT function to display numbers and strings.
 Unlike FORMAT it can also include literals.
 
--   [_] - Print next character as a literal. The combination _#, for
-    example, allows you to include a number sign as a literal in your
-    numeric format.
--   [other] Characters other than the foregoing may be included as
-    literals in the format string.
+When a PRINT USING command is executed the format will remain in memory
+until a new format is passed. Calling PRINT USING without a format
+string specifies that PRINT will use the format of the previous call.
 
-When a PRINT USING command is executed the format will remains on the
-memory until a new format is passed. Calling a PRINT USING without a new
-format specified the PRINT will use the format of previous call.
+Using _ (underscore) will print the next character as a literal. The
+combination _#, for example, allows you to include a number sign as a
+literal in your numeric format.
 
-    PRINT USING "##: #,###,##0.00";
-    FOR i=0 TO 20
-        PRINT USING; i+1, A(i)
-    NEXT
-    ....
-    PRINT USING "Total ###,##0 of \\ \\"; number, "bytes"
+See FORMAT for more information on how to define the format string.
 
-The symbol ? can be used instead of keyword PRINT You can use ‘USG’
-instead of ‘USING’.
+Example 1: Basic usage
 
-quote: It’s all in the punctuation at the end of a print statement
+    a = 1000
+    b = 2000
+    PRINT USING "#,###.##"; a                    
+    PRINT USING "#,###.## "; a; b                ' <- Format is applied to all variables         
+    PRINT USING "a = #####.00  b = #####"; a; b  ' <- One formated string with placeholders for two variables
 
-    REM 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
+    ' Output: 1,000.
+    ' Output: 1,000. 2,000.             
+    ' Output: a =  1000.00  b =  2000   
+
+Example 2: Apply format multiple times
+
+    a = 1000
+    b = 2000
+    PRINT USING "#,###.##"      ' Store format string
+
+    PRINT        a              ' Print without format
+    PRINT USING; a              ' Print with stored string
+    PRINT USING; b              ' Print with stored string
+
+    PRINT USING "####.00"; a    ' Print with new format string and store string
+    PRINT USING; b              ' Print with stored string
+
+    ' Output:
+    ' 1000
+    ' 1,000.
+    ' 2,000.
+    ' 1000.00
+    ' 2000.00
+
+Print using VT100 codes
+
+Escape codes can be used with PRINT. For more information please read
+the article “Escape codes”
+
+More Examples
+
+Example 1: 3 ways to print hello
+
+    ' 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
     'It's all in the punctuation at the end of a print statement
-    '1) no punctiation  = whole print lines CR=carriage return and LF=line feed, ready to go on next line
-    for i=1 to 5
+
+    '1) no punctiation  = whole print lines CR=carriage return and
+    ' LF=line feed, ready to go on next line
+    for i = 1 to 5
       print "hello"
     next
-    ?:? '2 blank lines
+    print : print '2 blank lines
 
-    '2) a comma which tabs to next avaiable tab column and will stay on same line until run out of coloumns
-    for i=1 to 5
+    '2) a comma which tabs to next avaiable tab column and will stay
+    ' on same line until run out of coloumns
+    for i = 1 to 5
       print "hello",
     next
-    ? "& this will finish the hello, line."
-    ?:? 'the first ?=print will finish the print line, the 2 two are blank lines
+    'the first print will finish the print line, the 2 two are blank lines
+    print "& this will finish the hello, line."
+    print : print 
 
     '3) a semicolon (and space after hello)
-    for i=1 to 5
+    for i = 1 to 5
       print "hello";" ";  'or just print "hello ";
     next
-    ? "... this line needs to be finsihed."
-    pause
+    print "... this line needs to be finsihed."
 
-To gain even more control of where your next PRINT statement will end up
-on screen checkout the older LOCATE keyword and the more modern method
-of using AT.
+Example 2: Print to a file
 
-
-    ' PRINT can also print to an open file or device (not only to console).
-    ' Note: new-line (or line-break) character(s) is different on each system:
-    '       Windows and DOS uses a pair of CR and LF characters to terminate lines. 
-    '       UNIX, Linux, FreeBSD and OS X uses a single LF character only. 
-    '       Classic Mac operating system uses a single CR character only.
-    '       * CR is CHR(13); LF is CHR(10).
-
-    ' Print lines to demo file:
-    Open "PRINT.TMP" For Output As #1
-    Print #1, "hello_1" ' print [hello new-line]
-    Print #1, "Hello_2", "Hello_3"  ' print [hello tab hello new-line]
-    Print #1, "Hello_4"; "Hello_5"; ' print [hello hello]
-    Print #1, ' print [new-line]
-    Print #1, ' print [new-line]
-    Print #1, ; ' print [].
-    Print #1, Using "000 &"; 55, "is my mailbox" ' print [055... new-line]
-    ? #1, "Hello_?" ' print [Hello_? new-line]
+    Open "PRINT.TXT" For Output As #1
+    Print #1, "hello"
     Close #1
-    ' Load lines from demo file and print them to console:
-    Open "PRINT.TMP" For Input As #1
-    Color 0, 7
-    While Not Eof(1) Do
-      Lineinput #1, s
-      Print s
-    Wend
-    Close #1
-    Pause
 
 +========================================================================================+
 |                                   17. (Console) SOUND                                  |
@@ -3054,7 +3186,24 @@ Example 2: Get available data for a socket connection
 
 MKDIR dir
 
-Create a directory.
+Creates the directory dir. dir is a string representing a valid
+directory name. dir can additionally contain a path. Without a path, the
+directory will be created in the current working directory. Errors can
+be catched using TRY … CATCH.
+
+Example 1
+
+    mkdir "test"
+    mkdir "C:\\test"    ' In Windows use \\ instead of \
+
+Example 2: Use TRY … CATCH
+
+    ' Run this program two times to get the error messege "FILE EXISTS"
+    try
+        mkdir "test"
+    catch err
+        print err
+    end try
 
 +========================================================================================+
 |                                     73. (File) OPEN                                    |
@@ -4700,13 +4849,49 @@ Example 3: Using colors
 
 PAINT [STEP] x, y [,fill-color [,border-color]]
 
-Fills an enclosed area on the graphics screen with a specific color. x,y
-= Screen coordinate (column, row) within the area that is to be filled.
+Fills an enclosed area on the graphics screen with the color fill-color.
+x and y are screen coordinates within the area that is to be filled.
 
 If border-color is specified then PAINT will fill outwards until is
-meets the specified border-color - (fill-until, color!=point(x,y)) If
-the border-color is NOT specified then PAINT will fill the area with the
-same color as the pixel at x,y - (fill-while, color=point(x,y))
+meets the specified border-color. If the border-color is not specified
+then PAINT will fill the area until it meets a color which is not the
+original color at [x,y]. Please note that border-color needs to be
+specified using the functions RGB or RGBF.
+
+If the keyword STEP is used, x and y move the graphics cursor in pixel.
+The area will be filled starting from this new position of the graphics
+cursor.
+
+Example 1: Fill without specified border-color
+
+    ' draw a diamond shaped polygon
+    polygon = [[100,100], [150,50], [200,100], [150,200], [100,100]]
+    color 14
+    drawpoly polygon
+
+    ' draw a rectangle on top of the diamond
+    color 13
+    rect 120,60,180,180
+
+    ' fill area inside
+    color 12
+    paint 150,130
+
+Example 2: Fill with specified fill-color and border-color
+
+    ' draw a diamond shaped polygon
+    polygon = [[100,100], [150,50], [200,100], [150,200], [100,100]]
+    color 14
+    drawpoly polygon
+
+    ' draw a rectangle on top of the diamond
+    RectColor = rgb(255,0,255)
+    color RectColor
+    rect 120,60,180,180
+
+
+    ' fill area inside rect
+    paint 150,130, 11, RectColor        ' Border color needs do be set with RGB(...)
 
 +========================================================================================+
 |                                    90. (Graphics) PEN                                  |
@@ -4714,97 +4899,121 @@ same color as the pixel at x,y - (fill-while, color=point(x,y))
 
 PEN (0..14)
 
-Returns the PEN/MOUSE data.
+Returns pen, mouse or tap data depending on value.
 
-Values:
+  -----------------------------------------------------------------------
+   Value   Desription
+  -------- --------------------------------------------------------------
+     0     True (non zero) if there is a new pen or mouse event
 
-  --- ----------------------------------------------------------------------------------------------------------------
-  0   True (non zero) if there is a new pen or mouse event
-  1   PEN: last pen down x; MOUSE: last mouse button down x
-  2   Same as 1 for y
-  3   True if the PEN is down; MOUSE: mouse left button is pressed
-  4   PEN: last/current x, MOUSE: the current x position only if the left mouse button is pressed (like PEN is down)
-  5   PEN(4) for y
-  --- ----------------------------------------------------------------------------------------------------------------
+     1     x position of last pen down, tap, mouse button down
 
-Mouse specific:
+     2     y position of last pen down, tap, mouse button down
 
-  ---- --------------------------------------------
-  10   current mouse x pos
-  11   current mouse y pos
-  12   true if the left mouse button is pressed
-  13   true if the right mouse button is pressed
-  14   true if the middle mouse button is pressed
-  ---- --------------------------------------------
+     3     True if pen is down, mouse left button is pressed or tap
 
-PEN must be enabled prior to use of this function. Pen ON|OFF
+     4     Pen, tap: last/current x position, MOUSE: the current x
+           position only if the left mouse button is pressed
+
+     5     Pen, tap: last/current y position, MOUSE: the current x
+           position only if the left mouse button is pressed
+
+     10    current mouse x pos
+
+     11    current mouse y pos
+
+     12    true if the left mouse button is pressed
+
+     13    true if the right mouse button is pressed
+
+     14    true if the middle mouse button is pressed
+  -----------------------------------------------------------------------
+
+PEN must be enabled prior to use of this function with Pen ON|OFF
+
+Most important values are 3, 4 and 5. With PEN(3) you will know, if the
+left mouse button was pressed or the screen was tapped. With PEN(4) and
+PEN(5) you will get the coordinates of that click or tap. See example 2
+and 3.
+
+Example 1: Overview
 
     Print "  Move and click the Pen or Mouse [press Esc to stop]..."
     Print
     Pen On
-    Print Using " ####x, ####y"; ' format for x,y position
-    While Inkey <> Chr(27) Do ' press Esc key to exit loop
+    Print Using " ####x, ####y";              ' Format for x,y position
+    While Inkey <> Chr(27) Do                 ' Press Esc key to exit loop
       Locate 3, 0
-      ? "Pen|Mouse new event:  "; Pen(0)
-      ?
-      ? "Pen last down|Mouse down:";: ? Usg; Pen(1), Pen(2)
-      ?
-      ? "Pen down|Mouse Left down:  "; Pen(3)
-      ?
-      ? "Pen last/current|Mouse Left down:";: ? Usg; Pen(4), Pen(5)
-      ?
-      ? "Mouse current:";: ? Usg; Pen(10), Pen(11)
-      ?
-      ? "Mouse Left,Middle,Right down: ", Pen(12), Pen(14), Pen(13);
+      print "Pen|Mouse new event:  "; Pen(0)
+      print
+      print "Pen last down|Mouse down:";: ? Usg; Pen(1), Pen(2)
+      print
+      print "Pen down|Mouse Left down:  "; Pen(3)
+      print
+      print "Pen last/current|Mouse Left down:";: ? Usg; Pen(4), Pen(5)
+      print
+      print "Mouse current:";: ? Usg; Pen(10), Pen(11)
+      print
+      print "Mouse Left, Middle, Right down: ", Pen(12), Pen(14), Pen(13);
     Wend
 
-DELAY say 20 ms saves CPU and battery in a loop like the above reply. It
-also helps after a mouse click to not over report the same click again
-and again.
+Example 2: Get position of tap or mouse click
 
-
-    rem game loop example
     pen on
-    quit=0
-    x = pen(4)
-    y = pen(5)
-    repeat
-      if pen(0) then
-        rem mouse down - get click coordinates
-        x = pen(1)
-        y = pen(2)
-        logprint "pointer down: x=" + x + " y=" + y
-        rem process more events until mouse is released
-        mouse_down = true
-        while mouse_down
-          n = pen(0)
-          x_down = pen(4)
-          y_down = pen(5)
-          if (x_down != -1 && y_down != -1) then
-            x = x_down
-            y = y_down
-            logprint "pointer moved [down]: x=" + x + " y=" + y
-          else
-            mouse_down = false
-          end if
-        wend
-        logprint "pointer up: x=" + x + " y=" + y
-      else
-        if (x != pen(4) && x != pen(5)) then
-          x = pen(4)
-          y = pen(5)
-          logprint "pointer moved [up]: x=" + x + " y=" + y
-        else
-          rem other system event, most likely a keypress
-          k = inkey
-          if (k > 0) then
-            logprint "key event: k=" + k
-            if (len(k)=1 and asc(k)=27) or k="q" then quit=1
-          end if
-        end if
-      end if
-    until quit
-    pen off
+
+    print "Press left mouse button or tab screen. Press q to quit."
+
+    while(1)          
+        if(pen(3)) then
+            PosX = pen(4)
+            PosY = pen(5)
+            locate 1,0: print "Click/tap at position: " + PosX + " , " + PosY
+        endif
+        
+        k = inkey()
+        if(len(k) == 1 AND k == "q") then end
+        
+        showpage
+        delay(20)
+    wend
+
+DELAY 20 ms saves CPU and battery in a loop.
+
+Example 3: Press a button
+
+    pen on
+
+    print "Press left mouse button or tab screen. Press q to quit."
+
+    ' Define button
+    button.x = 100
+    button.y = 100
+    button.w = 100
+    button.h = 100
+
+    while(1)
+
+        ' Draw button in dark yellow
+        rect button.x, button.y STEP button.w, button.h color 6 filled
+              
+        if(pen(3)) then
+            PosX = pen(4)
+            PosY = pen(5)
+            
+            ' Check if the click or tap is inside the button area
+            if( (PosX > button.x) and (PosX < button.x + button.w) and (PosY > button.y) and (PosY < button.y + button.h) )
+                ' Draw button in red
+                rect button.x, button.y STEP button.w, button.h color 12 filled 
+            endif
+            
+        endif
+        
+        k = inkey()
+        if(len(k) == 1 AND k == "q") then end
+        
+        showpage
+        delay(20)
+    wend
 
 +========================================================================================+
 |                                   91. (Graphics) PLOT                                  |
@@ -4812,19 +5021,18 @@ and again.
 
 PLOT xmin, xmax USE f(x)
 
-Graph of f(x).
+Plots the graph of f(x) in the range from xmin to xmax. The variable
+must be x.
 
-PLOT 0, 2*PI USE SIN(x)
+Example
 
-Apparently we are now plotting with black dots as default on default
-black background, so need a COLOR call to see the dots.
+    ' Set wite background and drawing color to red
+    color rgb(255,0,0), rgb(255,255,255)
+    cls
 
-
-    'plot test.bas from SmallBASIC ie PLOT minx, maxx, use f(x)
-    color 0,15:cls  '<=========== plot use to work without need for this
-    PLOT 0, 2*PI USE SIN(x)
-    PLOT 0, 2*PI USE rnd*sin(x) '<==== this is cool!
-    pause
+    ' Define function and plot
+    def f(x) = sin(x)
+    plot 0, 2*pi USE f(x)
 
 +========================================================================================+
 |                                   92. (Graphics) POINT                                 |
@@ -4834,66 +5042,93 @@ POINT (x [, y])
 
 Returns the color of the pixel at x,y.
 
-If the y argument is not specified, x specifies the following info-code:
-0 = returns the current X graphics position 1 = returns the current Y
-graphics position
+If the y-argument is not specified, x specifies the following info-code:
+- 0: returns the current graphics cursor X-position - 1: returns the
+current graphics cursor Y-position
+
+Example 1: Get color
+
+    print point(100,100)        ' Output: -2038815
+
+Example 2: Get graphics cursor position
+
+    x = point(0)
+    y = point(1)
+    print "Initial position: "; x, y     ' Output: 0,0
+
+    line STEP 50,50 STEP 50,50
+
+    x = point(0)
+    y = point(1)
+    print "Position after STEP: "; x, y  ' Output: 100,100
+
+Example 3
 
 This demonstrates saving a screen section and redrawing it at different
 places on screen, a tiling and a moving across the screen.
 
-
     ' POINT demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-07
     for objects = 1 to 300
-      if rnd>.5 then
-        circle rnd*xmax\\1, rnd*ymax\\1, rnd*50\\1, rnd*5, rnd*16/1 
+      if rnd > 0.5 then
+        circle rnd*xmax\1, rnd*ymax\1, rnd*50\1, rnd*5, rnd*16/1 
       else
-        rect rnd*xmax\\1, rnd*ymax\\1 step rnd*50\\1, rnd*50\\1, rnd*16/1
+        rect rnd*xmax\1, rnd*ymax\1 step rnd*50\1, rnd*50\1, rnd*16/1
       end if  
     next
-    at 0,ymax-2*txth("Q"):?" press any..."
+
+    at 0, ymax - 2*txth("Q") : print " press any..."
     showpage
     pause
-    xw=350:yh=250
-    bottle 0,0,xw,yh
+
+    xw = 350
+    yh = 250
+    bottle 0, 0, xw, yh
     cls
-    for y=0 to ymax step yh
-      for x=0 to xmax step xw
-        pour x,y,xw,yh
+
+    for y = 0 to ymax step yh
+      for x = 0 to xmax step xw
+        pour x, y, xw, yh
         showpage
       next
     next
-    at 0,ymax-2*txth("Q"):?" press any..."
+
+    at 0, ymax - 2*txth("Q"): print " press any..."
     showpage
     pause
     cls
-    for x=0 to xmax step 25
+
+    for x = 0 to xmax step 25
       cls
-      pour x,ymax\\2-yh\\2,xw,yh
+      pour x, ymax\2 - yh\2, xw, yh
       showpage
       delay 10
     next
-    at 0,ymax-2*txth("Q"):?"done, press any... "
+
+    at 0, ymax - 2*txth("Q") : print "done, press any... "
     showpage
     pause 
-    sub bottle(xleft,ytop,xwidth,yheight)
-      local x,y
-      dim screensection(xwidth,yheight)
-      for y=ytop to (ytop+yheight-1)
-        for x=xleft to (xleft+xwidth-1)
-          screensection(x,y)=POINT(x,y)
+
+    sub bottle(xleft, ytop, xwidth, yheight)
+      local x, y
+      dim screensection(xwidth, yheight)
+      for y = ytop to (ytop + yheight - 1)
+        for x = xleft to (xleft + xwidth - 1)
+          screensection(x, y) = POINT(x, y)
         next
       next
     end
-    sub pour(xoff,yoff,xwidth,yheight)
-      local x,y
-      for y=0 to yheight
-        for x=0 to xwidth
-          colr=screensection(x,y)
-          pset x+xoff,y+yoff,colr
+
+    sub pour(xoff, yoff, xwidth, yheight)
+      local x, y
+      for y = 0 to yheight
+        for x = 0 to xwidth
+          colr = screensection(x, y)
+          pset x + xoff, y + yoff, colr
         next
       next
     end 
 
+Example 4: Get graphics cursor and color
 
     ' Note: POINT(x, y) returns the color of the pixel at x,y. But it's
     '       also possible to use POINT(0) and POINT(1) to return the current
@@ -4937,34 +5172,19 @@ places on screen, a tiling and a moving across the screen.
 
 PSET [STEP] x,y [, color| COLOR color]
 
-Draw a pixel.
+Draws a pixel at coordinate x,y with color color. If color is not
+defined, the current foreground color will be used. If STEP is used, the
+graphics cursor will be moved by x pixels in x-direction and y pixel in
+y-direction and then the pixel will be drawn.
 
+Example:
 
-    cx=xmax/2  'center x, xmax is built in constant that returns the screen width
-    cy=ymax/2  'center y, ymax is built in constant that returns the screen height
-    MyColor=RGB(255,128,0)  'orange?
-    PSET cx,cy,MyColor   'draws an orange pixel at center of screen
-
-(see also STEP that works off the last x,y graphic call) for instance
-now that one graphic call is made, we can draw a point 50 pixels
-directly to the right using STEP PSET STEP 50,0,MyColor Without a color
-specified in 3rd argument PSET will use foreground from last COLOR
-foreground, background statement. IF that had never been used it will
-default to screen printing colors 7,0 (QB scale) for Colors see RGB,
-RGBF, and … hmmm do we have a QB color sampler? Here is QB color chart:
-
-
-    'QB color chart of 16 colors for 0 = black to 15 = bright white
-    dy=ymax/16
-    for i=0 to 15
-      rect 0,i*dy,xmax,i*dy+dy,i filled
-      at 0,i*dy:? i;
-    next
-    pause
-
-Here is PSET with QB red at center screen: PSET xmax/2,ymax/2,12 12 is
-QB red, 9 is blue, 14 is yellow, 7 dull white, 0 black, 8 is darker gray
-than 7 usually the colors get brighter
+    color 10                    ' Set foreground color 10
+    PSET 50,50                  ' Point at 50,50 with foreground color 
+    PSET 60,60, 11              ' Point at 60,60 with color 5
+    PSET 70,70 COLOR 12         ' Point at 70,70 with color 6
+    PSET 80,80, rgb(255,255,0)  ' Point at 80,80 with color yellow
+    PSET STEP 10,10 COLOR 13    ' Point at 90,90 with color 7
 
 +========================================================================================+
 |                                   94. (Graphics) RECT                                  |
@@ -5862,7 +6082,23 @@ a BAND b
 
 Bitwise AND.
 
+Truth table:
+
+   a   b   a BAND b
+  --- --- ----------
+   0   0      0
+   0   1      0
+   1   0      0
+   1   1      1
+
+See AND for the logical operator.
+
+Example 1
+
     print "1011 AND 1101 = "; bin(0b1011 band 0b1101)
+    ' Output: 1011 AND 1101 = 1001
+
+Example 2
 
 The following example will first pack a date into a single integer and
 then unpack the integer to get the original date using bitwise
@@ -5912,7 +6148,19 @@ a BOR b
 
 Bitwise OR.
 
-    print "1001 OR 1110 = "; bin(0b1001 BOR 0b1100)
+Truth table:
+
+   a   b   a BOR b
+  --- --- ---------
+   0   0      0
+   0   1      1
+   1   0      1
+   1   1      1
+
+Example:
+
+    print "1001 BOR 1110 = "; bin(0b1001 BOR 0b1100)
+    ' Output: 1001 BOR 1110 = 1101
 
 +========================================================================================+
 |                                  113. (Language) BYREF                                 |
@@ -6578,6 +6826,8 @@ immediately following the most recent GOSUB command.
 GOSUB should be used with caution. Using subroutines is more versatile
 and much easier to read.
 
+See ON for ON n GOSUB Label1 for branching depending on a number n.
+
 Example 1: Using GOSUB
 
     while(ii < 20)
@@ -6613,6 +6863,8 @@ Causes program execution to branch to a specified position (label).
 GOTO is known to create “spaghetti code”, i.e. winding code which is
 hard to follow, to understand, and to maintain. IF…THEN, SELELCT CASE,
 SUB, FUNC and DEF are much better ways to write branching code.
+
+See ON for ON n GOTO Label1 for branching depending on a number n.
 
 Example 1
 
@@ -7096,14 +7348,12 @@ Example 2:
 
 MDL
 
-Modulus.
+Returns the modulus. The difference to MOD and % is, that MDL works also
+with float numbers instead of only integers.
 
-The difference to MOD and % is, that MDL works also with float numbers
-instead of only integers.
+Example
 
-    Result =  2.3 MDL 1
-    print Result
-    'Output: "0.3"
+    print 2.3 MDL 1     ' Output: 0.3
 
 +========================================================================================+
 |                                   145. (Language) MOD                                  |
@@ -7111,71 +7361,80 @@ instead of only integers.
 
 a MOD b
 
-Modulus. Equivalent syntax to the percent character, eg a % b
+Calculates the Modulus. Returns the remainder of a/b as integer.
+Equivalent syntax to % and MDL.
 
+Example 1
+
+    print  5 mod 2    ' Output 1
+    print 12 mod 5    ' Output 2
+
+Example 2: ASCII table
 
     ' LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
-    ' LOCATE row, column - sets the next print location on screen, rows down, columns across
-    ' a MOD b - returns the remainder of a/b as integer 0 to b-1
-    '           for example odd number n mod 2 returns 1, while even number n mod 2 returns 0
-    '           n mod 10 returns 0,1,2,3,4,5,6,7,8 or 9  we will use this is demo
-    ' CHR - returns the CHaRracter for the ASC number, for demo we will print a chart of CHR for ASC numbers 32-128
-    ' ASC(Character) - is a number code for a print characters, 32 is the code for a space
-    ' ? - is shortcut for PRINT
-    ' RIGHT(string,n) - returns right most n characters of string
-    ' STR(n) - returns a number in string form
-    ' : - code statement seperator often used with LOCATE row, column : ? string
-    ' PAUSE optional-number-of-secs - waits for key press or mouse click and/or for a number seconds 
-    ' so lets user decide how long to wait
-    LOCATE 1,16 : ? "ASC Table 30-129:"  ' locate print spot, print title for our app
-    FOR column=0 to 9 'print a header, 10 numbers plus + (to add to row value)
-      LOCATE 2,column*5+4 : ? "+";column
+    '
+    ' LOCATE row, column    : sets the next print location on screen, rows down, columns across
+    ' a MOD b               : returns the remainder of a/b as integer 
+    ' CHR                   : returns the CHaRracter for the ASC number
+    '                         for demo we will print a chart of CHR for ASC numbers 32-128
+    ' ASC(Character)        : is a number code for a print characters, 32 is the code for a space
+    ' ?                     : is shortcut for PRINT
+    ' RIGHT(string,n)       : returns right most n characters of string
+    ' STR(n)                : returns a number in string form
+    ' :                     : code statement seperator often used with LOCATE row, column : ? string
+
+    LOCATE 1,16 : PRINT "ASC Table 30-129:"     ' locate print spot, print title for our app
+    FOR column = 0 to 9                         ' print a header, 10 numbers plus + (to add to row value)
+        LOCATE 2, column * 5 + 4 : PRINT "+"; column
     NEXT
-    FOR row=3 to 12
-      LOCATE row,0 : ? RIGHT(" "+STR(row*10)+":",4)
+    FOR row = 3 to 12
+        LOCATE row, 0 : ? RIGHT(" " + STR(row * 10) + ":", 4)
     NEXT
     'main table
-    FOR ASCnumber=30 to 129   'note ASC(32) = space so wont see anything in Table
-      row=ASCnumber\\10 ' \\ rounds division down to integer
-      column=(ASCnumber MOD 10)*5+5  'times 5 to space out the characters printed plus 5 for column labels
-      LOCATE row,column : ? CHR(ASCnumber)
+    FOR ASCnumber = 30 to 129                   ' note ASC(32) = space so wont see anything in Table
+        row = ASCnumber \ 10                    ' \ rounds division down to integer
+        column = (ASCnumber MOD 10) * 5 + 5     ' times 5 to space out the characters printed plus 5 for column labels
+        LOCATE row, column : ? CHR(ASCnumber)
     NEXT
-    PAUSE
 
+Example 2: Prime or lowest divisor table
 
     ' more MOD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
+    '
     ' n MOD m - returns the remainder of n divided by m, if 0 then m divides n perfectly
     ' another way to do MOD in SmallBASIC is to use symbol %, n%m is same as n MOD m
     ' MOD is great to tell if a number is divisible by another (leaves no remainders)
     ' a number not divisible by any number less to it other than 1, is called a prime number
     ' here we will list first 100 numbers and tell if prime or give the lowest divisor
+
     'table setup: title header and row labels
-    LOCATE 0,0 : ? "P=Prime or Lowest Divisor Table"
-    FOR column=0 to 9 'print a header, 10 numbers plus + (to add to row value)
-      LOCATE 2,column*2+7 : ? "+";column
+    LOCATE 0,0 : PRINT "P=Prime or Lowest Divisor Table"
+    FOR column = 0 to 9                         ' print a header, 10 numbers plus + (to add to row value)
+        LOCATE 2, column * 2 + 7 : PRINT "+"; column
     NEXT
     FOR row=3 to 12
-      LOCATE row,0 : ? RIGHT("    "+STR(row*10-30)+":",6)
+        LOCATE row, 0 : PRINT RIGHT("    "+STR(row * 10 - 30) + ":", 6)
     NEXT
+
     'main table data
-    FOR n=1 to 99
-      IF n=1 THEN 
-        report=" O" 'one is one, neither prime nor not prime
-      ELSE
-        report=" P" 'letter code for Prime
-        FOR i=2 TO n-1
-          IF n%i=0 THEN  '<== if n MOD i=0 or n%i=0, THEN i divides n perfectly
-            report=" "+STR(i):EXIT  'we found lowest divisor get out of loop
-          END IF  
-        NEXT
-      END IF
-      row=n\\10+3 'n\\10 is our number divided by 10 and rounded down, 
-      'call it the tens row offset 3 rows down for title and header and blank line
-      column=n%10*2+7 '<== use MOD to LOCATE the column (*2 column width + 7 row label offset) 
-      LOCATE row,column :? report   '? short for print
+    FOR n= 1 to 99
+        IF n = 1 THEN 
+            report = " O"                       ' one is one, neither prime nor not prime
+        ELSE
+            report = " P"                       ' letter code for Prime
+            FOR i = 2 TO n - 1
+                IF n % i = 0 THEN               ' <== if n MOD i=0 or n%i=0, THEN i divides n perfectly
+                    report = " " + STR(i)
+                    EXIT                        ' we found lowest divisor get out of loop
+                END IF  
+            NEXT
+        ENDIF
+        row = n \ 10 + 3                        ' n\10 is our number divided by 10 and rounded down, 
+                                                ' call it the tens row offset 3 rows down for title and header and blank line
+        column = n % 10 * 2 + 7                 ' <== use MOD to LOCATE the column (*2 column width + 7 row label offset) 
+        LOCATE row, column : ? report           ' ? short for print
     NEXT
-    ?:?"O=one is neither prime nor not" '  ?:?"..." print blank line first
-    PAUSE
+    ?:? "O=one is neither prime nor not prime"  ' ?:?"..." print blank line first
 
 +========================================================================================+
 |                                   146. (Language) NAND                                 |
@@ -7185,10 +7444,46 @@ a NAND b
 
 Bitwise exclusive NOT AND.
 
+Truth table:
+
+   a   b   a NAND b
+  --- --- ----------
+   0   0      1
+   0   1      1
+   1   0      1
+   1   1      0
+
+Example 1
+
+The NOT-operation as part of NAND performs a bitwise inversion on all
+bits of a number. This leads to the following (maybe unexpected) result:
+
+    print 1 NAND 1   ' Output: 11111111111111111111111111111110
+
+Example 2: Operate NAND only on last n bits
+
+If you want to operate NAND only on the last n bits of the numbers, you
+can use the following code:
+
+    n = 4
+    a = 0b1101
+    b = 0b1001
+
+    print bin((a NAND b) BAND ((1 lshift n ) - 1)) 
+
+    ' Output 110
+
+Example 3: Two’s complement
+
+  Two’s complement is a mathematical operation to reversibly convert a
+  positive binary number into a negative binary number with equivalent
+  negative value. (Wikipedia)
 
     ' Two's complement is the standard way of representing negative integers in binary. 
     ' The sign is changed by inverting all of the bits and adding one.
-    Def invsgn(n) = ((n Nand n) + 1) - Frac(n) ' invert the sign of n
+
+    Def invsgn(n) = ((n Nand n) + 1) - Frac(n)              ' invert the sign of n
+
     While True Do
       Input "Enter a number (Enter empty to stop) : ", n
       If Isstring(n) Then
@@ -7205,7 +7500,13 @@ Bitwise exclusive NOT AND.
 
 NEXT
 
-See FOR.
+Ends the code block of a FOR … NEXT loop. See FOR for more information.
+
+Example
+
+    for i = 1 to 5
+        print i
+    next
 
 +========================================================================================+
 |                                   148. (Language) NOR                                  |
@@ -7215,36 +7516,67 @@ a NOR b
 
 Bitwise NOT OR.
 
+Truth table:
 
-    ' Bnot inverts all bits in n (it's very useful for inverting a mask).
-    Def Bnot(n) = n Nor n
-    Def mask(i) = Pow(2, i) ' return a mask of only bit-i set (base 0)
-    Def set_bit(n, i) = n Bor mask(i) ' set bit-i in n (base 0)
-    Def reset_bit(n, i) = n Band Bnot(mask(i)) ' reset bit-i in n (base 0)
-    Def get_bit(n, i) = (n Band mask(i)) <> 0 ' return bit-i status: 0 or 1
+   a   b   a NOR b
+  --- --- ---------
+   0   0      1
+   0   1      0
+   1   0      0
+   1   1      0
+
+Example 1
+
+The NOT-operation as part of NOR performs a bitwise inversion on all
+bits of a number. This leads to the following (maybe unexpected) result:
+
+    print 1 NOR 1   ' Output: 11111111111111111111111111111110 
+
+Example 2: Operate NOR only on last n bits
+
+If you want to operate NOR only on the last n bits of the numbers, you
+can use the following code:
+
+    n = 4
+    a = 0b1010
+    b = 0b1000
+
+    print bin((a NOR b) BAND ((1 lshift n ) - 1)) 
+
+    ' Output 101
+
+Example 3: Set a bit
+
+    Def Bnot(n) = n Nor n                       ' Bnot inverts all bits in n (it's very useful for inverting a mask).
+    Def mask(i) = Pow(2, i)                     ' return a mask of only bit-i set (base 0)
+    Def set_bit(n, i) = n Bor mask(i)           ' set bit-i in n (base 0)
+    Def reset_bit(n, i) = n Band Bnot(mask(i))  ' reset bit-i in n (base 0)
+    Def get_bit(n, i) = (n Band mask(i)) <> 0   ' return bit-i status: 0 or 1
      
-    'demo: 
-    While True Do
-      Color 7, 0: Cls
-      Print
-      Print "* Set/Reset bit is useful for storing boolean data efficiently."
-      Print "* The rightmost bit of binary number is bit-0, then bit-1, etc."
-      Print "* This SB version supports "; Len(Bin(0)); " bits binary numbers."
-      Print
-      Input " Enter a number (Enter empty to stop): ", n
-      If isstring(n) Then
-        Stop
-      Endif
+    Color 15,0
+    cls
+
+    Print "* Set/Reset bit is useful for storing boolean data efficiently."
+    Print "* The rightmost bit of binary number is bit-0, then bit-1, etc."
+    Print "* This SB version supports "; Len(Bin(0)); " bits binary numbers."
+    Print
       
-      Print
-      Color 14, 0: Print " In Binary is: "; Bin(n)
-      Color  7, 0: Print " Bit-3 status: "; get_bit(n, 3)
-      If get_bit(n, 3) Then
-        Color 11, 0: Print " Reset bit-3:  "; Bin(reset_bit(n, 3))
-      Else
-        Color 15, 0: Print " Set bit-3:    "; Bin(set_bit(n, 3))
-      Endif
-      Pause
+    While True Do
+        Color 15,0
+        Input " Enter a number (Enter empty to stop): ", n
+        If isstring(n) Then
+            Stop
+        Endif
+      
+        Print
+        Color 14, 0: Print " In Binary is: "; Bin(n)
+        Color  7, 0: Print " Bit-3 status: "; get_bit(n, 3)
+        If get_bit(n, 3) Then
+            Color 11, 0: Print " Reset bit-3:  "; Bin(reset_bit(n, 3))
+        Else
+            Color 15, 0: Print " Set bit-3:    "; Bin(set_bit(n, 3))
+        Endif
+        Print
     Wend
 
 +========================================================================================+
@@ -7253,45 +7585,45 @@ Bitwise NOT OR.
 
 a NOT b
 
-Invert expression result. Equivalent syntax to the exclamation
-character, eg a ! b
+Logical operator to invert variable or expression result. Equivalent
+syntax to y = !a. NOT returns true if variable or expression result is
+false or zero. Otherwise it returns false.
 
-NOT and ! take only the right side argument: NOT b ! b It’s wrong to
-think that the left side argument (a) is part of the result. And in some
-cases it leads to an error, for example:
+For bitwise NOT use the ~ operator.
 
-    PRINT  BIN(1 Not 1) ' <-- this is error
+Example 1:
 
-Binary operators work on 2 arguments a,b: +,-,*,/^ are all binary
-operators needing 2 arguments to do their thing. shian is saying NOT or
-! is NOT Binary but Unary using only 1 argument located at right of NOT
-or ! So it is very misleading to show a NOT b If you actually try to
-print that you will get an error using (a not b) and gobbley-gook for ?
-a not b
+    print not true    ' Output: 0
+    print not 100     ' Output: 0
+    print not false   ' Output: 1
+    print not 0       ' Output: 1
 
-    'NOT is a Unary operator.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
-    'it makes anything true > false = 0
-    'it makes the one false=0 > true (and in SmallBASIC returns 1 as C developer would have it)
-    ? !true      'returns 0
-    ? NOT false  'returns 1
-    b=45
-    ? b;"=b" '45 of course
-    ? !b;"=!b"  '<===========  important one, normal use of ! or NOT output is 0
-    a=20
-    ? a;"=a" '20 of course
-    'uncomment next line to see error,
-    '? (a NOT b);" (a!b) should error because ! only works on b" '(EXPR): Missing ')'
-    pause
+Example 2: NOT in an if statement
 
-Thanks shian, on my own I would never have noticed this. to be precise:
-NOT is not Bitwise operator, it is a logical operator.
+    IsRunning = false                ' Replace with true
+    if(NOT IsRunning) then print "Program is not running"
 
-There are two versions of NOT: NOT, which is logical not, ~, which is
-bitwise not.
+    a = 0             ' Replace i.e. 10
+    if(NOT a) then print "Value is zero"
 
-Both are using only the right side expression: NOT(b), ~(b) NOT inverts
-the expression b (e.g. true –> false) ~ inverts each bit in b
-(e.g. 01011 –> 10100)
+Example 3: Bitwise NOT using ~
+
+The NOT-operation performs a bitwise inversion on all bits of a number.
+This leads to the following (maybe unexpected) result:
+
+    print bin(~0b1001)      ' Output: 11111111111111111111111111110110
+
+Example 4: Operate bitwise NOT only on last n bits
+
+If you want to operate NOT only on the last n bits of the numbers, you
+can use the following code:
+
+    n = 4
+    a = 0b1010
+
+    print bin((~a) BAND ((1 lshift n ) - 1)) 
+
+    ' Output 101
 
 +========================================================================================+
 |                                    150. (Language) ON                                  |
@@ -7299,11 +7631,53 @@ the expression b (e.g. true –> false) ~ inverts each bit in b
 
 ON GOTO|GOSUB label1 [, ..., labelN]
 
-Causes a branch to one of a list of labels.
+Causes a branch of the program to one of the labels label1 to labelN. n
+defines the number of the label. If n = 1 the first label is used; with
+n = N the Nth label is used. n must be in the range 0 to 255.
 
-A numeric expression in the range 0 to 255. Upon execution of the
-ON…GOTO command (or ON…GOSUB), BASIC branches to the nth item in the
-list of labels that follows the keyword GOTO (or GOSUB).
+Example 1: ON … GOTO
+
+    n = 1       ' Change to 1,2,3 or other value
+
+    ON n GOTO label1, label2, label3
+
+    print "Nothing happend"
+
+    end
+
+    label label1
+    print "Goto label 1"
+    end
+
+    label label2
+    print "Goto label 2"
+    end
+
+    label label3
+    print "Goto label 3"
+    end
+
+Example 2: ON … GOSUB
+
+    n = 1       ' Change to 1,2,3 or other value
+
+    ON n GOSUB label1, label2, label3
+
+    print "After GOSUB"
+
+    end
+
+    label label1
+    print "Gosub label 1"
+    return
+
+    label label2
+    print "Gosub label 2"
+    return
+
+    label label3
+    print "Gosub label 3"
+    return
 
 +========================================================================================+
 |                                    151. (Language) OR                                  |
@@ -7312,6 +7686,25 @@ list of labels that follows the keyword GOTO (or GOSUB).
 a OR b
 
 Logical OR. Right side is not evaluated if left side evaluates to True.
+
+Truth table:
+
+   a   b   a OR b
+  --- --- --------
+   0   0     0
+   0   1     1
+   1   0     1
+   1   1     1
+
+See BOR for bitwise OR.
+
+Example:
+
+    a = 1       ' Change value to 1,2 or other
+
+    if (a == 1) OR (a == 2) then
+        print "a is 1 or 2"
+    endif
 
 +========================================================================================+
 |                                   152. (Language) REM                                  |
@@ -8959,7 +9352,10 @@ Example:
 
 M3APPLY m3x3, BYREF poly
 
-Apply matrix to poly-line.
+Apply 2D transformation matrix M to poly-line poly. Transformation
+matrix M is a 3x3 matrix.
+
+Example
 
     DIM M(2,2)
 
@@ -8987,11 +9383,16 @@ different.
 
 M3IDENT BYREF m3x3
 
-Resets matrix (Identity).
+Creates a 3x3 Identity matrix M:
 
         |1  0  0|
     M = |0  1  0|
         |0  0  1|
+
+The Identy matrix can be used with M3TRANS, M3SCALE, M3ROTATE and
+M3APPLY to perform 2D transformations of a poly-line.
+
+Example
 
     DIM M(2,2)
 
@@ -9013,10 +9414,10 @@ Resets matrix (Identity).
 
 M3ROTATE BYREF m3x3, angle [, x, y]
 
-Multiply the given matrix by a rotation matrix with an angle and a
-rotation center x,y.
+Multiply the 2D transformation matrix M by a rotation matrix with an
+angle angle and a rotation center x,y. M is a 3x3 matrix.
 
-If x = 0 and y = 0:
+If x = 0 and y = 0 the rotation matrix has the form:
 
            | cos(angle) -sin(angle)  0 |
     MRot = | sin(angle)  cos(angle)  0 |
@@ -9027,6 +9428,8 @@ else:
            | cos(angle) -sin(angle)  (1 - cos(angle))*x + sin(angle) * y |
     MRot = | sin(angle)  cos(angle)  (1 - cos(angle))*y - sin(angle) * x |
            | 0           0           1 |
+
+Example
 
     DIM M(2,2)
 
@@ -9054,12 +9457,23 @@ different.
 
 M3SCALE BYREF m3x3, x, y, Sx, Sy
 
-Multiply the given matrix by a scale matrix. Sx and Sy are the scaling
-factors in x and y direction.
+Multiply the 2D transformation matrix M by a scale matrix. Sx and Sy are
+the scaling factors in x and y direction. Ox and Oy define the position
+of the origin.
 
-             | Sx  0  0|
-    MScale = | 0  Sy  0|
-             | 0   0  1|
+If Ox = 0 and Oy = 0 then the scaling matrix M has the form:
+
+             |Sx  0  0|
+    MScale = |0  Sy  0|
+             |0   0  1|
+
+else:
+
+             |1 0 Ox|   |Sx  0 0|   |1 0 -Ox|   |Sx  0 (1 - Sx) * Ox|   
+    MScale = |0 1 Oy| * | 0 Sy 0| * |0 1 -Oy| = | 0 Sy (1 - Sy) * Oy|
+             |0 0  1|   | 0  0 1|   |0 0   1|   | 0  0             1|
+
+Example
 
     DIM M(2,2)
 
@@ -9087,11 +9501,16 @@ different.
 
 M3TRANS BYREF m3x3, Tx, Ty
 
-Multiply the given matrix by a 3x3 translation matrix.
+Multiply the 2D transformation matrix M by a translation matrix. Tx and
+Ty are the translations in x and y direction. M is a 3x3 matrix.
+
+The translation matrix has the form
 
              |  1  0  Tx |
     MTrans = |  0  1  Ty |
              |  0  0  1  |
+
+Example
 
     DIM M(2,2)
 
@@ -9119,16 +9538,16 @@ different.
 
 MAX (...)
 
-Maximum value of parameters. Parameters can be numbers, arrays or
-strings.
+MAX returns the maximum value of the given parameters var1 to varN.
+Parameters can be numbers, arrays or strings.
 
-    print MAX(3, 4, 8)
-    print MAX("abc","def")
-    x = [-1, 5, 8]: print MAX(x, 2, 3)
+Example
 
-    print MIN(3, 4, 8)
-    print MIN("abc","def")
-    x = [-1, 5, 8]: print MIN(x, 2, 3)
+    print MAX(3, 4, 8)                  ' Output: 8
+    print MAX("abc","def")              ' Output: def
+    x = [-1, 5, 8]
+    print MAX(x)                        ' Output: 8
+    print MAX(x, 2, 9)                  ' Output: 9
 
 +========================================================================================+
 |                                     218. (Math) MIN                                    |
@@ -9136,16 +9555,16 @@ strings.
 
 MIN (...)
 
-Minimum value of parameters. Parameters can be numbers, arrays or
-strings.
+Returns the minimum value of the given parameters var1 to varN.
+Parameters can be numbers, arrays or strings.
 
-    print MAX(3, 4, 8)
-    print MAX("abc","def")
-    x = [-1, 5, 8]: print MAX(x, 2, 3)
+Example
 
-    print MIN(3, 4, 8)
-    print MIN("abc","def")
-    x = [-1, 5, 8]: print MIN(x, 2, 3)
+    print MIN(3, 4, 8)                  ' Output: 3
+    print MIN("abc","def")              ' Output: abc
+    x = [-1, 5, 8]
+    print MIN(x)                        ' Output: -1
+    print MIN(x, 2, -9)                 ' Output: -9
 
 +========================================================================================+
 |                                   219. (Math) POLYAREA                                 |
@@ -9156,6 +9575,10 @@ POLYAREA (poly)
 Returns the area of the polyline poly. The algebraic sign of the area is
 positive for counterclockwise ordering of vertices in x-y plane;
 otherwise negative.
+
+See DRAWPOLY for more information on how to define the polyline.
+
+Example
 
     polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
     drawpoly polygon color 12
@@ -9173,24 +9596,25 @@ otherwise negative.
 
 POLYCENT
 
-returns the centroid of a polygon.
+returns the centroid of a polygon poly as an array. The first element
+contains the x- the second element contains the y-coordinate of the
+centroid. POLYCENT will return an empty array if the area of the polygon
+is zero and the centroid is undefined.
 
 POLYCENT is based on code from the article “Centroid of a Polygon” by
 Gerard Bashein and Paul R. Detmer.
 
-POLYCENT calculates the centroid (xCentroid, yCentroid) of a polygon,
-given its vertices (x[0], y[0]) … (x[n-1], y[n-1]). It is assumed that
-the contour is closed, i.e., that the vertex following (x[n-1], y[n-1])
-is (x[0], y[0]).
+See DRAWPOLY for more information on how to define the polygon.
 
-POLYCENT will return an empty array if the area of the polygon is zero
-and the centroid is undefined.
+Example:
 
-    polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
+    polygon = [[50,50], [100,50], [100,100], [50,100], [50,50]]
 
+    ' Calculate centroid
     centroid = polycent(polygon)  
     print "Centroid is at: "; centroid
 
+    ' Draw polygon and a circle at position of the centroid
     drawpoly polygon color 12
     circle centroid(0), centroid(1) , 5 color 5
 
@@ -9200,12 +9624,18 @@ and the centroid is undefined.
 
 POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax
 
-Returns the polyline’s extents.
+Returns the extents of the polyline poly. xmin and xmax are extents in
+x-direction and ymin and ymax are the extents in y-direction.
+
+See DRAWPOLY on how to define a polyline.
+
+Example
 
     polygon = [ [30,50], [100,70], [120,90], [50,100], [30,50]]
 
     polyext(polygon, PolyXmin, PolyYmin, PolyXmax, PolyYmax)
 
+    ' Draw polygon and a rectangle for indicating the extents
     drawpoly polygon color 12
     rect PolyXmin, PolyYmin, PolyXmax, PolyYmax  color 5
 
@@ -9215,9 +9645,11 @@ Returns the polyline’s extents.
 
 POW (x, y)
 
-x raised to power of y.
+returns x raised to power of y.
 
-    print pow(5,2)   ' same as 5^2
+Example
+
+    print pow(5,2)   ' same as 5^2 = 25
 
 +========================================================================================+
 |                                   223. (Math) PTDISTLN                                 |
@@ -9225,7 +9657,10 @@ x raised to power of y.
 
 PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
 
-Distance of point A from line B, C.
+Distance of point A from line B, C. Point A is given by the coordinates
+(Ax, Ay), B by (Bx, By) and C by (Cx, Cy)
+
+Example 1
 
     ' Define line
     Bx = 100
@@ -9239,6 +9674,8 @@ Distance of point A from line B, C.
 
     Distance = ptdistln(Bx, By, Cx, Cy, Ax,Ay) 
     print "Distant between line and point is "; Distance  ;" pixel"
+
+Example 2: Interactive example to illustrate the geometry of PTDISTLN
 
     ' Interactive example to illustrate the geometry of PTDISTLN
 
@@ -9285,7 +9722,10 @@ Distance of point A from line B, C.
 
 PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)
 
-Distance of point A from line segment B-C.
+Distance of point A from line segment B-C. Point A is given by the
+coordinates (Ax, Ay), B by (Bx, By) and C by (Cx, Cy).
+
+Example 1
 
     ' Define line segment
     Bx = 100
@@ -9299,6 +9739,8 @@ Distance of point A from line segment B-C.
 
     Distance = PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay) 
     print "Distant between line and point is "; Distance  ;" pixel"
+
+Example 2: Interactive example to illustrate the geometry of PTDISTSEG
 
     ' Interactive example to illustrate the geometry of PTDISTSEG
 
@@ -9356,7 +9798,10 @@ Distance of point A from line segment B-C.
 
 PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
 
-The sign of point Q from line segment A->B.
+The sign of point Q from line segment A->B. Point Q is given by the
+coordinates (Qx, Qy), A by (Ax, Ay) and B by (Bx, By).
+
+Example 1:
 
     ' Define line
     Bx = 100
@@ -9370,6 +9815,8 @@ The sign of point Q from line segment A->B.
 
     Sign = PTSIGN(Bx, By, Cx, Cy, Ax,Ay) 
     print "Sign of point relative to the line "; Sign
+
+Example 2: Interactive example to illustrate the geometry of PTDISTLN
 
     ' Interactive example to illustrate the geometry of PTDISTLN
 
@@ -10753,11 +11200,15 @@ Example:
 
 MID (s, start [,length])
 
-Returns the part (length) of the string s starting from ‘start’
-position.
+Returns the substring of string s starting from the position start with
+length length. If the length parameter is omitted, MID returns the whole
+string from the position start.
 
-If the ‘length’ parameter is omitted, MID returns the whole string from
-the position ‘start’.
+Example
+
+    s = "abcd"
+    print MID(s, 3)         ' Output: cd
+    print MID(s, 3, 1)      ' Output: c
 
 +========================================================================================+
 |                                    269. (String) OCT                                   |
@@ -10766,6 +11217,8 @@ the position ‘start’.
 OCT (x)
 
 Returns the octal value of x as string.
+
+Example:
 
     print hex(255)      ' output: FF
     print bin(8)        ' output: 1000
@@ -11762,8 +12215,12 @@ Create second file wich will include part1.bas.
 
 MAXINT
 
-Holds the maximum value for an integer. The value depends on whether you
-are using a 32 or 64 bit build of SmallBASIC.
+Returns the maximum value for an integer. The value depends on whether
+you are using a 32 or 64 bit build of SmallBASIC.
+
+Example
+
+    print MAXINT        ' Output 9223372036854775807
 
 +========================================================================================+
 |                                    302. (System) NIL                                   |
@@ -11771,7 +12228,20 @@ are using a 32 or 64 bit build of SmallBASIC.
 
 NIL
 
-NIL is used to mean ‘not set’ as distinct from having an INT set to 0
+Sets a variable to nil. NIL is used to mean ‘not set’ as distinct from
+having a number set to 0.
+
+Example 1
+
+    b = NIL
+    print b   ' Output: Nil
+
+Example 2
+
+    b = NIL
+    if(b == NIL) then print "b is not set"
+
+    ' Output: b is not set
 
 +========================================================================================+
 |                                   303. (System) OPTION                                 |
@@ -11781,34 +12251,71 @@ OPTION keyword
 
 Used to pass parameters to the run-time environment.
 
+  -----------------------------------------------------------------------
+  Option                              Description
+  ----------------------------------- -----------------------------------
+  OPTION BASE 0,1                     Set lowest allowed index of arrays
+                                      to 0 or 1
+
+  OPTION PREDEF ANTIALIAS on,off      Set anti-aliasing for drawing lines
+                                      or circles
+
+  OPTION MATCH PCRE [CASELESS]SIMPLE  Set matching algorithm to
+                                      (P)erl-(C)ompatible (R)egular
+                                      (E)xpressions library or back to
+                                      simple one for LIKE and FILES
+
+  OPTION PREDEF QUIET                 Sets the quiet flag (-q option)
+
+  OPTION PREDEF COMMAND cmdstr        Sets the COMMAND$ string to cmdstr
+                                      (useful for debug reasons)
+
+  OPTION PREDEF GRMODE                Sets the graphics mode flag (-g
+  [WIDTHxHEIGHT[xBPP]]                option) or sets the preferred
+                                      screen resolution. Example:
+                                      OPTION PREDEF GRMODE 320x320x16
+
+  OPTION PREDEF TEXTMODE              Sets the text mode flag (-g-
+                                      option)
+
+  OPTION PREDEF CSTR                  Sets as default string style the
+                                      C-style special character encoding
+                                      (\)
+  -----------------------------------------------------------------------
+
 +========================================================================================+
 |                                   304. (System) PAUSE                                  |
 +========================================================================================+
 
 PAUSE [secs]
 
-Pauses the execution for a specified length of time, or until user hit
-the keyboard.
+Waits for a key press, a mouse click or the optional amount of seconds
+secsbefore executing next statement.
 
-PAUSE n - n is optional number of secs, with or without n, PAUSE will
-wait for key press or mouse click (or the optional amount of secs)
-before executing next statement. BUT! be warned PAUSE may interfere with
-INKEY or PEN(3) events if they follow a PAUSE. PAUSE is the perfect
-choice for the PRINT “Hello World” classic first program. Now days, that
-screen wont stay up long enough to see without something like PAUSE to
-halt program execution (for the user to see the output screen).
+PAUSE may interfere with INKEY or PEN events.
 
+Example 1
 
-    'ribbons.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-24
-    'new and improved update of SB and Bpf posts 2015-04-16 B+
-    at 80,610:? "Wait 8 secs or press any for next screen..."
-    const a=127
+    print "Before PAUSE - press a key, mouse button or wait 5s"
+    pause 5
+    print "After PAUSE"
+
+Example 2
+
+    ' ribbons.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-24
+    ' new and improved update of SB and Bpf posts 2015-04-16 B+
+
+    at 80,610: ? "Wait 8 secs or press any for next screen..."
+    const a = 127
+
     while 1 
-      for i=0 to 9
-        b=rnd^2:c=rnd^2:d=rnd^2
-        for x=1 to 600
-          cl=RGB(a+a*sin(b*x),a+a*sin(c*x),a+a*sin(d*x))
-          line x,i*60+1 step 0,60,cl
+      for i = 0 to 9
+        b = rnd^2
+        c = rnd^2
+        d = rnd^2
+        for x = 1 to 600
+          cl = RGB(a + a * sin(b * x), a + a * sin(c * x), a + a * sin(d * x))
+          line x, i * 60 + 1 step 0, 60, cl
         next x
       next i
       pause 8 '<=========== pause waits 8 secs or key press
@@ -11820,9 +12327,12 @@ halt program execution (for the user to see the output screen).
 
 PI
 
-Holds PI
+Returns PI. See: Wikipedia
 
-See: https://en.wikipedia.org/wiki/Pi
+Example
+
+    print PI            ' Output: 3.1415...
+    print cos(2*PI)     ' Output: 1
 
 +========================================================================================+
 |                                  306. (System) PROGLINE                                |
@@ -11831,6 +12341,13 @@ See: https://en.wikipedia.org/wiki/Pi
 PROGLINE
 
 Returns the current program line number.
+
+    Print "first line of program"
+    print PROGLINE
+
+    ' Output:
+    ' first line of program
+    ' 2
 
 +========================================================================================+
 |                                 307. (System) RANDOMIZE                                |

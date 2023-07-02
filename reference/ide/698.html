@@ -1,11 +1,13 @@
 <h1 id="m3ident">M3IDENT</h1>
 <blockquote>
-<p>M3IDENT BYREF m3x3</p>
+<p>M3IDENT BYREF M</p>
 </blockquote>
-<p>Resets matrix (Identity).</p>
+<p>Creates a 3x3 Identity matrix <code>M</code>:</p>
 <pre><code>    |1  0  0|
 M = |0  1  0|
     |0  0  1|</code></pre>
+<p>The Identy matrix can be used with M3TRANS, M3SCALE, M3ROTATE and M3APPLY to perform 2D transformations of a poly-line.</p>
+<h3 id="example">Example</h3>
 <pre><code>DIM M(2,2)
 
 Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon

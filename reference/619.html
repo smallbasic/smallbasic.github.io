@@ -73,8 +73,36 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Fills an enclosed area on the graphics screen with a specific color. x,y = Screen coordinate (column, row) within the area that is to be filled.</p>
-<p>If border-color is specified then PAINT will fill outwards until is meets the specified border-color - (fill-until, color!=point(x,y)) If the border-color is NOT specified then PAINT will fill the area with the same color as the pixel at x,y - (fill-while, color=point(x,y))</p>
+<p>Fills an enclosed area on the graphics screen with the color <code>fill-color</code>. <code>x</code> and <code>y</code> are screen coordinates within the area that is to be filled.</p>
+<p>If <code>border-color</code> is specified then PAINT will fill outwards until is meets the specified border-color. If the border-color is not specified then PAINT will fill the area until it meets a color which is not the original color at <code>[x,y]</code>. Please note that border-color needs to be specified using the functions RGB or RGBF.</p>
+<p>If the keyword STEP is used, <code>x</code> and <code>y</code> move the graphics cursor in pixel. The area will be filled starting from this new position of the graphics cursor.</p>
+<h3 id="example-1-fill-without-specified-border-color">Example 1: Fill without specified border-color</h3>
+<pre><code>&#39; draw a diamond shaped polygon
+polygon = [[100,100], [150,50], [200,100], [150,200], [100,100]]
+color 14
+drawpoly polygon
+
+&#39; draw a rectangle on top of the diamond
+color 13
+rect 120,60,180,180
+
+&#39; fill area inside
+color 12
+paint 150,130</code></pre>
+<h3 id="example-2-fill-with-specified-fill-color-and-border-color">Example 2: Fill with specified fill-color and border-color</h3>
+<pre><code>&#39; draw a diamond shaped polygon
+polygon = [[100,100], [150,50], [200,100], [150,200], [100,100]]
+color 14
+drawpoly polygon
+
+&#39; draw a rectangle on top of the diamond
+RectColor = rgb(255,0,255)
+color RectColor
+rect 120,60,180,180
+
+
+&#39; fill area inside rect
+paint 150,130, 11, RectColor        &#39; Border color needs do be set with RGB(...)</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using PAINT</div>
     <div class="linklist">
@@ -145,7 +173,7 @@ PAINT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Tue, 13 Jun 2023 11:17:43 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>POINT</h1>
-  <blockquote>POINT (x [, y])</blockquote>
+  <blockquote>n = POINT (x [, y])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,64 +73,84 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Returns the color of the pixel at x,y.</p>
-<p>If the y argument is not specified, x specifies the following info-code: 0 = returns the current X graphics position 1 = returns the current Y graphics position</p>
+<p>Returns the color of the pixel at <code>x</code>,<code>y</code>.</p>
+<p>If the y-argument is not specified, <code>x</code> specifies the following info-code: - 0: returns the current graphics cursor X-position - 1: returns the current graphics cursor Y-position</p>
+<h3 id="example-1-get-color">Example 1: Get color</h3>
+<pre><code>print point(100,100)        &#39; Output: -2038815</code></pre>
+<h3 id="example-2-get-graphics-cursor-position">Example 2: Get graphics cursor position</h3>
+<pre><code>x = point(0)
+y = point(1)
+print &quot;Initial position: &quot;; x, y     &#39; Output: 0,0
+
+line STEP 50,50 STEP 50,50
+
+x = point(0)
+y = point(1)
+print &quot;Position after STEP: &quot;; x, y  &#39; Output: 100,100</code></pre>
+<h3 id="example-3">Example 3</h3>
 <p>This demonstrates saving a screen section and redrawing it at different places on screen, a tiling and a moving across the screen.</p>
-<pre><code>
-&#39; POINT demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-07
+<pre><code>&#39; POINT demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-07
 for objects = 1 to 300
-  if rnd&gt;.5 then
-    circle rnd*xmax\\1, rnd*ymax\\1, rnd*50\\1, rnd*5, rnd*16/1 
+  if rnd &gt; 0.5 then
+    circle rnd*xmax\1, rnd*ymax\1, rnd*50\1, rnd*5, rnd*16/1 
   else
-    rect rnd*xmax\\1, rnd*ymax\\1 step rnd*50\\1, rnd*50\\1, rnd*16/1
+    rect rnd*xmax\1, rnd*ymax\1 step rnd*50\1, rnd*50\1, rnd*16/1
   end if  
 next
-at 0,ymax-2*txth(&quot;Q&quot;):?&quot; press any...&quot;
+
+at 0, ymax - 2*txth(&quot;Q&quot;) : print &quot; press any...&quot;
 showpage
 pause
-xw=350:yh=250
-bottle 0,0,xw,yh
+
+xw = 350
+yh = 250
+bottle 0, 0, xw, yh
 cls
-for y=0 to ymax step yh
-  for x=0 to xmax step xw
-    pour x,y,xw,yh
+
+for y = 0 to ymax step yh
+  for x = 0 to xmax step xw
+    pour x, y, xw, yh
     showpage
   next
 next
-at 0,ymax-2*txth(&quot;Q&quot;):?&quot; press any...&quot;
+
+at 0, ymax - 2*txth(&quot;Q&quot;): print &quot; press any...&quot;
 showpage
 pause
 cls
-for x=0 to xmax step 25
+
+for x = 0 to xmax step 25
   cls
-  pour x,ymax\\2-yh\\2,xw,yh
+  pour x, ymax\2 - yh\2, xw, yh
   showpage
   delay 10
 next
-at 0,ymax-2*txth(&quot;Q&quot;):?&quot;done, press any... &quot;
+
+at 0, ymax - 2*txth(&quot;Q&quot;) : print &quot;done, press any... &quot;
 showpage
 pause 
-sub bottle(xleft,ytop,xwidth,yheight)
-  local x,y
-  dim screensection(xwidth,yheight)
-  for y=ytop to (ytop+yheight-1)
-    for x=xleft to (xleft+xwidth-1)
-      screensection(x,y)=POINT(x,y)
+
+sub bottle(xleft, ytop, xwidth, yheight)
+  local x, y
+  dim screensection(xwidth, yheight)
+  for y = ytop to (ytop + yheight - 1)
+    for x = xleft to (xleft + xwidth - 1)
+      screensection(x, y) = POINT(x, y)
     next
   next
 end
-sub pour(xoff,yoff,xwidth,yheight)
-  local x,y
-  for y=0 to yheight
-    for x=0 to xwidth
-      colr=screensection(x,y)
-      pset x+xoff,y+yoff,colr
+
+sub pour(xoff, yoff, xwidth, yheight)
+  local x, y
+  for y = 0 to yheight
+    for x = 0 to xwidth
+      colr = screensection(x, y)
+      pset x + xoff, y + yoff, colr
     next
   next
-end 
-</code></pre>
-<pre><code>
-&#39; Note: POINT(x, y) returns the color of the pixel at x,y. But it&#39;s
+end </code></pre>
+<h3 id="example-4-get-graphics-cursor-and-color">Example 4: Get graphics cursor and color</h3>
+<pre><code>&#39; Note: POINT(x, y) returns the color of the pixel at x,y. But it&#39;s
 &#39;       also possible to use POINT(0) and POINT(1) to return the current
 &#39;       X,Y graphics position...:
 
@@ -164,8 +184,7 @@ For b = 7 To 1 Step -1   &#39; b = Background color
   Pause 1
   Showpage
 Next
-Pause
-</code></pre>
+Pause</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using POINT</div>
     <div class="linklist">
@@ -251,7 +270,7 @@ POINT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Mon, 19 Jun 2023 11:04:49 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

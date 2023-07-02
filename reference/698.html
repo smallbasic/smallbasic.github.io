@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>M3IDENT</h1>
-  <blockquote>M3IDENT BYREF m3x3</blockquote>
+  <blockquote>M3IDENT BYREF M</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,10 +73,12 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Resets matrix (Identity).</p>
+<p>Creates a 3x3 Identity matrix <code>M</code>:</p>
 <pre><code>    |1  0  0|
 M = |0  1  0|
     |0  0  1|</code></pre>
+<p>The Identy matrix can be used with M3TRANS, M3SCALE, M3ROTATE and M3APPLY to perform 2D transformations of a poly-line.</p>
+<h3 id="example">Example</h3>
 <pre><code>DIM M(2,2)
 
 Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon
@@ -191,7 +193,7 @@ M3IDENT by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 13 Jul 2022 23:33:29 +0200
+      This page was last edited on Tue, 6 Jun 2023 15:53:18 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

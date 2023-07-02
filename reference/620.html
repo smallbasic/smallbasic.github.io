@@ -73,16 +73,15 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Graph of f(x).</p>
-<p>PLOT 0, 2*PI USE SIN(x)</p>
-<p>Apparently we are now plotting with black dots as default on default black background, so need a COLOR call to see the dots.</p>
-<pre><code>
-&#39;plot test.bas from SmallBASIC ie PLOT minx, maxx, use f(x)
-color 0,15:cls  &#39;&lt;=========== plot use to work without need for this
-PLOT 0, 2*PI USE SIN(x)
-PLOT 0, 2*PI USE rnd*sin(x) &#39;&lt;==== this is cool!
-pause
-</code></pre>
+<p>Plots the graph of <code>f(x)</code> in the range from <code>xmin</code> to <code>xmax</code>. The variable must be <code>x</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; Set wite background and drawing color to red
+color rgb(255,0,0), rgb(255,255,255)
+cls
+
+&#39; Define function and plot
+def f(x) = sin(x)
+plot 0, 2*pi USE f(x)</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using PLOT</div>
     <div class="linklist">
@@ -156,7 +155,7 @@ PLOT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Thu, 15 Jun 2023 14:09:37 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

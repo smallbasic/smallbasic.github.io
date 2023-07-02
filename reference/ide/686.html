@@ -1,6 +1,45 @@
 <h1 id="on">ON</h1>
 <blockquote>
-<p>ON GOTO|GOSUB label1 [, …, labelN]</p>
+<p>ON n GOTO|GOSUB label1 [, …, labelN]</p>
 </blockquote>
-<p>Causes a branch to one of a list of labels.</p>
-<p>A numeric expression in the range 0 to 255. Upon execution of the ON…GOTO command (or ON…GOSUB), BASIC branches to the nth item in the list of labels that follows the keyword GOTO (or GOSUB).</p>
+<p>Causes a branch of the program to one of the labels <code>label1</code> to <code>labelN</code>. <code>n</code> defines the number of the label. If <code>n = 1</code> the first label is used; with <code>n = N</code> the Nth label is used. <code>n</code> must be in the range 0 to 255.</p>
+<h3 id="example-1-on-goto">Example 1: ON … GOTO</h3>
+<pre><code>n = 1       &#39; Change to 1,2,3 or other value
+
+ON n GOTO label1, label2, label3
+
+print &quot;Nothing happend&quot;
+
+end
+
+label label1
+print &quot;Goto label 1&quot;
+end
+
+label label2
+print &quot;Goto label 2&quot;
+end
+
+label label3
+print &quot;Goto label 3&quot;
+end</code></pre>
+<h3 id="example-2-on-gosub">Example 2: ON … GOSUB</h3>
+<pre><code>n = 1       &#39; Change to 1,2,3 or other value
+
+ON n GOSUB label1, label2, label3
+
+print &quot;After GOSUB&quot;
+
+end
+
+label label1
+print &quot;Gosub label 1&quot;
+return
+
+label label2
+print &quot;Gosub label 2&quot;
+return
+
+label label3
+print &quot;Gosub label 3&quot;
+return</code></pre>

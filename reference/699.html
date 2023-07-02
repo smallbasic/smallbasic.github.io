@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>M3ROTATE</h1>
-  <blockquote>M3ROTATE BYREF m3x3, angle [, x, y]</blockquote>
+  <blockquote>M3ROTATE BYREF M, angle [, x, y]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,8 +73,8 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Multiply the given matrix by a rotation matrix with an angle and a rotation center x,y.</p>
-<p>If x = 0 and y = 0:</p>
+<p>Multiply the 2D transformation matrix <code>M</code> by a rotation matrix with an angle <code>angle</code> and a rotation center <code>x</code>,<code>y</code>. <code>M</code> is a 3x3 matrix.</p>
+<p>If x = 0 and y = 0 the rotation matrix has the form:</p>
 <pre><code>       | cos(angle) -sin(angle)  0 |
 MRot = | sin(angle)  cos(angle)  0 |
        | 0           0           1 |</code></pre>
@@ -82,6 +82,7 @@ MRot = | sin(angle)  cos(angle)  0 |
 <pre><code>       | cos(angle) -sin(angle)  (1 - cos(angle))*x + sin(angle) * y |
 MRot = | sin(angle)  cos(angle)  (1 - cos(angle))*y - sin(angle) * x |
        | 0           0           1 |</code></pre>
+<h3 id="example">Example</h3>
 <pre><code>DIM M(2,2)
 
 Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon
@@ -197,7 +198,7 @@ M3ROTATE by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 13 Jul 2022 23:27:20 +0200
+      This page was last edited on Tue, 6 Jun 2023 15:58:42 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

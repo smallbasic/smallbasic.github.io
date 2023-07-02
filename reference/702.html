@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>POLYEXT</h1>
-  <blockquote>POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax</blockquote>
+  <blockquote>POLYEXT poly, BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,11 +73,14 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Returns the polyline’s extents.</p>
+<p>Returns the extents of the polyline <code>poly</code>. <code>xmin</code> and <code>xmax</code> are extents in x-direction and <code>ymin</code> and <code>ymax</code> are the extents in y-direction.</p>
+<p>See DRAWPOLY on how to define a polyline.</p>
+<h3 id="example">Example</h3>
 <pre><code>polygon = [ [30,50], [100,70], [120,90], [50,100], [30,50]]
 
 polyext(polygon, PolyXmin, PolyYmin, PolyXmax, PolyYmax)
 
+&#39; Draw polygon and a rectangle for indicating the extents
 drawpoly polygon color 12
 rect PolyXmin, PolyYmin, PolyXmax, PolyYmax  color 5
 </code></pre>
@@ -182,7 +185,7 @@ POLYEXT by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 18 Oct 2022 23:07:52 +0200
+      This page was last edited on Mon, 19 Jun 2023 15:33:58 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

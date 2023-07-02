@@ -1,37 +1,81 @@
 <h1 id="nor">NOR</h1>
 <blockquote>
-<p>a NOR b</p>
+<p>y = a NOR b</p>
 </blockquote>
 <p>Bitwise NOT OR.</p>
-<pre><code>
-&#39; Bnot inverts all bits in n (it&#39;s very useful for inverting a mask).
-Def Bnot(n) = n Nor n
-Def mask(i) = Pow(2, i) &#39; return a mask of only bit-i set (base 0)
-Def set_bit(n, i) = n Bor mask(i) &#39; set bit-i in n (base 0)
-Def reset_bit(n, i) = n Band Bnot(mask(i)) &#39; reset bit-i in n (base 0)
-Def get_bit(n, i) = (n Band mask(i)) &lt;&gt; 0 &#39; return bit-i status: 0 or 1
+<p>Truth table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">a</th>
+<th style="text-align: center;">b</th>
+<th style="text-align: center;">a NOR b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-1">Example 1</h3>
+<p>The NOT-operation as part of NOR performs a bitwise inversion on all bits of a number. This leads to the following (maybe unexpected) result:</p>
+<pre><code>print 1 NOR 1   &#39; Output: 11111111111111111111111111111110 </code></pre>
+<h3 id="example-2-operate-nor-only-on-last-n-bits">Example 2: Operate NOR only on last n bits</h3>
+<p>If you want to operate NOR only on the last <code>n</code> bits of the numbers, you can use the following code:</p>
+<pre><code>n = 4
+a = 0b1010
+b = 0b1000
+
+print bin((a NOR b) BAND ((1 lshift n ) - 1)) 
+
+&#39; Output 101</code></pre>
+<h3 id="example-3-set-a-bit">Example 3: Set a bit</h3>
+<pre><code>Def Bnot(n) = n Nor n                       &#39; Bnot inverts all bits in n (it&#39;s very useful for inverting a mask).
+Def mask(i) = Pow(2, i)                     &#39; return a mask of only bit-i set (base 0)
+Def set_bit(n, i) = n Bor mask(i)           &#39; set bit-i in n (base 0)
+Def reset_bit(n, i) = n Band Bnot(mask(i))  &#39; reset bit-i in n (base 0)
+Def get_bit(n, i) = (n Band mask(i)) &lt;&gt; 0   &#39; return bit-i status: 0 or 1
  
-&#39;demo: 
-While True Do
-  Color 7, 0: Cls
-  Print
-  Print &quot;* Set/Reset bit is useful for storing boolean data efficiently.&quot;
-  Print &quot;* The rightmost bit of binary number is bit-0, then bit-1, etc.&quot;
-  Print &quot;* This SB version supports &quot;; Len(Bin(0)); &quot; bits binary numbers.&quot;
-  Print
-  Input &quot; Enter a number (Enter empty to stop): &quot;, n
-  If isstring(n) Then
-    Stop
-  Endif
+Color 15,0
+cls
+
+Print &quot;* Set/Reset bit is useful for storing boolean data efficiently.&quot;
+Print &quot;* The rightmost bit of binary number is bit-0, then bit-1, etc.&quot;
+Print &quot;* This SB version supports &quot;; Len(Bin(0)); &quot; bits binary numbers.&quot;
+Print
   
-  Print
-  Color 14, 0: Print &quot; In Binary is: &quot;; Bin(n)
-  Color  7, 0: Print &quot; Bit-3 status: &quot;; get_bit(n, 3)
-  If get_bit(n, 3) Then
-    Color 11, 0: Print &quot; Reset bit-3:  &quot;; Bin(reset_bit(n, 3))
-  Else
-    Color 15, 0: Print &quot; Set bit-3:    &quot;; Bin(set_bit(n, 3))
-  Endif
-  Pause
-Wend
-</code></pre>
+While True Do
+    Color 15,0
+    Input &quot; Enter a number (Enter empty to stop): &quot;, n
+    If isstring(n) Then
+        Stop
+    Endif
+  
+    Print
+    Color 14, 0: Print &quot; In Binary is: &quot;; Bin(n)
+    Color  7, 0: Print &quot; Bit-3 status: &quot;; get_bit(n, 3)
+    If get_bit(n, 3) Then
+        Color 11, 0: Print &quot; Reset bit-3:  &quot;; Bin(reset_bit(n, 3))
+    Else
+        Color 15, 0: Print &quot; Set bit-3:    &quot;; Bin(set_bit(n, 3))
+    Endif
+    Print
+Wend</code></pre>

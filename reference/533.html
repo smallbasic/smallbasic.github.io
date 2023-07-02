@@ -73,7 +73,27 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Enables/Disables the PEN/MOUSE mechanism.</p>
+<p>Enables/Disables the pen/mouse/tap mechanism. See function <code>n = PEN(value)</code> for information on how to read data from tap, mouse or pen.</p>
+<h3 id="example">Example</h3>
+<pre><code>pen on
+
+print &quot;Press left mouse button or tab screen. Press q to quit.&quot;
+
+while(1)          
+    if(pen(3)) then
+        PosX = pen(4)
+        PosY = pen(5)
+        locate 1,0: print &quot;Click/tap at position: &quot; + PosX + &quot; , &quot; + PosY
+    endif
+    
+    k = inkey()
+    if(len(k) == 1 AND k == &quot;q&quot;) then end
+    
+    showpage
+    delay(20)
+wend
+
+pen off</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using PEN</div>
     <div class="linklist">
@@ -150,7 +170,7 @@ PEN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Wed, 14 Jun 2023 12:55:20 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
