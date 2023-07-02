@@ -1,5 +1,27 @@
 {% githost = "https://raw.githubusercontent.com/smallbasic/smallbasic.samples" %}
 <div class="article">
+  {% rem header left inside each markdown in case required for PDF generation %}
+  {% rem parse the blockquote from the first 4 lines, for example:
+     rem <h1 id="throw">THROW</h1>    eol1
+     rem <blockquote>                 eol2
+     rem   <p>THROW [info [, ]]</p>   eol3
+     rem </blockquote>                eol4
+     local eol1 = instr(content, chr(10))
+     local eol2 = instr(eol1 + 1, content, chr(10))
+     local eol3 = instr(eol2 + 1, content, chr(10))
+     local eol4 = instr(eol3 + 1, content, chr(10))
+     local line1 = mid(content, 1, eol1)
+     local line2 = mid(content, eol1 + 1, eol2 - eol1 - 1)
+     local line3 = mid(content, eol2 + 1, eol3 - eol2 - 1)
+     local line4 = mid(content, eol3 + 1, eol4 - eol3 - 1)
+     if (trim(left(line1, 3)) == "<h1" and &
+         trim(left(line2, 12)) == "<blockquote>" and &
+         trim(left(line3, 3)) == "<p>" and &
+         trim(left(line4, 13)) == "</blockquote>") then
+       page.title = translate(translate(line3, "<p>", ""), "</p>", "")
+     endif
+     content = mid(content, eol4 + 1)
+  %}
   <h1>{{ upper(page.name) }}</h1>
   <blockquote>{{ page.title }}</blockquote>
   <div class="siteSub">
@@ -9,13 +31,6 @@
       <a href="/pages/{{ lcase(page.package) }}.html">{{ page.package }}</a>
     </p>
   </div>
-  {% rem header left inside each markdown in case required for PDF generation %}
-  {%
-    eol = instr(content, chr(10))
-    eol = instr(eol + 1, content, chr(10))
-    eol = instr(eol + 1, content, chr(10))
-    content = mid(content, eol + 1)
-  %}
   {{ content }}
   {% if (len(page.samples) > 0) then %}
   <div class="lavenderBox">
@@ -23,7 +38,7 @@
     <div class="linklist">
       {% for filename in page.samples %}
       {%  count++: if (count < 30) then %}
-      <a target="_github" href="{{ githost }}/master/{{ filename }}">{{ rightoflast(filename,"/") }} </a>&nbsp;
+      <a target="_github" href="{{ githost }}/master{{ filename }}">{{ rightoflast(filename,"/") }} </a>&nbsp;
       {%  endif %}
       {% next filename %}
     </div>

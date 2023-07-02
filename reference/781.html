@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>INSTR</h1>
-  <blockquote>INSTR ([start,] s1, s2)</blockquote>
+  <blockquote>pos = INSTR ([start,] s1, s2)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,6 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-</blockquote>
 <p>Returns the position <code>pos</code> of the first occurrence of the string <code>s2</code> in string <code>s1</code> (starting from the position <code>start</code>). If there is no match, INSTR returns 0.</p>
 <h3 id="example-1-get-position-starting-a-the-beginning-of-the-string">Example 1: Get position starting a the beginning of the string</h3>
 <pre><code>s1 = &quot;abcdef&quot;
@@ -86,35 +85,35 @@ print instr(3, s1, s2)  &#39; Output: 7  (instead of 1)</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using INSTR</div>
     <div class="linklist">
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 1/biorythms.bas">biorythms.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/blackjack.bas">blackjack.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/BlackJack.bas">BlackJack.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/bolmo.bas">bolmo.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 2/bulls and cows.bas">bulls and cows.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/calc.bas">calc.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/calculator.bas">calculator.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//utilities/dia de una fecha.bas">dia de una fecha.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//gp utm package/dmsareareadmd.bas">dmsareareadmd.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/dogstar5.bas">dogstar5.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/filemanager.bas">filemanager.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g2 Life.bas">g2 Life.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g3 Life.bas">g3 Life.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g4 Life.bas">g4 Life.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g5 Life.bas">g5 Life.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/g6 Life.bas">g6 Life.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 2/hangman v2.bas">hangman v2.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/hangman.bas">hangman.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//network/irc-bot.bas">irc-bot.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 3/lander.bas">lander.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//gp utm package/lib-gputmcon.bas">lib-gputmcon.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//misc/Other graphics/Mandala life.bas">Mandala life.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 2/mandala life.bas">mandala life.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//graphics 2/mandelbrot explorer.bas">mandelbrot explorer.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 2/mastermind.bas">mastermind.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 2/memory match game.bas">memory match game.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//applications/memoryTest.bas">memoryTest.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//games 1/memorytest.bas">memorytest.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master//system/new bas.bas">new bas.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 1/biorythms.bas">biorythms.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 1/blackjack.bas">blackjack.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 3/BlackJack.bas">BlackJack.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 3/bolmo.bas">bolmo.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 2/bulls and cows.bas">bulls and cows.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/applications/calc.bas">calc.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/applications/calculator.bas">calculator.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/utilities/dia de una fecha.bas">dia de una fecha.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/gp utm package/dmsareareadmd.bas">dmsareareadmd.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 1/dogstar5.bas">dogstar5.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/applications/filemanager.bas">filemanager.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/misc/Other graphics/g2 Life.bas">g2 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/misc/Other graphics/g3 Life.bas">g3 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/misc/Other graphics/g4 Life.bas">g4 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/misc/Other graphics/g5 Life.bas">g5 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/misc/Other graphics/g6 Life.bas">g6 Life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 2/hangman v2.bas">hangman v2.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 1/hangman.bas">hangman.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/network/irc-bot.bas">irc-bot.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 3/lander.bas">lander.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/gp utm package/lib-gputmcon.bas">lib-gputmcon.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/misc/Other graphics/Mandala life.bas">Mandala life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 2/mandala life.bas">mandala life.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 2/mandelbrot explorer.bas">mandelbrot explorer.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 2/mastermind.bas">mastermind.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 2/memory match game.bas">memory match game.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/applications/memoryTest.bas">memoryTest.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 1/memorytest.bas">memorytest.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/system/new bas.bas">new bas.bas </a>&nbsp;
     </div>
   </div>
   <div class="lavenderBox">
