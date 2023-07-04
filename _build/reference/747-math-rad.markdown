@@ -1,13 +1,15 @@
 # RAD
 
-> RAD (x)
+> f = RAD (x)
 
-Degrees to radians.
+Converts `x` in degrees to radians.
+
+### Example:
 
 ```
 a = deg(pi)
-print a
+print a      ' Output: 180
 
 b = rad(a)
-print b
+print b      ' Output: 3.14..
 ```
