@@ -6,11 +6,14 @@ When used with GOSUB: Execution branches to the command immediately following th
 
 When used with FUNC: returns the value.
 
+### Example 1:
+
 ```
-...
 GOSUB my_routine
 PRINT "RETURN sent me here"
-...
+
+END
+
 LABEL my_routine
 PRINT "I am in my routine"
 RETURN
