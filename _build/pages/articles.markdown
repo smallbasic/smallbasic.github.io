@@ -33,6 +33,7 @@
 
 - [Escape codes](/pages/escape.html)
 - [CSS color names](/pages/units_css_color_names.html)
+- [QR code](/pages/units_qrcode.html)
 
 ## Miscellaneous
 
