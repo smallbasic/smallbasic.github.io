@@ -2,6 +2,12 @@
 
 > RMDIR dir
 
-Removes a directory.
+Removes directory `dir`.
 
+### Example
+
+```
+mkdir "testdirectory"   ' Create directory
+rmdir "testdirectory"   ' Delete directory
+```
 
