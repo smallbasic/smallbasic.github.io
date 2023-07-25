@@ -1,8 +1,8 @@
 # RSHIFT
 
-> result = number RSHIFT amount
+> result = x RSHIFT n
 
-Performs a right shift of the bits of `number` by `amount` positions.
+Performs a bitwise operation that shifts all the bits of `x` to the right by an amount of `n`.
 
 ### Example
 
