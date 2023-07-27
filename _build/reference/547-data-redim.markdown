@@ -15,7 +15,7 @@ print A                             ' Output: [1,2,3,4,5,6,7,8,9]
 redim A(12)                         ' Reshape to row vector with 13 elements
 print A                             ' Output: [1,2,3,4,5,6,7,8,9,0,0,0,0] 
 
-redim A(8, 0)                        ' Column vector with 9 elements
+redim A(8, 0)                       ' Column vector with 9 elements
 print A                             ' [1;2;3;4;5;6;7;8;9]
 
 redim A(2, 2)                       ' Reshape to 2D-matrix with 3x3 elements
