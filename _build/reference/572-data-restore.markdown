@@ -6,6 +6,7 @@ Specifies the position of the next data to be read.
 
 See DATA for more information.
 
+### Example 1:
 
 ```
 RESTORE MyDataBlock

@@ -1,48 +1,27 @@
-# REDIM
+# REDIM 
 
-> REDIM x
+> REDIM var([lower TO] upper [, …] [, …])
 
-Same as DIM only the contents of x are preserved.
+Reshape the array `var` while preserving the contents of the array. The array will have `(upper - lower) + 1` elements. If `lower` is not specified, and `OPTION BASE 1` hasn’t been used, elements start at 0.
 
+Redim can be used to add more elements to an array, to reshape a row-vector to a column-vector or reshape to a matrix.
 
-~~~
+### Examples
 
-' inspired by Bambi56...
-Option Base 1 ' Start arrays at 1 (not 0)
-Const FILENAME = "One hell of a REDIM.tmp" 
-' Save 6 lines in demo file:
-Open FILENAME For Output As #1
- ? #1, "one"
- ? #1, "two"
- ? #1, "three"
- ? #1, 1
- ? #1, 2
- ? #1, 3; ' (Using ; to avoid an extra empty line).
-Close #1
-' Load 6 lines from demo file:
-Tload FILENAME, lines
-Color 15
-? "One hell of a REDIM..."
-Color 7
-' Print lines before redim:
-?
-? "lines before REDIM: "; lines
-?
-' Redim lines into two columns:
-Const TOTAL_LINES = Len(lines) \\ 2
-Redim lines(1 To 2, 1 To TOTAL_LINES)
-' Print lines after redim:
-? "lines after REDIM:  "; lines
-?
-For l = 1 To TOTAL_LINES
-  ? lines(1, l);      ' First column
-  Locate Ypos, 15 
-  ? lines(2, l)       ' Second column
-Next row
-Pause
+```
+A = [1, 2, 3, 4, 5, 6, 7, 8, 9]     ' Row vector (1D array) with 9 elements
+print A                             ' Output: [1,2,3,4,5,6,7,8,9]
 
-~~~
+redim A(12)                         ' Reshape to row vector with 13 elements
+print A                             ' Output: [1,2,3,4,5,6,7,8,9,0,0,0,0] 
 
-I never would have guessed you could TLOAD an OPENed file and Bambi56 used the file number from OPEN to do the TLOAD.
-Very interesting...
+redim A(8, 0)                       ' Column vector with 9 elements
+print A                             ' [1;2;3;4;5;6;7;8;9]
+
+redim A(2, 2)                       ' Reshape to 2D-matrix with 3x3 elements
+print A                             ' Output: [1,2,3;4,5,6;7,8,9]
+
+redim A(2, 5)                       ' Reshape to 2D-matrix with 3x6 elements
+print A                             ' Output: [1,2,3,4,5,6;7,8,9,0,0,0;0,0,0,0,0,0]
+```
 

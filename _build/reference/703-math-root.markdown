@@ -4,14 +4,17 @@
 
 Roots of f(x).
 
-ROOT will find the first x-intercept of the given function ( where f(x) = 0 ) in the interval [low,high] 
+ROOT will find the first x-intercept of the given function ( where f(x) = 0 ) in the interval [`low`, `high`] 
 
-- low the lower limit
-- high the upper limit
-- segs the number of segments (spaces)
-- maxerr tolerance (IF ABS(f(x)) < maxerr THEN OK)
-- errcode 0 for success; otherwise calculation error
-- result the result
+- `low`: the lower limit
+- `high`: the upper limit
+- `segs`: the number of segments (spaces)
+- `maxerr`: tolerance (IF ABS(f(x)) < maxerr THEN OK)
+- `errcode`: 0 for success; otherwise calculation error
+- `result`: the result
+- `expr`: the given function
+
+### Example 1
 
 ```
 def f1(x) = x - 2 
@@ -24,7 +27,11 @@ if(errcode) then
 else
     print "Root at "; result
 endif
+
+' Output: Root at 1.99951171875
 ```
+
+### Example 2
 
 ```
 def f2(x) = x^2 - 2
@@ -37,6 +44,8 @@ if(errcode) then
 else
     print "Root at "; result 
 endif
+
+' Output: Root at 1.4140625
 ```
 
 
