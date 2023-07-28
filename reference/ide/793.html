@@ -1,5 +1,12 @@
 <h1 id="rightoflast">RIGHTOFLAST</h1>
 <blockquote>
-<p>RIGHTOFLAST (s1, s2)</p>
+<p>r = RIGHTOFLAST (s1, s2)</p>
 </blockquote>
-<p>Returns the right part of s1 at the position of the last occurrence of the string s2 into string s1.</p>
+<p>Returns the right part of string <code>s1</code> at the position of the last occurrence of string <code>s2</code> in <code>s1</code>. If <code>s2</code> does not occure in <code>s1</code> RIGHTOFLAST returns an empty string.</p>
+<h3 id="example">Example</h3>
+<pre><code>s = &quot;abcdefcd123&quot;
+
+print rightoflast(s, &quot;cd&quot;)  &#39; Output: 123
+print rightoflast(s, &quot;a&quot;)   &#39; Output: bcdefcd123
+print rightoflast(s, &quot;3&quot;)   &#39; Output: 
+print rightoflast(s, &quot;xx&quot;)  &#39; Output:</code></pre>

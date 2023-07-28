@@ -73,54 +73,14 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Code comments. Comments can also be introduced using # and single quote character.</p>
-<p>The # character can only be used as remarks if it is the first character of the line.</p>
+<p>Code comments. Comments can also be introduced using <code>#</code>, single quote character <code>'</code>.</p>
+<p>The <code>#</code> character can only be used as remarks if it is the first character of the line.</p>
+<h3 id="example-1">Example 1:</h3>
 <pre><code>&#39; That text-line is just a few remarks
-...
 REM another comment
-...
 # one more comment</code></pre>
-<pre><code>&#39; Few ways to comment your code in SmallBASIC:
-&#39; This is the most easy way to add a comment:
-x = 1 + 1
-x = 1 + 1 &#39; Or like this...
-Rem And this is the most traditional way to add remark:
-x = 1 + 1
-x = 1 + 1: Rem Or like this...
-# And finally, this, is also a comment:
-x = 1 + 1
-x = 1 + 1: # Or like this...
-&#39; Now, Who and Why needs a comment?
-&#39; To answer this question allow me to analyze MGA&#39;s &quot;Curlie borealis.bas&quot;
-&#39; program; &quot;Curlie borealis&quot; has only one comment on top, which includes the
-&#39; standard info: Name of Program, Programming Language, Author and Date.
-&#39; Now, can you tell what &quot;Curlie borealis&quot; does? And how it does it? well,
-&#39; without additional comments it&#39;s not going to be easy. Look at the code:
-
-&#39; --- Start of &quot;Curlie borealis.bas&quot;:
-&#39;Curlie borealis.bas for SmallBASIC 0.12.2 [B+=MGA] 2016-04-23
-randomize
-ff = 440.03:maxi=25000:maxi2=maxi\\2:b=rgb(40,20,30)
-color 0,b:cls
-while 1
-  ff += 9.444
-  for i=0 to maxi
-    f += ff
-    x = min(xmax, -x + cos(f*i))
-    y = min(ymax, -y + sin(f*i))
-    if cc%6=0 then
-      if i&lt; maxi2 then c=rgb(255-255*i\\maxi2,255*i\\maxi2,0) else c=rgb(0,255-255*(i-maxi2)\\maxi2,255*(i-maxi2)\\maxi2)
-    else
-      c=b
-    fi
-    pset x, y, c
-    if (i%5000==0) then showpage
-  next
-  cc++
-wend
-&#39; --- End of &quot;Curlie borealis.bas&quot;
-
-&#39; Now, although the code is very short (less then thousands of lines...), it&#39;s
+<h3 id="example-2">Example 2:</h3>
+<pre><code>&#39; Although the code is very short (less then thousands of lines...), it&#39;s
 &#39; almost impossible to decode it... - That&#39;s why comments are so useful:
 &#39; to remind *yourself* and others what you did and why.
 &#39; Let&#39;s try to analyze &quot;Curlie borealis.bas&quot; code and add few comments to it:
@@ -130,7 +90,7 @@ wend
 Randomize           &#39; - I&#39;m not sure why do we need it here... (MGA?)
 ff = 440.03         &#39; Factor for defining x,y location to draw point
 maxi = 25000        &#39; Maximum points to draw in each shape
-maxi2 = maxi \\ 2    &#39; Factor for defining two different color schemes in shape
+maxi2 = maxi \ 2    &#39; Factor for defining two different color schemes in shape
 b = Rgb(40, 20, 30) &#39; Background color
 Color 0, b
 Cls
@@ -148,9 +108,9 @@ While 1
     &#39; Define nice color to draw a point:
     If cc Mod 6 = 0 Then
       If i &lt; maxi2 Then &#39; One color scheme
-        c = Rgb(255 - 255 * i \\ maxi2, 255 * i \\ maxi2, 0)
+        c = Rgb(255 - 255 * i \ maxi2, 255 * i \ maxi2, 0)
       Else              &#39; Second color scheme
-        c = Rgb(0, 255 - 255 * (i - maxi2) \\ maxi2, 255 * (i - maxi2) \\ maxi2)
+        c = Rgb(0, 255 - 255 * (i - maxi2) \ maxi2, 255 * (i - maxi2) \ maxi2)
       Fi
     Else
       c = b &#39; Use background color to draw invisible shape
@@ -294,7 +254,7 @@ REM by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Thu, 6 Jul 2023 10:20:18 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

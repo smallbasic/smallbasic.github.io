@@ -1,115 +1,39 @@
 <h1 id="run">RUN</h1>
 <blockquote>
-<p>RUN cmdstr</p>
+<p>[s =] RUN cmdstr</p>
 </blockquote>
-<p>Loads a secondary copy of system’s shell and, executes an program, or an shell command.</p>
-<pre><code>&#39; Note: RUN is different then CHAIN. RUN executes external system command,
-&#39;       while CHAIN executes SmallBASIC code (similar to EVAL function).
-Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;)  &#39; Check if it&#39;s Linux system
-Const IS_WINDOWS = Not IS_LINUX
-Const DEMOFILE = Enclose(&quot;demo.tmp&quot;)
+<p>Loads a secondary copy of the system shell and executes a program or a shell command given by the string <code>cmdstr</code>. The execution of the calling BASIC program will be stoped and control returns to the BASIC program once the system command has completed. If RUN is called as a function, the return value <code>s</code> holds the text output of the executed command as a string.</p>
+<p>System commands, especially on Linux, are very powerful, and can add lots of valuable features to a SmallBASIC program. With system commands you can configure the COM port, send email (Linux at least), get lots of information about the environment, etc.</p>
+<p>In the Android version you can use <code>s = RUN</code> to look at information in the /proc file system.</p>
+<p>See EXEC if control should return to the BASIC program immediately.</p>
+<h2 id="use-run-in-windows">Use RUN in Windows</h2>
+<p>In Windows (tested with Win10) you have to call the programm <code>cmd</code> which opens a command line window. The command you want to execute will be a parameter of <code>cmd</code>. Additional the parameter <code>/C</code> needs to be added to quit the command line window after execution of the command.</p>
+<h3 id="example-1-run-as-a-function">Example 1: RUN as a function</h3>
+<pre><code>s = run(&quot;cmd /C dir&quot;)                              &#39; Execute DIR and
+print s                                            &#39; print a list of files in the current directory
 
-&#39; Print header before each RUN mission:
-Sub header(text)
-  ? Cbs(&quot;\\n\\n&quot; + Cat(3) + Enclose(text, &quot; &quot;) + Cat(0) + Chr(7))
-  Pause
-End Sub
+s = run(&quot;cmd /C copy rename.txt rename1.txt&quot;)      &#39; Copy a file (please create the file rename.txt before testing)
+print s                                            &#39; Prints the text output of copy</code></pre>
+<h3 id="example-2-run-as-procedure">Example 2: RUN as procedure</h3>
+<pre><code>run(&quot;cmd /C copy rename.txt rename1.txt&quot;)          &#39; Copy a file (please create the file rename.txt before testing)
+    
+run(&quot;cmd /C notepad.exe&quot;)                          &#39; Start Notepad and wait until Notepad was closed        </code></pre>
+<h2 id="use-run-in-linux">Use RUN in Linux</h2>
+<p>Commands to execute are case sensitive in Linux. Each command shell has an unique environment-variables-table; which means that you cannot always share environment variables with commands executed by RUN.</p>
+<h3 id="example-1-run-as-a-function-1">Example 1: RUN as a function</h3>
+<pre><code>s = Run(&quot;ls&quot;)                                      &#39; Execute ls and print a list of files in the
+print s                                            &#39; current directory
 
-&#39; Run a built-in shell command - as a FUNCTION:
-header &quot;Press Enter to output directory list into string...&quot;
-Select Case 1
-  Case IS_LINUX:   lines = Run(&quot;ls&quot;)   &#39; &quot;ls&quot; command on Linux
-  Case IS_WINDOWS: lines = Run(&quot;DIR&quot;)  &#39; &quot;DIR&quot; command on Windows
-End Select
-Split lines, Cbs(&quot;\\n&quot;), lines   &#39; Convert string to array
-For i In lines: ? i,: Next      &#39; Print array content
+s = run(&quot;cp rename.txt rename1.txt&quot;)               &#39; Copy a file (please create the file rename.txt before testing)
+print s                                            &#39; Prints the text output of cy</code></pre>
+<h3 id="example-2-run-as-procedure-1">Example 2: RUN as procedure</h3>
+<pre><code>run(&quot;cp rename.txt rename1.txt&quot;)                   &#39; Copy a file (please create the file rename.txt before testing)
+    
+run(&quot;gedit&quot;)                                       &#39; Start gedit (if installed) and wait until gedit was closed        </code></pre>
+<h2 id="other-examples">Other Examples</h2>
+<h3 id="example-1-querry-whether-linux-or-windows-is-used">Example 1: Querry whether Linux or Windows is used</h3>
+<pre><code>const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;)  &#39; Check if it&#39;s a Linux system
+const IS_WINDOWS = Not IS_LINUX
 
-&#39; Run a built-in shell command - as a COMMAND:
-header &quot;Press Enter to output directory list into file &quot; + DEMOFILE + &quot;...&quot;
-Select Case 1
-  Case IS_LINUX:   Run &quot;ls &gt; &quot; + DEMOFILE   &#39; &quot;ls&quot; command on Linux
-  Case IS_WINDOWS: Run &quot;DIR &gt; &quot; + DEMOFILE  &#39; &quot;DIR&quot; command on Windows
-End Select
-Tload Disclose(DEMOFILE), lines   &#39; load DEMOFILE into array
-For i In lines: ? i,: Next        &#39; Print array content
-
-&#39; Run another program:
-header &quot;Press Enter to edit &quot; + DEMOFILE + &quot; in external editor...&quot;
-Select Case 1
-  Case IS_LINUX:   Run &quot;gedit &quot; + DEMOFILE
-  Case IS_WINDOWS: Run &quot;Notepad &quot; + DEMOFILE
-End Select
-? &quot;OK.&quot;
-&#39; Run another program (which is actually SmallBASIC&#39;s IDE):
-header &quot;Press Enter to edit &quot; + DEMOFILE + &quot; in SmallBASIC editor...&quot;
-Select Case 1
-  Case IS_LINUX:   Run &quot;sbasicg -e &quot; + DEMOFILE
-  Case IS_WINDOWS: Run &quot;sbasicg -e &quot; + DEMOFILE
-End Select
-? &quot;Done...&quot;;
-Pause</code></pre>
-<p><code>RUN/EXEC</code></p>
-<p>There are three modes:</p>
-<ol type="1">
-<li><p>RUN(command) ’ invoked as a COMMAND</p></li>
-<li><p>v=RUN(command) ‘invoked as a FUNC, returning the results of the sub process. With both of these, control returns to the .bas once system ’command’ has completed.</p></li>
-<li><p>EXEC(command) ’invoked as a COMMAND, control returns to the .bas immediately and the system command does it’s own thing external to SmallBASIC.</p></li>
-</ol>
-<p>Note: In the android version you can use v=RUN to look at interesting things in the /proc file system.</p>
-<ol type="1">
-<li>The search path for running a command (executable file) is defined in the “PATH” environment variable (unless full path to the executable is supplied). In Windows, the current directory will be searched before the directories specified in the PATH variable (but not on Linux).</li>
-</ol>
-<pre><code>Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;) &#39; check if it&#39;s Linux system
-&#39; find current PATH with:
-If IS_LINUX Then
-  RUN &quot;echo $PATH &gt; path.tmp&quot;
-Else &#39; Windows (syntax...?)
-  RUN &quot;SET PATH &gt; path.tmp&quot;
-Fi
-Tload &quot;path.tmp&quot;, lines
-? lines
-Pause</code></pre>
-<ol start="2" type="1">
-<li><p>Command to execute is case sensitive on Linux (not on Windows).</p></li>
-<li><p>RUN loads a secondary command shell to execute a command. In Linux, and maybe on other systems as well, each command shell has unique environment-variables-table; which means that you cannot always share environment variables with command executed by RUN:</p></li>
-</ol>
-<pre><code>Const IS_LINUX = (Left(HOME, 1) = &quot;/&quot;) &#39; check if it&#39;s Linux system
-&#39; This can work (verified on Linux):
-&#39; SB1 variable is set in main shell, and shared with secondary shell:
-ENVIRON &quot;SB1=67890&quot;
-If IS_LINUX Then
-  RUN &quot;echo $SB1 &gt; test.tmp&quot;
-Else &#39; Windows (syntax...?)
-  RUN &quot;SET SB1 &gt; test.tmp&quot;
-Fi
-Tload &quot;test.tmp&quot;, lines
-? lines
-Pause
-&#39; This cannot work (verified on Linux, without using the &#39;export&#39; keyword):
-&#39; SB1 variable is set in secondary shell:
-If IS_LINUX Then
-  RUN &quot;SB1=12345&quot;
-Else &#39; Windows (syntax...?)
-  RUN &quot;SET SB1=12345&quot;
-Fi
-&#39; Now back to main shell, so SB1 is 67890 again...:
-? ENVIRON(&quot;SB1&quot;)
-Pause</code></pre>
-<ol start="4" type="1">
-<li>Using RUN with built-in shell commands, such as DIR (to show directory list), might be confusing, because the result is not always visible. To delete a file you can try:</li>
-</ol>
-<pre><code>RUN &quot;DEL test.tmp&quot;</code></pre>
-<p>on Windows.</p>
-<pre><code>RUN &quot;rm test.tmp&quot;</code></pre>
-<p>on Linux. Then check if file is deleted from SmallBASIC with</p>
-<pre><code>? EXIST &quot;test.tmp&quot;</code></pre>
-<p>To retrieve directory list it’s better to output the data to a file:</p>
-<pre><code>RUN &quot;DIR &gt; test.tmp&quot;</code></pre>
-<p>on Windows.</p>
-<pre><code>RUN &quot;ls &gt; test.tmp&quot;</code></pre>
-<p>on Linux.</p>
-<pre><code>TLOAD test.tmp, lines: ? lines</code></pre>
-<p>will verify that the command was executed well.</p>
-<ol start="5" type="1">
-<li>Systems commands, especially on Linux, are very powerful, and can add lots of valuable features to a SmallBASIC program. With system commands you can configure the COM port, send email (Linux at least), get lots of information about the environment, etc, etc. But before you can actually use these features - you must learn how your system is working, and which commands are available (Read Ebook or a book to understand the basics).</li>
-</ol>
+print &quot;LINUX:   &quot; + IS_LINUX
+print &quot;Windows: &quot; + IS_WINDOWS</code></pre>

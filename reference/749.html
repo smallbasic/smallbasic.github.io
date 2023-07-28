@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>ROUND</h1>
-  <blockquote>ROUND (x [, decs])</blockquote>
+  <blockquote>f = ROUND (x [, decs])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,18 +73,20 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Rounds x to the nearest integer or number with ‘decs’ decimal digits.</p>
+<p>Rounds <code>x</code> to the nearest integer or number with <code>decs</code> decimal digits. <code>decs</code> is an optional parameter.</p>
+<h3 id="example-1-round-to-nearest-integer">Example 1: Round to nearest integer</h3>
 <pre><code>A = 12.3456  
-print A
-print round(A,0)
-print round(A,1)
-print round(A,2)
-
-A = 123456
-print A
-print round(A/10,0) * 10
-print round(A/100,0) * 100
-print round(A/1000,0) * 1000</code></pre>
+print round(A)                  &#39; Output: 12</code></pre>
+<h3 id="example-2-round-integer-numbers">Example 2: Round integer numbers</h3>
+<pre><code>A = 123456
+print round(A/10) * 10        &#39; Output: 123460
+print round(A/100) * 100      &#39; Output: 123500
+print round(A/1000) * 1000    &#39; Output: 123000</code></pre>
+<h3 id="example-3-round-to-decimal-digits">Example 3: Round to decimal digits</h3>
+<pre><code>A = 12.3456  
+print round(A)                   &#39; Output: 12
+print round(A, 1)                &#39; Output: 12.3
+print round(A, 2)                &#39; Output: 12.35</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using ROUND</div>
     <div class="linklist">
@@ -220,7 +222,7 @@ ROUND by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 22 Oct 2022 19:52:08 +0200
+      This page was last edited on Tue, 25 Jul 2023 14:22:48 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

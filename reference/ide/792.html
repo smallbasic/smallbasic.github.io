@@ -1,5 +1,12 @@
 <h1 id="rightof">RIGHTOF</h1>
 <blockquote>
-<p>RIGHTOF (s1, s2)</p>
+<p>r = RIGHTOF (s1, s2)</p>
 </blockquote>
-<p>Returns the right part of s1 at the position of the first occurrence of the string s2 into string s1.</p>
+<p>Returns the right part of string <code>s1</code> at the position of the first occurrence of string <code>s2</code> in <code>s1</code>. If <code>s2</code> does not occure in <code>s1</code> RIGHTOF returns an empty string.</p>
+<h3 id="example">Example</h3>
+<pre><code>s = &quot;abcdef&quot;
+
+print rightof(s, &quot;cd&quot;)  &#39; Output: ef
+print rightof(s, &quot;a&quot;)   &#39; Output: bcdef
+print rightof(s, &quot;f&quot;)   &#39; Output: 
+print rightof(s, &quot;xx&quot;)  &#39; Output: </code></pre>

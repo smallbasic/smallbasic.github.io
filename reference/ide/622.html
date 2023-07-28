@@ -1,5 +1,26 @@
 <h1 id="rect">RECT</h1>
 <blockquote>
-<p>RECT [STEP] x,y [,|STEP x2,y2] [, color| COLOR color] [FILLED]</p>
+<p>RECT [STEP] x1,y1 [,|STEP x2,y2] [, color| COLOR color] [FILLED]</p>
 </blockquote>
-<p>Draws a rectangular parallelogram.</p>
+<p>Draws a rectangle from point <code>x1,y1</code> to point <code>x2,y1</code>. If STEP is used, start point and/or end point are relative to the current graphics cursor position. The line color of the rectangle will be <code>color</code>. If <code>color</code> is omitted then the current foreground color will be used as line color. When using FILLED, the rectangle will be filled with color <code>color</code> or with the current foreground color.</p>
+<h3 id="example-1-draw-rectangles">Example 1: Draw rectangles</h3>
+<pre><code>                                &#39; Draws a rectangle:
+rect 200, 100                   &#39; at point [0,0], width 200, height 100
+rect 10, 10, 210, 110           &#39; from proint [10,10] to point [210,110]
+rect 20, 20, STEP 200, 100      &#39; at point [20,20], width 200, height 100
+rect STEP 10,10, 420, 220       &#39; from last graphics cursor position + [10,10]
+                                &#39; to point [420,100]
+rect STEP 10,10, STEP 200, 100  &#39; from last graphics cursor position + [10,10],
+                                &#39; width 200, height 100</code></pre>
+<h3 id="example-2-draw-rectangles-with-color">Example 2: Draw rectangles with color</h3>
+<pre><code>rect 10, 10, STEP 200, 100, 12
+rect 20, 20, STEP 200, 100 COLOR 13
+rect 30, 30, STEP 200, 100, rgb(50,255,20)
+
+rect 10, 140, STEP 200, 100, 12 FILLED
+rect 20, 150, STEP 200, 100 COLOR 13 FILLED
+rect 30, 160, STEP 200, 100, rgb(50,255,20) FILLED
+
+color 11
+rect 10, 270, STEP 200, 100
+rect 20, 280, STEP 200, 100 FILLED</code></pre>
