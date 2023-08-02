@@ -1,8 +1,10 @@
 # SEGSIN
 
-> SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
+> f = SEGSIN (Ax, Ay, Bx, By, Cx, Cy, Dx, Dy)
 
-Sinus of 2 line segments (A->B, C->D).
+Sinus of 2 line segments AB and CD. Start and end of the first line segment are given by the points `(Ax,Ay)` and `(Bx, By)`. For the second line by `(Cx, Cy)` and `(Dx, Dy)`.
+
+### Example 1
 
 ```
 ' Line 1
@@ -21,6 +23,8 @@ print "SEGCOS: "; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 print "SEGSIN: "; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 print "Angle between the lines: "; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); "°"
 ```
+
+### Example 2
 
 ```
 ' Interactive example to illustrate the geometry
