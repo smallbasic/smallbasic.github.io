@@ -2,12 +2,12 @@
 
 > SELECT CASE expr
 
-Perform multiple tests on the expression. Offers a more concise syntax to writing successive IF tests.
-Once a case statement is fullfilled the select-case structure will be exited and all following case statements will not anymore be tested.
+Perform multiple tests on the expression `expr`. Offers a more concise syntax to writing successive IF tests.
+Once a case statement is fullfilled the select-case structure will be exited and all following case statements will not be tested anymore.
 
 See also IF ... THEN ... ELIF ... ELSE ... FI structure.
 
-Example 1: Basic select-case expression
+### Example 1: Basic select-case expression
 
 ```
 x = 12 ' Change value to see what happens
@@ -21,7 +21,7 @@ select case x
 end select
 ```
 
-Example 2: Exit of a select structure once a test was successful
+### Example 2: Exit of a select structure once a test was successful
 
 ```
 x = 2
@@ -33,7 +33,7 @@ select case x
 end select
 ```
 
-Example 3: Use IFF to check a range
+### Example 3: Use IFF to check a range
 
 ```
 x = 4 ' Change value to see what happens
@@ -45,7 +45,7 @@ select case x
 end select
 ```
 
-Example 4: Using functions
+### Example 4: Using functions
 
 ```
 func even(x) 
