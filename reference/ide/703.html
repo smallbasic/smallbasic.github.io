@@ -3,15 +3,17 @@
 <p>ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr</p>
 </blockquote>
 <p>Roots of f(x).</p>
-<p>ROOT will find the first x-intercept of the given function ( where f(x) = 0 ) in the interval [low,high]</p>
+<p>ROOT will find the first x-intercept of the given function ( where f(x) = 0 ) in the interval [<code>low</code>, <code>high</code>]</p>
 <ul>
-<li>low the lower limit</li>
-<li>high the upper limit</li>
-<li>segs the number of segments (spaces)</li>
-<li>maxerr tolerance (IF ABS(f(x)) &lt; maxerr THEN OK)</li>
-<li>errcode 0 for success; otherwise calculation error</li>
-<li>result the result</li>
+<li><code>low</code>: the lower limit</li>
+<li><code>high</code>: the upper limit</li>
+<li><code>segs</code>: the number of segments (spaces)</li>
+<li><code>maxerr</code>: tolerance (IF ABS(f(x)) &lt; maxerr THEN OK)</li>
+<li><code>errcode</code>: 0 for success; otherwise calculation error</li>
+<li><code>result</code>: the result</li>
+<li><code>expr</code>: the given function</li>
 </ul>
+<h3 id="example-1">Example 1</h3>
 <pre><code>def f1(x) = x - 2 
 &#39; Theory: x - 2 = 0 -&gt; x = 2
 
@@ -21,7 +23,10 @@ if(errcode) then
     print(&quot;No root found&quot;)
 else
     print &quot;Root at &quot;; result
-endif</code></pre>
+endif
+
+&#39; Output: Root at 1.99951171875</code></pre>
+<h3 id="example-2">Example 2</h3>
 <pre><code>def f2(x) = x^2 - 2
 &#39; Theory: x^2 - 2 = 0 -&gt; x^2 = 2 -&gt; x = +/-sqr(2) = +/-1.41
 
@@ -31,4 +36,6 @@ if(errcode) then
     print(&quot;No root found&quot;)
 else
     print &quot;Root at &quot;; result 
-endif</code></pre>
+endif
+
+&#39; Output: Root at 1.4140625</code></pre>

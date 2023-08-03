@@ -1,11 +1,10 @@
 <h1 id="read">READ</h1>
 <blockquote>
-<p>READ var[, var …]</p>
+<p>READ var1 [, var2, …, varN]</p>
 </blockquote>
-<p>Assigns values in DATA items to specified variables.</p>
-<p>var - Any variable.</p>
-<p>Unless a RESTORE command is executed, SmallBASIC moves to the next DATA item with each READ assignment. If SmallBASIC runs out of DATA items to READ, an run-time error occurs.</p>
+<p>Assigns values in DATA items to the specified variables <code>var1</code> to <code>varN</code>. Unless a RESTORE command is executed, SmallBASIC moves to the next DATA item with each READ assignment. If SmallBASIC runs out of DATA items to read, an run-time error occurs.</p>
 <p>See DATA and RESTORE for more information.</p>
+<h3 id="example-1-read-with-one-variable">Example 1: READ with one variable</h3>
 <pre><code>FOR c = 1 TO 6
    READ x
    PRINT x
@@ -14,7 +13,7 @@ NEXT
 DATA &quot;a,b,c&quot;, 2
 DATA 3, 4
 DATA &quot;fifth&quot;, 6</code></pre>
-<p>Example 2: READ with two variables</p>
+<h3 id="example-2-read-with-two-variables">Example 2: READ with two variables</h3>
 <pre><code>FOR c = 1 TO 3
    READ x, y
    PRINT x, y

@@ -2,15 +2,21 @@
 <blockquote>
 <p>RETURN</p>
 </blockquote>
-<p>When used with GOSUB: Execution branches to the command immediately following the most recent GOSUB command.</p>
-<p>When used with FUNC: returns the value.</p>
-<pre><code>...
-GOSUB my_routine
+<blockquote>
+<p>RETURN {var|expr}</p>
+</blockquote>
+<p>When used with GOSUB: Execution of the program branches to the command immediately following the most recent GOSUB command. RETURN is used without <code>var</code> or <code>expr</code>.</p>
+<p>When used with FUNC: Set the return value of a function to the value <code>var</code> or the result of the expression <code>expr</code>.</p>
+<h3 id="example-1-gosub">Example 1: GOSUB</h3>
+<pre><code>GOSUB my_routine
 PRINT &quot;RETURN sent me here&quot;
-...
+
+END
+
 LABEL my_routine
 PRINT &quot;I am in my routine&quot;
 RETURN</code></pre>
+<h3 id="example-2-function">Example 2: Function</h3>
 <pre><code>Result = MyAddFunction(10, 20)
 print Result
 

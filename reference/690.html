@@ -73,15 +73,21 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>When used with GOSUB: Execution branches to the command immediately following the most recent GOSUB command.</p>
-<p>When used with FUNC: returns the value.</p>
-<pre><code>...
-GOSUB my_routine
+<blockquote>
+<p>RETURN {var|expr}</p>
+</blockquote>
+<p>When used with GOSUB: Execution of the program branches to the command immediately following the most recent GOSUB command. RETURN is used without <code>var</code> or <code>expr</code>.</p>
+<p>When used with FUNC: Set the return value of a function to the value <code>var</code> or the result of the expression <code>expr</code>.</p>
+<h3 id="example-1-gosub">Example 1: GOSUB</h3>
+<pre><code>GOSUB my_routine
 PRINT &quot;RETURN sent me here&quot;
-...
+
+END
+
 LABEL my_routine
 PRINT &quot;I am in my routine&quot;
 RETURN</code></pre>
+<h3 id="example-2-function">Example 2: Function</h3>
 <pre><code>Result = MyAddFunction(10, 20)
 print Result
 
@@ -212,7 +218,7 @@ RETURN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 26 Jun 2022 11:05:32 +0200
+      This page was last edited on Fri, 7 Jul 2023 10:14:44 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

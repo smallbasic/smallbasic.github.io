@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>RND</h1>
-  <blockquote>RND</blockquote>
+  <blockquote>f = RND</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,44 +73,23 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Returns a random number from the range 0 to 1.</p>
+<p>Returns a random floating point number in the range 0 to 1.</p>
+<h3 id="example-1">Example 1</h3>
 <pre><code>RANDOMIZE
 print &quot;Number between 0 and 1   : &quot;; RND()
 print &quot;Number between 5 and 12  : &quot;; (12 - 5) * RND() + 5 
 print &quot;Number between -5 and -12: &quot;; (-12 - -5) * RND() - 5 </code></pre>
-<pre><code>
-&#39; RND IFF and DEF.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-24
-&#39; RND - returns a number from 0 to almost 1
-&#39; IFF - IFF(conditional statement to evaluate, return this if evaluates true, returns this if evaluates false) 
-&#39; DEF - one line function definition
-FOR i=1 TO 20 &#39;need a random true/false, subst 0 or 1 (or -1)  ;)
-  ? IFF(rnd&lt;.5,&quot;True &quot;,&quot;False &quot;);   &#39;&lt;======================== RND and IFF
-next
-?:?
-FOR i=1 TO 10  &#39;need a random direction back and forth
-  dir=IFF(RND&lt;.5,-360*RND,360*RND)  &#39;&lt;======================== RND and IFF
-  ? USING &quot; ####.0000&quot;; dir;
-NEXT
-?:?
-&#39;check distribution of random numbers between low and high (inclusive)
-&#39;here is that function
-DEF rand(lo,hi)=(RND*(hi-lo+1))\\1+lo &#39;&lt;======================= RND and DEF
-low=1100:high=1150
-DIM a(low-1 TO high+1)
-FOR i=1 to 1000
-  index=rand(low,high)
-  a(index)++
-NEXT
-total=0
-FOR i=low-1 TO high+1
-  ? i;&quot;:&quot;;a(i);&quot;, &quot;;
-  total+=a(i)
-  IF i MOD 10=9 THEN ?
-NEXT
-?:? &quot;total trials=&quot;;total
-&#39;result: pretty even spread between two numbers inclusive.
-PAUSE
-</code></pre>
+<h3 id="example-2-random-truefalse-random-integer-between-lowhigh">Example 2: Random true/false; random integer between low/high</h3>
+<pre><code>&#39; random true/false, subst 0 or 1 (or -1)
+DEF randbin() = IFF(rnd&lt;.5,&quot;True &quot;,&quot;False &quot;)
+
+&#39; random integer number between low and high  
+DEF randlohi(lo, hi) = (RND * (hi - lo + 1))\1 + lo 
+
+RANDOMIZE
+
+print randbin()
+print randlohi(10,20)</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using RND</div>
     <div class="linklist">
@@ -246,7 +225,7 @@ RND by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 22 Oct 2022 19:42:35 +0200
+      This page was last edited on Thu, 20 Jul 2023 10:38:56 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

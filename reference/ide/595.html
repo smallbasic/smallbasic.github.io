@@ -1,5 +1,12 @@
 <h1 id="rename">RENAME</h1>
 <blockquote>
-<p>RENAME “file”, “newname”</p>
+<p>RENAME file, newfile</p>
 </blockquote>
-<p>Renames the specified file.</p>
+<p>Renames the specified file <code>file</code> to <code>newfile</code>.</p>
+<h3 id="example">Example:</h3>
+<pre><code>&#39; Create a file
+A = 1
+tsave &quot;test.txt&quot;, A
+
+&#39; Rename file
+rename &quot;test.txt&quot;, &quot;test_renamed.txt&quot;</code></pre>

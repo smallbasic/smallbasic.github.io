@@ -1,4 +1,4 @@
-SmallBASIC Language reference [02/07/2023]
+SmallBASIC Language reference [28/07/2023]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -2129,15 +2129,14 @@ Example
 
 READ var[, var ...]
 
-Assigns values in DATA items to specified variables.
-
-var - Any variable.
-
+Assigns values in DATA items to the specified variables var1 to varN.
 Unless a RESTORE command is executed, SmallBASIC moves to the next DATA
 item with each READ assignment. If SmallBASIC runs out of DATA items to
-READ, an run-time error occurs.
+read, an run-time error occurs.
 
 See DATA and RESTORE for more information.
+
+Example 1: READ with one variable
 
     FOR c = 1 TO 6
        READ x
@@ -2165,45 +2164,29 @@ Example 2: READ with two variables
 
 REDIM x
 
-Same as DIM only the contents of x are preserved.
+Reshape the array var while preserving the contents of the array. The
+array will have (upper - lower) + 1 elements. If lower is not specified,
+and OPTION BASE 1 hasn’t been used, elements start at 0.
 
+Redim can be used to add more elements to an array, to reshape a
+row-vector to a column-vector or reshape to a matrix.
 
-    ' inspired by Bambi56...
-    Option Base 1 ' Start arrays at 1 (not 0)
-    Const FILENAME = "One hell of a REDIM.tmp" 
-    ' Save 6 lines in demo file:
-    Open FILENAME For Output As #1
-     ? #1, "one"
-     ? #1, "two"
-     ? #1, "three"
-     ? #1, 1
-     ? #1, 2
-     ? #1, 3; ' (Using ; to avoid an extra empty line).
-    Close #1
-    ' Load 6 lines from demo file:
-    Tload FILENAME, lines
-    Color 15
-    ? "One hell of a REDIM..."
-    Color 7
-    ' Print lines before redim:
-    ?
-    ? "lines before REDIM: "; lines
-    ?
-    ' Redim lines into two columns:
-    Const TOTAL_LINES = Len(lines) \\ 2
-    Redim lines(1 To 2, 1 To TOTAL_LINES)
-    ' Print lines after redim:
-    ? "lines after REDIM:  "; lines
-    ?
-    For l = 1 To TOTAL_LINES
-      ? lines(1, l);      ' First column
-      Locate Ypos, 15 
-      ? lines(2, l)       ' Second column
-    Next row
-    Pause
+Examples
 
-I never would have guessed you could TLOAD an OPENed file and Bambi56
-used the file number from OPEN to do the TLOAD. Very interesting…
+    A = [1, 2, 3, 4, 5, 6, 7, 8, 9]     ' Row vector (1D array) with 9 elements
+    print A                             ' Output: [1,2,3,4,5,6,7,8,9]
+
+    redim A(12)                         ' Reshape to row vector with 13 elements
+    print A                             ' Output: [1,2,3,4,5,6,7,8,9,0,0,0,0] 
+
+    redim A(8, 0)                       ' Column vector with 9 elements
+    print A                             ' [1;2;3;4;5;6;7;8;9]
+
+    redim A(2, 2)                       ' Reshape to 2D-matrix with 3x3 elements
+    print A                             ' Output: [1,2,3;4,5,6;7,8,9]
+
+    redim A(2, 5)                       ' Reshape to 2D-matrix with 3x6 elements
+    print A                             ' Output: [1,2,3,4,5,6;7,8,9,0,0,0;0,0,0,0,0,0]
 
 +========================================================================================+
 |                                    38. (Data) RESTORE                                  |
@@ -2214,6 +2197,8 @@ RESTORE label
 Specifies the position of the next data to be read.
 
 See DATA for more information.
+
+Example 1:
 
     RESTORE MyDataBlock
 
@@ -3319,7 +3304,16 @@ Example 3: Open a COM port (RS232)
 
 RENAME \"file\", \"newname\"
 
-Renames the specified file.
+Renames the specified file file to newfile.
+
+Example:
+
+    ' Create a file
+    A = 1
+    tsave "test.txt", A
+
+    ' Rename file
+    rename "test.txt", "test_renamed.txt"
 
 +========================================================================================+
 |                                     75. (File) RMDIR                                   |
@@ -3327,7 +3321,12 @@ Renames the specified file.
 
 RMDIR dir
 
-Removes a directory.
+Removes directory dir.
+
+Example
+
+    mkdir "testdirectory"   ' Create directory
+    rmdir "testdirectory"   ' Delete directory
 
 +========================================================================================+
 |                                     76. (File) SEEK                                    |
@@ -5192,7 +5191,37 @@ Example:
 
 RECT [STEP] x,y [,|STEP x2,y2] [, color| COLOR color] [FILLED]
 
-Draws a rectangular parallelogram.
+Draws a rectangle from point x1,y1 to point x2,y1. If STEP is used,
+start point and/or end point are relative to the current graphics cursor
+position. The line color of the rectangle will be color. If color is
+omitted then the current foreground color will be used as line color.
+When using FILLED, the rectangle will be filled with color color or with
+the current foreground color.
+
+Example 1: Draw rectangles
+
+                                    ' Draws a rectangle:
+    rect 200, 100                   ' at point [0,0], width 200, height 100
+    rect 10, 10, 210, 110           ' from proint [10,10] to point [210,110]
+    rect 20, 20, STEP 200, 100      ' at point [20,20], width 200, height 100
+    rect STEP 10,10, 420, 220       ' from last graphics cursor position + [10,10]
+                                    ' to point [420,100]
+    rect STEP 10,10, STEP 200, 100  ' from last graphics cursor position + [10,10],
+                                    ' width 200, height 100
+
+Example 2: Draw rectangles with color
+
+    rect 10, 10, STEP 200, 100, 12
+    rect 20, 20, STEP 200, 100 COLOR 13
+    rect 30, 30, STEP 200, 100, rgb(50,255,20)
+
+    rect 10, 140, STEP 200, 100, 12 FILLED
+    rect 20, 150, STEP 200, 100 COLOR 13 FILLED
+    rect 30, 160, STEP 200, 100, rgb(50,255,20) FILLED
+
+    color 11
+    rect 10, 270, STEP 200, 100
+    rect 20, 280, STEP 200, 100 FILLED
 
 +========================================================================================+
 |                                    95. (Graphics) RGB                                  |
@@ -5200,261 +5229,49 @@ Draws a rectangular parallelogram.
 
 RGB (r, g, b)
 
-Returns the RGB color codes for the specified values. Takes values
-0..255 for each of the color.
-
-The return value is a negative 24bit value to by used by drawing
-functions.
+Returns the RGB color code for the specified color values. r, g and b
+are the three color channels red, green and blue and take integer values
+from 0 to 255 for each of the color. Values outside that range will be
+clamped. The return value is a negative 24bit value to be used by the
+drawing functions.
 
 See also Colors Tutorial.
 
+Additionally see the CSS color names unit in the article section, to use
+all 140 standard CSS colors in an easy way.
+
+Example 1
+
+    c = rgb(12, 123, 240)
+    rect 10, 10,  50, 50 color c filled
+    rect 60, 10, 100, 50 color rgb(212,123,240) filled
+
+Example 2: Clamping of values
+
+    c1 = rgb(-12, 1023, 240.4)    ' same as rgb(0, 255, 240)
+    c2 = rgb(0, 255, 240)
+    rect 10, 10,  50, 50 color c1 filled
+    rect 60, 10, 100, 50 color c2 filled
+
+Example 3: Fading colors
 
     Def txt(t) = "     " + t + "     "
-    For c = 0x00 to 0xFF ' 0 to 255 in hexadecimal
-      Color 15, Rgb(c,    0x00,  0x00): At 10,   0: ? txt("1. RED");
-      Color 15, Rgb(0x00,    c,  0x00): At 10,  30: ? txt("2. GREEN");
-      Color 15, Rgb(0x00, 0x00,     c): At 10,  60: ? txt("3. BLUE");
-      Color 15, Rgb(0x00,    c,     c): At 10,  90: ? txt("4. CYAN");
-      Color 15, Rgb(c,       c,  0x00): At 10, 120: ? txt("5. YELLOW");
-      Color 15, Rgb(c,    0x00,     c): At 10, 150: ? txt("6. MAGENTA");
-      Color 15, Rgb(c,       c,     c): At 10, 180: ? txt("7. GRAY");
-      Color 15, Rgb(c,     c\\2,  0x00): At 10, 210: ? txt("8. ORANGE");
-      Color 15, Rgb(c\\2,   c\\2,  0x00): At 10, 240: ? txt("9. OLIVE");
-      Color 15, Rgb(c\\2,   c\\4,  0x00): At 10, 270: ? txt("A. BROWN");
-      Color 15, Rgb(c,    0x00,   c\\2): At 10, 300: ? txt("B. PINK");
-      Color 15, Rgb(0x00, 0x00,   c\\3): At 10, 330: ? txt("C. NAVY");
-      Color 15, Rgb(c\\3,   c\\2,     c): At 10, 360: ? txt("D. SKY");
-      Delay 20
-    Next 
-
-
-    REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
-    REM Purpose:   Standard CSS (HTML) Color Values By color names;
-    REM            From: http://www.w3schools.com/colors/colors_groups.asp
-    REM            (All modern browsers support the following 140 color names).
-    REM File name: crgb.bas
-    REM Unit name: crgb
-    REM Version:   1.0.0  22/05/2016
-    REM Author:    shian
-
-    ' --- Start demo code ------------------------------------
-    '
-    ' Import crgb
-    '
-    ' Color 0, crgb.Lime: Cls
-    '
-    ' Color 0, crgb.Tomato: ? " Standard CSS Tomato background color "
-    '
-    ' Color crgb.Black, crgb.LightSteelBlue
-    ' ? " Standard CSS LightSteelBlue background color "
-    '
-    ' --- End demo code ------------------------------------
-
-    Unit crgb  ' (CSS RGB color names)
-
-    ' Pink Colors ---
-    Export Pink, LightPink, HotPink, DeepPink, PaleVioletRed, MediumVioletRed
-    ' Purple Colors ---
-    Export Lavender, Thistle, Plum, Orchid, Violet, Fuchsia, Magenta
-    Export MediumOrchid, DarkOrchid, DarkViolet, BlueViolet, DarkMagenta
-    Export Purple, MediumPurple, MediumSlateBlue, SlateBlue, DarkSlateBlue
-    Export RebeccaPurple, Indigo
-    ' Red Colors ---
-    Export LightSalmon, Salmon, DarkSalmon, LightCoral, IndianRed
-    Export Crimson, Red, FireBrick, DarkRed
-    ' Orange Colors ---
-    Export Orange, DarkOrange, Coral, Tomato, OrangeRed
-    ' Yellow Colors ---
-    Export Gold, Yellow, LightYellow, LemonChiffon, LightGoldenRodYellow
-    Export PapayaWhip, Moccasin, PeachPuff, PaleGoldenRod, Khaki, DarkKhaki
-    ' Green Colors ---
-    Export GreenYellow, Chartreuse, LawnGreen, Lime, LimeGreen, PaleGreen
-    Export LightGreen, MediumSpringGreen, SpringGreen, MediumSeaGreen
-    Export SeaGreen, ForestGreen, Green, DarkGreen, YellowGreen, OliveDrab
-    Export DarkOliveGreen, MediumAquaMarine, DarkSeaGreen, LightSeaGreen
-    Export DarkCyan, Teal
-    ' Cyan Colors ---
-    Export Aqua, Cyan, LightCyan, PaleTurquoise, Aquamarine, Turquoise
-    Export MediumTurquoise, DarkTurquoise
-    ' Blue Colors ---
-    Export CadetBlue, SteelBlue, LightSteelBlue, LightBlue, PowderBlue
-    Export LightSkyBlue, SkyBlue, CornflowerBlue, DeepSkyBlue, DodgerBlue
-    Export RoyalBlue, Blue, MediumBlue, DarkBlue, Navy, MidnightBlue
-    ' Brown Colors ---
-    Export Cornsilk, BlanchedAlmond, Bisque, NavajoWhite, Wheat, BurlyWood
-    Export Tan_, RosyBrown, SandyBrown, GoldenRod, DarkGoldenRod, Peru
-    Export Chocolate, Olive, SaddleBrown, Sienna, Brown, Maroon
-    ' White Colors ---
-    Export White, Snow, HoneyDew, MintCream, Azure, AliceBlue, GhostWhite
-    Export WhiteSmoke, SeaShell, Beige, OldLace, FloralWhite, Ivory
-    Export AntiqueWhite, Linen, LavenderBlush, MistyRose
-    ' Grey Colors ---
-    Export Gainsboro, LightGray, Silver, DarkGray, DimGray, Gray
-    Export LightSlateGray, SlateGray, DarkSlateGray, Black
-
-    ' Color Names Sorted by Color Groups:
-    ' Pink Colors ---
-    Const Pink            = -16761035 ' Rgb(0xFF, 0xC0, 0xCB) ' 0xFFC0CB
-    Const LightPink       = -16758465 ' Rgb(0xFF, 0xB6, 0xC1) ' 0xFFB6C1
-    Const HotPink         = -16738740 ' Rgb(0xFF, 0x69, 0xB4) ' 0xFF69B4
-    Const DeepPink        = -16716947 ' Rgb(0xFF, 0x14, 0x93) ' 0xFF1493
-    Const PaleVioletRed   = -14381203 ' Rgb(0xDB, 0x70, 0x93) ' 0xDB7093
-    Const MediumVioletRed = -13047173 ' Rgb(0xC7, 0x15, 0x85) ' 0xC71585
-    ' Purple Colors ---
-    Const Lavender        = -15132410 ' Rgb(0xE6, 0xE6, 0xFA) ' 0xE6E6FA
-    Const Thistle         = -14204888 ' Rgb(0xD8, 0xBF, 0xD8) ' 0xD8BFD8
-    Const Plum            = -14524637 ' Rgb(0xDD, 0xA0, 0xDD) ' 0xDDA0DD
-    Const Orchid          = -14315734 ' Rgb(0xDA, 0x70, 0xD6) ' 0xDA70D6
-    Const Violet          = -15631086 ' Rgb(0xEE, 0x82, 0xEE) ' 0xEE82EE
-    Const Fuchsia         = -16711935 ' Rgb(0xFF, 0x00, 0xFF) ' 0xFF00FF
-    Const Magenta         = -16711935 ' Rgb(0xFF, 0x00, 0xFF) ' 0xFF00FF
-    Const MediumOrchid    = -12211667 ' Rgb(0xBA, 0x55, 0xD3) ' 0xBA55D3
-    Const DarkOrchid      = -10040012 ' Rgb(0x99, 0x32, 0xCC) ' 0x9932CC
-    Const DarkViolet      = -9699539  ' Rgb(0x94, 0x00, 0xD3) ' 0x9400D3
-    Const BlueViolet      = -9055202  ' Rgb(0x8A, 0x2B, 0xE2) ' 0x8A2BE2
-    Const DarkMagenta     = -9109643  ' Rgb(0x8B, 0x00, 0x8B) ' 0x8B008B
-    Const Purple          = -8388736  ' Rgb(0x80, 0x00, 0x80) ' 0x800080
-    Const MediumPurple    = -9662683  ' Rgb(0x93, 0x70, 0xDB) ' 0x9370DB
-    Const MediumSlateBlue = -8087790  ' Rgb(0x7B, 0x68, 0xEE) ' 0x7B68EE
-    Const SlateBlue       = -6970061  ' Rgb(0x6A, 0x5A, 0xCD) ' 0x6A5ACD
-    Const DarkSlateBlue   = -4734347  ' Rgb(0x48, 0x3D, 0x8B) ' 0x483D8B
-    Const RebeccaPurple   = -6697881  ' Rgb(0x66, 0x33, 0x99) ' 0x663399
-    Const Indigo          = -4915330  ' Rgb(0x4B, 0x00, 0x82) ' 0x4B0082
-    ' Red Colors ---
-    Const LightSalmon = -16752762 ' Rgb(0xFF, 0xA0, 0x7A) ' 0xFFA07A
-    Const Salmon      = -16416882 ' Rgb(0xFA, 0x80, 0x72) ' 0xFA8072
-    Const DarkSalmon  = -15308410 ' Rgb(0xE9, 0x96, 0x7A) ' 0xE9967A
-    Const LightCoral  = -15761536 ' Rgb(0xF0, 0x80, 0x80) ' 0xF08080
-    Const IndianRed   = -13458524 ' Rgb(0xCD, 0x5C, 0x5C) ' 0xCD5C5C
-    Const Crimson     = -14423100 ' Rgb(0xDC, 0x14, 0x3C) ' 0xDC143C
-    Const Red         = -16711680 ' Rgb(0xFF, 0x00, 0x00) ' 0xFF0000
-    Const FireBrick   = -11674146 ' Rgb(0xB2, 0x22, 0x22) ' 0xB22222
-    Const DarkRed     = -9109504  ' Rgb(0x8B, 0x00, 0x00) ' 0x8B0000
-    ' Orange Colors ---
-    Const Orange     = -16753920 ' Rgb(0xFF, 0xA5, 0x00) ' 0xFFA500
-    Const DarkOrange = -16747520 ' Rgb(0xFF, 0x8C, 0x00) ' 0xFF8C00
-    Const Coral      = -16744272 ' Rgb(0xFF, 0x7F, 0x50) ' 0xFF7F50
-    Const Tomato     = -16737095 ' Rgb(0xFF, 0x63, 0x47) ' 0xFF6347
-    Const OrangeRed  = -16729344 ' Rgb(0xFF, 0x45, 0x00) ' 0xFF4500
-    ' Yellow Colors ---
-    Const Gold                 = -16766720 ' Rgb(0xFF, 0xD7, 0x00) ' 0xFFD700
-    Const Yellow               = -16776960 ' Rgb(0xFF, 0xFF, 0x00) ' 0xFFFF00
-    Const LightYellow          = -16777184 ' Rgb(0xFF, 0xFF, 0xE0) ' 0xFFFFE0
-    Const LemonChiffon         = -16775885 ' Rgb(0xFF, 0xFA, 0xCD) ' 0xFFFACD
-    Const LightGoldenRodYellow = -16448210 ' Rgb(0xFA, 0xFA, 0xD2) ' 0xFAFAD2
-    Const PapayaWhip           = -16773077 ' Rgb(0xFF, 0xEF, 0xD5) ' 0xFFEFD5
-    Const Moccasin             = -16770229 ' Rgb(0xFF, 0xE4, 0xB5) ' 0xFFE4B5
-    Const PeachPuff            = -16767673 ' Rgb(0xFF, 0xDA, 0xB9) ' 0xFFDAB9
-    Const PaleGoldenRod        = -15657130 ' Rgb(0xEE, 0xE8, 0xAA) ' 0xEEE8AA
-    Const Khaki                = -15787660 ' Rgb(0xF0, 0xE6, 0x8C) ' 0xF0E68C
-    Const DarkKhaki            = -12433259 ' Rgb(0xBD, 0xB7, 0x6B) ' 0xBDB76B
-    ' Green Colors ---
-    Const GreenYellow       = -11403055 ' Rgb(0xAD, 0xFF, 0x2F) ' 0xADFF2F
-    Const Chartreuse        = -8388352  ' Rgb(0x7F, 0xFF, 0x00) ' 0x7FFF00
-    Const LawnGreen         = -8190976  ' Rgb(0x7C, 0xFC, 0x00) ' 0x7CFC00
-    Const Lime              = -65280    ' Rgb(0x00, 0xFF, 0x00) ' 0x00FF00
-    Const LimeGreen         = -3329330  ' Rgb(0x32, 0xCD, 0x32) ' 0x32CD32
-    Const PaleGreen         = -10025880 ' Rgb(0x98, 0xFB, 0x98) ' 0x98FB98
-    Const LightGreen        = -9498256  ' Rgb(0x90, 0xEE, 0x90) ' 0x90EE90
-    Const MediumSpringGreen = -64154    ' Rgb(0x00, 0xFA, 0x9A) ' 0x00FA9A
-    Const SpringGreen       = -65407    ' Rgb(0x00, 0xFF, 0x7F) ' 0x00FF7F
-    Const MediumSeaGreen    = -3978097  ' Rgb(0x3C, 0xB3, 0x71) ' 0x3CB371
-    Const SeaGreen          = -3050327  ' Rgb(0x2E, 0x8B, 0x57) ' 0x2E8B57
-    Const ForestGreen       = -2263842  ' Rgb(0x22, 0x8B, 0x22) ' 0x228B22
-    Const Green             = -32768    ' Rgb(0x00, 0x80, 0x00) ' 0x008000
-    Const DarkGreen         = -25600    ' Rgb(0x00, 0x64, 0x00) ' 0x006400
-    Const YellowGreen       = -10145074 ' Rgb(0x9A, 0xCD, 0x32) ' 0x9ACD32
-    Const OliveDrab         = -7048739  ' Rgb(0x6B, 0x8E, 0x23) ' 0x6B8E23
-    Const DarkOliveGreen    = -5597999  ' Rgb(0x55, 0x6B, 0x2F) ' 0x556B2F
-    Const MediumAquaMarine  = -6737322  ' Rgb(0x66, 0xCD, 0xAA) ' 0x66CDAA
-    Const DarkSeaGreen      = -9419919  ' Rgb(0x8F, 0xBC, 0x8F) ' 0x8FBC8F
-    Const LightSeaGreen     = -2142890  ' Rgb(0x20, 0xB2, 0xAA) ' 0x20B2AA
-    Const DarkCyan          = -35723    ' Rgb(0x00, 0x8B, 0x8B) ' 0x008B8B
-    Const Teal              = -32896    ' Rgb(0x00, 0x80, 0x80) ' 0x008080
-    ' Cyan Colors ---
-    Const Aqua            = -65535    ' Rgb(0x00, 0xFF, 0xFF) ' 0x00FFFF
-    Const Cyan            = -65535    ' Rgb(0x00, 0xFF, 0xFF) ' 0x00FFFF
-    Const LightCyan       = -14745599 ' Rgb(0xE0, 0xFF, 0xFF) ' 0xE0FFFF
-    Const PaleTurquoise   = -11529966 ' Rgb(0xAF, 0xEE, 0xEE) ' 0xAFEEEE
-    Const Aquamarine      = -8388564  ' Rgb(0x7F, 0xFF, 0xD4) ' 0x7FFFD4
-    Const Turquoise       = -4251856  ' Rgb(0x40, 0xE0, 0xD0) ' 0x40E0D0
-    Const MediumTurquoise = -4772300  ' Rgb(0x48, 0xD1, 0xCC) ' 0x48D1CC
-    Const DarkTurquoise   = -52945    ' Rgb(0x00, 0xCE, 0xD1) ' 0x00CED1
-    ' Blue Colors ---
-    Const CadetBlue      = -6266528  ' Rgb(0x5F, 0x9E, 0xA0) ' 0x5F9EA0
-    Const SteelBlue      = -4620980  ' Rgb(0x46, 0x82, 0xB4) ' 0x4682B4
-    Const LightSteelBlue = -11584734 ' Rgb(0xB0, 0xC4, 0xDE) ' 0xB0C4DE
-    Const LightBlue      = -11393254 ' Rgb(0xAD, 0xD8, 0xE6) ' 0xADD8E6
-    Const PowderBlue     = -11591910 ' Rgb(0xB0, 0xE0, 0xE6) ' 0xB0E0E6
-    Const LightSkyBlue   = -8900346  ' Rgb(0x87, 0xCE, 0xFA) ' 0x87CEFA
-    Const SkyBlue        = -8900331  ' Rgb(0x87, 0xCE, 0xEB) ' 0x87CEEB
-    Const CornflowerBlue = -6591981  ' Rgb(0x64, 0x95, 0xED) ' 0x6495ED
-    Const DeepSkyBlue    = -49151    ' Rgb(0x00, 0xBF, 0xFF) ' 0x00BFFF
-    Const DodgerBlue     = -2003199  ' Rgb(0x1E, 0x90, 0xFF) ' 0x1E90FF
-    Const RoyalBlue      = -4286945  ' Rgb(0x41, 0x69, 0xE1) ' 0x4169E1
-    Const Blue           = -255      ' Rgb(0x00, 0x00, 0xFF) ' 0x0000FF
-    Const MediumBlue     = -205      ' Rgb(0x00, 0x00, 0xCD) ' 0x0000CD
-    Const DarkBlue       = -139      ' Rgb(0x00, 0x00, 0x8B) ' 0x00008B
-    Const Navy           = -128      ' Rgb(0x00, 0x00, 0x80) ' 0x000080
-    Const MidnightBlue   = -1644912  ' Rgb(0x19, 0x19, 0x70) ' 0x191970
-    ' Brown Colors ---
-    Const Cornsilk       = -16775388 ' Rgb(0xFF, 0xF8, 0xDC) ' 0xFFF8DC
-    Const BlanchedAlmond = -16772045 ' Rgb(0xFF, 0xEB, 0xCD) ' 0xFFEBCD
-    Const Bisque         = -16770244 ' Rgb(0xFF, 0xE4, 0xC4) ' 0xFFE4C4
-    Const NavajoWhite    = -16768685 ' Rgb(0xFF, 0xDE, 0xAD) ' 0xFFDEAD
-    Const Wheat          = -16113331 ' Rgb(0xF5, 0xDE, 0xB3) ' 0xF5DEB3
-    Const BurlyWood      = -14596231 ' Rgb(0xDE, 0xB8, 0x87) ' 0xDEB887
-    Const Tan_           = -13808780 ' Rgb(0xD2, 0xB4, 0x8C) ' 0xD2B48C
-    Const RosyBrown      = -12357519 ' Rgb(0xBC, 0x8F, 0x8F) ' 0xBC8F8F
-    Const SandyBrown     = -16032864 ' Rgb(0xF4, 0xA4, 0x60) ' 0xF4A460
-    Const GoldenRod      = -14329120 ' Rgb(0xDA, 0xA5, 0x20) ' 0xDAA520
-    Const DarkGoldenRod  = -12092939 ' Rgb(0xB8, 0x86, 0x0B) ' 0xB8860B
-    Const Peru           = -13468991 ' Rgb(0xCD, 0x85, 0x3F) ' 0xCD853F
-    Const Chocolate      = -13789470 ' Rgb(0xD2, 0x69, 0x1E) ' 0xD2691E
-    Const Olive          = -8421376  ' Rgb(0x80, 0x80, 0x00) ' 0x808000
-    Const SaddleBrown    = -9127187  ' Rgb(0x8B, 0x45, 0x13) ' 0x8B4513
-    Const Sienna         = -10506797 ' Rgb(0xA0, 0x52, 0x2D) ' 0xA0522D
-    Const Brown          = -10824234 ' Rgb(0xA5, 0x2A, 0x2A) ' 0xA52A2A
-    Const Maroon         = -8388608  ' Rgb(0x80, 0x00, 0x00) ' 0x800000
-    ' White Colors ---
-    Const White         = -16777215 ' Rgb(0xFF, 0xFF, 0xFF) ' 0xFFFFFF
-    Const Snow          = -16775930 ' Rgb(0xFF, 0xFA, 0xFA) ' 0xFFFAFA
-    Const HoneyDew      = -15794160 ' Rgb(0xF0, 0xFF, 0xF0) ' 0xF0FFF0
-    Const MintCream     = -16121850 ' Rgb(0xF5, 0xFF, 0xFA) ' 0xF5FFFA
-    Const Azure         = -15794175 ' Rgb(0xF0, 0xFF, 0xFF) ' 0xF0FFFF
-    Const AliceBlue     = -15792383 ' Rgb(0xF0, 0xF8, 0xFF) ' 0xF0F8FF
-    Const GhostWhite    = -16316671 ' Rgb(0xF8, 0xF8, 0xFF) ' 0xF8F8FF
-    Const WhiteSmoke    = -16119285 ' Rgb(0xF5, 0xF5, 0xF5) ' 0xF5F5F5
-    Const SeaShell      = -16774638 ' Rgb(0xFF, 0xF5, 0xEE) ' 0xFFF5EE
-    Const Beige         = -16119260 ' Rgb(0xF5, 0xF5, 0xDC) ' 0xF5F5DC
-    Const OldLace       = -16643558 ' Rgb(0xFD, 0xF5, 0xE6) ' 0xFDF5E6
-    Const FloralWhite   = -16775920 ' Rgb(0xFF, 0xFA, 0xF0) ' 0xFFFAF0
-    Const Ivory         = -16777200 ' Rgb(0xFF, 0xFF, 0xF0) ' 0xFFFFF0
-    Const AntiqueWhite  = -16444375 ' Rgb(0xFA, 0xEB, 0xD7) ' 0xFAEBD7
-    Const Linen         = -16445670 ' Rgb(0xFA, 0xF0, 0xE6) ' 0xFAF0E6
-    Const LavenderBlush = -16773365 ' Rgb(0xFF, 0xF0, 0xF5) ' 0xFFF0F5
-    Const MistyRose     = -16770273 ' Rgb(0xFF, 0xE4, 0xE1) ' 0xFFE4E1
-    ' Grey Colors ---
-    Const Gainsboro      = -14474460 ' Rgb(0xDC, 0xDC, 0xDC) ' 0xDCDCDC
-    Const LightGray      = -13882323 ' Rgb(0xD3, 0xD3, 0xD3) ' 0xD3D3D3
-    Const Silver         = -12632256 ' Rgb(0xC0, 0xC0, 0xC0) ' 0xC0C0C0
-    Const DarkGray       = -11119017 ' Rgb(0xA9, 0xA9, 0xA9) ' 0xA9A9A9
-    Const DimGray        = -6908265  ' Rgb(0x69, 0x69, 0x69) ' 0x696969
-    Const Gray           = -8421504  ' Rgb(0x80, 0x80, 0x80) ' 0x808080
-    Const LightSlateGray = -7833753  ' Rgb(0x77, 0x88, 0x99) ' 0x778899
-    Const SlateGray      = -7372944  ' Rgb(0x70, 0x80, 0x90) ' 0x708090
-    Const DarkSlateGray  = -3100495  ' Rgb(0x2F, 0x4F, 0x4F) ' 0x2F4F4F
-    Const Black          = 0         ' Rgb(0x00, 0x00, 0x00) ' 0x000000
-
-RGB does convert into integers all but 255 + ( < 256) ’this is why you
-can’t use x = rnd * 256 as an RGB argument ’because you are sure to get
-something over 255 but under 256 ’maybe (rnd * 256) \ 1 (yes OK)
-
-
-    OK = rgb((255.0001)\\1, 255, 0)
-    color OK, 0 ' <=== yes OK
-    myError = rgb(255.00001, 255, 255)
-    color myError, 0  '<=== Invalid parameter
+    For c = 0 to 255
+        Color 15, Rgb(c,     0,   0): At 10,   0: Print txt("1. RED");
+        Color 15, Rgb(0,     c,   0): At 10,  30: Print txt("2. GREEN");
+        Color 15, Rgb(0,     0,   c): At 10,  60: Print txt("3. BLUE");
+        Color 15, Rgb(0,     c,   c): At 10,  90: Print txt("4. CYAN");
+        Color 15, Rgb(c,     c,   0): At 10, 120: Print txt("5. YELLOW");
+        Color 15, Rgb(c,     0,   c): At 10, 150: Print txt("6. MAGENTA");
+        Color 15, Rgb(c,     c,   c): At 10, 180: Print txt("7. GRAY");
+        Color 15, Rgb(c,   c\2,   0): At 10, 210: Print txt("8. ORANGE");
+        Color 15, Rgb(c\2, c\2,   0): At 10, 240: Print txt("9. OLIVE");
+        Color 15, Rgb(c\2, c\4,   0): At 10, 270: Print txt("A. BROWN");
+        Color 15, Rgb(c,     0, c\2): At 10, 300: Print txt("B. PINK");
+        Color 15, Rgb(0,     0, c\3): At 10, 330: Print txt("C. NAVY");
+        Color 15, Rgb(c\3, c\2,   c): At 10, 360: Print txt("D. SKY");
+        Delay 20
+    Next
 
 +========================================================================================+
 |                                   96. (Graphics) RGBF                                  |
@@ -5462,124 +5279,49 @@ something over 255 but under 256 ’maybe (rnd * 256) \ 1 (yes OK)
 
 RGBF (r, g, b)
 
-Returns the RGB color codes for the specified values. Takes values 0..1
-for each of the color.
+Returns the RGB color code for the specified color values. r, g and b
+are the three color channels red, green and blue and take floating point
+values from 0 to 1 for each of the colors. Values outside that range
+will be clamped. The return value is a negative 24bit value to be used
+by the drawing functions.
 
-The return value is a negative 24bit value to by used by drawing
-functions.
+See also Colors Tutorial.
 
-    ' gray() accepts the same values as Rgb(), i.e. 0..255:
-    Func gray(r, g, b)
-      Local Const RGBF_SCALE = 1 / 255
-      Local n
+Additionally see the CSS color names unit in the article section, to use
+all 140 standard CSS colors in an easy way.
 
-      n = Sum(r * 0.30, g * 0.59, b * 0.11) ' gray=(30% red + 59% green + 11% blue)
-      n *= RGBF_SCALE ' scale 0..255 palette to 0..1 (for Rgbf)
-      gray = Rgbf(n, n, n)
-    End
+Example 1
 
-    Print "An example for printing colors in gray-scale:"
-    Print
-    For i = 0 To 255 Step 15 Do
-      r = 90: g = i: b = i
-      Color   Rgb(r, g, b): Print " Color -> ";
-      Color gray(r, g, b): Print " in Gray  "
+    c = rgbf(0.047, 0.48, 0.94)
+    rect 10, 10,  50, 50 color c filled
+    rect 60, 10, 100, 50 color rgbf(0.047, 0.48, 0.94) filled
+
+Example 2: Clamping of values
+
+    c1 = rgbf(-0.55, 2.5, 0.94)    ' same as rgbf(0, 1, 0.94)
+    c2 = rgbf(0, 1, 0.94)
+    rect 10, 10,  50, 50 color c1 filled
+    rect 60, 10, 100, 50 color c2 filled
+
+Example 3: Fading colors
+
+    Def txt(t) = "     " + t + "     "
+    For c = 0 to 1 step 0.01
+        Color 15, Rgbf(c,     0,   0): At 10,   0: Print txt("1. RED");
+        Color 15, Rgbf(0,     c,   0): At 10,  30: Print txt("2. GREEN");
+        Color 15, Rgbf(0,     0,   c): At 10,  60: Print txt("3. BLUE");
+        Color 15, Rgbf(0,     c,   c): At 10,  90: Print txt("4. CYAN");
+        Color 15, Rgbf(c,     c,   0): At 10, 120: Print txt("5. YELLOW");
+        Color 15, Rgbf(c,     0,   c): At 10, 150: Print txt("6. MAGENTA");
+        Color 15, Rgbf(c,     c,   c): At 10, 180: Print txt("7. GRAY");
+        Color 15, Rgbf(c,   c\2,   0): At 10, 210: Print txt("8. ORANGE");
+        Color 15, Rgbf(c\2, c\2,   0): At 10, 240: Print txt("9. OLIVE");
+        Color 15, Rgbf(c\2, c\4,   0): At 10, 270: Print txt("A. BROWN");
+        Color 15, Rgbf(c,     0, c\2): At 10, 300: Print txt("B. PINK");
+        Color 15, Rgbf(0,     0, c\3): At 10, 330: Print txt("C. NAVY");
+        Color 15, Rgbf(c\3, c\2,   c): At 10, 360: Print txt("D. SKY");
+        Delay 20
     Next
-    Pause
-
-Hi shian, I am curious why the percents are 30% red, 59% green, 11 %
-blue. I see that they have to add to 100% but why not 33% on each of
-RGB. Is it something to do with green and yellow appearing lighter than
-the other colors and that yellow is created by mixing red and green.
-This calls for an experiment. Hi MGA, This is simply how the BIOS
-Interrupt 0x10, Function 0x10, Subfunction 0x1B, sets gray-scale values
-for the 256 colors palette, in MCGA and VGA monitors. I just use the
-same formula of that interrupt. Therefore, the actual mystery remains
-unsolved. But that’s the formula I use to program for DOS.
-
-I feel like Thomas Edison testing light bulbs only 995 to go! My
-findings according to my eye and Windows laptop coloring system reverses
-the percents for red and blue. Check it out:
-
-
-    ' gray() accepts the same values as Rgb(), i.e. 0..255:
-    Func gray(r, g, b)
-      Local Const RGBF_SCALE = 1 / 255
-      Local n
-
-      n = Sum(r * 0.30, g * 0.59, b * 0.11) ' gray=(30% red + 59% green + 11% blue)
-      ' original yes on my screen blue is way too dark
-
-      'n = Sum(r * 0.4, g * 0.4, b * 0.2)
-      '1st experiment yes on my screen this is better but blue still too dark and red and purple  not enough
-
-      'n = Sum(r * 0.3, g * 0.4, b * 0.3)
-      '2nd experiment  well red green  blue are the same almost blue still doesn't look bright enough
-
-      'n = Sum(r * 0.33, g * 0.34, b * 0.33)
-      '3rd No green too dark
-
-      'n = Sum(r * 0.25, g * 0.4, b * 0.35)
-      '4th  more darker red lighter blue nice purple, green still too dark
-
-      'n = Sum(r * 0.15, g * 0.55, b * 0.3)
-      '5th yeah here !!!! it kind of reverses red/blue in original (Windows laptop)
-
-      n *= RGBF_SCALE ' scale 0..255 palette to 0..1 (for Rgbf)
-
-      gray = Rgbf(n, n, n)
-    End
-    sub ball(x,y,cx)
-       local r,sc,start, ym2
-       ym2=ymax*.75
-       sc=32/radi:start=int(32/sc)-2
-       for r=start to 0 step -1
-          if cx ="R" then
-             circle x,y,r,1,rgb(255-6*r*sc,0,0) filled
-             circle x,ym2,r,1,gray(255-6*r*sc,0,0) filled
-          elif cx="B"
-             circle x,y,r,1,rgb(0,0,255-6*r*sc) filled
-             circle x,ym2,r,1,gray(0,0,255-6*r*sc) filled
-          elif cx="G"
-             circle x,y,r,1,rgb(0,220-6*r*sc,0) filled
-             circle x,ym2,r,1,gray(0,220-6*r*sc,0) filled
-          elif cx="O"
-             circle x,y,r,1,rgb(255-3*r*sc,150-3*r*sc,0) filled
-             circle x,ym2,r,1,gray(255-3*r*sc,150-3*r*sc,0) filled
-          elif cx="Y"
-             circle x,y,r,1,rgb(255-4*r*sc,255-4*r*sc,0) filled
-             circle x,ym2,r,1,gray(255-4*r*sc,255-4*r*sc,0) filled
-          elif cx="P"
-             circle x,y,r,1,rgb(255-7*r*sc,0,130-2*r*sc) filled
-             circle x,ym2,r,1,gray(255-6*r*sc,0,0) filled
-           fi
-       next
-    end
-
-    radi=xmax/7/2-2
-    Print "An example gray-scale graphics:"
-    Print
-    For i = 1 to 6
-      cc=mid("RGBYOP",i,1)
-      bx=xmax/7*i
-      ball bx,.25*ymax,cc
-    Next
-    Pause
-
-Append: added to on-line samples, I switched back to original formula
-because on Android NOOK the blue IS lighter than red. In both versions,
-the red and purple are awful dark. Nice graphix.. I guess that on BIOS
-screen text mode 3 or pixel mode 18 it looks much better. However, try
-to start from
-
-    gray(50,50,255)
-
-instead of
-
-    gray(0,0,255)
-
-It might work better for modern SVGA modes with high resolution and LCD
-screens. I’m not aware of new formula for these kind of screens…
 
 +========================================================================================+
 |                                 97. (Graphics) SHOWPAGE                                |
@@ -7712,59 +7454,21 @@ Example:
 
 REM comment
 
-Code comments. Comments can also be introduced using # and single quote
-character.
+Code comments. Comments can also be introduced using #, single quote
+character '.
 
 The # character can only be used as remarks if it is the first character
 of the line.
 
+Example 1:
+
     ' That text-line is just a few remarks
-    ...
     REM another comment
-    ...
     # one more comment
 
-    ' Few ways to comment your code in SmallBASIC:
-    ' This is the most easy way to add a comment:
-    x = 1 + 1
-    x = 1 + 1 ' Or like this...
-    Rem And this is the most traditional way to add remark:
-    x = 1 + 1
-    x = 1 + 1: Rem Or like this...
-    # And finally, this, is also a comment:
-    x = 1 + 1
-    x = 1 + 1: # Or like this...
-    ' Now, Who and Why needs a comment?
-    ' To answer this question allow me to analyze MGA's "Curlie borealis.bas"
-    ' program; "Curlie borealis" has only one comment on top, which includes the
-    ' standard info: Name of Program, Programming Language, Author and Date.
-    ' Now, can you tell what "Curlie borealis" does? And how it does it? well,
-    ' without additional comments it's not going to be easy. Look at the code:
+Example 2:
 
-    ' --- Start of "Curlie borealis.bas":
-    'Curlie borealis.bas for SmallBASIC 0.12.2 [B+=MGA] 2016-04-23
-    randomize
-    ff = 440.03:maxi=25000:maxi2=maxi\\2:b=rgb(40,20,30)
-    color 0,b:cls
-    while 1
-      ff += 9.444
-      for i=0 to maxi
-        f += ff
-        x = min(xmax, -x + cos(f*i))
-        y = min(ymax, -y + sin(f*i))
-        if cc%6=0 then
-          if i< maxi2 then c=rgb(255-255*i\\maxi2,255*i\\maxi2,0) else c=rgb(0,255-255*(i-maxi2)\\maxi2,255*(i-maxi2)\\maxi2)
-        else
-          c=b
-        fi
-        pset x, y, c
-        if (i%5000==0) then showpage
-      next
-      cc++
-    wend
-    ' --- End of "Curlie borealis.bas"
-
-    ' Now, although the code is very short (less then thousands of lines...), it's
+    ' Although the code is very short (less then thousands of lines...), it's
     ' almost impossible to decode it... - That's why comments are so useful:
     ' to remind *yourself* and others what you did and why.
     ' Let's try to analyze "Curlie borealis.bas" code and add few comments to it:
@@ -7774,7 +7478,7 @@ of the line.
     Randomize           ' - I'm not sure why do we need it here... (MGA?)
     ff = 440.03         ' Factor for defining x,y location to draw point
     maxi = 25000        ' Maximum points to draw in each shape
-    maxi2 = maxi \\ 2    ' Factor for defining two different color schemes in shape
+    maxi2 = maxi \ 2    ' Factor for defining two different color schemes in shape
     b = Rgb(40, 20, 30) ' Background color
     Color 0, b
     Cls
@@ -7792,9 +7496,9 @@ of the line.
         ' Define nice color to draw a point:
         If cc Mod 6 = 0 Then
           If i < maxi2 Then ' One color scheme
-            c = Rgb(255 - 255 * i \\ maxi2, 255 * i \\ maxi2, 0)
+            c = Rgb(255 - 255 * i \ maxi2, 255 * i \ maxi2, 0)
           Else              ' Second color scheme
-            c = Rgb(0, 255 - 255 * (i - maxi2) \\ maxi2, 255 * (i - maxi2) \\ maxi2)
+            c = Rgb(0, 255 - 255 * (i - maxi2) \ maxi2, 255 * (i - maxi2) \ maxi2)
           Fi
         Else
           c = b ' Use background color to draw invisible shape
@@ -7826,23 +7530,26 @@ Begins the definition of a REPEAT/UNTIL loop.
 
 SmallBASIC starts executing the commands between the REPEAT and UNTIL
 commands. When SmallBASIC encounters the UNTIL command, it evaluates the
-expression parameter. If that parameter is zero (false), the process
-will be repeated; otherwise, execution continues at the next command.
+expression parameter expr. If that parameter is zero (false), the
+process will be repeated; otherwise, execution continues at the next
+command. The REPEAT/UNTIL loop evaluates the expression at the end of
+the loop. Therefore at least one loop is performed.
 
 REPEAT/UNTIL loops may be nested to any level of complexity, but there
 must be an UNTIL for each REPEAT.
 
+See WHILE…WEND loop if you want to evaluate the expression at the begin
+of the loop.
 
-    C=1
+Example
+
+    C = 1
     REPEAT
         PRINT C
-        C=C+1
-    UNTIL C=10
-    ...
-    ' This is the same with that
-    FOR C=1 TO 9
-        PRINT C
-    NEXT
+        C = C + 1
+    UNTIL C == 10
+
+    ' Output: 1 2 3 4 5 6 7 8 9
 
 +========================================================================================+
 |                                  154. (Language) RETURN                                |
@@ -7850,18 +7557,27 @@ must be an UNTIL for each REPEAT.
 
 RETURN
 
-When used with GOSUB: Execution branches to the command immediately
-following the most recent GOSUB command.
+  RETURN {var|expr}
 
-When used with FUNC: returns the value.
+When used with GOSUB: Execution of the program branches to the command
+immediately following the most recent GOSUB command. RETURN is used
+without var or expr.
 
-    ...
+When used with FUNC: Set the return value of a function to the value var
+or the result of the expression expr.
+
+Example 1: GOSUB
+
     GOSUB my_routine
     PRINT "RETURN sent me here"
-    ...
+
+    END
+
     LABEL my_routine
     PRINT "I am in my routine"
     RETURN
+
+Example 2: Function
 
     Result = MyAddFunction(10, 20)
     print Result
@@ -7877,27 +7593,16 @@ When used with FUNC: returns the value.
 
 result = RSHIFT number, amount
 
-Performs an arithmetic right shift on a bit pattern.
+Performs a bitwise operation that shifts all the bits of x to the right
+by an amount of n.
 
+Example
 
-    ' Tested on 32-bit system (I'm not sure yet about the result on 64-bit system);
-    ' On 32-bit system RSHIFT cannot manipulate correctly bit-31 (leftmost bit).
-    x = Pow(2, 30)          ' x = 0b 0100 0000 0000 0000 0000 0000 0000 0000
-    ? Bin(x)
-    ?
-    x = x Rshift 1          ' Shift-Right x by 1
-    ? Bin(x)
-    x = x Rshift 29         ' Shift-Right x again by 29
-    ? Bin(x)
-    ?
-    x = Pow(2, 30)          ' x = 0b 0100 0000 0000 0000 0000 0000 0000 0000
-    x = x Rshift 33         ' The same as: x = x Rshift (33 Mod 32)
-    ? Bin(x)
-    ?
-    x = 0b1111 * Pow(2, 27) ' x = 0b 0111 1000 0000 0000 0000 0000 0000 0000
-    x = x Rshift 29         ' The two lower (11) bits are lost
-    ? Bin(x)
-    ? x                      ' x is 3
+    n = 0b1100 rshift 2
+    print bin(n)            ' Output: 11
+
+    n = 0b1100 rshift 3
+    print bin(n)            ' Output: 1
 
 +========================================================================================+
 |                                  156. (Language) SELECT                                |
@@ -9851,13 +9556,15 @@ Example 2: Interactive example to illustrate the geometry of PTDISTLN
 
 RAD (x)
 
-Degrees to radians.
+Converts x in degrees to radians.
+
+Example:
 
     a = deg(pi)
-    print a
+    print a      ' Output: 180
 
     b = rad(a)
-    print b
+    print b      ' Output: 3.14..
 
 +========================================================================================+
 |                                     227. (Math) RND                                    |
@@ -9865,45 +9572,27 @@ Degrees to radians.
 
 RND
 
-Returns a random number from the range 0 to 1.
+Returns a random floating point number in the range 0 to 1.
+
+Example 1
 
     RANDOMIZE
     print "Number between 0 and 1   : "; RND()
     print "Number between 5 and 12  : "; (12 - 5) * RND() + 5 
     print "Number between -5 and -12: "; (-12 - -5) * RND() - 5 
 
+Example 2: Random true/false; random integer between low/high
 
-    ' RND IFF and DEF.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-24
-    ' RND - returns a number from 0 to almost 1
-    ' IFF - IFF(conditional statement to evaluate, return this if evaluates true, returns this if evaluates false) 
-    ' DEF - one line function definition
-    FOR i=1 TO 20 'need a random true/false, subst 0 or 1 (or -1)  ;)
-      ? IFF(rnd<.5,"True ","False ");   '<======================== RND and IFF
-    next
-    ?:?
-    FOR i=1 TO 10  'need a random direction back and forth
-      dir=IFF(RND<.5,-360*RND,360*RND)  '<======================== RND and IFF
-      ? USING " ####.0000"; dir;
-    NEXT
-    ?:?
-    'check distribution of random numbers between low and high (inclusive)
-    'here is that function
-    DEF rand(lo,hi)=(RND*(hi-lo+1))\\1+lo '<======================= RND and DEF
-    low=1100:high=1150
-    DIM a(low-1 TO high+1)
-    FOR i=1 to 1000
-      index=rand(low,high)
-      a(index)++
-    NEXT
-    total=0
-    FOR i=low-1 TO high+1
-      ? i;":";a(i);", ";
-      total+=a(i)
-      IF i MOD 10=9 THEN ?
-    NEXT
-    ?:? "total trials=";total
-    'result: pretty even spread between two numbers inclusive.
-    PAUSE
+    ' random true/false, subst 0 or 1 (or -1)
+    DEF randbin() = IFF(rnd<.5,"True ","False ")
+
+    ' random integer number between low and high  
+    DEF randlohi(lo, hi) = (RND * (hi - lo + 1))\1 + lo 
+
+    RANDOMIZE
+
+    print randbin()
+    print randlohi(10,20)
 
 +========================================================================================+
 |                                     228. (Math) ROOT                                   |
@@ -9914,14 +9603,17 @@ ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr
 Roots of f(x).
 
 ROOT will find the first x-intercept of the given function ( where f(x)
-= 0 ) in the interval [low,high]
+= 0 ) in the interval [low, high]
 
--   low the lower limit
--   high the upper limit
--   segs the number of segments (spaces)
--   maxerr tolerance (IF ABS(f(x)) < maxerr THEN OK)
--   errcode 0 for success; otherwise calculation error
--   result the result
+-   low: the lower limit
+-   high: the upper limit
+-   segs: the number of segments (spaces)
+-   maxerr: tolerance (IF ABS(f(x)) < maxerr THEN OK)
+-   errcode: 0 for success; otherwise calculation error
+-   result: the result
+-   expr: the given function
+
+Example 1
 
     def f1(x) = x - 2 
     ' Theory: x - 2 = 0 -> x = 2
@@ -9934,6 +9626,10 @@ ROOT will find the first x-intercept of the given function ( where f(x)
         print "Root at "; result
     endif
 
+    ' Output: Root at 1.99951171875
+
+Example 2
+
     def f2(x) = x^2 - 2
     ' Theory: x^2 - 2 = 0 -> x^2 = 2 -> x = +/-sqr(2) = +/-1.41
 
@@ -9945,25 +9641,35 @@ ROOT will find the first x-intercept of the given function ( where f(x)
         print "Root at "; result 
     endif
 
+    ' Output: Root at 1.4140625
+
 +========================================================================================+
 |                                    229. (Math) ROUND                                   |
 +========================================================================================+
 
 ROUND (x [, decs])
 
-Rounds x to the nearest integer or number with ‘decs’ decimal digits.
+Rounds x to the nearest integer or number with decs decimal digits. decs
+is an optional parameter.
+
+Example 1: Round to nearest integer
 
     A = 12.3456  
-    print A
-    print round(A,0)
-    print round(A,1)
-    print round(A,2)
+    print round(A)                  ' Output: 12
+
+Example 2: Round integer numbers
 
     A = 123456
-    print A
-    print round(A/10,0) * 10
-    print round(A/100,0) * 100
-    print round(A/1000,0) * 1000
+    print round(A/10) * 10        ' Output: 123460
+    print round(A/100) * 100      ' Output: 123500
+    print round(A/1000) * 1000    ' Output: 123000
+
+Example 3: Round to decimal digits
+
+    A = 12.3456  
+    print round(A)                   ' Output: 12
+    print round(A, 1)                ' Output: 12.3
+    print round(A, 2)                ' Output: 12.35
 
 +========================================================================================+
 |                                     230. (Math) SEC                                    |
@@ -11230,48 +10936,35 @@ Example:
 
 REPLACE (source, pos, str [, len])
 
-Writes str into pos of source and returns the new string.
+Writes the string str into string source at position pos and returns the
+new string. This function replaces len characters. The default value of
+len is the length of str.
 
-This function replaces only len characters. The default value of len is
-the length of str.
+Example 1:
 
-    s="123456"
-    ...
-    ' Cut
-    ? replace(s,3,"",len(s))
-    ...
-    ' Replace
-    ? replace(s,2,"bcd")
-    ...
-    ' Insert
-    ? replace(s,3,"cde",0)
-    ...
-    ' Replace & insert
-    ? replace(s,2,"RRI",2)
+    print replace("abcdef", 3, "1")                 ' Output: ab1def
+    print replace("abcdef", 3, "12")                ' Output: ab12ef
+    print replace("abcdef", 3, "123")               ' Output: ab123f
+    print replace("abcdef", 3, "1234")              ' Output: ab1234
+    print replace("abcdef", 3, "1234", 0)           ' Output: ab1234cdef <- inserted, no replacement
+    print replace("abcdef", 3, "1234", 1)           ' Output: ab1234def  <- only c was replaced
+    print replace("abcdef", 3, "1234", 2)           ' Output: ab1234ef   <- only cd was replaced
+    print replace("abcdef", 3, "", len("abcdef"))   ' Output: ab         <- cut
 
-    'replace test.bas 2016-02-26
-    'function replace(source,pos,str [,len])     len of source is default
-    s="123456"
-    ' Cut
-    ? replace(s,3,"",len(s)) 'returns 12
-    ? replace(s,3,"")        'returns 123456
-    ? replace(s,3,"",1)      'returns 12456  yes!
-    ' Replace
-    ? replace(s,2,"bcd") 'returns 1bcd56
-    ' Insert
-    ? replace(s,3,"cde",0) 'returns 12cde3456
-    ' Replace & insert
-    ? replace(s,2,"RRI",2) 'returns 1RRI456
-    pause
+Example 2:
 
-    ' Helper to print the "name of color" with its color:
+    Const TEXT = "Red Green Blue"   ' Text to replace:
+    Const Len_TEXT = Len(TEXT)
+    Const BLANKS = Len_TEXT - Len(Translate(TEXT, " ", "")) ' number of blanks in TEXT
+    Const ESCS = Chr(27) + "["
+    Const BG_BLACK = ESCS + "40m"
+    Const BG_RED = ESCS + "41m"
+    Const BG_GREEN = ESCS + "42m"
+    Const BG_BLUE = ESCS + "44m"
+    Const BG_YELLOW = ESCS + "43m"
 
-      Const ESCS = Chr(27) + "["
-      Const BG_BLACK = ESCS + "40m"
-      Const BG_RED = ESCS + "41m"
-      Const BG_GREEN = ESCS + "42m"
-      Const BG_BLUE = ESCS + "44m"
-      Const BG_YELLOW = ESCS + "43m"
+    ' Helper to print the "name of color" with its color:  
+    func colors(s)
       s = Translate(s, "Red",    BG_RED + "Red" + BG_BLACK)
       s = Translate(s, "Green",  BG_GREEN + "Green" + BG_BLACK)
       s = Translate(s, "Blue",   BG_BLUE + "Blue" + BG_BLACK)
@@ -11279,12 +10972,11 @@ the length of str.
       s = Translate(s, " ", "_")
       colors = s  
     End Func
+
     Def lset(s) = Replace(Space(30), 1, s + ": ")  ' left justify s in buffer
 
-    ' Text to replace:
-    Const TEXT = "Red Green Blue"
-    Const Len_TEXT = Len(TEXT)
-    Const BLANKS = Len_TEXT - Len(Translate(TEXT, " ", "")) ' number of blanks in TEXT
+    color 15,0
+    cls
 
     ' Syntax: REPLACE (source, pos, str [, len]):
     ? lset("TEXT is"); colors(TEXT)
@@ -11300,14 +10992,13 @@ the length of str.
     ?
     ? lset("Left justify TEXT in buffer");  colors(Replace(Space(30), 1, TEXT))
     ? lset("Right justify TEXT in buffer"); colors(Replace(Space(30), 30 - Len_TEXT + 1, TEXT))
-    ? lset("Center TEXT in buffer");        colors(Replace(Space(30), 15 - (Len_TEXT \\ 2) + 1, TEXT))
+    ? lset("Center TEXT in buffer");        colors(Replace(Space(30), 15 - (Len_TEXT \ 2) + 1, TEXT))
     ? lset("(Justify TEXT in buffer)"); colors(Translate(TEXT, " ", Space((30 + BLANKS - Len_TEXT) / BLANKS)))
     ?
     ? lset("Replace TEXT with Yellow");  colors(Replace(TEXT, 1, "Yellow", Len_TEXT))
     ? lset("Override TEXT with Yellow"); colors(Replace(TEXT, (Len_TEXT / 2) - 3 + 1, "Yellow"))
     ? lset("Delete TEXT");               colors(Replace(TEXT, 1, "", Len_TEXT))
     ? lset("Create TEXT");               colors(Replace("", 1, TEXT))
-    Pause
 
 +========================================================================================+
 |                                   271. (String) RIGHT                                  |
@@ -11315,8 +11006,16 @@ the length of str.
 
 RIGHT (s[,n])
 
-Returns the n number of rightmost chars of string s. if not specified n
-= 1.
+Returns the n number of rightmost chars of string s. If n is not
+specified n = 1.
+
+Example
+
+    s = "abcdef"
+
+    print right(s)      ' Output: f
+    print right(s,2)    ' Output: ef
+    print right(s,10)   ' Output: abcdef
 
 +========================================================================================+
 |                                  272. (String) RIGHTOF                                 |
@@ -11324,8 +11023,18 @@ Returns the n number of rightmost chars of string s. if not specified n
 
 RIGHTOF (s1, s2)
 
-Returns the right part of s1 at the position of the first occurrence of
-the string s2 into string s1.
+Returns the right part of string s1 at the position of the first
+occurrence of string s2 in s1. If s2 does not occure in s1 RIGHTOF
+returns an empty string.
+
+Example
+
+    s = "abcdef"
+
+    print rightof(s, "cd")  ' Output: ef
+    print rightof(s, "a")   ' Output: bcdef
+    print rightof(s, "f")   ' Output: 
+    print rightof(s, "xx")  ' Output: 
 
 +========================================================================================+
 |                                273. (String) RIGHTOFLAST                               |
@@ -11333,8 +11042,18 @@ the string s2 into string s1.
 
 RIGHTOFLAST (s1, s2)
 
-Returns the right part of s1 at the position of the last occurrence of
-the string s2 into string s1.
+Returns the right part of string s1 at the position of the last
+occurrence of string s2 in s1. If s2 does not occure in s1 RIGHTOFLAST
+returns an empty string.
+
+Example
+
+    s = "abcdefcd123"
+
+    print rightoflast(s, "cd")  ' Output: 123
+    print rightoflast(s, "a")   ' Output: bcdefcd123
+    print rightoflast(s, "3")   ' Output: 
+    print rightoflast(s, "xx")  ' Output:
 
 +========================================================================================+
 |                                   274. (String) RINSTR                                 |
@@ -11342,10 +11061,14 @@ the string s2 into string s1.
 
 RINSTR ([start,] s1, s2)
 
-Returns the position of the last occurrence of the string s2 into string
-s1 (starting from the position ‘start’).
+Returns the position of the last occurrence of string s2 in string s1
+starting from the position start. If there is no match, RINSTR returns 0
 
-If there is no match, RINSTR returns 0
+Example
+
+    s = "ab12ab34"
+    print rinstr(s, "ab")      ' Output: 5
+    print rinstr(6, s, "ab")   ' Output: 0
 
 +========================================================================================+
 |                                   275. (String) RTRIM                                  |
@@ -11354,6 +11077,13 @@ If there is no match, RINSTR returns 0
 RTRIM (s)
 
 Removes trailing white-spaces from string s.
+
+Example
+
+    s = "  abcd  "
+
+    print ">" + s        + "<"    ' Output: >  abcd  <
+    print ">" + rtrim(s) + "<"    ' Output: >  abcd<
 
 +========================================================================================+
 |                                   276. (String) SINPUT                                 |
@@ -12355,7 +12085,14 @@ Returns the current program line number.
 
 RANDOMIZE [int]
 
-Seeds the random number generator.
+Seeds the random number generator. An optional integer number can be
+provided as the seed seed. If no seed is given, then the amount of clock
+ticks elapsed since the program was launched is used as the seed.
+
+Example:
+
+    randomize
+    randomize 15
 
 +========================================================================================+
 |                                    308. (System) RUN                                   |
@@ -12363,154 +12100,73 @@ Seeds the random number generator.
 
 RUN cmdstr
 
-Loads a secondary copy of system’s shell and, executes an program, or an
-shell command.
+Loads a secondary copy of the system shell and executes a program or a
+shell command given by the string cmdstr. The execution of the calling
+BASIC program will be stoped and control returns to the BASIC program
+once the system command has completed. If RUN is called as a function,
+the return value s holds the text output of the executed command as a
+string.
 
-    ' Note: RUN is different then CHAIN. RUN executes external system command,
-    '       while CHAIN executes SmallBASIC code (similar to EVAL function).
-    Const IS_LINUX = (Left(HOME, 1) = "/")  ' Check if it's Linux system
-    Const IS_WINDOWS = Not IS_LINUX
-    Const DEMOFILE = Enclose("demo.tmp")
+System commands, especially on Linux, are very powerful, and can add
+lots of valuable features to a SmallBASIC program. With system commands
+you can configure the COM port, send email (Linux at least), get lots of
+information about the environment, etc.
 
-    ' Print header before each RUN mission:
-    Sub header(text)
-      ? Cbs("\\n\\n" + Cat(3) + Enclose(text, " ") + Cat(0) + Chr(7))
-      Pause
-    End Sub
+In the Android version you can use s = RUN to look at information in the
+/proc file system.
 
-    ' Run a built-in shell command - as a FUNCTION:
-    header "Press Enter to output directory list into string..."
-    Select Case 1
-      Case IS_LINUX:   lines = Run("ls")   ' "ls" command on Linux
-      Case IS_WINDOWS: lines = Run("DIR")  ' "DIR" command on Windows
-    End Select
-    Split lines, Cbs("\\n"), lines   ' Convert string to array
-    For i In lines: ? i,: Next      ' Print array content
+See EXEC if control should return to the BASIC program immediately.
 
-    ' Run a built-in shell command - as a COMMAND:
-    header "Press Enter to output directory list into file " + DEMOFILE + "..."
-    Select Case 1
-      Case IS_LINUX:   Run "ls > " + DEMOFILE   ' "ls" command on Linux
-      Case IS_WINDOWS: Run "DIR > " + DEMOFILE  ' "DIR" command on Windows
-    End Select
-    Tload Disclose(DEMOFILE), lines   ' load DEMOFILE into array
-    For i In lines: ? i,: Next        ' Print array content
+Use RUN in Windows
 
-    ' Run another program:
-    header "Press Enter to edit " + DEMOFILE + " in external editor..."
-    Select Case 1
-      Case IS_LINUX:   Run "gedit " + DEMOFILE
-      Case IS_WINDOWS: Run "Notepad " + DEMOFILE
-    End Select
-    ? "OK."
-    ' Run another program (which is actually SmallBASIC's IDE):
-    header "Press Enter to edit " + DEMOFILE + " in SmallBASIC editor..."
-    Select Case 1
-      Case IS_LINUX:   Run "sbasicg -e " + DEMOFILE
-      Case IS_WINDOWS: Run "sbasicg -e " + DEMOFILE
-    End Select
-    ? "Done...";
-    Pause
+In Windows (tested with Win10) you have to call the programm cmd which
+opens a command line window. The command you want to execute will be a
+parameter of cmd. Additional the parameter /C needs to be added to quit
+the command line window after execution of the command.
 
-RUN/EXEC
+Example 1: RUN as a function
 
-There are three modes:
+    s = run("cmd /C dir")                              ' Execute DIR and
+    print s                                            ' print a list of files in the current directory
 
-1.  RUN(command) ’ invoked as a COMMAND
+    s = run("cmd /C copy rename.txt rename1.txt")      ' Copy a file (please create the file rename.txt before testing)
+    print s                                            ' Prints the text output of copy
 
-2.  v=RUN(command) ‘invoked as a FUNC, returning the results of the sub
-    process. With both of these, control returns to the .bas once system
-    ’command’ has completed.
+Example 2: RUN as procedure
 
-3.  EXEC(command) ’invoked as a COMMAND, control returns to the .bas
-    immediately and the system command does it’s own thing external to
-    SmallBASIC.
+    run("cmd /C copy rename.txt rename1.txt")          ' Copy a file (please create the file rename.txt before testing)
+        
+    run("cmd /C notepad.exe")                          ' Start Notepad and wait until Notepad was closed        
 
-Note: In the android version you can use v=RUN to look at interesting
-things in the /proc file system.
+Use RUN in Linux
 
-1.  The search path for running a command (executable file) is defined
-    in the “PATH” environment variable (unless full path to the
-    executable is supplied). In Windows, the current directory will be
-    searched before the directories specified in the PATH variable (but
-    not on Linux).
+Commands to execute are case sensitive in Linux. Each command shell has
+an unique environment-variables-table; which means that you cannot
+always share environment variables with commands executed by RUN.
 
-    Const IS_LINUX = (Left(HOME, 1) = "/") ' check if it's Linux system
-    ' find current PATH with:
-    If IS_LINUX Then
-      RUN "echo $PATH > path.tmp"
-    Else ' Windows (syntax...?)
-      RUN "SET PATH > path.tmp"
-    Fi
-    Tload "path.tmp", lines
-    ? lines
-    Pause
+Example 1: RUN as a function
 
-2.  Command to execute is case sensitive on Linux (not on Windows).
+    s = Run("ls")                                      ' Execute ls and print a list of files in the
+    print s                                            ' current directory
 
-3.  RUN loads a secondary command shell to execute a command. In Linux,
-    and maybe on other systems as well, each command shell has unique
-    environment-variables-table; which means that you cannot always
-    share environment variables with command executed by RUN:
+    s = run("cp rename.txt rename1.txt")               ' Copy a file (please create the file rename.txt before testing)
+    print s                                            ' Prints the text output of cy
 
-    Const IS_LINUX = (Left(HOME, 1) = "/") ' check if it's Linux system
-    ' This can work (verified on Linux):
-    ' SB1 variable is set in main shell, and shared with secondary shell:
-    ENVIRON "SB1=67890"
-    If IS_LINUX Then
-      RUN "echo $SB1 > test.tmp"
-    Else ' Windows (syntax...?)
-      RUN "SET SB1 > test.tmp"
-    Fi
-    Tload "test.tmp", lines
-    ? lines
-    Pause
-    ' This cannot work (verified on Linux, without using the 'export' keyword):
-    ' SB1 variable is set in secondary shell:
-    If IS_LINUX Then
-      RUN "SB1=12345"
-    Else ' Windows (syntax...?)
-      RUN "SET SB1=12345"
-    Fi
-    ' Now back to main shell, so SB1 is 67890 again...:
-    ? ENVIRON("SB1")
-    Pause
+Example 2: RUN as procedure
 
-4.  Using RUN with built-in shell commands, such as DIR (to show
-    directory list), might be confusing, because the result is not
-    always visible. To delete a file you can try:
+    run("cp rename.txt rename1.txt")                   ' Copy a file (please create the file rename.txt before testing)
+        
+    run("gedit")                                       ' Start gedit (if installed) and wait until gedit was closed        
 
-    RUN "DEL test.tmp"
+Other Examples
 
-on Windows.
+Example 1: Querry whether Linux or Windows is used
 
-    RUN "rm test.tmp"
+    const IS_LINUX = (Left(HOME, 1) = "/")  ' Check if it's a Linux system
+    const IS_WINDOWS = Not IS_LINUX
 
-on Linux. Then check if file is deleted from SmallBASIC with
-
-    ? EXIST "test.tmp"
-
-To retrieve directory list it’s better to output the data to a file:
-
-    RUN "DIR > test.tmp"
-
-on Windows.
-
-    RUN "ls > test.tmp"
-
-on Linux.
-
-    TLOAD test.tmp, lines: ? lines
-
-will verify that the command was executed well.
-
-5.  Systems commands, especially on Linux, are very powerful, and can
-    add lots of valuable features to a SmallBASIC program. With system
-    commands you can configure the COM port, send email (Linux at
-    least), get lots of information about the environment, etc, etc. But
-    before you can actually use these features - you must learn how your
-    system is working, and which commands are available (Read Ebook or a
-    book to understand the basics).
+    print "LINUX:   " + IS_LINUX
+    print "Windows: " + IS_WINDOWS
 
 +========================================================================================+
 |                                   309. (System) SBVER                                  |

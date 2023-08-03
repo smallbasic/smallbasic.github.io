@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>REPLACE</h1>
-  <blockquote>REPLACE (source, pos, str [, len])</blockquote>
+  <blockquote>s = REPLACE (source, pos, str [, len])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,44 +73,29 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-<p>Writes str into pos of source and returns the new string.</p>
-<p>This function replaces only <em>len</em> characters. The default value of <em>len</em> is the length of <em>str</em>.</p>
-<pre><code>s=&quot;123456&quot;
-...
-&#39; Cut
-? replace(s,3,&quot;&quot;,len(s))
-...
-&#39; Replace
-? replace(s,2,&quot;bcd&quot;)
-...
-&#39; Insert
-? replace(s,3,&quot;cde&quot;,0)
-...
-&#39; Replace &amp; insert
-? replace(s,2,&quot;RRI&quot;,2)</code></pre>
-<pre><code>&#39;replace test.bas 2016-02-26
-&#39;function replace(source,pos,str [,len])     len of source is default
-s=&quot;123456&quot;
-&#39; Cut
-? replace(s,3,&quot;&quot;,len(s)) &#39;returns 12
-? replace(s,3,&quot;&quot;)        &#39;returns 123456
-? replace(s,3,&quot;&quot;,1)      &#39;returns 12456  yes!
-&#39; Replace
-? replace(s,2,&quot;bcd&quot;) &#39;returns 1bcd56
-&#39; Insert
-? replace(s,3,&quot;cde&quot;,0) &#39;returns 12cde3456
-&#39; Replace &amp; insert
-? replace(s,2,&quot;RRI&quot;,2) &#39;returns 1RRI456
-pause
-</code></pre>
-<pre><code>&#39; Helper to print the &quot;name of color&quot; with its color:
+<p>Writes the string <code>str</code> into string <code>source</code> at position <code>pos</code> and returns the new string. This function replaces <code>len</code> characters. The default value of <code>len</code> is the length of <code>str</code>.</p>
+<h3 id="example-1">Example 1:</h3>
+<pre><code>print replace(&quot;abcdef&quot;, 3, &quot;1&quot;)                 &#39; Output: ab1def
+print replace(&quot;abcdef&quot;, 3, &quot;12&quot;)                &#39; Output: ab12ef
+print replace(&quot;abcdef&quot;, 3, &quot;123&quot;)               &#39; Output: ab123f
+print replace(&quot;abcdef&quot;, 3, &quot;1234&quot;)              &#39; Output: ab1234
+print replace(&quot;abcdef&quot;, 3, &quot;1234&quot;, 0)           &#39; Output: ab1234cdef &lt;- inserted, no replacement
+print replace(&quot;abcdef&quot;, 3, &quot;1234&quot;, 1)           &#39; Output: ab1234def  &lt;- only c was replaced
+print replace(&quot;abcdef&quot;, 3, &quot;1234&quot;, 2)           &#39; Output: ab1234ef   &lt;- only cd was replaced
+print replace(&quot;abcdef&quot;, 3, &quot;&quot;, len(&quot;abcdef&quot;))   &#39; Output: ab         &lt;- cut</code></pre>
+<h3 id="example-2">Example 2:</h3>
+<pre><code>Const TEXT = &quot;Red Green Blue&quot;   &#39; Text to replace:
+Const Len_TEXT = Len(TEXT)
+Const BLANKS = Len_TEXT - Len(Translate(TEXT, &quot; &quot;, &quot;&quot;)) &#39; number of blanks in TEXT
+Const ESCS = Chr(27) + &quot;[&quot;
+Const BG_BLACK = ESCS + &quot;40m&quot;
+Const BG_RED = ESCS + &quot;41m&quot;
+Const BG_GREEN = ESCS + &quot;42m&quot;
+Const BG_BLUE = ESCS + &quot;44m&quot;
+Const BG_YELLOW = ESCS + &quot;43m&quot;
 
-  Const ESCS = Chr(27) + &quot;[&quot;
-  Const BG_BLACK = ESCS + &quot;40m&quot;
-  Const BG_RED = ESCS + &quot;41m&quot;
-  Const BG_GREEN = ESCS + &quot;42m&quot;
-  Const BG_BLUE = ESCS + &quot;44m&quot;
-  Const BG_YELLOW = ESCS + &quot;43m&quot;
+&#39; Helper to print the &quot;name of color&quot; with its color:  
+func colors(s)
   s = Translate(s, &quot;Red&quot;,    BG_RED + &quot;Red&quot; + BG_BLACK)
   s = Translate(s, &quot;Green&quot;,  BG_GREEN + &quot;Green&quot; + BG_BLACK)
   s = Translate(s, &quot;Blue&quot;,   BG_BLUE + &quot;Blue&quot; + BG_BLACK)
@@ -118,12 +103,11 @@ pause
   s = Translate(s, &quot; &quot;, &quot;_&quot;)
   colors = s  
 End Func
+
 Def lset(s) = Replace(Space(30), 1, s + &quot;: &quot;)  &#39; left justify s in buffer
 
-&#39; Text to replace:
-Const TEXT = &quot;Red Green Blue&quot;
-Const Len_TEXT = Len(TEXT)
-Const BLANKS = Len_TEXT - Len(Translate(TEXT, &quot; &quot;, &quot;&quot;)) &#39; number of blanks in TEXT
+color 15,0
+cls
 
 &#39; Syntax: REPLACE (source, pos, str [, len]):
 ? lset(&quot;TEXT is&quot;); colors(TEXT)
@@ -139,15 +123,13 @@ Const BLANKS = Len_TEXT - Len(Translate(TEXT, &quot; &quot;, &quot;&quot;)) &#39
 ?
 ? lset(&quot;Left justify TEXT in buffer&quot;);  colors(Replace(Space(30), 1, TEXT))
 ? lset(&quot;Right justify TEXT in buffer&quot;); colors(Replace(Space(30), 30 - Len_TEXT + 1, TEXT))
-? lset(&quot;Center TEXT in buffer&quot;);        colors(Replace(Space(30), 15 - (Len_TEXT \\ 2) + 1, TEXT))
+? lset(&quot;Center TEXT in buffer&quot;);        colors(Replace(Space(30), 15 - (Len_TEXT \ 2) + 1, TEXT))
 ? lset(&quot;(Justify TEXT in buffer)&quot;); colors(Translate(TEXT, &quot; &quot;, Space((30 + BLANKS - Len_TEXT) / BLANKS)))
 ?
 ? lset(&quot;Replace TEXT with Yellow&quot;);  colors(Replace(TEXT, 1, &quot;Yellow&quot;, Len_TEXT))
 ? lset(&quot;Override TEXT with Yellow&quot;); colors(Replace(TEXT, (Len_TEXT / 2) - 3 + 1, &quot;Yellow&quot;))
 ? lset(&quot;Delete TEXT&quot;);               colors(Replace(TEXT, 1, &quot;&quot;, Len_TEXT))
-? lset(&quot;Create TEXT&quot;);               colors(Replace(&quot;&quot;, 1, TEXT))
-Pause
-</code></pre>
+? lset(&quot;Create TEXT&quot;);               colors(Replace(&quot;&quot;, 1, TEXT))</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using REPLACE</div>
     <div class="linklist">
@@ -240,7 +222,7 @@ REPLACE by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Thu, 6 Jul 2023 14:42:39 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

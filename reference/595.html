@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>RENAME</h1>
-  <blockquote>RENAME “file”, “newname”</blockquote>
+  <blockquote>RENAME file, newfile</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,14 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Renames the specified file.</p>
+<p>Renames the specified file <code>file</code> to <code>newfile</code>.</p>
+<h3 id="example">Example:</h3>
+<pre><code>&#39; Create a file
+A = 1
+tsave &quot;test.txt&quot;, A
+
+&#39; Rename file
+rename &quot;test.txt&quot;, &quot;test_renamed.txt&quot;</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using RENAME</div>
     <div class="linklist">
@@ -136,7 +143,7 @@ RENAME by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Thu, 6 Jul 2023 11:49:23 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

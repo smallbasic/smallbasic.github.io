@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>READ</h1>
-  <blockquote>READ var[, var …]</blockquote>
+  <blockquote>READ var1 [, var2, …, varN]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,10 +73,9 @@
       <a href="/pages/data.html">Data</a>
     </p>
   </div>
-<p>Assigns values in DATA items to specified variables.</p>
-<p>var - Any variable.</p>
-<p>Unless a RESTORE command is executed, SmallBASIC moves to the next DATA item with each READ assignment. If SmallBASIC runs out of DATA items to READ, an run-time error occurs.</p>
+<p>Assigns values in DATA items to the specified variables <code>var1</code> to <code>varN</code>. Unless a RESTORE command is executed, SmallBASIC moves to the next DATA item with each READ assignment. If SmallBASIC runs out of DATA items to read, an run-time error occurs.</p>
 <p>See DATA and RESTORE for more information.</p>
+<h3 id="example-1-read-with-one-variable">Example 1: READ with one variable</h3>
 <pre><code>FOR c = 1 TO 6
    READ x
    PRINT x
@@ -85,7 +84,7 @@ NEXT
 DATA &quot;a,b,c&quot;, 2
 DATA 3, 4
 DATA &quot;fifth&quot;, 6</code></pre>
-<p>Example 2: READ with two variables</p>
+<h3 id="example-2-read-with-two-variables">Example 2: READ with two variables</h3>
 <pre><code>FOR c = 1 TO 3
    READ x, y
    PRINT x, y
@@ -176,7 +175,7 @@ READ by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 25 Dec 2022 18:22:18 +0100
+      This page was last edited on Tue, 4 Jul 2023 17:42:18 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

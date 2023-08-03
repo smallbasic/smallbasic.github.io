@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>RIGHTOFLAST</h1>
-  <blockquote>RIGHTOFLAST (s1, s2)</blockquote>
+  <blockquote>r = RIGHTOFLAST (s1, s2)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,14 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-<p>Returns the right part of s1 at the position of the last occurrence of the string s2 into string s1.</p>
+<p>Returns the right part of string <code>s1</code> at the position of the last occurrence of string <code>s2</code> in <code>s1</code>. If <code>s2</code> does not occure in <code>s1</code> RIGHTOFLAST returns an empty string.</p>
+<h3 id="example">Example</h3>
+<pre><code>s = &quot;abcdefcd123&quot;
+
+print rightoflast(s, &quot;cd&quot;)  &#39; Output: 123
+print rightoflast(s, &quot;a&quot;)   &#39; Output: bcdefcd123
+print rightoflast(s, &quot;3&quot;)   &#39; Output: 
+print rightoflast(s, &quot;xx&quot;)  &#39; Output:</code></pre>
   <div class="lavenderBox">
     <div class="header">String</div>
     <div class="linklist">
@@ -137,7 +144,7 @@ RIGHTOFLAST by submitting a <a href="https://github.com/smallbasic/smallbasic.gi
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Thu, 20 Jul 2023 09:31:36 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
