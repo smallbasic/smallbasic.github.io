@@ -4,6 +4,8 @@
 
 Returns a string of `n` spaces.
 
+SPACE is identical to SPC.
+
 ### Example 1:
 
 ```
