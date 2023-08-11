@@ -1,22 +1,38 @@
 # SPC
 
-> SPC (n)
+> s = SPC (n)
 
-Returns a string of n spaces.
+Returns a string of `n` spaces.
 
-These are excellent for maintaining a fixed length string or buffer or record or refining screen output by inserting a specified amount of spaces in a string. This works well with LEFT and RIGHT keywords for Left Center or Right aligning text.
+SPC is identical to SPACE.
 
-~~~
+### Example 1:
 
-'here are right aligned numbers in 10 character length string between two single quote marks
-while 1
-  myNumber=(rnd*10^(rnd*4)\\1)\\1
-  ? "'";RIGHT(SPC(10)+STR(myNumber),10);"'";SPC(3)+"press a key or click for next..."
-  pause
-wend
+```
+print "A" + spc(5) + "B"    ' Output: A     B
+```
 
-~~~
+### Example 2: Insert string into a buffer
 
-I think SPACE and SPC are both the same, see also SPACE.
+```
+' s is a string ("" or longer); l is length of buffer (0+);
+Def lset(s, l) = Left(s + Spc(l), l) ' left justify text
+Def rset(s, l) = Right(Spc(l) + s, l) ' right justify text
 
+Const buffer = 10 ' length of buffer
 
+While True Do
+  Color 7, 0: Cls
+  Print "[ Using a buffer of "; buffer; " spaces ]"
+  Print
+  Input "Enter text into buffer (Enter 'S' to stop): ", text
+  IF text = "S" Or text = "s" Then
+    Stop
+  Endif
+  Color 7, 0: Locate 5, 0: Print "Left justified:  ";
+  Color 0, 7: Print lset(text, buffer);
+  Color 7, 0: Locate 7, 0: Print "Right justified: ";
+  Color 0, 7: Print rset(text, buffer);
+  Pause 
+Wend
+```
