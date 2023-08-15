@@ -1,6 +1,6 @@
 # STATMEAN
 
-> f = STATMEAN (var1 [, var2, ... , varN)
+> f = STATMEAN (var1 [, var2, ... , varN])
 
 Arithmetical mean (average). `var1` to `varN` can be single numbers or arrays.
 
