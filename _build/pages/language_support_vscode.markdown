@@ -1,7 +1,5 @@
 # SmallBASIC in Visual Studio Code
 
-> Using Visual Studio Code
-
 _"Visual Studio Code is a source-code editor made by Microsoft for Windows, Linux and macOS.
 Features include support for debugging, syntax highlighting, intelligent code completion, snippets,
 code refactoring, and embedded Git. Users can change the theme, keyboard shortcuts, preferences,

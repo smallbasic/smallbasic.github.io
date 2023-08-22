@@ -1,12 +1,18 @@
 # SPRINT
 
-> SPRINT var; [USING...;] ...
+> SPRINT byref s; [USING...;] ...
 
-Create formated string and storing it to var. See also: PRINT command.
+Create a formated string and storing it to string `s`. SPRINT supports all features of PRINT. See PRINT for detailed information. USG can be used instead of USING.
+
+### Example
 
 ```
-SPRINT s; 12.34; TAB(12); 11.23;
+a = 1000
+b = 2000
+
+SPRINT s1; USING "a = #####.00  b = ##,###"; a; b
+SPRINT s2; "a + b = "; a; " + "; b; " = "; a + b
+
+print s2     ' Output a =  1000.00  b =  2,000
+print s1     ' Output: a + b = 1000 + 2000 = 3000
 ```
-
-_Note: you can use 'USG' instead of 'USING'._
-

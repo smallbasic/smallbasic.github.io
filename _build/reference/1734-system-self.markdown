@@ -8,7 +8,7 @@ The SELF variable works with MAP variables. You can assign a reference to a FUNC
 
 Note: 'MAP' is the name given to the dictionary/hashmap variable variant.
 
-Example:
+### Example 1: SELF and MAP variable
 
 ```
 SUB hello
@@ -20,8 +20,9 @@ a.foo = @hello
 a.foo()
 ```
 
-```
+### Example 2: Simple Class
 
+```
 func SimpleClass(i)
 
   sub Increment(i)

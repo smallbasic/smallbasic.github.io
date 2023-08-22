@@ -1,13 +1,15 @@
 # SEC
 
-> SEC (x)
+> f = SEC (x)
 
-Secant.
+Secant of `x`.
+
+### Example
 
 ```
 a = sec(0.1)
-print a
+print a     ' Output: 1.00502
 
 b = asec(a)
-print b
+print b     ' Output: 0.1
 ```

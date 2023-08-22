@@ -1,16 +1,25 @@
 # SPACE
 
-> SPACE (n)
+> s = SPACE (n)
 
-Returns a string of n spaces.
+Returns a string of `n` spaces.
 
+SPACE is identical to SPC.
 
-~~~
+### Example 1:
 
+```
+print "A" + space(5) + "B"    ' Output: A     B
+```
+
+### Example 2: Insert string into a buffer
+
+```
 ' s is a string ("" or longer); l is length of buffer (0+);
 Def lset(s, l) = Left(s + Space(l), l) ' left justify text
 Def rset(s, l) = Right(Space(l) + s, l) ' right justify text
 Const buffer = 10 ' length of buffer
+
 While True Do
   Color 7, 0: Cls
   Print "[ Using a buffer of "; buffer; " spaces ]"
@@ -25,7 +34,4 @@ While True Do
   Color 0, 7: Print rset(text, buffer);
   Pause 
 Wend
-
-~~~
-
-
+```

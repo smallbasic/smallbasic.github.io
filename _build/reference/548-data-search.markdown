@@ -1,88 +1,92 @@
 # SEARCH
 
-> SEARCH A, key, BYREF ridx [USE cmpfunc]
+> SEARCH A, key, BYREF idx [USE cmpfunc( var1, var2)]
 
-Scans an array for the key. If key is not found the SEARCH command returns (in ridx) the value. (LBOUND(A)-1). In default-base arrays that means -1. The cmpfunc (if its specified) it takes 2 vars to compare. It must return 0 if x = y; non-zero if x <> y.
+Scans an array `A` for the key `key` and returns the position `idx` of the element.  If the key is not found `idx` contains the value `(LBOUND(A)-1)`. In default-base arrays (starting with element zero) `-1` will be returned.
+
+The optional compare function `cmpfunc` takes 2 vars `var1` and `var2`. `var1` contains the value of the actuell element and `var2` is equal to `key`. The compare function must return `0` or `1` (`false` or `true`). When it returns `1`, the search will stop and the current element position is returned in `idx`.
+
+### Example 1: 1D array of numbers
 
 ```
-FUNC cmp(x,y)
-  cmp=!(x=y)
-END
-...
-DIM A(5)
-FOR i=0 TO 5
-    A(i)=5-i
-NEXT
-SEARCH A, 4, r USE cmp(x,y)
-PRINT r:REM prints 1
-PRINT A(r): REM prints 4
+option base 1
+
+A = [1,9,6,4,5,3,7,8,2]         ' 1D array with 9 elements
+SEARCH A, 3, ElementID          
+print "Element: "; ElementID    ' Output: Element: 6
 ```
 
-~~~
+### Example 2: 2D array of numbers
 
-' Note: I'm not sure yet about a practical use for [USE cmpfunc] syntax...
-Def q(text) = Enclose(text) ' Enclose text with quotation marks, ""
-Def rev(text) = Cat(3) + text + Cat(-3)  ' reverse colors of text
-Sub title(text)
-  ?: Color 14: Print text: Color 7  ' print title in color
-End Sub
+```
+option base 1
 
-Dim a(5 To 7)
-a(5) = "Hello" 
-a(6) = "World"
-a(7) = 123
-? rev(" Dim a(5 To 7) = " + Str(a) + " ")
-title "Use SEARCH to find index of matching element in array (Base LBOUND(a)):"
-Search a, "Hello", i:  ? "Search a, " + q("Hello") + ", i: "; i
-Search a,  "ello", i:  ? "Search a, " + q("ello") + " , i: "; i
-Search a, "HELLO", i:  ? "Search a, " + q("HELLO") + ", i: "; i
-Search a, "World", i:  ? "Search a, " + q("World") + ", i: "; i
-Search a,     123, i:  ? "Search a, " + " 123   "  + ", i: "; i
-Search a,      12, i:  ? "Search a, " + " 12    "  + ", i: "; i
-title "Use IN to find index of matching element in array (Always Base 1):"
-? q("Hello") + " In a: ";  "Hello" In a
-? q("ello") + "  In a: ";   "ello" In a
-? q("HELLO") + " In a: ";  "HELLO" In a
-? q("World") + " In a: ";  "World" In a
-? " 123    In a: ";            123 In a
-? " 12     In a: ";            12  In a
-Pause
+A = [1,9,6;4,5,3;7,8,2]         ' 2D matrix with 3x3 elements
+SEARCH A, 3, ElementID
+print "Element: "; ElementID    ' Output: Element: 6
+```
 
-~~~
+### Example 3: Get the element position of the maximum value of an 1D array
+
+```
+option base 1
+
+A = [1,9,6,4,5,3,7,8,2]
+m = max(A)
+SEARCH A, m, ElementID
+PRINT "Element: "; ElementID    ' Output: Element: 2
+```
+
+### Example 4: 1D array of strings
+
+```
+option base 1
+
+A = ["car", "dog", "house", "paper"]
+SEARCH A, "house", ElementID
+PRINT "Element: "; ElementID        ' Output: Element: 3
+```
+
+### Example 5: Compare function, find first element greater than the key
+
+```
+option base 1
+
+func findgreater(x,y)
+    findgreater = !(x > y)
+end
+
+A = [1,2,3,4,5,6,7,8,9]
+search A, 5, ElementID USE findgreater(x,y)
+PRINT "Element: "; ElementID         ' Output: Element: 6
+```
+
+### Example 6: Compare function, find first element which can be divided by the key
+
+```
+option base 1
+
+func FindFirstDivider(x,y)
+    FindFirstDivider = ( (x mod y) > 0 )
+end
+
+A = [1,5,7,4,5,6,7,8,9]
+search A, 3, ElementID USE FindFirstDivider(x,y)
+PRINT "Element: "; ElementID         ' Output: Element: 6
+```
+
+### Example 7: Compare function, find first element with string length given by the key
+
+```
+func FindFirstStringWithLenght(x,y)
+    FindFirstStringWithLenght = ( len(x) != y )
+end
+
+A = ["car", "dog", "house", "paper"]
+SEARCH A, 5, ElementID use FindFirstStringWithLenght(x,y)
+PRINT "Element: "; elementID          ' Output: Element: 3
+```
 
 
-~~~
-
-Option Base 1
-' x is the current array element of search;
-' y is the array element (key) that we search for.
-Func create_new_array(x, y, Byref new_a)
-  ' Create a new array:
-  If x <> 0 Then Append new_a, x 
-  
-  ' Standard expression to continue the search:
-  create_new_array = Not (x = y) 
-End Func
-
-' Start demo:
-a = ["a"; "b", "c", "d", "e"; "f"] ' Array for search
-e = "c"     ' Element (key) to find
-Dim new_a() ' Initialize empty new array
-Search a, e, ix Use create_new_array(x, y, new_a)
-? "Array for search: "; a
-?
-? "Element (key) to find: "; e
-?
-' Check return-index (ix):
-If ix = Lbound(a) - 1 Then
-  ? "Element not found in array."
-Else
-  ? "Element found in array at index: "; ix
-Fi
-?
-? "New array created on search: "; new_a
-Pause
-
-~~~
 
 

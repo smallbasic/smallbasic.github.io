@@ -1,8 +1,10 @@
 # STEP
 
-> FOR t = 1 TO 10 STEP 2
+> FOR i = a TO b STEP s
 
-Specifies the loop counter increment in a FOR loop
+Specifies the loop counter increment `s` in a FOR loop. The variable `i` will be increased in every loop by amount `s`. `s` can be a positive or negative number.
+
+See FOR for more information.
 
 ### Example 1: Positive step
 

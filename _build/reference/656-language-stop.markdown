@@ -2,11 +2,23 @@
 
 > STOP [error]
 
-Terminates execution of a program, closes all files opened by the program, and returns control to the operating system.
+Terminates execution of a program, closes all files opened by the program, and returns control to the operating system. The optional number `error` will be returned to the operating system; if not specified SmallBASIC returns `0`. On Windows, the `error` value is known as ERRORLEVEL.
 
-error - A numeric expression.
+### Example 1
 
-The error is the value which will returned to operating system; if not specified SmallBASIC returns 0.
+```
+print "Hello world"
+stop
+print "This will never be printed"
+```
 
-On Windows, The 'error' value is known as ERRORLEVEL
+### Example 2
 
+```
+print "Type exit to stop program"
+while (true)
+    input "INPUT: ", s
+    if(s == "exit") then stop
+    print "You typed: ";s
+wend
+```
