@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>SEARCH</h1>
-  <blockquote>SEARCH A, key, BYREF ridx [USE cmpfunc]</blockquote>
+  <blockquote>SEARCH A, key, BYREF idx [USE cmpfunc( var1, var2)]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,78 +73,61 @@
       <a href="/pages/data.html">Data</a>
     </p>
   </div>
-<p>Scans an array for the key. If key is not found the SEARCH command returns (in ridx) the value. (LBOUND(A)-1). In default-base arrays that means -1. The cmpfunc (if its specified) it takes 2 vars to compare. It must return 0 if x = y; non-zero if x &lt;&gt; y.</p>
-<pre><code>FUNC cmp(x,y)
-  cmp=!(x=y)
-END
-...
-DIM A(5)
-FOR i=0 TO 5
-    A(i)=5-i
-NEXT
-SEARCH A, 4, r USE cmp(x,y)
-PRINT r:REM prints 1
-PRINT A(r): REM prints 4</code></pre>
-<pre><code>
-&#39; Note: I&#39;m not sure yet about a practical use for [USE cmpfunc] syntax...
-Def q(text) = Enclose(text) &#39; Enclose text with quotation marks, &quot;&quot;
-Def rev(text) = Cat(3) + text + Cat(-3)  &#39; reverse colors of text
-Sub title(text)
-  ?: Color 14: Print text: Color 7  &#39; print title in color
-End Sub
+<p>Scans an array <code>A</code> for the key <code>key</code> and returns the position <code>idx</code> of the element. If the key is not found <code>idx</code> contains the value <code>(LBOUND(A)-1)</code>. In default-base arrays (starting with element zero) <code>-1</code> will be returned.</p>
+<p>The optional compare function <code>cmpfunc</code> takes 2 vars <code>var1</code> and <code>var2</code>. <code>var1</code> contains the value of the actuell element and <code>var2</code> is equal to <code>key</code>. The compare function must return <code>0</code> or <code>1</code> (<code>false</code> or <code>true</code>). When it returns <code>1</code>, the search will stop and the current element position is returned in <code>idx</code>.</p>
+<h3 id="example-1-1d-array-of-numbers">Example 1: 1D array of numbers</h3>
+<pre><code>option base 1
 
-Dim a(5 To 7)
-a(5) = &quot;Hello&quot; 
-a(6) = &quot;World&quot;
-a(7) = 123
-? rev(&quot; Dim a(5 To 7) = &quot; + Str(a) + &quot; &quot;)
-title &quot;Use SEARCH to find index of matching element in array (Base LBOUND(a)):&quot;
-Search a, &quot;Hello&quot;, i:  ? &quot;Search a, &quot; + q(&quot;Hello&quot;) + &quot;, i: &quot;; i
-Search a,  &quot;ello&quot;, i:  ? &quot;Search a, &quot; + q(&quot;ello&quot;) + &quot; , i: &quot;; i
-Search a, &quot;HELLO&quot;, i:  ? &quot;Search a, &quot; + q(&quot;HELLO&quot;) + &quot;, i: &quot;; i
-Search a, &quot;World&quot;, i:  ? &quot;Search a, &quot; + q(&quot;World&quot;) + &quot;, i: &quot;; i
-Search a,     123, i:  ? &quot;Search a, &quot; + &quot; 123   &quot;  + &quot;, i: &quot;; i
-Search a,      12, i:  ? &quot;Search a, &quot; + &quot; 12    &quot;  + &quot;, i: &quot;; i
-title &quot;Use IN to find index of matching element in array (Always Base 1):&quot;
-? q(&quot;Hello&quot;) + &quot; In a: &quot;;  &quot;Hello&quot; In a
-? q(&quot;ello&quot;) + &quot;  In a: &quot;;   &quot;ello&quot; In a
-? q(&quot;HELLO&quot;) + &quot; In a: &quot;;  &quot;HELLO&quot; In a
-? q(&quot;World&quot;) + &quot; In a: &quot;;  &quot;World&quot; In a
-? &quot; 123    In a: &quot;;            123 In a
-? &quot; 12     In a: &quot;;            12  In a
-Pause
-</code></pre>
-<pre><code>
-Option Base 1
-&#39; x is the current array element of search;
-&#39; y is the array element (key) that we search for.
-Func create_new_array(x, y, Byref new_a)
-  &#39; Create a new array:
-  If x &lt;&gt; 0 Then Append new_a, x 
-  
-  &#39; Standard expression to continue the search:
-  create_new_array = Not (x = y) 
-End Func
+A = [1,9,6,4,5,3,7,8,2]         &#39; 1D array with 9 elements
+SEARCH A, 3, ElementID          
+print &quot;Element: &quot;; ElementID    &#39; Output: Element: 6</code></pre>
+<h3 id="example-2-2d-array-of-numbers">Example 2: 2D array of numbers</h3>
+<pre><code>option base 1
 
-&#39; Start demo:
-a = [&quot;a&quot;; &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;; &quot;f&quot;] &#39; Array for search
-e = &quot;c&quot;     &#39; Element (key) to find
-Dim new_a() &#39; Initialize empty new array
-Search a, e, ix Use create_new_array(x, y, new_a)
-? &quot;Array for search: &quot;; a
-?
-? &quot;Element (key) to find: &quot;; e
-?
-&#39; Check return-index (ix):
-If ix = Lbound(a) - 1 Then
-  ? &quot;Element not found in array.&quot;
-Else
-  ? &quot;Element found in array at index: &quot;; ix
-Fi
-?
-? &quot;New array created on search: &quot;; new_a
-Pause
-</code></pre>
+A = [1,9,6;4,5,3;7,8,2]         &#39; 2D matrix with 3x3 elements
+SEARCH A, 3, ElementID
+print &quot;Element: &quot;; ElementID    &#39; Output: Element: 6</code></pre>
+<h3 id="example-3-get-the-element-position-of-the-maximum-value-of-an-1d-array">Example 3: Get the element position of the maximum value of an 1D array</h3>
+<pre><code>option base 1
+
+A = [1,9,6,4,5,3,7,8,2]
+m = max(A)
+SEARCH A, m, ElementID
+PRINT &quot;Element: &quot;; ElementID    &#39; Output: Element: 2</code></pre>
+<h3 id="example-4-1d-array-of-strings">Example 4: 1D array of strings</h3>
+<pre><code>option base 1
+
+A = [&quot;car&quot;, &quot;dog&quot;, &quot;house&quot;, &quot;paper&quot;]
+SEARCH A, &quot;house&quot;, ElementID
+PRINT &quot;Element: &quot;; ElementID        &#39; Output: Element: 3</code></pre>
+<h3 id="example-5-compare-function-find-first-element-greater-than-the-key">Example 5: Compare function, find first element greater than the key</h3>
+<pre><code>option base 1
+
+func findgreater(x,y)
+    findgreater = !(x &gt; y)
+end
+
+A = [1,2,3,4,5,6,7,8,9]
+search A, 5, ElementID USE findgreater(x,y)
+PRINT &quot;Element: &quot;; ElementID         &#39; Output: Element: 6</code></pre>
+<h3 id="example-6-compare-function-find-first-element-which-can-be-divided-by-the-key">Example 6: Compare function, find first element which can be divided by the key</h3>
+<pre><code>option base 1
+
+func FindFirstDivider(x,y)
+    FindFirstDivider = ( (x mod y) &gt; 0 )
+end
+
+A = [1,5,7,4,5,6,7,8,9]
+search A, 3, ElementID USE FindFirstDivider(x,y)
+PRINT &quot;Element: &quot;; ElementID         &#39; Output: Element: 6</code></pre>
+<h3 id="example-7-compare-function-find-first-element-with-string-length-given-by-the-key">Example 7: Compare function, find first element with string length given by the key</h3>
+<pre><code>func FindFirstStringWithLenght(x,y)
+    FindFirstStringWithLenght = ( len(x) != y )
+end
+
+A = [&quot;car&quot;, &quot;dog&quot;, &quot;house&quot;, &quot;paper&quot;]
+SEARCH A, 5, ElementID use FindFirstStringWithLenght(x,y)
+PRINT &quot;Element: &quot;; elementID          &#39; Output: Element: 3</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using SEARCH</div>
     <div class="linklist">
@@ -216,7 +199,7 @@ SEARCH by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 22:05:29 +1000
+      This page was last edited on Tue, 1 Aug 2023 13:59:34 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

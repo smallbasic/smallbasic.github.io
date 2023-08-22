@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>SEEK</h1>
-  <blockquote>SEEK (fileN)</blockquote>
+  <blockquote>n = SEEK (fileN)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,18 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Returns the current file position.</p>
+<p>Returns the current file position of file with ID <code>fileN</code>. The file position start with <code>0</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; create a file
+open &quot;testseek.txt&quot; for output as #1
+print #1, &quot;abcdefghijk&quot;
+close #1
+
+&#39; open file
+open &quot;testseek.txt&quot; for input as #1
+c = input(3,1)                          &#39; read three character from file
+print seek(1)                           &#39; Output: 3
+close #1</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using SEEK</div>
     <div class="linklist">
@@ -135,7 +146,7 @@ SEEK by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Wed, 2 Aug 2023 09:59:54 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

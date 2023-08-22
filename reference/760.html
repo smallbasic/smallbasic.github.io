@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>STATMEAN</h1>
-  <blockquote>STATMEAN (…)</blockquote>
+  <blockquote>f = STATMEAN (var1 [, var2, … , varN])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,9 +73,24 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Arithmetical mean (average).</p>
+<p>Arithmetical mean (average). <code>var1</code> to <code>varN</code> can be single numbers or arrays.</p>
+<h3 id="example-1-using-an-array">Example 1: Using an array</h3>
 <pre><code>A = [2,2,3,4,14]
-print statmean(A)   &#39; same as: sum(A) / len(A)</code></pre>
+print statmean(A)         &#39; same as: sum(A) / len(A)
+&#39; Output: 5</code></pre>
+<h3 id="example-2-using-two-arrays">Example 2: Using two arrays</h3>
+<pre><code>A = [2,2,3,4,14]
+B = [7,9,7]
+print statmean(A, B)      &#39; Output: 6</code></pre>
+<h3 id="example-3-using-array-and-number">Example 3: Using array and number</h3>
+<pre><code>A = [2,2,3,4,14]
+B = 5
+print statmean(A, B)      &#39; Output: 5</code></pre>
+<h3 id="example-4-using-numbers">Example 4: Using numbers</h3>
+<pre><code>A = 3
+B = 5
+C = 4
+print statmean(A, B, C)   &#39; Output: 4</code></pre>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -177,7 +192,7 @@ STATMEAN by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Fri, 21 Oct 2022 11:20:16 +0200
+      This page was last edited on Tue, 15 Aug 2023 11:00:39 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

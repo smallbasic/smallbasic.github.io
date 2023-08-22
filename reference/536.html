@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>SOUND</h1>
-  <blockquote>SOUND freq, dur_ms [, vol] [BG]</blockquote>
+  <blockquote>SOUND freq, dur [, vol] [BG]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,13 +73,13 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Plays a sound.</p>
-<ul>
-<li>freq The frequency</li>
-<li>dur_ms The duration in milliseconds</li>
-<li>vol The volume in 1/100 units</li>
-<li>BG Play it in background</li>
-</ul>
+<p>Plays a sound with the frequency <code>freg</code> in Hz for a duration <code>dur</code> in milliseconds. The optional parameter <code>vol</code> controls the volume of the sound. Volume is in the range from 0 to 100, where 100 is maximum volume. If the optional parameter <code>BG</code> is given, the sound will play in the background: SmallBASIC will not wait with program execution until the sound has finished.</p>
+<h3 id="example1-play-sound">Example1 : Play sound</h3>
+<pre><code>Sound 1000, 800, 50             &#39; 1000 Hz, 800 ms, 50% volume</code></pre>
+<h3 id="example-2-play-sound-in-background">Example 2: Play sound in background</h3>
+<pre><code>Sound 1000, 800, 50 BG          &#39; 1000 Hz, 800 ms, 50% volume
+print &quot;This line will be printed immediately&quot;
+pause</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using SOUND</div>
     <div class="linklist">
@@ -149,7 +149,7 @@ SOUND by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Fri, 11 Aug 2023 11:12:24 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

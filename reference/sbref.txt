@@ -1,4 +1,4 @@
-SmallBASIC Language reference [28/07/2023]
+SmallBASIC Language reference [23/08/2023]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -1471,12 +1471,22 @@ Example 2: Print to a file
 
 SOUND freq, dur_ms [, vol] [BG]
 
-Plays a sound.
+Plays a sound with the frequency freg in Hz for a duration dur in
+milliseconds. The optional parameter vol controls the volume of the
+sound. Volume is in the range from 0 to 100, where 100 is maximum
+volume. If the optional parameter BG is given, the sound will play in
+the background: SmallBASIC will not wait with program execution until
+the sound has finished.
 
--   freq The frequency
--   dur_ms The duration in milliseconds
--   vol The volume in 1/100 units
--   BG Play it in background
+Example1 : Play sound
+
+    Sound 1000, 800, 50             ' 1000 Hz, 800 ms, 50% volume
+
+Example 2: Play sound in background
+
+    Sound 1000, 800, 50 BG          ' 1000 Hz, 800 ms, 50% volume
+    print "This line will be printed immediately"
+    pause
 
 +========================================================================================+
 |                                    18. (Console) TAB                                   |
@@ -2220,82 +2230,82 @@ Example 1:
 
 SEARCH A, key, BYREF ridx [USE cmpfunc]
 
-Scans an array for the key. If key is not found the SEARCH command
-returns (in ridx) the value. (LBOUND(A)-1). In default-base arrays that
-means -1. The cmpfunc (if its specified) it takes 2 vars to compare. It
-must return 0 if x = y; non-zero if x <> y.
+Scans an array A for the key key and returns the position idx of the
+element. If the key is not found idx contains the value (LBOUND(A)-1).
+In default-base arrays (starting with element zero) -1 will be returned.
 
-    FUNC cmp(x,y)
-      cmp=!(x=y)
-    END
-    ...
-    DIM A(5)
-    FOR i=0 TO 5
-        A(i)=5-i
-    NEXT
-    SEARCH A, 4, r USE cmp(x,y)
-    PRINT r:REM prints 1
-    PRINT A(r): REM prints 4
+The optional compare function cmpfunc takes 2 vars var1 and var2. var1
+contains the value of the actuell element and var2 is equal to key. The
+compare function must return 0 or 1 (false or true). When it returns 1,
+the search will stop and the current element position is returned in
+idx.
 
+Example 1: 1D array of numbers
 
-    ' Note: I'm not sure yet about a practical use for [USE cmpfunc] syntax...
-    Def q(text) = Enclose(text) ' Enclose text with quotation marks, ""
-    Def rev(text) = Cat(3) + text + Cat(-3)  ' reverse colors of text
-    Sub title(text)
-      ?: Color 14: Print text: Color 7  ' print title in color
-    End Sub
+    option base 1
 
-    Dim a(5 To 7)
-    a(5) = "Hello" 
-    a(6) = "World"
-    a(7) = 123
-    ? rev(" Dim a(5 To 7) = " + Str(a) + " ")
-    title "Use SEARCH to find index of matching element in array (Base LBOUND(a)):"
-    Search a, "Hello", i:  ? "Search a, " + q("Hello") + ", i: "; i
-    Search a,  "ello", i:  ? "Search a, " + q("ello") + " , i: "; i
-    Search a, "HELLO", i:  ? "Search a, " + q("HELLO") + ", i: "; i
-    Search a, "World", i:  ? "Search a, " + q("World") + ", i: "; i
-    Search a,     123, i:  ? "Search a, " + " 123   "  + ", i: "; i
-    Search a,      12, i:  ? "Search a, " + " 12    "  + ", i: "; i
-    title "Use IN to find index of matching element in array (Always Base 1):"
-    ? q("Hello") + " In a: ";  "Hello" In a
-    ? q("ello") + "  In a: ";   "ello" In a
-    ? q("HELLO") + " In a: ";  "HELLO" In a
-    ? q("World") + " In a: ";  "World" In a
-    ? " 123    In a: ";            123 In a
-    ? " 12     In a: ";            12  In a
-    Pause
+    A = [1,9,6,4,5,3,7,8,2]         ' 1D array with 9 elements
+    SEARCH A, 3, ElementID          
+    print "Element: "; ElementID    ' Output: Element: 6
 
+Example 2: 2D array of numbers
 
-    Option Base 1
-    ' x is the current array element of search;
-    ' y is the array element (key) that we search for.
-    Func create_new_array(x, y, Byref new_a)
-      ' Create a new array:
-      If x <> 0 Then Append new_a, x 
-      
-      ' Standard expression to continue the search:
-      create_new_array = Not (x = y) 
-    End Func
+    option base 1
 
-    ' Start demo:
-    a = ["a"; "b", "c", "d", "e"; "f"] ' Array for search
-    e = "c"     ' Element (key) to find
-    Dim new_a() ' Initialize empty new array
-    Search a, e, ix Use create_new_array(x, y, new_a)
-    ? "Array for search: "; a
-    ?
-    ? "Element (key) to find: "; e
-    ?
-    ' Check return-index (ix):
-    If ix = Lbound(a) - 1 Then
-      ? "Element not found in array."
-    Else
-      ? "Element found in array at index: "; ix
-    Fi
-    ?
-    ? "New array created on search: "; new_a
-    Pause
+    A = [1,9,6;4,5,3;7,8,2]         ' 2D matrix with 3x3 elements
+    SEARCH A, 3, ElementID
+    print "Element: "; ElementID    ' Output: Element: 6
+
+Example 3: Get the element position of the maximum value of an 1D array
+
+    option base 1
+
+    A = [1,9,6,4,5,3,7,8,2]
+    m = max(A)
+    SEARCH A, m, ElementID
+    PRINT "Element: "; ElementID    ' Output: Element: 2
+
+Example 4: 1D array of strings
+
+    option base 1
+
+    A = ["car", "dog", "house", "paper"]
+    SEARCH A, "house", ElementID
+    PRINT "Element: "; ElementID        ' Output: Element: 3
+
+Example 5: Compare function, find first element greater than the key
+
+    option base 1
+
+    func findgreater(x,y)
+        findgreater = !(x > y)
+    end
+
+    A = [1,2,3,4,5,6,7,8,9]
+    search A, 5, ElementID USE findgreater(x,y)
+    PRINT "Element: "; ElementID         ' Output: Element: 6
+
+Example 6: Compare function, find first element which can be divided by the key
+
+    option base 1
+
+    func FindFirstDivider(x,y)
+        FindFirstDivider = ( (x mod y) > 0 )
+    end
+
+    A = [1,5,7,4,5,6,7,8,9]
+    search A, 3, ElementID USE FindFirstDivider(x,y)
+    PRINT "Element: "; ElementID         ' Output: Element: 6
+
+Example 7: Compare function, find first element with string length given by the key
+
+    func FindFirstStringWithLenght(x,y)
+        FindFirstStringWithLenght = ( len(x) != y )
+    end
+
+    A = ["car", "dog", "house", "paper"]
+    SEARCH A, 5, ElementID use FindFirstStringWithLenght(x,y)
+    PRINT "Element: "; elementID          ' Output: Element: 3
 
 +========================================================================================+
 |                                     40. (Data) SORT                                    |
@@ -2303,24 +2313,53 @@ must return 0 if x = y; non-zero if x <> y.
 
 SORT array [USE cmpfunc]
 
-Sorts an array. The cmpfunc if specified, takes 2 vars to compare and
-must return: -1 if x < y, +1 if x > y, 0 if x = y.
+Sorts an array A in ascending order. The sorted array is return as A,
+therefore overwriting the initial array. If a compare function cmpfunc
+is specified, this function will be used for comparision. The compare
+function takes two elements of A as x, y to compare and must return:
 
-    FUNC qscmp(x,y)
-    IF x=y
-        qscmp=0
-    ELIF x>y
-        qscmp=1
-    ELSE
-        qscmp=-1
-    ENDIF
-    END
-    ...
-    DIM A(5)
-    FOR i=0 TO 5
-        A(i)=RND
-    NEXT
-    SORT A USE qscmp(x,y)
+-   -1 if x is to be placed before y
+-   1 if y is to be placed before x
+-   0 if it doesn’t matter which is placed first (which is usually the
+    case when the elements are equal)
+
+Example 1: Sorting in ascending order
+
+    A = [5, 3, 8, 2, 1, 7, 9]
+    sort A
+    print A                         ' Output [1,2,3,5,7,8,9]
+
+Example 2: Sorting in ascending order using a compare function
+
+    func cmpfunc_ascending(x, y)
+        if x == y
+            return 0
+        elseif x > y
+            return 1
+        else
+            return -1
+        endif
+    end
+
+    A = [5, 3, 8, 2, 1, 7, 9]
+    sort A use cmpfunc_ascending(x, y)
+    print A                         ' Output [1,2,3,5,7,8,9]
+
+Example 3: Sorting in descending order using a compare function
+
+    func cmpfunc_descending(x, y)
+        if x == y
+            return 0
+        elseif x < y
+            return 1
+        else
+            return -1
+        endif
+    end
+
+    A = [5, 3, 8, 2, 1, 7, 9]
+    sort A use cmpfunc_descending(x, y)
+    print A                         ' Output [9,8,7,5,3,2,1]
 
 +========================================================================================+
 |                                     41. (Data) SWAP                                    |
@@ -2328,8 +2367,35 @@ must return: -1 if x < y, +1 if x > y, 0 if x = y.
 
 SWAP a, b
 
-Exchanges the values of two variables. The parameters may be variables
-of any type.
+Exchanges the values of the two variables a and b. a and b may be
+variables of any type.
+
+Example 1: Swap numbers
+
+    a = 1
+    b = 2
+
+    print "Before: "; a, b      ' Output: Before: 1   2
+    swap a,b
+    print "After:  "; a, b      ' Output: Before: 2   1
+
+Example 2: Swap strings
+
+    s1 = "abc"
+    s2 = "xyz"
+
+    print "Before: "; s1, s2    ' Output: Before: abc   xyz
+    swap s1, s2
+    print "After:  "; s1, s2    ' Output: After:  xyz   abc
+
+Example 3: Swap arrays
+
+    A = [1,2,3]
+    B = [7,8,9]
+
+    print "Before: "; A, B      ' Output: Before: [1,2,3]   [7,8,9]
+    swap A, B
+    print "After:  "; A, B      ' Output: After:  [7,8,9]   [1,2,3]
 
 +========================================================================================+
 |                                    42. (Data) UBOUND                                   |
@@ -3334,42 +3400,23 @@ Example
 
 SEEK #fileN; pos
 
-Sets file position for the next read/write.
+Sets file position to pos for the next read/write for file with the ID
+#fileN. The file position starts with 0.
+
+Example
+
+    ' create a file
+    open "testseek.txt" for output as #1
+    print #1, "abcdefghijk"
+    close #1
 
 
-    Const FILE = "RANDOM.TMP"
-    Const RLEN = 50 ' record-length in bytes
-    ' left justify string in buffer. s is string; l is buffer-length.
-    Def lset(s, l) = Left(s + Space(l), l)
-    ' append records to demo file:
-    Open FILE For Output As #1
-    For record = 1 To 7
-      Read s
-      Print #1, lset(s, RLEN); ' end with ; to avoid new-line char
-    Next
-    Const TOTAL_RECORDS = Lof(1) / RLEN
-    Close #1
-    ' 7 demo records:
-    Data "OPEN: Open file for sequential input/output."
-    Data "FREEFILE: Returns an unused file handle."
-    Data "SEEK: Sets file position for next read/write."
-    Data "EOF: True if file pointer is at end of file."
-    Data "LOF: Returns the length of file in bytes."
-    Data "CLOSE: Close a file."
-    Data "COPY: Copy file to a new file."
-    ' retrieve and display demo records using SEEK:
-    Open FILE For Input As #1
-    Repeat
-      Color 7, 0: Locate 1, 1
-      Input "Enter record # (1.." + TOTAL_RECORDS + ") to retrieve: ", n
-      
-      If n >= 1 And n <= TOTAL_RECORDS Then
-        Locate 3, 1: Print "Rec #"; n; ": "; 
-        Seek #1, (n - 1) * RLEN ' seek to record position (base 0)
-        Color 15, 3: Print Input(RLEN, 1);
-      Endif
-    Until Isstring(n)
-    Close #1
+    ' open file
+    open "testseek.txt" for input as #1
+    seek #1, 4                              ' file position set to 4
+    c = input(1,1)                          ' read one character from file
+    print c                                 ' Output: e
+    close #1
 
 +========================================================================================+
 |                                     77. (File) SEEK                                    |
@@ -3377,7 +3424,21 @@ Sets file position for the next read/write.
 
 SEEK (fileN)
 
-Returns the current file position.
+Returns the current file position of file with ID fileN. The file
+position start with 0.
+
+Example
+
+    ' create a file
+    open "testseek.txt" for output as #1
+    print #1, "abcdefghijk"
+    close #1
+
+    ' open file
+    open "testseek.txt" for input as #1
+    c = input(3,1)                          ' read three character from file
+    print seek(1)                           ' Output: 3
+    close #1
 
 +========================================================================================+
 |                                     78. (File) TLOAD                                   |
@@ -7610,10 +7671,10 @@ Example
 
 SELECT CASE expr
 
-Perform multiple tests on the expression. Offers a more concise syntax
-to writing successive IF tests. Once a case statement is fullfilled the
-select-case structure will be exited and all following case statements
-will not anymore be tested.
+Perform multiple tests on the expression expr. Offers a more concise
+syntax to writing successive IF tests. Once a case statement is
+fullfilled the select-case structure will be exited and all following
+case statements will not be tested anymore.
 
 See also IF … THEN … ELIF … ELSE … FI structure.
 
@@ -7687,7 +7748,11 @@ Example 4: Using functions
 
 FOR t = 1 TO 10 STEP 2
 
-Specifies the loop counter increment in a FOR loop
+Specifies the loop counter increment s in a FOR loop. The variable i
+will be increased in every loop by amount s. s can be a positive or
+negative number.
+
+See FOR for more information.
 
 Example 1: Positive step
 
@@ -7712,14 +7777,25 @@ Example 2: Negative step
 STOP [error]
 
 Terminates execution of a program, closes all files opened by the
-program, and returns control to the operating system.
+program, and returns control to the operating system. The optional
+number error will be returned to the operating system; if not specified
+SmallBASIC returns 0. On Windows, the error value is known as
+ERRORLEVEL.
 
-error - A numeric expression.
+Example 1
 
-The error is the value which will returned to operating system; if not
-specified SmallBASIC returns 0.
+    print "Hello world"
+    stop
+    print "This will never be printed"
 
-On Windows, The ‘error’ value is known as ERRORLEVEL
+Example 2
+
+    print "Type exit to stop program"
+    while (true)
+        input "INPUT: ", s
+        if(s == "exit") then stop
+        print "You typed: ";s
+    wend
 
 +========================================================================================+
 |                                   159. (Language) SUB                                  |
@@ -7727,53 +7803,75 @@ On Windows, The ‘error’ value is known as ERRORLEVEL
 
 SUB foo (a, b)
 
-Declare a sub procedure. Sub’s do not return a value but can return
-argument values when declared as BYREF.
+Declare a sub procedure foo. The optional parameters var1 to varN can be
+all data types supported by SmallBASIC. Sub procedures do not return a
+value but can return argument values when declared as BYREF. A sub
+procedure ends with the keywords END or END SUB. The keyword LOCAL can
+be used to restrict the scope of a variable to the sub procedure only.
+Sub procedures can be nested within a sub procedure.
 
+With SUB (and FUNC) you can divide your program into many logical,
+independent and reusable blocks, instead of writing a long “spaghetti
+code”. Instead of using GOSUB and GOTO you should prefere to use sub
+procedures or functions.
 
-    ' Notes: Using SUB is much more easy and modular then using GOSUB.
-    '        With SUB (and FUNC) you can divide your program into many logical and
-    '        independent blocks, instead of writing a long "spaghetti code"...
-    ' See also: Home -- Articles -- Welcome to SmallBASIC -- 
-    '           Syntax of procedure (SUB) statements & 
-    '           Syntax of function (FUNC) statements.
+For more information, see FUNC, LOCAL and BYREF.
+
+Example 1: Passing x by value (default)
+
     x = 9
-    routine1 x ' prints 9 (Passing 'x' by value)
-    Print x    ' prints 9
-    routine2 x ' prints 9 (Passing 'x' by reference)
-    Print x    ' prints 10
-    routine3 x ' prints 10 (Passing 'x' by reference)
-    Print x    ' prints 11 
-    routine4 x ' prints 11 (Use the LOCAL keyword for local variables)
-    Print x    ' prints 11
-    routine5 x ' prints 100 (Passing 'x' by value to nested procedures)
-    Print x    ' prints 11
-    Pause
+    routine1(x)           ' Output: 9
 
-    ' Passing 'x' by value (default):
     Sub routine1(x)
       Print x
-    End Sub
-    ' Passing 'x' by reference (BYREF x):
+    End
+
+Example 2: Passing x by reference (BYREF x)
+
+    x = 9
+    Print x              ' Output: 9
+    routine2(x)          ' Output: 9
+    Print x              ' Output: 10
+
     Sub routine2(Byref x)
       Print x
       x = 10
-    End Sub
-    ' Passing 'x' by reference (@x is same as BYREF x):
+    End
+
+Example 3: Passing x by reference (@x)
+
+    x = 9
+    Print x              ' Output: 9
+    routine3(x)          ' Output: 9
+    Print x              ' Output: 10
+
     Sub routine3(@x)
       Print x
-      x = 11
-    End Sub
-    ' Use the LOCAL keyword for local variables:
+      x = 10
+    End
+
+Example 4: Use the LOCAL keyword for local variables
+
+    x = 9
+    routine4(x)         ' Output: 9 
+    Print x             ' Output: 9
+
     Sub routine4(y)
       Local x
       Print y
-      x = 12
+      x = 12            ' x is local, the global variable x will not be changed
     End Sub
-    ' Passing 'x' by value to nested procedures:
+
+Example 5: Nested sub procedures
+
+    x = 9
+    routine5(x)         ' Output: 100 (Passing 'x' by value to nested procedures)
+    Print x             ' Output: 9
+
     Sub routine5(x)
+      local x
       x = 100
-      routine6 x
+      routine6(x)
       Sub routine6(x)
         Print x
       End Sub
@@ -9677,13 +9775,15 @@ Example 3: Round to decimal digits
 
 SEC (x)
 
-Secant.
+Secant of x.
+
+Example
 
     a = sec(0.1)
-    print a
+    print a     ' Output: 1.00502
 
     b = asec(a)
-    print b
+    print b     ' Output: 0.1
 
 +========================================================================================+
 |                                     231. (Math) SECH                                   |
@@ -9691,13 +9791,13 @@ Secant.
 
 SECH (x)
 
-Hyperbolic secant.
+Hyperbolic secant of x.
 
     a = sech(0.1)
-    print a
+    print a         ' Output: 0.99502074895323
 
     b = asech(a)
-    print b
+    print b         ' Output: 0.1
 
 +========================================================================================+
 |                                    232. (Math) SEGCOS                                  |
@@ -9705,7 +9805,11 @@ Hyperbolic secant.
 
 SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 
-Cosine of 2 line segments (A->B, C->D).
+Cosine of the two line segments AB and CD. Start and end of the first
+line segment are given by the points (Ax,Ay) and (Bx, By). For the
+second line by (Cx, Cy) and (Dx, Dy).
+
+Example 1:
 
     ' Line 1
     Ax = 50
@@ -9722,6 +9826,8 @@ Cosine of 2 line segments (A->B, C->D).
     print "SEGCOS: "; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
     print "SEGSIN: "; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
     print "Angle between the lines: "; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); "°"
+
+Example 2
 
     ' Interactive example to illustrate the geometry
     ' of SEGCOS and SEGSIN
@@ -9788,14 +9894,17 @@ Cosine of 2 line segments (A->B, C->D).
 
 SEGLEN (Ax,Ay,Bx,By)
 
-Length of line segment.
+Length of line segment AB. The starting and ending point of the line
+segment is given by (Ax, Ay) and (Bx, By).
+
+Example
 
     Ax = 150
     Ay = 50
     Bx = 50
     By = 100
 
-    print "SEGLEN: "; SEGLEN(Ax,Ay,Bx,By); " pixel"
+    print "SEGLEN: "; SEGLEN(Ax, Ay, Bx, By); " pixel"   ' Outut: SEGLEN: 111.8 Pixel
 
 +========================================================================================+
 |                                    234. (Math) SEGSIN                                  |
@@ -9803,7 +9912,11 @@ Length of line segment.
 
 SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 
-Sinus of 2 line segments (A->B, C->D).
+Sinus of 2 line segments AB and CD. Start and end of the first line
+segment are given by the points (Ax,Ay) and (Bx, By). For the second
+line by (Cx, Cy) and (Dx, Dy).
+
+Example 1
 
     ' Line 1
     Ax = 50
@@ -9820,6 +9933,8 @@ Sinus of 2 line segments (A->B, C->D).
     print "SEGCOS: "; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
     print "SEGSIN: "; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
     print "Angle between the lines: "; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); "°"
+
+Example 2
 
     ' Interactive example to illustrate the geometry
     ' of SEGCOS and SEGSIN
@@ -9886,8 +10001,11 @@ Sinus of 2 line segments (A->B, C->D).
 
 SEQ (xmin, xmax, count)
 
-Returns an array with ‘count’ elements of evenly spaced points between
-‘xmin’ and ‘xmax’. The spacing between the points is (xmax-xmin)/(n-1).
+Returns an array with count elements of evenly spaced points between
+xmin and xmax. The spacing between the points is
+(xmax - xmin) / (n - 1).
+
+Example
 
     print SEQ(2,10,5)  'Output: [2,4,6,8,10]
 
@@ -9897,8 +10015,11 @@ Returns an array with ‘count’ elements of evenly spaced points between
 
 SGN (x)
 
-Sign of x (+1 for positive, -1 for negative and 0 for zero). SGN cannot
-accept a numeric string, such as “24”, as an argument.
+Sign of x. Return values are +1 for positive x, -1 for negative x and 0
+for zero. SGN cannot accept a numeric string, such as “24”, as an
+argument.
+
+Example
 
     PRINT SGN(2), SGN(-2), SGN(0)  ' Output is:   1 -1  0
     PRINT SGN(INT("-2"))           ' Output is:  -1
@@ -9909,43 +10030,42 @@ accept a numeric string, such as “24”, as an argument.
 
 SIN (x)
 
-Sinus.
+Calculate the Sine of x. x is in radians.
+
+Example 1
 
     a = sin(0.5)
-    print a
+    print a         ' Output: 0.4794255386042
 
     b = asin(a)
-    print b
+    print b         ' Output: 0.5
 
-SIN and COS use radians for angle measure, just use the RAD function to
-convert an angle in degrees to radians. Radians are circle measures
-based on pi instead of degrees.
+Example 2: Using RAD
 
-    2*pi = one circle 360 degrees
-      pi = 180  degrees half a circle
-    pi/2 = 90   degrees 1/4 circle
-    pi/4 = 45   degrees 1/8 circle
-    pi/6 = 60   degrees 1/6 circle
-    pi/12= 30   degree s 1/12 circle
+The RAD function can be used to convert an angle in degrees to radians.
 
-Here is a demo of cool stuff you can do with SIN and COS:
+    alpha_in_degrees = 90
+    a = sin(rad(alpha_in_degrees))
+    print a                         ' Output: 1
 
-    'Drawing spiral around point.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
-    'using SIN and COS in a most common situation drawing at an angle from a point
+Example 3: Drawing a spiral
 
-    cx=xmax\2:cy=ymax\2
+    ' Drawing spiral around point.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
+    ' using SIN and COS in a most common situation drawing at an angle from a point
 
-    for degree=0 to 360 step 10   'zero is due East
+    cx = xmax\2 : cy = ymax\2
 
-      line cx,cy step 10*(degree^.5) * cos(rad(degree)), 10*(degree^.5) * sin(rad(degree)), rgb(0,0,degree\360*128+127)
+    for degree = 0 to 360 step 10   'zero is due East
+
+      line cx, cy step 10 * (degree^.5) * cos(rad(degree)), 10 * (degree^.5) * sin(rad(degree)), rgb(128,128,degree/360 * 128 + 127)
 
       at 0,0: print spc(100)
       at 0,0
       
-      if degree=0 then
-        print " 0 degrees don't worry, you haven't seen nothing yet! press any...
+      if degree = 0 then
+        print " 0 degrees don't worry, you haven't seen nothing yet! press any key ..."
       else
-        print degree;" degrees press any..."
+        print degree;" degrees press any key ..."
       end if
       
       pause
@@ -9954,131 +10074,122 @@ Here is a demo of cool stuff you can do with SIN and COS:
     print "Notice how the the drawing started due East for 0 degrees and"
     print "as the angle increased the drawing went around clock-wise."
 
-    pause
+    pause 
 
     cls
 
-    'now I am doing a LOGO like program and I want 0 degrees to be due North
-    'due North is -90 degrees for clock-wise rotation so subtract 90 from degrees
+    ' now I am doing a LOGO like program and I want 0 degrees to be due North
+    ' due North is -90 degrees for clock-wise rotation so subtract 90 from degrees
 
-    for degree=0 to 360 step 10
+    for degree = 0 to 360 step 10
       
-      line cx,cy step 10*(degree^.5) * cos(rad(degree-90)), 10*(degree^.5) * sin(rad(degree-90)), rgb(0,0,degree\360*128+127)
+      line cx, cy step 10 * (degree^.5) * cos(rad(degree - 90)), 10 * (degree^.5) * sin(rad(degree - 90)), rgb(250,0,degree/360 * 128 + 127)
 
       at 0,0: print spc(100)
       at 0,0
 
-      if degree=0 then
-        print " 0 degrees don't worry, you haven't seen nothing yet! press any..."
+      if degree = 0 then
+        print " 0 degrees don't worry, you haven't seen nothing yet! press any key ..."
       else
-        print degree;" degrees press any..."
+        print degree;" degrees press any key ..."
       end if
       
       pause
 
     next
     print "Notice how the drawing started due North because of the -90 adjustment made in SIN and COS calls"
-    print
-    print  "press any to end..."
-    pause
 
-this is the crucial line:
-
-    line cx,cy step 10*(degree^.5)*cos(rad(degree)),10*(degree^.5)*sin(rad(degree)),rgb(0,0,degree\\360*128+127)
-
-The multiple 10*(degree^.5) to both SIN and COS controls how far the
-extension of the line will be from point cx,cy “origin” here as the
-degrees increase so did the extension out which cause the spiral effect.
-The COS calculation was used for x “the run” or horizontal component and
-the SIN calculation was used for y “the rise” or vertical component.
-This is really, really important to use and play with even if you don’t
-understand all the details, the code will serve you well. Still I did my
-best to explain how this works, so it is a bit wordy…
-
-Here another example:
+Example 3: Draw a polygon
 
     ' sin and cos use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-15
     '                    SIN and COS work as a team
-    'SIN and COS are used most for drawing points in circle around a central point.
-    'Here we are going to divide a circle into n sections to draw an n sided polygon,
-    'for instance, divide a circle into 3 equal parts and you get equilateral triangle (all sides =)
-    'divide by 4 and get a square, by 5 a pentagon, 6 a hexagon.... all equal sides
-    'I have to spend some time explaining why this works and a triangle diagram is really needed
-    'but here goes, imagine a pie sitting on top of a given center point cx,cy
-    'it is cut into n equal slices each piece has a central angle of 360/n or in radians 2*pi/n
-    'a polygon just cuts the round parts off with straight lines to each end at outer edge.
-    'remember COS is the leg adjacent to the angle in question divide by hypotenuse
-    'or COS(inner angle) = adj/hyp
-    'x is the adjacent side, the hypotenuse is the radius
-    'so COS(inner angle) = x/radius
-    'or radius * COS(angle) = x  multiple each side by radius
-    'x = radius * COS(angle)
-    'but remember this is distance relative to center point not a screen coordinate
-    'to make absolute screen point it is: x = cx + radius*COS(angle)
-    'SIN works out similar
-    'SIN(inner angle) = opposite/hyp
-    'and again y is opposite side (of inner angle) and the hypotenuse is the radius of circle
-    'SIN(angle) = y/radius    multiply each side by radius
-    'radius*SIN(angle) = y
-    'y = radius * SIN(angle)
-    'to make absolute screen point it is y = cy + radius*SIN(angle)
-    'So going around a central point x=cx+radius*COS(angle),y=cy+radius*SIN(angle)
-    'will locate points equal distance from center for equal sided polygon
+    '
+    ' SIN and COS are used most for drawing points in circle around a central point.
+    ' Here we are going to divide a circle into n sections to draw an n sided polygon,
+    ' for instance, divide a circle into 3 equal parts and you get equilateral triangle (all sides =)
+    ' divide by 4 and get a square, by 5 a pentagon, 6 a hexagon.... all equal sides
+    ' I have to spend some time explaining why this works and a triangle diagram is really needed
+    ' but here goes, imagine a pie sitting on top of a given center point cx,cy
+    ' it is cut into n equal slices each piece has a central angle of 360/n or in radians 2*pi/n
+    ' a polygon just cuts the round parts off with straight lines to each end at outer edge.
+    ' remember COS is the leg adjacent to the angle in question divide by hypotenuse
+    ' or COS(inner angle) = adj/hyp
+    ' x is the adjacent side, the hypotenuse is the radius
+    ' so COS(inner angle) = x/radius
+    ' or radius * COS(angle) = x  multiple each side by radius
+    ' x = radius * COS(angle)
+    ' but remember this is distance relative to center point not a screen coordinate
+    ' to make absolute screen point it is: x = cx + radius*COS(angle)
+    ' SIN works out similar
+    ' SIN(inner angle) = opposite/hyp
+    ' and again y is opposite side (of inner angle) and the hypotenuse is the radius of circle
+    ' SIN(angle) = y/radius    multiply each side by radius
+    ' radius*SIN(angle) = y
+    ' y = radius * SIN(angle)
+    ' to make absolute screen point it is y = cy + radius*SIN(angle)
+    ' So going around a central point x=cx+radius*COS(angle),y=cy+radius*SIN(angle)
+    ' will locate points equal distance from center for equal sided polygon
 
-    cx=xmax/2 : cy=ymax/2 'here's our center move it anywhere on screen
-    'cx=100 : cy = 500 '<== try different center points
-    'radius=100 'draw points in a radius of 100 around cx,cy
-    radius=150 'fits center text better
+    cx = xmax / 2: cy = ymax / 2                ' here's our center move it anywhere on screen
+    'cx=100 : cy = 500                          ' <== try different center points
+    radius = 150
+
     while 1
       cls
-      circle cx,cy,3,1,14 'this shows the central point in small yellow circle
+      circle cx, cy, 3, 1, 14                   'this shows the central point in small yellow circle
 
-      'what polygon shall we draw?
-      ?"A regular polygon is a many sided figure with equal sides."
-      ?"A triangle is a 3 sided polygon, a square 4, a pentagon 5..."
-      input "(<=2 quits) Enter the number of sides for a polygon to draw ";n
-      if n<3 then end  'need at least 3 sides
+      ' what polygon shall we draw?
+      print "A regular polygon is a many sided figure with equal sides."
+      print "A triangle is a 3 sided polygon, a square 4, a pentagon 5..."
+      input "(<=2 quits) Enter the number of sides for a polygon to draw "; n
+      
+      if n < 3 then end                         ' need at least 3 sides
 
-      'make the first point 0 degrees or directly East of center point (offset 0)
-      'you can off set the first point by some degree amount to spin the polygon by the offset
-      offset=0
-      'offset=pi/10  'pi/18 = 10 degrees, pi/36 = 5 degrees... play with this to spin polygon
-      for centralAngle=0+offset to 2*pi+offset step 2*pi/n
+      ' make the first point 0 degrees or directly East of center point (offset 0)
+      ' you can off set the first point by some degree amount to spin the polygon by the offset
+      
+      offset = 0                                ' play with this to spin polygon
+      ' offset = pi / 10 
+      ' offset = pi / 18
+      ' offset = pi / 36 
+      
+      for centralAngle = offset to 2*pi + offset step 2*pi / n
         '2*pi is a circle (360 degrees) divide by n get inner angles of pie slices that's our step
 
         'radius * cos(centralAngle) = our needed x coordinate to center point so add cx for absolute screen coordinate
         'radius * sin(centralAngle) = our needed y coordinate to center point so add cy for absolute screen coordinate
-        if centralAngle=0+offset then  'first point location
-          xstart=cx+radius*cos(centralAngle)
-          ystart=cy+radius*sin(centralAngle) 'get the ball rolling by recording first point
+        if centralAngle=0+offset then           'first point location
+          xstart = cx + radius * cos(centralAngle)
+          ystart = cy + radius * sin(centralAngle) 'get the ball rolling by recording first point
         else
-          line xstart,ystart,cx+radius*cos(centralAngle),cy+radius*sin(centralAngle)
-          xstart=cx+radius*cos(centralAngle)
-          ystart=cy+radius*sin(centralAngle)
+          line xstart, ystart, cx + radius * cos(centralAngle), cy + radius * sin(centralAngle)
+          xstart = cx + radius * cos(centralAngle)
+          ystart = cy + radius * sin(centralAngle)
         end if
-        delay 300 'to show the progress of draw
+        delay 300                               'to show the progress of draw
       next
-      s="press any..."
-      at cx-txtw(s)/2,cy-txth(s)/2:?s  'this puts cue right where you will see it
+      s="press any key ..."
+      at cx - txtw(s) / 2, cy - txth(s) / 2:print s  'this puts cue right where you will see it
       pause
     wend
     'you are just a few simple steps away from spinning these polygons!
 
-Here is graph of the three main Trig ratios:
+Example 4: Plot sin, cos and tan
 
     ' sin-cos-tan.bas from FLTK samples
     cls
-    at 0,ymax/2+txth("Q")
-    color 1: ? "sin(x)":
-    color 8: ? "cos(x)":
-    color 12: ? "tan(x)"
-    line 0,ymax/2,xmax,ymax/2  'central or x axis, ymax/4 is multiplier scaled to 1/4 of ymax
-    for i=0 to xmax
-       pset i,ymax/2-sin(i*2*pi/ymax)*ymax/4  color 1
-       pset i,ymax/2-cos(i*2*pi/ymax)*ymax/4 color 8
-       pset i,ymax/2-tan(i*2*pi/ymax)*ymax/4 color 12
+    at 0, ymax / 2 + txth("Q")
+
+    color 1:  print "sin(x)"
+    color 8:  print "cos(x)"
+    color 12: print "tan(x)"
+
+    line 0, ymax/2, xmax, ymax/2  'central or x axis, ymax/4 is multiplier scaled to 1/4 of ymax
+    for i = 0 to xmax
+       pset i, ymax/2 - sin(i * 2*pi / ymax) * ymax/4 color 1
+       pset i, ymax/2 - cos(i * 2*pi / ymax) * ymax/4 color 8
+       pset i, ymax/2 - tan(i * 2*pi / ymax) * ymax/4 color 12
     next
-    pause
 
 +========================================================================================+
 |                                     238. (Math) SINH                                   |
@@ -10086,13 +10197,15 @@ Here is graph of the three main Trig ratios:
 
 SINH (x)
 
-Hyperbolic sine.
+Hyperbolic sine of x.
+
+Example
 
     a = sinh(0.5)
-    print a
+    print a         ' Output: 0.52109530549375
 
     b = asinh(a)
-    print b
+    print b         ' Output: 0.5
 
 +========================================================================================+
 |                                     239. (Math) SQR                                    |
@@ -10102,7 +10215,9 @@ SQR (x)
 
 Square root of x.
 
-    print sqr(2)
+Example:
+
+    print sqr(2)        ' Output: 1.4142135623731  
 
 +========================================================================================+
 |                                   240. (Math) STATMEAN                                 |
@@ -10110,10 +10225,33 @@ Square root of x.
 
 STATMEAN (...)
 
-Arithmetical mean (average).
+Arithmetical mean (average). var1 to varN can be single numbers or
+arrays.
+
+Example 1: Using an array
 
     A = [2,2,3,4,14]
-    print statmean(A)   ' same as: sum(A) / len(A)
+    print statmean(A)         ' same as: sum(A) / len(A)
+    ' Output: 5
+
+Example 2: Using two arrays
+
+    A = [2,2,3,4,14]
+    B = [7,9,7]
+    print statmean(A, B)      ' Output: 6
+
+Example 3: Using array and number
+
+    A = [2,2,3,4,14]
+    B = 5
+    print statmean(A, B)      ' Output: 5
+
+Example 4: Using numbers
+
+    A = 3
+    B = 5
+    C = 4
+    print statmean(A, B, C)   ' Output: 4
 
 +========================================================================================+
 |                                 241. (Math) STATMEANDEV                                |
@@ -10121,12 +10259,15 @@ Arithmetical mean (average).
 
 STATMEANDEV (...)
 
-Mean absolute deviation around arithmetic mean.
+Mean absolute deviation around arithmetic mean. var1 to varN can be
+single numbers or arrays.
 
 See: https://en.wikipedia.org/wiki/Average_absolute_deviation
 
+Example
+
     A = [2,2,3,4,14]
-    print statmeandev(A)
+    print statmeandev(A)    ' Output: 3.6
 
 +========================================================================================+
 |                                  242. (Math) STATMEDIAN                                |
@@ -10135,9 +10276,12 @@ See: https://en.wikipedia.org/wiki/Average_absolute_deviation
 STATMEDIAN (...)
 
 The median of a finite list of numbers is the “middle” number, when
-those numbers are listed in order from smallest to greatest.
+those numbers are listed in order from smallest to greatest. var1 to
+varN can be single numbers or arrays.
 
 see: Wikipedia - Median
+
+Example
 
     a = [1, 3, 3, 6, 7, 8, 9]
     print statmedian(a)   ' output: 6
@@ -10148,13 +10292,19 @@ see: Wikipedia - Median
 
 STATSPREADS (...)
 
-Biased sample variance.
+Biased sample variance. var1 to varN can be single numbers or arrays.
 
 See: https://en.wikipedia.org/wiki/Variance#Sample_variance
+
+Example
 
     A = [1,2,3,4,6]
     print "Biased sample variance:   "; statspreadp(A)
     print "Unbiased sample variance: "; statspreads(A)
+
+    ' Output:
+    ' Biased sample variance:   2.96
+    ' Unbiased sample variance: 3.7
 
 +========================================================================================+
 |                                 244. (Math) STATSPREADS                                |
@@ -10162,13 +10312,19 @@ See: https://en.wikipedia.org/wiki/Variance#Sample_variance
 
 STATSPREADP (...)
 
-Unbiased sample variance.
+Unbiased sample variance. var1 to varN can be single numbers or arrays.
 
 See: https://en.wikipedia.org/wiki/Variance#Sample_variance
+
+Example
 
     A = [1,2,3,4,6]
     print "Biased sample variance:   "; statspreadp(A)
     print "Unbiased sample variance: "; statspreads(A)
+
+    ' Output:
+    ' Biased sample variance:   2.96
+    ' Unbiased sample variance: 3.7
 
 +========================================================================================+
 |                                   245. (Math) STATSTD                                  |
@@ -10176,12 +10332,34 @@ See: https://en.wikipedia.org/wiki/Variance#Sample_variance
 
 STATSTD (...)
 
-(Corrected sample) standard deviation.
+(Corrected sample) standard deviation. var1 to varN can be single
+numbers or arrays.
 
 see: Wikipedia - Standard Deviation
 
-    a = [2, 4, 4, 4, 5, 5, 7, 9]
-    print statstd(a)
+Example 1: Using an array
+
+    A = [2,2,4,4,14]
+    print statstd(A)        ' Output: 5.09901951359278
+
+Example 2: Using two arrays
+
+    A = [2,2,3,4,14]
+    B = [7,9,7]
+    print statstd(A, B)     ' Output: 4.14039335605413 
+
+Example 3: Using an array and a number
+
+    A = [2,2,3,4,14]
+    B = 5
+    print statstd(A, B)     ' Output: 4.56070170039655
+
+Example 4: Using numbers
+
+    A = 3
+    B = 5
+    C = 4
+    print statstd(A, B, C)  ' Output: 1
 
 +========================================================================================+
 |                                     246. (Math) SUM                                    |
@@ -10189,12 +10367,14 @@ see: Wikipedia - Standard Deviation
 
 SUM (...)
 
-Sum of value(s).
+Sum of value(s) var1 to varN. var1 to varN are single numbers or arrays.
 
-    A = [1,2,3]
-    print sum(1,2,3)
-    print sum(A)
-    print sum(A,1,2,3)
+Example
+
+    A = [1, 2, 3]
+    print sum(1, 2, 3)          ' Output: 6
+    print sum(A)                ' Output: 6
+    print sum(A, 1, 2, 3)       ' Output: 12
 
 +========================================================================================+
 |                                    247. (Math) SUMSQ                                   |
@@ -10202,12 +10382,15 @@ Sum of value(s).
 
 SUMSQ (...)
 
-Sum of square value(s).
+Sum of square value(s) var1 to varN. var1 to varN are single numbers or
+arrays.
 
-    A = [1,2,3]
-    print sumsq(1,2,3)      ' 1^2 + 2^2 + 3^2
-    print sumsq(A)
-    print sumsq(A,1,2,3)
+Example
+
+    A = [1, 2, 3]
+    print sumsq(1, 2, 3)      ' 1^2 + 2^2 + 3^2 -> Output: 14
+    print sumsq(A)            ' Output: 14
+    print sumsq(A, 1, 2, 3)   ' Output: 28
 
 +========================================================================================+
 |                                     248. (Math) TAN                                    |
@@ -11091,18 +11274,30 @@ Example
 
 SINPUT src; var [, delim] [,var [, delim]] ...
 
-Splits the string ‘src’ into variables which are separated by
-delimiters.
+Splits the string src into substrings which are separated by delimiters
+delim1 to delimN and returns the substrings as var1 to varN. Delimiters
+can be single characters, numbers or strings.
+
+Example 1: Split string with delimiter “,”
+
+    src = "1456,Peter,8"
+
+    SINPUT src; id, ",", name, ",", age 
+
+    print "ID  : " + id
+    print "Name: " + name
+    print "Age : " + age
+
+    ' Output:
+    ' ID  : 1456
+    ' Name: Peter
+    ' Age : 8
+
+Example 2: Split string with complex delimiters
 
     src = "if x>1 then y"
     SINPUT src; vif, " ", vcond, "then", vdo
-    print vif, vcond, vdo ' output: if    x>1    y
-
-    src = "1456,Peter,8"
-    SINPUT src; id, ",", name, ",", age 
-    print "ID: " + id
-    print "Name: " + name
-    print "Age: " + age
+    print vif, vcond, vdo                       ' Output: if    x>1    y
 
 +========================================================================================+
 |                                   277. (String) SPACE                                  |
@@ -11112,11 +11307,19 @@ SPACE (n)
 
 Returns a string of n spaces.
 
+SPACE is identical to SPC.
+
+Example 1:
+
+    print "A" + space(5) + "B"    ' Output: A     B
+
+Example 2: Insert string into a buffer
 
     ' s is a string ("" or longer); l is length of buffer (0+);
     Def lset(s, l) = Left(s + Space(l), l) ' left justify text
     Def rset(s, l) = Right(Space(l) + s, l) ' right justify text
     Const buffer = 10 ' length of buffer
+
     While True Do
       Color 7, 0: Cls
       Print "[ Using a buffer of "; buffer; " spaces ]"
@@ -11140,20 +11343,34 @@ SPC (n)
 
 Returns a string of n spaces.
 
-These are excellent for maintaining a fixed length string or buffer or
-record or refining screen output by inserting a specified amount of
-spaces in a string. This works well with LEFT and RIGHT keywords for
-Left Center or Right aligning text.
+SPC is identical to SPACE.
 
+Example 1:
 
-    'here are right aligned numbers in 10 character length string between two single quote marks
-    while 1
-      myNumber=(rnd*10^(rnd*4)\\1)\\1
-      ? "'";RIGHT(SPC(10)+STR(myNumber),10);"'";SPC(3)+"press a key or click for next..."
-      pause
-    wend
+    print "A" + spc(5) + "B"    ' Output: A     B
 
-I think SPACE and SPC are both the same, see also SPACE.
+Example 2: Insert string into a buffer
+
+    ' s is a string ("" or longer); l is length of buffer (0+);
+    Def lset(s, l) = Left(s + Spc(l), l) ' left justify text
+    Def rset(s, l) = Right(Spc(l) + s, l) ' right justify text
+
+    Const buffer = 10 ' length of buffer
+
+    While True Do
+      Color 7, 0: Cls
+      Print "[ Using a buffer of "; buffer; " spaces ]"
+      Print
+      Input "Enter text into buffer (Enter 'S' to stop): ", text
+      IF text = "S" Or text = "s" Then
+        Stop
+      Endif
+      Color 7, 0: Locate 5, 0: Print "Left justified:  ";
+      Color 0, 7: Print lset(text, buffer);
+      Color 7, 0: Locate 7, 0: Print "Right justified: ";
+      Color 0, 7: Print rset(text, buffer);
+      Pause 
+    Wend
 
 +========================================================================================+
 |                                   279. (String) SPLIT                                  |
@@ -11161,27 +11378,33 @@ I think SPACE and SPC are both the same, see also SPACE.
 
 SPLIT string, delimiters, words() [, pairs] [USE expr]
 
-Splits “string” at the position of the given delimiters and returns the
-words of the specified string into array ‘words’. “pairs” can be used to
-group words. “Use expr” is applied to every splitted word.
+Splits the string s at the position of the given delimiters delim and
+returns an array words with the splitted substrings. The optional
+parameter pairs can be used to group words. The optional Use expr is
+applied to every splitted substring. If delim contains more than one
+character, each character representing a delimiter.
 
-    s="/etc/temp/filename.ext"
-    SPLIT s, "/.", v()  ' Splits the string using the delimiters "/" and "."
-    FOR i=0 TO UBOUND(v)
-      PRINT i;" [";v(i);"]"
+See SINPUT for an alternative command to split a string.
+
+Example 1: Split a string using two delimiters
+
+    s = "/etc/temp/filename.ext"
+    SPLIT s, "/.", v                    ' Splits the string using the delimiters "/" and "."
+    FOR i = 0 TO UBOUND(v)
+      PRINT i; " ["; v(i); "]"
     NEXT
 
-    ' displays:
+    ' Output:
     ' 0 []
     ' 1 [etc]
     ' 2 [temp]
     ' 3 [filename]
     ' 4 [ext]
 
-Example for using the argument “pairs”
+Example 2 : Using the argument “pairs”
 
     s = "/etc/temp/filename.ext"
-    SPLIT s, "/", v(), "temp"
+    SPLIT s, "/", v, "temp"
     FOR i = 0 TO UBOUND(v)
       PRINT i;" [";v(i);"]"
     NEXT
@@ -11191,10 +11414,10 @@ Example for using the argument “pairs”
     1 [etc/temp]
     2 [filename.ext]
 
-Example for using “USE expr”
+Example 3: Using “USE expr”
 
     s = "/etc/temp/filename1.ext  "        ' additional spaces at the end of the string
-    SPLIT s, "/", v(), "temp" USE TRIM(x)  ' trim(x) will remove spaces at the beginning
+    SPLIT s, "/", v, "temp" USE TRIM(x)    ' trim(x) will remove spaces at the beginning
                                            ' and the end of the splitted strings;
                                            ' try the example without "USE TRIM(x)"
     FOR i = 0 TO UBOUND(v)
@@ -11212,11 +11435,20 @@ Example for using “USE expr”
 
 SPRINT var; [USING...;] ...
 
-Create formated string and storing it to var. See also: PRINT command.
+Create a formated string and storing it to string s. SPRINT supports all
+features of PRINT. See PRINT for detailed information. USG can be used
+instead of USING.
 
-    SPRINT s; 12.34; TAB(12); 11.23;
+Example
 
-Note: you can use ‘USG’ instead of ‘USING’.
+    a = 1000
+    b = 2000
+
+    SPRINT s1; USING "a = #####.00  b = ##,###"; a; b
+    SPRINT s2; "a + b = "; a; " + "; b; " = "; a + b
+
+    print s2     ' Output a =  1000.00  b =  2,000
+    print s1     ' Output: a + b = 1000 + 2000 = 3000
 
 +========================================================================================+
 |                                  281. (String) SQUEEZE                                 |
@@ -11224,10 +11456,17 @@ Note: you can use ‘USG’ instead of ‘USING’.
 
 SQUEEZE (s)
 
-Removes all leading, trailing and duplicated white-space.
+Removes all leading, trailing and duplicated white-space from string s.
 
-    ? "["; SQUEEZE(" Hi  there "); "]"
-    ' Result: [Hi there]
+Example:
+
+    s = " Hi  there "
+    print "["; s ; "]"
+    print "["; SQUEEZE(s); "]"
+
+    'Output:
+    ' [ Hi there ]
+    ' [Hi there]
 
 +========================================================================================+
 |                                    282. (String) STR                                   |
@@ -11237,67 +11476,26 @@ STR (n)
 
 Converts the number n into a string.
 
+Example
+
+    n = 1.123
+    s = str(n)
+
 +========================================================================================+
 |                                   283. (String) STRING                                 |
 +========================================================================================+
 
 STRING ( count [,start | s] )
 
-Creates a new string of count length.
+Creates a new string, which repeats the string str count times. If
+instead of a string a number chr is given, chr will be interpreted as an
+ASCII-code and the corresponding character will be repeated count times.
 
+Example
 
-    Def rainbow = Floor((Rnd * 100) Mod 16) ' random text color 0 to 15
-    ' parameters for printing a box:
-    Const ROW = 2
-    Const COLUMN = 1
-    Const HEIGHT = 8
-    Const WIDTH = 9
-
-    While True Do
-      Color 7, 0: Cls
-      Input "Enter 1 to 5 character(s) [Enter empty to stop]"; c
-      c = Left(Str(c), 5) ' 12 -> "12"; 0 -> "0",  etc
-      If Empty(c) Then ' c is ""?
-        Stop
-      Endif
-
-      ' print box top line:
-      Color rainbow: Locate ROW, COLUMN: Print String(WIDTH, c);
-      ' print box vertical lines:
-      v_lines = c + Space((WIDTH - 2) * Len(c)) + c
-      For r = ROW + 1 To ROW + HEIGHT - 2 Do
-        Color rainbow: Locate r, COLUMN: Print v_lines;
-      Next
-      ' print box down line:
-      Color rainbow: Locate ROW + HEIGHT - 1, COLUMN: Print string(WIDTH, c);
-
-      Color 7: Locate ROW + HEIGHT + 2, COLUMN: Print "Press any key...";
-      Pause
-    Wend
-
-I wasted a day trying to figure what “Invalid parameter” was causing a
-Mastermind program from crashing under certain circumstances. Turns out
-STRING can’t handle a 0 value in first argument. It would have been nice
-if the program stopped on that statement instead all the other places it
-had.
-
-
-    'in this little example code does stop with cursor on the wrong line
-    cows = 2
-    ? string(3,"Bulls")+string(cows,"Cows") 'returns BullsBullsBullsCowsCows
-    cows =0
-    ? string(3,"Bulls")+string(cows,"Cows") 'Error: "Invalid parameter"
-    pause
-    end
-
-How to understand this syntax “STRING ( count [,start | s] )”:
-
-    ' start is an ASCII value of a string character:
-    x = STRING(2, ASC("Hello "))
-    ? x ' --> x is "HH"
-    ' s is a string of any length:
-    x = STRING(2, "Hello ")
-    ? x ' --> x is "Hello Hello "
+    print string(4, "A")        ' Output: AAAA
+    print string(4, "AB")       ' Output: ABABABAB
+    print string(4, 65)         ' Output: AAAA
 
 +========================================================================================+
 |                                 284. (String) TRANSLATE                                |
@@ -12174,7 +12372,11 @@ Example 1: Querry whether Linux or Windows is used
 
 SBVER
 
-Version and build information
+Shows version and build information.
+
+Example
+
+    print SBVER    ' Output: 12.26 Console Unix_64 Tue, 06 Jun 2023
 
 +========================================================================================+
 |                                    310. (System) SELF                                  |
@@ -12192,7 +12394,7 @@ This provides pseudo class/object functionality.
 Note: ‘MAP’ is the name given to the dictionary/hashmap variable
 variant.
 
-Example:
+Example 1: SELF and MAP variable
 
     SUB hello
       print "hello " + self.world
@@ -12202,6 +12404,7 @@ Example:
     a.foo = @hello
     a.foo()
 
+Example 2: Simple Class
 
     func SimpleClass(i)
 

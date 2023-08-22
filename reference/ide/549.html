@@ -1,20 +1,42 @@
 <h1 id="sort">SORT</h1>
 <blockquote>
-<p>SORT array [USE cmpfunc]</p>
+<p>SORT byref A [USE cmpfunc( x, y )]</p>
 </blockquote>
-<p>Sorts an array. The cmpfunc if specified, takes 2 vars to compare and must return: -1 if x &lt; y, +1 if x &gt; y, 0 if x = y.</p>
-<pre><code>FUNC qscmp(x,y)
-IF x=y
-    qscmp=0
-ELIF x&gt;y
-    qscmp=1
-ELSE
-    qscmp=-1
-ENDIF
-END
-...
-DIM A(5)
-FOR i=0 TO 5
-    A(i)=RND
-NEXT
-SORT A USE qscmp(x,y)</code></pre>
+<p>Sorts an array <code>A</code> in ascending order. The sorted array is return as <code>A</code>, therefore overwriting the initial array. If a compare function <code>cmpfunc</code> is specified, this function will be used for comparision. The compare function takes two elements of <code>A</code> as <code>x</code>, <code>y</code> to compare and must return:</p>
+<ul>
+<li><code>-1</code> if <code>x</code> is to be placed before <code>y</code></li>
+<li><code>1</code> if <code>y</code> is to be placed before <code>x</code></li>
+<li><code>0</code> if it doesn’t matter which is placed first (which is usually the case when the elements are equal)</li>
+</ul>
+<h3 id="example-1-sorting-in-ascending-order">Example 1: Sorting in ascending order</h3>
+<pre><code>A = [5, 3, 8, 2, 1, 7, 9]
+sort A
+print A                         &#39; Output [1,2,3,5,7,8,9]</code></pre>
+<h3 id="example-2-sorting-in-ascending-order-using-a-compare-function">Example 2: Sorting in ascending order using a compare function</h3>
+<pre><code>func cmpfunc_ascending(x, y)
+    if x == y
+        return 0
+    elseif x &gt; y
+        return 1
+    else
+        return -1
+    endif
+end
+
+A = [5, 3, 8, 2, 1, 7, 9]
+sort A use cmpfunc_ascending(x, y)
+print A                         &#39; Output [1,2,3,5,7,8,9]</code></pre>
+<h3 id="example-3-sorting-in-descending-order-using-a-compare-function">Example 3: Sorting in descending order using a compare function</h3>
+<pre><code>func cmpfunc_descending(x, y)
+    if x == y
+        return 0
+    elseif x &lt; y
+        return 1
+    else
+        return -1
+    endif
+end
+
+A = [5, 3, 8, 2, 1, 7, 9]
+sort A use cmpfunc_descending(x, y)
+print A                         &#39; Output [9,8,7,5,3,2,1]</code></pre>

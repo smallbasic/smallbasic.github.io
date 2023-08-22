@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>STATSPREADS</h1>
-  <blockquote>STATSPREADS (…)</blockquote>
+  <blockquote>f = STATSPREADS (var1 [, var2, …, varN])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,11 +73,16 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Unbiased sample variance.</p>
+<p>Unbiased sample variance. <code>var1</code> to <code>varN</code> can be single numbers or arrays.</p>
 <p>See: https://en.wikipedia.org/wiki/Variance#Sample_variance</p>
+<h3 id="example">Example</h3>
 <pre><code>A = [1,2,3,4,6]
 print &quot;Biased sample variance:   &quot;; statspreadp(A)
-print &quot;Unbiased sample variance: &quot;; statspreads(A)</code></pre>
+print &quot;Unbiased sample variance: &quot;; statspreads(A)
+
+&#39; Output:
+&#39; Biased sample variance:   2.96
+&#39; Unbiased sample variance: 3.7</code></pre>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -179,7 +184,7 @@ STATSPREADS by submitting a <a href="https://github.com/smallbasic/smallbasic.gi
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Fri, 27 Jan 2023 15:22:38 +1030
+      This page was last edited on Tue, 15 Aug 2023 11:10:42 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

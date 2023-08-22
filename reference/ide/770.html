@@ -1,7 +1,14 @@
 <h1 id="sprint">SPRINT</h1>
 <blockquote>
-<p>SPRINT var; [USING…;] …</p>
+<p>SPRINT byref s; [USING…;] …</p>
 </blockquote>
-<p>Create formated string and storing it to var. See also: PRINT command.</p>
-<pre><code>SPRINT s; 12.34; TAB(12); 11.23;</code></pre>
-<p><em>Note: you can use ‘USG’ instead of ‘USING’.</em></p>
+<p>Create a formated string and storing it to string <code>s</code>. SPRINT supports all features of PRINT. See PRINT for detailed information. USG can be used instead of USING.</p>
+<h3 id="example">Example</h3>
+<pre><code>a = 1000
+b = 2000
+
+SPRINT s1; USING &quot;a = #####.00  b = ##,###&quot;; a; b
+SPRINT s2; &quot;a + b = &quot;; a; &quot; + &quot;; b; &quot; = &quot;; a + b
+
+print s2     &#39; Output a =  1000.00  b =  2,000
+print s1     &#39; Output: a + b = 1000 + 2000 = 3000</code></pre>

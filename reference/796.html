@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>SPACE</h1>
-  <blockquote>SPACE (n)</blockquote>
+  <blockquote>s = SPACE (n)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,12 +73,16 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-<p>Returns a string of n spaces.</p>
-<pre><code>
-&#39; s is a string (&quot;&quot; or longer); l is length of buffer (0+);
+<p>Returns a string of <code>n</code> spaces.</p>
+<p>SPACE is identical to SPC.</p>
+<h3 id="example-1">Example 1:</h3>
+<pre><code>print &quot;A&quot; + space(5) + &quot;B&quot;    &#39; Output: A     B</code></pre>
+<h3 id="example-2-insert-string-into-a-buffer">Example 2: Insert string into a buffer</h3>
+<pre><code>&#39; s is a string (&quot;&quot; or longer); l is length of buffer (0+);
 Def lset(s, l) = Left(s + Space(l), l) &#39; left justify text
 Def rset(s, l) = Right(Space(l) + s, l) &#39; right justify text
 Const buffer = 10 &#39; length of buffer
+
 While True Do
   Color 7, 0: Cls
   Print &quot;[ Using a buffer of &quot;; buffer; &quot; spaces ]&quot;
@@ -92,8 +96,7 @@ While True Do
   Color 7, 0: Locate 7, 0: Print &quot;Right justified: &quot;;
   Color 0, 7: Print rset(text, buffer);
   Pause 
-Wend
-</code></pre>
+Wend</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using SPACE</div>
     <div class="linklist">
@@ -191,7 +194,7 @@ SPACE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Fri, 11 Aug 2023 11:23:01 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

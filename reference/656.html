@@ -73,10 +73,18 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Terminates execution of a program, closes all files opened by the program, and returns control to the operating system.</p>
-<p>error - A numeric expression.</p>
-<p>The error is the value which will returned to operating system; if not specified SmallBASIC returns 0.</p>
-<p>On Windows, The ‘error’ value is known as ERRORLEVEL</p>
+<p>Terminates execution of a program, closes all files opened by the program, and returns control to the operating system. The optional number <code>error</code> will be returned to the operating system; if not specified SmallBASIC returns <code>0</code>. On Windows, the <code>error</code> value is known as ERRORLEVEL.</p>
+<h3 id="example-1">Example 1</h3>
+<pre><code>print &quot;Hello world&quot;
+stop
+print &quot;This will never be printed&quot;</code></pre>
+<h3 id="example-2">Example 2</h3>
+<pre><code>print &quot;Type exit to stop program&quot;
+while (true)
+    input &quot;INPUT: &quot;, s
+    if(s == &quot;exit&quot;) then stop
+    print &quot;You typed: &quot;;s
+wend</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using STOP</div>
     <div class="linklist">
@@ -200,7 +208,7 @@ STOP by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Sun, 20 Aug 2023 16:34:01 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

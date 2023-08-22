@@ -1,8 +1,9 @@
 <h1 id="segcos">SEGCOS</h1>
 <blockquote>
-<p>SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)</p>
+<p>f = SEGCOS (Ax, Ay, Bx, By, Cx, Cy, Dx, Dy)</p>
 </blockquote>
-<p>Cosine of 2 line segments (A-&gt;B, C-&gt;D).</p>
+<p>Cosine of the two line segments AB and CD. Start and end of the first line segment are given by the points <code>(Ax,Ay)</code> and <code>(Bx, By)</code>. For the second line by <code>(Cx, Cy)</code> and <code>(Dx, Dy)</code>.</p>
+<h3 id="example-1">Example 1:</h3>
 <pre><code>&#39; Line 1
 Ax = 50
 Ay = 50
@@ -18,6 +19,7 @@ Dy = 100
 print &quot;SEGCOS: &quot;; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 print &quot;SEGSIN: &quot;; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 print &quot;Angle between the lines: &quot;; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); &quot;°&quot;</code></pre>
+<h3 id="example-2">Example 2</h3>
 <pre><code>&#39; Interactive example to illustrate the geometry
 &#39; of SEGCOS and SEGSIN
 

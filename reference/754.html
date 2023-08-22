@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>SEGSIN</h1>
-  <blockquote>SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)</blockquote>
+  <blockquote>f = SEGSIN (Ax, Ay, Bx, By, Cx, Cy, Dx, Dy)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,8 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Sinus of 2 line segments (A-&gt;B, C-&gt;D).</p>
+<p>Sinus of 2 line segments AB and CD. Start and end of the first line segment are given by the points <code>(Ax,Ay)</code> and <code>(Bx, By)</code>. For the second line by <code>(Cx, Cy)</code> and <code>(Dx, Dy)</code>.</p>
+<h3 id="example-1">Example 1</h3>
 <pre><code>&#39; Line 1
 Ax = 50
 Ay = 50
@@ -89,6 +90,7 @@ Dy = 100
 print &quot;SEGCOS: &quot;; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 print &quot;SEGSIN: &quot;; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
 print &quot;Angle between the lines: &quot;; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); &quot;°&quot;</code></pre>
+<h3 id="example-2">Example 2</h3>
 <pre><code>&#39; Interactive example to illustrate the geometry
 &#39; of SEGCOS and SEGSIN
 
@@ -248,7 +250,7 @@ SEGSIN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 23 Oct 2022 12:34:24 +0200
+      This page was last edited on Wed, 2 Aug 2023 10:09:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

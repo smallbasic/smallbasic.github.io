@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>STRING</h1>
-  <blockquote>STRING ( count [,start | s] )</blockquote>
+  <blockquote>s = STRING ( count, {str | chr} )</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,54 +73,11 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-<p>Creates a new string of count length.</p>
-<pre><code>
-Def rainbow = Floor((Rnd * 100) Mod 16) &#39; random text color 0 to 15
-&#39; parameters for printing a box:
-Const ROW = 2
-Const COLUMN = 1
-Const HEIGHT = 8
-Const WIDTH = 9
-
-While True Do
-  Color 7, 0: Cls
-  Input &quot;Enter 1 to 5 character(s) [Enter empty to stop]&quot;; c
-  c = Left(Str(c), 5) &#39; 12 -&gt; &quot;12&quot;; 0 -&gt; &quot;0&quot;,  etc
-  If Empty(c) Then &#39; c is &quot;&quot;?
-    Stop
-  Endif
-
-  &#39; print box top line:
-  Color rainbow: Locate ROW, COLUMN: Print String(WIDTH, c);
-  &#39; print box vertical lines:
-  v_lines = c + Space((WIDTH - 2) * Len(c)) + c
-  For r = ROW + 1 To ROW + HEIGHT - 2 Do
-    Color rainbow: Locate r, COLUMN: Print v_lines;
-  Next
-  &#39; print box down line:
-  Color rainbow: Locate ROW + HEIGHT - 1, COLUMN: Print string(WIDTH, c);
-
-  Color 7: Locate ROW + HEIGHT + 2, COLUMN: Print &quot;Press any key...&quot;;
-  Pause
-Wend
-</code></pre>
-<p>I wasted a day trying to figure what “Invalid parameter” was causing a Mastermind program from crashing under certain circumstances. Turns out STRING can’t handle a 0 value in first argument. It would have been nice if the program stopped on that statement instead all the other places it had.</p>
-<pre><code>
-&#39;in this little example code does stop with cursor on the wrong line
-cows = 2
-? string(3,&quot;Bulls&quot;)+string(cows,&quot;Cows&quot;) &#39;returns BullsBullsBullsCowsCows
-cows =0
-? string(3,&quot;Bulls&quot;)+string(cows,&quot;Cows&quot;) &#39;Error: &quot;Invalid parameter&quot;
-pause
-end
-</code></pre>
-<p>How to understand this syntax “STRING ( count [,start | s] )”:</p>
-<pre><code>&#39; start is an ASCII value of a string character:
-x = STRING(2, ASC(&quot;Hello &quot;))
-? x &#39; --&gt; x is &quot;HH&quot;
-&#39; s is a string of any length:
-x = STRING(2, &quot;Hello &quot;)
-? x &#39; --&gt; x is &quot;Hello Hello &quot;</code></pre>
+<p>Creates a new string, which repeats the string <code>str</code> <code>count</code> times. If instead of a string a number <code>chr</code> is given, <code>chr</code> will be interpreted as an ASCII-code and the corresponding character will be repeated <code>count</code> times.</p>
+<h3 id="example">Example</h3>
+<pre><code>print string(4, &quot;A&quot;)        &#39; Output: AAAA
+print string(4, &quot;AB&quot;)       &#39; Output: ABABABAB
+print string(4, 65)         &#39; Output: AAAA</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using STRING</div>
     <div class="linklist">
@@ -218,7 +175,7 @@ STRING by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Sun, 20 Aug 2023 16:59:18 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

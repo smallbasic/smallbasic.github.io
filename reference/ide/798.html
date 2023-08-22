@@ -1,7 +1,13 @@
 <h1 id="squeeze">SQUEEZE</h1>
 <blockquote>
-<p>SQUEEZE (s)</p>
+<p>r = SQUEEZE (s)</p>
 </blockquote>
-<p>Removes all leading, trailing and duplicated white-space.</p>
-<pre><code>? &quot;[&quot;; SQUEEZE(&quot; Hi  there &quot;); &quot;]&quot;
-&#39; Result: [Hi there]</code></pre>
+<p>Removes all leading, trailing and duplicated white-space from string <code>s</code>.</p>
+<h3 id="example">Example:</h3>
+<pre><code>s = &quot; Hi  there &quot;
+print &quot;[&quot;; s ; &quot;]&quot;
+print &quot;[&quot;; SQUEEZE(s); &quot;]&quot;
+
+&#39;Output:
+&#39; [ Hi there ]
+&#39; [Hi there]</code></pre>

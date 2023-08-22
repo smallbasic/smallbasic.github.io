@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>STATSTD</h1>
-  <blockquote>STATSTD (…)</blockquote>
+  <blockquote>f = STATSTD (var1 [, var2, … , varN)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,10 +73,24 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>(Corrected sample) standard deviation.</p>
+<p>(Corrected sample) standard deviation. <code>var1</code> to <code>varN</code> can be single numbers or arrays.</p>
 <p>see: <a href="https://en.wikipedia.org/wiki/Standard_deviation">Wikipedia - Standard Deviation</a></p>
-<pre><code>a = [2, 4, 4, 4, 5, 5, 7, 9]
-print statstd(a)</code></pre>
+<h3 id="example-1-using-an-array">Example 1: Using an array</h3>
+<pre><code>A = [2,2,4,4,14]
+print statstd(A)        &#39; Output: 5.09901951359278</code></pre>
+<h3 id="example-2-using-two-arrays">Example 2: Using two arrays</h3>
+<pre><code>A = [2,2,3,4,14]
+B = [7,9,7]
+print statstd(A, B)     &#39; Output: 4.14039335605413 </code></pre>
+<h3 id="example-3-using-an-array-and-a-number">Example 3: Using an array and a number</h3>
+<pre><code>A = [2,2,3,4,14]
+B = 5
+print statstd(A, B)     &#39; Output: 4.56070170039655</code></pre>
+<h3 id="example-4-using-numbers">Example 4: Using numbers</h3>
+<pre><code>A = 3
+B = 5
+C = 4
+print statstd(A, B, C)  &#39; Output: 1</code></pre>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -178,7 +192,7 @@ STATSTD by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Dec 2022 14:45:55 +0100
+      This page was last edited on Tue, 15 Aug 2023 11:16:46 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

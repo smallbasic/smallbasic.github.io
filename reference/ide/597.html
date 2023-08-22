@@ -1,40 +1,18 @@
 <h1 id="seek">SEEK</h1>
 <blockquote>
-<p>SEEK #fileN; pos</p>
+<p>SEEK #fileN, pos</p>
 </blockquote>
-<p>Sets file position for the next read/write.</p>
-<pre><code>
-Const FILE = &quot;RANDOM.TMP&quot;
-Const RLEN = 50 &#39; record-length in bytes
-&#39; left justify string in buffer. s is string; l is buffer-length.
-Def lset(s, l) = Left(s + Space(l), l)
-&#39; append records to demo file:
-Open FILE For Output As #1
-For record = 1 To 7
-  Read s
-  Print #1, lset(s, RLEN); &#39; end with ; to avoid new-line char
-Next
-Const TOTAL_RECORDS = Lof(1) / RLEN
-Close #1
-&#39; 7 demo records:
-Data &quot;OPEN: Open file for sequential input/output.&quot;
-Data &quot;FREEFILE: Returns an unused file handle.&quot;
-Data &quot;SEEK: Sets file position for next read/write.&quot;
-Data &quot;EOF: True if file pointer is at end of file.&quot;
-Data &quot;LOF: Returns the length of file in bytes.&quot;
-Data &quot;CLOSE: Close a file.&quot;
-Data &quot;COPY: Copy file to a new file.&quot;
-&#39; retrieve and display demo records using SEEK:
-Open FILE For Input As #1
-Repeat
-  Color 7, 0: Locate 1, 1
-  Input &quot;Enter record # (1..&quot; + TOTAL_RECORDS + &quot;) to retrieve: &quot;, n
-  
-  If n &gt;= 1 And n &lt;= TOTAL_RECORDS Then
-    Locate 3, 1: Print &quot;Rec #&quot;; n; &quot;: &quot;; 
-    Seek #1, (n - 1) * RLEN &#39; seek to record position (base 0)
-    Color 15, 3: Print Input(RLEN, 1);
-  Endif
-Until Isstring(n)
-Close #1
-</code></pre>
+<p>Sets file position to <code>pos</code> for the next read/write for file with the ID <code>#fileN</code>. The file position starts with <code>0</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; create a file
+open &quot;testseek.txt&quot; for output as #1
+print #1, &quot;abcdefghijk&quot;
+close #1
+
+
+&#39; open file
+open &quot;testseek.txt&quot; for input as #1
+seek #1, 4                              &#39; file position set to 4
+c = input(1,1)                          &#39; read one character from file
+print c                                 &#39; Output: e
+close #1</code></pre>

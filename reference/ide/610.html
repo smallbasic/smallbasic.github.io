@@ -1,5 +1,16 @@
 <h1 id="seek">SEEK</h1>
 <blockquote>
-<p>SEEK (fileN)</p>
+<p>n = SEEK (fileN)</p>
 </blockquote>
-<p>Returns the current file position.</p>
+<p>Returns the current file position of file with ID <code>fileN</code>. The file position start with <code>0</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; create a file
+open &quot;testseek.txt&quot; for output as #1
+print #1, &quot;abcdefghijk&quot;
+close #1
+
+&#39; open file
+open &quot;testseek.txt&quot; for input as #1
+c = input(3,1)                          &#39; read three character from file
+print seek(1)                           &#39; Output: 3
+close #1</code></pre>

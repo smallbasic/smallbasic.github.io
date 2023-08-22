@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>SUB</h1>
-  <blockquote>SUB foo (a, b)</blockquote>
+  <blockquote>SUB foo ([ [BYREF] var1, [BYREF] var2, …, [BYREF] varN])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,56 +73,59 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Declare a sub procedure. Sub’s do not return a value but can return argument values when declared as BYREF.</p>
-<pre><code>
-&#39; Notes: Using SUB is much more easy and modular then using GOSUB.
-&#39;        With SUB (and FUNC) you can divide your program into many logical and
-&#39;        independent blocks, instead of writing a long &quot;spaghetti code&quot;...
-&#39; See also: Home -- Articles -- Welcome to SmallBASIC -- 
-&#39;           Syntax of procedure (SUB) statements &amp; 
-&#39;           Syntax of function (FUNC) statements.
-x = 9
-routine1 x &#39; prints 9 (Passing &#39;x&#39; by value)
-Print x    &#39; prints 9
-routine2 x &#39; prints 9 (Passing &#39;x&#39; by reference)
-Print x    &#39; prints 10
-routine3 x &#39; prints 10 (Passing &#39;x&#39; by reference)
-Print x    &#39; prints 11 
-routine4 x &#39; prints 11 (Use the LOCAL keyword for local variables)
-Print x    &#39; prints 11
-routine5 x &#39; prints 100 (Passing &#39;x&#39; by value to nested procedures)
-Print x    &#39; prints 11
-Pause
+<p>Declare a sub procedure <code>foo</code>. The optional parameters <code>var1</code> to <code>varN</code> can be all data types supported by SmallBASIC. Sub procedures do not return a value but can return argument values when declared as BYREF. A sub procedure ends with the keywords END or END SUB. The keyword LOCAL can be used to restrict the scope of a variable to the sub procedure only. Sub procedures can be nested within a sub procedure.</p>
+<p>With SUB (and FUNC) you can divide your program into many logical, independent and reusable blocks, instead of writing a long “spaghetti code”. Instead of using GOSUB and GOTO you should prefere to use sub procedures or functions.</p>
+<p>For more information, see FUNC, LOCAL and BYREF.</p>
+<h3 id="example-1-passing-x-by-value-default">Example 1: Passing x by value (default)</h3>
+<pre><code>x = 9
+routine1(x)           &#39; Output: 9
 
-&#39; Passing &#39;x&#39; by value (default):
 Sub routine1(x)
   Print x
-End Sub
-&#39; Passing &#39;x&#39; by reference (BYREF x):
+End</code></pre>
+<h3 id="example-2-passing-x-by-reference-byref-x">Example 2: Passing x by reference (BYREF x)</h3>
+<pre><code>x = 9
+Print x              &#39; Output: 9
+routine2(x)          &#39; Output: 9
+Print x              &#39; Output: 10
+
 Sub routine2(Byref x)
   Print x
   x = 10
-End Sub
-&#39; Passing &#39;x&#39; by reference (@x is same as BYREF x):
+End</code></pre>
+<h3 id="example-3-passing-x-by-reference-x">Example 3: Passing x by reference (<span class="citation" data-cites="x">@x</span>)</h3>
+<pre><code>x = 9
+Print x              &#39; Output: 9
+routine3(x)          &#39; Output: 9
+Print x              &#39; Output: 10
+
 Sub routine3(@x)
   Print x
-  x = 11
-End Sub
-&#39; Use the LOCAL keyword for local variables:
+  x = 10
+End</code></pre>
+<h3 id="example-4-use-the-local-keyword-for-local-variables">Example 4: Use the LOCAL keyword for local variables</h3>
+<pre><code>x = 9
+routine4(x)         &#39; Output: 9 
+Print x             &#39; Output: 9
+
 Sub routine4(y)
   Local x
   Print y
-  x = 12
-End Sub
-&#39; Passing &#39;x&#39; by value to nested procedures:
+  x = 12            &#39; x is local, the global variable x will not be changed
+End Sub</code></pre>
+<h3 id="example-5-nested-sub-procedures">Example 5: Nested sub procedures</h3>
+<pre><code>x = 9
+routine5(x)         &#39; Output: 100 (Passing &#39;x&#39; by value to nested procedures)
+Print x             &#39; Output: 9
+
 Sub routine5(x)
+  local x
   x = 100
-  routine6 x
+  routine6(x)
   Sub routine6(x)
     Print x
   End Sub
-End Sub
-</code></pre>
+End Sub</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using SUB</div>
     <div class="linklist">
@@ -246,7 +249,7 @@ SUB by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Tue, 22 Aug 2023 11:31:03 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
