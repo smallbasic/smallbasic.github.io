@@ -13,6 +13,8 @@ evaluation version is available."
 
 ## Installation
 
+The files for syntax highlighting can be downloaded from [Github](https://github.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/).
+
 Copy the files in the folder "package" to the User directory in the Sublime Text package folder.
 The Sublime Text package folder can be open within Sublime Text under Preferences -> Browse Packages.
 
