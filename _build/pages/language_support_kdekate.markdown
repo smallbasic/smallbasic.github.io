@@ -6,7 +6,7 @@ for software developers, it features syntax highlighting, code folding, customiz
 support, and extensibility" 
 ([wikipedia](https://en.wikipedia.org/wiki/Kate_(text_editor)))_
 
-![Example](https://github.com/Joe7M/smallbasic.kate.syntaxcoloring/blob/main/screenshot.png)
+![Example](https://raw.githubusercontent.com/Joe7M/smallbasic.kate.syntaxcoloring/main/screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 

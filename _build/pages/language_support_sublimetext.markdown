@@ -9,7 +9,7 @@ regular-expressions, terminal output window, and more. It is proprietary softwar
 evaluation version is available." 
 ([wikipedia](https://en.wikipedia.org/wiki/Sublime_Text))_
 
-![Example](https://github.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/blob/main/screenshot.png)
+![Example](https://raw.githubusercontent.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/main/screenshot.png)
 
 ## Installation
 
