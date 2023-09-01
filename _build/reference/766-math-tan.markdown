@@ -1,18 +1,59 @@
 # TAN
 
-> TAN (x)
+> f = TAN (x)
+
+Tangent of `x`. `x` is in radian.
+
+See also COS, SIN, TAN and ATAN.
+
+### Example 1
 
 ```
 a = tan(0.5)
-print a
+print a             ' Output: 0.54630248984379
 
 b = atan(a)
-print b
+print b             ' Output: 0.5
 ```
 
-see COS, SIN, TAN and ATAN
+### Example 2
 
-Trigonometry lesson
+```
+' Short TAN use.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
+' in the following example it is important to keep in mind
+' x,y when used in TAN are relative positions to x1,y1 and not
+' absolute screen coordinates
+' you can move x1,y1 anywhere on screen!!!!
+
+x1 = 250
+y1 = 150
+angle = 60  ' degree
+
+' highlight start point with a circle in yellow with radius 2
+circle x1, y1, 2, 1, 14                             
+
+' circle x,y,r,aspect,c   'aspect 1 is circle, !1=ellipse
+' say you want to make a line 60 degrees from x1,y1  and
+' you need the x2 100 greater than x1 or x2 = x1+100
+' since we know TAN=y/x (though you need a diagram to see it)
+' then TAN(RAD(60)) = y/100
+' then 100*TAN(rad(60) = y   by algebraic mult 100 both sides
+' so  y2=y1+100*TAN(rad(60)
+
+line x1, y1, x1 + 100, y1 + 100*TAN(RAD(angle))     ' <== HERE IS TAN
+
+' so here we used TAN to calculate the y change in height
+' from y1 to create a 60 angle from point x1,y1 and x2,y2 AND
+' AND make it so x2=100 more than x1
+' check draw arc at x1,y1 with 100 radius
+' for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect
+
+arc x1, y1, 100, 0, RAD(angle), 1, 14               ' 14 = color yellow
+```
+
+
+
+### Trigonometry lesson
 
 Review:
 
@@ -71,9 +112,7 @@ I can find the angle it is from the origin!
 It is the ATAN(y/x)
 We are almost ready now to play pin the tail on the donkey! Hang in there...
 The A before the TAN, the A before the SIN, COS... means ARC
-ATAN is pronounced ARC TANGENT
-ACOS is pronounced ARC COSINE
-ASIN is pronounced ARC SIN
+ATAN is pronounced ARC TANGENT; ACOS is pronounced ARC COSINE; ASIN is pronounced ARC SIN.
 
 In each the ARC means The Angle whose Trig Ratio is: (ratio of two sides)
 so ATAN is the Angle whose TAN ratio is (opp leg lentgh/adj leg length)
@@ -84,62 +123,3 @@ ATAN( ratio=opp/adj ) = an angle (in radians)
 DEG(ATAN(opp/adj) = an angle in degrees
 You can think or the A in front of TAN or COS or SIN as give me "An Angle"
 without the A you get side ratios.
-
-A donkey is mounted on the SmallBASIC screen
-so that it's tail should be pinned at 0,0 ....
-see ATAN for "pin the tail.bas"
-
-TAN used in a short code example:
-
-~~~
-' TAN use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
-for degrees = 0 to 360 step 15
-  print "For angle (degrees) = ";
-  print usg "###";degrees;
-  print " (or ";
-  print usg "#.00";rad(degrees);
-  print " radians ) the TANgent is ";
-  print usg "#####.0000";tan(rad(degrees))  '<== typical to convert degrees to radians (with RAD) before TAN call
-next
-print
-print "As the TANgent approaches 90 or 270 degrees the TANgent becomes 1/0 which is undefined."
-pause
-
-~~~
-
-TAN use again in a few lines of code but I have to try and explain what is going on or it would be void of meaning.
-
-~~~
-'Short TAN use.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
-'in the following example it is important to keep in mind
-'x,y when used in TAN are relative positions to x1,y1 and not
-'absolute screen coordinates
-'you can move x1,y1 anywhere on screen!!!!
-
-'x,y of point 1 we will mark with yellow circle
-x1=250
-y1=150
-
-circle x1,y1,2,1,14 'highlight start point in yellow radius 2
-
-'circle x,y,r,aspect,c   'aspect 1 is circle, !1=ellipse
-'say you want to make a line 60 degrees from x1,y1  and
-'you need the x2 100 greater than x1 or x2 = x1+100
-'since we know TAN=y/x (though you need a diagram to see it)
-'then TAN(RAD(60)) = y/100
-'then 100*TAN(rad(60) = y   by algebraic mult 100 both sides
-'so  y2=y1+100*TAN(rad(60)
-
-line x1,y1,x1+100,y1+100*TAN(RAD(60))  '<== HERE IS TAN
-
-'so here we used TAN to calculate the y change in height
-'from y1 to create a 60 angle from point x1,y1 and x2,y2 AND
-'AND make it so x2=100 more than x1
-'check draw arc at x1,y1 with 100 radius
-'for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect
-
-arc x1,y1,100,0,2*pi/6,1,14 '14=color yellow
-
-pause
-~~~
-
