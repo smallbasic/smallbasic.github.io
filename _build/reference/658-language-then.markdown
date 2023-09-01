@@ -2,8 +2,25 @@
 
 > THEN
 
-foo = 1: if foo==1 THEN: ? "one": fi
+part of an if-statement. For more information see IF.
 
-THEN needed for one liner IF... THEN... [ELSE]... (no FI)  (without :'s that create multi-line block on one line)
-THEN not needed for multi-line block.
+### Example 1: Multi-line block
+
+```
+a = 1
+
+if(a == 1) then
+    print "one"
+endif
+```
+
+### Example 2: Single-line
+
+```
+a = 1
+if(a == 1) then print "one"
+```
+
+
+
 
