@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>TRIM</h1>
-  <blockquote>TRIM(s)</blockquote>
+  <blockquote>r = TRIM(s)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,16 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-<p>Removes all leading and trailing white-space.</p>
+<p>Removes all leading and trailing white-space from string <code>s</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>s = &quot;   test   &quot;
+t = trim(s)
+print &quot;-&gt;&quot; + s + &quot;&lt;-&quot;
+print &quot;-&gt;&quot; + t + &quot;&lt;-&quot;
+
+&#39; Output:
+&#39; -&gt;    test    &lt;-
+&#39; -&gt;test&lt;-</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using TRIM</div>
     <div class="linklist">
@@ -160,7 +169,7 @@ TRIM by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Mon, 4 Sep 2023 16:12:47 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

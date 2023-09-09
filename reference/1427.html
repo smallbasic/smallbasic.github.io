@@ -73,7 +73,18 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>The END TRY statement marks the end of a TRY/CATCH block. For more information and examples please see TRY.</p>
+<p>The END TRY statement marks the end of a TRY/CATCH block. For more information see TRY.</p>
+<h3 id="example">Example</h3>
+<pre><code>try
+    &#39; DON&#39;T use existing file for demo.
+    open &quot;try demo.tmp&quot; for input  as #1
+catch err
+    print err
+    &#39; Some error handling could be implemented here
+    &#39; i.e: if(err = &quot;...&quot;) then ...
+end try
+
+print &quot;This point is reach, even if opening the file was not possible&quot;</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using END TRY</div>
     <div class="linklist">
@@ -170,7 +181,7 @@ END TRY by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 25 Feb 2023 22:33:10 +0100
+      This page was last edited on Wed, 6 Sep 2023 18:18:25 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

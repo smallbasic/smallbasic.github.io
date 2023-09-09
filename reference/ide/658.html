@@ -2,5 +2,13 @@
 <blockquote>
 <p>THEN</p>
 </blockquote>
-<p>foo = 1: if foo==1 THEN: ? “one”: fi</p>
-<p>THEN needed for one liner IF… THEN… [ELSE]… (no FI) (without :’s that create multi-line block on one line) THEN not needed for multi-line block.</p>
+<p>part of an if-statement. For more information see IF.</p>
+<h3 id="example-1-multi-line-block">Example 1: Multi-line block</h3>
+<pre><code>a = 1
+
+if(a == 1) then
+    print &quot;one&quot;
+endif</code></pre>
+<h3 id="example-2-single-line">Example 2: Single-line</h3>
+<pre><code>a = 1
+if(a == 1) then print &quot;one&quot;</code></pre>
