@@ -26,7 +26,7 @@ If you are working in Windows, then start your program with:
 
 The following code shows how to create your first "Hello World" window.
 
-```
+```smallbasic
 option predef grmode 640x480    ' Set window size
 
 import nuklear as nk            ' Import Nuklear plugin
@@ -44,7 +44,7 @@ With `nk.windowBegin()` a window will be created, if not already present. Additi
 
 ## Placing a button
 
-```
+```smallbasic
 option predef grmode 640x480
 
 import nuklear as nk
@@ -69,7 +69,7 @@ Before you can add a button, you have to define a layout which can hold the GUI 
 
 ## Displaying two radio buttons
 
-```
+```smallbasic
 option predef grmode 640x480
 
 import nuklear as nk
@@ -98,7 +98,7 @@ Because `nk.layoutRow("dynamic", 90, 2)` is this time set to "2" two elements ar
 
 ## Dynamic rows vs. static rows
 
-```
+```smallbasic
 option predef grmode 640x480
 
 import nuklear as nk
@@ -133,7 +133,7 @@ If you run this example and change the size of the window with the mouse, you ca
 
 ## Show input boxes with labels - More flexible row layout
 
-```
+```smallbasic
 option predef grmode 640x480
 
 import nuklear as nk
@@ -174,7 +174,7 @@ When using `nk.layoutRowBegin(...)` the end of the definition for a row has to b
 
 Caution: `menuItem()` is not yet working probably. This will be fixed with the next release.
 
-```
+```smallbasic
 option predef grmode 640x480
 
 import nuklear as nk
@@ -208,7 +208,7 @@ The example above will display a menu with one entry called "Menu". When clicked
 
 ### Draw basic shapes
 
-```
+```smallbasic
 option predef grmode 640x480
 
 import nuklear as nk
@@ -263,7 +263,7 @@ checkboxValue: actual value of the checkbox
 
 Creates a checkbox with the name _Name_. State of the checkbox is stored in _checkboxValue_.
 
-```
+```smallbasic
 checkA = {value: false}
 ...
 nk.Checkbox("Checkbox A", checkA)
@@ -290,7 +290,7 @@ color: color of the colorpicker
 
 Creates a colorpicker. The color picked by the user is stored in color.value as a string.
 
-```
+```smallbasic
 colorPicker = {value: "#ff0000"}
 ...
 nk.colorPicker(colorPicker)
@@ -305,7 +305,7 @@ comboValue (map): settings of combobox
 
 Creates a combobox. The number of the selected combobox is stored in _comboValue.value_.
 
-```
+```smallbasic
 comboA = {value: 1, items: ["A", "B", "C"]}
 nk.combobox(comboA)
 ```
@@ -319,7 +319,7 @@ triggerX, triggerY, triggerW, triggerH: Trigger area in pixel
 
 Creates an contextual menu. Right-click in the trigger area will open a menu.
 
-```
+```smallbasic
 [x, y, w, h] = nk.widgetBounds()
 if nk.contextualBegin(100, 100, x, y, w, h) then
     nk.layoutRow("dynamic", 30, 1)
@@ -358,7 +358,7 @@ editValue: Stores the actual text
 
 Creates an input box. The content of the input box is stored in _editValue.value_.
 
-```
+```smallbasic
 editA = {value: ""}
 ...
 nk.edit("field", editA)
@@ -383,7 +383,7 @@ Style (String): "", "border"
 
 Groups several elements. The group can be surrounded by a border.
 
-```
+```smallbasic
 nk.groupBegin("Group 1", "border")
     nk.layoutRow("dynamic", 30, 1)
     nk.label("Radio buttons:")
@@ -414,7 +414,7 @@ color (string): hex color, i.e "#ff0000"
 
 Creates a label.
 
-```
+```smallbasic
 nk.label("Left label")
 nk.label("Centered label", "centered")
 nk.label("Right label", "right")
@@ -523,7 +523,7 @@ modifiable: true or false (default: false)
 
 Displays a progress bar. The length of the bar is given by _progressValue.value_. Set _modifiable_ to true, if you want to use the progress bar as a slider to change the value.
 
-```
+```smallbasic
 progress.value = 5
 ...
 nk.progress(progress, 10, false)
@@ -541,7 +541,7 @@ stepSizeByMoving: Stepsize when click + hold + moving the mouse
 
 Displays an input box for numbers. The actual value is stored in _propertyValue.value_.
 
-```
+```smallbasic
 property = {value: 6}
 ...
 nk.property("Property", 1, property, 10, 0.25, 0.5)
@@ -575,7 +575,7 @@ selectValue: value of the item
 
 Creates a list of items, which can be selected similar to a checkbox. The actual value of the selectable is stored in _selectValue.value_
 
-```
+```smallbasic
 selectA = {value: false}
 selectB = {value: true}
 ...
@@ -595,7 +595,7 @@ stepSize: step size of the slider when moving with the mouse
 
 Displays a slider. The slider position is given by _sliderValue.value_
 
-```
+```smallbasic
 sliderValue  = {value: 5}
 ...
 nk.slider(1, sliderValue, 10, .5)
@@ -632,7 +632,7 @@ TooltipValue (String): Text of the tooltip
 
 Prints a tooltip.
 
-```
+```smallbasic
 edit = {value: "Edit text"}
 ...
 nk.layoutRow("dynamic", 30, 1)
@@ -657,7 +657,7 @@ name (String): name of tree element
 
 Creates a tree.
 
-```
+```smallbasic
 nk.layoutRow("dynamic", 30, 1)
 if nk.treePush("tab", "Tree Tab") then
     if nk.treePush("node", "Tree Node 1") then
@@ -715,7 +715,7 @@ w,h: width and height of the widget
 
 Returns the position and the dimensions of a widget.
 
-```
+```smallbasic
 edit = {value: "Edit text"}
 ...
 nk.layoutRow("dynamic", 30, 1)

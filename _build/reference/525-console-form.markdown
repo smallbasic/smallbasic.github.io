@@ -72,7 +72,7 @@ The type attribute can be one of the following:
 
 ### Example 1: Creating a push button using callback function
 
-```
+```smallbasic
 button.type = "button"
 button.x = 120
 button.y = 120
@@ -99,7 +99,7 @@ end
 
 ### Example 2: Creating a push button using doEvents result
 
-```
+```smallbasic
 button.type = "button"
 button.x = 120
 button.y = 120
@@ -125,7 +125,7 @@ f.close()
 
 ### Example 3: Creating a label
 
-```
+```smallbasic
 l.type = "label"
 l.x = 120
 l.y = 120
@@ -145,7 +145,7 @@ f.close()
 
 ### Example 4: Creating a link to an external website
 
-```
+```smallbasic
 l.type = "link"
 l.x = 120
 l.y = 120
@@ -167,7 +167,7 @@ f.close()
 
 ### Example 5: Creating a listbox
 
-```
+```smallbasic
 l.type = "listbox"
 l.x = 120
 l.y = 120
@@ -196,7 +196,7 @@ f.close()
 
 ### Example 6: Creating a dropdown listbox
 
-```
+```smallbasic
 l.type = "choice"
 l.x = 120
 l.y = 120
@@ -224,7 +224,7 @@ f.close()
 
 ### Example 7: Creating a text input field
 
-```
+```smallbasic
 t.type = "text"
 t.x = 120
 t.y = 120
@@ -266,7 +266,7 @@ end
 In this example a callback function will be used. If you want to use the doEvents result instead,
 have a look at example 2.
 
-```
+```smallbasic
 ' Create a simple button and save it as png
 ' If you have already an image for you button,
 ' this part is not necessary.
@@ -301,7 +301,7 @@ end
 
 ### Example 9: One more example
 
-```
+```smallbasic
 f.handleKeys = 0
 ' create some buttons
 button1.y = 120

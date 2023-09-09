@@ -31,7 +31,7 @@ SmallBASIC supports a number of escape codes for controlling the display. The co
 
 Instead of `\e` the command CHR(27) is useful for obtaining and printing the escape character.
 
-```Freebasic
+```smallbasic
 PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
 PRINT CHR(27) + "[3mThis is italic"  + CHR(27) + "[0m"
 PRINT CHR(27) + "[4mThis is underline"
@@ -47,7 +47,7 @@ The EscapeCode Unit makes it easier to use escape codes and to deal with differe
 
 Here an example on how to use the unit:
 
-```Freebasic
+```smallbasic
 ' SmallBASIC 12.25
 ' Example for using UNIT "EscapeCodes"
 ' For more information see: https://smallbasic.github.io/pages/escape.html

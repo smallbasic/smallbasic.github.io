@@ -7,7 +7,7 @@ Network programming
 
 Use the prefix "HTTP:" with the OPEN command to open a network HTTP connection. You can then use the file number with the TLOAD command to read the data.
 
-```
+```smallbasic
 print "DuckDuckGo Search"
 while 1
   print '<=== when cycle around need to isolate input prompt
@@ -43,7 +43,7 @@ wend
 
 Use the prefix "HTTP:" with the OPEN command to open an image file over the network. You can then pass the file number to the IMAGE command. This returns an system object which can then be used to manipulate images in the graphical version of SmallBASIC.
 
-```
+```smallbasic
 ' open some random image I found on the net
 open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1
 
@@ -85,7 +85,7 @@ pause true
 
 Use the prefix "SOCL:" with the OPEN command to open a network socket. You can then use the file number with other input/output commands to interact with the connection.
 
-```
+```smallbasic
 open "SOCL:192.168.178.76:8080" as #1
 print #1, "time"
 lineinput #1, s
@@ -95,7 +95,7 @@ close #1
 
 If you omit the host name in the SOCL: string passed to the OPEN command, SmallBASIC will listen for connections from another host/process.
 
-```
+```smallbasic
 rem Print a date string like '29 SEP 2018 09:31:49 ACST'
 func get_time
   local today = julian(date)
@@ -127,7 +127,7 @@ In addition to the graphical and command line versions of SmallBASIC, there is a
 
 You launch the web SmallBASIC in a folder containing one or more SmallBASIC programs, you then point your browser to a URL formulated from the listening port number and the SmallBASIC program name. For example:
 
-```
+```smallbasic
 $ ls cats.bas  # program cats.bas exists in the current folder
 $ sbasicw
 Starting SmallBASIC web server on port:8080
@@ -135,7 +135,7 @@ Starting SmallBASIC web server on port:8080
 
 In your Web Browser:
 
-```
+```smallbasic
 http://localhost:8080/cats.bas
 Output from cats.bas displayed in the web browser.
 

@@ -13,7 +13,7 @@ can be used to display all colors and there names.
 
 ## Using the unit
 
-```Freebasic
+```smallbasic
 Import crgb as c
 
 Color c.Black, c.Lime

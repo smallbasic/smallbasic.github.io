@@ -16,7 +16,7 @@ Returns an escape code to format a string.
 
 For more information about escape codes please see the article "Escape codes".
 
-~~~
+```smallbasic
 Color 14, 1
 ? Cat(1); "This is Bold text"; Cat(-1)
 ?
@@ -28,6 +28,5 @@ Color 14, 1
 ? Cat(1); Cat(2); "This is Bold & Underline text"; Cat(0) 
 ?
 ? Cat(2); Cat(3); "This is Underline & Reverse text (with default colors)"; Cat(0)
-~~~
-
+```
 

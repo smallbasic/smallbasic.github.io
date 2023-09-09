@@ -6,14 +6,14 @@ Reads a whole text line from file or console and stores it in the string `var`. 
 
 ### Example 1: Read from console
 
-```
+```smallbasic
 LINPUT S
 PRINT S
 ```
 
 ### Example 2: Read from file
 
-```
+```smallbasic
 ' create a file
 open "File.txt" for output as #1
 

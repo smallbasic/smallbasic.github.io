@@ -8,14 +8,14 @@ See AT for positioning the cursor in pixel.
 
 ### Example 1:
 
-```
+```smallbasic
 locate 5,7
 print "text at row 5 and column 7"
 ```
 
 ### Example 2: Print text always in center of window
 
-```
+```smallbasic
 ' Define functions to calculate lines and columns
 Def lines() = (Ymax + 1) \ Txth("x")   ' maximum lines in window
 Def columns() = (Xmax + 1) \ Txtw("x") ' maximum columns in window
@@ -67,7 +67,7 @@ Wend
 ```
 ### Example 3: Print ASCII table
 
-```
+```smallbasic
 ' LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
 '
 ' LOCATE row, column: sets the next print location on screen,

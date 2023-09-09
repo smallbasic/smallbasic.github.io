@@ -10,7 +10,7 @@ Deletes 'count' elements at position 'idx' of array 'a'.
 
 Example 1: Delete element at position 2
 
-```
+```smallbasic
 a = [1,2,3,4,5]
 print a
 delete a, 2
@@ -19,7 +19,7 @@ print a
 
 Example 2: Delete two elements starting at position 2
 
-```
+```smallbasic
 b = [1,2,3,4,5]
 print b
 delete b, 2, 2

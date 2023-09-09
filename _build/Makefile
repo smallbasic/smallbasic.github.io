@@ -18,7 +18,7 @@ pandoc = /usr/bin/pandoc
 # variables
 mkdir = @mkdir -p $(dir $@)
 out = _out
-pandoc_options=--from markdown-tex_math_dollars --to html5
+pandoc_options=--from markdown-tex_math_dollars --to html5 --syntax-definition=smallbasic.xml
 bas = $(patsubst layouts/%.html, $(out)/%.bas, $(wildcard layouts/*.html))
 pages = $(patsubst pages/%.markdown, $(out)/pages3/%.html, $(wildcard pages/*.markdown))
 posts = $(patsubst posts/%.markdown, $(out)/posts3/%.html, $(wildcard posts/*.markdown))

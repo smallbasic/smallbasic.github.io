@@ -6,7 +6,7 @@ Enables/Disables the pen/mouse/tap mechanism. See function `n = PEN(value)` for 
 
 ### Example
 
-```
+```smallbasic
 pen on
 
 print "Press left mouse button or tab screen. Press q to quit."
