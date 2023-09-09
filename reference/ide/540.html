@@ -1,9 +1,11 @@
 <h1 id="tab">TAB</h1>
 <blockquote>
-<p>TAB (n)</p>
+<p>s = TAB (n)</p>
 </blockquote>
-<p>Moves cursor position to the nth column.</p>
-<pre><code>
-print tab(50); &quot;Oh! TAB works with PRINT and moves x pixels not x character cells.&quot;
-pause 
-</code></pre>
+<p>Moves cursor position to the <code>n</code>th column. the return value <code>s</code> contains the escape sequence for moving the cursor.</p>
+<h3 id="example">Example</h3>
+<pre><code>print tab(1); &quot;1 tab&quot;
+print tab(2); &quot;2 tabs&quot;
+
+s = tab(3)
+print s; &quot;3 tabs&quot;</code></pre>

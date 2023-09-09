@@ -1,4 +1,4 @@
-SmallBASIC Language reference [23/08/2023]
+SmallBASIC Language reference [09/09/2023]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -1494,11 +1494,16 @@ Example 2: Play sound in background
 
 TAB (n)
 
-Moves cursor position to the nth column.
+Moves cursor position to the nth column. the return value s contains the
+escape sequence for moving the cursor.
 
+Example
 
-    print tab(50); "Oh! TAB works with PRINT and moves x pixels not x character cells."
-    pause 
+    print tab(1); "1 tab"
+    print tab(2); "2 tabs"
+
+    s = tab(3)
+    print s; "3 tabs"
 
 +========================================================================================+
 |                                    19. (Data) APPEND                                   |
@@ -2491,8 +2496,12 @@ TICKS
 Returns the number of milliseconds that have elapsed since start of the
 operating system.
 
+Example 1:
+
     t = ticks()
     print t
+
+Example 2: Game with constant frame rate
 
     ' ticks() can be used to let your game
     ' run with a constant frame rate
@@ -2527,13 +2536,55 @@ TIME
 
 Returns the current time as string “HH:MM:SS”.
 
+Example
+
+    print time()    ' Output: 16:10:17
+
 +========================================================================================+
 |                                    49. (Date) TIMEHMS                                  |
 +========================================================================================+
 
 TIMEHMS hms| timer, BYREF h, BYREF m, BYREF s
 
-Converts a time-value to hours, minutes and seconds integer values.
+Converts a time-value hms or timer to hours h, minutes m and seconds s
+integer values.
+
+Time-value can be:
+
+-   a string with the format “hh:mm:ss” as returned by TIME
+-   a number of seconds from midnight as returned by TIMER
+
+See also TIME and TIMER.
+
+Example 1: Time string returned by TIME()
+
+    t = time()
+
+    TIMEHMS  t, h, m, s
+
+    print "Hours  : "; h
+    print "Minutes: "; m
+    print "Seconds: "; s
+
+    ' Output:
+    ' Hours  : 16
+    ' Minutes: 15
+    ' Seconds: 22
+
+Example 2: Seconds returned by TIMER()
+
+    t = timer()
+
+    TIMEHMS  t, h, m, s
+
+    print "Hours  : "; h
+    print "Minutes: "; m
+    print "Seconds: "; s
+
+    ' Output:
+    ' Hours  : 16
+    ' Minutes: 15
+    ' Seconds: 22
 
 +========================================================================================+
 |                                     50. (Date) TIMER                                   |
@@ -2543,13 +2594,28 @@ TIMER
 
 Returns the number of seconds from midnight.
 
+Example
+
+    print timer()    ' Output 41595
+
 +========================================================================================+
 |                                   51. (Date) TIMESTAMP                                 |
 +========================================================================================+
 
 TIMESTAMP filename
 
-Returns the file last modified date and time.
+Returns the file filename last modified date and time as a string. The
+returned string s has the format “YYYY-MM-DD hh:mm AM|PM”.
+
+Example
+
+    ' Create a file
+    open "timetest.txt" for output as #1
+        print #1, 1
+    close #1
+
+    ' Get time stamp
+    print timestamp("timetest.txt")     ' Output: 2023-09-03 11:36 AM
 
 +========================================================================================+
 |                                    52. (Date) WEEKDAY                                  |
@@ -3446,88 +3512,71 @@ Example
 
 TLOAD file, BYREF var [, type]
 
-Loads a text file into array variable. Each text-line is an array
-element. type 0 = load into array (default), 1 = load into string.
+Loads a text file file into the array variable var. Each text-line is an
+array element. The optional variable type defines the type of var:
+
+-   0: load into array (default)
+-   1: load into string
+
+Example 1
 
     ' Create an array with some data
-    DIM A
     A << 1
     A << "test"
     A << 2
-
-    print A
+    print A                         ' Output: [1,test,2]
 
     ' Save the array. This will create the file myfile.txt in
     ' the same directory as your BASIC file
     tsave "myfile.txt", A
 
-    ' Create a second array for loading
-    dim B
+    ' Load the file
+    tload "myfile.txt", B
+    print B                         ' Output: [1,test,2,]
+
+Example 2: Reading json data
+
+    ' Create an array with some json data
+    A << {name: "Ben", age: 20}
+    A << {name: "Alice", age: 22}
+
+    ' Save the array. This will create the file myfile.txt in
+    ' the same directory as your BASIC file
+    tsave "myfile.txt", A
 
     ' Load the file
     tload "myfile.txt", B
 
-    print B
-
-Both these methods load a string/text file into an array.
-
-
-    ' TLOAD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-04
-    'with TLOAD you don't even have to dim your array to have it created
-    me="TLOAD.bas"
-    TLOAD me,ta    '<==== it's all done in one line!
-    'show me
-    for ln = 0 to ubound(ta)
-      ? ln;" ";ta(ln)
+    ' Convert B to map variable
+    for element in B
+        M << array(element)
     next
-    ?
-    ?"compare TLOAD above to INPUT method below to load array"
-    ?
-    'compare to this
-    dim ia()
-    open me for input as #1
-    while not eof(1)
-      input #1, aline
-      ia << aline
-    wend
-    close #1            '<=== this took 7 lines
-    'show me again
-    for ln = 0 to ubound(ia)
-      ? ln;" ";ia(ln)
-    next
-    pause
 
+    print M
+    print M[1].age
 
-    ' See also: Home -- Articles -- Welcome to SmallBASIC -- *Arrays and Matrices*
-    Option Base 1 ' Start arrays at 1 (not 0)
-    ' Save few text lines in demo file:
-    s1 = "xx_1 xx_2"
-    s2 = "yy_1      yy_2  yy_3"
-    s3 = "  zz_1   zz_2 "
-    s4 = "JEQ"
-    Open "demo.tmp" For Output As #1
-     Print #1, s1
-     Print #1, s2
-     Print #1, s3
-     Print #1, s4
-    Close #1
-    ' Load demo file into 1-dimension array:
-    Tload "demo.tmp", lines, 0
-    Const MAX_LINES = Ubound(lines)
-    Const BLANK = " "
-    ' Convert array to nested array and display it:
-    For i = 1 To MAX_LINES
-      
-      ' Split array into words, i.e. nested array; space, " ", is the delimiter:
-      Split Squeeze(lines(i)), BLANK, lines(i)
-      ?
-      ? "Line "; i; ":   "; lines(i)
-      ' Print word for each column:
-      For w = 1 To Len(lines(i))
-        ?  "Column "; w; ": "; lines(i)(w) ' (i)(w) is a nested array...
-      Next
-    Next
-    Pause
+    ' Output: 
+    ' [{"age":20,"name":"Ben"},{"age":22,"name":"Alice"},0]
+    ' 22
+
+Example 3: Read as string
+
+    ' Create an array with some data
+    A << 1
+    A << "test"
+    A << 2
+    print A                         ' Output: [1,test,2]
+
+    ' Save the array. This will create the file myfile.txt in
+    ' the same directory as your BASIC file
+    tsave "myfile.txt", A
+
+    ' Load the file
+    tload "myfile.txt", B, 1
+    print "->"; B ; "<-"            ' Output: ->1
+                                    '         test
+                                    '         2
+                                    '         <-
 
 +========================================================================================+
 |                                     79. (File) TSAVE                                   |
@@ -3535,31 +3584,43 @@ Both these methods load a string/text file into an array.
 
 TSAVE file, var
 
-Writes an array to a text file. Each array element is a text-line.
+Writes the array or string var to the text file file. Each array element
+is a text-line in the file. Every line of the string will be one line in
+the text file. Use \n in the string to separate lines.
 
--   file - A string expression that follows OS file naming conventions.
--   var - An array variable or a string variable. Expressions are not
-    allowed.
+See TLOAD for loading data from a text-file.
+
+Example 1: Save an array
 
     ' Create an array with some data
-    DIM A
     A << 1
     A << "test"
     A << 2
-
-    print A
+    print A                         ' Output: [1,test,2]
 
     ' Save the array. This will create the file myfile.txt in
     ' the same directory as your BASIC file
     tsave "myfile.txt", A
 
-    ' Create a second array for loading
-    dim B
+    ' Load the file
+    tload "myfile.txt", B
+    print B                         ' Output: [1,test,2,]
+
+Example 2: Save a string
+
+    ' Create a string with some data
+    A = "line 1\nline 2\nline 3"
+    print A                         ' Output: line 1
+                                    '         line 2
+                                    '         line 3 
+
+    ' Save the string. This will create the file myfile.txt in
+    ' the same directory as your BASIC file
+    tsave "myfile.txt", A
 
     ' Load the file
     tload "myfile.txt", B
-
-    print B
+    print B                         ' Output: [line 1,line 2,line 3]
 
 +========================================================================================+
 |                                     80. (File) WRITE                                   |
@@ -5408,7 +5469,13 @@ Example
 
 TEXTHEIGHT (s)
 
-Returns the text height of string s in pixels. See TXTH.
+Returns the text height of string s in pixel.
+
+TXTH is equivalent to TEXTHEIGHT.
+
+Example
+
+    print txtheight("Hello world")      ' Output: 19
 
 +========================================================================================+
 |                                 99. (Graphics) TEXTWIDTH                               |
@@ -5416,7 +5483,13 @@ Returns the text height of string s in pixels. See TXTH.
 
 TEXTWIDTH (s)
 
-Returns the text width of string s in pixels. See TXTW.
+Returns the text width of string s in pixel.
+
+TXTW is equivalent to TEXTWIDTH.
+
+Example
+
+    print textwidth("Hello world")      ' Output: 88
 
 +========================================================================================+
 |                                   100. (Graphics) TXTH                                 |
@@ -5424,7 +5497,13 @@ Returns the text width of string s in pixels. See TXTW.
 
 TXTH (s)
 
-Returns the text height of string s in pixels. See TEXTHEIGHT.
+Returns the text height of string s in pixel.
+
+TXTHEIGHT is equivalent to TXTH.
+
+Example
+
+    print txth("Hello world")      ' Output: 19
 
 +========================================================================================+
 |                                   101. (Graphics) TXTW                                 |
@@ -5432,7 +5511,13 @@ Returns the text height of string s in pixels. See TEXTHEIGHT.
 
 TXTW (s)
 
-Returns the text width of string s in pixels. See TEXTWIDTH.
+Returns the text width of string s in pixel.
+
+TEXTWIDTH is equivalent to TXTW.
+
+Example
+
+    print txtw("Hello world")      ' Output: 88
 
 +========================================================================================+
 |                                   102. (Graphics) VIEW                                 |
@@ -6069,7 +6154,7 @@ See SELECT for more information and examples.
 
 CATCH [var | expr]
 
-The CATCH statement is used to CATCH a run-time error. This is typically
+The CATCH statement is used to catch a run-time error. This is typically
 used with errors raised when calling a file system command that cannot
 be completed, for example attempting to open a non-existent file.
 
@@ -6079,7 +6164,20 @@ the raised error matches the (String) expression, the error will be
 caught. When using the expression mode, you can supply a succession of
 CATCH statements to handle various error messages separately.
 
-For more information and examples please see TRY.
+For more information see TRY.
+
+Example
+
+    try
+        ' DON'T use existing file for demo.
+        open "try demo.tmp" for input  as #1
+    catch err
+        print err
+        ' Some error handling could be implemented here
+        ' i.e: if(err = "...") then ...
+    end try
+
+    print "This point is reach, even if opening the file was not possible"
 
 +========================================================================================+
 |                                  117. (Language) CONST                                 |
@@ -6294,7 +6392,20 @@ Example 3: End of the program
 END TRY
 
 The END TRY statement marks the end of a TRY/CATCH block. For more
-information and examples please see TRY.
+information see TRY.
+
+Example
+
+    try
+        ' DON'T use existing file for demo.
+        open "try demo.tmp" for input  as #1
+    catch err
+        print err
+        ' Some error handling could be implemented here
+        ' i.e: if(err = "...") then ...
+    end try
+
+    print "This point is reach, even if opening the file was not possible"
 
 +========================================================================================+
 |                                  126. (Language) ENDIF                                 |
@@ -7883,11 +7994,20 @@ Example 5: Nested sub procedures
 
 THEN
 
-foo = 1: if foo==1 THEN: ? “one”: fi
+part of an if-statement. For more information see IF.
 
-THEN needed for one liner IF… THEN… [ELSE]… (no FI) (without :’s that
-create multi-line block on one line) THEN not needed for multi-line
-block.
+Example 1: Multi-line block
+
+    a = 1
+
+    if(a == 1) then
+        print "one"
+    endif
+
+Example 2: Single-line
+
+    a = 1
+    if(a == 1) then print "one"
 
 +========================================================================================+
 |                                  161. (Language) THROW                                 |
@@ -7895,47 +8015,22 @@ block.
 
 THROW [info [, ...]]
 
-The THROW command (previously known as RTE) is used to initiate a
-catch-able error. If there is no surrounding TRY/CATCH block, THROW can
-be used to abort the program.
+The THROW command is used to initiate a catch-able error. If there is no
+surrounding TRY/CATCH block, THROW can be used to abort the program.
+Optional a string info can be used to create an error message.
 
-Summary TRY/CATCH is used to trap errors allowing a program to recover
-without having to be restarted.
+Example 1: Abort a program
 
-    TRY
+    throw("Error")
 
-The TRY statement introduces a TRY/CATCH BLOCK.
-
-    CATCH [var | expr]
-
-The CATCH statement is used to CATCH an run-time error. This is
-typically used with errors raised when calling a file system command
-that cannot be completed, for example attempting to open a non-existent
-file.
-
-The CATCH statement has two modes. You can supply a variable argument to
-store the error string. Alternatively you can supply an expression. When
-the raised error matches the (String) expression, the error will be
-caught.
-
-When using the expression mode, you can supply a succession of CATCH
-statements to handle various error messages separately. END TRY
-
-The END TRY statement marks the end of a TRY/CATCH block.
-
-    THROW
-
-The THROW command (previously known as RTE) is used to initiate a
-catch-able error. If there is no surrounding TRY/CATCH block, THROW can
-be used to abort the program.
-
-Example
-
+Example 2: Initial a catch-able error
 
     try
-     open "com2000:" AS #1
+        a = 1
+        if(a == 1) then throw("a == 1")
+        if(a == 2) then throw("a == 2")
     catch err
-      ? "in catch: open failed";err
+        print "Error: "; err
     end try
 
 +========================================================================================+
@@ -7944,7 +8039,8 @@ Example
 
 FOR t = 1 TO 10
 
-Specifies the loop counter end in a FOR loop
+Specifies the loop counter end in a FOR loop. For more information see
+FOR.
 
 Example
 
@@ -7958,7 +8054,32 @@ Example
 
 TRUE
 
-TRUE
+Boolean TRUE.
+
+Example 1: Assign TRUE to a variable
+
+    a = true
+    b = false
+
+    print a  ' Output: 1
+    print b  ' Output: 0
+
+Example 2: Use in a while loop
+
+    IsRunning = true
+
+    while(IsRunning)
+        i++
+        print i    
+        if(i == 5) then IsRunning = false
+    wend
+
+    ' Output: 1 2 3 4 5
+
+Example 3: Use in a if statement
+
+    ButtonPressed = true   ' replace true with false
+    if(ButtonPressed) then print "Button was pressed"
 
 +========================================================================================+
 |                                   164. (Language) TRY                                  |
@@ -7966,24 +8087,26 @@ TRUE
 
 TRY
 
+The TRY statement introduces a TRY/CATCH block. A try/catch block
+consist of the following structure:
+
 TRY
 
-The TRY statement introduces a TRY/CATCH block.
+The TRY statement starts a block of commands which might create a
+run-time error.
 
 CATCH [var | expr]
 
-The CATCH statement is used to CATCH an run-time error. This is
-typically used with errors raised when calling a file system command
-that cannot be completed, for example attempting to open a non-existent
-file.
+The CATCH statement is used to catch a run-time error of one of the
+commands in the try-block. This is typically used with errors raised
+when calling a file system command that cannot be completed, for example
+attempting to open a non-existent file.
 
 The CATCH statement has two modes. You can supply a variable argument to
 store the error string. Alternatively you can supply an expression. When
 the raised error matches the (String) expression, the error will be
-caught.
-
-When using the expression mode, you can supply a succession of CATCH
-statements to handle various error messages separately.
+caught. When using the expression mode, you can supply a succession of
+CATCH statements to handle various error messages separately.
 
 END TRY
 
@@ -7995,15 +8118,39 @@ Example 1: Opening a non-existing file for reading
         ' DON'T use existing file for demo.
         open "try demo.tmp" for input  as #1
     catch err
-        print err; " "
+        print err
         ' Some error handling could be implemented here
         ' i.e: if(err = "...") then ...
     end try
 
     print "This point is reach, even if opening the file was not possible"
 
-Example 2: Advanced error handling for opening files
+Example 2: Open COM-Port
 
+    try
+      open "com2000:" AS #1
+    catch err
+      print "open failed: ";err
+    end try
+
+Example 3: Using error expressions
+
+    try
+        ' DON'T use existing file for demo.
+        open "demo.tmp" for input  as #1            ' Replace "demo.tmp" by "?.tmp"
+    catch "FS(2): NO SUCH FILE OR DIRECTORY"
+        print "File not found"
+        ' Some error handling could be implemented here    
+        goto aftertrycatch
+    catch "FS(22): INVALID ARGUMENT"
+        print "Filename not allowed"
+        ' Some error handling could be implemented here    
+    end try
+
+    label aftertrycatch
+    print "end of program"
+
+Example 4: Advanced error handling for opening files
 
     ' See also: Home -- Articles -- TRY / CATCH
     Const FILE_NAME = "try demo.tmp" ' -- DON'T use existing file for demo.
@@ -8066,14 +8213,6 @@ Example 2: Advanced error handling for opening files
       ? lines;
       Close #fn
     Fi
-
-Example 3: Open COM-Port
-
-    try
-      open "com2000:" AS #1
-    catch err
-      ? "in catch: open failed";err
-    end try
 
 +========================================================================================+
 |                                  165. (Language) UNTIL                                 |
@@ -8486,13 +8625,15 @@ Inverse tangent (x,y).
 
 ATANH (x)
 
-Inverse hyperbolic tangent.
+Inverse hyperbolic tangent of x.
+
+Example
 
     a = tanh(0.5)
-    print a
+    print a             ' Output: 0.46211715726001
 
     b = atanh(a)
-    print b
+    print b             ' Output: 0.5
 
 +========================================================================================+
 |                                     189. (Math) ATN                                    |
@@ -10398,13 +10539,50 @@ Example
 
 TAN (x)
 
+Tangent of x. x is in radian.
+
+See also COS, SIN, TAN and ATAN.
+
+Example 1
+
     a = tan(0.5)
-    print a
+    print a             ' Output: 0.54630248984379
 
     b = atan(a)
-    print b
+    print b             ' Output: 0.5
 
-see COS, SIN, TAN and ATAN
+Example 2
+
+    ' Short TAN use.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
+    ' in the following example it is important to keep in mind
+    ' x,y when used in TAN are relative positions to x1,y1 and not
+    ' absolute screen coordinates
+    ' you can move x1,y1 anywhere on screen!!!!
+
+    x1 = 250
+    y1 = 150
+    angle = 60  ' degree
+
+    ' highlight start point with a circle in yellow with radius 2
+    circle x1, y1, 2, 1, 14                             
+
+    ' circle x,y,r,aspect,c   'aspect 1 is circle, !1=ellipse
+    ' say you want to make a line 60 degrees from x1,y1  and
+    ' you need the x2 100 greater than x1 or x2 = x1+100
+    ' since we know TAN=y/x (though you need a diagram to see it)
+    ' then TAN(RAD(60)) = y/100
+    ' then 100*TAN(rad(60) = y   by algebraic mult 100 both sides
+    ' so  y2=y1+100*TAN(rad(60)
+
+    line x1, y1, x1 + 100, y1 + 100*TAN(RAD(angle))     ' <== HERE IS TAN
+
+    ' so here we used TAN to calculate the y change in height
+    ' from y1 to create a 60 angle from point x1,y1 and x2,y2 AND
+    ' AND make it so x2=100 more than x1
+    ' check draw arc at x1,y1 with 100 radius
+    ' for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect
+
+    arc x1, y1, 100, 0, RAD(angle), 1, 14               ' 14 = color yellow
 
 Trigonometry lesson
 
@@ -10459,8 +10637,8 @@ angle it is from the origin!
 
 It is the ATAN(y/x) We are almost ready now to play pin the tail on the
 donkey! Hang in there… The A before the TAN, the A before the SIN, COS…
-means ARC ATAN is pronounced ARC TANGENT ACOS is pronounced ARC COSINE
-ASIN is pronounced ARC SIN
+means ARC ATAN is pronounced ARC TANGENT; ACOS is pronounced ARC COSINE;
+ASIN is pronounced ARC SIN.
 
 In each the ARC means The Angle whose Trig Ratio is: (ratio of two
 sides) so ATAN is the Angle whose TAN ratio is (opp leg lentgh/adj leg
@@ -10470,59 +10648,6 @@ inverse” If TAN( an angle) = ratio then ATAN( ratio=opp/adj ) = an angle
 (in radians) DEG(ATAN(opp/adj) = an angle in degrees You can think or
 the A in front of TAN or COS or SIN as give me “An Angle” without the A
 you get side ratios.
-
-A donkey is mounted on the SmallBASIC screen so that it’s tail should be
-pinned at 0,0 …. see ATAN for “pin the tail.bas”
-
-TAN used in a short code example:
-
-    ' TAN use.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
-    for degrees = 0 to 360 step 15
-      print "For angle (degrees) = ";
-      print usg "###";degrees;
-      print " (or ";
-      print usg "#.00";rad(degrees);
-      print " radians ) the TANgent is ";
-      print usg "#####.0000";tan(rad(degrees))  '<== typical to convert degrees to radians (with RAD) before TAN call
-    next
-    print
-    print "As the TANgent approaches 90 or 270 degrees the TANgent becomes 1/0 which is undefined."
-    pause
-
-TAN use again in a few lines of code but I have to try and explain what
-is going on or it would be void of meaning.
-
-    'Short TAN use.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
-    'in the following example it is important to keep in mind
-    'x,y when used in TAN are relative positions to x1,y1 and not
-    'absolute screen coordinates
-    'you can move x1,y1 anywhere on screen!!!!
-
-    'x,y of point 1 we will mark with yellow circle
-    x1=250
-    y1=150
-
-    circle x1,y1,2,1,14 'highlight start point in yellow radius 2
-
-    'circle x,y,r,aspect,c   'aspect 1 is circle, !1=ellipse
-    'say you want to make a line 60 degrees from x1,y1  and
-    'you need the x2 100 greater than x1 or x2 = x1+100
-    'since we know TAN=y/x (though you need a diagram to see it)
-    'then TAN(RAD(60)) = y/100
-    'then 100*TAN(rad(60) = y   by algebraic mult 100 both sides
-    'so  y2=y1+100*TAN(rad(60)
-
-    line x1,y1,x1+100,y1+100*TAN(RAD(60))  '<== HERE IS TAN
-
-    'so here we used TAN to calculate the y change in height
-    'from y1 to create a 60 angle from point x1,y1 and x2,y2 AND
-    'AND make it so x2=100 more than x1
-    'check draw arc at x1,y1 with 100 radius
-    'for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect
-
-    arc x1,y1,100,0,2*pi/6,1,14 '14=color yellow
-
-    pause
 
 +========================================================================================+
 |                                     249. (Math) TANH                                   |
@@ -11503,11 +11628,21 @@ Example
 
 TRANSLATE (source, what [, with])
 
-Translates all occurrences of the string ‘what’ found in source with the
-string ‘with’ and returns the new string.
+Translates all occurrences of the string what found in string source
+with the string with and returns the new string. If with is not given,
+all occurrences of what will be removed.
 
-    ? Translate("Hello world", "o", "O")
-    ' displays: HellO wOrld
+Example 1: Replace
+
+    s1 = "ab_cd_ef"
+    s2 = translate(s1, "_", "!")
+    print s1 + " -> "; s2          ' Output: ab_cd_ef -> ab!cd!ef
+
+Example 2: Remove
+
+    s1 = "ab_cd_ef"
+    s2 = translate(s1, "cd")
+    print s1 + " -> "; s2          ' Output: ab_cd_ef -> ab__ef
 
 +========================================================================================+
 |                                    285. (String) TRIM                                  |
@@ -11515,7 +11650,18 @@ string ‘with’ and returns the new string.
 
 TRIM(s)
 
-Removes all leading and trailing white-space.
+Removes all leading and trailing white-space from string s.
+
+Example
+
+    s = "   test   "
+    t = trim(s)
+    print "->" + s + "<-"
+    print "->" + t + "<-"
+
+    ' Output:
+    ' ->    test    <-
+    ' ->test<-
 
 +========================================================================================+
 |                                   286. (String) UCASE                                  |
@@ -11968,12 +12114,15 @@ General suggestions using Environment Variables
 
 EXEC file
 
-Transfers control to another operating system program. Control returns
-to the .bas immediately and the system command is executed parallel and
-independent to SmallBASIC. File name is case sensitive in Linux.
+Transfers control to the program file. Control returns to the calling
+bas-file immediately and the program is executed parallel and
+independent to SmallBASIC. File name is case sensitive in Linux. Enclose
+the string file with quotation marks to start a program with parameters.
 
 See run for starting an external program and wait until program finished
 execution.
+
+Example 1
 
                     ' Select your editor for testing
     exec "kate"     ' Editor KDE
@@ -11981,6 +12130,11 @@ execution.
     'exec "Notepad" ' Editor Windows
 
     print "This line will be printed immediately without delay"
+
+Example 2: Execute with parameters
+
+    ' Call shutdown in Linux
+    exec(enclose("shutdown -h now"))
 
 +========================================================================================+
 |                                   296. (System) EXPORT                                 |
@@ -12449,7 +12603,22 @@ Display internal execution stack.
 
 TROFF
 
-See TRON.
+Turns off the trace mechanism. When trace mechanism is ON, SmallBASIC
+displays each line number as the program is executed.
+
+See TRON to switch on the trace mechanism.
+
+Example
+
+    tron
+    for ii = 1 to 5
+    next
+
+    troff
+    for ii = 1 to 5
+    next
+
+    <2><3><3><3><3><3><5>
 
 +========================================================================================+
 |                                    313. (System) TRON                                  |
@@ -12457,8 +12626,18 @@ See TRON.
 
 TRON
 
-When trace mechanism is ON, displays each line number as the program is
-executed.
+Turns on the trace mechanism. When trace mechanism is ON, SmallBASIC
+displays each line number as the program is executed.
+
+See TROFF to switch off trace mechanism.
+
+Example
+
+    tron
+    for ii = 1 to 5
+    next
+
+    ' Output: <2><3><3><3><3><3>
 
 +========================================================================================+
 |                                    314. (System) UNIT                                  |

@@ -2,22 +2,14 @@
 <blockquote>
 <p>THROW [info [, …]]</p>
 </blockquote>
-<p>The THROW command (previously known as RTE) is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program.</p>
-<p><em>Summary</em> TRY/CATCH is used to trap errors allowing a program to recover without having to be restarted.</p>
-<pre><code>TRY</code></pre>
-<p>The TRY statement introduces a TRY/CATCH BLOCK.</p>
-<pre><code>CATCH [var | expr]</code></pre>
-<p>The CATCH statement is used to CATCH an run-time error. This is typically used with errors raised when calling a file system command that cannot be completed, for example attempting to open a non-existent file.</p>
-<p>The CATCH statement has two modes. You can supply a variable argument to store the error string. Alternatively you can supply an expression. When the raised error matches the (String) expression, the error will be caught.</p>
-<p>When using the expression mode, you can supply a succession of CATCH statements to handle various error messages separately. END TRY</p>
-<p>The END TRY statement marks the end of a TRY/CATCH block.</p>
-<pre><code>THROW</code></pre>
-<p>The THROW command (previously known as RTE) is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program.</p>
-<p>Example</p>
-<pre><code>
-try
- open &quot;com2000:&quot; AS #1
+<p>The THROW command is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program. Optional a string <code>info</code> can be used to create an error message.</p>
+<h3 id="example-1-abort-a-program">Example 1: Abort a program</h3>
+<pre><code>throw(&quot;Error&quot;)</code></pre>
+<h3 id="example-2-initial-a-catch-able-error">Example 2: Initial a catch-able error</h3>
+<pre><code>try
+    a = 1
+    if(a == 1) then throw(&quot;a == 1&quot;)
+    if(a == 2) then throw(&quot;a == 2&quot;)
 catch err
-  ? &quot;in catch: open failed&quot;;err
-end try
-</code></pre>
+    print &quot;Error: &quot;; err
+end try</code></pre>

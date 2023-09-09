@@ -1,12 +1,16 @@
 <h1 id="exec">EXEC</h1>
 <blockquote>
-<p>EXEC file</p>
+<p>EXEC (file)</p>
 </blockquote>
-<p>Transfers control to another operating system program. Control returns to the .bas immediately and the system command is executed parallel and independent to SmallBASIC. File name is case sensitive in Linux.</p>
+<p>Transfers control to the program <code>file</code>. Control returns to the calling bas-file immediately and the program is executed parallel and independent to SmallBASIC. File name is case sensitive in Linux. Enclose the string <code>file</code> with quotation marks to start a program with parameters.</p>
 <p>See <code>run</code> for starting an external program and wait until program finished execution.</p>
+<h3 id="example-1">Example 1</h3>
 <pre><code>                &#39; Select your editor for testing
 exec &quot;kate&quot;     &#39; Editor KDE
 &#39;exec &quot;gedit&quot;   &#39; Editor Gnome
 &#39;exec &quot;Notepad&quot; &#39; Editor Windows
 
 print &quot;This line will be printed immediately without delay&quot;</code></pre>
+<h3 id="example-2-execute-with-parameters">Example 2: Execute with parameters</h3>
+<pre><code>&#39; Call shutdown in Linux
+exec(enclose(&quot;shutdown -h now&quot;))</code></pre>

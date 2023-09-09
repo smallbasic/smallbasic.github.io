@@ -2,27 +2,33 @@
 <blockquote>
 <p>TSAVE file, var</p>
 </blockquote>
-<p>Writes an array to a text file. Each array element is a text-line.</p>
-<ul>
-<li>file - A string expression that follows OS file naming conventions.</li>
-<li>var - An array variable or a string variable. Expressions are not allowed.</li>
-</ul>
+<p>Writes the array or string <code>var</code> to the text file <code>file</code>. Each array element is a text-line in the file. Every line of the string will be one line in the text file. Use <code>\n</code> in the string to separate lines.</p>
+<p>See TLOAD for loading data from a text-file.</p>
+<h3 id="example-1-save-an-array">Example 1: Save an array</h3>
 <pre><code>&#39; Create an array with some data
-DIM A
 A &lt;&lt; 1
 A &lt;&lt; &quot;test&quot;
 A &lt;&lt; 2
-
-print A
+print A                         &#39; Output: [1,test,2]
 
 &#39; Save the array. This will create the file myfile.txt in
 &#39; the same directory as your BASIC file
 tsave &quot;myfile.txt&quot;, A
 
-&#39; Create a second array for loading
-dim B
+&#39; Load the file
+tload &quot;myfile.txt&quot;, B
+print B                         &#39; Output: [1,test,2,]</code></pre>
+<h3 id="example-2-save-a-string">Example 2: Save a string</h3>
+<pre><code>&#39; Create a string with some data
+A = &quot;line 1\nline 2\nline 3&quot;
+print A                         &#39; Output: line 1
+                                &#39;         line 2
+                                &#39;         line 3 
+
+&#39; Save the string. This will create the file myfile.txt in
+&#39; the same directory as your BASIC file
+tsave &quot;myfile.txt&quot;, A
 
 &#39; Load the file
 tload &quot;myfile.txt&quot;, B
-
-print B</code></pre>
+print B                         &#39; Output: [line 1,line 2,line 3]</code></pre>

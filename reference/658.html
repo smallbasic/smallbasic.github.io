@@ -73,8 +73,16 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>foo = 1: if foo==1 THEN: ? “one”: fi</p>
-<p>THEN needed for one liner IF… THEN… [ELSE]… (no FI) (without :’s that create multi-line block on one line) THEN not needed for multi-line block.</p>
+<p>part of an if-statement. For more information see IF.</p>
+<h3 id="example-1-multi-line-block">Example 1: Multi-line block</h3>
+<pre><code>a = 1
+
+if(a == 1) then
+    print &quot;one&quot;
+endif</code></pre>
+<h3 id="example-2-single-line">Example 2: Single-line</h3>
+<pre><code>a = 1
+if(a == 1) then print &quot;one&quot;</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using THEN</div>
     <div class="linklist">
@@ -198,7 +206,7 @@ THEN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Fri, 1 Sep 2023 15:37:39 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -1,5 +1,13 @@
 <h1 id="timestamp">TIMESTAMP</h1>
 <blockquote>
-<p>TIMESTAMP filename</p>
+<p>s = TIMESTAMP (filename)</p>
 </blockquote>
-<p>Returns the file last modified date and time.</p>
+<p>Returns the file <code>filename</code> last modified date and time as a string. The returned string <code>s</code> has the format “YYYY-MM-DD hh:mm AM|PM”.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; Create a file
+open &quot;timetest.txt&quot; for output as #1
+    print #1, 1
+close #1
+
+&#39; Get time stamp
+print timestamp(&quot;timetest.txt&quot;)     &#39; Output: 2023-09-03 11:36 AM</code></pre>

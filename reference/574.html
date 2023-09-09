@@ -73,7 +73,39 @@
       <a href="/pages/date.html">Date</a>
     </p>
   </div>
-<p>Converts a time-value to hours, minutes and seconds integer values.</p>
+<p>Converts a time-value <code>hms</code> or <code>timer</code> to hours <code>h</code>, minutes <code>m</code> and seconds <code>s</code> integer values.</p>
+<p>Time-value can be:</p>
+<ul>
+<li>a string with the format “hh:mm:ss” as returned by TIME</li>
+<li>a number of seconds from midnight as returned by TIMER</li>
+</ul>
+<p>See also TIME and TIMER.</p>
+<h3 id="example-1-time-string-returned-by-time">Example 1: Time string returned by TIME()</h3>
+<pre><code>t = time()
+
+TIMEHMS  t, h, m, s
+
+print &quot;Hours  : &quot;; h
+print &quot;Minutes: &quot;; m
+print &quot;Seconds: &quot;; s
+
+&#39; Output:
+&#39; Hours  : 16
+&#39; Minutes: 15
+&#39; Seconds: 22</code></pre>
+<h3 id="example-2-seconds-returned-by-timer">Example 2: Seconds returned by TIMER()</h3>
+<pre><code>t = timer()
+
+TIMEHMS  t, h, m, s
+
+print &quot;Hours  : &quot;; h
+print &quot;Minutes: &quot;; m
+print &quot;Seconds: &quot;; s
+
+&#39; Output:
+&#39; Hours  : 16
+&#39; Minutes: 15
+&#39; Seconds: 22</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using TIMEHMS</div>
     <div class="linklist">
@@ -116,7 +148,7 @@ TIMEHMS by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Fri, 1 Sep 2023 16:28:12 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>TIMESTAMP</h1>
-  <blockquote>TIMESTAMP filename</blockquote>
+  <blockquote>s = TIMESTAMP (filename)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,15 @@
       <a href="/pages/date.html">Date</a>
     </p>
   </div>
-<p>Returns the file last modified date and time.</p>
+<p>Returns the file <code>filename</code> last modified date and time as a string. The returned string <code>s</code> has the format “YYYY-MM-DD hh:mm AM|PM”.</p>
+<h3 id="example">Example</h3>
+<pre><code>&#39; Create a file
+open &quot;timetest.txt&quot; for output as #1
+    print #1, 1
+close #1
+
+&#39; Get time stamp
+print timestamp(&quot;timetest.txt&quot;)     &#39; Output: 2023-09-03 11:36 AM</code></pre>
   <div class="lavenderBox">
     <div class="header">Date</div>
     <div class="linklist">
@@ -108,7 +116,7 @@ TIMESTAMP by submitting a <a href="https://github.com/smallbasic/smallbasic.gith
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Mon, 4 Sep 2023 11:41:36 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

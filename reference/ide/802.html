@@ -1,5 +1,14 @@
 <h1 id="trim">TRIM</h1>
 <blockquote>
-<p>TRIM(s)</p>
+<p>r = TRIM(s)</p>
 </blockquote>
-<p>Removes all leading and trailing white-space.</p>
+<p>Removes all leading and trailing white-space from string <code>s</code>.</p>
+<h3 id="example">Example</h3>
+<pre><code>s = &quot;   test   &quot;
+t = trim(s)
+print &quot;-&gt;&quot; + s + &quot;&lt;-&quot;
+print &quot;-&gt;&quot; + t + &quot;&lt;-&quot;
+
+&#39; Output:
+&#39; -&gt;    test    &lt;-
+&#39; -&gt;test&lt;-</code></pre>

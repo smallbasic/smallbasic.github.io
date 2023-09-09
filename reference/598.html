@@ -73,85 +73,65 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.</p>
+<p>Loads a text file <code>file</code> into the array variable <code>var</code>. Each text-line is an array element. The optional variable <code>type</code> defines the type of <code>var</code>:</p>
+<ul>
+<li><code>0</code>: load into array (default)</li>
+<li><code>1</code>: load into string</li>
+</ul>
+<h3 id="example-1">Example 1</h3>
 <pre><code>&#39; Create an array with some data
-DIM A
 A &lt;&lt; 1
 A &lt;&lt; &quot;test&quot;
 A &lt;&lt; 2
-
-print A
+print A                         &#39; Output: [1,test,2]
 
 &#39; Save the array. This will create the file myfile.txt in
 &#39; the same directory as your BASIC file
 tsave &quot;myfile.txt&quot;, A
 
-&#39; Create a second array for loading
-dim B
+&#39; Load the file
+tload &quot;myfile.txt&quot;, B
+print B                         &#39; Output: [1,test,2,]</code></pre>
+<h3 id="example-2-reading-json-data">Example 2: Reading json data</h3>
+<pre><code>&#39; Create an array with some json data
+A &lt;&lt; {name: &quot;Ben&quot;, age: 20}
+A &lt;&lt; {name: &quot;Alice&quot;, age: 22}
+
+&#39; Save the array. This will create the file myfile.txt in
+&#39; the same directory as your BASIC file
+tsave &quot;myfile.txt&quot;, A
 
 &#39; Load the file
 tload &quot;myfile.txt&quot;, B
 
-print B</code></pre>
-<p>Both these methods load a string/text file into an array.</p>
-<pre><code>
-&#39; TLOAD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-04
-&#39;with TLOAD you don&#39;t even have to dim your array to have it created
-me=&quot;TLOAD.bas&quot;
-TLOAD me,ta    &#39;&lt;==== it&#39;s all done in one line!
-&#39;show me
-for ln = 0 to ubound(ta)
-  ? ln;&quot; &quot;;ta(ln)
+&#39; Convert B to map variable
+for element in B
+    M &lt;&lt; array(element)
 next
-?
-?&quot;compare TLOAD above to INPUT method below to load array&quot;
-?
-&#39;compare to this
-dim ia()
-open me for input as #1
-while not eof(1)
-  input #1, aline
-  ia &lt;&lt; aline
-wend
-close #1            &#39;&lt;=== this took 7 lines
-&#39;show me again
-for ln = 0 to ubound(ia)
-  ? ln;&quot; &quot;;ia(ln)
-next
-pause
-</code></pre>
-<pre><code>
-&#39; See also: Home -- Articles -- Welcome to SmallBASIC -- *Arrays and Matrices*
-Option Base 1 &#39; Start arrays at 1 (not 0)
-&#39; Save few text lines in demo file:
-s1 = &quot;xx_1 xx_2&quot;
-s2 = &quot;yy_1      yy_2  yy_3&quot;
-s3 = &quot;  zz_1   zz_2 &quot;
-s4 = &quot;JEQ&quot;
-Open &quot;demo.tmp&quot; For Output As #1
- Print #1, s1
- Print #1, s2
- Print #1, s3
- Print #1, s4
-Close #1
-&#39; Load demo file into 1-dimension array:
-Tload &quot;demo.tmp&quot;, lines, 0
-Const MAX_LINES = Ubound(lines)
-Const BLANK = &quot; &quot;
-&#39; Convert array to nested array and display it:
-For i = 1 To MAX_LINES
-  
-  &#39; Split array into words, i.e. nested array; space, &quot; &quot;, is the delimiter:
-  Split Squeeze(lines(i)), BLANK, lines(i)
-  ?
-  ? &quot;Line &quot;; i; &quot;:   &quot;; lines(i)
-  &#39; Print word for each column:
-  For w = 1 To Len(lines(i))
-    ?  &quot;Column &quot;; w; &quot;: &quot;; lines(i)(w) &#39; (i)(w) is a nested array...
-  Next
-Next
-Pause
-</code></pre>
+
+print M
+print M[1].age
+
+&#39; Output: 
+&#39; [{&quot;age&quot;:20,&quot;name&quot;:&quot;Ben&quot;},{&quot;age&quot;:22,&quot;name&quot;:&quot;Alice&quot;},0]
+&#39; 22</code></pre>
+<h3 id="example-3-read-as-string">Example 3: Read as string</h3>
+<pre><code>&#39; Create an array with some data
+A &lt;&lt; 1
+A &lt;&lt; &quot;test&quot;
+A &lt;&lt; 2
+print A                         &#39; Output: [1,test,2]
+
+&#39; Save the array. This will create the file myfile.txt in
+&#39; the same directory as your BASIC file
+tsave &quot;myfile.txt&quot;, A
+
+&#39; Load the file
+tload &quot;myfile.txt&quot;, B, 1
+print &quot;-&gt;&quot;; B ; &quot;&lt;-&quot;            &#39; Output: -&gt;1
+                                &#39;         test
+                                &#39;         2
+                                &#39;         &lt;-</code></pre>
   <div class="lavenderBox">
     <div class="header">Code samples using TLOAD</div>
     <div class="linklist">
@@ -222,7 +202,7 @@ TLOAD by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Fri, 14 Oct 2022 15:28:24 +0200
+      This page was last edited on Mon, 4 Sep 2023 15:42:59 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
