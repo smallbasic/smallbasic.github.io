@@ -17,9 +17,8 @@
 - [Android](/pages/android.html)
 - [SDL](/pages/sdl.html)
 - [FLTK](/pages/fltk.html)
-- [Visual Studio Code, Atom and Geany](/pages/language_support.html)
+- [Setup external editors](/pages/language_support.html)
 - [Distribute your program](/pages/distributiontool.html)
-
 
 ## Plugins
 

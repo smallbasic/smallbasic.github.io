@@ -1,13 +1,17 @@
 # TICKS
 
-> TICKS
+> n = TICKS
 
 Returns the number of milliseconds that have elapsed since start of the operating system.
+
+### Example 1:
 
 ```
 t = ticks()
 print t
 ```
+
+### Example 2: Game with constant frame rate
 
 ```
 ' ticks() can be used to let your game

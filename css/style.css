@@ -75,12 +75,13 @@ pre {
 }
 code {
   background: #F1F1F1;
+  font-size: 125%;
 }
 .code,kbd,pre,samp {
   font-family: monospace, monospace;
   margin: 0 .2rem;
   padding: 0 .2rem;
-  font-size: 90%;
+  font-size: 100%;
   background: #F1F1F1;
   border: 1px solid #E1E1E1;
   border-radius: 4px;

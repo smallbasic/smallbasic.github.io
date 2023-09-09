@@ -1,8 +1,8 @@
 # TO
 
-> FOR t = 1 TO 10
+> FOR t = var1 TO var2
 
-Specifies the loop counter end in a FOR loop
+Specifies the loop counter end in a FOR loop. For more information see FOR.
 
 ### Example
 

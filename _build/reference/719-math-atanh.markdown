@@ -1,15 +1,17 @@
 # ATANH
 
-> ATANH (x)
+> f = ATANH (x)
 
-Inverse hyperbolic tangent.
+Inverse hyperbolic tangent of `x`.
+
+### Example
 
 ```
 a = tanh(0.5)
-print a
+print a             ' Output: 0.46211715726001
 
 b = atanh(a)
-print b
+print b             ' Output: 0.5
 ```
 
 

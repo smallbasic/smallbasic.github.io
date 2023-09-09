@@ -8,10 +8,7 @@
 ## External articles
 
 - [Wikipedia entry](http://en.wikipedia.org/wiki/SmallBASIC){target=_blank}
-- [PalmPilot Software Development - Alternatives to C](http://goanna.cs.rmit.edu.au/~winikoff/palm/dev.html){target=_blank}
 - [David A. Wheeler's Suggestions for PalmOS PDA Users](http://www.dwheeler.com/palm-suggest.html){target=_blank}
-- [PalmOS-hosted programming languages](http://www.ibm.com/developerworks/linux/library/l-palmos2.html?dwzone=linux#h7879){target=_blank}
-- [PC Advisor](http://www.pcadvisor.co.uk/how-to/software/3307979/how-program-software/){target=_blank}
 - [Learn X in Y minutes](https://learnxinyminutes.com/docs/smallbasic/){target=_blank}
 
 ## External documentation
@@ -20,9 +17,7 @@
 
 ## What about the other "SmallBASIC?"
 
-We noticed there's another version of [SmallBASIC](http://smallbasic.com/faq.aspx){target=_blank}. Other than the naming coincidence, our version of SmallBASIC doesn't have anything to do with this other version.
- 
-- [Small Basic to SmallBASIC translator - experimental](http://sb-translator.appspot.com/){target=_blank}
+We noticed there's another version of [SmallBASIC](https://smallbasic-publicwebsite.azurewebsites.net){target=_blank}. Other than the naming coincidence, our version of SmallBASIC doesn't have anything to do with this other version.
 
 ## ECMA-55
 

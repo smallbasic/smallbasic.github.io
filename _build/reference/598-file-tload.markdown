@@ -2,95 +2,73 @@
 
 > TLOAD file, BYREF var [, type]
 
-Loads a text file into array variable. Each text-line is an array element. type 0 = load into array (default), 1 = load into string.
+Loads a text file `file` into the array variable `var`. Each text-line is an array element. The optional variable `type` defines the type of `var`: 
+
+- `0`: load into array (default)
+- `1`: load into string
+
+### Example 1
 
 ```
 ' Create an array with some data
-DIM A
 A << 1
 A << "test"
 A << 2
-
-print A
+print A                         ' Output: [1,test,2]
 
 ' Save the array. This will create the file myfile.txt in
 ' the same directory as your BASIC file
 tsave "myfile.txt", A
 
-' Create a second array for loading
-dim B
+' Load the file
+tload "myfile.txt", B
+print B                         ' Output: [1,test,2,]
+```
+
+### Example 2: Reading json data
+
+```
+' Create an array with some json data
+A << {name: "Ben", age: 20}
+A << {name: "Alice", age: 22}
+
+' Save the array. This will create the file myfile.txt in
+' the same directory as your BASIC file
+tsave "myfile.txt", A
 
 ' Load the file
 tload "myfile.txt", B
 
-print B
+' Convert B to map variable
+for element in B
+    M << array(element)
+next
+
+print M
+print M[1].age
+
+' Output: 
+' [{"age":20,"name":"Ben"},{"age":22,"name":"Alice"},0]
+' 22
 ```
 
-Both these methods load a string/text file into an array.
+### Example 3: Read as string
 
-~~~
+```
+' Create an array with some data
+A << 1
+A << "test"
+A << 2
+print A                         ' Output: [1,test,2]
 
-' TLOAD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-04
-'with TLOAD you don't even have to dim your array to have it created
-me="TLOAD.bas"
-TLOAD me,ta    '<==== it's all done in one line!
-'show me
-for ln = 0 to ubound(ta)
-  ? ln;" ";ta(ln)
-next
-?
-?"compare TLOAD above to INPUT method below to load array"
-?
-'compare to this
-dim ia()
-open me for input as #1
-while not eof(1)
-  input #1, aline
-  ia << aline
-wend
-close #1            '<=== this took 7 lines
-'show me again
-for ln = 0 to ubound(ia)
-  ? ln;" ";ia(ln)
-next
-pause
+' Save the array. This will create the file myfile.txt in
+' the same directory as your BASIC file
+tsave "myfile.txt", A
 
-~~~
-
-
-~~~
-
-' See also: Home -- Articles -- Welcome to SmallBASIC -- *Arrays and Matrices*
-Option Base 1 ' Start arrays at 1 (not 0)
-' Save few text lines in demo file:
-s1 = "xx_1 xx_2"
-s2 = "yy_1      yy_2  yy_3"
-s3 = "  zz_1   zz_2 "
-s4 = "JEQ"
-Open "demo.tmp" For Output As #1
- Print #1, s1
- Print #1, s2
- Print #1, s3
- Print #1, s4
-Close #1
-' Load demo file into 1-dimension array:
-Tload "demo.tmp", lines, 0
-Const MAX_LINES = Ubound(lines)
-Const BLANK = " "
-' Convert array to nested array and display it:
-For i = 1 To MAX_LINES
-  
-  ' Split array into words, i.e. nested array; space, " ", is the delimiter:
-  Split Squeeze(lines(i)), BLANK, lines(i)
-  ?
-  ? "Line "; i; ":   "; lines(i)
-  ' Print word for each column:
-  For w = 1 To Len(lines(i))
-    ?  "Column "; w; ": "; lines(i)(w) ' (i)(w) is a nested array...
-  Next
-Next
-Pause
-
-~~~
-
-
+' Load the file
+tload "myfile.txt", B, 1
+print "->"; B ; "<-"            ' Output: ->1
+                                '         test
+                                '         2
+                                '         <-
+```
