@@ -9,7 +9,7 @@ Gifenc lets you create simple animated gif images. It is based on a c library cr
 The plugin can be used by importing it with `import gifenc`. A simple program creating a moving stripe pattern with 8 frames looks like this:
 
 
-```
+```smallbasic
 import gifenc as ge
 
 const w = 120

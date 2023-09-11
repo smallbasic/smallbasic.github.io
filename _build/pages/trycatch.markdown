@@ -24,7 +24,7 @@ The THROW command (previously known as __RTE__) is used to initiate a catch-able
  
 **Example**
 
-```
+```smallbasic
 try
  open "com2000:" AS #1
 catch err

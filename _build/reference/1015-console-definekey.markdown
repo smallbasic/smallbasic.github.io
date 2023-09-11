@@ -37,7 +37,7 @@ Keycodes for PC keyboard
 
 Example 1: Bind keystroke for left and right arrow key
 
-~~~
+```smallbasic
 defineKey 0xFF04, Increase      'Left arrow
 defineKey 0xFF05, Decrease      'Right arrow
 
@@ -54,18 +54,18 @@ while(1)
     at 0,0: print t + ": " + x + "    "
     delay(50)
 wend
-~~~
+```
 
 
 Example 2: Unbind a keystroke
 
-```
+```smallbasic
 DEFINEKEY 0xFF04, 0
 ```
 
 Example 3: Etch-a-Sketch
 
-~~~
+```smallbasic
 ' DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
 'remember Etch-A-Sketch?
 'definekey key,sub
@@ -129,11 +129,11 @@ end
 sub quit
   stop
 end
-~~~
+```
 
 Example 4: This example is outdated and just a reference for buttons in PALM OS
 
-~~~
+```smallbasic
 ' Note:
 ' * You may Include "definekey_const.bas" file in another file to make your code more clear.
 '
@@ -220,4 +220,4 @@ Const DK_MK_RELEASE = 0xFFC3
 Const DK_MK_WHEEL   = 0xFFC4
 Const DK_MK_FIRST   = DK_MK_PUSH
 Const DK_MK_LAST    = DK_MK_WHEEL
-~~~
+```

@@ -23,7 +23,7 @@ Connect the resistor to pin 4 and the LED to ground of the Raspberry Pi.
 
 To let the LED blink the following SmallBASIC program can be used.
 
-```freebasic
+```smallbasic
 import SmallBasicPIGPIO as gpio
 
 ' LED is connected to pin GPIO4
@@ -45,7 +45,7 @@ next
 
 The plugin supports Pulse Width Modulation (PWM). Using this technique the intensity of the LED can tuned as shown in the next example.
 
-```freebasic
+```smallbasic
 import SmallBasicPIGPIO as gpio
 
 ' LED is connected to pin GPIO4
@@ -80,7 +80,7 @@ In the following image you see the wiring of a push button. When you press the b
 
 To read the state of the button, the following example program can be used.
 
-```freebasic
+```smallbasic
 import SmallBasicPIGPIO as gpio
 
 const PIN_GPIO4 = 4
@@ -116,7 +116,7 @@ For running this example, you need a SSD1306 compatible OLED display. OLEDs with
 
 The following example shows how to use basic graphic commands to draw lines or print text.
 
-```freebasic
+```smallbasic
 import SmallBasicPIGPIO as gpio
 
 gpio.OLED1_Open()

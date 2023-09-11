@@ -37,7 +37,7 @@ All of the above UI elements are written in SmallBASIC, see [main.bas](https://g
 
 To use the following services, your program must start with the following two lines:
 
-```
+```smallbasic
 option predef load modules
 import android
 ```
@@ -48,7 +48,7 @@ The first line tell SmallBASIC to dynamically load runtime modules. The second l
 
 GPS_ON
 
-```
+```smallbasic
 android.gps_on()
 ```
 
@@ -56,7 +56,7 @@ Instructs the system to commence recording location information. Note: This reli
 
 GPS_OFF
 
-```
+```smallbasic
 android.gps_off()
 ```
 
@@ -64,7 +64,7 @@ Turns off recording of location information.
 
 LOCATION
 
-```
+```smallbasic
 l = android.location()
 ```
 
@@ -86,7 +86,7 @@ For more details, see: <https://developer.android.com/reference/android/location
 
 SENSOR_ON
 
-```
+```smallbasic
 const SensorAccelerometer = 0
 const SensorMagneticField = 1
 const SensorGyroscope = 2
@@ -99,7 +99,7 @@ Enables the given sensor (currently only one may be enabled at a time). Throws a
 
 SENSOR_OFF
 
-```
+```smallbasic
 android.sensor_off()
 ```
 
@@ -107,7 +107,7 @@ Disables any active sensor.
 
 SENSOR
 
-```
+```smallbasic
 s = android.sensor()
 ```
 
@@ -131,7 +131,7 @@ Notes:
 
 TTS_PITCH
 
-```
+```smallbasic
 android.tts_pitch(n)
 ```
 
@@ -139,7 +139,7 @@ Sets the voice pitch (default is 1.0).
 
 TTS_RATE
 
-```
+```smallbasic
 android.tts_rate(n)
 ```
 
@@ -147,7 +147,7 @@ Sets the rate of speaking (default is 1.0)
 
 TTS_LANG
 
-```
+```smallbasic
 android.tts_lang(s)
 ```
 
@@ -155,7 +155,7 @@ Sets the locale, for example "en", "de", "fr" for English, German, France. May c
 
 TTS_OFF
 
-```
+```smallbasic
 android.tts_off()
 ```
 
@@ -163,7 +163,7 @@ Turns off text to speech output.
 
 SPEAK
 
-```
+```smallbasic
 android.speak(text)
 ```
 

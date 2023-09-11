@@ -9,7 +9,7 @@ Clipboard is a simple plugin to copy and paste text between your SmallBASIC prog
 The plugin can be used by importing it with `import clipboard`. A simple "Hello World" program looks like this:
 
 
-```
+```smallbasic
 import clipboard
 
 print clipboard.paste()

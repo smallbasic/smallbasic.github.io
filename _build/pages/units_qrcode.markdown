@@ -10,7 +10,7 @@ Please save the unit in the same directory as your basic file.
 
 ## Using the unit
 
-```Freebasic
+```smallbasic
 import qrcode
 
 color 1, 15

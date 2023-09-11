@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="smallbasic" version="1" kateversion="5.0" section="Sources" extensions="*.bas;*.BAS" casesensitive="no">
+  <highlighting>
+    <list name="preproc">    
+      <item>INCLUDE</item>
+      <item>IMPORT</item>
+      <item>EXPORT</item>
+      <item>OPTION</item>
+      <item>UNIT</item>    
+    </list>
+    
+    <list name="keywords">
+      <item>ACCESS</item>
+      <item>AND</item>
+      <item>APPEND</item>
+      <item>ARRAY</item>
+      <item>AS</item>
+      <item>BAND</item>
+      <item>BG</item>
+      <item>BOR</item>
+      <item>CASE</item>
+      <item>CATCH</item>
+      <item>DECLARE</item>
+      <item>DEF</item>
+      <item>DEFINEKEY</item>
+      <item>DO</item>
+      <item>ELIF</item>
+      <item>ELSE</item>
+      <item>ELSEIF</item>
+      <item>END</item>
+      <item>ENDIF</item>
+      <item>EQV</item>
+      <item>EXIT</item>
+      <item>FI</item>
+      <item>FOR</item>
+      <item>FUNC</item>
+      <item>GOSUB</item>
+      <item>GOTO</item>
+      <item>IF</item>
+      <item>IFF</item>
+      <item>IMP</item>
+      <item>IN</item>
+      <item>INKEY</item>
+      <item>INPUT</item>
+      <item>LABEL</item>
+      <item>LIKE</item>
+      <item>LOGPRINT</item>
+      <item>LSHIFT</item>
+      <item>MDL</item>
+      <item>MOD</item>
+      <item>NAND</item>
+      <item>NEXT</item>
+      <item>NOR</item>
+      <item>NOT</item>
+      <item>ON</item>
+      <item>OR</item>
+      <item>PAUSE</item>
+      <item>PRINT</item>
+      <item>PROGLINE</item>
+      <item>RANDOMIZE</item>
+      <item>REPEAT</item>
+      <item>RESTORE</item>
+      <item>RETURN</item>
+      <item>RSHIFT</item>
+      <item>SELECT</item>
+      <item>STOP</item>
+      <item>SUB</item>
+      <item>THEN</item>
+      <item>THROW</item>
+      <item>TO</item>
+      <item>TROFF</item>
+      <item>TRON</item>
+      <item>TRY</item>
+      <item>UNTIL</item>
+      <item>USE</item>
+      <item>USG</item>
+      <item>WEND</item>
+      <item>WHILE</item>
+      <item>XNOR</item>
+      <item>XOR</item>
+    </list>
+    
+    <list name="Data Types">  
+      <item>DIM</item>
+      <item>LOCAL</item>
+      <item>REDIM</item>      
+      <item>BYREF</item>
+      <item>CONST</item>
+      <item>DATA</item>
+      <item>EMPTY</item>
+      <item>FALSE</item>
+      <item>LET</item>
+      <item>NIL</item>
+      <item>PI</item>
+      <item>SELF</item>
+      <item>TRUE</item>
+      <item>XMAX</item>
+      <item>YMAX</item>
+      <item>MAXINT</item>
+    </list>   
+    
+    <list name="functions">
+      <item>ABS</item>
+      <item>ABSMAX</item>
+      <item>ABSMIN</item>
+      <item>ACOS</item>
+      <item>ACOSH</item>
+      <item>ACOT</item>
+      <item>ACOTH</item>
+      <item>ACSC</item>
+      <item>ACSCH</item>
+      <item>ARC</item>
+      <item>ASC</item>
+      <item>ASEC</item>
+      <item>ASECH</item>
+      <item>ASIN</item>
+      <item>ASINH</item>
+      <item>AT</item>
+      <item>ATAN</item>
+      <item>ATAN2</item>
+      <item>ATANH</item>
+      <item>ATN</item>
+      <item>BCS</item>
+      <item>BEEP</item>
+      <item>BGETC</item>
+      <item>BIN</item>
+      <item>BLOAD</item>
+      <item>BPUTC</item>
+      <item>BSAVE</item>
+      <item>CALL</item>
+      <item>CAT</item>
+      <item>CBS</item>
+      <item>CEIL</item>
+      <item>CHAIN</item>
+      <item>CHART</item>
+      <item>CHDIR</item>
+      <item>CHMOD</item>
+      <item>CHOP</item>
+      <item>CHR</item>
+      <item>CIRCLE</item>
+      <item>CLOSE</item>
+      <item>CLS</item>
+      <item>COLOR</item>
+      <item>COMMAND</item>
+      <item>COPY</item>
+      <item>COS</item>
+      <item>COSH</item>
+      <item>COT</item>
+      <item>COTH</item>
+      <item>CSC</item>
+      <item>CSCH</item>
+      <item>CWD</item>
+      <item>DATEDMY</item>
+      <item>DATEFMT</item>
+      <item>DEG</item>
+      <item>DELAY</item>
+      <item>DELETE</item>
+      <item>DERIV</item>
+      <item>DETERM</item>
+      <item>DIFFEQN</item>
+      <item>DIRWALK</item>
+      <item>DISCLOSE</item>
+      <item>DRAW</item>
+      <item>DRAWPOLY</item>
+      <item>ENCLOSE</item>
+      <item>ENV</item>
+      <item>EOF</item>
+      <item>ERASE</item>
+      <item>EXEC</item>
+      <item>EXP</item>
+      <item>EXPRSEQ</item>
+      <item>FILES</item>
+      <item>FIX</item>
+      <item>FLOOR</item>
+      <item>FORM</item>
+      <item>FORMAT</item>
+      <item>FRAC</item>
+      <item>FRE</item>
+      <item>FREEFILE</item>
+      <item>HEX</item>
+      <item>HOME</item>
+      <item>IMAGE</item>
+      <item>INSERT</item>
+      <item>INSTR</item>
+      <item>INT</item>
+      <item>INTERSECT</item>
+      <item>INVERSE</item>
+      <item>ISARRAY</item>
+      <item>ISDIR</item>
+      <item>ISFILE</item>
+      <item>ISLINK</item>
+      <item>ISMAP</item>
+      <item>ISNUMBER</item>
+      <item>ISSTRING</item>
+      <item>JOIN</item>
+      <item>JULIAN</item>
+      <item>KILL</item>
+      <item>LBOUND</item>
+      <item>LCASE</item>
+      <item>LEFT</item>
+      <item>LEFTOF</item>
+      <item>LEFTOFLAST</item>
+      <item>LEN</item>
+      <item>LINE</item>
+      <item>LINEINPUT</item>
+      <item>LINEQN</item>
+      <item>LINPUT</item>
+      <item>LOCATE</item>
+      <item>LOCK</item>
+      <item>LOF</item>
+      <item>LOG</item>
+      <item>LOG10</item>
+      <item>LOWER</item>
+      <item>LTRIM</item>
+      <item>M3APPLY</item>
+      <item>M3IDENT</item>
+      <item>M3ROTATE</item>
+      <item>M3SCALE</item>
+      <item>M3TRANS</item>
+      <item>MAX</item>
+      <item>MID</item>
+      <item>MIN</item>
+      <item>MKDIR</item>
+      <item>NOSOUND</item>
+      <item>OCT</item>
+      <item>OPEN</item>
+      <item>PAINT</item>
+      <item>PEN</item>
+      <item>PLAY</item>
+      <item>PLOT</item>
+      <item>POINT</item>
+      <item>POLYAREA</item>
+      <item>POLYCENT</item>
+      <item>POLYEXT</item>
+      <item>POW</item>
+      <item>PSET</item>
+      <item>PTDISTLN</item>
+      <item>PTDISTSEG</item>
+      <item>PTSIGN</item>
+      <item>RAD</item>
+      <item>READ</item>
+      <item>RECT</item>
+      <item>RENAME</item>
+      <item>REPLACE</item>
+      <item>RGB</item>
+      <item>RGBF</item>
+      <item>RIGHT</item>
+      <item>RIGHTOF</item>
+      <item>RIGHTOFLAST</item>
+      <item>RINSTR</item>
+      <item>RND</item>
+      <item>ROOT</item>
+      <item>ROUND</item>
+      <item>RTRIM</item>
+      <item>RUN</item>
+      <item>SBVER</item>
+      <item>SEARCH</item>
+      <item>SEC</item>
+      <item>SECH</item>
+      <item>SEEK</item>
+      <item>SEGCOS</item>
+      <item>SEGLEN</item>
+      <item>SEGSIN</item>
+      <item>SEQ</item>
+      <item>SETP</item>
+      <item>SGN</item>
+      <item>SHOWPAGE</item>
+      <item>SIN</item>
+      <item>SINH</item>
+      <item>SINPUT</item>
+      <item>SORT</item>
+      <item>SOUND</item>
+      <item>SPACE</item>
+      <item>SPC</item>
+      <item>SPRINT</item>
+      <item>SQR</item>
+      <item>SQUEEZE</item>
+      <item>STATMEAN</item>
+      <item>STATMEANDEV</item>
+      <item>STATMEDIAN</item>
+      <item>STATSPREADP</item>
+      <item>STATSPREADS</item>
+      <item>STATSTD</item>
+      <item>STKDUMP</item>    
+      <item>STR</item>
+      <item>STRING</item>
+      <item>SUM</item>
+      <item>SUMSQ</item>
+      <item>SWAP</item>
+      <item>TAB</item>
+      <item>TAN</item>
+      <item>TANH</item>
+      <item>TEXTHEIGHT</item>
+      <item>TEXTWIDTH</item>
+      <item>TICKS</item>
+      <item>TIME</item>
+      <item>TIMEHMS</item>
+      <item>TIMER</item>
+      <item>TLOAD</item>
+      <item>TRANSLATE</item>
+      <item>TRIM</item>
+      <item>TSAVE</item>
+      <item>TXTH</item>
+      <item>TXTW</item>
+      <item>UBOUND</item>
+      <item>UCASE</item>
+      <item>UPPER</item>
+      <item>VAL</item>
+      <item>VIEW</item>
+      <item>WEEKDAY</item>
+      <item>WINDOW</item>
+      <item>WRITE</item>
+      <item>XPOS</item>
+      <item>YPOS</item>    
+    </list>
+
+    <contexts>
+      <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
+
+        <RegExpr attribute="Keyword" context="#stay" String="\b(exit (func|sub|for|do|while|select)|declare (function|sub))([\s]|$)" insensitive="true" />
+
+        <RegExpr attribute="Keyword" context="#stay" String="\b(while)([(\s)]|$)" insensitive="true" beginRegion="WhileRegion"/>
+        <RegExpr attribute="Keyword" context="#stay" String="\b(wend)([\s]|$)" insensitive="true" endRegion="WhileRegion"/>
+        
+        <RegExpr attribute="Keyword" context="#stay" String="\b(repeat)([\s]|$)" insensitive="true" beginRegion="DoRegion"/>
+        <RegExpr attribute="Keyword" context="#stay" String="\b(until)([(\s)]|$)" insensitive="true" endRegion="DoRegion"/>
+
+        <RegExpr attribute="Keyword" context="#stay" String="\b(select case)([\s]|$)" insensitive="true" beginRegion="SelectRegion"/>
+        <RegExpr attribute="Keyword" context="#stay" String="\b(end select)([\s]|$)" insensitive="true" endRegion="SelectRegion"/>
+
+        <RegExpr attribute="Keyword" context="#stay" String="\b(for (input|output|append))([\s]|$)" insensitive="true" />
+                
+        <RegExpr attribute="Keyword" context="#stay" String="\b(for)([(\s)]|$)" insensitive="true" beginRegion="ForRegion"/>
+        <RegExpr attribute="Keyword" context="#stay" String="\b(next)([\s]|$)" insensitive="true" endRegion="ForRegion"/>
+
+        <RegExpr attribute="Keyword" context="#stay" String="\b(func)([.\s]|$)" insensitive="true" beginRegion="fProcedureRegion"/>
+        <RegExpr attribute="Keyword" context="#stay" String="\b(end func|end)([\s]|$)" insensitive="true" endRegion="fProcedureRegion"/>
+        
+        <RegExpr attribute="Keyword" context="#stay" String="\b(sub)([.\s]|$)" insensitive="true" beginRegion="sProcedureRegion"/>
+        <RegExpr attribute="Keyword" context="#stay" String="\b(end sub|end)([\s]|$)" insensitive="true" endRegion="sProcedureRegion"/>
+
+        <RegExpr attribute="Keyword" context="#stay" String="\b(if)([(\s)]|$)" insensitive="true" beginRegion="IfRegion"/>
+        <RegExpr attribute="Keyword" context="#stay" String="\b(then )[a-zA-Z_\x7f-\xff].|\b(fi|endif)([\s]|$)" insensitive="true" endRegion="IfRegion"/>
+
+        <keyword attribute="Keyword" context="#stay" String="keywords"/>
+        <keyword attribute="Data Types" context="#stay" String="Data Types"/>
+        <keyword attribute="Preprocessor" context="#stay" String="preproc"/>
+         
+        <keyword attribute="Functions" context="#stay" String="functions"/>
+        <RegExpr attribute="Constant" context="#stay" String="\#+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"/>
+        <Float attribute="Number" context="#stay"/>
+        <Int attribute="Number" context="#stay"/>
+        <DetectChar attribute="String" context="String" char="&quot;" />
+        <RegExpr attribute="Region Marker" context="#stay" String="^\s*;+\s*BEGIN.*$" beginRegion="marker" column="0"/>
+        <RegExpr attribute="Region Marker" context="#stay" String="^\s*;+\s*END.*$" endRegion="marker" column="0"/>
+        <DetectChar attribute="Comment" context="Comment1" char="'"/>
+        <RegExpr attribute="Comment" context="Comment1" String="\b(rem)([.\s]|$)" insensitive="true"/>
+      </context>
+      <context attribute="String" lineEndContext="#pop" name="String">
+        <DetectChar attribute="String" context="#pop" char="&quot;"/>
+      </context>
+      <context attribute="Comment" lineEndContext="#pop" name="Comment1">
+        <IncludeRules context="##Comments" />
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword"/>
+      <itemData name="Functions" defStyleNum="dsFunction"/>
+      <itemData name="Data Types" defStyleNum="dsDataType"/>
+      <itemData name="Constant" defStyleNum="dsConstant"/>
+      <itemData name="Number" defStyleNum="dsDecVal"/>
+      <itemData name="String" defStyleNum="dsString"/>
+      <itemData name="Comment" defStyleNum="dsComment"/>
+      <itemData name="Region Marker" defStyleNum="dsRegionMarker"/>
+      <itemData name="Preprocessor" defStyleNum="dsPreprocessor"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <keywords casesensitive="0" />
+  </general>
+</language>
+<!-- // kate: space-indent on; indent-width 2; replace-tabs on; --> 

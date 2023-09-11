@@ -4,7 +4,7 @@
 
 Clears the screen.
 
-```
+```smallbasic
 print "Test"
 CLS
 ```
