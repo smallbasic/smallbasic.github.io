@@ -361,7 +361,6 @@
         <DetectChar attribute="String" context="#pop" char="&quot;"/>
       </context>
       <context attribute="Comment" lineEndContext="#pop" name="Comment1">
-        <IncludeRules context="##Comments" />
       </context>
     </contexts>
     <itemDatas>
