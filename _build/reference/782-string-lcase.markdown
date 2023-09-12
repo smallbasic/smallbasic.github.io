@@ -4,6 +4,8 @@
 
 Converts the string `s` to a lower case string `ls`.
 
+See UCASE for converting a string to upper case.
+
 ### Example
 
 ```
