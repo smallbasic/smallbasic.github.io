@@ -2,7 +2,7 @@
 
 > PRINT USG
 
-PRINT USING uses the FORMAT function to display numbers and strings.
+PRINT USG uses the FORMAT function to display numbers and strings.
 
 See PRINT for more information. USG and USING are equivalent.
 
