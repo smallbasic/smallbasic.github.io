@@ -75,30 +75,30 @@
   </div>
 <p>Inline version of IF.</p>
 <h3 id="example-1">Example 1</h3>
-<pre><code>animal = &quot;cat&quot;
-fur = IFF( animal == &quot;cat&quot;, &quot;yes&quot;, &quot;no&quot;)
-print fur</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>animal = <span class="st">&quot;cat&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>fur = <span class="kw">IFF</span>( animal == <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> fur</span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<pre><code>Eq = &quot;sin&quot;
-x = 5
-
-ans = iff(Eq == &quot;sin&quot;, sin(x), cos(x))
-print ans
-
-&#39; Alternative syntax:
-
-if(Eq == &quot;sin&quot;) then
-    ans = sin(x)
-else
-    ans = cos(x)
-endif
-
-print ans</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>Eq = <span class="st">&quot;sin&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>x = <span class="dv">5</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>ans = <span class="kw">iff</span>(Eq == <span class="st">&quot;sin&quot;</span>, <span class="fu">sin</span>(x), <span class="fu">cos</span>(x))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> ans</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; Alternative syntax:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">if(</span>Eq == <span class="st">&quot;sin&quot;</span>) <span class="kw">then</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    ans = <span class="fu">sin</span>(x)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">else</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    ans = <span class="fu">cos</span>(x)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">endif</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="kw">print</span> ans</span></code></pre></div>
 <h3 id="example-3">Example 3</h3>
-<pre><code>x = 4
-
-ans = iff(x &lt;= 5, 0, 10)
-print ans </code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>x = <span class="dv">4</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>ans = <span class="kw">iff</span>(x &lt;= <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">print</span> ans </span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using IFF</div>
     <div class="linklist">

@@ -88,11 +88,11 @@
 </blockquote>
 <p><code>PCRE</code> sets as default matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple one with <code>SIMPLE</code>.</p>
 <h3 id="example-1">Example 1</h3>
-<pre><code>print &quot;Hello&quot; LIKE &quot;*[oO]&quot;                &#39; Output 1
-print &quot;Hello&quot; LIKE &quot;He??o&quot;                &#39; Output 1
-print &quot;Hello&quot; LIKE &quot;hello&quot;                &#39; Output 0
-print &quot;Hello&quot; LIKE &quot;[Hh]*&quot;                &#39; Output 1
-print &quot;-[Hello]-&quot; Like &quot;\\-\\[?*\\]\\-&quot;   &#39; Output 1</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;*[oO]&quot;</span>                <span class="co">&#39; Output 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;He??o&quot;</span>                <span class="co">&#39; Output 1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;hello&quot;</span>                <span class="co">&#39; Output 0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;[Hh]*&quot;</span>                <span class="co">&#39; Output 1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;-[Hello]-&quot;</span> <span class="kw">Like</span> <span class="st">&quot;\\-\\[?*\\]\\-&quot;</span>   <span class="co">&#39; Output 1</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using LIKE</div>
     <div class="linklist">

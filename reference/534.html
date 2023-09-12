@@ -142,20 +142,21 @@
 </table>
 <p>To play a sound file use <code>file://filename</code> as string. When playing on background, program execution continuous. If the end of the program is reach, the playback will stop.</p>
 <h3 id="example-1-play-a-note">Example 1: Play a note</h3>
-<pre><code>play &quot;L2A&quot;    &#39; note A with length 1/2</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">play</span> <span class="st">&quot;L2A&quot;</span>    <span class="co">&#39; note A with length 1/2</span></span></code></pre></div>
 <h3 id="example-2-play-multiple-notes">Example 2: Play multiple notes</h3>
-<pre><code>&#39; Set volume to 50%
-play &quot;V10&quot;  
-&#39; Play Menuet by J. Sebastian Bach
-play &quot;T180L8O3MN O4D4O3MLGABO4C O4D4O3MNG4MLG4 O4MNE4MLCDEF# O4G4O3MNG4MLG4 O4MNC4MLDCO3BA O3MNB4MLO4CO3BAG O3MNA4MLBAGF# G2.MN&quot;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Set volume to 50%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">play</span> <span class="st">&quot;V10&quot;</span>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; Play Menuet by J. Sebastian Bach</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">play</span> <span class="st">&quot;T180L8O3MN O4D4O3MLGABO4C O4D4O3MNG4MLG4 O4MNE4MLCDEF# O4G4O3MNG4MLG4 O4MNC4MLDCO3BA O3MNB4MLO4CO3BAG O3MNA4MLBAGF# G2.MN&quot;</span></span></code></pre></div>
 <h3 id="example-3-play-notes-on-background">Example 3: Play notes on background</h3>
 <pre><code>play &quot;MBL2A&quot;    &#39; note A with length 1/2 on background
-pause           &#39; make sure, that program will not end</code></pre>
-<h3 id="example-4-play-a-sound-file">Example 4: Play a sound file</h3>
-<pre><code>&#39; Copy a mp3 file to the working directory and name it test.mp3
+pause           &#39; make sure, that program will not end
+```smallbasic
 
-play &quot;file://test.mp3&quot;
-pause                    &#39; make sure, that program will not end</code></pre>
+### Example 4: Play a sound file
+</code></pre>
+<p>’ Copy a mp3 file to the working directory and name it test.mp3</p>
+<p>play “file://test.mp3” pause ’ make sure, that program will not end ```smallbasic</p>
   <div class="lavenderBox">
     <div class="header">Code samples using PLAY</div>
     <div class="linklist">
@@ -232,7 +233,7 @@ PLAY by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Fri, 30 Jun 2023 17:36:27 +0200
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

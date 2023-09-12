@@ -76,47 +76,47 @@
 <p>Adds a variable to the current environment variable-table.</p>
 <p>ENV can be used as SUB for setting and deleting Environment Variables and ENV can be used as a FUNCtion for returning a particular Environmet Variable or the whole set of them into an array.</p>
 <h3 id="example-1-setting-and-getting-evironment-variables">Example 1: Setting and getting Evironment Variables</h3>
-<pre><code>SB1 = 5
-SB2 = &quot;My evironment variable&quot;
-
-&#39;Set Environmet Variables
-ENV(&quot;SB1=&quot; + SB1)
-ENV(&quot;SB2=&quot; + SB2)
-ENV(&quot;SB3=6&quot;)
-ENV(&quot;SB4=\&quot;test\&quot;&quot;)
-
-&#39; Get Environment Variables
-print ENV(&quot;SB1&quot;)
-print ENV(&quot;SB2&quot;)
-print ENV(&quot;SB3&quot;)
-print ENV(&quot;SB4&quot;)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>SB1 = <span class="dv">5</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>SB2 = <span class="st">&quot;My evironment variable&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">&#39;Set Environmet Variables</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">ENV</span>(<span class="st">&quot;SB1=&quot;</span> + SB1)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">ENV</span>(<span class="st">&quot;SB2=&quot;</span> + SB2)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="fu">ENV</span>(<span class="st">&quot;SB3=6&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="fu">ENV</span>(<span class="st">&quot;SB4=\&quot;</span>test\<span class="st">&quot;&quot;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">&#39; Get Environment Variables</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">ENV</span>(<span class="st">&quot;SB1&quot;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">ENV</span>(<span class="st">&quot;SB2&quot;</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">ENV</span>(<span class="st">&quot;SB3&quot;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">ENV</span>(<span class="st">&quot;SB4&quot;</span>)</span></code></pre></div>
 <h3 id="example-2-querry-all-environment-variables">Example 2: Querry all Environment Variables</h3>
-<pre><code>AllEnv = ENV(&quot;&quot;)
-
-for a in AllEnv
-    print a
-next</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>AllEnv = <span class="fu">ENV</span>(<span class="st">&quot;&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">for </span>a <span class="kw">in</span> AllEnv</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="kw">print</span> a</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
 <h3 id="example-3-linux-querry-desktop_session">Example 3: (Linux) Querry DESKTOP_SESSION</h3>
-<pre><code>print ENV(&quot;DESKTOP_SESSION&quot;)    &#39;i.e will print &quot;plasma&quot; if using KDE</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">ENV</span>(<span class="st">&quot;DESKTOP_SESSION&quot;</span>)    <span class="co">&#39;i.e will print &quot;plasma&quot; if using KDE</span></span></code></pre></div>
 <h3 id="example-4-delete-a-environment-variable-doesnt-work-in-linux">Example 4: Delete a Environment Variable (doesn’t work in Linux)</h3>
-<pre><code>ENV(&quot;SB1=&quot;)   &#39; Deletes SB1</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">ENV</span>(<span class="st">&quot;SB1=&quot;</span>)   <span class="co">&#39; Deletes SB1</span></span></code></pre></div>
 <h3 id="example-5-using-env-and-chain-to-create-a-eval-function">Example 5: Using ENV and CHAIN to create a eval-function</h3>
-<pre><code>&#39; Dedicated to MGA.
-&#39; s is any legal SmallBASIC Math Expression as String, e.g. &quot;1 + 2 / 4&quot;
-Func eval(s)
-  Chain &quot;Env &quot; + Enclose(&quot;SBEVAL=&quot;) + &quot; + Str(&quot; + s + &quot;)&quot;
-  eval = Val(Env(&quot;SBEVAL&quot;))
-End Func
-
-&#39; now run few demos:
-? eval(&quot;1+2&quot;) 
-? eval(&quot;Rad(45) * 2&quot;) 
-? eval(&quot;PI / 2 + PI&quot;)
-? eval(&quot;0b1111 * Pow(2, 4)&quot;)
-? eval(&quot;Sin(2) * Tan(4) / Cos(6)&quot;)
-? eval(&quot;1 + 2 / 4&quot;)
-? eval(&quot;6 * (Pow(2, 4) * 8)&quot;)
-? eval(&quot;Rad((45 * 3) - 20) * 2&quot;)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">&#39; Dedicated to MGA.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">&#39; s is any legal SmallBASIC Math Expression as String, e.g. &quot;1 + 2 / 4&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">Func </span>eval(s)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>  <span class="fu">Chain</span> <span class="st">&quot;Env &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;SBEVAL=&quot;</span>) + <span class="st">&quot; + Str(&quot;</span> + s + <span class="st">&quot;)&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>  eval = <span class="fu">Val</span>(<span class="fu">Env</span>(<span class="st">&quot;SBEVAL&quot;</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="kw">End Func</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">&#39; now run few demos:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>? eval(<span class="st">&quot;1+2&quot;</span>) </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>? eval(<span class="st">&quot;Rad(45) * 2&quot;</span>) </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>? eval(<span class="st">&quot;PI / 2 + PI&quot;</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>? eval(<span class="st">&quot;0b1111 * Pow(2, 4)&quot;</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>? eval(<span class="st">&quot;Sin(2) * Tan(4) / Cos(6)&quot;</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>? eval(<span class="st">&quot;1 + 2 / 4&quot;</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>? eval(<span class="st">&quot;6 * (Pow(2, 4) * 8)&quot;</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>? eval(<span class="st">&quot;Rad((45 * 3) - 20) * 2&quot;</span>)</span></code></pre></div>
 <h3 id="general-suggestions-using-environment-variables">General suggestions using Environment Variables</h3>
 <ol type="1">
 <li>Never use names which are already used by the system or another process, such as “PATH”, “HOME”, “PWD”, etc. You should check which variable names are already in use.</li>

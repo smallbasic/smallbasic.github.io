@@ -76,61 +76,61 @@
 <p>Code comments. Comments can also be introduced using <code>#</code>, single quote character <code>'</code>.</p>
 <p>The <code>#</code> character can only be used as remarks if it is the first character of the line.</p>
 <h3 id="example-1">Example 1:</h3>
-<pre><code>&#39; That text-line is just a few remarks
-REM another comment
-# one more comment</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; That text-line is just a few remarks</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">REM another comment</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a># one more comment</span></code></pre></div>
 <h3 id="example-2">Example 2:</h3>
-<pre><code>&#39; Although the code is very short (less then thousands of lines...), it&#39;s
-&#39; almost impossible to decode it... - That&#39;s why comments are so useful:
-&#39; to remind *yourself* and others what you did and why.
-&#39; Let&#39;s try to analyze &quot;Curlie borealis.bas&quot; code and add few comments to it:
-
-&#39; --- Start of &quot;Curlie borealis.bas&quot; + Comments:
-&#39; Initialize variables for the main loop:
-Randomize           &#39; - I&#39;m not sure why do we need it here... (MGA?)
-ff = 440.03         &#39; Factor for defining x,y location to draw point
-maxi = 25000        &#39; Maximum points to draw in each shape
-maxi2 = maxi \ 2    &#39; Factor for defining two different color schemes in shape
-b = Rgb(40, 20, 30) &#39; Background color
-Color 0, b
-Cls
-&#39; Run program in an endless loop (Press Ctrl+B or Ctrl+C to stop):
-While 1
-  ff += 9.444 &#39; Move the next shape to different x,y location
-
-  &#39; Draw a single shape using two color schemes, or draw an invisible shape:
-  For i = 0 To maxi
-    &#39; Define location (x,y) to draw a single point:
-    f += ff
-    x = Min(xmax, -x + Cos(f * i)) &#39; (MIN makes sure location is within screen)
-    y = Min(ymax, -y + Sin(f * i))
-
-    &#39; Define nice color to draw a point:
-    If cc Mod 6 = 0 Then
-      If i &lt; maxi2 Then &#39; One color scheme
-        c = Rgb(255 - 255 * i \ maxi2, 255 * i \ maxi2, 0)
-      Else              &#39; Second color scheme
-        c = Rgb(0, 255 - 255 * (i - maxi2) \ maxi2, 255 * (i - maxi2) \ maxi2)
-      Fi
-    Else
-      c = b &#39; Use background color to draw invisible shape
-    Fi
-
-    &#39; Draw a single point (pixel):
-    Pset x, y, c
-    If i Mod 5000 = 0 Then Showpage &#39; Update screen each 5000 points (smoother)
-  Next
-  cc++ &#39; Counter for drawing invisible shape (using background color)
-Wend
-&#39; --- End of &quot;Curlie borealis.bas&quot; + Comments
-
-&#39; To sum up:
-&#39; Whether you write a short program or long, comments will help you
-&#39; and others to understand, debug and improve your program later on; i.e.
-&#39; comments make your code useful!
-REM &quot;Curlie borealis.bas&quot; code example taken from:
-REM http://smallbasic.sourceforge.net/?q=comment/1184#comment-1184
-REM Without explicit permission from MGA...</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Although the code is very short (less then thousands of lines...), it&#39;s</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; almost impossible to decode it... - That&#39;s why comments are so useful:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; to remind *yourself* and others what you did and why.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; Let&#39;s try to analyze &quot;Curlie borealis.bas&quot; code and add few comments to it:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">&#39; --- Start of &quot;Curlie borealis.bas&quot; + Comments:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; Initialize variables for the main loop:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">Randomize</span>           <span class="co">&#39; - I&#39;m not sure why do we need it here... (MGA?)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>ff = <span class="dv">440.03</span>         <span class="co">&#39; Factor for defining x,y location to draw point</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>maxi = <span class="dv">25000</span>        <span class="co">&#39; Maximum points to draw in each shape</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>maxi2 = maxi \ <span class="dv">2</span>    <span class="co">&#39; Factor for defining two different color schemes in shape</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>b = <span class="fu">Rgb</span>(<span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">30</span>) <span class="co">&#39; Background color</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">0</span>, b</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="fu">Cls</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">&#39; Run program in an endless loop (Press Ctrl+B or Ctrl+C to stop):</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">While </span><span class="dv">1</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>  ff += <span class="dv">9.444</span> <span class="co">&#39; Move the next shape to different x,y location</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>  <span class="co">&#39; Draw a single shape using two color schemes, or draw an invisible shape:</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>  <span class="kw">For </span>i = <span class="dv">0</span> <span class="kw">To</span> maxi</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>    <span class="co">&#39; Define location (x,y) to draw a single point:</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>    f += ff</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>    x = <span class="fu">Min</span>(<span class="dt">xmax</span>, -x + <span class="fu">Cos</span>(f * i)) <span class="co">&#39; (MIN makes sure location is within screen)</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    y = <span class="fu">Min</span>(<span class="dt">ymax</span>, -y + <span class="fu">Sin</span>(f * i))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    <span class="co">&#39; Define nice color to draw a point:</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>    <span class="kw">If </span>cc <span class="kw">Mod</span> <span class="dv">6</span> = <span class="dv">0</span> <span class="kw">Then</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>      <span class="kw">If </span>i &lt; maxi2 <span class="kw">Then</span> <span class="co">&#39; One color scheme</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>        c = <span class="fu">Rgb</span>(<span class="dv">255</span> - <span class="dv">255</span> * i \ maxi2, <span class="dv">255</span> * i \ maxi2, <span class="dv">0</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>      <span class="kw">Else</span>              <span class="co">&#39; Second color scheme</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>        c = <span class="fu">Rgb</span>(<span class="dv">0</span>, <span class="dv">255</span> - <span class="dv">255</span> * (i - maxi2) \ maxi2, <span class="dv">255</span> * (i - maxi2) \ maxi2)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>      <span class="kw">Fi</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>    <span class="kw">Else</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>      c = b <span class="co">&#39; Use background color to draw invisible shape</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>    <span class="kw">Fi</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>    <span class="co">&#39; Draw a single point (pixel):</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>    <span class="fu">Pset</span> x, y, c</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>    <span class="kw">If </span>i <span class="kw">Mod</span> <span class="dv">5000</span> = <span class="dv">0</span> <span class="kw">Then Sh</span>owpage <span class="co">&#39; Update screen each 5000 points (smoother)</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>  <span class="kw">Next</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>  cc++ <span class="co">&#39; Counter for drawing invisible shape (using background color)</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a><span class="kw">Wend</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a><span class="co">&#39; --- End of &quot;Curlie borealis.bas&quot; + Comments</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a><span class="co">&#39; To sum up:</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a><span class="co">&#39; Whether you write a short program or long, comments will help you</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a><span class="co">&#39; and others to understand, debug and improve your program later on; i.e.</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a><span class="co">&#39; comments make your code useful!</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a><span class="co">REM &quot;Curlie borealis.bas&quot; code example taken from:</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a><span class="co">REM http://smallbasic.sourceforge.net/?q=comment/1184#comment-1184</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a><span class="co">REM Without explicit permission from MGA...</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using REM</div>
     <div class="linklist">

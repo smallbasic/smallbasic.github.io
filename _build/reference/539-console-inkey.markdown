@@ -6,7 +6,7 @@ Returns the last key-code in keyboard buffer, or an empty string if there are no
 
 ### Example 1
 
-```smallbasic
+```
 WHILE(1)
   k = INKEY
   IF LEN(k)
@@ -24,7 +24,7 @@ WEND
 
 The following program will return the keycode and a string for every pressed key. The string can be used in an if-statement to querry if the key was pressed. See example 3 how to use the string.
 
-```smallbasic
+```
 while(1)
   k = INKEY
 
@@ -50,7 +50,7 @@ wend
 
 See example 2 to get the keycodes for the keys.
 
-```smallbasic
+```
 const KeyUp = chr(27) + chr(9)
 const KeyDown = chr(27) + chr(10)
 const KeySpace = " "
@@ -79,7 +79,7 @@ wend
 
 ### Example 4: Input form
 
-```smallbasic
+```
 ' Key values:
 Const K_BKSP   = Chr(0x08)  ' BackSpace
 Const K_TAB    = Chr(0x09)
@@ -170,7 +170,7 @@ Wend
 
 ### Example 5: A basic key code UNIT
 
-```smallbasic
+```
 REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
 REM Purpose:   Special key values returned by INKEY.
 REM            (Values returned by INKEY cannot be used for DEFINEKEY).

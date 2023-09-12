@@ -7,7 +7,7 @@ The nicely formated output of your program will not be messed up by the log mess
 
 ### Example:
 
-```smallbasic
+```
 logprint "Error message goes to stderr"
 print "Normal text goes to sdtout"
 ```
@@ -29,21 +29,21 @@ In Linux sdterr can be easily redirected to a file (i.e. error.txt):
 
 Start the basic-file from a command line:
 
-```smallbasic
+```
 SDL-version    : sbasicg test.bas 2>error.txt
 Console-version: sbasic test.bas 2>error.txt
 ```
 
 with test.bas:
 
-```smallbasic
+```
 logprint "Error message goes to stderr"
 print "Normal text goes to sdtout"
 ```
 
 Afer running the program the file error.txt will appear with the content:
 
-```smallbasic
+```
 Error message goes to stderr
 ```
 

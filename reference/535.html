@@ -77,22 +77,22 @@
 <p>If a file handle <code>#file</code> is given, the output of print will be redirected to the corresponding file. See OPEN for more information on handling files.</p>
 <p>To gain more control of where your next PRINT statement will be placed on screen, see LOCATE and AT.</p>
 <h3 id="example-1-basic-usage">Example 1: Basic usage</h3>
-<pre><code>print 1                             &#39; Output: 1
-print 1+1                           &#39; Output: 2
-print cos(pi)                       &#39; Output: -1
-print &quot;Text&quot;                        &#39; Output: Text</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="dv">1</span>                             <span class="co">&#39; Output: 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="dv">1</span>+<span class="dv">1</span>                           <span class="co">&#39; Output: 2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">cos</span>(<span class="dt">pi</span>)                       <span class="co">&#39; Output: -1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Text&quot;</span>                        <span class="co">&#39; Output: Text</span></span></code></pre></div>
 <h3 id="example-2-print-strings-and-numbers">Example 2: Print strings and numbers</h3>
-<pre><code>print &quot;abc&quot; + &quot;def&quot;                 &#39; Output: adcdef
-print &quot;abc&quot; + &quot; def&quot;                &#39; Output: abc def
-print &quot;abc&quot; + 1 + &quot;def&quot; + cos(pi)   &#39; Output: abc1def-1
-print &quot;abc&quot; + 1 + 2 + &quot;def&quot;         &#39; Output: abc12def  &lt;- 1 and 2 are treated as strings</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;abc&quot;</span> + <span class="st">&quot;def&quot;</span>                 <span class="co">&#39; Output: adcdef</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;abc&quot;</span> + <span class="st">&quot; def&quot;</span>                <span class="co">&#39; Output: abc def</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;abc&quot;</span> + <span class="dv">1</span> + <span class="st">&quot;def&quot;</span> + <span class="fu">cos</span>(<span class="dt">pi</span>)   <span class="co">&#39; Output: abc1def-1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;abc&quot;</span> + <span class="dv">1</span> + <span class="dv">2</span> + <span class="st">&quot;def&quot;</span>         <span class="co">&#39; Output: abc12def  &lt;- 1 and 2 are treated as strings</span></span></code></pre></div>
 <h3 id="example-3-print-strings-and-variables">Example 3: Print strings and variables</h3>
-<pre><code>a = 1
-b = 2
-c = a + b
-print &quot;a = &quot; + a                    &#39; Output a = 1
-print &quot;b = &quot; + b                    &#39; Output b = 2
-print &quot;a + b = &quot; + c                &#39; Output c = 3</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>a = <span class="dv">1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>b = <span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>c = a + b</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;a = &quot;</span> + a                    <span class="co">&#39; Output a = 1</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;b = &quot;</span> + b                    <span class="co">&#39; Output b = 2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;a + b = &quot;</span> + c                <span class="co">&#39; Output c = 3</span></span></code></pre></div>
 <h2 id="print-separators">PRINT SEPARATORS</h2>
 <table>
 <thead>
@@ -123,84 +123,84 @@ print &quot;a + b = &quot; + c                &#39; Output c = 3</code></pre>
 <p>If <code>;</code> and <code>,</code> are used as last character of a print command, carriage return/line feed (new line) will be suppressed after printing.</p>
 <p>In contrast to the <code>+</code> operator to concatenate the output as shown in the examples above, the <code>,</code> and <code>;</code> operators can be used to concatenate the output and at the same time evaluate expressions.</p>
 <h3 id="example-1-using-and">Example 1: Using , and ;</h3>
-<pre><code>a = 1
-b = 2
-print &quot;a + b = &quot; + a + b    &#39; Output: a + b = 12      &lt;- a and b treated as strings
-print &quot;a + b = &quot; ; a + b    &#39; Output: a + b = 3       &lt;- a + b was evaluated
-print &quot;a + b = &quot; , a + b    &#39; Output: a + b =      3  &lt;- a + b was evaluated</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>a = <span class="dv">1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>b = <span class="dv">2</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;a + b = &quot;</span> + a + b    <span class="co">&#39; Output: a + b = 12      &lt;- a and b treated as strings</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;a + b = &quot;</span> ; a + b    <span class="co">&#39; Output: a + b = 3       &lt;- a + b was evaluated</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;a + b = &quot;</span> , a + b    <span class="co">&#39; Output: a + b =      3  &lt;- a + b was evaluated</span></span></code></pre></div>
 <h3 id="example-2-suppress-new-line">Example 2: Suppress new line</h3>
-<pre><code>print &quot;abc&quot;;     &#39; &lt;- new line suppressed
-print &quot;def&quot;
-
-&#39; Output: abcdef</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;abc&quot;</span>;     <span class="co">&#39; &lt;- new line suppressed</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;def&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">&#39; Output: abcdef</span></span></code></pre></div>
 <h3 id="example-3-using-tab-and-spc">Example 3: Using TAB and SPC</h3>
-<pre><code>print &quot;1&quot; + tab(5) + &quot;2&quot;       &#39; Output 1    2
-print &quot;1&quot; + spc(1) + &quot;2&quot;       &#39; Output 1 2</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;1&quot;</span> + <span class="fu">tab</span>(<span class="dv">5</span>) + <span class="st">&quot;2&quot;</span>       <span class="co">&#39; Output 1    2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;1&quot;</span> + <span class="fu">spc</span>(<span class="dv">1</span>) + <span class="st">&quot;2&quot;</span>       <span class="co">&#39; Output 1 2</span></span></code></pre></div>
 <h2 id="print-using">PRINT USING</h2>
 <p>PRINT USING uses the FORMAT function to display numbers and strings. Unlike FORMAT it can also include literals.</p>
 <p>When a PRINT USING command is executed the format will remain in memory until a new format is passed. Calling <code>PRINT USING</code> without a format string specifies that PRINT will use the format of the previous call.</p>
 <p>Using <code>_</code> (underscore) will print the next character as a literal. The combination <code>_#</code>, for example, allows you to include a number sign as a literal in your numeric format.</p>
 <p>See FORMAT for more information on how to define the format string.</p>
 <h3 id="example-1-basic-usage-1">Example 1: Basic usage</h3>
-<pre><code>a = 1000
-b = 2000
-PRINT USING &quot;#,###.##&quot;; a                    
-PRINT USING &quot;#,###.## &quot;; a; b                &#39; &lt;- Format is applied to all variables         
-PRINT USING &quot;a = #####.00  b = #####&quot;; a; b  &#39; &lt;- One formated string with placeholders for two variables
-
-&#39; Output: 1,000.
-&#39; Output: 1,000. 2,000.             
-&#39; Output: a =  1000.00  b =  2000   </code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>a = <span class="dv">1000</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>b = <span class="dv">2000</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">PRINT</span> USING <span class="st">&quot;#,###.##&quot;</span>; a                    </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">PRINT</span> USING <span class="st">&quot;#,###.## &quot;</span>; a; b                <span class="co">&#39; &lt;- Format is applied to all variables         </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">PRINT</span> USING <span class="st">&quot;a = #####.00  b = #####&quot;</span>; a; b  <span class="co">&#39; &lt;- One formated string with placeholders for two variables</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">&#39; Output: 1,000.</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co">&#39; Output: 1,000. 2,000.             </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="co">&#39; Output: a =  1000.00  b =  2000   </span></span></code></pre></div>
 <h3 id="example-2-apply-format-multiple-times">Example 2: Apply format multiple times</h3>
-<pre><code>a = 1000
-b = 2000
-PRINT USING &quot;#,###.##&quot;      &#39; Store format string
-
-PRINT        a              &#39; Print without format
-PRINT USING; a              &#39; Print with stored string
-PRINT USING; b              &#39; Print with stored string
-
-PRINT USING &quot;####.00&quot;; a    &#39; Print with new format string and store string
-PRINT USING; b              &#39; Print with stored string
-
-&#39; Output:
-&#39; 1000
-&#39; 1,000.
-&#39; 2,000.
-&#39; 1000.00
-&#39; 2000.00</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>a = <span class="dv">1000</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>b = <span class="dv">2000</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">PRINT</span> USING <span class="st">&quot;#,###.##&quot;</span>      <span class="co">&#39; Store format string</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="kw">PRINT</span>        a              <span class="co">&#39; Print without format</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="kw">PRINT</span> USING; a              <span class="co">&#39; Print with stored string</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="kw">PRINT</span> USING; b              <span class="co">&#39; Print with stored string</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="kw">PRINT</span> USING <span class="st">&quot;####.00&quot;</span>; a    <span class="co">&#39; Print with new format string and store string</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="kw">PRINT</span> USING; b              <span class="co">&#39; Print with stored string</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="co">&#39; Output:</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="co">&#39; 1000</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a><span class="co">&#39; 1,000.</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a><span class="co">&#39; 2,000.</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a><span class="co">&#39; 1000.00</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a><span class="co">&#39; 2000.00</span></span></code></pre></div>
 <h2 id="print-using-vt100-codes">Print using VT100 codes</h2>
 <p>Escape codes can be used with PRINT. For more information please read the article “Escape codes”</p>
 <h2 id="more-examples">More Examples</h2>
 <h3 id="example-1-3-ways-to-print-hello">Example 1: 3 ways to print hello</h3>
-<pre><code>&#39; 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
-&#39;It&#39;s all in the punctuation at the end of a print statement
-
-&#39;1) no punctiation  = whole print lines CR=carriage return and
-&#39; LF=line feed, ready to go on next line
-for i = 1 to 5
-  print &quot;hello&quot;
-next
-print : print &#39;2 blank lines
-
-&#39;2) a comma which tabs to next avaiable tab column and will stay
-&#39; on same line until run out of coloumns
-for i = 1 to 5
-  print &quot;hello&quot;,
-next
-&#39;the first print will finish the print line, the 2 two are blank lines
-print &quot;&amp; this will finish the hello, line.&quot;
-print : print 
-
-&#39;3) a semicolon (and space after hello)
-for i = 1 to 5
-  print &quot;hello&quot;;&quot; &quot;;  &#39;or just print &quot;hello &quot;;
-next
-print &quot;... this line needs to be finsihed.&quot;</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co">&#39; 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">&#39;It&#39;s all in the punctuation at the end of a print statement</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">&#39;1) no punctiation  = whole print lines CR=carriage return and</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co">&#39; LF=line feed, ready to go on next line</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">5</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;hello&quot;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="kw">next</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="kw">print</span> : <span class="kw">print</span> <span class="co">&#39;2 blank lines</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co">&#39;2) a comma which tabs to next avaiable tab column and will stay</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="co">&#39; on same line until run out of coloumns</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">5</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;hello&quot;</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a><span class="kw">next</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a><span class="co">&#39;the first print will finish the print line, the 2 two are blank lines</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;&amp; this will finish the hello, line.&quot;</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a><span class="kw">print</span> : <span class="kw">print</span> </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a><span class="co">&#39;3) a semicolon (and space after hello)</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">5</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;hello&quot;</span>;<span class="st">&quot; &quot;</span>;  <span class="co">&#39;or just print &quot;hello &quot;;</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a><span class="kw">next</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;... this line needs to be finsihed.&quot;</span></span></code></pre></div>
 <h3 id="example-2-print-to-a-file">Example 2: Print to a file</h3>
-<pre><code>Open &quot;PRINT.TXT&quot; For Output As #1
-Print #1, &quot;hello&quot;
-Close #1</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="fu">Open</span> <span class="st">&quot;PRINT.TXT&quot;</span> <span class="kw">For Output As</span> #<span class="dv">1</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="kw">Print</span> #<span class="dv">1</span>, <span class="st">&quot;hello&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="fu">Close</span> #<span class="dv">1</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using PRINT</div>
     <div class="linklist">
@@ -277,7 +277,7 @@ PRINT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 20 Jun 2023 11:33:20 +0200
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

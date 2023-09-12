@@ -6,13 +6,13 @@ Plays a sound with the frequency `freg` in Hz for a duration `dur` in millisecon
 
 ### Example1 : Play sound
 
-```smallbasic
+```
 Sound 1000, 800, 50             ' 1000 Hz, 800 ms, 50% volume
 ```
 
 ### Example 2: Play sound in background
 
-```smallbasic
+```
 Sound 1000, 800, 50 BG          ' 1000 Hz, 800 ms, 50% volume
 print "This line will be printed immediately"
 pause

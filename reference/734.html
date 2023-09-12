@@ -76,28 +76,28 @@
 <p>Rounds x downwards to the nearest integer.</p>
 <p><code>x\1</code> will convert <code>x</code> to an integer in less keystrokes than INT, they both round down for positives and up for negatives. They both drop the fractional part of the number.</p>
 <h3 id="example-1">Example 1</h3>
-<pre><code>print int(3.3)      &#39; Output 3
-print int(3.7)      &#39; Output 3
-print int(-3.3)     &#39; Output -3
-print int(-3.7)     &#39; Output -3</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">int</span>(<span class="dv">3.3</span>)      <span class="co">&#39; Output 3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">int</span>(<span class="dv">3.7</span>)      <span class="co">&#39; Output 3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">int</span>(-<span class="dv">3.3</span>)     <span class="co">&#39; Output -3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">int</span>(-<span class="dv">3.7</span>)     <span class="co">&#39; Output -3</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<pre><code>&#39;INT or alternate.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]
-&#39;I think number\1 is eqivalent to INT(number) in less keystrokes
-&#39; both of these convert a number to an integer and both round down to do it.
-for i = 1 to 20
-  &#39;which coin should I use
-  if rnd&lt;.5 then TF=int(rnd*2) else TF=rnd*2\1
-  ? TF,
-  if TF then ? &quot;It is true now.&quot;; else ? &quot;Now it&#39;s false.&quot;;
-  ?spc(3)+&quot;press a key or click for next...&quot;
-next
-for i=0 to -10 step -1 &#39;they seem to behave the same for negatives too
-  test=i+rnd
-  ? &quot;     test = &quot;;test
-  ? &quot;   test\1 = &quot; ;test\1
-  ? &quot;int(test) = &quot;;int(test)
-  ?
-next</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39;INT or alternate.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39;I think number\1 is eqivalent to INT(number) in less keystrokes</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; both of these convert a number to an integer and both round down to do it.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">20</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="co">&#39;which coin should I use</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  <span class="kw">if </span><span class="fu">rnd</span>&lt;.<span class="dv">5</span> <span class="kw">then TF</span>=<span class="fu">int</span>(<span class="fu">rnd</span>*<span class="dv">2</span>) <span class="kw">else</span> TF=<span class="fu">rnd</span>*<span class="dv">2</span>\<span class="dv">1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  ? TF,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="kw">if </span>TF <span class="kw">then</span> ? <span class="st">&quot;It is true now.&quot;</span>; <span class="kw">else</span> ? <span class="st">&quot;Now it&#39;s false.&quot;</span>;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  ?<span class="fu">spc</span>(<span class="dv">3</span>)+<span class="st">&quot;press a key or click for next...&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">next</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">for </span>i=<span class="dv">0</span> <span class="kw">to</span> <span class="dv">-10</span> step <span class="dv">-1</span> <span class="co">&#39;they seem to behave the same for negatives too</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>  test=i+<span class="fu">rnd</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>  ? <span class="st">&quot;     test = &quot;</span>;test</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>  ? <span class="st">&quot;   test\1 = &quot;</span> ;test\<span class="dv">1</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>  ? <span class="st">&quot;int(test) = &quot;</span>;<span class="fu">int</span>(test)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>  ?</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using INT</div>
     <div class="linklist">

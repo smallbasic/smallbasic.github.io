@@ -6,14 +6,14 @@ Reads text from keyboard and stores it in the variable `var`. The string `prompt
 
 ### Example 1: Using a single var
 
-```smallbasic
+```
 input "How old are you?", age
 print age
 ```
 
 ### Example 2: Using multiple vars
 
-```smallbasic
+```
 input "Input three numbers: ", a, b, c   ' Input i.e. 1,2,3
 print a, b, c
 ```

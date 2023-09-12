@@ -75,45 +75,45 @@
   </div>
 <p>Causes a branch of the program to one of the labels <code>label1</code> to <code>labelN</code>. <code>n</code> defines the number of the label. If <code>n = 1</code> the first label is used; with <code>n = N</code> the Nth label is used. <code>n</code> must be in the range 0 to 255.</p>
 <h3 id="example-1-on-goto">Example 1: ON … GOTO</h3>
-<pre><code>n = 1       &#39; Change to 1,2,3 or other value
-
-ON n GOTO label1, label2, label3
-
-print &quot;Nothing happend&quot;
-
-end
-
-label label1
-print &quot;Goto label 1&quot;
-end
-
-label label2
-print &quot;Goto label 2&quot;
-end
-
-label label3
-print &quot;Goto label 3&quot;
-end</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>n = <span class="dv">1</span>       <span class="co">&#39; Change to 1,2,3 or other value</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">ON</span> n <span class="kw">GOTO</span> label1, label2, label3</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Nothing happend&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">label</span> label1</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Goto label 1&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">label</span> label2</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Goto label 2&quot;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="kw">label</span> label3</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Goto label 3&quot;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
 <h3 id="example-2-on-gosub">Example 2: ON … GOSUB</h3>
-<pre><code>n = 1       &#39; Change to 1,2,3 or other value
-
-ON n GOSUB label1, label2, label3
-
-print &quot;After GOSUB&quot;
-
-end
-
-label label1
-print &quot;Gosub label 1&quot;
-return
-
-label label2
-print &quot;Gosub label 2&quot;
-return
-
-label label3
-print &quot;Gosub label 3&quot;
-return</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>n = <span class="dv">1</span>       <span class="co">&#39; Change to 1,2,3 or other value</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">ON</span> n <span class="kw">GOSUB</span> label1, label2, label3</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;After GOSUB&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">label</span> label1</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Gosub label 1&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">return</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">label</span> label2</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Gosub label 2&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="kw">return</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">label</span> label3</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Gosub label 3&quot;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">return</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using ON</div>
     <div class="linklist">

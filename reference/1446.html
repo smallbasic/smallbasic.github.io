@@ -81,97 +81,96 @@
 <p>Use EXPORT to export procedured, functions, constants or variables. Only exported names can be access in the main program.</p>
 <h3 id="example-1-simple-unit">Example 1: Simple Unit</h3>
 <p>First an example of the unit. Please save it with the filename “MyTestUnit.bas”</p>
-<pre><code>UNIT MyTestUnit
-
-export MyFunc
-export MySub
-export MyConst = 3.1415
-export MyVar = 5
-
-func MyFunc(a,b)
-    return a + b
-end
-
-sub MySub(a,b)
-    print &quot;a + b = &quot;; a + b
-end</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">UNIT</span> MyTestUnit</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="pp">export</span> MyFunc</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="pp">export</span> MySub</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="pp">export</span> MyConst = <span class="dv">3.1415</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="pp">export</span> MyVar = <span class="dv">5</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">func </span>MyFunc(a,b)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="kw">return</span> a + b</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">sub </span>MySub(a,b)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;a + b = &quot;</span>; a + b</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
 <p>Second an example on how to use the unit.</p>
-<pre><code>import MyTestUnit as u
-
-u.MySub(1,2)
-
-print u.MyFunc(2,3)
-print u.MyConst
-
-u.MyVar = u.MyVar + 5
-print u.MyVar</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">import</span> MyTestUnit <span class="kw">as</span> u</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>u.MySub(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> u.MyFunc(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">print</span> u.MyConst</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>u.MyVar = u.MyVar + <span class="dv">5</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">print</span> u.MyVar</span></code></pre></div>
 <h3 id="example-2-an-unit-for-using-string">Example 2: An unit for using string</h3>
 <p>The UNIT file is strlib.bas:</p>
-<pre><code>
-&#39; File: strlib.bas
-&#39; ------------
-&#39; In this demo we are using UNIT to add more useful String commands to
-&#39; SmallBASIC, by carefully creating our own String-Library: strlib.bas
-&#39;
-&#39; This demo includes only two useful functions, Lset() and Rset(); You
-&#39; can add more useful functions, subs, constants - but make sure that
-&#39; they are all String commands (not Array, File, Data, etc).
-&#39;
-&#39; Write your code carefully and efficiently, because you will use these
-&#39; commands frequently in other projects. And don&#39;t forget to debug the
-&#39; code and to add clear documentation, for you and for others.
-&#39;
-&#39; See also Home--&gt;Article--&gt;Welcome to SmallBASIC--&gt;Units.
-&#39; ------------
-&#39;
-
-&#39; Here we declare that this file is a UNIT file.
-&#39; Note: Keep file-name and unit-name the same. That helps the SB to
-&#39;       automatically recompile the required units when it is needed (i.e.
-&#39;       to create strlib.sbu file).
-&#39;       The actual file name must be in lower case for Linux OS.
-Unit strlib &#39; (without .bas extension)
-&#39; Here we allow other SmallBASIC files to use some of our library keywords:
-Export Lset, Rset
-
-&#39; Left justify string s in buffer of length b.
-&#39; example: x = Lset(&quot; SmallBASIC &quot;, 15) &#39; --&gt; x is &quot; SmallBASIC    &quot;
-Func Lset(s, b)
-  Local l = Len(s)
-
-  If l &gt;= b Then
-    Lset = Left(s, b)
-  Else
-    Lset = s + Space(b - l)
-  Fi
-End
-&#39; Right justify string s in buffer of length b.
-&#39; example: x = Rset(&quot; SmallBASIC &quot;, 15) &#39; --&gt; x is &quot;    SmallBASIC &quot;
-Func Rset(s, b)
-  Local l = Len(s)
-
-  If l &gt;= b Then
-    Rset = Right(s, b)
-  Else
-    Rset = Space(b - l) + s
-  Fi
-End
-</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39; File: strlib.bas</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39; ------------</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39; In this demo we are using UNIT to add more useful String commands to</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39; SmallBASIC, by carefully creating our own String-Library: strlib.bas</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">&#39;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">&#39; This demo includes only two useful functions, Lset() and Rset(); You</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">&#39; can add more useful functions, subs, constants - but make sure that</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">&#39; they are all String commands (not Array, File, Data, etc).</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">&#39;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">&#39; Write your code carefully and efficiently, because you will use these</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">&#39; commands frequently in other projects. And don&#39;t forget to debug the</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">&#39; code and to add clear documentation, for you and for others.</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">&#39;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co">&#39; See also Home--&gt;Article--&gt;Welcome to SmallBASIC--&gt;Units.</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">&#39; ------------</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co">&#39;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co">&#39; Here we declare that this file is a UNIT file.</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">&#39; Note: Keep file-name and unit-name the same. That helps the SB to</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="co">&#39;       automatically recompile the required units when it is needed (i.e.</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">&#39;       to create strlib.sbu file).</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">&#39;       The actual file name must be in lower case for Linux OS.</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="pp">Unit</span> strlib <span class="co">&#39; (without .bas extension)</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="co">&#39; Here we allow other SmallBASIC files to use some of our library keywords:</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="pp">Export</span> Lset, Rset</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="co">&#39; Left justify string s in buffer of length b.</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="co">&#39; example: x = Lset(&quot; SmallBASIC &quot;, 15) &#39; --&gt; x is &quot; SmallBASIC    &quot;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="kw">Func </span>Lset(s, b)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>  <span class="dt">Local</span> l = <span class="fu">Len</span>(s)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>  <span class="kw">If </span>l &gt;= b <span class="kw">Then</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>    Lset = <span class="fu">Left</span>(s, b)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>  <span class="kw">Else</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a>    Lset = s + <span class="fu">Space</span>(b - l)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a>  <span class="kw">Fi</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="kw">End</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="co">&#39; Right justify string s in buffer of length b.</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a><span class="co">&#39; example: x = Rset(&quot; SmallBASIC &quot;, 15) &#39; --&gt; x is &quot;    SmallBASIC &quot;</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a><span class="kw">Func </span>Rset(s, b)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>  <span class="dt">Local</span> l = <span class="fu">Len</span>(s)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>  <span class="kw">If </span>l &gt;= b <span class="kw">Then</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a>    Rset = <span class="fu">Right</span>(s, b)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a>  <span class="kw">Else</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a>    Rset = <span class="fu">Space</span>(b - l) + s</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>  <span class="kw">Fi</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a><span class="kw">End</span></span></code></pre></div>
 <p>Demo file, demo.bas, which is using strlib.bas above:</p>
-<pre><code>&#39; Here we declare that this file is using another UNIT file.
-&#39; Note: The actual file name must be in lower case for Linux OS.
-Import strlib &#39; (without .bas extension)
-&#39; Note: To access a member of a UNIT we must use the unit-name, a point
-&#39;       and the name of the member, e.g. Strlib.Lset(&quot;Hello&quot;, 10).
-&#39; demo:
-Color 14, 1
-Locate 4, 30
-Print Strlib.Lset(&quot;  --&gt;&gt;&quot;, 25)
-Locate 5, 30
-Print Strlib.Lset(Strlib.Rset(&quot;This way...&quot;, 18), 25)
-Locate 6, 30
-Print Strlib.Rset(&quot;--&gt;&gt;  &quot;, 25)
-Pause</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; Here we declare that this file is using another UNIT file.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">&#39; Note: The actual file name must be in lower case for Linux OS.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="pp">Import</span> strlib <span class="co">&#39; (without .bas extension)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">&#39; Note: To access a member of a UNIT we must use the unit-name, a point</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">&#39;       and the name of the member, e.g. Strlib.Lset(&quot;Hello&quot;, 10).</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">&#39; demo:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">14</span>, <span class="dv">1</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="fu">Locate</span> <span class="dv">4</span>, <span class="dv">30</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="kw">Print</span> Strlib.Lset(<span class="st">&quot;  --&gt;&gt;&quot;</span>, <span class="dv">25</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="fu">Locate</span> <span class="dv">5</span>, <span class="dv">30</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">Print</span> Strlib.Lset(Strlib.Rset(<span class="st">&quot;This way...&quot;</span>, <span class="dv">18</span>), <span class="dv">25</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="fu">Locate</span> <span class="dv">6</span>, <span class="dv">30</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="kw">Print</span> Strlib.Rset(<span class="st">&quot;--&gt;&gt;  &quot;</span>, <span class="dv">25</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">Pause</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using UNIT</div>
     <div class="linklist">

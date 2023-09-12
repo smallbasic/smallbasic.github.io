@@ -18,7 +18,7 @@ window.onload = function() {
     button.style.float="right";
     button.style.border="0";
     button.title = "Copy to clipboard";
-    button.onclick = copyText(code, code.childNodes[0].innerHTML);
+    button.onclick = copyText(code, code.childNodes[0].innerText);
     code.insertBefore(button, code.childNodes[0]);
   }
 }

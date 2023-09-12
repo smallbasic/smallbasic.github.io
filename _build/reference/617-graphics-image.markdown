@@ -8,7 +8,7 @@ The IMAGE statement provides access to extended support for image manipulation. 
 
 Create via open file handle
 
-```smallbasic
+```
 Open "circle.png" For Output As #1
 i = Image(#1)
 ```
@@ -16,33 +16,33 @@ i = Image(#1)
 Create via file name
 
 
-```smallbasic
+```
 i = Image("circle.png")
 ```
 
 
 Create via URL (note only works with HTTP not HTTPS)
 
-```smallbasic
+```
 i = Image("http://pngimg.com/uploads/tesla_car/tesla_car_PNG26.png")
 ```
 
 Create via screen scrape (x, y, width, height)
 
-```smallbasic
+```
 i = Image(10, 10, 100, 100)
 ```
 
 Create via another image variable
 
-```smallbasic
+```
 k = Image(...)
 i = Image(k)
 ```
 
 Create via 2D array
 
-```smallbasic
+```
 'Create image array a1 without transparency
 dim a1(100, 200)
 For y = 0 To 99
@@ -77,7 +77,7 @@ i2.show(0,0)
 
 Create via array of [X_PixMap](https://en.wikipedia.org/wiki/X_PixMap) data
 
-```smallbasic
+```
 im << "16 18 4 1"
 im << "@ c #547B43"
 im << "  c #ffffff"
@@ -108,7 +108,7 @@ i = Image(im)
 
 zIndex controls whether the image will be displayed over or under another image. Images with higher zIndex values are drawn over the top of images with lower zIndex values. Opacity controls whether to display the image as solid or semi-transparent. Opacity values range from 1-100, with higher opacity values making the image less transparent. The default is 100 resulting in a solid image. When calling the show command a second time with new coordinates, the image will move to the new position.
 
-```smallbasic
+```
 i.show([x,y [,zindex [,opacity]]])
 ```
 
@@ -116,7 +116,7 @@ i.show([x,y [,zindex [,opacity]]])
 
 The hide command hides the image from display
 
-```smallbasic
+```
  i.hide()
 ```
 
@@ -124,7 +124,7 @@ The hide command hides the image from display
 
 The draw command draws the image immediately to the screen. Calling the draw command a second time with new coordinates, will draw the same image a second time at the new position to the screen.
 
-```smallbasic
+```
  i.draw([x,y [,opacity]])
 ```
 
@@ -132,7 +132,7 @@ The draw command draws the image immediately to the screen. Calling the draw com
 
 The save command saves the image data into the given file handle, file name or array
 
-```smallbasic
+```
 dim png
 i.save(png)
 ```
@@ -141,7 +141,7 @@ i.save(png)
 
 Reduces the size of the image.
 
-```smallbasic
+```
 png.clip(left, top, right, bottom)
 ```
 
@@ -149,7 +149,7 @@ png.clip(left, top, right, bottom)
 
 Calls the supplied callback function on each pixel
 
-```smallbasic
+```
 func colorToAlpha(x)
   return x
 end
@@ -160,14 +160,14 @@ png.filter(use colorToAlpha(x))
 
 Paste the given image into this image at the given x, y location
 
-```smallbasic
+```
 png2 = Image(w, h)
 png2.paste(png1, x, y)
 ```
 
 ### Example 1
 
-```smallbasic
+```
 Const CSI_EL = Chr(27) + "[K"  ' EL - Erase in Line (clear to end of line).
 Sub title(txt) 
   Locate 0, 0: Color 7, 0: ? CSI_EL; txt;
@@ -243,7 +243,7 @@ Pause
 
 ### Example 2
 
-```smallbasic
+```
 
 ' Notes: 
 ' 1. Using POINT and PSET is a much slower option then using:
@@ -296,7 +296,7 @@ Pause
 
 ### Example 3
 
-```smallbasic
+```
 
 ' Notes:
 ' 1. You may load an existing XPM image file, the same way you load PNG image
@@ -364,7 +364,7 @@ Pause
 
 ### Example 4
 
-```smallbasic
+```
 
 Color 7, 1: Cls              ' (for recognizing transparency color)
 ' --- [1]
@@ -454,7 +454,7 @@ Data "....................."
 
 ### Example 5
 
-```smallbasic
+```
 
 ' Dedicated to johnno56
 
@@ -516,7 +516,7 @@ Next layer
 
 ### Base64 decoder for example 4
 
-```smallbasic
+```
 
 REM Purpose:   A Base64 Encoder/Decoder UNIT.
 REM File name: base64.bas
@@ -706,7 +706,7 @@ End Func
 You may create a PNG image + transparency color with an external image editor, and then you may also decode it as a Base64 PNG string (to store it within the source code).
 Another useful option is to use XPM image format (See Part-3 above) with transparency color, instead of color number you just write NONE, like this:
 
-```smallbasic
+```
 a << "x c NONE"  ' Character "x" is transparency color
 ```
 
@@ -714,7 +714,7 @@ a << "x c NONE"  ' Character "x" is transparency color
 
 The following creates a plist file and composite sprite sheet which can be used with cocos2d development
 
-```smallbasic
+```
 const backgnd = 0xFF5A5D39
 const shadow = 0xFF080c08
 

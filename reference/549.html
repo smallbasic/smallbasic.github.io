@@ -80,37 +80,37 @@
 <li><code>0</code> if it doesn’t matter which is placed first (which is usually the case when the elements are equal)</li>
 </ul>
 <h3 id="example-1-sorting-in-ascending-order">Example 1: Sorting in ascending order</h3>
-<pre><code>A = [5, 3, 8, 2, 1, 7, 9]
-sort A
-print A                         &#39; Output [1,2,3,5,7,8,9]</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">sort</span> A</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [1,2,3,5,7,8,9]</span></span></code></pre></div>
 <h3 id="example-2-sorting-in-ascending-order-using-a-compare-function">Example 2: Sorting in ascending order using a compare function</h3>
-<pre><code>func cmpfunc_ascending(x, y)
-    if x == y
-        return 0
-    elseif x &gt; y
-        return 1
-    else
-        return -1
-    endif
-end
-
-A = [5, 3, 8, 2, 1, 7, 9]
-sort A use cmpfunc_ascending(x, y)
-print A                         &#39; Output [1,2,3,5,7,8,9]</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">func </span>cmpfunc_ascending(x, y)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="kw">if </span>x == y</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">0</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="kw">elseif</span> x &gt; y</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="kw">else</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">-1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="fu">sort</span> A <span class="kw">use</span> cmpfunc_ascending(x, y)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [1,2,3,5,7,8,9]</span></span></code></pre></div>
 <h3 id="example-3-sorting-in-descending-order-using-a-compare-function">Example 3: Sorting in descending order using a compare function</h3>
-<pre><code>func cmpfunc_descending(x, y)
-    if x == y
-        return 0
-    elseif x &lt; y
-        return 1
-    else
-        return -1
-    endif
-end
-
-A = [5, 3, 8, 2, 1, 7, 9]
-sort A use cmpfunc_descending(x, y)
-print A                         &#39; Output [9,8,7,5,3,2,1]</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">func </span>cmpfunc_descending(x, y)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    <span class="kw">if </span>x == y</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="kw">elseif</span> x &lt; y</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">1</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="kw">else</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">-1</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="fu">sort</span> A <span class="kw">use</span> cmpfunc_descending(x, y)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [9,8,7,5,3,2,1]</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using SORT</div>
     <div class="linklist">

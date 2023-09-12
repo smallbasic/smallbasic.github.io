@@ -75,61 +75,61 @@
   </div>
 <p>Writes the string <code>str</code> into string <code>source</code> at position <code>pos</code> and returns the new string. This function replaces <code>len</code> characters. The default value of <code>len</code> is the length of <code>str</code>.</p>
 <h3 id="example-1">Example 1:</h3>
-<pre><code>print replace(&quot;abcdef&quot;, 3, &quot;1&quot;)                 &#39; Output: ab1def
-print replace(&quot;abcdef&quot;, 3, &quot;12&quot;)                &#39; Output: ab12ef
-print replace(&quot;abcdef&quot;, 3, &quot;123&quot;)               &#39; Output: ab123f
-print replace(&quot;abcdef&quot;, 3, &quot;1234&quot;)              &#39; Output: ab1234
-print replace(&quot;abcdef&quot;, 3, &quot;1234&quot;, 0)           &#39; Output: ab1234cdef &lt;- inserted, no replacement
-print replace(&quot;abcdef&quot;, 3, &quot;1234&quot;, 1)           &#39; Output: ab1234def  &lt;- only c was replaced
-print replace(&quot;abcdef&quot;, 3, &quot;1234&quot;, 2)           &#39; Output: ab1234ef   &lt;- only cd was replaced
-print replace(&quot;abcdef&quot;, 3, &quot;&quot;, len(&quot;abcdef&quot;))   &#39; Output: ab         &lt;- cut</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">replace</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="dv">3</span>, <span class="st">&quot;1&quot;</span>)                 <span class="co">&#39; Output: ab1def</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">replace</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="dv">3</span>, <span class="st">&quot;12&quot;</span>)                <span class="co">&#39; Output: ab12ef</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">replace</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="dv">3</span>, <span class="st">&quot;123&quot;</span>)               <span class="co">&#39; Output: ab123f</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">replace</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="dv">3</span>, <span class="st">&quot;1234&quot;</span>)              <span class="co">&#39; Output: ab1234</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">replace</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="dv">3</span>, <span class="st">&quot;1234&quot;</span>, <span class="dv">0</span>)           <span class="co">&#39; Output: ab1234cdef &lt;- inserted, no replacement</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">replace</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="dv">3</span>, <span class="st">&quot;1234&quot;</span>, <span class="dv">1</span>)           <span class="co">&#39; Output: ab1234def  &lt;- only c was replaced</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">replace</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="dv">3</span>, <span class="st">&quot;1234&quot;</span>, <span class="dv">2</span>)           <span class="co">&#39; Output: ab1234ef   &lt;- only cd was replaced</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">replace</span>(<span class="st">&quot;abcdef&quot;</span>, <span class="dv">3</span>, <span class="st">&quot;&quot;</span>, <span class="fu">len</span>(<span class="st">&quot;abcdef&quot;</span>))   <span class="co">&#39; Output: ab         &lt;- cut</span></span></code></pre></div>
 <h3 id="example-2">Example 2:</h3>
-<pre><code>Const TEXT = &quot;Red Green Blue&quot;   &#39; Text to replace:
-Const Len_TEXT = Len(TEXT)
-Const BLANKS = Len_TEXT - Len(Translate(TEXT, &quot; &quot;, &quot;&quot;)) &#39; number of blanks in TEXT
-Const ESCS = Chr(27) + &quot;[&quot;
-Const BG_BLACK = ESCS + &quot;40m&quot;
-Const BG_RED = ESCS + &quot;41m&quot;
-Const BG_GREEN = ESCS + &quot;42m&quot;
-Const BG_BLUE = ESCS + &quot;44m&quot;
-Const BG_YELLOW = ESCS + &quot;43m&quot;
-
-&#39; Helper to print the &quot;name of color&quot; with its color:  
-func colors(s)
-  s = Translate(s, &quot;Red&quot;,    BG_RED + &quot;Red&quot; + BG_BLACK)
-  s = Translate(s, &quot;Green&quot;,  BG_GREEN + &quot;Green&quot; + BG_BLACK)
-  s = Translate(s, &quot;Blue&quot;,   BG_BLUE + &quot;Blue&quot; + BG_BLACK)
-  s = Translate(s, &quot;Yellow&quot;, BG_YELLOW + &quot;Yellow&quot; + BG_BLACK)
-  s = Translate(s, &quot; &quot;, &quot;_&quot;)
-  colors = s  
-End Func
-
-Def lset(s) = Replace(Space(30), 1, s + &quot;: &quot;)  &#39; left justify s in buffer
-
-color 15,0
-cls
-
-&#39; Syntax: REPLACE (source, pos, str [, len]):
-? lset(&quot;TEXT is&quot;); colors(TEXT)
-?
-? lset(&quot;Replace Green with Yellow&quot;); colors(Replace(TEXT, 5, &quot;Yellow&quot;, 5))
-? lset(&quot;Append Yellow&quot;);             colors(Replace(TEXT, Len_TEXT + 1, &quot; Yellow&quot;))
-? lset(&quot;Prepend Yellow&quot;);            colors(Replace(TEXT, 1, &quot;Yellow &quot;, 0))
-? lset(&quot;Insert Yellow after Red&quot;);   colors(Replace(TEXT, 5, &quot;Yellow &quot;, 0))
-?
-? lset(&quot;Delete Green&quot;); colors(Replace(TEXT, 5, &quot;&quot;, 6))
-? lset(&quot;Chop Red&quot;);     colors(Replace(TEXT, 1, &quot;&quot;, 4))
-? lset(&quot;Chop Blue&quot;);    colors(Replace(TEXT, Instr(TEXT, &quot; Blue&quot;), &quot;&quot;, Len(&quot; Blue&quot;)))
-?
-? lset(&quot;Left justify TEXT in buffer&quot;);  colors(Replace(Space(30), 1, TEXT))
-? lset(&quot;Right justify TEXT in buffer&quot;); colors(Replace(Space(30), 30 - Len_TEXT + 1, TEXT))
-? lset(&quot;Center TEXT in buffer&quot;);        colors(Replace(Space(30), 15 - (Len_TEXT \ 2) + 1, TEXT))
-? lset(&quot;(Justify TEXT in buffer)&quot;); colors(Translate(TEXT, &quot; &quot;, Space((30 + BLANKS - Len_TEXT) / BLANKS)))
-?
-? lset(&quot;Replace TEXT with Yellow&quot;);  colors(Replace(TEXT, 1, &quot;Yellow&quot;, Len_TEXT))
-? lset(&quot;Override TEXT with Yellow&quot;); colors(Replace(TEXT, (Len_TEXT / 2) - 3 + 1, &quot;Yellow&quot;))
-? lset(&quot;Delete TEXT&quot;);               colors(Replace(TEXT, 1, &quot;&quot;, Len_TEXT))
-? lset(&quot;Create TEXT&quot;);               colors(Replace(&quot;&quot;, 1, TEXT))</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dt">Const</span> TEXT = <span class="st">&quot;Red Green Blue&quot;</span>   <span class="co">&#39; Text to replace:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="dt">Const</span> Len_TEXT = <span class="fu">Len</span>(TEXT)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="dt">Const</span> BLANKS = Len_TEXT - <span class="fu">Len</span>(<span class="fu">Translate</span>(TEXT, <span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="co">&#39; number of blanks in TEXT</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dt">Const</span> ESCS = <span class="fu">Chr</span>(<span class="dv">27</span>) + <span class="st">&quot;[&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="dt">Const</span> BG_BLACK = ESCS + <span class="st">&quot;40m&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="dt">Const</span> BG_RED = ESCS + <span class="st">&quot;41m&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="dt">Const</span> BG_GREEN = ESCS + <span class="st">&quot;42m&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="dt">Const</span> BG_BLUE = ESCS + <span class="st">&quot;44m&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="dt">Const</span> BG_YELLOW = ESCS + <span class="st">&quot;43m&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39; Helper to print the &quot;name of color&quot; with its color:  </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">func </span>colors(s)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>  s = <span class="fu">Translate</span>(s, <span class="st">&quot;Red&quot;</span>,    BG_RED + <span class="st">&quot;Red&quot;</span> + BG_BLACK)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>  s = <span class="fu">Translate</span>(s, <span class="st">&quot;Green&quot;</span>,  BG_GREEN + <span class="st">&quot;Green&quot;</span> + BG_BLACK)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>  s = <span class="fu">Translate</span>(s, <span class="st">&quot;Blue&quot;</span>,   BG_BLUE + <span class="st">&quot;Blue&quot;</span> + BG_BLACK)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>  s = <span class="fu">Translate</span>(s, <span class="st">&quot;Yellow&quot;</span>, BG_YELLOW + <span class="st">&quot;Yellow&quot;</span> + BG_BLACK)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>  s = <span class="fu">Translate</span>(s, <span class="st">&quot; &quot;</span>, <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>  colors = s  </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">End Func</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="kw">Def</span> lset(s) = <span class="fu">Replace</span>(<span class="fu">Space</span>(<span class="dv">30</span>), <span class="dv">1</span>, s + <span class="st">&quot;: &quot;</span>)  <span class="co">&#39; left justify s in buffer</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">15</span>,<span class="dv">0</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="fu">cls</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="co">&#39; Syntax: REPLACE (source, pos, str [, len]):</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>? lset(<span class="st">&quot;TEXT is&quot;</span>); colors(TEXT)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>?</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>? lset(<span class="st">&quot;Replace Green with Yellow&quot;</span>); colors(<span class="fu">Replace</span>(TEXT, <span class="dv">5</span>, <span class="st">&quot;Yellow&quot;</span>, <span class="dv">5</span>))</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>? lset(<span class="st">&quot;Append Yellow&quot;</span>);             colors(<span class="fu">Replace</span>(TEXT, Len_TEXT + <span class="dv">1</span>, <span class="st">&quot; Yellow&quot;</span>))</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>? lset(<span class="st">&quot;Prepend Yellow&quot;</span>);            colors(<span class="fu">Replace</span>(TEXT, <span class="dv">1</span>, <span class="st">&quot;Yellow &quot;</span>, <span class="dv">0</span>))</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>? lset(<span class="st">&quot;Insert Yellow after Red&quot;</span>);   colors(<span class="fu">Replace</span>(TEXT, <span class="dv">5</span>, <span class="st">&quot;Yellow &quot;</span>, <span class="dv">0</span>))</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>?</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>? lset(<span class="st">&quot;Delete Green&quot;</span>); colors(<span class="fu">Replace</span>(TEXT, <span class="dv">5</span>, <span class="st">&quot;&quot;</span>, <span class="dv">6</span>))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>? lset(<span class="st">&quot;Chop Red&quot;</span>);     colors(<span class="fu">Replace</span>(TEXT, <span class="dv">1</span>, <span class="st">&quot;&quot;</span>, <span class="dv">4</span>))</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>? lset(<span class="st">&quot;Chop Blue&quot;</span>);    colors(<span class="fu">Replace</span>(TEXT, <span class="fu">Instr</span>(TEXT, <span class="st">&quot; Blue&quot;</span>), <span class="st">&quot;&quot;</span>, <span class="fu">Len</span>(<span class="st">&quot; Blue&quot;</span>)))</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>?</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>? lset(<span class="st">&quot;Left justify TEXT in buffer&quot;</span>);  colors(<span class="fu">Replace</span>(<span class="fu">Space</span>(<span class="dv">30</span>), <span class="dv">1</span>, TEXT))</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>? lset(<span class="st">&quot;Right justify TEXT in buffer&quot;</span>); colors(<span class="fu">Replace</span>(<span class="fu">Space</span>(<span class="dv">30</span>), <span class="dv">30</span> - Len_TEXT + <span class="dv">1</span>, TEXT))</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>? lset(<span class="st">&quot;Center TEXT in buffer&quot;</span>);        colors(<span class="fu">Replace</span>(<span class="fu">Space</span>(<span class="dv">30</span>), <span class="dv">15</span> - (Len_TEXT \ <span class="dv">2</span>) + <span class="dv">1</span>, TEXT))</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>? lset(<span class="st">&quot;(Justify TEXT in buffer)&quot;</span>); colors(<span class="fu">Translate</span>(TEXT, <span class="st">&quot; &quot;</span>, <span class="fu">Space</span>((<span class="dv">30</span> + BLANKS - Len_TEXT) / BLANKS)))</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>?</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>? lset(<span class="st">&quot;Replace TEXT with Yellow&quot;</span>);  colors(<span class="fu">Replace</span>(TEXT, <span class="dv">1</span>, <span class="st">&quot;Yellow&quot;</span>, Len_TEXT))</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>? lset(<span class="st">&quot;Override TEXT with Yellow&quot;</span>); colors(<span class="fu">Replace</span>(TEXT, (Len_TEXT / <span class="dv">2</span>) - <span class="dv">3</span> + <span class="dv">1</span>, <span class="st">&quot;Yellow&quot;</span>))</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>? lset(<span class="st">&quot;Delete TEXT&quot;</span>);               colors(<span class="fu">Replace</span>(TEXT, <span class="dv">1</span>, <span class="st">&quot;&quot;</span>, Len_TEXT))</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>? lset(<span class="st">&quot;Create TEXT&quot;</span>);               colors(<span class="fu">Replace</span>(<span class="st">&quot;&quot;</span>, <span class="dv">1</span>, TEXT))</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using REPLACE</div>
     <div class="linklist">

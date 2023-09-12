@@ -10,7 +10,7 @@ To gain more control of where your next PRINT statement will be placed on screen
 
 ### Example 1: Basic usage
 
-```smallbasic
+```
 print 1                             ' Output: 1
 print 1+1                           ' Output: 2
 print cos(pi)                       ' Output: -1
@@ -19,7 +19,7 @@ print "Text"                        ' Output: Text
 
 ### Example 2: Print strings and numbers
 
-```smallbasic
+```
 print "abc" + "def"                 ' Output: adcdef
 print "abc" + " def"                ' Output: abc def
 print "abc" + 1 + "def" + cos(pi)   ' Output: abc1def-1
@@ -28,7 +28,7 @@ print "abc" + 1 + 2 + "def"         ' Output: abc12def  <- 1 and 2 are treated a
 
 ### Example 3: Print strings and variables
 
-```smallbasic
+```
 a = 1
 b = 2
 c = a + b
@@ -53,7 +53,7 @@ the output and at the same time evaluate expressions.
 
 ### Example 1: Using , and ;
 
-```smallbasic
+```
 a = 1
 b = 2
 print "a + b = " + a + b    ' Output: a + b = 12      <- a and b treated as strings
@@ -63,7 +63,7 @@ print "a + b = " , a + b    ' Output: a + b =      3  <- a + b was evaluated
 
 ### Example 2: Suppress new line
 
-```smallbasic
+```
 print "abc";     ' <- new line suppressed
 print "def"
 
@@ -72,7 +72,7 @@ print "def"
 
 ### Example 3: Using TAB and SPC
 
-```smallbasic
+```
 print "1" + tab(5) + "2"       ' Output 1    2
 print "1" + spc(1) + "2"       ' Output 1 2
 ```
@@ -89,7 +89,7 @@ See FORMAT for more information on how to define the format string.
 
 ### Example 1: Basic usage
 
-```smallbasic
+```
 a = 1000
 b = 2000
 PRINT USING "#,###.##"; a                    
@@ -103,7 +103,7 @@ PRINT USING "a = #####.00  b = #####"; a; b  ' <- One formated string with place
 
 ### Example 2: Apply format multiple times
 
-```smallbasic
+```
 a = 1000
 b = 2000
 PRINT USING "#,###.##"      ' Store format string
@@ -132,7 +132,7 @@ Escape codes can be used with PRINT. For more information please read the articl
 
 ### Example 1: 3 ways to print hello
 
-```smallbasic
+```
 ' 3 ways to print hello five time.bas 2016-03-05 SmallBASIC 0.12.2 [B+=MGA]
 'It's all in the punctuation at the end of a print statement
 
@@ -161,7 +161,7 @@ print "... this line needs to be finsihed."
 
 ### Example 2: Print to a file
 
-```smallbasic
+```
 Open "PRINT.TXT" For Output As #1
 Print #1, "hello"
 Close #1

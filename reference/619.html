@@ -77,32 +77,32 @@
 <p>If <code>border-color</code> is specified then PAINT will fill outwards until is meets the specified border-color. If the border-color is not specified then PAINT will fill the area until it meets a color which is not the original color at <code>[x,y]</code>. Please note that border-color needs to be specified using the functions RGB or RGBF.</p>
 <p>If the keyword STEP is used, <code>x</code> and <code>y</code> move the graphics cursor in pixel. The area will be filled starting from this new position of the graphics cursor.</p>
 <h3 id="example-1-fill-without-specified-border-color">Example 1: Fill without specified border-color</h3>
-<pre><code>&#39; draw a diamond shaped polygon
-polygon = [[100,100], [150,50], [200,100], [150,200], [100,100]]
-color 14
-drawpoly polygon
-
-&#39; draw a rectangle on top of the diamond
-color 13
-rect 120,60,180,180
-
-&#39; fill area inside
-color 12
-paint 150,130</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; draw a diamond shaped polygon</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>polygon = [[<span class="dv">100</span>,<span class="dv">100</span>], [<span class="dv">150</span>,<span class="dv">50</span>], [<span class="dv">200</span>,<span class="dv">100</span>], [<span class="dv">150</span>,<span class="dv">200</span>], [<span class="dv">100</span>,<span class="dv">100</span>]]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">14</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">drawpoly</span> polygon</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">&#39; draw a rectangle on top of the diamond</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">13</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">120</span>,<span class="dv">60</span>,<span class="dv">180</span>,<span class="dv">180</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">&#39; fill area inside</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">12</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="fu">paint</span> <span class="dv">150</span>,<span class="dv">130</span></span></code></pre></div>
 <h3 id="example-2-fill-with-specified-fill-color-and-border-color">Example 2: Fill with specified fill-color and border-color</h3>
-<pre><code>&#39; draw a diamond shaped polygon
-polygon = [[100,100], [150,50], [200,100], [150,200], [100,100]]
-color 14
-drawpoly polygon
-
-&#39; draw a rectangle on top of the diamond
-RectColor = rgb(255,0,255)
-color RectColor
-rect 120,60,180,180
-
-
-&#39; fill area inside rect
-paint 150,130, 11, RectColor        &#39; Border color needs do be set with RGB(...)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; draw a diamond shaped polygon</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>polygon = [[<span class="dv">100</span>,<span class="dv">100</span>], [<span class="dv">150</span>,<span class="dv">50</span>], [<span class="dv">200</span>,<span class="dv">100</span>], [<span class="dv">150</span>,<span class="dv">200</span>], [<span class="dv">100</span>,<span class="dv">100</span>]]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">14</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">drawpoly</span> polygon</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">&#39; draw a rectangle on top of the diamond</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>RectColor = <span class="fu">rgb</span>(<span class="dv">255</span>,<span class="dv">0</span>,<span class="dv">255</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="fu">color</span> RectColor</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">120</span>,<span class="dv">60</span>,<span class="dv">180</span>,<span class="dv">180</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">&#39; fill area inside rect</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="fu">paint</span> <span class="dv">150</span>,<span class="dv">130</span>, <span class="dv">11</span>, RectColor        <span class="co">&#39; Border color needs do be set with RGB(...)</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using PAINT</div>
     <div class="linklist">

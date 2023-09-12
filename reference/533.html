@@ -75,25 +75,25 @@
   </div>
 <p>Enables/Disables the pen/mouse/tap mechanism. See function <code>n = PEN(value)</code> for information on how to read data from tap, mouse or pen.</p>
 <h3 id="example">Example</h3>
-<pre><code>pen on
-
-print &quot;Press left mouse button or tab screen. Press q to quit.&quot;
-
-while(1)          
-    if(pen(3)) then
-        PosX = pen(4)
-        PosY = pen(5)
-        locate 1,0: print &quot;Click/tap at position: &quot; + PosX + &quot; , &quot; + PosY
-    endif
-    
-    k = inkey()
-    if(len(k) == 1 AND k == &quot;q&quot;) then end
-    
-    showpage
-    delay(20)
-wend
-
-pen off</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">pen</span> <span class="kw">on</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Press left mouse button or tab screen. Press q to quit.&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">while(</span><span class="dv">1</span>)          </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="kw">if(</span><span class="fu">pen</span>(<span class="dv">3</span>)) <span class="kw">then</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>        PosX = <span class="fu">pen</span>(<span class="dv">4</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>        PosY = <span class="fu">pen</span>(<span class="dv">5</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>        <span class="fu">locate</span> <span class="dv">1</span>,<span class="dv">0</span>: <span class="kw">print</span> <span class="st">&quot;Click/tap at position: &quot;</span> + PosX + <span class="st">&quot; , &quot;</span> + PosY</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    k = <span class="kw">inkey</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="kw">if(</span><span class="fu">len</span>(k) == <span class="dv">1</span> <span class="kw">AND</span> k == <span class="st">&quot;q&quot;</span>) <span class="kw">then en</span>d</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="fu">showpage</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">20</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="kw">wend</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="fu">pen</span> off</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using PEN</div>
     <div class="linklist">
@@ -170,7 +170,7 @@ PEN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 14 Jun 2023 12:55:20 +0200
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

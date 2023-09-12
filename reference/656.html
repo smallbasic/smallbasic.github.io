@@ -75,16 +75,16 @@
   </div>
 <p>Terminates execution of a program, closes all files opened by the program, and returns control to the operating system. The optional number <code>error</code> will be returned to the operating system; if not specified SmallBASIC returns <code>0</code>. On Windows, the <code>error</code> value is known as ERRORLEVEL.</p>
 <h3 id="example-1">Example 1</h3>
-<pre><code>print &quot;Hello world&quot;
-stop
-print &quot;This will never be printed&quot;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello world&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">stop</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;This will never be printed&quot;</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<pre><code>print &quot;Type exit to stop program&quot;
-while (true)
-    input &quot;INPUT: &quot;, s
-    if(s == &quot;exit&quot;) then stop
-    print &quot;You typed: &quot;;s
-wend</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Type exit to stop program&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">while </span>(<span class="dt">true</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="kw">input</span> <span class="st">&quot;INPUT: &quot;</span>, s</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="kw">if(</span>s == <span class="st">&quot;exit&quot;</span>) <span class="kw">then st</span>op</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;You typed: &quot;</span>;s</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using STOP</div>
     <div class="linklist">

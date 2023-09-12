@@ -75,12 +75,12 @@
   </div>
 <p>Draws a pixel at coordinate <code>x</code>,<code>y</code> with color <code>color</code>. If <code>color</code> is not defined, the current foreground color will be used. If STEP is used, the graphics cursor will be moved by <code>x</code> pixels in x-direction and <code>y</code> pixel in y-direction and then the pixel will be drawn.</p>
 <h3 id="example">Example:</h3>
-<pre><code>color 10                    &#39; Set foreground color 10
-PSET 50,50                  &#39; Point at 50,50 with foreground color 
-PSET 60,60, 11              &#39; Point at 60,60 with color 5
-PSET 70,70 COLOR 12         &#39; Point at 70,70 with color 6
-PSET 80,80, rgb(255,255,0)  &#39; Point at 80,80 with color yellow
-PSET STEP 10,10 COLOR 13    &#39; Point at 90,90 with color 7</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">10</span>                    <span class="co">&#39; Set foreground color 10</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">PSET</span> <span class="dv">50</span>,<span class="dv">50</span>                  <span class="co">&#39; Point at 50,50 with foreground color </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">PSET</span> <span class="dv">60</span>,<span class="dv">60</span>, <span class="dv">11</span>              <span class="co">&#39; Point at 60,60 with color 5</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">PSET</span> <span class="dv">70</span>,<span class="dv">70</span> <span class="fu">COLOR</span> <span class="dv">12</span>         <span class="co">&#39; Point at 70,70 with color 6</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">PSET</span> <span class="dv">80</span>,<span class="dv">80</span>, <span class="fu">rgb</span>(<span class="dv">255</span>,<span class="dv">255</span>,<span class="dv">0</span>)  <span class="co">&#39; Point at 80,80 with color yellow</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">PSET</span> STEP <span class="dv">10</span>,<span class="dv">10</span> <span class="fu">COLOR</span> <span class="dv">13</span>    <span class="co">&#39; Point at 90,90 with color 7</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using PSET</div>
     <div class="linklist">

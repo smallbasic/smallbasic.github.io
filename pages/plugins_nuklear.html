@@ -78,175 +78,175 @@
 <p><code>sbasic.exe NuklearTest.bas</code></p>
 <h2 id="creating-a-window">Creating a window</h2>
 <p>The following code shows how to create your first “Hello World” window.</p>
-<pre><code>option predef grmode 640x480    &#39; Set window size
-
-import nuklear as nk            &#39; Import Nuklear plugin
-
-while 1
-    if nk.windowBegin(&quot;Hello World&quot;, 0, 0, &quot;100%&quot;, &quot;100%&quot;) then     &#39; Create window
-        &#39; Render GUI elements and do other useful thinks
-    endif
-    nk.windowEnd()              &#39; Free window
-    nk.waitEvents()             &#39; Pause until event
-wend</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">option</span> predef grmode 640x480    <span class="co">&#39; Set window size</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="pp">import</span> nuklear <span class="kw">as</span> nk            <span class="co">&#39; Import Nuklear plugin</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="kw">if </span>nk.windowBegin(<span class="st">&quot;Hello World&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="st">&quot;100%&quot;</span>, <span class="st">&quot;100%&quot;</span>) <span class="kw">then</span>     <span class="co">&#39; Create window</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>        <span class="co">&#39; Render GUI elements and do other useful thinks</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    nk.windowEnd()              <span class="co">&#39; Free window</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    nk.waitEvents()             <span class="co">&#39; Pause until event</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <p>With <code>nk.windowBegin()</code> a window will be created, if not already present. Additionally the window content will be clear. After successfully calling this function, all the GUI elements can be placed and the responses to user input can be performed. Once <code>nk.windowEnd()</code> is called, all the elements get rendered. <code>nk.waitEvents()</code> is used to pause the program until an event occurs. Without <code>nk.waitEvents()</code> the next iteration of the while-loop would immediately start.</p>
 <h2 id="placing-a-button">Placing a button</h2>
-<pre><code>option predef grmode 640x480
-
-import nuklear as nk
-
-ClickCounter = 0
-
-while 1
-    if nk.windowBegin(&quot;Button&quot;, 0, 0, &quot;100%&quot;, &quot;100%&quot;) then
-
-        nk.layoutRow(&quot;dynamic&quot;, 30, 1)
-        if nk.button(&quot;You clicked me &quot; + ClickCounter + &quot; times&quot;) then
-           ClickCounter++
-        endif
-
-    endif
-    nk.windowEnd()
-    nk.waitEvents()
-wend</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">option</span> predef grmode 640x480</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="pp">import</span> nuklear <span class="kw">as</span> nk</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>ClickCounter = <span class="dv">0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="kw">if </span>nk.windowBegin(<span class="st">&quot;Button&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="st">&quot;100%&quot;</span>, <span class="st">&quot;100%&quot;</span>) <span class="kw">then</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>        nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>        <span class="kw">if </span>nk.button(<span class="st">&quot;You clicked me &quot;</span> + ClickCounter + <span class="st">&quot; times&quot;</span>) <span class="kw">then</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>           ClickCounter++</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>        <span class="kw">endif</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    nk.windowEnd()</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>    nk.waitEvents()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <p>Before you can add a button, you have to define a layout which can hold the GUI elements. This is done with <code>nk.layoutRow("dynamic", 30, 1)</code>. In this case, a row layout is created. The width of every row is adapted dynamically to the size of your window, the height is 30px and one element can be placed per row. The button is created with <code>nk.button()</code>. If the button is clicked, the if-statement will be entered. Place all the code inside the if-statement or call a sub-routine which deals with a pressed button.</p>
 <h2 id="displaying-two-radio-buttons">Displaying two radio buttons</h2>
-<pre><code>option predef grmode 640x480
-
-import nuklear as nk
-
-radio = {value: &quot;A&quot;}
-
-while 1
-    if nk.windowBegin(&quot;Radio Buttons&quot;, 0, 0, &quot;100%&quot;, &quot;100%&quot;) then
-
-        nk.layoutRow(&quot;dynamic&quot;, 90, 2)
-        nk.radio(&quot;Radio Button A&quot;, radio)
-        nk.radio(&quot;Radio Button B&quot;, radio)
-
-        if(radio.value = &quot;A&quot;) then
-            &#39; Do something useful
-        endif
-
-    endif
-    nk.windowEnd()
-    nk.waitEvents()
-wend</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="pp">option</span> predef grmode 640x480</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="pp">import</span> nuklear <span class="kw">as</span> nk</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>radio = {value: <span class="st">&quot;A&quot;</span>}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">if </span>nk.windowBegin(<span class="st">&quot;Radio Buttons&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="st">&quot;100%&quot;</span>, <span class="st">&quot;100%&quot;</span>) <span class="kw">then</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>        nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">90</span>, <span class="dv">2</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>        nk.radio(<span class="st">&quot;Radio Button A&quot;</span>, radio)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>        nk.radio(<span class="st">&quot;Radio Button B&quot;</span>, radio)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>        <span class="kw">if(</span>radio.value = <span class="st">&quot;A&quot;</span>) <span class="kw">then</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>            <span class="co">&#39; Do something useful</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>        <span class="kw">endif</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>    nk.windowEnd()</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>    nk.waitEvents()</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <p>The current value of the radio buttons will be stored in <em>radio.value</em>. The initial value of <em>radio.value</em> is “A” setting “Radio Button A” active. The if-statement will be entered, when “Radio Button A” is selected.</p>
 <p>Because <code>nk.layoutRow("dynamic", 90, 2)</code> is this time set to “2” two elements are placed in one row. You can try and set it to “1”. You will see, that then one radio button per line is displayed.</p>
 <h2 id="dynamic-rows-vs.-static-rows">Dynamic rows vs. static rows</h2>
-<pre><code>option predef grmode 640x480
-
-import nuklear as nk
-
-radio = {value: &quot;A&quot;}
-
-while 1
-    if nk.windowBegin(&quot;Radio Buttons&quot;, 0, 0, &quot;100%&quot;, &quot;100%&quot;) then
-
-        nk.layoutRow(&quot;static&quot;,  90, 310, 2)   &#39; fix sized elements
-        nk.radio(&quot;Radio Button A&quot;, radio)
-        nk.radio(&quot;Radio Button B&quot;, radio)
-
-        nk.layoutRow(&quot;dynamic&quot;, 90, 2)        &#39; dynamic sized elements
-        nk.radio(&quot;Radio Button C&quot;, radio)
-        nk.radio(&quot;Radio Button D&quot;, radio)
-
-        if(radio.value = &quot;A&quot;) then
-            &#39; Do something useful
-        endif
-
-    endif
-    nk.windowEnd()
-    nk.waitEvents()
-wend</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="pp">option</span> predef grmode 640x480</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="pp">import</span> nuklear <span class="kw">as</span> nk</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>radio = {value: <span class="st">&quot;A&quot;</span>}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    <span class="kw">if </span>nk.windowBegin(<span class="st">&quot;Radio Buttons&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="st">&quot;100%&quot;</span>, <span class="st">&quot;100%&quot;</span>) <span class="kw">then</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>        nk.layoutRow(<span class="st">&quot;static&quot;</span>,  <span class="dv">90</span>, <span class="dv">310</span>, <span class="dv">2</span>)   <span class="co">&#39; fix sized elements</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>        nk.radio(<span class="st">&quot;Radio Button A&quot;</span>, radio)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>        nk.radio(<span class="st">&quot;Radio Button B&quot;</span>, radio)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>        nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">90</span>, <span class="dv">2</span>)        <span class="co">&#39; dynamic sized elements</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>        nk.radio(<span class="st">&quot;Radio Button C&quot;</span>, radio)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>        nk.radio(<span class="st">&quot;Radio Button D&quot;</span>, radio)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>        <span class="kw">if(</span>radio.value = <span class="st">&quot;A&quot;</span>) <span class="kw">then</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>            <span class="co">&#39; Do something useful</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>        <span class="kw">endif</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>    nk.windowEnd()</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a>    nk.waitEvents()</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <p>This example is similar to the previous one. But now four radio buttons, two in one line, are displayed. The first two buttons A and B are arrange with the row layout “static”. The row has a height of 90px and a fixed width of 310px. Radio button A and B will each have a fixed width of 155px. Buttons C and D are arranged using “dynamic” row layout. The row spans the width of the window at a height of 90px. Button C and D have a width of 50% each.</p>
 <p>If you run this example and change the size of the window with the mouse, you can see, how the width of the two rows change.</p>
 <h2 id="show-input-boxes-with-labels---more-flexible-row-layout">Show input boxes with labels - More flexible row layout</h2>
-<pre><code>option predef grmode 640x480
-
-import nuklear as nk
-
-FirstName = {value: &quot;&quot;}
-Surname  = {value: &quot;&quot;}
-
-while 1
-    if nk.windowBegin(&quot;Input box with labels&quot;, 0, 0, &quot;100%&quot;, &quot;100%&quot;) then
-
-        nk.layoutRowBegin(&quot;static&quot;, 25, 2)  &#39; Static row -&gt; fixed width
-            nk.LayoutRowPush(92)            &#39; Next element will have a width of 92px
-            nk.label(&quot;First Name:&quot;)
-            nk.LayoutRowPush(371)           &#39; Next element will have a width of 371px
-            nk.edit(&quot;field&quot;, FirstName)
-        nk.layoutRowEnd()
-
-        nk.layoutRowBegin(&quot;dynamic&quot;, 25, 2) &#39; Dynamic row -&gt; width depends on window size
-            nk.LayoutRowPush(0.15)          &#39; Next element will have a width of 15%
-            nk.label(&quot;Surname:&quot;)
-            nk.LayoutRowPush(0.60)          &#39; Next element will have a width of 85%
-            nk.edit(&quot;field&quot;, Surname)
-        nk.layoutRowEnd()
-
-    endif
-    nk.windowEnd()
-    nk.waitEvents()
-wend</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="pp">option</span> predef grmode 640x480</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="pp">import</span> nuklear <span class="kw">as</span> nk</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>FirstName = {value: <span class="st">&quot;&quot;</span>}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>Surname  = {value: <span class="st">&quot;&quot;</span>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>    <span class="kw">if </span>nk.windowBegin(<span class="st">&quot;Input box with labels&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="st">&quot;100%&quot;</span>, <span class="st">&quot;100%&quot;</span>) <span class="kw">then</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>        nk.layoutRowBegin(<span class="st">&quot;static&quot;</span>, <span class="dv">25</span>, <span class="dv">2</span>)  <span class="co">&#39; Static row -&gt; fixed width</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>            nk.LayoutRowPush(<span class="dv">92</span>)            <span class="co">&#39; Next element will have a width of 92px</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>            nk.<span class="kw">label</span>(<span class="st">&quot;First Name:&quot;</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>            nk.LayoutRowPush(<span class="dv">371</span>)           <span class="co">&#39; Next element will have a width of 371px</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>            nk.edit(<span class="st">&quot;field&quot;</span>, FirstName)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>        nk.layoutRowEnd()</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>        nk.layoutRowBegin(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">25</span>, <span class="dv">2</span>) <span class="co">&#39; Dynamic row -&gt; width depends on window size</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>            nk.LayoutRowPush(<span class="dv">0.15</span>)          <span class="co">&#39; Next element will have a width of 15%</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>            nk.<span class="kw">label</span>(<span class="st">&quot;Surname:&quot;</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a>            nk.LayoutRowPush(<span class="dv">0.60</span>)          <span class="co">&#39; Next element will have a width of 85%</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a>            nk.edit(<span class="st">&quot;field&quot;</span>, Surname)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>        nk.layoutRowEnd()</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a>    nk.windowEnd()</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>    nk.waitEvents()</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <p>A label is created in Nuklear with <code>nk.label("MyLabel")</code> and a input box with the command <code>nk.edit("field", EditFieldValue)</code>. The string of the input box is stored in <em>EditFieldValue.value</em>.</p>
 <p>In the example above the width of each element was defined in two different ways. With <code>nk.layoutRowBegin("static", 25, 2)</code> two elements per row will be placed. The width of each element is defined in pixel by the command <code>nk.LayoutRowPush(pixels)</code>. With <code>nk.layoutRowBegin("dynamic", 25, 2)</code> two elements per row will be placed. The width of each element is defined in percent by the command <code>nk.LayoutRowPush(percent)</code>, i.e. 0.15 means 15%. When you run the above example and change the size of the window with the mouse, you will see, that the width of the elements in the first line stays always the same, and in the second line the width is adapted to the width of the window.</p>
 <p>When using <code>nk.layoutRowBegin(...)</code> the end of the definition for a row has to be marked by <code>nk.layoutRowEnd()</code>.</p>
 <h2 id="display-a-menu">Display a menu</h2>
 <p>Caution: <code>menuItem()</code> is not yet working probably. This will be fixed with the next release.</p>
-<pre><code>option predef grmode 640x480
-
-import nuklear as nk
-
-while 1
-    if nk.windowBegin(&quot;Menu&quot;, 0, 0, &quot;100%&quot;, &quot;100%&quot;) then
-
-        nk.menubarBegin()
-            nk.layoutRow(&quot;dynamic&quot;, 20, 1)
-            if nk.menuBegin(&quot;Menu&quot;, nil, 100, 80) then
-                nk.layoutRow(&quot;dynamic&quot;, 20, 1)
-                if(nk.menuItem(&quot;Item A&quot;)) then
-                    &#39; Menu item clicked - do something
-                endif
-                if(nk.menuItem(&quot;Item B&quot;)) then
-                    &#39; Menu item clicked - do something
-                endif
-                if(nk.menuItem(&quot;Item C&quot;)) then
-                    &#39; Menu item clicked - do something
-                endif
-                nk.menuEnd()
-            endif
-        nk.menubarEnd()
-
-    endif
-    nk.windowEnd()
-    nk.waitEvents()
-wend</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="pp">option</span> predef grmode 640x480</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="pp">import</span> nuklear <span class="kw">as</span> nk</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>    <span class="kw">if </span>nk.windowBegin(<span class="st">&quot;Menu&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="st">&quot;100%&quot;</span>, <span class="st">&quot;100%&quot;</span>) <span class="kw">then</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>        nk.menubarBegin()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>            nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">20</span>, <span class="dv">1</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>            <span class="kw">if </span>nk.menuBegin(<span class="st">&quot;Menu&quot;</span>, <span class="dt">nil</span>, <span class="dv">100</span>, <span class="dv">80</span>) <span class="kw">then</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>                nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">20</span>, <span class="dv">1</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>                <span class="kw">if(</span>nk.menuItem(<span class="st">&quot;Item A&quot;</span>)) <span class="kw">then</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>                    <span class="co">&#39; Menu item clicked - do something</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>                <span class="kw">endif</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>                <span class="kw">if(</span>nk.menuItem(<span class="st">&quot;Item B&quot;</span>)) <span class="kw">then</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>                    <span class="co">&#39; Menu item clicked - do something</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>                <span class="kw">endif</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>                <span class="kw">if(</span>nk.menuItem(<span class="st">&quot;Item C&quot;</span>)) <span class="kw">then</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a>                    <span class="co">&#39; Menu item clicked - do something</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a>                <span class="kw">endif</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a>                nk.menuEnd()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a>            <span class="kw">endif</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a>        nk.menubarEnd()</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a>    nk.windowEnd()</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a>    nk.waitEvents()</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <p>The example above will display a menu with one entry called “Menu”. When clicked, a sub menu is displayed with the entries “Item A”, “Item B”, “Item C”. The if-statements will be executed, when the corresponding entry was clicked by the user.</p>
 <h3 id="draw-basic-shapes">Draw basic shapes</h3>
-<pre><code>option predef grmode 640x480
-
-import nuklear as nk
-
-color rgb(128,54,0), 1
-
-while 1
-    if nk.windowBegin(&quot;Draw Example&quot;, 2, 2, &quot;100%&quot;, &quot;100%&quot;) then
-        [x, y, w, h] = nk.windowGetBounds()
-        nk.line(x + 10, y + 40, x + 50, y + 40, x + 50, y + 80)
-        nk.curve(x + 50, y + 80, x + 80, y + 40, x + 100, y + 80, x + 80, y + 80)
-        nk.polygon(&quot;line&quot;, x + 100, y + 150, x + 60, y + 140, x + 70, y + 70)
-        nk.circle(&quot;line&quot;, x + 130, y + 140, 50)
-        nk.ellipse(&quot;fill&quot;, x + 30, y + 150, 20, 40)
-        nk.arc(&quot;fill&quot;, x + 150, y + 80, 40, 3 * PI / 2, 2 * PI)
-        nk.rectMultiColor(x + 95, y + 50, 50, 50, &quot;#ff0000&quot;, &quot;#00ff00&quot;, &quot;#0000ff&quot;, &quot;#000000&quot;)
-        nk.text(&quot;DRAW TEXT&quot;, x + 15, y + 75, 100, 100)
-    endif
-    nk.windowEnd()
-    nk.waitEvents()
-wend</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="pp">option</span> predef grmode 640x480</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="pp">import</span> nuklear <span class="kw">as</span> nk</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="fu">color</span> <span class="fu">rgb</span>(<span class="dv">128</span>,<span class="dv">54</span>,<span class="dv">0</span>), <span class="dv">1</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>    <span class="kw">if </span>nk.windowBegin(<span class="st">&quot;Draw Example&quot;</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">&quot;100%&quot;</span>, <span class="st">&quot;100%&quot;</span>) <span class="kw">then</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>        [x, y, w, h] = nk.windowGetBounds()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>        nk.<span class="fu">line</span>(x + <span class="dv">10</span>, y + <span class="dv">40</span>, x + <span class="dv">50</span>, y + <span class="dv">40</span>, x + <span class="dv">50</span>, y + <span class="dv">80</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>        nk.curve(x + <span class="dv">50</span>, y + <span class="dv">80</span>, x + <span class="dv">80</span>, y + <span class="dv">40</span>, x + <span class="dv">100</span>, y + <span class="dv">80</span>, x + <span class="dv">80</span>, y + <span class="dv">80</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>        nk.polygon(<span class="st">&quot;line&quot;</span>, x + <span class="dv">100</span>, y + <span class="dv">150</span>, x + <span class="dv">60</span>, y + <span class="dv">140</span>, x + <span class="dv">70</span>, y + <span class="dv">70</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>        nk.<span class="fu">circle</span>(<span class="st">&quot;line&quot;</span>, x + <span class="dv">130</span>, y + <span class="dv">140</span>, <span class="dv">50</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>        nk.ellipse(<span class="st">&quot;fill&quot;</span>, x + <span class="dv">30</span>, y + <span class="dv">150</span>, <span class="dv">20</span>, <span class="dv">40</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>        nk.<span class="fu">arc</span>(<span class="st">&quot;fill&quot;</span>, x + <span class="dv">150</span>, y + <span class="dv">80</span>, <span class="dv">40</span>, <span class="dv">3</span> * <span class="dt">PI</span> / <span class="dv">2</span>, <span class="dv">2</span> * <span class="dt">PI</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>        nk.rectMultiColor(x + <span class="dv">95</span>, y + <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="st">&quot;#ff0000&quot;</span>, <span class="st">&quot;#00ff00&quot;</span>, <span class="st">&quot;#0000ff&quot;</span>, <span class="st">&quot;#000000&quot;</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a>        nk.text(<span class="st">&quot;DRAW TEXT&quot;</span>, x + <span class="dv">15</span>, y + <span class="dv">75</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a>    nk.windowEnd()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a>    nk.waitEvents()</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <h2 id="reference-of-supported-commands">Reference of supported commands</h2>
 <h3 id="button">BUTTON</h3>
 <blockquote>
@@ -269,13 +269,13 @@ start, end: Start and end angle of the arc</p>
 <p>Name (String): Name of the checkbox<br />
 checkboxValue: actual value of the checkbox</p>
 <p>Creates a checkbox with the name <em>Name</em>. State of the checkbox is stored in <em>checkboxValue</em>.</p>
-<pre><code>checkA = {value: false}
-...
-nk.Checkbox(&quot;Checkbox A&quot;, checkA)
-
-if(checkA.value = true) then
-    &#39; Do something
-endif</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>checkA = {value: <span class="dt">false</span>}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>...</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>nk.Checkbox(<span class="st">&quot;Checkbox A&quot;</span>, checkA)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="kw">if(</span>checkA.value = <span class="dt">true</span>) <span class="kw">then</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>    <span class="co">&#39; Do something</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="kw">endif</span></span></code></pre></div>
 <h3 id="circle">CIRCLE</h3>
 <blockquote>
 <p>Circle(x, y, r)</p>
@@ -289,18 +289,17 @@ r: radius of the circle in pixel</p>
 </blockquote>
 <p>color: color of the colorpicker</p>
 <p>Creates a colorpicker. The color picked by the user is stored in color.value as a string.</p>
-<pre><code>colorPicker = {value: &quot;#ff0000&quot;}
-...
-nk.colorPicker(colorPicker)
-</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>colorPicker = {value: <span class="st">&quot;#ff0000&quot;</span>}</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>...</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>nk.colorPicker(colorPicker)</span></code></pre></div>
 <h3 id="combobox">COMBOBOX</h3>
 <blockquote>
 <p>combobox(comboValue)</p>
 </blockquote>
 <p>comboValue (map): settings of combobox</p>
 <p>Creates a combobox. The number of the selected combobox is stored in <em>comboValue.value</em>.</p>
-<pre><code>comboA = {value: 1, items: [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]}
-nk.combobox(comboA)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>comboA = {value: <span class="dv">1</span>, items: [<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>]}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>nk.combobox(comboA)</span></code></pre></div>
 <h3 id="contextualbegin">CONTEXTUALBEGIN</h3>
 <blockquote>
 <p>contextualBegin(sizeX, sizeY, triggerX, triggerY, triggerW, triggerH)</p>
@@ -308,13 +307,13 @@ nk.combobox(comboA)</code></pre>
 <p>sizeX, sizeY: Size of the menu<br />
 triggerX, triggerY, triggerW, triggerH: Trigger area in pixel</p>
 <p>Creates an contextual menu. Right-click in the trigger area will open a menu.</p>
-<pre><code>[x, y, w, h] = nk.widgetBounds()
-if nk.contextualBegin(100, 100, x, y, w, h) then
-    nk.layoutRow(&quot;dynamic&quot;, 30, 1)
-    nk.contextualItem(&quot;Item A&quot;)
-    nk.contextualItem(&quot;Item B&quot;)
-    nk.contextualEnd()
-endif</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>[x, y, w, h] = nk.widgetBounds()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="kw">if </span>nk.contextualBegin(<span class="dv">100</span>, <span class="dv">100</span>, x, y, w, h) <span class="kw">then</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>    nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>    nk.contextualItem(<span class="st">&quot;Item A&quot;</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>    nk.contextualItem(<span class="st">&quot;Item B&quot;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>    nk.contextualEnd()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="kw">endif</span></span></code></pre></div>
 <h3 id="contextualend">CONTEXTUALEND</h3>
 <blockquote>
 <p>contextualEnd()</p>
@@ -338,9 +337,9 @@ endif</code></pre>
 <p>Style (String): “simple”, “field”, “editor”, “box”<br />
 editValue: Stores the actual text</p>
 <p>Creates an input box. The content of the input box is stored in <em>editValue.value</em>.</p>
-<pre><code>editA = {value: &quot;&quot;}
-...
-nk.edit(&quot;field&quot;, editA)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>editA = {value: <span class="st">&quot;&quot;</span>}</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>...</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a>nk.edit(<span class="st">&quot;field&quot;</span>, editA)</span></code></pre></div>
 <h3 id="ellipse">ELLIPSE</h3>
 <blockquote>
 <p>ellipse(DrawMode, x, y, rx, ry)</p>
@@ -356,18 +355,17 @@ rx, ry: radii in pixel</p>
 <p>Name (String): Name of the goup<br />
 Style (String): "“,”border"</p>
 <p>Groups several elements. The group can be surrounded by a border.</p>
-<pre><code>nk.groupBegin(&quot;Group 1&quot;, &quot;border&quot;)
-    nk.layoutRow(&quot;dynamic&quot;, 30, 1)
-    nk.label(&quot;Radio buttons:&quot;)
-    nk.layoutRow(&quot;dynamic&quot;, 30, 3)
-    nk.radio(&quot;A&quot;, radio)
-    nk.radio(&quot;B&quot;, radio)
-    nk.radio(&quot;C&quot;, radio)
-    nk.layoutRow(&quot;dynamic&quot;, 30, 1)
-    nk.selectable(&quot;Selectable A&quot;, selectA)
-    nk.selectable(&quot;Selectable B&quot;, selectB)
-nk.groupEnd()
-</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>nk.groupBegin(<span class="st">&quot;Group 1&quot;</span>, <span class="st">&quot;border&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>    nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>    nk.<span class="kw">label</span>(<span class="st">&quot;Radio buttons:&quot;</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>    nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">3</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>    nk.radio(<span class="st">&quot;A&quot;</span>, radio)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>    nk.radio(<span class="st">&quot;B&quot;</span>, radio)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a>    nk.radio(<span class="st">&quot;C&quot;</span>, radio)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>    nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>    nk.selectable(<span class="st">&quot;Selectable A&quot;</span>, selectA)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a>    nk.selectable(<span class="st">&quot;Selectable B&quot;</span>, selectB)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a>nk.groupEnd()</span></code></pre></div>
 <h3 id="groupend">GROUPEND</h3>
 <blockquote>
 <p>groupEnd()</p>
@@ -381,11 +379,11 @@ nk.groupEnd()
 align (string): “centered”, “right”, “left”<br />
 color (string): hex color, i.e “#ff0000”</p>
 <p>Creates a label.</p>
-<pre><code>nk.label(&quot;Left label&quot;)
-nk.label(&quot;Centered label&quot;, &quot;centered&quot;)
-nk.label(&quot;Right label&quot;, &quot;right&quot;)
-nk.label(&quot;Colored label&quot;, &quot;left&quot;, &quot;#ff0000&quot;)
-nk.label(&quot;A very long wrapped label - The quick brown fox jumps over the ...&quot;, &quot;right&quot;, &quot;wrap&quot;)</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>nk.<span class="kw">label</span>(<span class="st">&quot;Left label&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>nk.<span class="kw">label</span>(<span class="st">&quot;Centered label&quot;</span>, <span class="st">&quot;centered&quot;</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>nk.<span class="kw">label</span>(<span class="st">&quot;Right label&quot;</span>, <span class="st">&quot;right&quot;</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>nk.<span class="kw">label</span>(<span class="st">&quot;Colored label&quot;</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;#ff0000&quot;</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>nk.<span class="kw">label</span>(<span class="st">&quot;A very long wrapped label - The quick brown fox jumps over the ...&quot;</span>, <span class="st">&quot;right&quot;</span>, <span class="st">&quot;wrap&quot;</span>)</span></code></pre></div>
 <h3 id="layoutrow">LAYOUTROW</h3>
 <blockquote>
 <p>layoutRow(“dynamic”, height, numberOfElements)</p>
@@ -468,9 +466,9 @@ x,y: coordinate pairs of the line segments</p>
 maxValue: Maximum progress value<br />
 modifiable: true or false (default: false)</p>
 <p>Displays a progress bar. The length of the bar is given by <em>progressValue.value</em>. Set <em>modifiable</em> to true, if you want to use the progress bar as a slider to change the value.</p>
-<pre><code>progress.value = 5
-...
-nk.progress(progress, 10, false)</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>progress.value = <span class="dv">5</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a>...</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a>nk.progress(progress, <span class="dv">10</span>, <span class="dt">false</span>)</span></code></pre></div>
 <h3 id="property">PROPERTY</h3>
 <blockquote>
 <p>property(name, minValue, propertyValue, maxValue, stepSizeByClick, stepSizeByMoving)</p>
@@ -482,9 +480,9 @@ maxValue: Maximum value<br />
 stepSizeByClick: Stepsize when clicked with the mouse<br />
 stepSizeByMoving: Stepsize when click + hold + moving the mouse</p>
 <p>Displays an input box for numbers. The actual value is stored in <em>propertyValue.value</em>.</p>
-<pre><code>property = {value: 6}
-...
-nk.property(&quot;Property&quot;, 1, property, 10, 0.25, 0.5)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>property = {value: <span class="dv">6</span>}</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a>...</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>nk.property(<span class="st">&quot;Property&quot;</span>, <span class="dv">1</span>, property, <span class="dv">10</span>, <span class="dv">0.25</span>, <span class="dv">0.5</span>)</span></code></pre></div>
 <h3 id="radio">RADIO</h3>
 <blockquote>
 <p>radio(Name, radioValue)</p>
@@ -507,12 +505,12 @@ color1 to color4 (string): hex color of the for corners of the rectangle</p>
 <p>Name (String): Name of the item<br />
 selectValue: value of the item</p>
 <p>Creates a list of items, which can be selected similar to a checkbox. The actual value of the selectable is stored in <em>selectValue.value</em></p>
-<pre><code>selectA = {value: false}
-selectB = {value: true}
-...
-nk.layoutRow(&quot;dynamic&quot;, 30, 1)
-nk.selectable(&quot;Selectable A&quot;, selectA)
-nk.selectable(&quot;Selectable B&quot;, selectB)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>selectA = {value: <span class="dt">false</span>}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>selectB = {value: <span class="dt">true</span>}</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>...</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>nk.selectable(<span class="st">&quot;Selectable A&quot;</span>, selectA)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a>nk.selectable(<span class="st">&quot;Selectable B&quot;</span>, selectB)</span></code></pre></div>
 <h3 id="slider">SLIDER</h3>
 <blockquote>
 <p>slider(minValue, sliderValue, maxValue, stepSize)</p>
@@ -522,9 +520,9 @@ sliderValue: actual value if the slider<br />
 maxValue: maximum value of the slider<br />
 stepSize: step size of the slider when moving with the mouse</p>
 <p>Displays a slider. The slider position is given by <em>sliderValue.value</em></p>
-<pre><code>sliderValue  = {value: 5}
-...
-nk.slider(1, sliderValue, 10, .5)</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>sliderValue  = {value: <span class="dv">5</span>}</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a>...</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>nk.slider(<span class="dv">1</span>, sliderValue, <span class="dv">10</span>, <span class="dv">.5</span>)</span></code></pre></div>
 <h3 id="spacing">SPACING</h3>
 <blockquote>
 <p>spacing(numberOfRows)</p>
@@ -548,13 +546,13 @@ height: height of the element</p>
 </blockquote>
 <p>TooltipValue (String): Text of the tooltip</p>
 <p>Prints a tooltip.</p>
-<pre><code>edit = {value: &quot;Edit text&quot;}
-...
-nk.layoutRow(&quot;dynamic&quot;, 30, 1)
-if nk.widgetIsHovered() then
-    nk.tooltip(&quot;Test tooltip&quot;)
-endif
-k.edit(&quot;box&quot;, edit)</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>edit = {value: <span class="st">&quot;Edit text&quot;</span>}</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a>...</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a>nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a><span class="kw">if </span>nk.widgetIsHovered() <span class="kw">then</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a>    nk.tooltip(<span class="st">&quot;Test tooltip&quot;</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a><span class="kw">endif</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true"></a>k.edit(<span class="st">&quot;box&quot;</span>, edit)</span></code></pre></div>
 <h3 id="treepop">TREEPOP</h3>
 <blockquote>
 <p>treePop()</p>
@@ -567,18 +565,18 @@ k.edit(&quot;box&quot;, edit)</code></pre>
 <p>type (String): type of tree element (“tab” or “node”)<br />
 name (String): name of tree element</p>
 <p>Creates a tree.</p>
-<pre><code>nk.layoutRow(&quot;dynamic&quot;, 30, 1)
-if nk.treePush(&quot;tab&quot;, &quot;Tree Tab&quot;) then
-    if nk.treePush(&quot;node&quot;, &quot;Tree Node 1&quot;) then
-        nk.label(&quot;Label 1&quot;)
-        nk.treePop()
-    endif
-    if nk.treePush(&quot;node&quot;, &quot;Tree Node 2&quot;) then
-        nk.label(&quot;Label 2&quot;)
-        nk.treePop()
-    endif
-    nk.treePop()
-endif</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="kw">if </span>nk.treePush(<span class="st">&quot;tab&quot;</span>, <span class="st">&quot;Tree Tab&quot;</span>) <span class="kw">then</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a>    <span class="kw">if </span>nk.treePush(<span class="st">&quot;node&quot;</span>, <span class="st">&quot;Tree Node 1&quot;</span>) <span class="kw">then</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a>        nk.<span class="kw">label</span>(<span class="st">&quot;Label 1&quot;</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a>        nk.treePop()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a>    <span class="kw">if </span>nk.treePush(<span class="st">&quot;node&quot;</span>, <span class="st">&quot;Tree Node 2&quot;</span>) <span class="kw">then</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a>        nk.<span class="kw">label</span>(<span class="st">&quot;Label 2&quot;</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a>        nk.treePop()</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a>    nk.treePop()</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a><span class="kw">endif</span></span></code></pre></div>
 <h3 id="windowend">WINDOWEND</h3>
 <blockquote>
 <p>windowEnd()</p>
@@ -613,11 +611,11 @@ endif</code></pre>
 <p>x,y: position of the widget<br />
 w,h: width and height of the widget</p>
 <p>Returns the position and the dimensions of a widget.</p>
-<pre><code>edit = {value: &quot;Edit text&quot;}
-...
-nk.layoutRow(&quot;dynamic&quot;, 30, 1)
-[x, y, w, h] = nk.widgetBounds()
-k.edit(&quot;box&quot;, edit)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>edit = {value: <span class="st">&quot;Edit text&quot;</span>}</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>...</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a>nk.layoutRow(<span class="st">&quot;dynamic&quot;</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a>[x, y, w, h] = nk.widgetBounds()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a>k.edit(<span class="st">&quot;box&quot;</span>, edit)</span></code></pre></div>
 <h3 id="widgetishovered">WIDGETISHOVERED</h3>
 <blockquote>
 <p>result = widgetIsHovered()</p>
@@ -648,7 +646,7 @@ w,h: width and height of the rendered area</p>
 <p>Returns the position and the dimensions of the rendered area within the window.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Mon, 1 Aug 2022 11:30:53 +1000
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -69,15 +69,15 @@
 <p>Clipboard is a simple plugin to copy and paste text between your SmallBASIC program and the Windows or Linux desktop.</p>
 <h2 id="using-the-plugin">Using the plugin</h2>
 <p>The plugin can be used by importing it with <code>import clipboard</code>. A simple “Hello World” program looks like this:</p>
-<pre><code>import clipboard
-
-print clipboard.paste()
-
-text = &quot;Hello World&quot;
-
-clipboard.copy(text)
-
-print clipboard.paste()</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">import</span> clipboard</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> clipboard.paste()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>text = <span class="st">&quot;Hello World&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>clipboard.<span class="fu">copy</span>(text)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">print</span> clipboard.paste()</span></code></pre></div>
 <h2 id="supported-commands">Supported Commands</h2>
 <h3 id="paste">PASTE</h3>
 <blockquote>
@@ -93,7 +93,7 @@ print clipboard.paste()</code></pre>
 <p>Copies <em>text</em> to the system clipboard.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 21 Aug 2022 10:03:14 +0200
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

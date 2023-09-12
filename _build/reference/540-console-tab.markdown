@@ -6,7 +6,7 @@ Moves cursor position to the `n`th column. the return value `s` contains the esc
 
 ### Example
 
-```smallbasic
+```
 print tab(1); "1 tab"
 print tab(2); "2 tabs"
 

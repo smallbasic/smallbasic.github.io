@@ -74,155 +74,153 @@
     </p>
   </div>
 <p>Cosine.</p>
-<pre><code>a = cos(0.5)
-print a
-
-b = acos(a)
-print b</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="fu">cos</span>(<span class="dv">0.5</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> a</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>b = <span class="fu">acos</span>(a)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> b</span></code></pre></div>
 <p>See SIN, TAN and ATAN.</p>
-<pre><code>
-&#39;TRIG lesson one.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12
-&#39;note: the lines in the diagram have been thickened to help see and identify the color
-const green=rgb(0,128,0) &#39;never liked QB color for green
-sub drawTRIGtri
-&#39;3 points make a triangle, one point requires an x,y coordinate
-xp1=xmax-100-.25*ymax : yp1=ymax-100 &#39;bottom left angle of triangle
-xp2=xmax-100 : yp2=ymax-100 &#39;bottom right corner with right angle
-xp3=xmax-100 : yp3=ymax-100-.433*ymax &#39;upper corner
-&#39;green botton line is called side adjacent the yellow angle at the base of this triangle (not the 90 degree right angle)
-line xp1,yp1,xp2,yp2,green
-line xp1-1,yp1+1,xp2+1,yp2+1,green
-line xp1-2,yp1+2,xp2+2,yp2+2,green
-
-&#39;blue vertical line is call side opposite the yellow angle at the base of this triangle (not the 90 degree right angle)
-line xp2,yp2,xp3,yp3,9
-line xp2+1,yp2+1,xp3+1,yp3-1,9
-line xp2+2,yp2+2,xp3+2,yp3-2,9   
-&#39;red diagonal line always the longest of a right triangle is called the hypotenuse
-for i=0 to 6
-  line xp1,yp1+.5*i,xp3,yp3+i,12
-next
-&#39;mark the 90 degree angel
-rect xp2-50,yp2-50 step 48,48,15 
-at xp2-50+10,yp2-50+15:?&quot;90&quot;
-&#39;the yellow angle: ARC x,y,r, start radians, stop radians[, aspect [, color]] note: start clockwise to stop radians
-arc xp1,yp1,.2*ymax/2,2*pi-pi/3,0,1,14
-arc xp1,yp1,.18*ymax/2,2*pi-pi/3,0,1,14
-&#39;note: here 0 degrees is due east and the angle advances clockwise
-end
-while 1
-cls
-drawTRIGtri
-at 0,0
-?&quot;A man put up a pole (blue) and attached a 100 foot wire (red)&quot;
-?&quot;from top to ground. Now he needs to know the height of the&quot;
-?&quot;pole. He doesn&#39;t have a ladder nearly that high but he&quot;
-?&quot;can use a first lesson in trignometry to get the height of&quot;
-?&quot;the pole.&quot;
-?
-?&quot;Trignometry means right triangles. A right triangle is one
-?&quot;that contains a 90 degree angle, the same angle a proper 
-?&quot;pole makes with the ground.&quot;
-?
-?&quot;Trig has made a study of right triangles and made one big
-?&quot;discovery: The RATIO of the sides of a right triangle are 
-?&quot;always the same if the ANGLES of the sides (AKA legs and 
-?&quot;hypotenuse) are the same.&quot; 
-?&quot;That is trig in a nutshell. Notice I said RATIO of lengths.&quot;
-?
-?&quot;press any when ready...
-pause
-cls
-drawTRIGtri
-at 0,0
-?&quot;The two main RATIOs of Trig are SIN and COS.&quot;
-?&quot;COS (AKA COSINE) is the RATIO of the green side (next to&quot;
-?&quot;the yellow ANGLE) to the hypotenuse (red diagonal) AKA&quot;  
-?&quot;(adjacent leg) / (hypotenuse)  shortened to (adj/hyp)&quot;
-?&quot;or here (green line length) / (red line length).&quot;
-?&quot;That&#39;s it!  COS is the leg length next to the angle in&quot;
-?&quot;question divided by the diagonal length.&quot;
-?
-?&quot;So the man measures the distance from the pole to where&quot;
-?&quot;the wire meets the gound and gets 50 feet. This is the&quot;
-?&quot;green leg next to the angle we want to figure out for the&quot;
-?&quot;COS RATIO (adj/hyp). In this case it is 50 ft along the&quot; 
-?&quot;ground divided by 100 ft the diagonal red wire, 50/100=.5&quot; 
-?&quot;So that means COS of the angle is .5 the man says.&quot;
-?
-?&quot;So the man goes to some trig tables and finds what angle&quot;
-?&quot;makes a COS ratio of .5, he is looking up the Arc COS of&quot;
-?&quot;the ratio(.5) = the angle whose adj-leg/hypotenuse is .5&quot; 
-?&quot;Oh! he says that is a 60 degree angle the wire is making&quot;
-?&quot;with the ground, the yellow angle is 60 degrees.&quot;
-?
-?&quot;Press any key when ready...&quot;
-Pause
-cls
-drawTRIGtri
-at 0,0
-?&quot;Now that he knows the angle is 60 degrees he can use the&quot;
-?&quot;SIN ratio to calculate the height of the pole. The SIN&quot;
-?&quot;RATIO is opp/hyp, the (opposite leg length)/(hypotenuse)&quot;
-?&quot;The pole/wire = SIN of 60 degrees = .8660&quot;
-?&quot;or pole/wire=.866.&quot;
-?
-?&quot;Multiply both sides of this equation by wire length and&quot; 
-?&quot;get pole=.866*wire.&quot;
-?&quot;Since the wire is 100, pole = .866*100 = 86.6 feet.&quot;
-?
-?&quot;press any for first screen again...&quot;
-pause
-wend
-</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39;TRIG lesson one.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39;note: the lines in the diagram have been thickened to help see and identify the color</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dt">const</span> green=<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">128</span>,<span class="dv">0</span>) <span class="co">&#39;never liked QB color for green</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">sub </span>drawTRIGtri</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">&#39;3 points make a triangle, one point requires an x,y coordinate</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>xp1=<span class="dt">xmax</span><span class="dv">-100-.25</span>*<span class="dt">ymax</span> : yp1=<span class="dt">ymax</span><span class="dv">-100</span> <span class="co">&#39;bottom left angle of triangle</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>xp2=<span class="dt">xmax</span><span class="dv">-100</span> : yp2=<span class="dt">ymax</span><span class="dv">-100</span> <span class="co">&#39;bottom right corner with right angle</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>xp3=<span class="dt">xmax</span><span class="dv">-100</span> : yp3=<span class="dt">ymax</span><span class="dv">-100-.433</span>*<span class="dt">ymax</span> <span class="co">&#39;upper corner</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">&#39;green botton line is called side adjacent the yellow angle at the base of this triangle (not the 90 degree right angle)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="fu">line</span> xp1,yp1,xp2,yp2,green</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="fu">line</span> xp1<span class="dv">-1</span>,yp1+<span class="dv">1</span>,xp2+<span class="dv">1</span>,yp2+<span class="dv">1</span>,green</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="fu">line</span> xp1<span class="dv">-2</span>,yp1+<span class="dv">2</span>,xp2+<span class="dv">2</span>,yp2+<span class="dv">2</span>,green</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">&#39;blue vertical line is call side opposite the yellow angle at the base of this triangle (not the 90 degree right angle)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="fu">line</span> xp2,yp2,xp3,yp3,<span class="dv">9</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="fu">line</span> xp2+<span class="dv">1</span>,yp2+<span class="dv">1</span>,xp3+<span class="dv">1</span>,yp3<span class="dv">-1</span>,<span class="dv">9</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="fu">line</span> xp2+<span class="dv">2</span>,yp2+<span class="dv">2</span>,xp3+<span class="dv">2</span>,yp3<span class="dv">-2</span>,<span class="dv">9</span>   </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="co">&#39;red diagonal line always the longest of a right triangle is called the hypotenuse</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="kw">for </span>i=<span class="dv">0</span> <span class="kw">to</span> <span class="dv">6</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>  <span class="fu">line</span> xp1,yp1<span class="dv">+.5</span>*i,xp3,yp3+i,<span class="dv">12</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">next</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="co">&#39;mark the 90 degree angel</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="fu">rect</span> xp2<span class="dv">-50</span>,yp2<span class="dv">-50</span> step <span class="dv">48</span>,<span class="dv">48</span>,<span class="dv">15</span> </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="fu">at</span> xp2<span class="dv">-50</span>+<span class="dv">10</span>,yp2<span class="dv">-50</span>+<span class="dv">15</span>:?<span class="st">&quot;90&quot;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="co">&#39;the yellow angle: ARC x,y,r, start radians, stop radians[, aspect [, color]] note: start clockwise to stop radians</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="fu">arc</span> xp1,yp1,.<span class="dv">2</span>*<span class="dt">ymax</span>/<span class="dv">2</span>,<span class="dv">2</span>*<span class="dt">pi</span>-<span class="dt">pi</span>/<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">14</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="fu">arc</span> xp1,yp1,.<span class="dv">18</span>*<span class="dt">ymax</span>/<span class="dv">2</span>,<span class="dv">2</span>*<span class="dt">pi</span>-<span class="dt">pi</span>/<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">14</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="co">&#39;note: here 0 degrees is due east and the angle advances clockwise</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="fu">cls</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>drawTRIGtri</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>?<span class="st">&quot;A man put up a pole (blue) and attached a 100 foot wire (red)&quot;</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>?<span class="st">&quot;from top to ground. Now he needs to know the height of the&quot;</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>?<span class="st">&quot;pole. He doesn&#39;t have a ladder nearly that high but he&quot;</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>?<span class="st">&quot;can use a first lesson in trignometry to get the height of&quot;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>?<span class="st">&quot;the pole.&quot;</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>?</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>?<span class="st">&quot;Trignometry means right triangles. A right triangle is one</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>?<span class="st">&quot;that contains a 90 degree angle, the same angle a proper </span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>?<span class="st">&quot;pole makes with the ground.&quot;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>?</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>?<span class="st">&quot;Trig has made a study of right triangles and made one big</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>?<span class="st">&quot;discovery: The RATIO of the sides of a right triangle are </span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a>?<span class="st">&quot;always the same if the ANGLES of the sides (AKA legs and </span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a>?<span class="st">&quot;hypotenuse) are the same.&quot;</span> </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a>?<span class="st">&quot;That is trig in a nutshell. Notice I said RATIO of lengths.&quot;</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a>?</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a>?<span class="st">&quot;press any when ready...</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a><span class="kw">pause</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a><span class="fu">cls</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a>drawTRIGtri</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a><span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true"></a>?<span class="st">&quot;The two main RATIOs of Trig are SIN and COS.&quot;</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true"></a>?<span class="st">&quot;COS (AKA COSINE) is the RATIO of the green side (next to&quot;</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a>?<span class="st">&quot;the yellow ANGLE) to the hypotenuse (red diagonal) AKA&quot;</span>  </span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true"></a>?<span class="st">&quot;(adjacent leg) / (hypotenuse)  shortened to (adj/hyp)&quot;</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true"></a>?<span class="st">&quot;or here (green line length) / (red line length).&quot;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true"></a>?<span class="st">&quot;That&#39;s it!  COS is the leg length next to the angle in&quot;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true"></a>?<span class="st">&quot;question divided by the diagonal length.&quot;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true"></a>?</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true"></a>?<span class="st">&quot;So the man measures the distance from the pole to where&quot;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true"></a>?<span class="st">&quot;the wire meets the gound and gets 50 feet. This is the&quot;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true"></a>?<span class="st">&quot;green leg next to the angle we want to figure out for the&quot;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true"></a>?<span class="st">&quot;COS RATIO (adj/hyp). In this case it is 50 ft along the&quot;</span> </span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true"></a>?<span class="st">&quot;ground divided by 100 ft the diagonal red wire, 50/100=.5&quot;</span> </span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true"></a>?<span class="st">&quot;So that means COS of the angle is .5 the man says.&quot;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true"></a>?</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true"></a>?<span class="st">&quot;So the man goes to some trig tables and finds what angle&quot;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true"></a>?<span class="st">&quot;makes a COS ratio of .5, he is looking up the Arc COS of&quot;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true"></a>?<span class="st">&quot;the ratio(.5) = the angle whose adj-leg/hypotenuse is .5&quot;</span> </span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true"></a>?<span class="st">&quot;Oh! he says that is a 60 degree angle the wire is making&quot;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true"></a>?<span class="st">&quot;with the ground, the yellow angle is 60 degrees.&quot;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true"></a>?</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true"></a>?<span class="st">&quot;Press any key when ready...&quot;</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true"></a><span class="kw">Pause</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true"></a><span class="fu">cls</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true"></a>drawTRIGtri</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true"></a><span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true"></a>?<span class="st">&quot;Now that he knows the angle is 60 degrees he can use the&quot;</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true"></a>?<span class="st">&quot;SIN ratio to calculate the height of the pole. The SIN&quot;</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true"></a>?<span class="st">&quot;RATIO is opp/hyp, the (opposite leg length)/(hypotenuse)&quot;</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true"></a>?<span class="st">&quot;The pole/wire = SIN of 60 degrees = .8660&quot;</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true"></a>?<span class="st">&quot;or pole/wire=.866.&quot;</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true"></a>?</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true"></a>?<span class="st">&quot;Multiply both sides of this equation by wire length and&quot;</span> </span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true"></a>?<span class="st">&quot;get pole=.866*wire.&quot;</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true"></a>?<span class="st">&quot;Since the wire is 100, pole = .866*100 = 86.6 feet.&quot;</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true"></a>?</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true"></a>?<span class="st">&quot;press any for first screen again...&quot;</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true"></a><span class="kw">pause</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <p>At an angle around a given point, SIN and COS and radius (or distance) can locate the absolute screen x,y coordinate:</p>
-<pre><code>
-&#39;&#39;&#39; Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
-&#39;&#39;&#39; ah finally got diagramed analysis built into single quote commented code!!!
-&#39;&#39;&#39; the color codes match original Trig lesson one
-&#39;&#39;&#39;reminder XMAX, YMAX and PI are built in constants
-CONST green =RGB(0,128,0)
-&#39;&#39;&#39; a central point cx,cy around which to draw 
-cx=XMAX/2:cy=YMAX/2 &#39;again cx,cy can be anywhere on screen so dont make them constant
-&#39;&#39;&#39;highlight center
-CIRCLE cx,cy,2,1,15
-r=200 &#39;the radius or distance in pixels from cx,cy desired
-CIRCLE cx,cy,r,1,8  &#39;we want a point somewhere on this circle, radius = constant distance away from point
-&#39;&#39;&#39;      locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians
-&#39;&#39;&#39; here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)
-CIRCLE cx + r*COS(RAD(30)), cy + r*SIN(RAD(30)), 3, 1, 13   &#39;x,y,r=3,aspect=1,color 13
-&#39;&#39;&#39; uncomment single comment lines for analysis
-&#39;legend
-&#39;LINE cx,cy,cx+r*COS(RAD(30)),cy,green &#39;adjacent leg in red
-&#39;LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 &#39;leg opposite in blue
-&#39;LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12
-&#39;RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15
-&#39;&#39;&#39;&#39;             V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6
-&#39;ARC cx,cy,30,0,PI/6,1,14
-&#39;ARC cx,cy,35,0,RAD(30),1,14
-
-&#39;&#39;&#39;                Another example at 240 degrees = 4*PI/3 radians
-&#39;&#39;&#39; here is 60+180=240 degrees in yellow both x and y are neg in relation to cx,cy
-&#39;CIRCLE cx + r*COS(RAD(240)), cy + r*SIN(RAD(240)), 3, 1, 14  &#39;yellow
-&#39;&#39;&#39;uncomment single comment lines for analysis
-&#39;legend
-&#39;LINE cx,cy,cx+r*COS(RAD(240)),cy,green &#39;adjacent leg in red
-&#39;LINE cx+r*COS(RAD(240)),cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),9 &#39;leg opposite in blue
-&#39;LINE cx,cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),12
-&#39;RECT cx+r*COS(RAD(240))+2,cy-11 step 9,9,15
-&#39;&#39;&#39;240 degrees =180 + 60 = PI + 2*PI/6 = PI+PI/3 = 4*PI/3 radians
-&#39;&#39;&#39;               V end angle for arc in radians = RAD(240) or 4*PI/3 radians
-&#39;ARC cx,cy,15,0,4*PI/3,1,14
-&#39;ARC cx,cy,10,0,RAD(240),1,14
-PAUSE
-sub legend
-  at 0,0
-  ?&quot;green = leg adj, blue =leg opp, red = hypotenuse = radius&quot;
-  ?&quot;white square is where the right angle is, yellow arcs mark angle in question
-  ?&quot;COS(yellow) = adj/hyp = green/red, red is radius of circle
-  ?&quot;SIN(yellow) = opp/hyp =  blue/red, red is radius of circle
-end 
-</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; ah finally got diagramed analysis built into single quote commented code!!!</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; the color codes match original Trig lesson one</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;reminder XMAX, YMAX and PI are built in constants</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="dt">CONST</span> green =<span class="fu">RGB</span>(<span class="dv">0</span>,<span class="dv">128</span>,<span class="dv">0</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; a central point cx,cy around which to draw </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>cx=<span class="dt">XMAX</span>/<span class="dv">2</span>:cy=<span class="dt">YMAX</span>/<span class="dv">2</span> <span class="co">&#39;again cx,cy can be anywhere on screen so dont make them constant</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;highlight center</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx,cy,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">15</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>r=<span class="dv">200</span> <span class="co">&#39;the radius or distance in pixels from cx,cy desired</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx,cy,r,<span class="dv">1</span>,<span class="dv">8</span>  <span class="co">&#39;we want a point somewhere on this circle, radius = constant distance away from point</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;      locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx + r*<span class="fu">COS</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)), cy + r*<span class="fu">SIN</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)), <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">13</span>   <span class="co">&#39;x,y,r=3,aspect=1,color 13</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; uncomment single comment lines for analysis</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co">&#39;legend</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">&#39;LINE cx,cy,cx+r*COS(RAD(30)),cy,green &#39;adjacent leg in red</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co">&#39;LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 &#39;leg opposite in blue</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">&#39;LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="co">&#39;RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;&#39;             V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">&#39;ARC cx,cy,30,0,PI/6,1,14</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">&#39;ARC cx,cy,35,0,RAD(30),1,14</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;                Another example at 240 degrees = 4*PI/3 radians</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; here is 60+180=240 degrees in yellow both x and y are neg in relation to cx,cy</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="co">&#39;CIRCLE cx + r*COS(RAD(240)), cy + r*SIN(RAD(240)), 3, 1, 14  &#39;yellow</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;uncomment single comment lines for analysis</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="co">&#39;legend</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="co">&#39;LINE cx,cy,cx+r*COS(RAD(240)),cy,green &#39;adjacent leg in red</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="co">&#39;LINE cx+r*COS(RAD(240)),cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),9 &#39;leg opposite in blue</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="co">&#39;LINE cx,cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),12</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a><span class="co">&#39;RECT cx+r*COS(RAD(240))+2,cy-11 step 9,9,15</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;240 degrees =180 + 60 = PI + 2*PI/6 = PI+PI/3 = 4*PI/3 radians</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;               V end angle for arc in radians = RAD(240) or 4*PI/3 radians</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="co">&#39;ARC cx,cy,15,0,4*PI/3,1,14</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="co">&#39;ARC cx,cy,10,0,RAD(240),1,14</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="kw">PAUSE</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a><span class="kw">sub </span>legend</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a>  <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>  ?<span class="st">&quot;green = leg adj, blue =leg opp, red = hypotenuse = radius&quot;</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>  ?<span class="st">&quot;white square is where the right angle is, yellow arcs mark angle in question</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>  ?<span class="st">&quot;COS(yellow) = adj/hyp = green/red, red is radius of circle</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a>  ?<span class="st">&quot;SIN(yellow) = opp/hyp =  blue/red, red is radius of circle</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a><span class="kw">end </span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using COS</div>
     <div class="linklist">

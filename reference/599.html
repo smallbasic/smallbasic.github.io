@@ -76,33 +76,33 @@
 <p>Writes the array or string <code>var</code> to the text file <code>file</code>. Each array element is a text-line in the file. Every line of the string will be one line in the text file. Use <code>\n</code> in the string to separate lines.</p>
 <p>See TLOAD for loading data from a text-file.</p>
 <h3 id="example-1-save-an-array">Example 1: Save an array</h3>
-<pre><code>&#39; Create an array with some data
-A &lt;&lt; 1
-A &lt;&lt; &quot;test&quot;
-A &lt;&lt; 2
-print A                         &#39; Output: [1,test,2]
-
-&#39; Save the array. This will create the file myfile.txt in
-&#39; the same directory as your BASIC file
-tsave &quot;myfile.txt&quot;, A
-
-&#39; Load the file
-tload &quot;myfile.txt&quot;, B
-print B                         &#39; Output: [1,test,2,]</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; Create an array with some data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>A &lt;&lt; <span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>A &lt;&lt; <span class="st">&quot;test&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>A &lt;&lt; <span class="dv">2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> A                         <span class="co">&#39; Output: [1,test,2]</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Save the array. This will create the file myfile.txt in</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39; the same directory as your BASIC file</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">tsave</span> <span class="st">&quot;myfile.txt&quot;</span>, A</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">&#39; Load the file</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="fu">tload</span> <span class="st">&quot;myfile.txt&quot;</span>, B</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">print</span> B                         <span class="co">&#39; Output: [1,test,2,]</span></span></code></pre></div>
 <h3 id="example-2-save-a-string">Example 2: Save a string</h3>
-<pre><code>&#39; Create a string with some data
-A = &quot;line 1\nline 2\nline 3&quot;
-print A                         &#39; Output: line 1
-                                &#39;         line 2
-                                &#39;         line 3 
-
-&#39; Save the string. This will create the file myfile.txt in
-&#39; the same directory as your BASIC file
-tsave &quot;myfile.txt&quot;, A
-
-&#39; Load the file
-tload &quot;myfile.txt&quot;, B
-print B                         &#39; Output: [line 1,line 2,line 3]</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Create a string with some data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>A = <span class="st">&quot;line 1\nline 2\nline 3&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> A                         <span class="co">&#39; Output: line 1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>                                <span class="co">&#39;         line 2</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>                                <span class="co">&#39;         line 3 </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; Save the string. This will create the file myfile.txt in</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">&#39; the same directory as your BASIC file</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="fu">tsave</span> <span class="st">&quot;myfile.txt&quot;</span>, A</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39; Load the file</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="fu">tload</span> <span class="st">&quot;myfile.txt&quot;</span>, B</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">print</span> B                         <span class="co">&#39; Output: [line 1,line 2,line 3]</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using TSAVE</div>
     <div class="linklist">

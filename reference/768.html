@@ -75,22 +75,22 @@
   </div>
 <p>Splits the string <code>src</code> into substrings which are separated by delimiters <code>delim1</code> to <code>delimN</code> and returns the substrings as <code>var1</code> to <code>varN</code>. Delimiters can be single characters, numbers or strings.</p>
 <h3 id="example-1-split-string-with-delimiter">Example 1: Split string with delimiter “,”</h3>
-<pre><code>src = &quot;1456,Peter,8&quot;
-
-SINPUT src; id, &quot;,&quot;, name, &quot;,&quot;, age 
-
-print &quot;ID  : &quot; + id
-print &quot;Name: &quot; + name
-print &quot;Age : &quot; + age
-
-&#39; Output:
-&#39; ID  : 1456
-&#39; Name: Peter
-&#39; Age : 8</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>src = <span class="st">&quot;1456,Peter,8&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">SINPUT</span> src; id, <span class="st">&quot;,&quot;</span>, name, <span class="st">&quot;,&quot;</span>, age </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;ID  : &quot;</span> + id</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Name: &quot;</span> + name</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Age : &quot;</span> + age</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">&#39; Output:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">&#39; ID  : 1456</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">&#39; Name: Peter</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co">&#39; Age : 8</span></span></code></pre></div>
 <h3 id="example-2-split-string-with-complex-delimiters">Example 2: Split string with complex delimiters</h3>
-<pre><code>src = &quot;if x&gt;1 then y&quot;
-SINPUT src; vif, &quot; &quot;, vcond, &quot;then&quot;, vdo
-print vif, vcond, vdo                       &#39; Output: if    x&gt;1    y</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>src = <span class="st">&quot;if x&gt;1 then y&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">SINPUT</span> src; vif, <span class="st">&quot; &quot;</span>, vcond, <span class="st">&quot;then&quot;</span>, vdo</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> vif, vcond, vdo                       <span class="co">&#39; Output: if    x&gt;1    y</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using SINPUT</div>
     <div class="linklist">

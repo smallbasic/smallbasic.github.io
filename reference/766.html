@@ -76,42 +76,42 @@
 <p>Tangent of <code>x</code>. <code>x</code> is in radian.</p>
 <p>See also COS, SIN, TAN and ATAN.</p>
 <h3 id="example-1">Example 1</h3>
-<pre><code>a = tan(0.5)
-print a             &#39; Output: 0.54630248984379
-
-b = atan(a)
-print b             &#39; Output: 0.5</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="fu">tan</span>(<span class="dv">0.5</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> a             <span class="co">&#39; Output: 0.54630248984379</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>b = <span class="fu">atan</span>(a)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> b             <span class="co">&#39; Output: 0.5</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<pre><code>&#39; Short TAN use.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-14
-&#39; in the following example it is important to keep in mind
-&#39; x,y when used in TAN are relative positions to x1,y1 and not
-&#39; absolute screen coordinates
-&#39; you can move x1,y1 anywhere on screen!!!!
-
-x1 = 250
-y1 = 150
-angle = 60  &#39; degree
-
-&#39; highlight start point with a circle in yellow with radius 2
-circle x1, y1, 2, 1, 14                             
-
-&#39; circle x,y,r,aspect,c   &#39;aspect 1 is circle, !1=ellipse
-&#39; say you want to make a line 60 degrees from x1,y1  and
-&#39; you need the x2 100 greater than x1 or x2 = x1+100
-&#39; since we know TAN=y/x (though you need a diagram to see it)
-&#39; then TAN(RAD(60)) = y/100
-&#39; then 100*TAN(rad(60) = y   by algebraic mult 100 both sides
-&#39; so  y2=y1+100*TAN(rad(60)
-
-line x1, y1, x1 + 100, y1 + 100*TAN(RAD(angle))     &#39; &lt;== HERE IS TAN
-
-&#39; so here we used TAN to calculate the y change in height
-&#39; from y1 to create a 60 angle from point x1,y1 and x2,y2 AND
-&#39; AND make it so x2=100 more than x1
-&#39; check draw arc at x1,y1 with 100 radius
-&#39; for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect
-
-arc x1, y1, 100, 0, RAD(angle), 1, 14               &#39; 14 = color yellow</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Short TAN use.bas   SmallBASIC 0.12.2 [B+=MGA] 2016-03-14</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; in the following example it is important to keep in mind</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; x,y when used in TAN are relative positions to x1,y1 and not</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; absolute screen coordinates</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; you can move x1,y1 anywhere on screen!!!!</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>x1 = <span class="dv">250</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>y1 = <span class="dv">150</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>angle = <span class="dv">60</span>  <span class="co">&#39; degree</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39; highlight start point with a circle in yellow with radius 2</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="fu">circle</span> x1, y1, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">14</span>                             </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">&#39; circle x,y,r,aspect,c   &#39;aspect 1 is circle, !1=ellipse</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">&#39; say you want to make a line 60 degrees from x1,y1  and</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="co">&#39; you need the x2 100 greater than x1 or x2 = x1+100</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="co">&#39; since we know TAN=y/x (though you need a diagram to see it)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="co">&#39; then TAN(RAD(60)) = y/100</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="co">&#39; then 100*TAN(rad(60) = y   by algebraic mult 100 both sides</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="co">&#39; so  y2=y1+100*TAN(rad(60)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="fu">line</span> x1, y1, x1 + <span class="dv">100</span>, y1 + <span class="dv">100</span>*<span class="fu">TAN</span>(<span class="fu">RAD</span>(angle))     <span class="co">&#39; &lt;== HERE IS TAN</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="co">&#39; so here we used TAN to calculate the y change in height</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="co">&#39; from y1 to create a 60 angle from point x1,y1 and x2,y2 AND</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="co">&#39; AND make it so x2=100 more than x1</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="co">&#39; check draw arc at x1,y1 with 100 radius</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="co">&#39; for 0 degrees start to 60=2*pi/6 radians end arc, 1=aspect</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="fu">arc</span> x1, y1, <span class="dv">100</span>, <span class="dv">0</span>, <span class="fu">RAD</span>(angle), <span class="dv">1</span>, <span class="dv">14</span>               <span class="co">&#39; 14 = color yellow</span></span></code></pre></div>
 <h3 id="trigonometry-lesson">Trigonometry lesson</h3>
 <p>Review:</p>
 <p>Trigonometry is the study of right triangles, those that have one 90 degree angle AKA Pi/2 in radians. These right triangles are infinite in a rectilinear coordinate system with x,y referring to screen position in relation to an origin point (0,0).</p>

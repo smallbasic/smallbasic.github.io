@@ -75,21 +75,21 @@
   </div>
 <p>Tests the expression and if it evaluates to a non-zero value, program flow will resume after the following THEN statement.</p>
 <h3 id="block-style-if">Block-style IF</h3>
-<pre><code>IF expression1 [THEN]
-    .
-    . [commands]
-    .
-[ [ELSEIF| ELIF] expression2 [THEN]
-    .
-    . [commands]
-    .
-]
-[ELSE
-    .
-    . [commands]
-    .
-]
-ENDIF| FI</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">IF </span>expression1 [<span class="kw">THEN</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    .</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    . [commands]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    .</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>[ [<span class="kw">ELSEIF</span>| <span class="kw">ELIF</span>] expression2 [<span class="kw">THEN</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    .</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    . [commands]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    .</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>[<span class="kw">ELSE</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    .</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    . [commands]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    .</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">ENDIF</span>| <span class="kw">FI</span></span></code></pre></div>
 <p>Causes SmallBASIC to make a decision based on the value of an expression.</p>
 <ul>
 <li>expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.</li>
@@ -99,62 +99,62 @@ ENDIF| FI</code></pre>
 <p>IF, ELSE, ELSEIF, and ENDIF must all be the first keywords on their respective lines.</p>
 <p>THEN is optional, but if its defined it must be the last keyword on its line; if anything other than a comment follows on the same line with THEN, BASIC thinks it’s reading a single-line IF/THEN/ELSE construct. IF blocks may be nested.</p>
 <h3 id="single-line-if">Single-line IF</h3>
-<pre><code>IF expression THEN [num-label]|[command] [ELSE [num-label]|[command]]</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">IF </span>expression <span class="kw">THEN</span> [num-<span class="kw">label</span>]|[<span class="fu">command</span>] [<span class="kw">ELSE</span> [num-<span class="kw">label</span>]|[<span class="fu">command</span>]]</span></code></pre></div>
 <p>Causes SmallBASIC to make a decision based on the value of an expression.</p>
 <ul>
 <li>expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.</li>
 <li>command - Any legal command or a numeric label. If a number is specified, it is equivalent to a GOTO command with the specified numeric-label.</li>
 </ul>
 <h3 id="example-1-block-style-if">Example 1: Block-style IF</h3>
-<pre><code>x = 1
-IF x = 1 THEN
-    PRINT &quot;true&quot;
-ELSE
-    PRINT &quot;false&quot;
-ENDIF
-
-&#39; Alternate syntax:
-x = 1
-IF x = 1
-    PRINT &quot;true&quot;
-ELSE
-    PRINT &quot;false&quot;
-FI</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>x = <span class="dv">1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">IF </span>x = <span class="dv">1</span> <span class="kw">THEN</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;true&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">ELSE</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;false&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">ENDIF</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">&#39; Alternate syntax:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>x = <span class="dv">1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="kw">IF </span>x = <span class="dv">1</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;true&quot;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">ELSE</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;false&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="kw">FI</span></span></code></pre></div>
 <h3 id="example-2-single-line-if">Example 2: Single-line IF</h3>
-<pre><code>x = 1
-IF x = 1 THEN PRINT &quot;true&quot; ELSE PRINT &quot;false&quot;
-
-IF x = 1 THEN 1000
-
-end &#39; ends the program
-
-1000 PRINT &quot;true&quot;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>x = <span class="dv">1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">IF </span>x = <span class="dv">1</span> <span class="kw">THEN PR</span>INT <span class="st">&quot;true&quot;</span> <span class="kw">ELSE</span> <span class="kw">PRINT</span> <span class="st">&quot;false&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">IF </span>x = <span class="dv">1</span> <span class="kw">THEN</span> <span class="dv">1000</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">end </span><span class="co">&#39; ends the program</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="dv">1000</span> <span class="kw">PRINT</span> <span class="st">&quot;true&quot;</span></span></code></pre></div>
 <h3 id="example-3-nested-if">Example 3: Nested IF</h3>
-<pre><code>x = 1
-y = 2
-
-IF x == 1 THEN 
-    PRINT &quot;x equals 1&quot;
-    
-    if y == 2 THEN
-        PRINT &quot;y equals 2&quot;
-    ELSE
-        PRINT &quot;y not 2&quot;
-    ENDIF
-    
-ELSE
-    PRINT &quot;x not 1&quot;
-ENDIF</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>x = <span class="dv">1</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>y = <span class="dv">2</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">IF </span>x == <span class="dv">1</span> <span class="kw">THEN</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;x equals 1&quot;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>    </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>    <span class="kw">if </span>y == <span class="dv">2</span> <span class="kw">THEN</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>        <span class="kw">PRINT</span> <span class="st">&quot;y equals 2&quot;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>    <span class="kw">ELSE</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>        <span class="kw">PRINT</span> <span class="st">&quot;y not 2&quot;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>    <span class="kw">ENDIF</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="kw">ELSE</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;x not 1&quot;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="kw">ENDIF</span></span></code></pre></div>
 <h3 id="example-4-if-elseif-else">Example 4: IF … ELSEIF … ELSE</h3>
-<pre><code>foo = 1     &#39; change value to 1,2,3
-
-IF foo == 1
-    PRINT &quot;one&quot;
-ELSEIF foo == 2
-    PRINT &quot;two&quot;
-ELSE
-    PRINT &quot;something else&quot;
-ENDIF</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>foo = <span class="dv">1</span>     <span class="co">&#39; change value to 1,2,3</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">IF </span>foo == <span class="dv">1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;one&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">ELSEIF</span> foo == <span class="dv">2</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;two&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="kw">ELSE</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>    <span class="kw">PRINT</span> <span class="st">&quot;something else&quot;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="kw">ENDIF</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using IF</div>
     <div class="linklist">

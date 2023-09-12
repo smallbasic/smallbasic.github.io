@@ -24,13 +24,13 @@ To play a sound file use `file://filename` as string. When playing on background
 
 ### Example 1: Play a note
 
-```smallbasic
+```
 play "L2A"    ' note A with length 1/2
 ```
 
 ### Example 2: Play multiple notes
 
-```smallbasic
+```
 ' Set volume to 50%
 play "V10"  
 ' Play Menuet by J. Sebastian Bach
@@ -39,14 +39,14 @@ play "T180L8O3MN O4D4O3MLGABO4C O4D4O3MNG4MLG4 O4MNE4MLCDEF# O4G4O3MNG4MLG4 O4MN
 
 ### Example 3: Play notes on background
 
-```smallbasic
+```
 play "MBL2A"    ' note A with length 1/2 on background
 pause           ' make sure, that program will not end
 ```
 
 ### Example 4: Play a sound file
 
-```smallbasic
+```
 ' Copy a mp3 file to the working directory and name it test.mp3
 
 play "file://test.mp3"

@@ -76,20 +76,20 @@
 <p>Export a SUB, FUNC or variable from a UNIT to be used by the unit consumer.</p>
 <p>See <code>UNIT</code> for more information.</p>
 <h3 id="example-create-an-unit">Example: Create an unit</h3>
-<pre><code>UNIT MyTestUnit
-
-export const my_pi = 3.145
-export my_two_pi = 6.29
-export MyFunc
-export MySub
-
-func MyFunc(a)
-  return a + 10
-end
-
-sub MySub(a)
-  print a + 10
-end</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">UNIT</span> MyTestUnit</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="pp">export</span> <span class="dt">const</span> my_pi = <span class="dv">3.145</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="pp">export</span> my_two_pi = <span class="dv">6.29</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="pp">export</span> MyFunc</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="pp">export</span> MySub</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">func </span>MyFunc(a)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="kw">return</span> a + <span class="dv">10</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">sub </span>MySub(a)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  <span class="kw">print</span> a + <span class="dv">10</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using EXPORT</div>
     <div class="linklist">

@@ -79,11 +79,11 @@
 <p><strong>THROW</strong></p>
 <p>The THROW command (previously known as <strong>RTE</strong>) is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program.</p>
 <p><strong>Example</strong></p>
-<pre><code>try
- open &quot;com2000:&quot; AS #1
-catch err
-  ? &quot;in catch: open failed&quot;;err
-end try</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">try</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a> <span class="fu">open</span> <span class="st">&quot;com2000:&quot;</span> <span class="kw">AS</span> #<span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">catch</span> err</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  ? <span class="st">&quot;in catch: open failed&quot;</span>;err</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">end try</span></span></code></pre></div>
 <p><strong>Try/Catch in other languages</strong></p>
 <ul>
 <li><a href="http://www.cplusplus.com/doc/tutorial/exceptions">C++</a></li>
@@ -94,7 +94,7 @@ end try</code></pre>
 <p>The TRY/CATCH mechanism was introduced in version 0.11.15.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Mon, 19 Mar 2018 20:30:08 +1000
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

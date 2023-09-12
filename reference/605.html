@@ -75,24 +75,24 @@
   </div>
 <p>Returns an array with the filenames. If there are no files, <code>FILES</code> returns an empty array. <code>exp</code> can contain the wildcards <code>*</code> and <code>?</code>. <code>exp</code> can include a path.</p>
 <h3 id="example-1-list-all-files-in-the-current-directory">Example 1: List all files in the current directory</h3>
-<pre><code>FileNames = files(&quot;*.*&quot;)
-
-for f in FileNames
-    print f
-next</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>FileNames = <span class="fu">files</span>(<span class="st">&quot;*.*&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">for </span>f <span class="kw">in</span> FileNames</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="kw">print</span> f</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
 <h3 id="example-2-list-all-files-matching-search-string">Example 2: List all files matching search string</h3>
-<pre><code>FileNames = files(&quot;t?st.bas&quot;)
-
-for f in FileNames
-    print f
-next</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>FileNames = <span class="fu">files</span>(<span class="st">&quot;t?st.bas&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">for </span>f <span class="kw">in</span> FileNames</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="kw">print</span> f</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
 <h3 id="example-3-using-a-path">Example 3: Using a path</h3>
-<pre><code>FileNames = files(&quot;/usr/bin/*&quot;)    &#39; Linux
-&#39; FileNames = files(&quot;C:\*.*&quot;)      &#39; Windows
-
-for f in FileNames
-    print f
-next</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>FileNames = <span class="fu">files</span>(<span class="st">&quot;/usr/bin/*&quot;</span>)    <span class="co">&#39; Linux</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39; FileNames = files(&quot;C:\*.*&quot;)      &#39; Windows</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">for </span>f <span class="kw">in</span> FileNames</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="kw">print</span> f</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using FILES</div>
     <div class="linklist">

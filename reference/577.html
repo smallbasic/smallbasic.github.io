@@ -75,13 +75,13 @@
   </div>
 <p>Returns the Julian date. Dates must be greater than 1/1/100 AD. The date can be passed as the string <code>dmy</code> with the format <code>DD/MM/YYYY</code>. Alternatively the date can be given by specificing the parameters <code>d</code> for days, <code>m</code> for months and <code>y</code> for years.</p>
 <h3 id="example-1-basic-usage">Example 1: Basic usage</h3>
-<pre><code>PRINT Julian(&quot;31/12/2001&quot;)
-PRINT Julian(31, 12, 2001)
-PRINT Julian(DATE)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">Julian</span>(<span class="st">&quot;31/12/2001&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">Julian</span>(<span class="dv">31</span>, <span class="dv">12</span>, <span class="dv">2001</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">Julian</span>(DATE)</span></code></pre></div>
 <h3 id="example-2-difference-in-days-between-two-dates">Example 2: Difference in days between two dates</h3>
-<pre><code>today = Julian(Date())
-past = Julian(31, 12, 2001)
-print today - past; &quot; days past since 31/12/2001&quot;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>today = <span class="fu">Julian</span>(Date())</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>past = <span class="fu">Julian</span>(<span class="dv">31</span>, <span class="dv">12</span>, <span class="dv">2001</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> today - past; <span class="st">&quot; days past since 31/12/2001&quot;</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using JULIAN</div>
     <div class="linklist">

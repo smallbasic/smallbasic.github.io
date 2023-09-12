@@ -80,18 +80,18 @@
 </ul>
 <p>Scaling factor scalef is applied after moving to the x- and y-origin.</p>
 <h2 id="example-1-polygon-array-with-points">Example 1: Polygon array with points</h2>
-<pre><code>P = [[0,50], [50,0], [100,50], [0,50]]
-                                    
-drawpoly P                          &#39; Draw poly
-drawpoly P, 200,200                 &#39; Draw poly with offset
-drawpoly P, 200,200, 1.5 COLOR 4    &#39; Draw poly with offset, scaling and color</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>P = [[<span class="dv">0</span>,<span class="dv">50</span>], [<span class="dv">50</span>,<span class="dv">0</span>], [<span class="dv">100</span>,<span class="dv">50</span>], [<span class="dv">0</span>,<span class="dv">50</span>]]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>                                    </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">drawpoly</span> P                          <span class="co">&#39; Draw poly</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">drawpoly</span> P, <span class="dv">200</span>,<span class="dv">200</span>                 <span class="co">&#39; Draw poly with offset</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">drawpoly</span> P, <span class="dv">200</span>,<span class="dv">200</span>, <span class="dv">1.5</span> <span class="fu">COLOR</span> <span class="dv">4</span>    <span class="co">&#39; Draw poly with offset, scaling and color</span></span></code></pre></div>
 <h2 id="example-2-polygon-array-without-points">Example 2: Polygon array without points</h2>
-<pre><code>P = [0,50, 50,0, 100,50, 0,50]      &#39; Even elements -&gt; x
-                                    &#39; Uneven elements -&gt; y
-                                    
-drawpoly P                          &#39; Draw poly
-drawpoly P, 200,200                 &#39; Draw poly with offset
-drawpoly P, 200,200, 1.5 COLOR 4    &#39; Draw poly with offset, scaling and color</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>P = [<span class="dv">0</span>,<span class="dv">50</span>, <span class="dv">50</span>,<span class="dv">0</span>, <span class="dv">100</span>,<span class="dv">50</span>, <span class="dv">0</span>,<span class="dv">50</span>]      <span class="co">&#39; Even elements -&gt; x</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>                                    <span class="co">&#39; Uneven elements -&gt; y</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>                                    </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">drawpoly</span> P                          <span class="co">&#39; Draw poly</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="fu">drawpoly</span> P, <span class="dv">200</span>,<span class="dv">200</span>                 <span class="co">&#39; Draw poly with offset</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="fu">drawpoly</span> P, <span class="dv">200</span>,<span class="dv">200</span>, <span class="dv">1.5</span> <span class="fu">COLOR</span> <span class="dv">4</span>    <span class="co">&#39; Draw poly with offset, scaling and color</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using DRAWPOLY</div>
     <div class="linklist">

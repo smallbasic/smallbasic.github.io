@@ -75,21 +75,21 @@
   </div>
 <p>Returns a random floating point number in the range 0 to 1.</p>
 <h3 id="example-1">Example 1</h3>
-<pre><code>RANDOMIZE
-print &quot;Number between 0 and 1   : &quot;; RND()
-print &quot;Number between 5 and 12  : &quot;; (12 - 5) * RND() + 5 
-print &quot;Number between -5 and -12: &quot;; (-12 - -5) * RND() - 5 </code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">RANDOMIZE</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Number between 0 and 1   : &quot;</span>; <span class="fu">RND</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Number between 5 and 12  : &quot;</span>; (<span class="dv">12</span> - <span class="dv">5</span>) * <span class="fu">RND</span>() + <span class="dv">5</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Number between -5 and -12: &quot;</span>; (-<span class="dv">12</span> - <span class="dv">-5</span>) * <span class="fu">RND</span>() - <span class="dv">5</span> </span></code></pre></div>
 <h3 id="example-2-random-truefalse-random-integer-between-lowhigh">Example 2: Random true/false; random integer between low/high</h3>
-<pre><code>&#39; random true/false, subst 0 or 1 (or -1)
-DEF randbin() = IFF(rnd&lt;.5,&quot;True &quot;,&quot;False &quot;)
-
-&#39; random integer number between low and high  
-DEF randlohi(lo, hi) = (RND * (hi - lo + 1))\1 + lo 
-
-RANDOMIZE
-
-print randbin()
-print randlohi(10,20)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; random true/false, subst 0 or 1 (or -1)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">DEF</span> randbin() = <span class="kw">IFF</span>(<span class="fu">rnd</span>&lt;.<span class="dv">5</span>,<span class="st">&quot;True &quot;</span>,<span class="st">&quot;False &quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; random integer number between low and high  </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">DEF</span> randlohi(lo, hi) = (<span class="fu">RND</span> * (hi - lo + <span class="dv">1</span>))\<span class="dv">1</span> + lo </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">RANDOMIZE</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">print</span> randbin()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">print</span> randlohi(<span class="dv">10</span>,<span class="dv">20</span>)</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using RND</div>
     <div class="linklist">

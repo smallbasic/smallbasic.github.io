@@ -77,15 +77,15 @@
 <p>POLYCENT is based on code from the article “Centroid of a Polygon” by Gerard Bashein and Paul R. Detmer.</p>
 <p>See DRAWPOLY for more information on how to define the polygon.</p>
 <h3 id="example">Example:</h3>
-<pre><code>polygon = [[50,50], [100,50], [100,100], [50,100], [50,50]]
-
-&#39; Calculate centroid
-centroid = polycent(polygon)  
-print &quot;Centroid is at: &quot;; centroid
-
-&#39; Draw polygon and a circle at position of the centroid
-drawpoly polygon color 12
-circle centroid(0), centroid(1) , 5 color 5</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>polygon = [[<span class="dv">50</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">100</span>], [<span class="dv">50</span>,<span class="dv">100</span>], [<span class="dv">50</span>,<span class="dv">50</span>]]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">&#39; Calculate centroid</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>centroid = <span class="fu">polycent</span>(polygon)  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Centroid is at: &quot;</span>; centroid</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Draw polygon and a circle at position of the centroid</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="fu">drawpoly</span> polygon <span class="fu">color</span> <span class="dv">12</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">circle</span> centroid(<span class="dv">0</span>), centroid(<span class="dv">1</span>) , <span class="dv">5</span> <span class="fu">color</span> <span class="dv">5</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">

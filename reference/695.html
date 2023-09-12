@@ -74,14 +74,14 @@
     </p>
   </div>
 <p>Returns an array with ‘count’ elements. Each element has the ‘y’ value of its position as it is returned by the expression.</p>
-<pre><code>def f(x) = 2*x
-
-EXPRSEQ v1, 0, 1, 5 USE f(x)
-print v1
-
-&#39;same as
-v2 = [f(0), f(0.25), f(0.5), f(0.75), f(1)]
-print v2</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">def</span> f(x) = <span class="dv">2</span>*x</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">EXPRSEQ</span> v1, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span> <span class="kw">USE</span> f(x)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> v1</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">&#39;same as</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>v2 = [f(<span class="dv">0</span>), f(<span class="dv">0.25</span>), f(<span class="dv">0.5</span>), f(<span class="dv">0.75</span>), f(<span class="dv">1</span>)]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">print</span> v2</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">

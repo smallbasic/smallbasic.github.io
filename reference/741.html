@@ -76,15 +76,15 @@
 <p>Returns the area of the polyline <code>poly</code>. The algebraic sign of the area is positive for counterclockwise ordering of vertices in x-y plane; otherwise negative.</p>
 <p>See DRAWPOLY for more information on how to define the polyline.</p>
 <h3 id="example">Example</h3>
-<pre><code>polygon = [ [50,50], [100,50], [100,100], [50,100], [50,50]]
-drawpoly polygon color 12
-
-Area = abs(polyarea(polygon))     &#39; absolute value of the area, because
-                                  &#39; we are not interested in the
-                                  &#39; ordering of the vertices.
-
-print &quot;Polyarea() returns: &quot;; Area
-print &quot;Exact area is 50x50 = 2500&quot;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>polygon = [ [<span class="dv">50</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">100</span>], [<span class="dv">50</span>,<span class="dv">100</span>], [<span class="dv">50</span>,<span class="dv">50</span>]]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">drawpoly</span> polygon <span class="fu">color</span> <span class="dv">12</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>Area = <span class="fu">abs</span>(<span class="fu">polyarea</span>(polygon))     <span class="co">&#39; absolute value of the area, because</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>                                  <span class="co">&#39; we are not interested in the</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>                                  <span class="co">&#39; ordering of the vertices.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Polyarea() returns: &quot;</span>; Area</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Exact area is 50x50 = 2500&quot;</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">

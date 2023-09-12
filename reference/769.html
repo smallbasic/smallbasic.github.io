@@ -76,42 +76,42 @@
 <p>Splits the string <code>s</code> at the position of the given delimiters <code>delim</code> and returns an array <code>words</code> with the splitted substrings. The optional parameter <code>pairs</code> can be used to group words. The optional <code>Use expr</code> is applied to every splitted substring. If <code>delim</code> contains more than one character, each character representing a delimiter.</p>
 <p>See SINPUT for an alternative command to split a string.</p>
 <h3 id="example-1-split-a-string-using-two-delimiters">Example 1: Split a string using two delimiters</h3>
-<pre><code>s = &quot;/etc/temp/filename.ext&quot;
-SPLIT s, &quot;/.&quot;, v                    &#39; Splits the string using the delimiters &quot;/&quot; and &quot;.&quot;
-FOR i = 0 TO UBOUND(v)
-  PRINT i; &quot; [&quot;; v(i); &quot;]&quot;
-NEXT
-
-&#39; Output:
-&#39; 0 []
-&#39; 1 [etc]
-&#39; 2 [temp]
-&#39; 3 [filename]
-&#39; 4 [ext]</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>s = <span class="st">&quot;/etc/temp/filename.ext&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>SPLIT s, <span class="st">&quot;/.&quot;</span>, v                    <span class="co">&#39; Splits the string using the delimiters &quot;/&quot; and &quot;.&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">FOR </span>i = <span class="dv">0</span> <span class="kw">TO</span> <span class="fu">UBOUND</span>(v)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="kw">PRINT</span> i; <span class="st">&quot; [&quot;</span>; v(i); <span class="st">&quot;]&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">NEXT</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Output:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39; 0 []</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">&#39; 1 [etc]</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">&#39; 2 [temp]</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">&#39; 3 [filename]</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co">&#39; 4 [ext]</span></span></code></pre></div>
 <h3 id="example-2-using-the-argument-pairs">Example 2 : Using the argument “pairs”</h3>
-<pre><code>s = &quot;/etc/temp/filename.ext&quot;
-SPLIT s, &quot;/&quot;, v, &quot;temp&quot;
-FOR i = 0 TO UBOUND(v)
-  PRINT i;&quot; [&quot;;v(i);&quot;]&quot;
-NEXT
-
-&#39; Display
-0 []
-1 [etc/temp]
-2 [filename.ext]</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>s = <span class="st">&quot;/etc/temp/filename.ext&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>SPLIT s, <span class="st">&quot;/&quot;</span>, v, <span class="st">&quot;temp&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">FOR </span>i = <span class="dv">0</span> <span class="kw">TO</span> <span class="fu">UBOUND</span>(v)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="kw">PRINT</span> i;<span class="st">&quot; [&quot;</span>;v(i);<span class="st">&quot;]&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">NEXT</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; Display</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="dv">0</span> []</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="dv">1</span> [etc/temp]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="dv">2</span> [filename.ext]</span></code></pre></div>
 <h3 id="example-3-using-use-expr">Example 3: Using “USE expr”</h3>
-<pre><code>s = &quot;/etc/temp/filename1.ext  &quot;        &#39; additional spaces at the end of the string
-SPLIT s, &quot;/&quot;, v, &quot;temp&quot; USE TRIM(x)    &#39; trim(x) will remove spaces at the beginning
-                                       &#39; and the end of the splitted strings;
-                                       &#39; try the example without &quot;USE TRIM(x)&quot;
-FOR i = 0 TO UBOUND(v)
-  PRINT i;&quot; [&quot;;v(i);&quot;]&quot;
-NEXT
-
-&#39; displays
-&#39; 0 []
-&#39; 1 [etc/temp]
-&#39; 2 [filename1.ext]</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>s = <span class="st">&quot;/etc/temp/filename1.ext  &quot;</span>        <span class="co">&#39; additional spaces at the end of the string</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>SPLIT s, <span class="st">&quot;/&quot;</span>, v, <span class="st">&quot;temp&quot;</span> <span class="kw">USE</span> <span class="fu">TRIM</span>(x)    <span class="co">&#39; trim(x) will remove spaces at the beginning</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>                                       <span class="co">&#39; and the end of the splitted strings;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>                                       <span class="co">&#39; try the example without &quot;USE TRIM(x)&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">FOR </span>i = <span class="dv">0</span> <span class="kw">TO</span> <span class="fu">UBOUND</span>(v)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="kw">PRINT</span> i;<span class="st">&quot; [&quot;</span>;v(i);<span class="st">&quot;]&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">NEXT</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">&#39; displays</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">&#39; 0 []</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">&#39; 1 [etc/temp]</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">&#39; 2 [filename1.ext]</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using SPLIT</div>
     <div class="linklist">

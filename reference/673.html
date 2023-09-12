@@ -76,26 +76,26 @@
 <p>Logical operator to invert variable or expression result. Equivalent syntax to <code>y = !a</code>. NOT returns true if variable or expression result is false or zero. Otherwise it returns false.</p>
 <p>For bitwise NOT use the ~ operator.</p>
 <h3 id="example-1">Example 1:</h3>
-<pre><code>print not true    &#39; Output: 0
-print not 100     &#39; Output: 0
-print not false   &#39; Output: 1
-print not 0       &#39; Output: 1</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="kw">not</span> <span class="dt">true</span>    <span class="co">&#39; Output: 0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="kw">not</span> <span class="dv">100</span>     <span class="co">&#39; Output: 0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="kw">not</span> <span class="dt">false</span>   <span class="co">&#39; Output: 1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="kw">not</span> <span class="dv">0</span>       <span class="co">&#39; Output: 1</span></span></code></pre></div>
 <h3 id="example-2-not-in-an-if-statement">Example 2: NOT in an if statement</h3>
-<pre><code>IsRunning = false                &#39; Replace with true
-if(NOT IsRunning) then print &quot;Program is not running&quot;</code></pre>
-<pre><code>a = 0             &#39; Replace i.e. 10
-if(NOT a) then print &quot;Value is zero&quot;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>IsRunning = <span class="dt">false</span>                <span class="co">&#39; Replace with true</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">if(NOT</span> IsRunning) <span class="kw">then pr</span>int <span class="st">&quot;Program is not running&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>a = <span class="dv">0</span>             <span class="co">&#39; Replace i.e. 10</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">if(NOT</span> a) <span class="kw">then pr</span>int <span class="st">&quot;Value is zero&quot;</span></span></code></pre></div>
 <h3 id="example-3-bitwise-not-using">Example 3: Bitwise NOT using ~</h3>
 <p>The NOT-operation performs a bitwise inversion on all bits of a number. This leads to the following (maybe unexpected) result:</p>
-<pre><code>print bin(~0b1001)      &#39; Output: 11111111111111111111111111110110</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">bin</span>(~0b1001)      <span class="co">&#39; Output: 11111111111111111111111111110110</span></span></code></pre></div>
 <h3 id="example-4-operate-bitwise-not-only-on-last-n-bits">Example 4: Operate bitwise NOT only on last n bits</h3>
 <p>If you want to operate NOT only on the last <code>n</code> bits of the numbers, you can use the following code:</p>
-<pre><code>n = 4
-a = 0b1010
-
-print bin((~a) BAND ((1 lshift n ) - 1)) 
-
-&#39; Output 101</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>n = <span class="dv">4</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>a = 0b1010</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">bin</span>((~a) <span class="kw">BAND</span> ((<span class="dv">1</span> <span class="kw">lshift</span> n ) - <span class="dv">1</span>)) </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">&#39; Output 101</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using NOT</div>
     <div class="linklist">

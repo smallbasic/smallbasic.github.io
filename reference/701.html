@@ -75,23 +75,23 @@
   </div>
 <p>Multiply the 2D transformation matrix <code>M</code> by a translation matrix. <code>Tx</code> and <code>Ty</code> are the translations in x and y direction. <code>M</code> is a 3x3 matrix.</p>
 <p>The translation matrix has the form</p>
-<pre><code>         |  1  0  Tx |
-MTrans = |  0  1  Ty |
-         |  0  0  1  |</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>         |  <span class="dv">1</span>  <span class="dv">0</span>  Tx |</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>MTrans = |  <span class="dv">0</span>  <span class="dv">1</span>  Ty |</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>         |  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">1</span>  |</span></code></pre></div>
 <h3 id="example">Example</h3>
-<pre><code>DIM M(2,2)
-
-Rectangle = [-1,-1, 1,-1, 1,1, -1,1, -1,-1]  &#39; Create a rectangular polygon
-
-M3IDENT M                                    &#39; Create Identity Matrix
-
-M3Trans M, 100,100                           &#39; Move rectangle to position (100,100) 
-M3SCALE M, 0, 0, 50, 50                      &#39; Scale rectangle by factor 50 in x and y
-M3ROTATE M, 45*pi/180                        &#39; Rotate by 45°
-
-M3APPLY M, Rectangle                         &#39; Transform the rectangle
-
-DRAWPOLY Rectangle</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dt">DIM</span> M(<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>Rectangle = [-<span class="dv">1</span>,-<span class="dv">1</span>, <span class="dv">1</span>,-<span class="dv">1</span>, <span class="dv">1</span>,<span class="dv">1</span>, <span class="dv">-1</span>,<span class="dv">1</span>, <span class="dv">-1</span>,-<span class="dv">1</span>]  <span class="co">&#39; Create a rectangular polygon</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="fu">M3IDENT</span> M                                    <span class="co">&#39; Create Identity Matrix</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="fu">M3Trans</span> M, <span class="dv">100</span>,<span class="dv">100</span>                           <span class="co">&#39; Move rectangle to position (100,100) </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="fu">M3SCALE</span> M, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">50</span>                      <span class="co">&#39; Scale rectangle by factor 50 in x and y</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="fu">M3ROTATE</span> M, <span class="dv">45</span>*<span class="dt">pi</span>/<span class="dv">180</span>                        <span class="co">&#39; Rotate by 45°</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="fu">M3APPLY</span> M, Rectangle                         <span class="co">&#39; Transform the rectangle</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="fu">DRAWPOLY</span> Rectangle</span></code></pre></div>
 <p>M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When performing matrix multiplication, then last matrix is applied first. In the example above, the rectangle is first rotated, then scaled and in the last step translated. If the order is changed, the outcome might be different.</p>
   <div class="lavenderBox">
     <div class="header">Math</div>

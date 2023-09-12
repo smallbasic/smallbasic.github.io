@@ -85,18 +85,18 @@
 <p>All of the above UI elements are written in SmallBASIC, see <a href="https://github.com/smallbasic/SmallBASIC/blob/master/src/platform/android/app/src/main/assets/main.bas">main.bas</a></p>
 <h2 id="using-location-sensor-and-text-to-speech-services.">Using Location, Sensor and Text to speech services.</h2>
 <p>To use the following services, your program must start with the following two lines:</p>
-<pre><code>option predef load modules
-import android</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">option</span> predef load modules</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="pp">import</span> android</span></code></pre></div>
 <p>The first line tell SmallBASIC to dynamically load runtime modules. The second line imports the android module.</p>
 <h2 id="location">Location</h2>
 <p>GPS_ON</p>
-<pre><code>android.gps_on()</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>android.gps_on()</span></code></pre></div>
 <p>Instructs the system to commence recording location information. Note: This relies on the device location services being enabled by the user.</p>
 <p>GPS_OFF</p>
-<pre><code>android.gps_off()</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>android.gps_off()</span></code></pre></div>
 <p>Turns off recording of location information.</p>
 <p>LOCATION</p>
-<pre><code>l = android.location()</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>l = android.location()</span></code></pre></div>
 <p>Returns a MAP variable holding the following details:</p>
 <ul>
 <li>latitude - the latitude, in degrees.</li>
@@ -111,18 +111,18 @@ import android</code></pre>
 <p>For more details, see: <a href="https://developer.android.com/reference/android/location/Location.html" class="uri">https://developer.android.com/reference/android/location/Location.html</a></p>
 <h2 id="sensor">Sensor</h2>
 <p>SENSOR_ON</p>
-<pre><code>const SensorAccelerometer = 0
-const SensorMagneticField = 1
-const SensorGyroscope = 2
-const SensorLight = 3
-const SensorProximity = 4
-android.sensor_on(n)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="dt">const</span> SensorAccelerometer = <span class="dv">0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="dt">const</span> SensorMagneticField = <span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="dt">const</span> SensorGyroscope = <span class="dv">2</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="dt">const</span> SensorLight = <span class="dv">3</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="dt">const</span> SensorProximity = <span class="dv">4</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>android.sensor_on(n)</span></code></pre></div>
 <p>Enables the given sensor (currently only one may be enabled at a time). Throws an exception if the given sensor is not available (for example, not all devices have a gyroscope).</p>
 <p>SENSOR_OFF</p>
-<pre><code>android.sensor_off()</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>android.sensor_off()</span></code></pre></div>
 <p>Disables any active sensor.</p>
 <p>SENSOR</p>
-<pre><code>s = android.sensor()</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>s = android.sensor()</span></code></pre></div>
 <p>Returns a MAP variable holding sensor details. x, y, z - The spatial position light - (SensorLight) distance - (SensorProximity)</p>
 <p>For more details, see:</p>
 <ul>
@@ -133,19 +133,19 @@ android.sensor_on(n)</code></pre>
 <p>Output data as spoken text.</p>
 <p>Notes: - The text to speech module takes a moment to initialise. This is performed the first time you call SPEAK. - You may want to turn off the system setting to send TTS usage statistics to google before using this feature.</p>
 <p>TTS_PITCH</p>
-<pre><code>android.tts_pitch(n)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>android.tts_pitch(n)</span></code></pre></div>
 <p>Sets the voice pitch (default is 1.0).</p>
 <p>TTS_RATE</p>
-<pre><code>android.tts_rate(n)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>android.tts_rate(n)</span></code></pre></div>
 <p>Sets the rate of speaking (default is 1.0)</p>
 <p>TTS_LANG</p>
-<pre><code>android.tts_lang(s)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>android.tts_lang(s)</span></code></pre></div>
 <p>Sets the locale, for example “en”, “de”, “fr” for English, German, France. May cause the system to download the language codec if not already installed.</p>
 <p>TTS_OFF</p>
-<pre><code>android.tts_off()</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>android.tts_off()</span></code></pre></div>
 <p>Turns off text to speech output.</p>
 <p>SPEAK</p>
-<pre><code>android.speak(text)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>android.speak(text)</span></code></pre></div>
 <p>Performs text to speech (default is ENGLISH).</p>
 <h2 id="how-to-edit-and-run-a-program">How to edit and run a program</h2>
 <h3 id="internal-editor">Internal editor:</h3>
@@ -201,7 +201,7 @@ android.sensor_on(n)</code></pre>
 <p><a href="privacy.html">Privacy Policy</a></p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Mon, 19 Sep 2022 21:36:40 +1000
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

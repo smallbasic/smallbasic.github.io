@@ -74,40 +74,39 @@
     </p>
   </div>
 <p>Bitwise exclusive OR. Equivalent syntax to: a ~ b</p>
-<pre><code>
-&#39; return true if n is ASCII code of letter (A-Z|a-z); e.g. ? isAbc(Asc(&quot;z&quot;))
-Def isAbc(n) = ((n &gt;= 65 And n &lt;= 90) Or (n &gt;= 97 And n &lt;= 122))
-
-&#39; change case of string s; mode is -1, 0, 1 (lower, invert, upper). 
-Func ccase(s, mode)
-  Local i, n
-  
-  For i = 1 To Len(s)
-    n = Asc(Mid(s, i, 1))
-    If isAbc(n) Then
-      Select Case mode
-        Case -1: n = n Bor  0b00100000 &#39; set bit-5 to lower case
-        Case  0: n = n Xor  0b00100000 &#39; invert bit-5 to invert case
-        Case  1: n = n Band 0b11011111 &#39; reset bit-5 to upper case 
-      End Select
-      s = Replace(s, i, Chr(n))
-    Endif
-  Next
-  ccase = s
-End
-
-&#39; run demo:
-Repeat
-  Cls
-  Input &quot;Enter a string (Enter empty to stop): &quot;, s
-  
-  Print
-  Print &quot;  Upper case: &quot;; ccase(s, 1)
-  Print &quot;  Lower case: &quot;; ccase(s, -1)
-  Print &quot; Invert case: &quot;; ccase(s, 0)
-  Pause
-Until s = &quot;&quot;
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">&#39; return true if n is ASCII code of letter (A-Z|a-z); e.g. ? isAbc(Asc(&quot;z&quot;))</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">Def</span> isAbc(n) = ((n &gt;= <span class="dv">65</span> <span class="kw">And</span> n &lt;= <span class="dv">90</span>) <span class="kw">Or</span> (n &gt;= <span class="dv">97</span> <span class="kw">And</span> n &lt;= <span class="dv">122</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">&#39; change case of string s; mode is -1, 0, 1 (lower, invert, upper). </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">Func </span>ccase(s, mode)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="dt">Local</span> i, n</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="kw">For </span>i = <span class="dv">1</span> <span class="kw">To</span> <span class="fu">Len</span>(s)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    n = <span class="fu">Asc</span>(<span class="fu">Mid</span>(s, i, <span class="dv">1</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="kw">If </span>isAbc(n) <span class="kw">Then</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>      <span class="kw">Select Case </span>mode</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>        <span class="kw">Case</span> <span class="dv">-1</span>: n = n <span class="kw">Bor</span>  0b00100000 <span class="co">&#39; set bit-5 to lower case</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>        <span class="kw">Case</span>  <span class="dv">0</span>: n = n <span class="kw">Xor</span>  0b00100000 <span class="co">&#39; invert bit-5 to invert case</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>        <span class="kw">Case</span>  <span class="dv">1</span>: n = n <span class="kw">Band</span> 0b11011111 <span class="co">&#39; reset bit-5 to upper case </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>      <span class="kw">End Select</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>      s = <span class="fu">Replace</span>(s, i, <span class="fu">Chr</span>(n))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    <span class="kw">Endif</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>  <span class="kw">Next</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>  ccase = s</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="kw">End</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a><span class="co">&#39; run demo:</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="kw">Repeat</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>  <span class="fu">Cls</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>  <span class="kw">Input</span> <span class="st">&quot;Enter a string (Enter empty to stop): &quot;</span>, s</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>  </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>  <span class="kw">Print</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot;  Upper case: &quot;</span>; ccase(s, <span class="dv">1</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot;  Lower case: &quot;</span>; ccase(s, <span class="dv">-1</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot; Invert case: &quot;</span>; ccase(s, <span class="dv">0</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>  <span class="kw">Pause</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a><span class="kw">Until </span>s = <span class="st">&quot;&quot;</span></span></code></pre></div>
 <dl>
 <dt>XOR is Not equivalent syntax to: a ~ b</dt>
 <dd>is bitwise NOT, for example: ~b

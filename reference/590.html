@@ -75,20 +75,20 @@
   </div>
 <p>Reads data from file #fileN and stores the values in var1, var2 to varN. Specify a delimiter if necessary.</p>
 <h3 id="example-read-a-comma-separated-value-file-csv">Example: Read a comma-separated-value file (csv)</h3>
-<pre><code>&#39; Create a csv-file
-open &quot;test.csv&quot; for output as #1
-for x = 1 to 10
-    print #1, x + &quot;,&quot; + x^2 + &quot;,&quot; + x^3
-next
-close #1
-
-&#39; Open the file and read the values
-open &quot;test.csv&quot; for input as #1
-while(!eof(1))
-    input #1; x, &quot;,&quot;, x2, &quot;,&quot;, x3
-    print x, x2, x3
-wend
-close #1</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; Create a csv-file</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;test.csv&quot;</span> <span class="kw">for output as</span> #<span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">for </span>x = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="kw">print</span> #<span class="dv">1</span>, x + <span class="st">&quot;,&quot;</span> + x^<span class="dv">2</span> + <span class="st">&quot;,&quot;</span> + x^<span class="dv">3</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">next</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39; Open the file and read the values</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;test.csv&quot;</span> <span class="kw">for input as</span> #<span class="dv">1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">while(</span>!<span class="fu">eof</span>(<span class="dv">1</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="kw">input</span> #<span class="dv">1</span>; x, <span class="st">&quot;,&quot;</span>, x2, <span class="st">&quot;,&quot;</span>, x3</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="kw">print</span> x, x2, x3</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">wend</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using INPUT</div>
     <div class="linklist">

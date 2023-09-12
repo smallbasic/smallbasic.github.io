@@ -19,12 +19,14 @@ pandoc = /usr/bin/pandoc
 mkdir = @mkdir -p $(dir $@)
 out = _out
 pandoc_options=--from markdown-tex_math_dollars --to html5 --syntax-definition=smallbasic.xml
+pandoc_ide_options=--from markdown-tex_math_dollars --to html5
 bas = $(patsubst layouts/%.html, $(out)/%.bas, $(wildcard layouts/*.html))
 pages = $(patsubst pages/%.markdown, $(out)/pages3/%.html, $(wildcard pages/*.markdown))
 posts = $(patsubst posts/%.markdown, $(out)/posts3/%.html, $(wildcard posts/*.markdown))
 scripts = $(patsubst scripts/%.html, $(out)/scripts2/%.html, $(wildcard scripts/*.html))
 reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))
 reference_txt = $(patsubst reference/%.markdown, $(out)/reference_txt/%.txt, $(wildcard reference/*.markdown))
+reference_ide = $(patsubst reference/%.markdown, $(out)/reference_ide/%.html, $(wildcard reference/*.markdown))
 
 # rules
 .data: reference.json page.bas site.bas mkdata.bas includes/header.html
@@ -35,7 +37,11 @@ $(out)/%.bas: layouts/%.html .data
 	$(mkdir)
 	$(sbasic) mkpage.bas $< > $@
 
-$(out)/reference1/%.html: reference/%.markdown
+$(out)/reference0/%.markdown: reference/%.markdown
+	$(mkdir)
+	$(sbasic) mkhl.bas $< > $@
+
+$(out)/reference1/%.html: $(out)/reference0/%.markdown $(bas)
 	$(mkdir)
 	$(pandoc) $(pandoc_options) -o $@ $<
 
@@ -87,7 +93,11 @@ $(out)/reference_txt/%.txt: reference/%.markdown
 	$(mkdir)
 	$(pandoc) --from markdown-tex_math_dollars --to plain -o $@ $<
 
-all: $(reference) $(out)/sbref.txt $(out)/sbasic_ref.csv $(pages) $(posts) $(scripts)
+$(out)/reference_ide/%.html: reference/%.markdown
+	$(mkdir)
+	$(pandoc) $(pandoc_ide_options) -o $@ $<
+
+all: $(reference) $(reference_ide) $(out)/sbref.txt $(out)/sbasic_ref.csv $(pages) $(posts) $(scripts)
 	@mkdir -p ../reference/ide
 	@mkdir -p ../pages
 	@mkdir -p ../posts

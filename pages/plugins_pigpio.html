@@ -80,42 +80,42 @@
 <p>Connect the resistor to pin 4 and the LED to ground of the Raspberry Pi.</p>
 <h3 id="software">Software</h3>
 <p>To let the LED blink the following SmallBASIC program can be used.</p>
-<pre class="freebasic"><code>import SmallBasicPIGPIO as gpio
-
-&#39; LED is connected to pin GPIO4
-const PIN_GPIO4 = 4
-
-&#39; Set pin as an output
-gpio.GPIO_SetOutput(PIN_GPIO4)
-
-for ii = 1 to 5
-    print(ii)
-    &#39;Set GPIO pin to high -&gt; 3.3V
-    gpio.GPIO_Write(PIN_GPIO4, 1)
-    delay(500)
-    &#39;Set GPIO pin to low -&gt; ground
-    gpio.GPIO_Write(PIN_GPIO4, 0)
-    delay(500)
-next</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">import</span> SmallBasicPIGPIO <span class="kw">as</span> gpio</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">&#39; LED is connected to pin GPIO4</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="dt">const</span> PIN_GPIO4 = <span class="dv">4</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">&#39; Set pin as an output</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>gpio.GPIO_SetOutput(PIN_GPIO4)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">for </span>ii = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">5</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="kw">print</span>(ii)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="co">&#39;Set GPIO pin to high -&gt; 3.3V</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    gpio.GPIO_Write(PIN_GPIO4, <span class="dv">1</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">500</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="co">&#39;Set GPIO pin to low -&gt; ground</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    gpio.GPIO_Write(PIN_GPIO4, <span class="dv">0</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">500</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
 <p>The plugin supports Pulse Width Modulation (PWM). Using this technique the intensity of the LED can tuned as shown in the next example.</p>
-<pre class="freebasic"><code>import SmallBasicPIGPIO as gpio
-
-&#39; LED is connected to pin GPIO4
-const PIN_GPIO4 = 4
-
-&#39; Set pin as an output
-gpio.GPIO_SetOutput(PIN_GPIO4)
-
-&#39; Duty cycle is a value between 0 and 255.
-&#39; 0 -&gt; LED is off
-&#39; 128 -&gt; LED half brightness
-&#39; 255 -&gt; LED max. brightness
-
-for DutyCycle = 0 to 255 step 20
-    print(DutyCycle)
-    gpio.GPIO_Pwm(PIN_GPIO4, DutyCycle)
-    delay(200)
-next</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">import</span> SmallBasicPIGPIO <span class="kw">as</span> gpio</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; LED is connected to pin GPIO4</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dt">const</span> PIN_GPIO4 = <span class="dv">4</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">&#39; Set pin as an output</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>gpio.GPIO_SetOutput(PIN_GPIO4)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="co">&#39; Duty cycle is a value between 0 and 255.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">&#39; 0 -&gt; LED is off</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39; 128 -&gt; LED half brightness</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">&#39; 255 -&gt; LED max. brightness</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">for </span>DutyCycle = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">255</span> step <span class="dv">20</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="kw">print</span>(DutyCycle)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    gpio.GPIO_Pwm(PIN_GPIO4, DutyCycle)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">200</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
 <h2 id="push-buttons">Push Buttons</h2>
 <p>Reading the state of a push button is for many Raspberry Pi project important and really easy with SmallBASIC PiGPIO.</p>
 <h3 id="wiring-1">Wiring</h3>
@@ -125,25 +125,25 @@ next</code></pre>
 </figure>
 <h3 id="software-1">Software</h3>
 <p>To read the state of the button, the following example program can be used.</p>
-<pre class="freebasic"><code>import SmallBasicPIGPIO as gpio
-
-const PIN_GPIO4 = 4
-
-&#39; Set GPIO pin 4 to INPUT. When a pin is set to input,
-&#39; the internal pullup resistor will be enabled automaticly
-gpio.GPIO_SetInput(PIN_GPIO4)
-
-repeat 
-    key = inkey()
-    
-    &#39; Read the state of the pin. It will return 0 or 1.
-    status = gpio.GPIO_Read(PIN_GPIO4)
-    locate 1,1: print(status)
-    
-    showpage()
-    delay(50)   
-    
-until key &lt;&gt; &quot;&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="pp">import</span> SmallBasicPIGPIO <span class="kw">as</span> gpio</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="dt">const</span> PIN_GPIO4 = <span class="dv">4</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39; Set GPIO pin 4 to INPUT. When a pin is set to input,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">&#39; the internal pullup resistor will be enabled automaticly</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>gpio.GPIO_SetInput(PIN_GPIO4)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">repeat </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    key = <span class="kw">inkey</span>()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    <span class="co">&#39; Read the state of the pin. It will return 0 or 1.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    status = gpio.GPIO_Read(PIN_GPIO4)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    <span class="fu">locate</span> <span class="dv">1</span>,<span class="dv">1</span>: <span class="kw">print</span>(status)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="fu">showpage</span>()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">50</span>)   </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="kw">until </span>key &lt;&gt; <span class="st">&quot;&quot;</span></span></code></pre></div>
 <h2 id="oled-display">OLED Display</h2>
 <p>In case the Raspberry Pi is used without a big screen, it would be great to have a small display to print information or even show nice graphics. The plugin supports SSD1306 compatible OLED displays (quite common and really cheap).</p>
 <h3 id="wiring-2">Wiring</h3>
@@ -153,28 +153,28 @@ until key &lt;&gt; &quot;&quot;</code></pre>
 </figure>
 <h3 id="software-2">Software</h3>
 <p>The following example shows how to use basic graphic commands to draw lines or print text.</p>
-<pre class="freebasic"><code>import SmallBasicPIGPIO as gpio
-
-gpio.OLED1_Open()
-
-gpio.OLED1_SetBrightness(128)
-
-gpio.OLED1_Cls()
-
-gpio.OLED1_Pset(10,0)
-gpio.OLED1_Line(0,0,127,63)
-gpio.OLED1_RoundRect(54,26,74,38,5)
-gpio.OLED1_Circle(118,10,5,1,1) &#39;Filled with white
-gpio.OLED1_Triangle(118,30, 113,45, 123,45, 1, 1) &#39;Filled with white
-
-gpio.OLED1_At(0,56)
-gpio.OLED1_SetTextSize(16)
-gpio.OLED1_Print(&quot;SmallBASIC&quot;)
-
-delay(2000)
-gpio.OLED1_Close()
-
-print(&quot;Done&quot;)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="pp">import</span> SmallBasicPIGPIO <span class="kw">as</span> gpio</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>gpio.OLED1_Open()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>gpio.OLED1_SetBrightness(<span class="dv">128</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>gpio.OLED1_Cls()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>gpio.OLED1_Pset(<span class="dv">10</span>,<span class="dv">0</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>gpio.OLED1_Line(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">127</span>,<span class="dv">63</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>gpio.OLED1_RoundRect(<span class="dv">54</span>,<span class="dv">26</span>,<span class="dv">74</span>,<span class="dv">38</span>,<span class="dv">5</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>gpio.OLED1_Circle(<span class="dv">118</span>,<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="co">&#39;Filled with white</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>gpio.OLED1_Triangle(<span class="dv">118</span>,<span class="dv">30</span>, <span class="dv">113</span>,<span class="dv">45</span>, <span class="dv">123</span>,<span class="dv">45</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co">&#39;Filled with white</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>gpio.OLED1_At(<span class="dv">0</span>,<span class="dv">56</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>gpio.OLED1_SetTextSize(<span class="dv">16</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>gpio.OLED1_Print(<span class="st">&quot;SmallBASIC&quot;</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="fu">delay</span>(<span class="dv">2000</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>gpio.OLED1_Close()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="kw">print</span>(<span class="st">&quot;Done&quot;</span>)</span></code></pre></div>
 <h1 id="supported-hardware">Supported Hardware</h1>
 <p>The SmallBASIC-PiGPIO plugin supports the following hardware. Support for more sensors and displays is planned.</p>
 <ul>
@@ -197,7 +197,7 @@ print(&quot;Done&quot;)</code></pre>
 </ul>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 6 Nov 2022 14:46:07 +0100
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -75,38 +75,37 @@
   </div>
 <p>Returns the ASCII code of first character of the string s.</p>
 <p>Also see CHR</p>
-<pre><code>print &quot;ASCII value of A is &quot;; ASC(&quot;A&quot;)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;ASCII value of A is &quot;</span>; <span class="fu">ASC</span>(<span class="st">&quot;A&quot;</span>)</span></code></pre></div>
 <p>The following example prints an ASCII table.</p>
-<pre><code>
-&#39; LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
-&#39; LOCATE row, column - sets the next print location on screen, rows down, columns across
-&#39; a MOD b - returns the remainder of a/b as integer 0 to b-1
-&#39;           for example odd number n mod 2 returns 1, while even number n mod 2 returns 0
-&#39;           n mod 10 returns 0,1,2,3,4,5,6,7,8 or 9  we will use this is demo
-&#39; CHR - returns the CHaRracter for the ASC number, for demo we will print a chart of CHR for ASC numbers 32-128
-&#39; ASC(Character) - is a number code for a print characters, 32 is the code for a space
-&#39; ? - is shortcut for PRINT
-&#39; RIGHT(string,n) - returns right most n characters of string
-&#39; STR(n) - returns a number in string form
-&#39; : - code statement seperator often used with LOCATE row, column : ? string
-&#39; PAUSE optional-number-of-secs - waits for key press or mouse click and/or for a number seconds 
-&#39; so lets user decide how long to wait
-
-LOCATE 1,16 : ? &quot;ASC Table 30-129:&quot;  &#39; locate print spot, print title for our app
-FOR column=0 to 9                    &#39; print a header, 10 numbers plus + (to add to row value)
-  LOCATE 2,column*5+4 : ? &quot;+&quot;;column
-NEXT
-FOR row=3 to 12
-  LOCATE row,0 : ? RIGHT(&quot; &quot;+STR(row*10)+&quot;:&quot;,4)
-NEXT
-&#39;main table
-FOR ASCnumber=30 to 129              &#39; note ASC(32) = space so wont see anything in Table
-  row=ASCnumber\10                   &#39; \ rounds division down to integer
-  column=(ASCnumber MOD 10)*5+5      &#39; times 5 to space out the characters printed plus 5 for column labels
-  LOCATE row,column : ? CHR(ASCnumber)
-NEXT
-PAUSE
-</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; LOCATE row, column - sets the next print location on screen, rows down, columns across</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; a MOD b - returns the remainder of a/b as integer 0 to b-1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39;           for example odd number n mod 2 returns 1, while even number n mod 2 returns 0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">&#39;           n mod 10 returns 0,1,2,3,4,5,6,7,8 or 9  we will use this is demo</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; CHR - returns the CHaRracter for the ASC number, for demo we will print a chart of CHR for ASC numbers 32-128</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">&#39; ASC(Character) - is a number code for a print characters, 32 is the code for a space</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="co">&#39; ? - is shortcut for PRINT</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">&#39; RIGHT(string,n) - returns right most n characters of string</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39; STR(n) - returns a number in string form</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">&#39; : - code statement seperator often used with LOCATE row, column : ? string</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="co">&#39; PAUSE optional-number-of-secs - waits for key press or mouse click and/or for a number seconds </span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">&#39; so lets user decide how long to wait</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="fu">LOCATE</span> <span class="dv">1</span>,<span class="dv">16</span> : ? <span class="st">&quot;ASC Table 30-129:&quot;</span>  <span class="co">&#39; locate print spot, print title for our app</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">FOR </span>column=<span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span>                    <span class="co">&#39; print a header, 10 numbers plus + (to add to row value)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>  <span class="fu">LOCATE</span> <span class="dv">2</span>,column*<span class="dv">5</span>+<span class="dv">4</span> : ? <span class="st">&quot;+&quot;</span>;column</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">NEXT</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="kw">FOR </span>row=<span class="dv">3</span> <span class="kw">to</span> <span class="dv">12</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>  <span class="fu">LOCATE</span> row,<span class="dv">0</span> : ? <span class="fu">RIGHT</span>(<span class="st">&quot; &quot;</span>+<span class="fu">STR</span>(row*<span class="dv">10</span>)+<span class="st">&quot;:&quot;</span>,<span class="dv">4</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">NEXT</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="co">&#39;main table</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="kw">FOR </span>ASCnumber=<span class="dv">30</span> <span class="kw">to</span> <span class="dv">129</span>              <span class="co">&#39; note ASC(32) = space so wont see anything in Table</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>  row=ASCnumber\<span class="dv">10</span>                   <span class="co">&#39; \ rounds division down to integer</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>  column=(ASCnumber <span class="kw">MOD</span> <span class="dv">10</span>)*<span class="dv">5</span>+<span class="dv">5</span>      <span class="co">&#39; times 5 to space out the characters printed plus 5 for column labels</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>  <span class="fu">LOCATE</span> row,column : ? <span class="fu">CHR</span>(ASCnumber)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="kw">NEXT</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="kw">PAUSE</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using ASC</div>
     <div class="linklist">

@@ -75,26 +75,26 @@
   </div>
 <p>Converts (B)ASIC-style strings to (C)-style (S)trings by masking escape codes. Escape codes in the string will not be applied to format the string when printed on the screen. Instead escape codes will be printed as they are.</p>
 <p>See CBS to unmasked a c-style string, and see article “Escape codes” for more information about escape codes.</p>
-<pre><code>&#39; define some escape codes
-const NORMAL             = &quot;\e[0m&quot;  &#39; = Cat(0)
-const BOLD               = &quot;\e[1m&quot;  &#39; = Cat(1)
-const BOLD_OFF           = &quot;\e[21m&quot; &#39; = Cat(-1)
-const BG_CYAN            = &quot;\e[46m&quot;
-const TB                 = &quot;\t&quot;
-
-&#39; Create a string with escape codes
-BasicStyleString               = BOLD + &quot;BOLD&quot; + BOLD_OFF + TB + TB + BG_CYAN + &quot;COLORFULL BG&quot; + NORMAL
-CStyleString                   = bcs(BasicStyleString)
-BackConverted_BasicStyleString = cbs(CStyleString)
-
-print &quot;Basic-style string            : &quot;; BasicStyleString
-print &quot;C-style string                : &quot;; CStyleString
-print &quot;Back conversion to basic style: &quot;; BackConverted_BasicStyleString
-
-&#39; Output will be (with colors and in bold)
-&#39; Basic-style string            : BOLD      COLORFULL BG
-&#39; C-style string                : \e[1mBOLD\e[21m\t\t\e[46mCOLORFULL BG\e[0m
-&#39; Back conversion to basic style: BOLD      COLORFULL BG</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; define some escape codes</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="dt">const</span> NORMAL             = <span class="st">&quot;\e[0m&quot;</span>  <span class="co">&#39; = Cat(0)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="dt">const</span> BOLD               = <span class="st">&quot;\e[1m&quot;</span>  <span class="co">&#39; = Cat(1)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="dt">const</span> BOLD_OFF           = <span class="st">&quot;\e[21m&quot;</span> <span class="co">&#39; = Cat(-1)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="dt">const</span> BG_CYAN            = <span class="st">&quot;\e[46m&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="dt">const</span> TB                 = <span class="st">&quot;\t&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39; Create a string with escape codes</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>BasicStyleString               = BOLD + <span class="st">&quot;BOLD&quot;</span> + BOLD_OFF + TB + TB + BG_CYAN + <span class="st">&quot;COLORFULL BG&quot;</span> + NORMAL</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>CStyleString                   = <span class="fu">bcs</span>(BasicStyleString)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>BackConverted_BasicStyleString = <span class="fu">cbs</span>(CStyleString)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Basic-style string            : &quot;</span>; BasicStyleString</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;C-style string                : &quot;</span>; CStyleString</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Back conversion to basic style: &quot;</span>; BackConverted_BasicStyleString</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="co">&#39; Output will be (with colors and in bold)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="co">&#39; Basic-style string            : BOLD      COLORFULL BG</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="co">&#39; C-style string                : \e[1mBOLD\e[21m\t\t\e[46mCOLORFULL BG\e[0m</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="co">&#39; Back conversion to basic style: BOLD      COLORFULL BG</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using BCS</div>
     <div class="linklist">

@@ -76,38 +76,37 @@
 <p>Defines a single line function.</p>
 <p>See FUNC for multiline functions and SUB for multiline subroutines.</p>
 <p>Example 1: Function with one parameter</p>
-<pre><code>def f(x) = 2*x+3
-
-print f(3)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">def</span> f(x) = <span class="dv">2</span>*x+<span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> f(<span class="dv">3</span>)</span></code></pre></div>
 <p>Example 2: Function with two parameters</p>
-<pre><code>def f(x,y) = 2*x + 3*sin(y)
-
-print f(1,2)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">def</span> f(x,y) = <span class="dv">2</span>*x + <span class="dv">3</span>*<span class="fu">sin</span>(y)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> f(<span class="dv">1</span>,<span class="dv">2</span>)</span></code></pre></div>
 <p>Example 3: Random number between low and high</p>
-<pre><code>&#39; A function for random integer numbers between low and high (inclusive)
-DEF randi(lo, hi) = (RND * (hi - lo + 1))\1 + lo
-
-&#39; A function for random float numbers between low and high (inclusive)
-DEF randf(lo, hi) = (RND * (hi - lo + 1)) + lo
-
-print randi(0, 100)
-print randf(0, 100)</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; A function for random integer numbers between low and high (inclusive)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">DEF</span> randi(lo, hi) = (<span class="fu">RND</span> * (hi - lo + <span class="dv">1</span>))\<span class="dv">1</span> + lo</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39; A function for random float numbers between low and high (inclusive)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">DEF</span> randf(lo, hi) = (<span class="fu">RND</span> * (hi - lo + <span class="dv">1</span>)) + lo</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">print</span> randi(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="kw">print</span> randf(<span class="dv">0</span>, <span class="dv">100</span>)</span></code></pre></div>
 <p>Example 4: DEF and LOCAL</p>
-<pre><code>
-&#39; DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
-&#39;can I use DEF locally in a sub without interfering with main variable or DEF names
-def aboutMe() = &quot;I am texting from main code.&quot;
-? &quot;Hi, &quot;;aboutMe
-mySub
-? &quot;Goodbye, &quot;;aboutMe
-pause
-sub mySub()
-  &#39;local def aboutMe() = &quot;I am texting from mySub.&quot; &#39;&lt;=== note: this did not work 
-  local aboutMe
-  def aboutMe() = &quot;I am texting from mySub.&quot;
-? &quot;Hi, &quot;;aboutMe
-end
-</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">&#39; DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">&#39;can I use DEF locally in a sub without interfering with main variable or DEF names</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">def</span> aboutMe() = <span class="st">&quot;I am texting from main code.&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>? <span class="st">&quot;Hi, &quot;</span>;aboutMe</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>mySub</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>? <span class="st">&quot;Goodbye, &quot;</span>;aboutMe</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="kw">pause</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="kw">sub </span>mySub()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>  <span class="co">&#39;local def aboutMe() = &quot;I am texting from mySub.&quot; &#39;&lt;=== note: this did not work </span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>  <span class="dt">local</span> aboutMe</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>  <span class="kw">def</span> aboutMe() = <span class="st">&quot;I am texting from mySub.&quot;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>? <span class="st">&quot;Hi, &quot;</span>;aboutMe</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using DEF</div>
     <div class="linklist">

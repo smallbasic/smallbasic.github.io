@@ -134,20 +134,20 @@
 </table>
 <h3 id="alternative-for-linux-with-kernel-3.x-and-android">Alternative for LINUX with kernel &gt; 3.x and ANDROID</h3>
 <p><code>fre</code> can be used to read the values of the file <code>/proc/meminfo</code>. In a console please type <code>cat /proc/meminfo</code>. Output should look similar to this (but more lines):</p>
-<pre><code>MemTotal:        3630512 kB
-MemFree:          117204 kB
-MemAvailable:     601308 kB
-Buffers:           52680 kB
-Cached:          1002608 kB
-SwapCached:        58640 kB
-Active:           857224 kB
-Inactive:        1781244 kB</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>MemTotal:        <span class="dv">3630512</span> kB</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>MemFree:          <span class="dv">117204</span> kB</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>MemAvailable:     <span class="dv">601308</span> kB</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>Buffers:           <span class="dv">52680</span> kB</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>Cached:          <span class="dv">1002608</span> kB</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>SwapCached:        <span class="dv">58640</span> kB</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>Active:           <span class="dv">857224</span> kB</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>Inactive:        <span class="dv">1781244</span> kB</span></code></pre></div>
 <p>To querry with <code>fre</code> the value of the first line, use <code>fre(0)</code>, for second line <code>fre(1)</code>, and so on.</p>
 <h3 id="example">Example</h3>
-<pre><code>print &quot;Free memory: &quot;; fre()
-print &quot;Total RAM: &quot;; fre(-10)
-print &quot;Used RAM: &quot;; fre(-11)
-print &quot;Free RAM: &quot;; fre(-12)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Free memory: &quot;</span>; <span class="fu">fre</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Total RAM: &quot;</span>; <span class="fu">fre</span>(-<span class="dv">10</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Used RAM: &quot;</span>; <span class="fu">fre</span>(-<span class="dv">11</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Free RAM: &quot;</span>; <span class="fu">fre</span>(-<span class="dv">12</span>)</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using FRE</div>
     <div class="linklist">

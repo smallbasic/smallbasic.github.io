@@ -75,48 +75,48 @@
   </div>
 <p>Returns true if the file pointer is at end of the file. For COMx and SOCL VFS returns true if the connection is broken.</p>
 <h3 id="example-1-reading-data-from-a-file">Example 1: Reading data from a file</h3>
-<pre><code>&#39; create a text file
-open &quot;MyDemoFile.txt&quot; for output as #1
-
-for i = 1 to 10
-    print #1, i 
-next
-
-close #1
-
-&#39; open text file and print content line by line
-open &quot;MyDemoFile.txt&quot; for input as #1
-
-while(!eof(1))   &#39; eof works only without #
-    input #1, c
-    print c
-wend
-
-close #1</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; create a text file</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;MyDemoFile.txt&quot;</span> <span class="kw">for output as</span> #<span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="kw">print</span> #<span class="dv">1</span>, i </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">next</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">&#39; open text file and print content line by line</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;MyDemoFile.txt&quot;</span> <span class="kw">for input as</span> #<span class="dv">1</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">while(</span>!<span class="fu">eof</span>(<span class="dv">1</span>))   <span class="co">&#39; eof works only without #</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="kw">input</span> #<span class="dv">1</span>, c</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="kw">print</span> c</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="kw">wend</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
 <h3 id="example-2-reading-from-a-tcpip-socket">Example 2: Reading from a TCP/IP socket</h3>
-<pre><code>rem Print a date string like &#39;29 SEP 2018 09:31:49 ACST&#39;
-func get_time
-  local today = julian(date)
-  local start = timer
-  local t_hour, t_min, t_sec, t_str
-  timehms start, t_hour, t_min, t_sec
-  rem TODO, format should support multiple arguments
-  t_str = format(&quot; ##:&quot;, t_hour) + format(&quot;##:&quot;, t_min) + format(&quot;##&quot;, t_sec)
-  return datefmt(&quot;dd mmm yyyy&quot;, today) + t_str
-end
-
-while 1
-  open &quot;SOCL:8080&quot; as #1
-  while (not eof(1))
-    lineinput #1, s
-    if (s == &quot;time&quot;)
-      print #1, get_time
-    else
-      print #1, &quot;unknown command&quot;
-    endif
-  wend
-  close #1
-wend</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">rem Print a date string like &#39;29 SEP 2018 09:31:49 ACST&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">func </span>get_time</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  <span class="dt">local</span> today = <span class="fu">julian</span>(date)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="dt">local</span> start = <span class="fu">timer</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="dt">local</span> t_hour, t_min, t_sec, t_str</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  <span class="fu">timehms</span> start, t_hour, t_min, t_sec</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  <span class="co">rem TODO, format should support multiple arguments</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  t_str = <span class="fu">format</span>(<span class="st">&quot; ##:&quot;</span>, t_hour) + <span class="fu">format</span>(<span class="st">&quot;##:&quot;</span>, t_min) + <span class="fu">format</span>(<span class="st">&quot;##&quot;</span>, t_sec)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  <span class="kw">return</span> <span class="fu">datefmt</span>(<span class="st">&quot;dd mmm yyyy&quot;</span>, today) + t_str</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>  <span class="fu">open</span> <span class="st">&quot;SOCL:8080&quot;</span> <span class="kw">as</span> #<span class="dv">1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>  <span class="kw">while </span>(<span class="kw">not</span> <span class="fu">eof</span>(<span class="dv">1</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="fu">lineinput</span> #<span class="dv">1</span>, s</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    <span class="kw">if </span>(s == <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>      <span class="kw">print</span> #<span class="dv">1</span>, get_time</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    <span class="kw">else</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>      <span class="kw">print</span> #<span class="dv">1</span>, <span class="st">&quot;unknown command&quot;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>  <span class="kw">wend</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>  <span class="fu">close</span> #<span class="dv">1</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using EOF</div>
     <div class="linklist">

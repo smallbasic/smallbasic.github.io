@@ -76,116 +76,114 @@
 <p>Store variables to a file as binary data.</p>
 <p>The READ/WRITE command set is used to store variables to a file as binary data. The common problem with INPUT/PRINT set is there are many conflicts with data. &gt; PRINT #1; “Hello, world” The above example only wrote one string and you want read it in one variable, but this is impossible for INPUT command to understand, because INPUT finds the separator comma, so it thinks there are two variables not one. So, now, you can store arrays, strings etc and what you write is what you will read the next time. <em>The parameters can be variables ONLY.</em> <em>Its very bad idea to mixed READ/WRITE commands with INPUT/PRINT commands in the same file.</em></p>
 <p>This is how to store numeric arrays into files, WRITE # and read them out again, READ #. The graphic example is longer but also useful as utility…</p>
-<pre><code>
-&#39; WRITE READ.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-03
-const secwide=200
-const sechigh=200
-dim sect(secwide,sechigh)
-dim fsect(secwide,sechigh)
-for i=1 to 100
-  if rnd&lt;.5 then
-    circle rnd*xmax,rnd*ymax,rnd*100,1,7+(rnd*9)\\1
-  else
-    circle rnd*xmax,rnd*ymax,rnd*100,1,7+(rnd*9)\\1 filled
-  fi
-next
-getsec 200,400          &#39;&lt;== load array with data
-rect 200,400,400,600,15 &#39;&lt;=== draw square around the section captured
-savesect                &#39;&lt;== array data to file
-input &quot;OK press enter for write read test &quot;;temp
-cls
-loadsect     &#39;&lt;== file data to array
-x=100:y=100
-while 1
-  cls
-  drwsec x,y &#39;&lt;== using data from file
-  showpage
-  delay 10
-  x=x+5:y=y+5
-wend
-sub savesect
-  open &quot;READ WRITE test.dat&quot; for output as #1
-  local x,y
-  for y=0 to sechigh
-    for x=0 to secwide
-      write #1,sect(x,y) &#39;&lt;==== array data to file
-    next
-  next
-  close #1
-end
-sub loadsect
-   open &quot;READ WRITE test.dat&quot; for input as #1
-  local x,y
-  for y=0 to sechigh
-    for x=0 to secwide
-      read #1,fsect(x,y)  &#39;&lt;=== load file array
-    next
-  next
-  close #1 
-end
-sub getsec(xstart,ystart)
-  local x,y
-  &#39;these are all global
-  for y=0 to sechigh
-    for x=0 to secwide
-      sect(x,y)=POINT(xstart+x,ystart+y) &#39;&lt;== data from screen points
-    next
-  next
-end 
-sub drwsec(leftx,topy)
-  local x,y
-  for y=0 to sechigh
-    for x=0 to secwide
-      pset x+leftx,y+topy,fsect(x,y) &#39;&lt;== array from file
-    next
-  next
-end 
-</code></pre>
-<pre><code>
-&#39; This demo sets properties of each tile in a matrix,
-&#39; then it stores the array in config file,
-&#39; then it loads the array from that config file.
-&#39; Note: WRITE/READ are using binary format for storing numbers, therefore
-&#39;       number 1, for example, takes the same space as number -26845339.14
-Const TILES_X    = 20 &#39; Maximum tiles in x axis
-Const TILES_Y    = 15 &#39; Maximum tiles in y axis
-Const PROPERTIES = 3  &#39; Maximum properties for each tile in the matrix.
-Const P_FILENAME = 1 &#39; Some demo properties for each tile
-Const P_FILETYPE = 2
-Const P_HIDE     = 3
-&#39; Create 3-dimension array to store tiles properties:
-Dim tile(1 To TILES_X, 1 To TILES_Y, 1 To PROPERTIES)
-&#39; Demo to set a single tile properties, at x,y=10,2 in matrix:
-tile(10, 2, P_FILENAME) = &quot;bricks.bmp&quot; &#39; file name to load tile from
-tile(10, 2, P_FILETYPE) = &quot;BMP16&quot;      &#39; format of tile-file  
-tile(10, 2, P_HIDE)     = 1            &#39; hide/show [1/0] this tile
- 
-&#39; Save tiles in config file 1:
-Open &quot;tiles1.cfg&quot; For Output As #1
-For y = 1 To TILES_Y
-  For x = 1 To TILES_X
-    For p = 1 To PROPERTIES
-      Write #1; tile(x, y, p)
-    Next p
-  Next x
-Next y
-Close #1
-&#39; Load tiles from config file 1:
-Open &quot;tiles1.cfg&quot; For Input As #1
-For y = 1 To TILES_Y
-  For x = 1 To TILES_X
-    For p = 1 To PROPERTIES
-      Read #1; tile(x, y, p)
-    Next p
-  Next x
-Next y
-Close #1
-&#39; Print demo of a single tile properties, at x,y=10,2 in matrix:
-? &quot;File name to load tile from: &quot;; tile(10, 2, P_FILENAME)
-? &quot;Format of tile-file: &quot;; tile(10, 2, P_FILETYPE)
-? &quot;Hide/Show [1/0] this tile: &quot;; tile(10, 2, P_HIDE)
-Pause
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">&#39; WRITE READ.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-03</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="dt">const</span> secwide=<span class="dv">200</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="dt">const</span> sechigh=<span class="dv">200</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="dt">dim</span> sect(secwide,sechigh)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="dt">dim</span> fsect(secwide,sechigh)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">for </span>i=<span class="dv">1</span> <span class="kw">to</span> <span class="dv">100</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">if </span><span class="fu">rnd</span>&lt;.<span class="dv">5</span> <span class="kw">then</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="fu">circle</span> <span class="fu">rnd</span>*<span class="dt">xmax</span>,<span class="fu">rnd</span>*<span class="dt">ymax</span>,<span class="fu">rnd</span>*<span class="dv">100</span>,<span class="dv">1</span>,<span class="dv">7</span>+(<span class="fu">rnd</span>*<span class="dv">9</span>)\\<span class="dv">1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="kw">else</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="fu">circle</span> <span class="fu">rnd</span>*<span class="dt">xmax</span>,<span class="fu">rnd</span>*<span class="dt">ymax</span>,<span class="fu">rnd</span>*<span class="dv">100</span>,<span class="dv">1</span>,<span class="dv">7</span>+(<span class="fu">rnd</span>*<span class="dv">9</span>)\\<span class="dv">1</span> filled</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="kw">fi</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">next</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>getsec <span class="dv">200</span>,<span class="dv">400</span>          <span class="co">&#39;&lt;== load array with data</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">200</span>,<span class="dv">400</span>,<span class="dv">400</span>,<span class="dv">600</span>,<span class="dv">15</span> <span class="co">&#39;&lt;=== draw square around the section captured</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>savesect                <span class="co">&#39;&lt;== array data to file</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="kw">input</span> <span class="st">&quot;OK press enter for write read test &quot;</span>;temp</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="fu">cls</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>loadsect     <span class="co">&#39;&lt;== file data to array</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>x=<span class="dv">100</span>:y=<span class="dv">100</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>  <span class="fu">cls</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>  drwsec x,y <span class="co">&#39;&lt;== using data from file</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>  <span class="fu">showpage</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>  <span class="fu">delay</span> <span class="dv">10</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>  x=x+<span class="dv">5</span>:y=y+<span class="dv">5</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a><span class="kw">wend</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a><span class="kw">sub </span>savesect</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>  <span class="fu">open</span> <span class="st">&quot;READ WRITE test.dat&quot;</span> <span class="kw">for output as</span> #<span class="dv">1</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>  <span class="dt">local</span> x,y</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>  <span class="kw">for </span>y=<span class="dv">0</span> <span class="kw">to</span> sechigh</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    <span class="kw">for </span>x=<span class="dv">0</span> <span class="kw">to</span> secwide</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>      <span class="fu">write</span> #<span class="dv">1</span>,sect(x,y) <span class="co">&#39;&lt;==== array data to file</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>    <span class="kw">next</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>  <span class="kw">next</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>  <span class="fu">close</span> #<span class="dv">1</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a><span class="kw">sub </span>loadsect</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>   <span class="fu">open</span> <span class="st">&quot;READ WRITE test.dat&quot;</span> <span class="kw">for input as</span> #<span class="dv">1</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>  <span class="dt">local</span> x,y</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>  <span class="kw">for </span>y=<span class="dv">0</span> <span class="kw">to</span> sechigh</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>    <span class="kw">for </span>x=<span class="dv">0</span> <span class="kw">to</span> secwide</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>      <span class="fu">read</span> #<span class="dv">1</span>,fsect(x,y)  <span class="co">&#39;&lt;=== load file array</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a>    <span class="kw">next</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a>  <span class="kw">next</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>  <span class="fu">close</span> #<span class="dv">1</span> </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a><span class="kw">sub </span>getsec(xstart,ystart)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a>  <span class="dt">local</span> x,y</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>  <span class="co">&#39;these are all global</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>  <span class="kw">for </span>y=<span class="dv">0</span> <span class="kw">to</span> sechigh</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>    <span class="kw">for </span>x=<span class="dv">0</span> <span class="kw">to</span> secwide</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a>      sect(x,y)=<span class="fu">POINT</span>(xstart+x,ystart+y) <span class="co">&#39;&lt;== data from screen points</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>    <span class="kw">next</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a>  <span class="kw">next</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a><span class="kw">end </span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a><span class="kw">sub </span>drwsec(leftx,topy)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a>  <span class="dt">local</span> x,y</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a>  <span class="kw">for </span>y=<span class="dv">0</span> <span class="kw">to</span> sechigh</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a>    <span class="kw">for </span>x=<span class="dv">0</span> <span class="kw">to</span> secwide</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a>      <span class="fu">pset</span> x+leftx,y+topy,fsect(x,y) <span class="co">&#39;&lt;== array from file</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true"></a>    <span class="kw">next</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true"></a>  <span class="kw">next</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true"></a><span class="kw">end </span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; This demo sets properties of each tile in a matrix,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; then it stores the array in config file,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; then it loads the array from that config file.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; Note: WRITE/READ are using binary format for storing numbers, therefore</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">&#39;       number 1, for example, takes the same space as number -26845339.14</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="dt">Const</span> TILES_X    = <span class="dv">20</span> <span class="co">&#39; Maximum tiles in x axis</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="dt">Const</span> TILES_Y    = <span class="dv">15</span> <span class="co">&#39; Maximum tiles in y axis</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="dt">Const</span> PROPERTIES = <span class="dv">3</span>  <span class="co">&#39; Maximum properties for each tile in the matrix.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="dt">Const</span> P_FILENAME = <span class="dv">1</span> <span class="co">&#39; Some demo properties for each tile</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="dt">Const</span> P_FILETYPE = <span class="dv">2</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="dt">Const</span> P_HIDE     = <span class="dv">3</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="co">&#39; Create 3-dimension array to store tiles properties:</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="dt">Dim</span> tile(<span class="dv">1</span> <span class="kw">To</span> TILES_X, <span class="dv">1</span> <span class="kw">To</span> TILES_Y, <span class="dv">1</span> <span class="kw">To</span> PROPERTIES)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">&#39; Demo to set a single tile properties, at x,y=10,2 in matrix:</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>tile(<span class="dv">10</span>, <span class="dv">2</span>, P_FILENAME) = <span class="st">&quot;bricks.bmp&quot;</span> <span class="co">&#39; file name to load tile from</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>tile(<span class="dv">10</span>, <span class="dv">2</span>, P_FILETYPE) = <span class="st">&quot;BMP16&quot;</span>      <span class="co">&#39; format of tile-file  </span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>tile(<span class="dv">10</span>, <span class="dv">2</span>, P_HIDE)     = <span class="dv">1</span>            <span class="co">&#39; hide/show [1/0] this tile</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a> </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="co">&#39; Save tiles in config file 1:</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="fu">Open</span> <span class="st">&quot;tiles1.cfg&quot;</span> <span class="kw">For Output As</span> #<span class="dv">1</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">For </span>y = <span class="dv">1</span> <span class="kw">To</span> TILES_Y</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>  <span class="kw">For </span>x = <span class="dv">1</span> <span class="kw">To</span> TILES_X</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    <span class="kw">For </span>p = <span class="dv">1</span> <span class="kw">To</span> PROPERTIES</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>      <span class="fu">Write</span> #<span class="dv">1</span>; tile(x, y, p)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    <span class="kw">Next </span>p</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>  <span class="kw">Next </span>x</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="kw">Next </span>y</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="fu">Close</span> #<span class="dv">1</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="co">&#39; Load tiles from config file 1:</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="fu">Open</span> <span class="st">&quot;tiles1.cfg&quot;</span> <span class="kw">For Input As</span> #<span class="dv">1</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="kw">For </span>y = <span class="dv">1</span> <span class="kw">To</span> TILES_Y</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>  <span class="kw">For </span>x = <span class="dv">1</span> <span class="kw">To</span> TILES_X</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>    <span class="kw">For </span>p = <span class="dv">1</span> <span class="kw">To</span> PROPERTIES</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>      <span class="fu">Read</span> #<span class="dv">1</span>; tile(x, y, p)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>    <span class="kw">Next </span>p</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>  <span class="kw">Next </span>x</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a><span class="kw">Next </span>y</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a><span class="fu">Close</span> #<span class="dv">1</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a><span class="co">&#39; Print demo of a single tile properties, at x,y=10,2 in matrix:</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>? <span class="st">&quot;File name to load tile from: &quot;</span>; tile(<span class="dv">10</span>, <span class="dv">2</span>, P_FILENAME)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>? <span class="st">&quot;Format of tile-file: &quot;</span>; tile(<span class="dv">10</span>, <span class="dv">2</span>, P_FILETYPE)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>? <span class="st">&quot;Hide/Show [1/0] this tile: &quot;</span>; tile(<span class="dv">10</span>, <span class="dv">2</span>, P_HIDE)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a><span class="kw">Pause</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using WRITE</div>
     <div class="linklist">

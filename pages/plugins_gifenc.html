@@ -69,29 +69,29 @@
 <p>Gifenc lets you create simple animated gif images. It is based on a c library created by lecram. See Github <a href="https://github.com/lecram/gifenc/tree/87acd487dfa2f2a638eec751a1d6c2fff60822da">gifenc</a></p>
 <h2 id="using-the-plugin">Using the plugin</h2>
 <p>The plugin can be used by importing it with <code>import gifenc</code>. A simple program creating a moving stripe pattern with 8 frames looks like this:</p>
-<pre><code>import gifenc as ge
-
-const w = 120
-const h = 90
-const palette = [0x00, 0x66, 0x00, &amp; &#39; 0 -&gt; black
-                 0xFF, 0x00, 0x00, &amp; &#39; 1 -&gt; red
-                 0x22, 0xFF, 0x00, &amp; &#39; 2 -&gt; green
-                 0x00, 0x00, 0xFF]   &#39; 3 -&gt; blue
-const bgIndex = -1 &#39; none
-const loopCount = 0 &#39; infinity
-const delay = 10 &#39; in 1/100 s
-
-const gif = ge.create(&quot;example.gif&quot;, w, h, palette, bgIndex, loopCount)
-
-for i = 0 to 8
-  frame = []
-  for j = 0 to w * h
-    frame &lt;&lt; (i * 3 + j) / 6 % 4
-  next j
-  ge.add_frame(gif, delay, frame)
-next i
-
-ge.close(gif)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">import</span> gifenc <span class="kw">as</span> ge</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="dt">const</span> w = <span class="dv">120</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="dt">const</span> h = <span class="dv">90</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="dt">const</span> palette = [<span class="dv">0x00</span>, <span class="dv">0x66</span>, <span class="dv">0x00</span>, &amp; <span class="co">&#39; 0 -&gt; black</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>                 <span class="dv">0xFF</span>, <span class="dv">0x00</span>, <span class="dv">0x00</span>, &amp; <span class="co">&#39; 1 -&gt; red</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>                 <span class="dv">0x22</span>, <span class="dv">0xFF</span>, <span class="dv">0x00</span>, &amp; <span class="co">&#39; 2 -&gt; green</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>                 <span class="dv">0x00</span>, <span class="dv">0x00</span>, <span class="dv">0xFF</span>]   <span class="co">&#39; 3 -&gt; blue</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="dt">const</span> bgIndex = <span class="dv">-1</span> <span class="co">&#39; none</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="dt">const</span> loopCount = <span class="dv">0</span> <span class="co">&#39; infinity</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="dt">const</span> <span class="fu">delay</span> = <span class="dv">10</span> <span class="co">&#39; in 1/100 s</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="dt">const</span> gif = ge.create(<span class="st">&quot;example.gif&quot;</span>, w, h, palette, bgIndex, loopCount)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">8</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>  frame = []</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>  <span class="kw">for </span>j = <span class="dv">0</span> <span class="kw">to</span> w * h</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    frame &lt;&lt; (i * <span class="dv">3</span> + j) / <span class="dv">6</span> % <span class="dv">4</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>  <span class="kw">next </span>j</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>  ge.add_frame(gif, <span class="fu">delay</span>, frame)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="kw">next </span>i</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>ge.<span class="fu">close</span>(gif)</span></code></pre></div>
 <p><em>w</em> and <em>h</em> contain the width and the height of the image. <em>palette</em> is an array of colors. Three successive values represent the red, green and blue component of the color. <em>bgIndex</em> defines which of the colors in <em>palette</em> should be set as a background color. If set to -1 the background is transparent. <em>loopCount</em> defines the number of times the animation should be repeated. If set to zero, the animations will repeat endless. The <em>delay</em> parameter specifies how long the frame will be shown, in hundredths of a second. For example, <code>delay = 100</code> means one second, and <code>delay = 25</code> means a quarter of a second. Each frame of the gif is stored in an 1D array with <em>w</em> times <em>h</em> elements. Every element defines the color index (from <em>palette</em> ) of the corresponding pixel.</p>
 <h2 id="supported-commands">Supported Commands</h2>
 <h3 id="create">CREATE</h3>
@@ -120,7 +120,7 @@ ge.close(gif)</code></pre>
 <p>Closes the gif and writes it to hard drive.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 21 Aug 2022 10:03:43 +0200
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

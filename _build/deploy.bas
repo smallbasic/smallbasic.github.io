@@ -15,7 +15,7 @@ for package in ref
     endif
     copy in_filename, out_filename
 
-    in_filename = "_out/reference1/" + item.nodeId + "-" + lower(package) + "-" + translate(lower(item.keyword), " ", "") + ".html"
+    in_filename = "_out/reference_ide/" + item.nodeId + "-" + lower(package) + "-" + translate(lower(item.keyword), " ", "") + ".html"
     out_filename = "../reference/ide/" + item.nodeId + ".html"
     if (not exist(in_filename)) then
       throw "File does not exist:" + in_filename

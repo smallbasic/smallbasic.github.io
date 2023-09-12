@@ -75,80 +75,80 @@
   </div>
 <p>Cosine of the two line segments AB and CD. Start and end of the first line segment are given by the points <code>(Ax,Ay)</code> and <code>(Bx, By)</code>. For the second line by <code>(Cx, Cy)</code> and <code>(Dx, Dy)</code>.</p>
 <h3 id="example-1">Example 1:</h3>
-<pre><code>&#39; Line 1
-Ax = 50
-Ay = 50
-Bx = 50
-By = 100
-
-&#39; Line 2
-Cx = 100
-Cy = 100
-Dx = 50
-Dy = 100
-
-print &quot;SEGCOS: &quot;; SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
-print &quot;SEGSIN: &quot;; SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
-print &quot;Angle between the lines: &quot;; deg(acos(SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); &quot;°&quot;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; Line 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>Ax = <span class="dv">50</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>Ay = <span class="dv">50</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>Bx = <span class="dv">50</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>By = <span class="dv">100</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Line 2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>Cx = <span class="dv">100</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>Cy = <span class="dv">100</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>Dx = <span class="dv">50</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>Dy = <span class="dv">100</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;SEGCOS: &quot;</span>; <span class="fu">SEGCOS</span>(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;SEGSIN: &quot;</span>; <span class="fu">SEGSIN</span>(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Angle between the lines: &quot;</span>; <span class="fu">deg</span>(<span class="fu">acos</span>(<span class="fu">SEGCOS</span>(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy))); <span class="st">&quot;°&quot;</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<pre><code>&#39; Interactive example to illustrate the geometry
-&#39; of SEGCOS and SEGSIN
-
-&#39; Line 1
-Ax = 280
-Ay = 250
-Bx = 250
-By = 200
-
-&#39; Line 2
-Cx = 400
-Cy = 300
-Dx = 210
-Dy = 300
-
-pen on
-while(!pen(12))
-
-  cls
-  print &quot;Move Mouse. Press Left Mouse Button to exit&quot;
-  
-  Dx = pen(10)
-  Dy = pen(11)
-  
-  ResultCos = SEGCOS(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
-  ResultSin = SEGSIN(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
-  print &quot;SEGCOS between the two segments: &quot;; ResultCos  ;&quot;
-  print &quot;SEGSIN between the two segments: &quot;; ResultSin  ;&quot;
-  print &quot;Angle between the two segments : &quot;; DEG(ACOS(ResultCos)); &quot; DEG&quot;
-  
-  &#39;Calc intersecton of both lines
-  &#39;f1(x) = a1*x+b1
-  &#39;f2(x) = a2*x+b2
-  &#39;f1 = f2
-  &#39;-&gt; x0 = (b2-b1) / (a1-a2)
-  &#39;-&gt; y0 = f1(x0)
-  &#39;  
-  if( (Bx - Ax) != 0 AND (Dx - Cx) != 0) then
-    a1 = (By - Ay) / (Bx - Ax)
-    a2 = (Dy - Cy) / (Dx - Cx)
-    b1 = Ay - a1 * Ax
-    b2 = Cy - a2 * Cx
-  
-    X0 = (b2-b1) / (a1-a2) 
-    Y0 = a1*X0 + b1
-  endif
-  
-  &#39; Draw
-  line X0, Y0, Ax, Ay color 2  &#39; Line segment 1
-  line X0, Y0, Cx, Cy color 2  &#39; Line segment 2
-  line Ax, Ay, Bx, By color 10 &#39; Line 1
-  line Cx, Cy, Dx, Dy color 10 &#39; Line 2
-  
-  
-  showpage
-  delay(50)
-  
-wend</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Interactive example to illustrate the geometry</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; of SEGCOS and SEGSIN</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; Line 1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>Ax = <span class="dv">280</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>Ay = <span class="dv">250</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>Bx = <span class="dv">250</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>By = <span class="dv">200</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">&#39; Line 2</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>Cx = <span class="dv">400</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>Cy = <span class="dv">300</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>Dx = <span class="dv">210</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>Dy = <span class="dv">300</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="fu">pen</span> <span class="kw">on</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">while(</span>!<span class="fu">pen</span>(<span class="dv">12</span>))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>  <span class="fu">cls</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Move Mouse. Press Left Mouse Button to exit&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>  </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>  Dx = <span class="fu">pen</span>(<span class="dv">10</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>  Dy = <span class="fu">pen</span>(<span class="dv">11</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>  </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>  ResultCos = <span class="fu">SEGCOS</span>(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>  ResultSin = <span class="fu">SEGSIN</span>(Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;SEGCOS between the two segments: &quot;</span>; ResultCos  ;<span class="st">&quot;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;SEGSIN between the two segments: &quot;</span>; ResultSin  ;<span class="st">&quot;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Angle between the two segments : &quot;</span>; <span class="fu">DEG</span>(<span class="fu">ACOS</span>(ResultCos)); <span class="st">&quot; DEG&quot;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>  </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>  <span class="co">&#39;Calc intersecton of both lines</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>  <span class="co">&#39;f1(x) = a1*x+b1</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>  <span class="co">&#39;f2(x) = a2*x+b2</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>  <span class="co">&#39;f1 = f2</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>  <span class="co">&#39;-&gt; x0 = (b2-b1) / (a1-a2)</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>  <span class="co">&#39;-&gt; y0 = f1(x0)</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>  <span class="co">&#39;  </span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>  <span class="kw">if(</span> (Bx - Ax) != <span class="dv">0</span> <span class="kw">AND</span> (Dx - Cx) != <span class="dv">0</span>) <span class="kw">then</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>    a1 = (By - Ay) / (Bx - Ax)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a>    a2 = (Dy - Cy) / (Dx - Cx)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>    b1 = Ay - a1 * Ax</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>    b2 = Cy - a2 * Cx</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>  </span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>    X0 = (b2-b1) / (a1-a2) </span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>    Y0 = a1*X0 + b1</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>  <span class="kw">endif</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a>  </span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a>  <span class="co">&#39; Draw</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a>  <span class="fu">line</span> X0, Y0, Ax, Ay <span class="fu">color</span> <span class="dv">2</span>  <span class="co">&#39; Line segment 1</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a>  <span class="fu">line</span> X0, Y0, Cx, Cy <span class="fu">color</span> <span class="dv">2</span>  <span class="co">&#39; Line segment 2</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a>  <span class="fu">line</span> Ax, Ay, Bx, By <span class="fu">color</span> <span class="dv">10</span> <span class="co">&#39; Line 1</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a>  <span class="fu">line</span> Cx, Cy, Dx, Dy <span class="fu">color</span> <span class="dv">10</span> <span class="co">&#39; Line 2</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a>  </span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a>  </span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a>  <span class="fu">showpage</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true"></a>  <span class="fu">delay</span>(<span class="dv">50</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true"></a>  </span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">

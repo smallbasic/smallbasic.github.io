@@ -70,117 +70,116 @@
 </blockquote>
 <h2 id="http">HTTP</h2>
 <p>Use the prefix “HTTP:” with the OPEN command to open a network HTTP connection. You can then use the file number with the TLOAD command to read the data.</p>
-<pre><code>print &quot;DuckDuckGo Search&quot;
-while 1
-  print &#39;&lt;=== when cycle around need to isolate input prompt
-  input &quot;(Just enter quits) Term? &quot;, queryTerm
-  if trim(queryTerm)=&quot;&quot; then ? &quot;Cheers!&quot;:end  &#39;&lt;=== need a way out
-  url = &quot;http://api.duckduckgo.com/?q=&quot; + trim(queryTerm) + &quot;&amp;format=json&quot;
-  open url as #1
-  if (eof(1)) then
-    throw &quot;Connection failed: &quot; + url
-  fi
-
-  dim results
-  tload #1, results
-  json = array(results)
-  num_results = len(json.RelatedTopics)
-  for i = 0 to num_results - 1
-    if (isarray(json.RelatedTopics(i).topics)) then
-      num_topics = len(json.RelatedTopics(i).Topics)
-      for t = 0 to num_topics - 1
-        print cat(1); &quot;  &quot;; json.RelatedTopics(i).Topics(t).FirstURL; cat(0)
-        print &quot;  &quot;; json.RelatedTopics(i).Topics(t).text
-      next t
-    else
-      print cat(1); &quot;  &quot;; json.RelatedTopics(i).FirstURL; cat(0)
-      print &quot;  &quot;; json.RelatedTopics(i).Text
-    endif
-  next i
-  Close #1  &#39;&lt;===== oh this helps!
-wend</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;DuckDuckGo Search&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="kw">print</span> <span class="co">&#39;&lt;=== when cycle around need to isolate input prompt</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="kw">input</span> <span class="st">&quot;(Just enter quits) Term? &quot;</span>, queryTerm</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="kw">if </span><span class="fu">trim</span>(queryTerm)=<span class="st">&quot;&quot;</span> <span class="kw">then</span> ? <span class="st">&quot;Cheers!&quot;</span>:<span class="kw">end </span> <span class="co">&#39;&lt;=== need a way out</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  url = <span class="st">&quot;http://api.duckduckgo.com/?q=&quot;</span> + <span class="fu">trim</span>(queryTerm) + <span class="st">&quot;&amp;format=json&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="fu">open</span> url <span class="kw">as</span> #<span class="dv">1</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">if </span>(<span class="fu">eof</span>(<span class="dv">1</span>)) <span class="kw">then</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="kw">throw</span> <span class="st">&quot;Connection failed: &quot;</span> + url</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="kw">fi</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="dt">dim</span> results</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  <span class="fu">tload</span> #<span class="dv">1</span>, results</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  json = <span class="kw">array</span>(results)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>  num_results = <span class="fu">len</span>(json.RelatedTopics)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>  <span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> num_results - <span class="dv">1</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    <span class="kw">if </span>(<span class="fu">isarray</span>(json.RelatedTopics(i).topics)) <span class="kw">then</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>      num_topics = <span class="fu">len</span>(json.RelatedTopics(i).Topics)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>      <span class="kw">for </span>t = <span class="dv">0</span> <span class="kw">to</span> num_topics - <span class="dv">1</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>        <span class="kw">print</span> <span class="fu">cat</span>(<span class="dv">1</span>); <span class="st">&quot;  &quot;</span>; json.RelatedTopics(i).Topics(t).FirstURL; <span class="fu">cat</span>(<span class="dv">0</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;  &quot;</span>; json.RelatedTopics(i).Topics(t).text</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>      <span class="kw">next </span>t</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    <span class="kw">else</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>      <span class="kw">print</span> <span class="fu">cat</span>(<span class="dv">1</span>); <span class="st">&quot;  &quot;</span>; json.RelatedTopics(i).FirstURL; <span class="fu">cat</span>(<span class="dv">0</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>      <span class="kw">print</span> <span class="st">&quot;  &quot;</span>; json.RelatedTopics(i).Text</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>  <span class="kw">next </span>i</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>  <span class="fu">Close</span> #<span class="dv">1</span>  <span class="co">&#39;&lt;===== oh this helps!</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <h2 id="image">Image</h2>
 <p>Use the prefix “HTTP:” with the OPEN command to open an image file over the network. You can then pass the file number to the IMAGE command. This returns an system object which can then be used to manipulate images in the graphical version of SmallBASIC.</p>
-<pre><code>&#39; open some random image I found on the net
-open &quot;http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png&quot; as #1
-
-&#39; the IMAGE function creates a &#39;system&#39; object, this is stored in variable &quot;i&quot;
-&#39; the completed &#39;i&#39; variable will then have three commands - SHOW, HIDE and SAVE
-i = image(#1)
-
-&#39; SHOW takes 0, 2, 3 or 4 arguments [x,y [,zindex [, opacity]]]
-i.show(100,50)
-
-&#39; printing &#39;i&#39; will reveal all of its properties, these can be modified directly
-&#39; before calling show
-print i
-pause 2
-
-i.show(20,20,1)
-print i
-pause 2
-
-i.show(201,20,1, 56)
-print i
-pause 2
-
-i.show(120,20,1, 56)
-print i
-pause 2
-
-i.show(40,120,1,100)
-print i
-
-&#39; you can create a second variable using the same image handle
-&#39; this allows you to manipulate the same image with a different set of properties
-j = image(#1)
-j.show(10,25,0,5)
-pause true</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; open some random image I found on the net</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png&quot;</span> <span class="kw">as</span> #<span class="dv">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; the IMAGE function creates a &#39;system&#39; object, this is stored in variable &quot;i&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; the completed &#39;i&#39; variable will then have three commands - SHOW, HIDE and SAVE</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>i = <span class="fu">image</span>(#<span class="dv">1</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">&#39; SHOW takes 0, 2, 3 or 4 arguments [x,y [,zindex [, opacity]]]</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>i.show(<span class="dv">100</span>,<span class="dv">50</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39; printing &#39;i&#39; will reveal all of its properties, these can be modified directly</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">&#39; before calling show</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">print</span> i</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">pause</span> <span class="dv">2</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>i.show(<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">1</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">print</span> i</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">pause</span> <span class="dv">2</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>i.show(<span class="dv">201</span>,<span class="dv">20</span>,<span class="dv">1</span>, <span class="dv">56</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="kw">print</span> i</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">pause</span> <span class="dv">2</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>i.show(<span class="dv">120</span>,<span class="dv">20</span>,<span class="dv">1</span>, <span class="dv">56</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="kw">print</span> i</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="kw">pause</span> <span class="dv">2</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>i.show(<span class="dv">40</span>,<span class="dv">120</span>,<span class="dv">1</span>,<span class="dv">100</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="kw">print</span> i</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="co">&#39; you can create a second variable using the same image handle</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="co">&#39; this allows you to manipulate the same image with a different set of properties</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>j = <span class="fu">image</span>(#<span class="dv">1</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>j.show(<span class="dv">10</span>,<span class="dv">25</span>,<span class="dv">0</span>,<span class="dv">5</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a><span class="kw">pause</span> <span class="dt">true</span></span></code></pre></div>
 <h2 id="sockets">Sockets</h2>
 <p>Use the prefix “SOCL:” with the OPEN command to open a network socket. You can then use the file number with other input/output commands to interact with the connection.</p>
-<pre><code>open &quot;SOCL:192.168.178.76:8080&quot; as #1
-print #1, &quot;time&quot;
-lineinput #1, s
-print s 
-close #1</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;SOCL:192.168.178.76:8080&quot;</span> <span class="kw">as</span> #<span class="dv">1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">print</span> #<span class="dv">1</span>, <span class="st">&quot;time&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="fu">lineinput</span> #<span class="dv">1</span>, s</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">print</span> s </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
 <p>If you omit the host name in the SOCL: string passed to the OPEN command, SmallBASIC will listen for connections from another host/process.</p>
-<pre><code>rem Print a date string like &#39;29 SEP 2018 09:31:49 ACST&#39;
-func get_time
-  local today = julian(date)
-  local start = timer
-  local t_hour, t_min, t_sec, t_str
-  timehms start, t_hour, t_min, t_sec
-  rem TODO, format should support multiple arguments
-  t_str = format(&quot; ##:&quot;, t_hour) + format(&quot;##:&quot;, t_min) + format(&quot;##&quot;, t_sec)
-  return datefmt(&quot;dd mmm yyyy&quot;, today) + t_str
-end
-
-while 1
-  open &quot;SOCL:8080&quot; as #1
-  while (not eof(1))
-    lineinput #1, s
-    if (s == &quot;time&quot;)
-      print #1, get_time
-    else
-      print #1, &quot;unknown command&quot;
-    endif
-  wend
-  close #1
-wend</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">rem Print a date string like &#39;29 SEP 2018 09:31:49 ACST&#39;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">func </span>get_time</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  <span class="dt">local</span> today = <span class="fu">julian</span>(date)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  <span class="dt">local</span> start = <span class="fu">timer</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>  <span class="dt">local</span> t_hour, t_min, t_sec, t_str</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  <span class="fu">timehms</span> start, t_hour, t_min, t_sec</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>  <span class="co">rem TODO, format should support multiple arguments</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  t_str = <span class="fu">format</span>(<span class="st">&quot; ##:&quot;</span>, t_hour) + <span class="fu">format</span>(<span class="st">&quot;##:&quot;</span>, t_min) + <span class="fu">format</span>(<span class="st">&quot;##&quot;</span>, t_sec)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>  <span class="kw">return</span> <span class="fu">datefmt</span>(<span class="st">&quot;dd mmm yyyy&quot;</span>, today) + t_str</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>  <span class="fu">open</span> <span class="st">&quot;SOCL:8080&quot;</span> <span class="kw">as</span> #<span class="dv">1</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>  <span class="kw">while </span>(<span class="kw">not</span> <span class="fu">eof</span>(<span class="dv">1</span>))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="fu">lineinput</span> #<span class="dv">1</span>, s</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>    <span class="kw">if </span>(s == <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>      <span class="kw">print</span> #<span class="dv">1</span>, get_time</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>    <span class="kw">else</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>      <span class="kw">print</span> #<span class="dv">1</span>, <span class="st">&quot;unknown command&quot;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>  <span class="kw">wend</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>  <span class="fu">close</span> #<span class="dv">1</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <h2 id="web-server">Web server</h2>
 <p>In addition to the graphical and command line versions of SmallBASIC, there is also a web server version based on <a href="https://www.gnu.org/software/libmicrohttpd">libmicrohttpd</a>.</p>
 <p>You launch the web SmallBASIC in a folder containing one or more SmallBASIC programs, you then point your browser to a URL formulated from the listening port number and the SmallBASIC program name. For example:</p>
-<pre><code>$ ls cats.bas  # program cats.bas exists in the current folder
-$ sbasicw
-Starting SmallBASIC web server on port:8080</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>$ ls cats.bas  # program cats.bas exists <span class="kw">in</span> the current folder</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>$ sbasicw</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>Starting SmallBASIC web server <span class="kw">on</span> port:<span class="dv">8080</span></span></code></pre></div>
 <p>In your Web Browser:</p>
-<pre><code>http://localhost:8080/cats.bas
-Output from cats.bas displayed in the web browser.
-</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>http://localhost:<span class="dv">8080</span>/cats.bas</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>Output from cats.bas displayed <span class="kw">in</span> the web browser.</span></code></pre></div>
 <p>If the SmallBASIC program includes graphical output statements these are converted to HTML5 canvas operations. Only a snapshot of the output is displayed i.e., you would only see one frame of an animation in your web browser.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 29 Sep 2018 12:36:30 +1000
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

@@ -77,32 +77,32 @@
 <p>See also <a href="www.w3schools.com/colors/default.asp">Colors Tutorial</a>.</p>
 <p>Additionally see the CSS color names unit in the article section, to use all 140 standard CSS colors in an easy way.</p>
 <h3 id="example-1">Example 1</h3>
-<pre><code>c = rgbf(0.047, 0.48, 0.94)
-rect 10, 10,  50, 50 color c filled
-rect 60, 10, 100, 50 color rgbf(0.047, 0.48, 0.94) filled</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>c = <span class="fu">rgbf</span>(<span class="dv">0.047</span>, <span class="dv">0.48</span>, <span class="dv">0.94</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>,  <span class="dv">50</span>, <span class="dv">50</span> <span class="fu">color</span> c filled</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">60</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">50</span> <span class="fu">color</span> <span class="fu">rgbf</span>(<span class="dv">0.047</span>, <span class="dv">0.48</span>, <span class="dv">0.94</span>) filled</span></code></pre></div>
 <h3 id="example-2-clamping-of-values">Example 2: Clamping of values</h3>
-<pre><code>c1 = rgbf(-0.55, 2.5, 0.94)    &#39; same as rgbf(0, 1, 0.94)
-c2 = rgbf(0, 1, 0.94)
-rect 10, 10,  50, 50 color c1 filled
-rect 60, 10, 100, 50 color c2 filled</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>c1 = <span class="fu">rgbf</span>(-<span class="dv">0.55</span>, <span class="dv">2.5</span>, <span class="dv">0.94</span>)    <span class="co">&#39; same as rgbf(0, 1, 0.94)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>c2 = <span class="fu">rgbf</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0.94</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>,  <span class="dv">50</span>, <span class="dv">50</span> <span class="fu">color</span> c1 filled</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">60</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">50</span> <span class="fu">color</span> c2 filled</span></code></pre></div>
 <h3 id="example-3-fading-colors">Example 3: Fading colors</h3>
-<pre><code>Def txt(t) = &quot;     &quot; + t + &quot;     &quot;
-For c = 0 to 1 step 0.01
-    Color 15, Rgbf(c,     0,   0): At 10,   0: Print txt(&quot;1. RED&quot;);
-    Color 15, Rgbf(0,     c,   0): At 10,  30: Print txt(&quot;2. GREEN&quot;);
-    Color 15, Rgbf(0,     0,   c): At 10,  60: Print txt(&quot;3. BLUE&quot;);
-    Color 15, Rgbf(0,     c,   c): At 10,  90: Print txt(&quot;4. CYAN&quot;);
-    Color 15, Rgbf(c,     c,   0): At 10, 120: Print txt(&quot;5. YELLOW&quot;);
-    Color 15, Rgbf(c,     0,   c): At 10, 150: Print txt(&quot;6. MAGENTA&quot;);
-    Color 15, Rgbf(c,     c,   c): At 10, 180: Print txt(&quot;7. GRAY&quot;);
-    Color 15, Rgbf(c,   c\2,   0): At 10, 210: Print txt(&quot;8. ORANGE&quot;);
-    Color 15, Rgbf(c\2, c\2,   0): At 10, 240: Print txt(&quot;9. OLIVE&quot;);
-    Color 15, Rgbf(c\2, c\4,   0): At 10, 270: Print txt(&quot;A. BROWN&quot;);
-    Color 15, Rgbf(c,     0, c\2): At 10, 300: Print txt(&quot;B. PINK&quot;);
-    Color 15, Rgbf(0,     0, c\3): At 10, 330: Print txt(&quot;C. NAVY&quot;);
-    Color 15, Rgbf(c\3, c\2,   c): At 10, 360: Print txt(&quot;D. SKY&quot;);
-    Delay 20
-Next</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">Def</span> txt(t) = <span class="st">&quot;     &quot;</span> + t + <span class="st">&quot;     &quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">For </span>c = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">1</span> step <span class="dv">0.01</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c,     <span class="dv">0</span>,   <span class="dv">0</span>): <span class="fu">At</span> <span class="dv">10</span>,   <span class="dv">0</span>: <span class="kw">Print</span> txt(<span class="st">&quot;1. RED&quot;</span>);</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(<span class="dv">0</span>,     c,   <span class="dv">0</span>): <span class="fu">At</span> <span class="dv">10</span>,  <span class="dv">30</span>: <span class="kw">Print</span> txt(<span class="st">&quot;2. GREEN&quot;</span>);</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(<span class="dv">0</span>,     <span class="dv">0</span>,   c): <span class="fu">At</span> <span class="dv">10</span>,  <span class="dv">60</span>: <span class="kw">Print</span> txt(<span class="st">&quot;3. BLUE&quot;</span>);</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(<span class="dv">0</span>,     c,   c): <span class="fu">At</span> <span class="dv">10</span>,  <span class="dv">90</span>: <span class="kw">Print</span> txt(<span class="st">&quot;4. CYAN&quot;</span>);</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c,     c,   <span class="dv">0</span>): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">120</span>: <span class="kw">Print</span> txt(<span class="st">&quot;5. YELLOW&quot;</span>);</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c,     <span class="dv">0</span>,   c): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">150</span>: <span class="kw">Print</span> txt(<span class="st">&quot;6. MAGENTA&quot;</span>);</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c,     c,   c): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">180</span>: <span class="kw">Print</span> txt(<span class="st">&quot;7. GRAY&quot;</span>);</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c,   c\<span class="dv">2</span>,   <span class="dv">0</span>): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">210</span>: <span class="kw">Print</span> txt(<span class="st">&quot;8. ORANGE&quot;</span>);</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c\<span class="dv">2</span>, c\<span class="dv">2</span>,   <span class="dv">0</span>): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">240</span>: <span class="kw">Print</span> txt(<span class="st">&quot;9. OLIVE&quot;</span>);</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c\<span class="dv">2</span>, c\<span class="dv">4</span>,   <span class="dv">0</span>): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">270</span>: <span class="kw">Print</span> txt(<span class="st">&quot;A. BROWN&quot;</span>);</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c,     <span class="dv">0</span>, c\<span class="dv">2</span>): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">300</span>: <span class="kw">Print</span> txt(<span class="st">&quot;B. PINK&quot;</span>);</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(<span class="dv">0</span>,     <span class="dv">0</span>, c\<span class="dv">3</span>): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">330</span>: <span class="kw">Print</span> txt(<span class="st">&quot;C. NAVY&quot;</span>);</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="fu">Rgbf</span>(c\<span class="dv">3</span>, c\<span class="dv">2</span>,   c): <span class="fu">At</span> <span class="dv">10</span>, <span class="dv">360</span>: <span class="kw">Print</span> txt(<span class="st">&quot;D. SKY&quot;</span>);</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="fu">Delay</span> <span class="dv">20</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="kw">Next</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using RGBF</div>
     <div class="linklist">

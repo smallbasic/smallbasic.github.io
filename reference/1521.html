@@ -76,37 +76,37 @@
 <p>Returns a string <code>s</code> containing the SmallBASIC startup command line options.</p>
 <h3 id="example-1-sdl-version-gui">Example 1: SDL version (GUI)</h3>
 <p>Running the following line from the command line:</p>
-<pre><code>LINUX:   sbasicg -r test.bas abc xyz fileName
-WINDOWS: sbasicg.exe -r test.bas abc xyz fileName</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>LINUX:   sbasicg -r test.bas abc xyz fileName</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>WINDOWS: sbasicg.exe -r test.bas abc xyz fileName</span></code></pre></div>
 <p>When “test.bas” is:</p>
-<pre><code>PRINT COMMAND</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">COMMAND</span></span></code></pre></div>
 <p>Will print “abc xyz fileName”</p>
 <p>Note: When using the paramter <code>-r</code> in the above shown example, sbasicg will from now on always start the programm. If you want, that sbasicg starts again in edit-mode, please use the parameter <code>-e</code></p>
-<pre><code>LINUX:   sbasicg -e test.bas
-WINDOWS: sbasicg.exe -e test.bas</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>LINUX:   sbasicg -e test.bas</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>WINDOWS: sbasicg.exe -e test.bas</span></code></pre></div>
 <h3 id="example-2-non-graphical-console-version-cygwin-or-linux">Example 2: Non-graphical console version (cygwin or linux)</h3>
 <p>Running the following line from the command line:</p>
-<pre><code>LINUX:   sbasic test.bas abc xyz fileName
-WINDOWS: sbasic.exe test.bas abc xyz fileName</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>LINUX:   sbasic test.bas abc xyz fileName</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>WINDOWS: sbasic.exe test.bas abc xyz fileName</span></code></pre></div>
 <p>When “test.bas” is:</p>
-<pre><code>PRINT  COMMAND</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">PRINT</span>  <span class="fu">COMMAND</span></span></code></pre></div>
 <p>Will print “abc xyz fileName”</p>
 <h3 id="example-3-use-split-to-separate-parameters">Example 3: Use SPLIT to separate parameters</h3>
-<pre><code>LINUX:   sbasicg -r test.bas abc xyz fileName
-WINDOWS: sbasicg.exe -r test.bas abc xyz fileName</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>LINUX:   sbasicg -r test.bas abc xyz fileName</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>WINDOWS: sbasicg.exe -r test.bas abc xyz fileName</span></code></pre></div>
 <p>When “test.bas” is:</p>
-<pre><code>s = COMMAND()
-
-split s, &quot; &quot;, parameters
-
-print &quot;First parameter : &quot;; parameters[0]
-print &quot;Second parameter: &quot;; parameters[1]
-print &quot;Third parameter : &quot;; parameters[2]
-
-&#39; Output:
-&#39; First parameter : abc
-&#39; Second parameter: xyz
-&#39; Third parameter : fileName </code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>s = <span class="fu">COMMAND</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>split s, <span class="st">&quot; &quot;</span>, parameters</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;First parameter : &quot;</span>; parameters[<span class="dv">0</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Second parameter: &quot;</span>; parameters[<span class="dv">1</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Third parameter : &quot;</span>; parameters[<span class="dv">2</span>]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="co">&#39; Output:</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="co">&#39; First parameter : abc</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="co">&#39; Second parameter: xyz</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="co">&#39; Third parameter : fileName </span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using COMMAND</div>
     <div class="linklist">

@@ -76,61 +76,61 @@
 <p>Perform multiple tests on the expression <code>expr</code>. Offers a more concise syntax to writing successive IF tests. Once a case statement is fullfilled the select-case structure will be exited and all following case statements will not be tested anymore.</p>
 <p>See also IF … THEN … ELIF … ELSE … FI structure.</p>
 <h3 id="example-1-basic-select-case-expression">Example 1: Basic select-case expression</h3>
-<pre><code>x = 12 &#39; Change value to see what happens
-select case x
-    case 12
-        print &quot;x is 12&quot;
-    case 13,14,15
-        print &quot;x is 13,14,or 15&quot;
-    case else
-        print &quot;x is not 12,13,14,15&quot;        
-end select</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>x = <span class="dv">12</span> <span class="co">&#39; Change value to see what happens</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">select case </span>x</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="kw">case</span> <span class="dv">12</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;x is 12&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="kw">case</span> <span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;x is 13,14,or 15&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="kw">case</span> <span class="kw">else</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;x is not 12,13,14,15&quot;</span>        </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">end select</span></span></code></pre></div>
 <h3 id="example-2-exit-of-a-select-structure-once-a-test-was-successful">Example 2: Exit of a select structure once a test was successful</h3>
-<pre><code>x = 2
-select case x
-    case 2
-        print &quot;x is 2&quot;
-    case 2
-        print &quot;This will never be printed&quot;
-end select</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>x = <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">select case </span>x</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="kw">case</span> <span class="dv">2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;x is 2&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="kw">case</span> <span class="dv">2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;This will never be printed&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">end select</span></span></code></pre></div>
 <h3 id="example-3-use-iff-to-check-a-range">Example 3: Use IFF to check a range</h3>
-<pre><code>x = 4 &#39; Change value to see what happens
-select case x
-    case iff(x &lt;= 4, x, x + 1)
-        print &quot;x &lt;= 4&quot;
-    case iff(x &gt; 4 AND x &lt; 12, x, x + 1)
-        print &quot;4 &lt; x &lt; 12&quot;     
-end select</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>x = <span class="dv">4</span> <span class="co">&#39; Change value to see what happens</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">select case </span>x</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="kw">case</span> <span class="kw">iff</span>(x &lt;= <span class="dv">4</span>, x, x + <span class="dv">1</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;x &lt;= 4&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="kw">case</span> <span class="kw">iff</span>(x &gt; <span class="dv">4</span> <span class="kw">AND</span> x &lt; <span class="dv">12</span>, x, x + <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;4 &lt; x &lt; 12&quot;</span>     </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">end select</span></span></code></pre></div>
 <h3 id="example-4-using-functions">Example 4: Using functions</h3>
-<pre><code>func even(x) 
-    local r
-    if(x mod 2 == 0 AND x != 0)
-        r = x
-    else
-        r = x + 1
-    endif
-    return r
-end
-
-func uneven(x) 
-    local r
-    if(x mod 2 != 0)
-        r = x
-    else
-        r = x + 1
-    endif
-    return r
-end
-
-x = 2 &#39; Change value to see what happens
-select case x
-    case even(x)
-        print &quot;x is even&quot;
-    case uneven(x)
-        print &quot;x is uneven&quot;
-    case else
-        print &quot;x is 0&quot;
-end select</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">func </span>even(x) </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    <span class="dt">local</span> r</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="kw">if(</span>x <span class="kw">mod</span> <span class="dv">2</span> == <span class="dv">0</span> <span class="kw">AND</span> x != <span class="dv">0</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>        r = x</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    <span class="kw">else</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>        r = x + <span class="dv">1</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    <span class="kw">return</span> r</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">func </span>uneven(x) </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    <span class="dt">local</span> r</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    <span class="kw">if(</span>x <span class="kw">mod</span> <span class="dv">2</span> != <span class="dv">0</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>        r = x</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="kw">else</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>        r = x + <span class="dv">1</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>    <span class="kw">return</span> r</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>x = <span class="dv">2</span> <span class="co">&#39; Change value to see what happens</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="kw">select case </span>x</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>    <span class="kw">case</span> even(x)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;x is even&quot;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>    <span class="kw">case</span> uneven(x)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;x is uneven&quot;</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a>    <span class="kw">case</span> <span class="kw">else</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;x is 0&quot;</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a><span class="kw">end select</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using SELECT</div>
     <div class="linklist">

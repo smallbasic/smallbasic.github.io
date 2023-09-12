@@ -69,43 +69,43 @@
 <h2 id="download-the-unit">Download the unit</h2>
 <p>The unit can be downloaded or copy pasted from the <a href="https://github.com/smallbasic/smallbasic.plugins/blob/master/units/qrcode.bas">SmallBASIC Github website</a>. Please save the unit in the same directory as your basic file.</p>
 <h2 id="using-the-unit">Using the unit</h2>
-<pre class="freebasic"><code>import qrcode
-
-color 1, 15
-cls
-
-CreateQRCode(&quot;https://smallbasic.github.io&quot;)
-
-&#39;### End of main program ######
-
-sub CreateQRCode(text)
-    local bufLen = qrcode.bufferLenForVersion(qrcode.VERSION_MAX)
-    local errCorLvl = qrcode.Ecc_LOW
-    dim qrcode(bufLen)
-    
-    if (!qrcode.encodeText(text, qrcode, errCorLvl, qrcode.VERSION_MIN, qrcode.VERSION_MAX, qrcode.Mask_AUTO, true)) then
-        print &quot;Failed to create QR code&quot;
-    else
-        local size = qrcode.getSize(qrcode)
-        local border = 0
-        local x, y
-        local xs = 5                              &#39; Pixel size, increase to have bigger pixels
-        local ys = 5                              &#39; Pixel size, increase to have bigger pixels
-        local xo = (xmax - (size * xs)) / 2
-        local yo = (ymax - (size * xs)) / 2
-
-        for y = 0 to size - 1
-            for x = 0 to  size -1
-                if (qrcode.getModule(qrcode, x, y)) then
-                    rect xo + (xs * x), yo + (ys * y), xo + (xs * (x + 1)), yo + (ys * (y + 1)), 0 filled
-                endif
-            next x
-        next y
-    endif
-end</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">import</span> qrcode</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">1</span>, <span class="dv">15</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">cls</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>CreateQRCode(<span class="st">&quot;https://smallbasic.github.io&quot;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39;### End of main program ######</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">sub </span>CreateQRCode(text)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="dt">local</span> bufLen = qrcode.bufferLenForVersion(qrcode.VERSION_MAX)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="dt">local</span> errCorLvl = qrcode.Ecc_LOW</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="dt">dim</span> qrcode(bufLen)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="kw">if </span>(!qrcode.encodeText(text, qrcode, errCorLvl, qrcode.VERSION_MIN, qrcode.VERSION_MAX, qrcode.Mask_AUTO, <span class="dt">true</span>)) <span class="kw">then</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;Failed to create QR code&quot;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    <span class="kw">else</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>        <span class="dt">local</span> size = qrcode.getSize(qrcode)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>        <span class="dt">local</span> border = <span class="dv">0</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>        <span class="dt">local</span> x, y</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>        <span class="dt">local</span> xs = <span class="dv">5</span>                              <span class="co">&#39; Pixel size, increase to have bigger pixels</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>        <span class="dt">local</span> ys = <span class="dv">5</span>                              <span class="co">&#39; Pixel size, increase to have bigger pixels</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>        <span class="dt">local</span> xo = (<span class="dt">xmax</span> - (size * xs)) / <span class="dv">2</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>        <span class="dt">local</span> yo = (<span class="dt">ymax</span> - (size * xs)) / <span class="dv">2</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>        <span class="kw">for </span>y = <span class="dv">0</span> <span class="kw">to</span> size - <span class="dv">1</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>            <span class="kw">for </span>x = <span class="dv">0</span> <span class="kw">to</span>  size <span class="dv">-1</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>                <span class="kw">if </span>(qrcode.getModule(qrcode, x, y)) <span class="kw">then</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>                    <span class="fu">rect</span> xo + (xs * x), yo + (ys * y), xo + (xs * (x + <span class="dv">1</span>)), yo + (ys * (y + <span class="dv">1</span>)), <span class="dv">0</span> filled</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>                <span class="kw">endif</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>            <span class="kw">next </span>x</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>        <span class="kw">next </span>y</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 18 Jul 2023 23:20:23 +0200
+      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

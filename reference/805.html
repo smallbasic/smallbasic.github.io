@@ -75,37 +75,36 @@
   </div>
 <p>Returns the numeric value of string s.</p>
 <p>Here is an opportunity for enhancing SmallBASIC’s function VAL, this EVAL is only beginning of what might be done.</p>
-<pre><code>
-&#39; VAL test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-05
-s1=&quot;123.234*4+1000/2&quot;
-? val(s1)
-? eval(s1)
-pause
-func eval(numericexpressionstring)
-  &#39;working left to right, no parenthesis
-  e=0:cmd=&quot;+&quot;:ds=&quot;&quot;
-  for i=1 to len(numericexpressionstring)
-    c=mid(numericexpressionstring,i,1)
-    if instr(&quot;0123456789.&quot;,c) then ds=ds+c
-    if instr(&quot;+-*/&quot;,c) or i=len(numericexpressionstring) then
-      &#39;execute last cmd if one
-      if cmd&lt;&gt;&quot;&quot;  then
-        d=val(ds)
-        select case cmd
-        case &quot;+&quot;:e=e+d
-        case &quot;-&quot;:e=e-d
-        case &quot;*&quot;:e=e*d
-        case &quot;/&quot;:e=e/d
-        end select
-        ds=&quot;&quot;:cmd=&quot;&quot;
-      end if
-      if i&lt;&gt;len(numericexpressionstring) then cmd=c
-    end if
-  next
-  &#39;eval=str(e) &#39;&lt;=== I am setting up something for Turtle strings
-  eval=e        &#39;&lt;=== normal people and usage might want this
-end
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">&#39; VAL test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-05</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>s1=<span class="st">&quot;123.234*4+1000/2&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>? <span class="fu">val</span>(s1)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>? eval(s1)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">pause</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">func </span>eval(numericexpressionstring)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="co">&#39;working left to right, no parenthesis</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  e=<span class="dv">0</span>:cmd=<span class="st">&quot;+&quot;</span>:ds=<span class="st">&quot;&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="kw">for </span>i=<span class="dv">1</span> <span class="kw">to</span> <span class="fu">len</span>(numericexpressionstring)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    c=<span class="fu">mid</span>(numericexpressionstring,i,<span class="dv">1</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="kw">if </span><span class="fu">instr</span>(<span class="st">&quot;0123456789.&quot;</span>,c) <span class="kw">then ds</span>=ds+c</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="kw">if </span><span class="fu">instr</span>(<span class="st">&quot;+-*/&quot;</span>,c) <span class="kw">or</span> i=<span class="fu">len</span>(numericexpressionstring) <span class="kw">then</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>      <span class="co">&#39;execute last cmd if one</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>      <span class="kw">if </span>cmd&lt;&gt;<span class="st">&quot;&quot;</span>  <span class="kw">then</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>        d=<span class="fu">val</span>(ds)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>        <span class="kw">select case </span>cmd</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>        <span class="kw">case</span> <span class="st">&quot;+&quot;</span>:e=e+d</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>        <span class="kw">case</span> <span class="st">&quot;-&quot;</span>:e=e-d</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>        <span class="kw">case</span> <span class="st">&quot;*&quot;</span>:e=e*d</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>        <span class="kw">case</span> <span class="st">&quot;/&quot;</span>:e=e/d</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>        <span class="kw">end select</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>        ds=<span class="st">&quot;&quot;</span>:cmd=<span class="st">&quot;&quot;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>      <span class="kw">end if</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>      <span class="kw">if </span>i&lt;&gt;<span class="fu">len</span>(numericexpressionstring) <span class="kw">then cm</span>d=c</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    <span class="kw">end if</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>  <span class="kw">next</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>  <span class="co">&#39;eval=str(e) &#39;&lt;=== I am setting up something for Turtle strings</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>  eval=e        <span class="co">&#39;&lt;=== normal people and usage might want this</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
 <p>Math EVAL function = evaluates a string as though it were an expression and returns a result.</p>
 <p>I’ve written in Euphoria 4 correct math EVAL function, you can download it and see how it works, if you’re really into it: rapideuphoria.com*math_eval_v1_1_0.zip</p>
 <p>It is straightforward to translate that Euphoria code into SmallBASIC code. EVAL must be around here somewhere, it is a classic. I thought I might find a version in TinyBASIC but I am too much into getting a turtle string to repeat to hunt for it at moment.</p>

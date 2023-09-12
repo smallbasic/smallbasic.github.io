@@ -108,32 +108,32 @@
 </table>
 <p>See AND for the logical operator.</p>
 <h3 id="example-1">Example 1</h3>
-<pre><code>print &quot;1011 AND 1101 = &quot;; bin(0b1011 band 0b1101)
-&#39; Output: 1011 AND 1101 = 1001</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;1011 AND 1101 = &quot;</span>; <span class="fu">bin</span>(0b1011 <span class="kw">band</span> 0b1101)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">&#39; Output: 1011 AND 1101 = 1001</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
 <p>The following example will first pack a date into a single integer and then unpack the integer to get the original date using bitwise operations.</p>
-<pre><code>Def shl(n, c) = n * Pow(2, c)         &#39; shift-left c bits in n
-Def shr(n, c) = n \ Pow(2, c)         &#39; shift-right c bits in n
-Def mask(c) = Pow(2, c) - 1           &#39; return a mask of c bits
-
-&#39; get the current date as three integers:
-now = Date &#39; now is &quot;dd/mm/yyyy&quot;
-day = Left(now, 2) * 1
-month = Mid(now, 4, 2) * 1
-year = Right(now, 4) * 1
-
-&#39; pack the date in one integer:
-p = day                                &#39; packing 5 bits (days 1..31)
-p = shl(p, 4) Bor month                &#39; packing 4 bits (months 1..12)
-p = shl(p, 12) Bor year                &#39; packing 12 bits (years 0..4095)
-Print Using &quot;The current date : 00/00/0000&quot;; day, month, year;
-Print &quot; -&gt; Packed as: &quot;; p; &quot; (0x&quot;; Hex(p); &quot;)&quot;
-
-&#39; unpack the date from one integer:
-p_day = shr(p, 12 + 4)                 &#39; packed in bits 16..20
-p_month = shr(p, 12) Band mask(4)      &#39; packed in bits 12..15
-p_year = p Band mask(12)               &#39; packed in bits 0..11
-Print Using &quot;The Unpacked date: 00/00/0000&quot;; p_day, p_month, p_year;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">Def</span> shl(n, c) = n * <span class="fu">Pow</span>(<span class="dv">2</span>, c)         <span class="co">&#39; shift-left c bits in n</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">Def</span> shr(n, c) = n \ <span class="fu">Pow</span>(<span class="dv">2</span>, c)         <span class="co">&#39; shift-right c bits in n</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">Def</span> mask(c) = <span class="fu">Pow</span>(<span class="dv">2</span>, c) - <span class="dv">1</span>           <span class="co">&#39; return a mask of c bits</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; get the current date as three integers:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>now = Date <span class="co">&#39; now is &quot;dd/mm/yyyy&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>day = <span class="fu">Left</span>(now, <span class="dv">2</span>) * <span class="dv">1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>month = <span class="fu">Mid</span>(now, <span class="dv">4</span>, <span class="dv">2</span>) * <span class="dv">1</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>year = <span class="fu">Right</span>(now, <span class="dv">4</span>) * <span class="dv">1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39; pack the date in one integer:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>p = day                                <span class="co">&#39; packing 5 bits (days 1..31)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>p = shl(p, <span class="dv">4</span>) <span class="kw">Bor</span> month                <span class="co">&#39; packing 4 bits (months 1..12)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>p = shl(p, <span class="dv">12</span>) <span class="kw">Bor</span> year                <span class="co">&#39; packing 12 bits (years 0..4095)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="kw">Print</span> Using <span class="st">&quot;The current date : 00/00/0000&quot;</span>; day, month, year;</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot; -&gt; Packed as: &quot;</span>; p; <span class="st">&quot; (0x&quot;</span>; <span class="fu">Hex</span>(p); <span class="st">&quot;)&quot;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="co">&#39; unpack the date from one integer:</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>p_day = shr(p, <span class="dv">12</span> + <span class="dv">4</span>)                 <span class="co">&#39; packed in bits 16..20</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>p_month = shr(p, <span class="dv">12</span>) <span class="kw">Band</span> mask(<span class="dv">4</span>)      <span class="co">&#39; packed in bits 12..15</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>p_year = p <span class="kw">Band</span> mask(<span class="dv">12</span>)               <span class="co">&#39; packed in bits 0..11</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">Print</span> Using <span class="st">&quot;The Unpacked date: 00/00/0000&quot;</span>; p_day, p_month, p_year;</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using BAND</div>
     <div class="linklist">

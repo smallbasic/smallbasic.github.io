@@ -74,13 +74,13 @@
     </p>
   </div>
 <p>Sub/func argument declaration. Changes to the variable will be passed back to the caller. Equivalent syntax to the @ character.</p>
-<pre><code>sub Increment(BYREF i)
-  i = i + 1
-end
-
-x = 1
-Increment(x)
-print x         &#39; output: 2</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">sub </span>Increment(<span class="dt">BYREF</span> i)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  i = i + <span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>x = <span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>Increment(x)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">print</span> x         <span class="co">&#39; output: 2</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using BYREF</div>
     <div class="linklist">

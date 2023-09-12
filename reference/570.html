@@ -76,80 +76,80 @@
 <p>Reserves storage space for an array.</p>
 <p>The array will have (upper-lower)+1 elements. If <code>lower</code> is not specified, and <code>OPTION BASE</code> hasn’t used, elements start at 0.</p>
 <h2 id="example-1-one-dimensional-arrays">Example 1: One dimensional arrays</h2>
-<pre><code>REM One dimensional array of 7 elements, starting from 0
-REM with elements A(0), A(1), ... , A(6)
-DIM A(6)</code></pre>
-<pre><code>REM One dimensional array of 7 elements, starting from 3
-REM with elements A(3), A(4), ... , A(9)
-DIM A(3 TO 9)</code></pre>
-<pre><code>REM One dimensional array of 6 elements, starting from 1
-REM with elements A(1), A(2), ... , A(6)
-option base 1
-DIM A(6)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">REM One dimensional array of 7 elements, starting from 0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">REM with elements A(0), A(1), ... , A(6)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="dt">DIM</span> A(<span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">REM One dimensional array of 7 elements, starting from 3</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">REM with elements A(3), A(4), ... , A(9)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="dt">DIM</span> A(<span class="dv">3</span> <span class="kw">TO</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">REM One dimensional array of 6 elements, starting from 1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">REM with elements A(1), A(2), ... , A(6)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="pp">option</span> base <span class="dv">1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="dt">DIM</span> A(<span class="dv">6</span>)</span></code></pre></div>
 <h2 id="example-2-multi-dimensional-arrays">Example 2: Multi dimensional arrays</h2>
-<pre><code>REM Two dimensional array
-DIM A(3, 4)</code></pre>
-<pre><code>REM Three dimensional array
-DIM A(2 TO 6, 5 TO 9, 1 TO 8)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">REM Two dimensional array</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="dt">DIM</span> A(<span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">REM Three dimensional array</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="dt">DIM</span> A(<span class="dv">2</span> <span class="kw">TO</span> <span class="dv">6</span>, <span class="dv">5</span> <span class="kw">TO</span> <span class="dv">9</span>, <span class="dv">1</span> <span class="kw">TO</span> <span class="dv">8</span>)</span></code></pre></div>
 <h2 id="example-3-empty-array">Example 3: Empty array</h2>
-<pre><code>REM Allocating zero-length arrays:
-DIM z()</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">REM Allocating zero-length arrays:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="dt">DIM</span> z()</span></code></pre></div>
 <h2 id="example-4-creating-and-accessing-arrays">Example 4: Creating and accessing arrays</h2>
-<pre><code>
-Option Base 1 &#39; Set default lower bound of arrays to 1
-? &quot;Showing x,y,z elements of index 5:&quot;
-?
-&#39; Reserve space for a single 1-dimensional array:
-x = 0
-y = 10
-z = 20
-Dim a(1 To 30)
-For i = 1 To 10
-  a(i + x) = i
-  a(i + y) = i + 10
-  a(i + z) = i + 100
-Next
-? a(5 + x), a(5 + y), a(5 + z),, &quot;(1-dimensional array)&quot;
-
-&#39; Reserve the same space for three 1-dimensional arrays:
-Dim a_x(1 To 10), a_y(1 To 10), a_z(1 To 10)
-For i = 1 To 10
-  a_x(i) = i
-  a_y(i) = i + 10
-  a_z(i) = i + 100
-Next
-? a_x(5), a_y(5), a_z(5),, &quot;(three 1-dimensional arrays)&quot;
-
-&#39; Reserve the same space for a single 2-dimensional array:
-x = 1
-y = 2
-z = 3
-Dim a(1 To 10, x To z)
-For i = 1 To 10
-  a(i, x) = i
-  a(i, y) = i + 10
-  a(i, z) = i + 100
-Next
-? a(5, x), a(5, y), a(5, z),, &quot;(2-dimensional array)&quot;
-
-&#39; Reserve the same space for a single nested array:
-Dim a(1 To 10)
-For i = 1 To 10
-  a(i) = [,,] &#39; convert this element to nested array
-  a(i)(x) = i
-  a(i)(y) = i + 10
-  a(i)(z) = i + 100
-Next
-? a(5)(x), a(5)(y), a(5)(z),, &quot;(nested array)&quot;
-
-&#39; Reserve the same space for a single map array (see also: ARRAY, ISMAP):
-Dim a(1 To 10)
-For i = 1 To 10
-  a(i).x = i
-  a(i).y = i + 10
-  a(i).z = i + 100
-Next
-? a(5).x, a(5).y, a(5).z,, &quot;(map array)&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="pp">Option</span> Base <span class="dv">1</span> <span class="co">&#39; Set default lower bound of arrays to 1</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>? <span class="st">&quot;Showing x,y,z elements of index 5:&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>?</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">&#39; Reserve space for a single 1-dimensional array:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>x = <span class="dv">0</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>y = <span class="dv">10</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>z = <span class="dv">20</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="dt">Dim</span> a(<span class="dv">1</span> <span class="kw">To</span> <span class="dv">30</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="kw">For </span>i = <span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>  a(i + x) = i</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>  a(i + y) = i + <span class="dv">10</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>  a(i + z) = i + <span class="dv">100</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a><span class="kw">Next</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>? a(<span class="dv">5</span> + x), a(<span class="dv">5</span> + y), a(<span class="dv">5</span> + z),, <span class="st">&quot;(1-dimensional array)&quot;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a><span class="co">&#39; Reserve the same space for three 1-dimensional arrays:</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a><span class="dt">Dim</span> a_x(<span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span>), a_y(<span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span>), a_z(<span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a><span class="kw">For </span>i = <span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a>  a_x(i) = i</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a>  a_y(i) = i + <span class="dv">10</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a>  a_z(i) = i + <span class="dv">100</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a><span class="kw">Next</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a>? a_x(<span class="dv">5</span>), a_y(<span class="dv">5</span>), a_z(<span class="dv">5</span>),, <span class="st">&quot;(three 1-dimensional arrays)&quot;</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a><span class="co">&#39; Reserve the same space for a single 2-dimensional array:</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true"></a>x = <span class="dv">1</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true"></a>y = <span class="dv">2</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true"></a>z = <span class="dv">3</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true"></a><span class="dt">Dim</span> a(<span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span>, x <span class="kw">To</span> z)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true"></a><span class="kw">For </span>i = <span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true"></a>  a(i, x) = i</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true"></a>  a(i, y) = i + <span class="dv">10</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true"></a>  a(i, z) = i + <span class="dv">100</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true"></a><span class="kw">Next</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true"></a>? a(<span class="dv">5</span>, x), a(<span class="dv">5</span>, y), a(<span class="dv">5</span>, z),, <span class="st">&quot;(2-dimensional array)&quot;</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true"></a><span class="co">&#39; Reserve the same space for a single nested array:</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true"></a><span class="dt">Dim</span> a(<span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span>)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true"></a><span class="kw">For </span>i = <span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true"></a>  a(i) = [,,] <span class="co">&#39; convert this element to nested array</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true"></a>  a(i)(x) = i</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true"></a>  a(i)(y) = i + <span class="dv">10</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true"></a>  a(i)(z) = i + <span class="dv">100</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true"></a><span class="kw">Next</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true"></a>? a(<span class="dv">5</span>)(x), a(<span class="dv">5</span>)(y), a(<span class="dv">5</span>)(z),, <span class="st">&quot;(nested array)&quot;</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true"></a><span class="co">&#39; Reserve the same space for a single map array (see also: ARRAY, ISMAP):</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true"></a><span class="dt">Dim</span> a(<span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span>)</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true"></a><span class="kw">For </span>i = <span class="dv">1</span> <span class="kw">To</span> <span class="dv">10</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true"></a>  a(i).x = i</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true"></a>  a(i).y = i + <span class="dv">10</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true"></a>  a(i).z = i + <span class="dv">100</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true"></a><span class="kw">Next</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true"></a>? a(<span class="dv">5</span>).x, a(<span class="dv">5</span>).y, a(<span class="dv">5</span>).z,, <span class="st">&quot;(map array)&quot;</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using DIM</div>
     <div class="linklist">

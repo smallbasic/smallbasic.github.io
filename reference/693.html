@@ -82,36 +82,36 @@
 <li>result: the result</li>
 <li>expr: f(x)</li>
 </ul>
-<pre><code>&#39; What is the derivative of f(x) for a given x
-
-def f(x) = 2*x^2+2
-
-x = 3
-result = 0
-errcode = 0
-
-deriv x, 10, 0.01, result, errcode USE f(x)
-
-
-def d(x) = 4*x &#39; Exact derivative of f(x) for comparision
-
-print &quot;Result of DERIV  at x = &quot;; x; &quot; : &quot;; result
-print &quot;Exact derivative at x = &quot;; x; &quot; : &quot;; d(x)</code></pre>
-<pre><code>&#39; What is the derivative of f(x) for a given x
-
-def f(x) = x^3 + 2 * exp(2*x)
-
-x = 3
-result = 0
-errcode = 0
-
-deriv x, 10, 0.000001, result, errcode USE f(x)
-
-
-def d(x) = 3*x^2 + 4*exp(2*x) &#39; Exact derivative of f(x) for comparision
-
-print &quot;Result of DERIV  at x = &quot;; x; &quot; : &quot;; result
-print &quot;Exact derivative at x = &quot;; x; &quot; : &quot;; d(x)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; What is the derivative of f(x) for a given x</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">def</span> f(x) = <span class="dv">2</span>*x^<span class="dv">2</span>+<span class="dv">2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>x = <span class="dv">3</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>result = <span class="dv">0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>errcode = <span class="dv">0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">deriv</span> x, <span class="dv">10</span>, <span class="dv">0.01</span>, result, errcode <span class="kw">USE</span> f(x)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">def</span> d(x) = <span class="dv">4</span>*x <span class="co">&#39; Exact derivative of f(x) for comparision</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Result of DERIV  at x = &quot;</span>; x; <span class="st">&quot; : &quot;</span>; result</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Exact derivative at x = &quot;</span>; x; <span class="st">&quot; : &quot;</span>; d(x)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; What is the derivative of f(x) for a given x</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">def</span> f(x) = x^<span class="dv">3</span> + <span class="dv">2</span> * <span class="fu">exp</span>(<span class="dv">2</span>*x)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>x = <span class="dv">3</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>result = <span class="dv">0</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>errcode = <span class="dv">0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="fu">deriv</span> x, <span class="dv">10</span>, <span class="dv">0.000001</span>, result, errcode <span class="kw">USE</span> f(x)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">def</span> d(x) = <span class="dv">3</span>*x^<span class="dv">2</span> + <span class="dv">4</span>*<span class="fu">exp</span>(<span class="dv">2</span>*x) <span class="co">&#39; Exact derivative of f(x) for comparision</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Result of DERIV  at x = &quot;</span>; x; <span class="st">&quot; : &quot;</span>; result</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Exact derivative at x = &quot;</span>; x; <span class="st">&quot; : &quot;</span>; d(x)</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using DERIV</div>
     <div class="linklist">

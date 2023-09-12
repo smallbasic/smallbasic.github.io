@@ -75,13 +75,13 @@
   </div>
 <p>Translates all occurrences of the string <code>what</code> found in string <code>source</code> with the string <code>with</code> and returns the new string. If <code>with</code> is not given, all occurrences of <code>what</code> will be removed.</p>
 <h3 id="example-1-replace">Example 1: Replace</h3>
-<pre><code>s1 = &quot;ab_cd_ef&quot;
-s2 = translate(s1, &quot;_&quot;, &quot;!&quot;)
-print s1 + &quot; -&gt; &quot;; s2          &#39; Output: ab_cd_ef -&gt; ab!cd!ef</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>s1 = <span class="st">&quot;ab_cd_ef&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>s2 = <span class="fu">translate</span>(s1, <span class="st">&quot;_&quot;</span>, <span class="st">&quot;!&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> s1 + <span class="st">&quot; -&gt; &quot;</span>; s2          <span class="co">&#39; Output: ab_cd_ef -&gt; ab!cd!ef</span></span></code></pre></div>
 <h3 id="example-2-remove">Example 2: Remove</h3>
-<pre><code>s1 = &quot;ab_cd_ef&quot;
-s2 = translate(s1, &quot;cd&quot;)
-print s1 + &quot; -&gt; &quot;; s2          &#39; Output: ab_cd_ef -&gt; ab__ef</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>s1 = <span class="st">&quot;ab_cd_ef&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>s2 = <span class="fu">translate</span>(s1, <span class="st">&quot;cd&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> s1 + <span class="st">&quot; -&gt; &quot;</span>; s2          <span class="co">&#39; Output: ab_cd_ef -&gt; ab__ef</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using TRANSLATE</div>
     <div class="linklist">

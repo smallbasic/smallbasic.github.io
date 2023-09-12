@@ -76,27 +76,27 @@
 <p>Returns a string of <code>n</code> spaces.</p>
 <p>SPACE is identical to SPC.</p>
 <h3 id="example-1">Example 1:</h3>
-<pre><code>print &quot;A&quot; + space(5) + &quot;B&quot;    &#39; Output: A     B</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;A&quot;</span> + <span class="fu">space</span>(<span class="dv">5</span>) + <span class="st">&quot;B&quot;</span>    <span class="co">&#39; Output: A     B</span></span></code></pre></div>
 <h3 id="example-2-insert-string-into-a-buffer">Example 2: Insert string into a buffer</h3>
-<pre><code>&#39; s is a string (&quot;&quot; or longer); l is length of buffer (0+);
-Def lset(s, l) = Left(s + Space(l), l) &#39; left justify text
-Def rset(s, l) = Right(Space(l) + s, l) &#39; right justify text
-Const buffer = 10 &#39; length of buffer
-
-While True Do
-  Color 7, 0: Cls
-  Print &quot;[ Using a buffer of &quot;; buffer; &quot; spaces ]&quot;
-  Print
-  Input &quot;Enter text into buffer (Enter &#39;S&#39; to stop): &quot;, text
-  IF text = &quot;S&quot; Or text = &quot;s&quot; Then
-    Stop
-  Endif
-  Color 7, 0: Locate 5, 0: Print &quot;Left justified:  &quot;;
-  Color 0, 7: Print lset(text, buffer);
-  Color 7, 0: Locate 7, 0: Print &quot;Right justified: &quot;;
-  Color 0, 7: Print rset(text, buffer);
-  Pause 
-Wend</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; s is a string (&quot;&quot; or longer); l is length of buffer (0+);</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">Def</span> lset(s, l) = <span class="fu">Left</span>(s + <span class="fu">Space</span>(l), l) <span class="co">&#39; left justify text</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">Def</span> rset(s, l) = <span class="fu">Right</span>(<span class="fu">Space</span>(l) + s, l) <span class="co">&#39; right justify text</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dt">Const</span> buffer = <span class="dv">10</span> <span class="co">&#39; length of buffer</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">While </span><span class="dt">True</span> <span class="kw">Do</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">7</span>, <span class="dv">0</span>: <span class="fu">Cls</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot;[ Using a buffer of &quot;</span>; buffer; <span class="st">&quot; spaces ]&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  <span class="kw">Print</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  <span class="kw">Input</span> <span class="st">&quot;Enter text into buffer (Enter &#39;S&#39; to stop): &quot;</span>, text</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>  <span class="kw">IF </span>text = <span class="st">&quot;S&quot;</span> <span class="kw">Or</span> text = <span class="st">&quot;s&quot;</span> <span class="kw">Then</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    <span class="kw">Stop</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>  <span class="kw">Endif</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">7</span>, <span class="dv">0</span>: <span class="fu">Locate</span> <span class="dv">5</span>, <span class="dv">0</span>: <span class="kw">Print</span> <span class="st">&quot;Left justified:  &quot;</span>;</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">0</span>, <span class="dv">7</span>: <span class="kw">Print</span> lset(text, buffer);</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">7</span>, <span class="dv">0</span>: <span class="fu">Locate</span> <span class="dv">7</span>, <span class="dv">0</span>: <span class="kw">Print</span> <span class="st">&quot;Right justified: &quot;</span>;</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">0</span>, <span class="dv">7</span>: <span class="kw">Print</span> rset(text, buffer);</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>  <span class="kw">Pause</span> </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">Wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using SPACE</div>
     <div class="linklist">

@@ -135,77 +135,77 @@
 <p>PEN must be enabled prior to use of this function with <code>Pen ON|OFF</code></p>
 <p>Most important values are 3, 4 and 5. With <code>PEN(3)</code> you will know, if the left mouse button was pressed or the screen was tapped. With <code>PEN(4)</code> and <code>PEN(5)</code> you will get the coordinates of that click or tap. See example 2 and 3.</p>
 <h3 id="example-1-overview">Example 1: Overview</h3>
-<pre><code>Print &quot;  Move and click the Pen or Mouse [press Esc to stop]...&quot;
-Print
-Pen On
-Print Using &quot; ####x, ####y&quot;;              &#39; Format for x,y position
-While Inkey &lt;&gt; Chr(27) Do                 &#39; Press Esc key to exit loop
-  Locate 3, 0
-  print &quot;Pen|Mouse new event:  &quot;; Pen(0)
-  print
-  print &quot;Pen last down|Mouse down:&quot;;: ? Usg; Pen(1), Pen(2)
-  print
-  print &quot;Pen down|Mouse Left down:  &quot;; Pen(3)
-  print
-  print &quot;Pen last/current|Mouse Left down:&quot;;: ? Usg; Pen(4), Pen(5)
-  print
-  print &quot;Mouse current:&quot;;: ? Usg; Pen(10), Pen(11)
-  print
-  print &quot;Mouse Left, Middle, Right down: &quot;, Pen(12), Pen(14), Pen(13);
-Wend</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot;  Move and click the Pen or Mouse [press Esc to stop]...&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">Print</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">Pen</span> <span class="kw">On</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">Print</span> Using <span class="st">&quot; ####x, ####y&quot;</span>;              <span class="co">&#39; Format for x,y position</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">While Inkey</span> &lt;&gt; <span class="fu">Chr</span>(<span class="dv">27</span>) <span class="kw">Do</span>                 <span class="co">&#39; Press Esc key to exit loop</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  <span class="fu">Locate</span> <span class="dv">3</span>, <span class="dv">0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Pen|Mouse new event:  &quot;</span>; <span class="fu">Pen</span>(<span class="dv">0</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">print</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Pen last down|Mouse down:&quot;</span>;: ? <span class="kw">Usg</span>; <span class="fu">Pen</span>(<span class="dv">1</span>), <span class="fu">Pen</span>(<span class="dv">2</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="kw">print</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Pen down|Mouse Left down:  &quot;</span>; <span class="fu">Pen</span>(<span class="dv">3</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="kw">print</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Pen last/current|Mouse Left down:&quot;</span>;: ? <span class="kw">Usg</span>; <span class="fu">Pen</span>(<span class="dv">4</span>), <span class="fu">Pen</span>(<span class="dv">5</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  <span class="kw">print</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Mouse current:&quot;</span>;: ? <span class="kw">Usg</span>; <span class="fu">Pen</span>(<span class="dv">10</span>), <span class="fu">Pen</span>(<span class="dv">11</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>  <span class="kw">print</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Mouse Left, Middle, Right down: &quot;</span>, <span class="fu">Pen</span>(<span class="dv">12</span>), <span class="fu">Pen</span>(<span class="dv">14</span>), <span class="fu">Pen</span>(<span class="dv">13</span>);</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">Wend</span></span></code></pre></div>
 <h3 id="example-2-get-position-of-tap-or-mouse-click">Example 2: Get position of tap or mouse click</h3>
-<pre><code>pen on
-
-print &quot;Press left mouse button or tab screen. Press q to quit.&quot;
-
-while(1)          
-    if(pen(3)) then
-        PosX = pen(4)
-        PosY = pen(5)
-        locate 1,0: print &quot;Click/tap at position: &quot; + PosX + &quot; , &quot; + PosY
-    endif
-    
-    k = inkey()
-    if(len(k) == 1 AND k == &quot;q&quot;) then end
-    
-    showpage
-    delay(20)
-wend</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">pen</span> <span class="kw">on</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Press left mouse button or tab screen. Press q to quit.&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">while(</span><span class="dv">1</span>)          </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="kw">if(</span><span class="fu">pen</span>(<span class="dv">3</span>)) <span class="kw">then</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>        PosX = <span class="fu">pen</span>(<span class="dv">4</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>        PosY = <span class="fu">pen</span>(<span class="dv">5</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>        <span class="fu">locate</span> <span class="dv">1</span>,<span class="dv">0</span>: <span class="kw">print</span> <span class="st">&quot;Click/tap at position: &quot;</span> + PosX + <span class="st">&quot; , &quot;</span> + PosY</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    k = <span class="kw">inkey</span>()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    <span class="kw">if(</span><span class="fu">len</span>(k) == <span class="dv">1</span> <span class="kw">AND</span> k == <span class="st">&quot;q&quot;</span>) <span class="kw">then en</span>d</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="fu">showpage</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">20</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
 <p>DELAY 20 ms saves CPU and battery in a loop.</p>
 <h3 id="example-3-press-a-button">Example 3: Press a button</h3>
-<pre><code>pen on
-
-print &quot;Press left mouse button or tab screen. Press q to quit.&quot;
-
-&#39; Define button
-button.x = 100
-button.y = 100
-button.w = 100
-button.h = 100
-
-while(1)
-
-    &#39; Draw button in dark yellow
-    rect button.x, button.y STEP button.w, button.h color 6 filled
-          
-    if(pen(3)) then
-        PosX = pen(4)
-        PosY = pen(5)
-        
-        &#39; Check if the click or tap is inside the button area
-        if( (PosX &gt; button.x) and (PosX &lt; button.x + button.w) and (PosY &gt; button.y) and (PosY &lt; button.y + button.h) )
-            &#39; Draw button in red
-            rect button.x, button.y STEP button.w, button.h color 12 filled 
-        endif
-        
-    endif
-    
-    k = inkey()
-    if(len(k) == 1 AND k == &quot;q&quot;) then end
-    
-    showpage
-    delay(20)
-wend</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">pen</span> <span class="kw">on</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Press left mouse button or tab screen. Press q to quit.&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39; Define button</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>button.x = <span class="dv">100</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>button.y = <span class="dv">100</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>button.w = <span class="dv">100</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>button.h = <span class="dv">100</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    <span class="co">&#39; Draw button in dark yellow</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    <span class="fu">rect</span> button.x, button.y STEP button.w, button.h <span class="fu">color</span> <span class="dv">6</span> filled</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>          </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="kw">if(</span><span class="fu">pen</span>(<span class="dv">3</span>)) <span class="kw">then</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>        PosX = <span class="fu">pen</span>(<span class="dv">4</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>        PosY = <span class="fu">pen</span>(<span class="dv">5</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>        </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>        <span class="co">&#39; Check if the click or tap is inside the button area</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>        <span class="kw">if(</span> (PosX &gt; button.x) <span class="kw">and</span> (PosX &lt; button.x + button.w) <span class="kw">and</span> (PosY &gt; button.y) <span class="kw">and</span> (PosY &lt; button.y + button.h) )</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>            <span class="co">&#39; Draw button in red</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>            <span class="fu">rect</span> button.x, button.y STEP button.w, button.h <span class="fu">color</span> <span class="dv">12</span> filled </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>        <span class="kw">endif</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>        </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>    </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>    k = <span class="kw">inkey</span>()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>    <span class="kw">if(</span><span class="fu">len</span>(k) == <span class="dv">1</span> <span class="kw">AND</span> k == <span class="st">&quot;q&quot;</span>) <span class="kw">then en</span>d</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>    </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>    <span class="fu">showpage</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">20</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using PEN</div>
     <div class="linklist">

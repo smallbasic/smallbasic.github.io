@@ -74,13 +74,13 @@
     </p>
   </div>
 <p>Returns the day of the week (0 = Sunday).</p>
-<pre><code>PRINT WeekDay(DATE)
-PRINT WeekDay(Julian(31, 12, 2001))
-PRINT WeekDay(31, 12, 2001)
-
-SPLIT &quot;Sun Mon Tue Wed Thu Fri Sat&quot;, &quot; &quot;, wd
-today = &quot;Today is &quot; + wd(WEEKDAY(DATE)) + &quot; &quot; + DATE
-PRINT today</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(DATE)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(<span class="fu">Julian</span>(<span class="dv">31</span>, <span class="dv">12</span>, <span class="dv">2001</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(<span class="dv">31</span>, <span class="dv">12</span>, <span class="dv">2001</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>SPLIT <span class="st">&quot;Sun Mon Tue Wed Thu Fri Sat&quot;</span>, <span class="st">&quot; &quot;</span>, wd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>today = <span class="st">&quot;Today is &quot;</span> + wd(<span class="fu">WEEKDAY</span>(DATE)) + <span class="st">&quot; &quot;</span> + DATE</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">PRINT</span> today</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Date</div>
     <div class="linklist">

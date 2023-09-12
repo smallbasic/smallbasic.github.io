@@ -120,28 +120,27 @@
 </table>
 <p>See PLOT for plotting functions.</p>
 <p>Example 1: Linechart with marks and ruler</p>
-<pre><code>demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]
-Color 0, 15
-cls
-Chart 1, demo, 3, 150, 150, 750, 550</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>demo = [<span class="dv">1.5</span>,<span class="dv">2</span>,<span class="dv">3.5</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6.5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9.5</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12.5</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">0</span>, <span class="dv">15</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">cls</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">Chart</span> <span class="dv">1</span>, demo, <span class="dv">3</span>, <span class="dv">150</span>, <span class="dv">150</span>, <span class="dv">750</span>, <span class="dv">550</span></span></code></pre></div>
 <p>Example 2: All charttypes and styles in one glance</p>
-<pre><code>Const LINE_CHART = 1
-Const BAR_CHART  = 2
-demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]
-Color 0, 15
-For type = LINE_CHART To BAR_CHART &#39; 1 to 2
-  text = Iff(type = LINE_CHART, &quot;LINE_CHART&quot;, &quot;BAR_CHART&quot;)
-  For style = 0 To 3
-    Cls
-    Print &quot; Chart Type: &quot;; type; &quot; (&quot;; text; &quot;)&quot;
-    Print &quot; Chart Style: &quot;; style
-    Print
-    Print &quot;Press any key...&quot;;
-    Chart type, demo, style, 150, 150, 750, 550
-    Pause
-  Next style
-Next type
-</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dt">Const</span> LINE_CHART = <span class="dv">1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="dt">Const</span> BAR_CHART  = <span class="dv">2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>demo = [<span class="dv">1.5</span>,<span class="dv">2</span>,<span class="dv">3.5</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6.5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9.5</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12.5</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">0</span>, <span class="dv">15</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">For </span>type = LINE_CHART <span class="kw">To</span> BAR_CHART <span class="co">&#39; 1 to 2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  text = <span class="kw">Iff</span>(type = LINE_CHART, <span class="st">&quot;LINE_CHART&quot;</span>, <span class="st">&quot;BAR_CHART&quot;</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  <span class="kw">For </span>style = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">3</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="fu">Cls</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="kw">Print</span> <span class="st">&quot; Chart Type: &quot;</span>; type; <span class="st">&quot; (&quot;</span>; text; <span class="st">&quot;)&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    <span class="kw">Print</span> <span class="st">&quot; Chart Style: &quot;</span>; style</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    <span class="kw">Print</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    <span class="kw">Print</span> <span class="st">&quot;Press any key...&quot;</span>;</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    <span class="fu">Chart</span> type, demo, style, <span class="dv">150</span>, <span class="dv">150</span>, <span class="dv">750</span>, <span class="dv">550</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    <span class="kw">Pause</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>  <span class="kw">Next </span>style</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">Next </span>type</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using CHART</div>
     <div class="linklist">

@@ -79,55 +79,55 @@
 xf = final x<br />
 errcode = 0 for success; otherwise calculation error<br />
 yf = result</p>
-<pre><code>&#39; Solving dy/dx = 7*y^2 * x^3 with start condition y(2) = 3 
-
-def f1(x,y) = 7*y^2 * x^3
-
-y0 = 3
-x0 = 2
-yf = 0
-xf = 1 
-maxseg = 10000
-maxerr = 0.001
-errcode = 0
-
-diffeqn x0, y0, xf, maxseg, maxerr, yf, errcode USE f1(x,y)
-
-&#39; Exact solution for comparision
-def g1(x) = -1 / (7/4 * x^4 - 85/3)
-
-print &quot;g1(xf) = &quot;; g1(xf)
-print &quot;yf(xf) = &quot;; yf
-
-if(errcode != 0) then
-    print &quot;Error solving equation&quot;
-    print &quot;Increasing maxseg might help&quot;
-endif</code></pre>
-<pre><code>&#39; Defining the differential equation for a stiffness system
-
-def f2(y,t) = -1000*y + 3000 - 2000 * exp(-t)
-
-&#39; Solving equation at time tf = 0.001 seconds with y(0) = 0
-y0 = 0
-t0 = 0
-yf = 0
-tf = 0.001 
-maxseg = 1000
-maxerr = 0.001
-errcode = 0
-
-diffeqn t0, y0, tf, maxseg, maxerr, yf, errcode USE f2(y,t)
-
-&#39; Exact solution for comparision
-def g2(t) = 3 - 0.998*exp(-1000*t) - 2.002 * exp(-t)
-
-print &quot;g2(tf) = &quot;; g2(tf)
-print &quot;yf(tf) = &quot;; yf
-
-if(errcode != 0) then
-    print &quot;Error solving equation&quot;
-    print &quot;Increasing maxseg might help&quot;
-endif</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; Solving dy/dx = 7*y^2 * x^3 with start condition y(2) = 3 </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">def</span> f1(x,y) = <span class="dv">7</span>*y^<span class="dv">2</span> * x^<span class="dv">3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>y0 = <span class="dv">3</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>x0 = <span class="dv">2</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>yf = <span class="dv">0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>xf = <span class="dv">1</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>maxseg = <span class="dv">10000</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>maxerr = <span class="dv">0.001</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>errcode = <span class="dv">0</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="fu">diffeqn</span> x0, y0, xf, maxseg, maxerr, yf, errcode <span class="kw">USE</span> f1(x,y)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="co">&#39; Exact solution for comparision</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="kw">def</span> g1(x) = <span class="dv">-1</span> / (<span class="dv">7</span>/<span class="dv">4</span> * x^<span class="dv">4</span> - <span class="dv">85</span>/<span class="dv">3</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;g1(xf) = &quot;</span>; g1(xf)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;yf(xf) = &quot;</span>; yf</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="kw">if(</span>errcode != <span class="dv">0</span>) <span class="kw">then</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;Error solving equation&quot;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;Increasing maxseg might help&quot;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="kw">endif</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Defining the differential equation for a stiffness system</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">def</span> f2(y,t) = <span class="dv">-1000</span>*y + <span class="dv">3000</span> - <span class="dv">2000</span> * <span class="fu">exp</span>(-t)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; Solving equation at time tf = 0.001 seconds with y(0) = 0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>y0 = <span class="dv">0</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>t0 = <span class="dv">0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>yf = <span class="dv">0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>tf = <span class="dv">0.001</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>maxseg = <span class="dv">1000</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>maxerr = <span class="dv">0.001</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>errcode = <span class="dv">0</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="fu">diffeqn</span> t0, y0, tf, maxseg, maxerr, yf, errcode <span class="kw">USE</span> f2(y,t)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="co">&#39; Exact solution for comparision</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">def</span> g2(t) = <span class="dv">3</span> - <span class="dv">0.998</span>*<span class="fu">exp</span>(-<span class="dv">1000</span>*t) - <span class="dv">2.002</span> * <span class="fu">exp</span>(-t)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;g2(tf) = &quot;</span>; g2(tf)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;yf(tf) = &quot;</span>; yf</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">if(</span>errcode != <span class="dv">0</span>) <span class="kw">then</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;Error solving equation&quot;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;Increasing maxseg might help&quot;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="kw">endif</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">

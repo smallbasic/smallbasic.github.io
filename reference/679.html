@@ -75,29 +75,29 @@
   </div>
 <p>Declares the END of a SUB, a FUNC or the program.</p>
 <h3 id="example-1-sub">Example 1: Sub</h3>
-<pre><code>sub MySub(a)
-    print a + 10
-end
-
-MySub(10)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">sub </span>MySub(a)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="kw">print</span> a + <span class="dv">10</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>MySub(<span class="dv">10</span>)</span></code></pre></div>
 <h3 id="example-2-func">Example 2: Func</h3>
-<pre><code>func MyFunc(a)
-    return a + 10
-end
-
-Result = MyFunc(10)
-print Result</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">func </span>MyFunc(a)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="kw">return</span> a + <span class="dv">10</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">end</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>Result = MyFunc(<span class="dv">10</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">print</span> Result</span></code></pre></div>
 <h3 id="example-3-end-of-the-program">Example 3: End of the program</h3>
-<pre><code>while(1)
-    ii = ii + 1
-    print ii
-    
-    if(ii == 5) then
-        end             &#39; end program
-    endif
-    
-    delay(500)
-wend</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    ii = ii + <span class="dv">1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="kw">print</span> ii</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="kw">if(</span>ii == <span class="dv">5</span>) <span class="kw">then</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>        <span class="kw">end </span>            <span class="co">&#39; end program</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    <span class="kw">endif</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">500</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using END</div>
     <div class="linklist">
