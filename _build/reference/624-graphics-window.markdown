@@ -80,9 +80,9 @@ while 1
 wend
 ```
 
-### insetTextScreen(x, y, w, h)
+### insetTextScreen(x1, y1, x2, y2)
 
-Insert an area for text output at position `[x, y]` with width `w` and height `h`
+Insert an area for text output from position `[x1, y1]` to position `[x2, y2]`
 
 ```
 w = window()
@@ -94,28 +94,30 @@ next i
 pause
 ```
 
-### menu(option1, option2...)
+### menu(option1 [, option2, ..., optionN)
 
-Displays a popup menu. The user response is available via INKEY.
+Displays a popup menu with the entries `option1` to `optionN`. INKEY will return the number of the selected option starting with `0`.
 
 ```
 w = window()
+
 w.menu("option1", "option2", "option3")
+
 select case asc(inkey)
-case 0
-  print "one"
-case 1
-  print "two"
-case 2
-  print "three"
-case else
-  print "unk"
+    case 0
+      print "one"
+    case 1
+      print "two"
+    case 2
+      print "three"
+    case else
+      print "unk"
 end select
 ```
 
 ### message(str)
 
-Displays a status message at the bottom of the screen.
+Displays a status message `str` at the bottom of the screen.
 
 ```
 w = window()
@@ -124,52 +126,30 @@ w.message("Click to continue. ")
 
 ### setFont(size, unit, bold, italic)
 
-Sets the font to be double in size with bold and italic.
-
-"Unit" can be set to "em" to make size relative to the existing size, any other value will cause size to be avaluated as pixels.
+Sets the font size to `size`. `unit` can be set to "em" to make size relative to the existing size. Any other value will cause size to be avaluated as pixels. `bold` can be set to `0` or `1` to enable or disable bold font style. `italic` can be set to `0` or `1` to enable or disable italic font style.
 
 ```
 w = window()
-dim buf
 
-sub text(s)
-  local x, y, j, size, width, height
-  buf << s
-  y = ymax / 2
-  cls
-  size = 30
-  for j = len(buf) - 1 to 0 step - 1
-    size -= 2
-    w.setFont(size, "px", 0, 1)
-    width = txtw(buf[j])
-    height = txth(buf[j])
-    x = (xmax - width) / 2
-    y -= height
-    at x, y: print buf[j]
-  next j
-  delay 1200
-end
+w.setFont(15, "px", 0, 0)
+print "Fixed size 15px"
 
-text "A long time ago, in a galaxy far, far away..."
-text "It is a period of civil war. Rebel"
-text "spaceships, striking from a hidden"
-text "base, have won their first victory"
-text "against the evil Galactic Empire."
-text "During the battle, Rebel spies managed"
-text "to steal secret plans to the Empire's"
-text "ultimate weapon, the Death Star, an"
-text "armored space station with enough"
-text "power to destroy an entire planet."
-text "Pursued by the Empire's sinister agents,"
-text "Princess Leia races home aboard her"
-text "starship, custodian of the stolen plans"
-text "that can save her people and restore"
-text "freedom to the galaxy...."
+w.setFont(2, "em", 0, 0)
+print "Relative size 15px * 2"
+
+w.setFont(15, "px", 1, 0)
+print "Fixed size 15px bold"
+
+w.setFont(15, "px", 0, 1)
+print "Fixed size 15px italic"
+
+w.setFont(15, "px", 1, 1)
+print "Fixed size 15px bold italic"
 ```
 
 ### setLocation(x, y)
 
-Sets the location of the window on the screen.
+Sets the location of the window on the screen. The upper-left corner of the window will be at position `[x, y]` in pixel.
 
 ```
 w = window()
@@ -179,7 +159,7 @@ w.setLocation(100, 100)
 
 ### setSize(w, h)
 
-Sets the width and height of the SmallBASIC window.
+Sets the width `w` and height `h` in pixel of the SmallBASIC window.
 
 ```
 w = window()
@@ -231,5 +211,4 @@ const colDir   = theme.text3
 const colText2 = theme.text4
 const colNav   = theme.text1
 const colNav2  = theme.text6
-
 ```
