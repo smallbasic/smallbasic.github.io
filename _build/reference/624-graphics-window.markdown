@@ -1,21 +1,29 @@
 # WINDOW
 
-> WINDOW [x1,y2,x2,y1]
+> WINDOW [x1, x2, y2, y1]
 
-Specifies "world" coordinates for the screen.
+Specifies "world" coordinates for the screen. The WINDOW command allows you to redefine the corners of the display screen as a pair of "world" coordinates. The coordinates of the upper-left corner of the screen is given by `[x1, y1]`, the lower-left corner by `[x2, y2]`.
 
-The WINDOW command allows you to redefine the corners of the display screen as a pair of "world" coordinates. 
+The world space defined by WINDOW is disabled by a WINDOW command without parameters.
 
-The world space defined by WINDOW is disabled by a WINDOW command with no parameters.
-
-Note: the unusal coordinates are intended for Quick BASIC compatibility (possible bug).
+### Example
 
 ```
-window 1, 320, 320, 1
-rect 0, 0, 160, 160, 1 filled
-rect 160, 160, 320, 320, 2 filled
-rect 160, 0, 320, 160, 3 filled
-rect 0, 160, 160, 320, 4 filled
+' Coordinate system with corners:
+' upper-left = [-20,-10]
+' lower-right= [ 20, 10] 
+x1 = -20
+y1 = -10
+x2 =  10
+y2 =  20
+
+window x1, x2, y2, y1
+
+rect -20, -10 STEP 1, 1, 14 filled    ' Yellow:  upper-left
+rect  19, -10 STEP 1, 1, 13 filled    ' Magenta: upper-right
+rect  19,   9 STEP 1, 1, 12 filled    ' Red:     lower-right
+rect -20,   9 STEP 1, 1, 10 filled    ' Green:   lower-left
+circle 0, 0, 1, 1, 15 filled          ' White:   center
 ```
 
 ## WINDOW sub-commands (non-standard)
@@ -24,7 +32,7 @@ WINDOW is also overloaded as a function, returning a system object which provide
 
 ### alert(message, title)
 
-Display an alert message.
+Display an alert window. The title of the window is `title` and the context is `message`. 
 
 ```
 w = window()
@@ -33,44 +41,48 @@ w.alert("This is an alert", "title")
 
 ### ask(message, title)
 
-Display a prompt to retrieve a user selection.
+Display a prompt window to retrieve a user selection. The choices are "Yes" and "No". The title of the window is `title` and the context is `message`. The answer is stored in the window-object variable `answer`: `0` for "Yes" and `1` for "No".
 
 ```
 w = window()
+
 w.ask("Yes or no?", "Question")
+
 if w.answer == 0 then
-  w.alert("Yes!", "Answer")
+    print "Yes"
 else 
-  w.alert("No", "Answer")
+    print "No"
 endif
 ```
 
 ### graphicsScreen1(), graphicsScreen2()
 
-Select graphics mode screen 1 or 2 for output.
+Select graphics mode screen 1 or 2 for output. When switching to a different screen, the context of the previous screen is stored in RAM. When switching back to the previous screen, the context will be restored.
 
 ```
-dim v(30)
-for i = 0 to 30
-  v[i] = rnd
-next i
-
-sub draw_chart(n,s)
-  color 1,15: cls
-  chart n, v, s, 1, 1, xmax-2, ymax-2
-end
-
 w = window()
-w.graphicsScreen2(): draw_chart(1, 5)
-w.graphicsScreen1(): draw_chart(2, 3)
 
+w.graphicsScreen1()                      ' Set output to screen 1
+rect 100,100 STEP 100,100, 15 filled
+
+w.graphicsScreen2()                      ' Set output to screen 2
+rect 150,150 STEP 100,100, 14 filled
+
+' Switch between both screens, no need to redaw the rectangles
 while 1
-  b = !b
-  if b then w.graphicsScreen1() else w.graphicsscreen2()
-  pause
+    b = !b
+    if b then 
+        w.graphicsScreen1()
+    else
+        w.graphicsscreen2()
+    endif
+  delay(500)
 wend
 ```
+
 ### insetTextScreen(x, y, w, h)
+
+Insert an area for text output at position `[x, y]` with width `w` and height `h`
 
 ```
 w = window()
