@@ -4,4 +4,8 @@
 
 Generates a beep sound.
 
+### Example
 
+```
+beep
+```
