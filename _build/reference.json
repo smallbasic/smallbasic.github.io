@@ -511,6 +511,13 @@
             "type": "command"
         },
         {
+            "help": "Read variables from a binary file.",
+            "keyword": "READ",
+            "nodeID": "601",
+            "signature": "READ #fileN; var1 [, ...]",
+            "type": "command"
+        },
+        {
             "help": "Reads and returns a byte from file or device (Binary mode) .",
             "keyword": "BGETC",
             "nodeID": "602",
