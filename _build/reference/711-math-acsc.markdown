@@ -1,15 +1,17 @@
 # ACSC
 
-> ACSC (x)
+> f = ACSC (x)
 
-Inverse cosecant.
+Inverse cosecant of `x`.
+
+### Example
 
 ```
 a = csc(0.1)
-print a
+print a             ' Output: 10.01668613163478
 
 b = acsc(a)
-print b
+print b             ' Output: 0.1
 ```
 
 
