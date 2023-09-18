@@ -1,14 +1,16 @@
 # ASECH
 
-> ASECH (x)
+> f = ASECH (x)
 
-Inverse hyperbolic secant.
+Inverse hyperbolic secant of `x`.
+
+### Example
 
 ```
 a = sech(0.1)
-print a
+print a             ' Output: 0.99502074895323
 
 b = asech(a)
-print b
+print b             ' Output: 0.1
 ```
 
