@@ -1,11 +1,13 @@
 # ACOS
 
-> ACOS (x)
+> f = ACOS (x)
 
-Inverse cosine.
+Inverse cosine of `x`.
+
+### Example
 
 ```
 a = cos(pi)
-print acos(a)
+print acos(a)       ' Output: 3.14159265358979  
 ```
 
