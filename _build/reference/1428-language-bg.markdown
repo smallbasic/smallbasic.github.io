@@ -6,8 +6,11 @@ Play sound in the background. BG prevents the program from blocking while the so
 
 See SOUND.
 
+### Example
+
 ```
 SOUND 1000, 1000 BG
+pause
 ```
 
 
