@@ -13,7 +13,9 @@ Truth table:
 | 1 | 0 | 1       |
 | 1 | 1 | 1       |
 
-### Example:
+See OR for logical or.
+
+### Example
 
 ```
 print "1001 BOR 1110 = "; bin(0b1001 BOR 0b1100)
