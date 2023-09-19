@@ -2,9 +2,11 @@
 
 > CHAIN source
 
-Compile and run the given source. Source can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process.
+Compile and run the given source. `source` can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process.
 
-Example 1: Using constants; Note: `\"` is used to create a quote inside the string
+### Example 1: Using constants
+
+Note: `\"` is used to create a quote inside the string
 
 ```
 Chain "? \"100 + 50 is: \"; 100 + 50" 
@@ -12,7 +14,7 @@ Chain "? \"100 + 50 is: \"; 100 + 50"
 ' Output: 100 + 50 is: 150
 ```
 
-Example 2: Using variables
+### Example 2: Using variables
 
 ```
 Env "SB1=6"
@@ -22,7 +24,7 @@ Chain "? Env(\"SB1\") ^ Env(\"SB2\")"
 ' Output: 36
 ```
 
-Example 3: Using an array
+### Example 3: Using an array
 
 ```
 Env "SB1=3"
@@ -38,7 +40,7 @@ Chain a
 ' Output: 3 6 9 12 15
 ```
 
-Example 4: Using a file and returning a value
+### Example 4: Using a file and returning a value
 
 ```
 ' First we have to create a bas-file to show how chain works with files
@@ -67,7 +69,7 @@ print "Return value SB1 is: "; Env("SB1");
 ' Return value SB1 is: 6
 ```
 
-Example 5:
+### Example 5:
 
 ```
 ' Create demo bas file (could be any SmallBASIC file):
@@ -101,7 +103,7 @@ Color 7:  ? "I'm The Parent Program..."
 Color 15: ? "Child program returned value: "; Env("SB1")
 ```
 
-Example 6: Creating an eval function
+### Example 6: Creating an eval function
 
 ```
 ' Dedicated to MGA.
