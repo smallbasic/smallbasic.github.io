@@ -1,8 +1,10 @@
 # BIN
 
-> BIN (x)
+> s = BIN (x)
 
-Returns the binary value of x as string.
+Returns the binary value of `x` as string.
+
+### Example
 
 ```
 print hex(255)      ' output: FF
