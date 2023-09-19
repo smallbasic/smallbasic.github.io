@@ -6,8 +6,10 @@ Branch condition for a SELECT statement.
 
 See SELECT for more information and examples.
 
+### Example
+
 ```
-x = 1 ' Change to see what happens
+x = 1                 ' Change to see what happens
 select case x
     case 1
         print "x is 1"
