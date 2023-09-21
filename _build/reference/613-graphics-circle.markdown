@@ -1,25 +1,26 @@
 # CIRCLE
 
-> CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]
+> CIRCLE [STEP] x, y, r [, aspect [, color]] [COLOR color] [FILLED]
 
-Draws a circle (or an ellipse if the aspect is specified).
+Draws a circle (or an ellipse if the aspect is specified). The point `[x, y]` defines the center and `r` the radius of the circle in pixel.  To set the aspect ration use `aspect`. An aspect ratio of `1` will draw a circle. `color` defines the line color of the circle. If `FILLED` is used, the circle will be filled with the color `color`. If STEP is used `x, y` are a step in pixel from the actual graphics cursor position.
 
-Example 1: Draw a filled white circle
+By default CIRCLE draws with anti-aliasing. For details, see: [Fast, Antialiased Circles and Ellipses](https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/) To turn off anti-aliasing use `option predef antialias off`
+
+### Example 1: Draw a filled white circle
 
 ```
 circle 200, 200, 150 COLOR 15 FILLED
 ```
 
-Example 2: Draw a ellipse with aspect ration 1:2
+### Example 2: Draw a ellipse with aspect ration 1:2
 
 ```
 circle 200, 200, 150, 0.5
 ```
 
-Example 3: Draw a flower
+### Example 3: Draw a flower
 
-~~~
-
+```
 ' Aspect ratio is relation between width-height of a circle,
 ' for example:
 ' aspect = 1   = Perfect circle;
@@ -63,33 +64,36 @@ Circle CENTER, RADIUS, ASPECT_RATIO Color 14
 ' print text in the middle of main circle:
 At CENTER(0) - (Txtw(TEXT) \ 2), CENTER(1) - (Txth(TEXT) \ 2)
 Color 15: Print TEXT;
-~~~
+```
 
-Example 4: Smiley Face
+### Example 4: Smiley Face
 
-~~~
+```
 ' SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
 ' Smiley Face
-cx=xmax/2:cy=ymax/2:rface=250:reye=50:xle=cx-100:xre=cx+100:dir=1
+cx = xmax/2
+cy = ymax/2
+rface = 250
+reye = 50
+xle = cx - 100
+xre = cx + 100
+dir = 1
 while 1
   cls
-  circle cx,cy,rface,1,14 filled
-  circle xle,cy,reye,1-a,9 filled
-  circle xre,cy,reye,1-a,9 filled
-  circle cx,cy+130-a*50,100+a*50,.21+2*a,12 filled
-  circle cx,cy+100-a*50,100+a*50,.21+a,14 filled
-  at 0,0 :?a
+  circle cx, cy, rface, 1, 14 filled
+  circle xle, cy, reye, 1 - a, 9 filled
+  circle xre, cy, reye, 1 - a, 9 filled
+  circle cx, cy + 130 - a * 50, 100 + a * 50, .21 + 2 * a, 12 filled
+  circle cx, cy + 100 - a * 50, 100 + a * 50, .21 + a, 14 filled
   showpage
   delay 1
-  a+=.002*dir
-  if a=.26 then dir=dir*-1
-  if a=-.1 then dir=dir*-1
+  a+= .002 * dir
+  if a = .26 then dir = dir * -1
+  if a = -.1 then dir = dir *-1
 wend
-~~~
+```
 
-By default CIRCLE draws with anti-aliasing. For details, see: [Fast, Antialiased Circles and Ellipses](https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/)
-
-To turn off anti-aliasing, add this to the start of your program:
+### Example 5: Turn off anti-aliasing
 
 ```
 option predef antialias off
