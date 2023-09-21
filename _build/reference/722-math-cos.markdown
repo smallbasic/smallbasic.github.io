@@ -1,20 +1,22 @@
 # COS
 
-> COS (x)
+> f = COS (x)
 
-Cosine.
+Cosine of `x`. `x` is in radians.
+
+### Example 1
 
 ```
 a = cos(0.5)
-print a
+print a             ' Output: 0.87758256189037
 
 b = acos(a)
-print b
+print b             ' Output:  0.5
 ```
 
-See SIN, TAN and ATAN.
+### Example 2
 
-~~~
+```
 
 'TRIG lesson one.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12
 'note: the lines in the diagram have been thickened to help see and identify the color
@@ -109,59 +111,42 @@ at 0,0
 ?"press any for first screen again..."
 pause
 wend
+```
 
-~~~
+### Example 3
 
-At an angle around a given point, SIN and COS and radius (or distance) can locate the absolute screen x,y coordinate:
+At an angle around a given point, SIN and COS and radius (or distance) can locate the absolute screen x,y coordinate.
 
-~~~
-
-''' Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
-''' ah finally got diagramed analysis built into single quote commented code!!!
-''' the color codes match original Trig lesson one
-'''reminder XMAX, YMAX and PI are built in constants
+```
+' Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
+' ah finally got diagramed analysis built into single quote commented code!!!
+' the color codes match original Trig lesson one
+' reminder XMAX, YMAX and PI are built in constants
 CONST green =RGB(0,128,0)
-''' a central point cx,cy around which to draw 
+' a central point cx,cy around which to draw 
 cx=XMAX/2:cy=YMAX/2 'again cx,cy can be anywhere on screen so dont make them constant
-'''highlight center
+' highlight center
 CIRCLE cx,cy,2,1,15
 r=200 'the radius or distance in pixels from cx,cy desired
 CIRCLE cx,cy,r,1,8  'we want a point somewhere on this circle, radius = constant distance away from point
-'''      locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians
-''' here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)
+' locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians
+' here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)
 CIRCLE cx + r*COS(RAD(30)), cy + r*SIN(RAD(30)), 3, 1, 13   'x,y,r=3,aspect=1,color 13
-''' uncomment single comment lines for analysis
-'legend
-'LINE cx,cy,cx+r*COS(RAD(30)),cy,green 'adjacent leg in red
-'LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 'leg opposite in blue
-'LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12
-'RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15
-''''             V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6
-'ARC cx,cy,30,0,PI/6,1,14
-'ARC cx,cy,35,0,RAD(30),1,14
+legend
+LINE cx,cy,cx+r*COS(RAD(30)),cy,green 'adjacent leg in red
+LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 'leg opposite in blue
+LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12
+RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15
+' V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6
+ARC cx,cy,30,0,PI/6,1,14
+ARC cx,cy,35,0,RAD(30),1,14
 
-'''                Another example at 240 degrees = 4*PI/3 radians
-''' here is 60+180=240 degrees in yellow both x and y are neg in relation to cx,cy
-'CIRCLE cx + r*COS(RAD(240)), cy + r*SIN(RAD(240)), 3, 1, 14  'yellow
-'''uncomment single comment lines for analysis
-'legend
-'LINE cx,cy,cx+r*COS(RAD(240)),cy,green 'adjacent leg in red
-'LINE cx+r*COS(RAD(240)),cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),9 'leg opposite in blue
-'LINE cx,cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),12
-'RECT cx+r*COS(RAD(240))+2,cy-11 step 9,9,15
-'''240 degrees =180 + 60 = PI + 2*PI/6 = PI+PI/3 = 4*PI/3 radians
-'''               V end angle for arc in radians = RAD(240) or 4*PI/3 radians
-'ARC cx,cy,15,0,4*PI/3,1,14
-'ARC cx,cy,10,0,RAD(240),1,14
-PAUSE
 sub legend
   at 0,0
   ?"green = leg adj, blue =leg opp, red = hypotenuse = radius"
   ?"white square is where the right angle is, yellow arcs mark angle in question
   ?"COS(yellow) = adj/hyp = green/red, red is radius of circle
   ?"SIN(yellow) = opp/hyp =  blue/red, red is radius of circle
-end 
-
-~~~
-
+end
+```
 
