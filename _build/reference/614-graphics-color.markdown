@@ -2,68 +2,78 @@
 
 > COLOR foreground-color [, background-color]
 
-Specifies the foreground and background colors.
+Specifies the foreground color `foreground-color` and the optinal background color `background-color`.
 
 See RGB and RGBF to create colors.
 
-Example 1: Assigning SmallBASIC standard colors to text
+### Example 1
 
-~~~
+```
+color 14, 1
+print "Yellow text on blue background"
+```
+
+### Example 2: Assigning SmallBASIC standard colors to text
+
+```
 For back = 0 To 7 Do
   text = back Xor 15 ' count down text color (15 to 8)
   
   Color text, back
-  Print Using " text_, back COLOR ##, ## "; text, back;
+  Print Using " FG and BG COLOR: ##, ## "; text, back;
   
   Color back, text ' reverse colors
-  Print Using " text_, back COLOR ##, ## "; back, text
+  Print Using " FG and BG COLOR: ##, ## "; back, text
 Next
-~~~
+```
 
-Example 2: Assigning RGB-colors to text
+### Example 3: Assigning RGB-colors to text
 
-~~~
-
+```
 Print "Try color printing with some RGB shades"
 Print
 For shade = 0 To 10
-  text = rgb(shade*25,0,0)
-  back=rgb(255-shade*25,255-shade*25,255-shade*25)
+  text = rgb(shade * 25, 0, 0)
+  back = rgb(255 - shade * 25, 255 - shade * 25, 255 - shade * 25)
+  
   Color text, back
-  Print "Here is black to red on white to black ";shade*25;",";255-25*shade
+  
+  Print "Here is black to red on white to black "; shade * 25; ","; 255 - 25 * shade
   
   Color back, text ' reverse colors
-  Print "Here is reverse white to black  on black  to red."
+  
+  Print "Here is reverse white to black on black to red."
   print
 Next
-Pause
-~~~
+```
 
-Example 3: Using RGB and RGBF to draw a magenta filled rectangle with white boarder
+### Example 4: Using RGB and RGBF to draw a magenta filled rectangle with white boarder
 
 ```
-color rgb(255,67,133)
+color rgb(255, 67, 133)
 rect 10, 10, 100, 100 filled  ' filling always with foreground color
 
-color rgbf(1,1,1)
+color rgbf(1, 1, 1)
 rect 10, 10, 100, 100
 ```
 
-Here is a chart of the 16 SmallBASIC standard colors and their numbers:
+### Example 5: Chart of the 16 SmallBASIC standard colors and their numbers
 
-~~~
+```
 ' Color chart of the 16 SmallBASIC standard colors
 ' for 0 = black to 15 = bright white
-dy=ymax/16
-for i=0 to 15
-  rect 0,i*dy,xmax,i*dy+dy,i filled
-  at 0,i*dy:? i;
+dy = ymax / 16
+for i = 0 to 15
+  rect 0, i * dy, xmax, i * dy + dy, i filled
+  at 0, i * dy : print i;
 next
-~~~
+```
 
-You may Include "color_const.bas" file in another file to make your code more clear.
+### Example 6
 
-~~~
+You may include "color_const.bas" file in another file to make your code more clear.
+
+```
 ' demo - add these lines to another BAS file:
 ' ------------------------------------------
 '  Include "color_const.bas" ' actuall filename must be lower case for Linux.
@@ -88,6 +98,6 @@ Const BRIGHT_RED      = 12
 Const BRIGHT_MAGENTA  = 13
 Const YELLOW          = 14
 Const BRIGHT_WHITE    = 15
-~~~
+```
 
 
