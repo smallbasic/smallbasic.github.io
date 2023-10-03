@@ -1,14 +1,16 @@
 # ASINH
 
-> ASINH (x)
+> f = ASINH (x)
 
-Inverse hyperbolic sine.
+Inverse hyperbolic sine of `x`.
+
+### Example
 
 ```
 a = sinh(0.5)
-print a
+print a             ' Output: 0.52109530549375
 
 b = asinh(a)
-print b
+print b             ' Output: 0.5
 ```
 

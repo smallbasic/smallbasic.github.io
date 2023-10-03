@@ -1,10 +1,12 @@
 # BGETC
 
-> BGETC (fileN)
+> c = BGETC (fileN)
 
-Reads and returns a byte from file or device (Binary mode).
+Reads and returns a byte from file or device in binary mode.
 
 See BPUTC for writing bytes to a file or device.
+
+### Example
 
 ```
 ' create a binary file

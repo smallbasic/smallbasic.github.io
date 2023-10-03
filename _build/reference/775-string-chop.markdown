@@ -1,13 +1,12 @@
 # CHOP
 
-> CHOP (source)
+> s = CHOP (source)
 
-Chops off the last character of the string 'source' and returns the result.
+Chops off the last character of the string `source`.
+
+### Example
 
 ```
 s = "Test"
-print chop(s)
-
-' Output: Tes
+print chop(s)    ' Output: Tes
 ```
-

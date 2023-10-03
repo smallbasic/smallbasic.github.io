@@ -1,10 +1,10 @@
 # CALL
 
-> CALL (fp)
+> CALL (p [, var1 [, ..., varN])
 
-Invoke a sub or func by address pointer.
+Invoke a sub or func by address pointer `p`. Optional `var1` to `varN` variables of every SmallBASIC data type can be passed to function or sub, the address pointer points to.
 
-Example 1: CALL with a subroutine pointer
+### Example 1: CALL with a subroutine pointer
 
 ```
 sub MyPrint(i)
@@ -16,7 +16,7 @@ call a, "test"      ' when using CALL for subroutines,
                     ' please use CALL without brakets
 ```
 
-Example 2: CALL with a function pointer
+### Example 2: CALL with a function pointer
 
 ```
 func Increment(i, b)
@@ -30,7 +30,7 @@ y = call(a,x,2)     ' when using CALL for functions,
 print y
 ```
 
-Example 3: CALL with a subroutine pointer and BYREF:
+### Example 3: CALL with a subroutine pointer and BYREF:
 
 ```
 sub Increment(byref i, b)
@@ -43,7 +43,7 @@ call a,x,2
 print x
 ```
 
-Example 4: Passing function pointer to a function
+### Example 4: Passing function pointer to a function
 
 ```
 func Increment(i)

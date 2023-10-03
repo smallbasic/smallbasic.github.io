@@ -1,10 +1,12 @@
 # BPUTC
 
-> BPUTC# fileN; byte
+> BPUTC #fileN, byte
 
-Writes a byte on file or device. (Binary mode).
+Writes a byte `byte` on file or device in binary mode.
 
 See BGETC for reading bytes from a file or device.
+
+### Example
 
 ```
 ' create a binary file

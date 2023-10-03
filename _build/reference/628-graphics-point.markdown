@@ -5,6 +5,7 @@
 Returns the color of the pixel at `x`,`y`.
 
 If the y-argument is not specified, `x` specifies the following info-code:
+
 - 0: returns the current graphics cursor X-position
 - 1: returns the current graphics cursor Y-position
 

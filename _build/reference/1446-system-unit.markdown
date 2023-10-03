@@ -7,11 +7,11 @@ Declares the source module as a unit. Units are a set of procedures, functions, 
 - UNIT supports 'namespace' (Namespaces allow reuse of same names in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both using a function with the same name, "Set", but in different contexts).
 - While UNIT can be used as a collection of sub-routines for your own program, UNIT is particularly useful for creating a general-purpose library. General purpose libraries can be useful for many programs or projects, the same way the internal routine “PRINT” is useful for many programs, and not only for specific one.
 
-Use EXPORT to export procedured, functions, constants or variables. Only exported names can be access in the main program.
+Use EXPORT to export procedures, functions, constants or variables. Only exported names can be accessed in the main program.
 
 ### Example 1: Simple Unit
 
-First an example of the unit. Please save it with the filename "MyTestUnit.bas"
+First, an example of the unit. Please save it with the filename "MyTestUnit.bas"
 
 ```
 UNIT MyTestUnit
@@ -30,7 +30,7 @@ sub MySub(a,b)
 end
 ```
 
-Second an example on how to use the unit.
+Second, an example on how to use the unit.
 
 ```
 import MyTestUnit as u
@@ -45,13 +45,12 @@ print u.MyVar
 ```
 
 
-### Example 2: An unit for using string
+### Example 2: An unit for using strings
 
 
-The UNIT file is strlib.bas:
+The UNIT file. Please save as strlib.bas.
 
-~~~
-
+```
 ' File: strlib.bas
 ' ------------
 ' In this demo we are using UNIT to add more useful String commands to
@@ -100,12 +99,11 @@ Func Rset(s, b)
     Rset = Space(b - l) + s
   Fi
 End
-
-~~~
+```
 
 Demo file, demo.bas, which is using strlib.bas above:
 
-~~~
+```
 ' Here we declare that this file is using another UNIT file.
 ' Note: The actual file name must be in lower case for Linux OS.
 Import strlib ' (without .bas extension)
@@ -120,6 +118,6 @@ Print Strlib.Lset(Strlib.Rset("This way...", 18), 25)
 Locate 6, 30
 Print Strlib.Rset("-->>  ", 25)
 Pause
-~~~
+```
 
 

@@ -2,13 +2,11 @@
 
 > CONST name = expr
 
-Declare a variable who's value does not change during program execution.
+Declare a variable `name` who's value does not change during program execution. `name` follows the rules for naming SmallBASIC variables. `expr` is an expression consisting of literals, with or without operators, only.
 
-
-* name - An identifier that follows the rules for naming BASIC variables.
-* expr - An expression consisting of literals, with or without operators, only.
+### Example
 
 ```
 CONST G = 6.67259E-11
-CONST PI = 3.1415
+CONST PISQUARE = PI^2
 ```

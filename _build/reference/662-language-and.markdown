@@ -1,23 +1,48 @@
 # AND
 
-> a AND b
+> n = a AND b
 
-Logical AND. Right side is not evaluated if left side evaluates to False.
+Logical AND. Right side is not evaluated if left side evaluates to FALSE.
+
+Truth table:
+
+| a | b| a AND b |
+|:-:|:-:|:------:|
+| 0 | 0 |   0    |
+| 0 | 1 |   0    |
+| 1 | 0 |   0    |
+| 1 | 1 |   1    |
+
+### Example 1
 
 ```
 a = 1
 b = 0
 
-print a and b   ' output is 0
+print a and b   ' Output: 0
+```
+
+### Example 2: Using AND in an if-statement
+
+```
+a = 1
+b = 0
 
 if(a == 1 and b == 0) then print "if statement 1"
-if(a == 1 and b == 1) then print "if statement 2"       ' "if statement 2" will not be printed to the screen
+if(a == 1 and b == 1) then print "if statement 2"
 
 c = "test"
 
 if(a == 1 and c == "test") then print "if statement 3"
-if(a == 1 and c == "test2") then print "if statement 4" ' "if statement 4" will not be printed to the screen
+if(a == 1 and c == "test2") then print "if statement 4"
+
+
+' Output:
+' if statement 1
+' if statement 3
 ```
+
+### Example 3: Truth table for logical and bitwise operators
 
 ```
 ? " < SmallBASIC - Truth Table > "
@@ -156,13 +181,9 @@ n = 0xFFFFFFFF Band 0x7FFFFFFF
 
 The code above produces different results on 32-bit and 64-bit systems;
 Therefore it leads to subtle bug with no run-time error, and no other
-indication.
-
-The reason for this inconsistency is the fact that SamllBASIC determine
+indication. The reason for this inconsistency is the fact that SamllBASIC determine
 the type of variables on the fly. And while the sign bit in a 64-bits
-register is bit-63 - in a 32-bits register is bit-31.
-
-SmallBASIC integers are 32-bit signed integers. The sign bit of
+register is bit-63 - in a 32-bits register is bit-31. SmallBASIC integers are 32-bit signed integers. The sign bit of
 SmallBASIC integer is bit-31 (base 0). It is Safe to manipulate only
 bits 0 to 30, on both 64-bit and 32-bit systems. But it is Not safe
 to manipulate the sign bit, bit-31.

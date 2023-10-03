@@ -2,7 +2,9 @@
 
 > COPY file, newfile
 
-Makes a copy of specified file the newfile.
+Makes a copy of file `file` to the file `newfile`.
+
+### Example
 
 ```
 copy "test.txt", "test_backup.txt"

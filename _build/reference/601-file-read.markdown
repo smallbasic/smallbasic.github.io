@@ -1,10 +1,10 @@
-# WRITE
+# READ
 
-> WRITE #fileN, var1 [, var2, ... , varN]
+> READ #fileN, var1 [, var2, ... , varN]
 
-Store variables `var1` to `varN` to a file as binary data. Variables can be numbers, strings and arrays.
+Read variables `var1` to `varN` from a binary data file. Variables can be numbers, strings and arrays.
 
-See READ for reading variables from a file.
+See WRITE for writing variables to a file.
 
 ### Example
 

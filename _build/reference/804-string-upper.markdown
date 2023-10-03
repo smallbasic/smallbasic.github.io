@@ -1,8 +1,15 @@
 # UPPER
 
-> UPPER (s)
+> us = UPPER (s)
 
-Converts the string s to upper case.
+Converts the string `s` to a upper case string `us`.
 
-Yes, you should see the comment in UCASE.
+See LCASE and LOWER for converting a string to lower case. UPPER and UCASE are equivalent.
+
+### Example
+
+```
+s = "abc"
+print upper(s)      ' Output: ABC
+```
 

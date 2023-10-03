@@ -1,10 +1,12 @@
 # BCS
 
-> BCS (s)
+> r = BCS (s)
 
-Converts (B)ASIC-style strings to (C)-style (S)trings by masking escape codes. Escape codes in the string will not be applied to format the string when printed on the screen. Instead escape codes will be printed as they are.
+Converts the BASIC-style string `s` to C-style string by masking escape codes. Escape codes in the string will not be applied to format the string when printed on the screen. Instead escape codes will be printed as they are.
 
 See CBS to unmasked a c-style string, and see article "Escape codes" for more information about escape codes.
+
+### Example
 
 ```
 ' define some escape codes

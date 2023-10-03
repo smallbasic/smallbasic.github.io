@@ -1,13 +1,15 @@
 # ABS
 
-> ABS (x)
+> f = ABS (x)
 
-Returns the absolute value of x.
+Returns the absolute value of `x`.
+
+### Example
 
 ```
 a =  1
 b = -1
 
-print abs(a)
-print abs(b)
+print abs(a)      ' Output: 1
+print abs(b)      ' Output: 1
 ```

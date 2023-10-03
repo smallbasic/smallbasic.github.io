@@ -1,13 +1,15 @@
 # ASIN
 
-> ASIN (x)
+> f = ASIN (x)
 
-Inverse sine.
+Inverse sine of `x`.
+
+### Example
 
 ```
 a = sin(0.5)
-print a
+print a                 ' Output: 0.4794255386042
 
 b = asin(a)
-print b
+print b                 ' Output: 0.5
 ```

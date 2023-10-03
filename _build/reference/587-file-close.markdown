@@ -2,9 +2,11 @@
 
 > CLOSE #fileN
 
-Close a file or device with file-handle #fileN.
+Close a file or device with file-handle `#fileN`.
 
 See OPEN for more information on how to read or write files.
+
+### Example
 
 ```
 ' create a text file

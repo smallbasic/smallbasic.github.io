@@ -4,6 +4,8 @@
 
 Returns the lower bound `lb` of an array `array`. `dim` can be used to specifiy, at which dimension the lower bound should be returned if `array` is a multi-dimensional array. If `dim` is not used the lower bound of the first dimension will be returned.
 
+See UBOUND for upper bound of an array.
+
 ### Example 1: Lower bound of one-dimensional arrays
 
 ```
