@@ -1,4 +1,4 @@
-SmallBASIC Language reference [12/09/2023]
+SmallBASIC Language reference [04/10/2023]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -11,8 +11,8 @@ AT BEEP CAT CLS DEFINEKEY FORM INKEY INPUT LINEINPUT LINPUT LOCATE LOGPRINT NOSO
 TAB APPEND ARRAY DATA DELETE DIM EMPTY ERASE INSERT ISARRAY ISDIR ISFILE ISLINK ISMAP ISNUMBER ISSTRING 
 LBOUND LEN READ REDIM RESTORE SEARCH SORT SWAP UBOUND DATE DATEDMY DATEFMT JULIAN TICKS TIME TIMEHMS 
 TIMER TIMESTAMP WEEKDAY ACCESS BGETC BLOAD BPUTC BSAVE CHDIR CHMOD CLOSE COPY DIRWALK EOF EXIST FILES 
-FREEFILE INPUT INPUT KILL LOCK LOF MKDIR OPEN RENAME RMDIR SEEK SEEK TLOAD TSAVE WRITE ARC CHART CIRCLE 
-COLOR DRAW DRAWPOLY IMAGE LINE PAINT PEN PLOT POINT PSET RECT RGB RGBF SHOWPAGE TEXTHEIGHT TEXTWIDTH 
+FREEFILE INPUT INPUT KILL LOCK LOF MKDIR OPEN READ RENAME RMDIR SEEK SEEK TLOAD TSAVE WRITE ARC CHART 
+CIRCLE COLOR DRAW DRAWPOLY IMAGE LINE PAINT PEN PLOT POINT PSET RECT RGB RGBF SHOWPAGE TEXTHEIGHT TEXTWIDTH 
 TXTH TXTW VIEW WINDOW XMAX XPOS YMAX YPOS AND AS BAND BG BOR BYREF CALL CASE CATCH CONST DECLARE DEF 
 DO ELIF ELSE ELSEIF END END TRY ENDIF EQV EXIT FALSE FI FOR FUNC GOSUB GOTO IF IFF IMP IN LABEL LET LIKE 
 LOCAL LSHIFT MDL MOD NAND NEXT NOR NOT ON OR REM REPEAT RETURN RSHIFT SELECT STEP STOP SUB THEN THROW 
@@ -32,7 +32,12 @@ INCLUDE MAXINT NIL OPTION PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TRO
 
 AT x, y
 
-Moves the console cursor to the specified position. x,y are in pixels.
+Moves the text cursor to the specified position [x, y]. x and y are in
+pixels.
+
+See LOCATE to move the text cursor in units of characters cells.
+
+Example
 
     at 100,100
     print "This text starts at pixel 100,100"
@@ -45,38 +50,45 @@ BEEP
 
 Generates a beep sound.
 
+Example
+
+    beep
+
 +========================================================================================+
 |                                     3. (Console) CAT                                   |
 +========================================================================================+
 
 CAT (x)
 
-Returns an escape code to format a string.
+Returns an escape code to format a string. The values of x are listed in
+teh followin table:
 
-  x    format
+     x format
   ---- ---------------
-  0    reset
-  1    bold
-  -1   bold off
-  2    underline
-  -2   underline off
-  3    reverse
-  -3   reverse off
+     0 reset
+     1 bold
+    -1 bold off
+     2 underline
+    -2 underline off
+     3 reverse
+    -3 reverse off
 
 For more information about escape codes please see the article “Escape
 codes”.
 
+Example
+
     Color 14, 1
-    ? Cat(1); "This is Bold text"; Cat(-1)
-    ?
-    ? Cat(2); "This is Underline text"; Cat(-2)
-    ?
-    ? Cat(3); "This is Reverse text"; Cat(-3)
-    ? 
+    print Cat(1); "This is Bold text"; Cat(-1)
+    print
+    print Cat(2); "This is Underline text"; Cat(-2)
+    print
+    print Cat(3); "This is Reverse text"; Cat(-3)
+    print 
     ' Cat(0) resets ALL attributes, including colors.
-    ? Cat(1); Cat(2); "This is Bold & Underline text"; Cat(0) 
-    ?
-    ? Cat(2); Cat(3); "This is Underline & Reverse text (with default colors)"; Cat(0)
+    print Cat(1); Cat(2); "This is Bold & Underline text"; Cat(0) 
+    print
+    print Cat(2); Cat(3); "This is Underline & Reverse text (with default colors)"; Cat(0)
 
 +========================================================================================+
 |                                     4. (Console) CLS                                   |
@@ -85,6 +97,8 @@ codes”.
 CLS 
 
 Clears the screen.
+
+Example
 
     print "Test"
     CLS
@@ -1203,6 +1217,13 @@ NOSOUND
 
 Stop background sound and clear the sound queue.
 
+Example
+
+    sound 1000, 5000, 50 BG         ' 1000 Hz, 5000 ms, 50% volume, play in background
+    delay(1000)                     ' Wait 1s and then cancel sound
+    nosound
+    pause
+
 +========================================================================================+
 |                                    14. (Console) PEN                                   |
 +========================================================================================+
@@ -1511,10 +1532,12 @@ Example
 
 APPEND a, val [, val [, ...]]
 
-Inserts the values at the end of the specified array.
+Inserts the values var1 to varN at the end of the array a. var1 to varN
+can be any data type.
 
--   a - An array-variable.
--   val - Any value or expression
+Instead of APPEND the << Operator can be used.
+
+Example 1: Append single number
 
     a = [1,2,3]
     print "Before APPEND: "; a
@@ -1522,13 +1545,37 @@ Inserts the values at the end of the specified array.
     APPEND a, 4
     print "After APPEND : "; a
 
-Instead of APPEND the << Operator can be used.
+    ' Output:
+    ' Before APPEND: [1,2,3]
+    ' After APPEND : [1,2,3,4]
+
+Example 2: Append multiple numbers
 
     a = [1,2,3]
-    print "Before << operaror: "; a
+
+    APPEND a, 4, 5
+    print a              ' Output: [1,2,3,4,5]
+
+Example 3: Append an array
+
+    a = [1,2,3]
+
+    APPEND a, [4,5,6]
+    print a              ' Output: [1,2,3,[4,5,6]]
+
+Example 4: Append a string
+
+    a = ["a", "b", "c"]
+
+    APPEND a, "d"
+    print a                 ' Output: [a,b,c,d]
+
+Example 5: Using << operator
+
+    a = [1,2,3]
 
     a << 4
-    print "After << operator : "; a
+    print a                  ' Output: [1,2,3,4]
 
 +========================================================================================+
 |                                     20. (Data) ARRAY                                   |
@@ -1536,128 +1583,32 @@ Instead of APPEND the << Operator can be used.
 
 ARRAY [var | expr]
 
-Creates a ARRAY or MAP variable from the given string or expression.
+Creates a ARRAY or MAP variable from the given string s or expression
+expr. The ARRAY command supports JSON (Javascript object notation)
+syntax. The MAP provides value-key pair access along with array or
+dotted notation.
 
-The ARRAY command supports JSON (Javascript object notation) syntax. The
-MAP provides value-key pair access along with array or dotted notation.
-The MAP can be converted back into a JSON string using the STR command.
-You can test whether a variable is a MAP using the ISMAP command.
+See STR for converting a MAP variable into a JSON string.
+
+Example 1: JSON string to MAP
 
     a = array("{Name: Alice, Age: 20}")
     print a
     print a.Name + " is " + a.Age + " years old"
 
-Instead of using ARRAY, the following shorter syntax will give the same
-result:
+    ' Output:
+    ' {"Age":20,"Name":"Alice"}
+    ' Alice is 20 years old
 
-    a = {Name: Alice, Age: 20}
-    print a
-    print a.Name + " is " + a.Age + " years old"
+Example 2: JSON with nested MAP
 
-The following example shows a possible JSON representation describing a
-person:
+    a = Array("{x:1, y:3, down:{x:4, y:7}}")
+    print a                                    ' Output: {"down":{"y":7,"x":4},"x":1,"y":3}
 
-    {
-      "firstName": "John",
-      "lastName": "Smith",
-      "isAlive": true,
-      "age": 25,
-      "address": {
-        "streetAddress": "21 2nd Street",
-        "city": "New York",
-        "state": "NY",
-        "postalCode": "10021-3100"
-      },
-      "phoneNumbers": [
-        {
-          "type": "home",
-          "number": "212 555-1234"
-        },
-        {
-          "type": "office",
-          "number": "646 555-4567"
-        },
-        {
-          "type": "mobile",
-          "number": "123 456-7890"
-        }
-      ],
-      "children": [],
-      "spouse": null
-    }
+Example 3: Array string to array
 
-Example 1:
-
-    Def uline(text) = Cat(2) + text + Cat(-2) ' Underline text
-    Cls
-    ? uline("1-Dimension Map Array:")
-    ?
-    a = Array("{x:100, y:300, title:top-left}")
-    ? "a is:       "; a
-    ? "a is map?   "; Ismap(a)
-    ?
-    ? "a.x is:     "; a.x
-    ? "a.y is:     "; a.y
-    ? "a.title is: "; a.title
-    ?
-    a.x = "N/A"
-    ? "a.x is now: "; a.x
-    ?
-    ?:?:? " Press any key..."
-    Pause
-    Cls
-    ? uline("1-Dimension Map Array, with 1-D Nested Map Array:")
-    ?
-    Dim a(1 To 10, 1 To 2)
-    a(5, 1) = Array("{x:1, y:3, down:{x:4, y:7}}")
-    ? "a(5, 1) is:            "; a(5, 1)
-    ? "a(5, 1) is map?        "; Ismap(a(5, 1))
-    ? "a is map?              "; Ismap(a)
-    ?
-    ? "a(5, 1).x is:          "; a(5, 1).x
-    ? "a(5, 1).y is:          "; a(5, 1).y
-    ? "a(5, 1).down.x is:     "; a(5, 1).down.x
-    ? "a(5, 1).down.y is:     "; a(5, 1).down.y
-    ?
-    a(5, 1).down.x = "N/A"
-    ? "a(5, 1).down.x is now: "; a(5, 1).down.x
-    ?
-    ?:?:? " Press any key..."
-    Pause
-    Cls
-    ? uline("1-Dimension Map Array, with Two 1-D Nested Map Arrays:")
-    ?
-    a = Array("{x:1, y:3, down:[{x:4, y:7}, {x:6, y:9}]}")
-    ? "a is:               "; a
-    ? "a is map?           "; Ismap(a)
-    ?
-    ? "a.x is:             "; a.x
-    ? "a.y is:             "; a.y
-    ? "a.down(0).x is:     "; a.down(0).x
-    ? "a.down(0).y is:     "; a.down(0).y
-    ? "a.down(1).x is:     "; a.down(1).x
-    ? "a.down(1).y is:     "; a.down(1).y
-    ?
-    a.down(1).x = "N/A"
-    ? "a.down(1).x is now: "; a.down(1).x
-    ?
-    ?:?:? " Press any key..."
-    Pause
-    Cls
-    ? uline("Create 1-Dimension Map Array without using ARRAY Keyword:")
-    ?
-    b.x = 40
-    b.y = 50
-    b.title = "Top-Left"
-    ? "b.x is:     "; b.x
-    ? "b.y is:     "; b.y
-    ? "b.title is: "; b.title
-    ?
-    ? "b is:       "; b
-    ? "b is map?   "; Ismap(b)
-    ?
-    ?:?:? " Press any key..."
-    Pause
+    a = Array("[1,2,3]")
+    print a                 ' Output: [1,2,3]
 
 +========================================================================================+
 |                                     21. (Data) DATA                                    |
@@ -2079,6 +2030,8 @@ specifiy, at which dimension the lower bound should be returned if array
 is a multi-dimensional array. If dim is not used the lower bound of the
 first dimension will be returned.
 
+See UBOUND for upper bound of an array.
+
 Example 1: Lower bound of one-dimensional arrays
 
     dim A(5)
@@ -2408,7 +2361,38 @@ Example 3: Swap arrays
 
 UBOUND (array [, dim])
 
-Returns the upper bound of ‘array’.
+Returns the upper bound ub of an array array. dim can be used to
+specifiy, at which dimension the upper bound should be returned if array
+is a multi-dimensional array. If dim is not used the upper bound of the
+first dimension will be returned.
+
+See LBOUND for lower bound of an array.
+
+Example 1: Upper bound of one-dimensional arrays
+
+    dim A(5)
+    dim B(5 to 10)
+
+    print ubound(A)     ' Output: 5
+    print ubound(B)     ' Output: 10
+
+Example 2: Upper bound of multi-dimensional arrays
+
+    dim A(5,6,7)
+    dim B(5 to 10, 7 to 12, 9 to 14)
+
+    print ubound(A, 2)     ' Output: 6
+    print ubound(B, 2)     ' Output: 12
+
+Example 3: Using option base 1
+
+    option base 1
+
+    dim A(5)
+    dim B(5 to 10)
+
+    print ubound(A)     ' Output: 5
+    print ubound(B)     ' Output: 10
 
 +========================================================================================+
 |                                     43. (Date) DATE                                    |
@@ -2623,15 +2607,22 @@ Example
 
 WEEKDAY (dmy| (d,m,y)| julian_date)
 
-Returns the day of the week (0 = Sunday).
+Returns the day of the week as a number between 0 and 6. Sunday is 0.
+WEEKDAY accepts a string dmy as returned by DATE, a number julian_date
+as returned by JULIAN or a date given by the three numbers d for day, m
+for month and y for year.
 
-    PRINT WeekDay(DATE)
-    PRINT WeekDay(Julian(31, 12, 2001))
-    PRINT WeekDay(31, 12, 2001)
+Example 1
+
+    PRINT WeekDay(DATE)                     ' Output: 3  -> Wednesday
+    PRINT WeekDay(Julian(31, 12, 2023))     ' Output: 0  -> Sunday
+    PRINT WeekDay(31, 12, 2023)             ' Output: 0  -> Sunday
+
+Example 2
 
     SPLIT "Sun Mon Tue Wed Thu Fri Sat", " ", wd
-    today = "Today is " + wd(WEEKDAY(DATE)) + " " + DATE
-    PRINT today
+    print "Today is " + wd(WEEKDAY(DATE)) + " " + DATE 
+    ' Output: Today is Wed 13/09/2023
 
 +========================================================================================+
 |                                    53. (File) ACCESS                                   |
@@ -2639,28 +2630,27 @@ Returns the day of the week (0 = Sunday).
 
 ACCESS (file)
 
-Returns the access rights of the file.
+Returns the access rights of a file. The string file follows OS file
+naming conventions. The returned file permission number n follows the
+permission pattern of the chmod() and stat() system calls. The bits of n
+(in octal) are:
 
--   file - A string expression that follows OS file naming conventions.
-
-Returns file permissions as per chmod() and stat() system calls.
-
-The bits (in octal):
-
-  Bits     Permission
+    Bits   Permission
   -------- ---------------------------
-  0o4000   set user ID on execution
-  0o2000   set group ID on execution
-  0o1000   sticky bit
-  0o400    read by owner
-  0o200    write by owner
-  0o100    execute/search by owner
-  0o40     read by group
-  0o20     write by group
-  0o10     execute/search by group
-  0o4      read by others
-  0o2      write by others
-  0o1      execute/search by others
+   0o4000  set user ID on execution
+   0o2000  set group ID on execution
+   0o1000  sticky bit
+   0o400   read by owner
+   0o200   write by owner
+   0o100   execute/search by owner
+    0o40   read by group
+    0o20   write by group
+    0o10   execute/search by group
+    0o4    read by others
+    0o2    write by others
+    0o1    execute/search by others
+
+Example
 
     IF ACCESS("/bin/sh") AND 0o4 THEN
        PRINT "Others can read the file"
@@ -2672,9 +2662,11 @@ The bits (in octal):
 
 BGETC (fileN)
 
-Reads and returns a byte from file or device (Binary mode).
+Reads and returns a byte from file or device in binary mode.
 
 See BPUTC for writing bytes to a file or device.
+
+Example
 
     ' create a binary file
     open "BinaryFile.txt" for output as #1
@@ -2709,9 +2701,11 @@ Loads a specified memory image file into memory.
 
 BPUTC# fileN; byte
 
-Writes a byte on file or device. (Binary mode).
+Writes a byte byte on file or device in binary mode.
 
 See BGETC for reading bytes from a file or device.
+
+Example
 
     ' create a binary file
     open "BinaryFile.txt" for output as #1
@@ -2746,7 +2740,8 @@ Copies a specified portion of memory to a specified file.
 
 CHDIR dir
 
-Changes the current working directory.
+Changes the current working directory to dir. In Windows \ needs to be
+replaced by \\
 
 See CWD to get the current working directory.
 
@@ -2756,18 +2751,25 @@ Example 1: Linux
     chdir "/usr/bin"
     print cwd
 
+Example 2: Windows
+
+    print cwd
+    chdir "C:\\"
+    print cwd
+
 +========================================================================================+
 |                                     59. (File) CHMOD                                   |
 +========================================================================================+
 
 CHMOD file, mode
 
-Change permissions of a file. See also ACCESS.
+Change permissions of a file. The string file holds the file name and
+follows OS file naming conventions. mode provides the file permission
+and must be compatible with system call chmod()‘s ’mode’ parameter.
 
--   file - A string expression that follows OS file naming conventions.
--   mode - Compatible with system call chmod()‘s ’mode’ parameter.
+See ACCESS to get information on file permissions.
 
-Linux:
+Linux
 
 mode is a number best represented in octal: 0oUGO with U: User; G:
 Group; O: Other
@@ -2785,6 +2787,8 @@ U, G and O are each defined the following way:
      6        r + w
      7      r + w + x
 
+Example
+
     ' Make myfile available to anyone (read/write)
     CHMOD "myfile.bas", 0o666
 
@@ -2795,6 +2799,19 @@ U, G and O are each defined the following way:
     ' All others only read
     CHMOD "myfile.bas", 0o644
 
+Windows
+
+in Windows the read-only flag can be set with mode = 1 and unset with
+mode = -1
+
+Example
+
+    ' Make myfile read-only
+    CHMOD "myfile.bas", 1
+
+    ' Make myfile read and write
+    CHMOD "myfile.bas", -1
+
 +========================================================================================+
 |                                     60. (File) CLOSE                                   |
 +========================================================================================+
@@ -2804,6 +2821,8 @@ CLOSE #fileN
 Close a file or device with file-handle #fileN.
 
 See OPEN for more information on how to read or write files.
+
+Example
 
     ' create a text file
     open "MyDemoFile.txt" for output as #1
@@ -2830,7 +2849,9 @@ See OPEN for more information on how to read or write files.
 
 COPY \"file\", \"newfile\"
 
-Makes a copy of specified file the newfile.
+Makes a copy of file file to the file newfile.
+
+Example
 
     copy "test.txt", "test_backup.txt"
 
@@ -3431,7 +3452,38 @@ Example 3: Open a COM port (RS232)
     close #1
 
 +========================================================================================+
-|                                    74. (File) RENAME                                   |
+|                                     74. (File) READ                                    |
++========================================================================================+
+
+READ #fileN; var1 [, ...]
+
+Read variables var1 to varN from a binary data file. Variables can be
+numbers, strings and arrays.
+
+See WRITE for writing variables to a file.
+
+Example
+
+    a = 12.3
+    b = "test"
+    c = [1,2,3,4]
+
+    ' Write variables to file
+    open "text.bin" for output as #1
+    write #1, a, b, c
+    close #1
+
+    ' Read variables from file
+    open "text.bin" for input as #1
+    read #1, a, b, c
+    close #1
+
+    print a
+    print b
+    print c
+
++========================================================================================+
+|                                    75. (File) RENAME                                   |
 +========================================================================================+
 
 RENAME \"file\", \"newname\"
@@ -3448,7 +3500,7 @@ Example:
     rename "test.txt", "test_renamed.txt"
 
 +========================================================================================+
-|                                     75. (File) RMDIR                                   |
+|                                     76. (File) RMDIR                                   |
 +========================================================================================+
 
 RMDIR dir
@@ -3461,7 +3513,7 @@ Example
     rmdir "testdirectory"   ' Delete directory
 
 +========================================================================================+
-|                                     76. (File) SEEK                                    |
+|                                     77. (File) SEEK                                    |
 +========================================================================================+
 
 SEEK #fileN; pos
@@ -3485,7 +3537,7 @@ Example
     close #1
 
 +========================================================================================+
-|                                     77. (File) SEEK                                    |
+|                                     78. (File) SEEK                                    |
 +========================================================================================+
 
 SEEK (fileN)
@@ -3507,7 +3559,7 @@ Example
     close #1
 
 +========================================================================================+
-|                                     78. (File) TLOAD                                   |
+|                                     79. (File) TLOAD                                   |
 +========================================================================================+
 
 TLOAD file, BYREF var [, type]
@@ -3579,7 +3631,7 @@ Example 3: Read as string
                                     '         <-
 
 +========================================================================================+
-|                                     79. (File) TSAVE                                   |
+|                                     80. (File) TSAVE                                   |
 +========================================================================================+
 
 TSAVE file, var
@@ -3623,146 +3675,54 @@ Example 2: Save a string
     print B                         ' Output: [line 1,line 2,line 3]
 
 +========================================================================================+
-|                                     80. (File) WRITE                                   |
+|                                     81. (File) WRITE                                   |
 +========================================================================================+
 
 WRITE #fileN; var1 [, ...]
 
-Store variables to a file as binary data.
+Store variables var1 to varN to a file as binary data. Variables can be
+numbers, strings and arrays.
 
-The READ/WRITE command set is used to store variables to a file as
-binary data. The common problem with INPUT/PRINT set is there are many
-conflicts with data. > PRINT #1; “Hello, world” The above example only
-wrote one string and you want read it in one variable, but this is
-impossible for INPUT command to understand, because INPUT finds the
-separator comma, so it thinks there are two variables not one. So, now,
-you can store arrays, strings etc and what you write is what you will
-read the next time. The parameters can be variables ONLY. Its very bad
-idea to mixed READ/WRITE commands with INPUT/PRINT commands in the same
-file.
+See READ for reading variables from a file.
 
-This is how to store numeric arrays into files, WRITE # and read them
-out again, READ #. The graphic example is longer but also useful as
-utility…
+Example
 
+    a = 12.3
+    b = "test"
+    c = [1,2,3,4]
 
-    ' WRITE READ.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-03
-    const secwide=200
-    const sechigh=200
-    dim sect(secwide,sechigh)
-    dim fsect(secwide,sechigh)
-    for i=1 to 100
-      if rnd<.5 then
-        circle rnd*xmax,rnd*ymax,rnd*100,1,7+(rnd*9)\\1
-      else
-        circle rnd*xmax,rnd*ymax,rnd*100,1,7+(rnd*9)\\1 filled
-      fi
-    next
-    getsec 200,400          '<== load array with data
-    rect 200,400,400,600,15 '<=== draw square around the section captured
-    savesect                '<== array data to file
-    input "OK press enter for write read test ";temp
-    cls
-    loadsect     '<== file data to array
-    x=100:y=100
-    while 1
-      cls
-      drwsec x,y '<== using data from file
-      showpage
-      delay 10
-      x=x+5:y=y+5
-    wend
-    sub savesect
-      open "READ WRITE test.dat" for output as #1
-      local x,y
-      for y=0 to sechigh
-        for x=0 to secwide
-          write #1,sect(x,y) '<==== array data to file
-        next
-      next
-      close #1
-    end
-    sub loadsect
-       open "READ WRITE test.dat" for input as #1
-      local x,y
-      for y=0 to sechigh
-        for x=0 to secwide
-          read #1,fsect(x,y)  '<=== load file array
-        next
-      next
-      close #1 
-    end
-    sub getsec(xstart,ystart)
-      local x,y
-      'these are all global
-      for y=0 to sechigh
-        for x=0 to secwide
-          sect(x,y)=POINT(xstart+x,ystart+y) '<== data from screen points
-        next
-      next
-    end 
-    sub drwsec(leftx,topy)
-      local x,y
-      for y=0 to sechigh
-        for x=0 to secwide
-          pset x+leftx,y+topy,fsect(x,y) '<== array from file
-        next
-      next
-    end 
+    ' Write variables to file
+    open "text.bin" for output as #1
+    write #1, a, b, c
+    close #1
 
+    ' Read variables from file
+    open "text.bin" for input as #1
+    read #1, a, b, c
+    close #1
 
-    ' This demo sets properties of each tile in a matrix,
-    ' then it stores the array in config file,
-    ' then it loads the array from that config file.
-    ' Note: WRITE/READ are using binary format for storing numbers, therefore
-    '       number 1, for example, takes the same space as number -26845339.14
-    Const TILES_X    = 20 ' Maximum tiles in x axis
-    Const TILES_Y    = 15 ' Maximum tiles in y axis
-    Const PROPERTIES = 3  ' Maximum properties for each tile in the matrix.
-    Const P_FILENAME = 1 ' Some demo properties for each tile
-    Const P_FILETYPE = 2
-    Const P_HIDE     = 3
-    ' Create 3-dimension array to store tiles properties:
-    Dim tile(1 To TILES_X, 1 To TILES_Y, 1 To PROPERTIES)
-    ' Demo to set a single tile properties, at x,y=10,2 in matrix:
-    tile(10, 2, P_FILENAME) = "bricks.bmp" ' file name to load tile from
-    tile(10, 2, P_FILETYPE) = "BMP16"      ' format of tile-file  
-    tile(10, 2, P_HIDE)     = 1            ' hide/show [1/0] this tile
-     
-    ' Save tiles in config file 1:
-    Open "tiles1.cfg" For Output As #1
-    For y = 1 To TILES_Y
-      For x = 1 To TILES_X
-        For p = 1 To PROPERTIES
-          Write #1; tile(x, y, p)
-        Next p
-      Next x
-    Next y
-    Close #1
-    ' Load tiles from config file 1:
-    Open "tiles1.cfg" For Input As #1
-    For y = 1 To TILES_Y
-      For x = 1 To TILES_X
-        For p = 1 To PROPERTIES
-          Read #1; tile(x, y, p)
-        Next p
-      Next x
-    Next y
-    Close #1
-    ' Print demo of a single tile properties, at x,y=10,2 in matrix:
-    ? "File name to load tile from: "; tile(10, 2, P_FILENAME)
-    ? "Format of tile-file: "; tile(10, 2, P_FILETYPE)
-    ? "Hide/Show [1/0] this tile: "; tile(10, 2, P_HIDE)
-    Pause
+    print a
+    print b
+    print c
 
 +========================================================================================+
-|                                    81. (Graphics) ARC                                  |
+|                                    82. (Graphics) ARC                                  |
 +========================================================================================+
 
 ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]
 
-Draws an arc. - x, y: center point - r: radius - astart, aend:
-first,last angle in radians - aspect: aspect ratio - color: line color
+Draws an arc:
+
+-   [x, y]: center point
+-   r: radius in pixel
+-   astart, aend: first anf last angle in radians
+-   aspect: aspect ratio
+-   color: line color
+
+If STEP is used x and y are a step from the last position of the
+graphics cursor.
+
+Example 1
 
     x = 100
     y = 100
@@ -3770,22 +3730,37 @@ first,last angle in radians - aspect: aspect ratio - color: line color
     astart = 0
     aend = rad(90)
 
-    ARC x,y,r,astart,aend
+    ARC x, y, r, astart, aend
+
+Example 2: Using STEP
+
+    x = 50
+    y = 50
+    r = 50
+    astart = 0
+    aend = rad(90)
+
+    pset(100,100)                      ' Draw point at 100,100 and set the graphics cursor to 100,100
+    ARC STEP x, y, r, astart, aend     ' make a step from 100,100 by 50 pixels in x and 50 pixels in y
 
 +========================================================================================+
-|                                   82. (Graphics) CHART                                 |
+|                                   83. (Graphics) CHART                                 |
 +========================================================================================+
 
 CHART LINECHART|BARCHART, array() [, style [, x1, y1, x2, y2]]
 
-Draws a chart of array values in the rectangular area x1,y1,x2,y2. The
-array stores y-values only: [y1, y2, y3, … yn]. The x-axis of the chart
-has the values 1,2,3,…n.
+Draws a chart of array values in the rectangular area given by the
+points [x1, y1] and [x2, y2]. The array A stores y-values only: [y1, y2,
+y3, … yn]. The x-axis of the chart has the values 1,2,3,…n.
+
+charttype is a number with the following values:
 
   Charttype    Value
   ----------- -------
   Linechart      1
   Barchart       2
+
+style is a number with the following values:
 
   Style                   Value
   ---------------------- -------
@@ -3823,12 +3798,21 @@ Example 2: All charttypes and styles in one glance
     Next type
 
 +========================================================================================+
-|                                  83. (Graphics) CIRCLE                                 |
+|                                  84. (Graphics) CIRCLE                                 |
 +========================================================================================+
 
 CIRCLE [STEP] x,y,r [,aspect [, color]] [COLOR color] [FILLED]
 
-Draws a circle (or an ellipse if the aspect is specified).
+Draws a circle (or an ellipse if the aspect is specified). The point
+[x, y] defines the center and r the radius of the circle in pixel. To
+set the aspect ration use aspect. An aspect ratio of 1 will draw a
+circle. color defines the line color of the circle. If FILLED is used,
+the circle will be filled with the color color. If STEP is used x, y are
+a step in pixel from the actual graphics cursor position.
+
+By default CIRCLE draws with anti-aliasing. For details, see: Fast,
+Antialiased Circles and Ellipses To turn off anti-aliasing use
+option predef antialias off
 
 Example 1: Draw a filled white circle
 
@@ -3839,7 +3823,6 @@ Example 2: Draw a ellipse with aspect ration 1:2
     circle 200, 200, 150, 0.5
 
 Example 3: Draw a flower
-
 
     ' Aspect ratio is relation between width-height of a circle,
     ' for example:
@@ -3889,88 +3872,98 @@ Example 4: Smiley Face
 
     ' SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
     ' Smiley Face
-    cx=xmax/2:cy=ymax/2:rface=250:reye=50:xle=cx-100:xre=cx+100:dir=1
+    cx = xmax/2
+    cy = ymax/2
+    rface = 250
+    reye = 50
+    xle = cx - 100
+    xre = cx + 100
+    dir = 1
     while 1
       cls
-      circle cx,cy,rface,1,14 filled
-      circle xle,cy,reye,1-a,9 filled
-      circle xre,cy,reye,1-a,9 filled
-      circle cx,cy+130-a*50,100+a*50,.21+2*a,12 filled
-      circle cx,cy+100-a*50,100+a*50,.21+a,14 filled
-      at 0,0 :?a
+      circle cx, cy, rface, 1, 14 filled
+      circle xle, cy, reye, 1 - a, 9 filled
+      circle xre, cy, reye, 1 - a, 9 filled
+      circle cx, cy + 130 - a * 50, 100 + a * 50, .21 + 2 * a, 12 filled
+      circle cx, cy + 100 - a * 50, 100 + a * 50, .21 + a, 14 filled
       showpage
       delay 1
-      a+=.002*dir
-      if a=.26 then dir=dir*-1
-      if a=-.1 then dir=dir*-1
+      a+= .002 * dir
+      if a = .26 then dir = dir * -1
+      if a = -.1 then dir = dir *-1
     wend
 
-By default CIRCLE draws with anti-aliasing. For details, see: Fast,
-Antialiased Circles and Ellipses
-
-To turn off anti-aliasing, add this to the start of your program:
+Example 5: Turn off anti-aliasing
 
     option predef antialias off
 
 +========================================================================================+
-|                                   84. (Graphics) COLOR                                 |
+|                                   85. (Graphics) COLOR                                 |
 +========================================================================================+
 
 COLOR foreground-color [, background-color]
 
-Specifies the foreground and background colors.
+Specifies the foreground color foreground-color and the optinal
+background color background-color.
 
 See RGB and RGBF to create colors.
 
-Example 1: Assigning SmallBASIC standard colors to text
+Example 1
+
+    color 14, 1
+    print "Yellow text on blue background"
+
+Example 2: Assigning SmallBASIC standard colors to text
 
     For back = 0 To 7 Do
       text = back Xor 15 ' count down text color (15 to 8)
       
       Color text, back
-      Print Using " text_, back COLOR ##, ## "; text, back;
+      Print Using " FG and BG COLOR: ##, ## "; text, back;
       
       Color back, text ' reverse colors
-      Print Using " text_, back COLOR ##, ## "; back, text
+      Print Using " FG and BG COLOR: ##, ## "; back, text
     Next
 
-Example 2: Assigning RGB-colors to text
-
+Example 3: Assigning RGB-colors to text
 
     Print "Try color printing with some RGB shades"
     Print
     For shade = 0 To 10
-      text = rgb(shade*25,0,0)
-      back=rgb(255-shade*25,255-shade*25,255-shade*25)
+      text = rgb(shade * 25, 0, 0)
+      back = rgb(255 - shade * 25, 255 - shade * 25, 255 - shade * 25)
+      
       Color text, back
-      Print "Here is black to red on white to black ";shade*25;",";255-25*shade
+      
+      Print "Here is black to red on white to black "; shade * 25; ","; 255 - 25 * shade
       
       Color back, text ' reverse colors
-      Print "Here is reverse white to black  on black  to red."
+      
+      Print "Here is reverse white to black on black to red."
       print
     Next
-    Pause
 
-Example 3: Using RGB and RGBF to draw a magenta filled rectangle with
-white boarder
+Example 4: Using RGB and RGBF to draw a magenta filled rectangle with white boarder
 
-    color rgb(255,67,133)
+    color rgb(255, 67, 133)
     rect 10, 10, 100, 100 filled  ' filling always with foreground color
 
-    color rgbf(1,1,1)
+    color rgbf(1, 1, 1)
     rect 10, 10, 100, 100
 
-Here is a chart of the 16 SmallBASIC standard colors and their numbers:
+Example 5: Chart of the 16 SmallBASIC standard colors and their numbers
 
     ' Color chart of the 16 SmallBASIC standard colors
     ' for 0 = black to 15 = bright white
-    dy=ymax/16
-    for i=0 to 15
-      rect 0,i*dy,xmax,i*dy+dy,i filled
-      at 0,i*dy:? i;
+    dy = ymax / 16
+    for i = 0 to 15
+      rect 0, i * dy, xmax, i * dy + dy, i filled
+      at 0, i * dy : print i;
     next
 
-You may Include “color_const.bas” file in another file to make your code
+Example 6
+
+You may include “color_const.bas” file in another file to make your code
 more clear.
 
     ' demo - add these lines to another BAS file:
@@ -3999,7 +3992,7 @@ more clear.
     Const BRIGHT_WHITE    = 15
 
 +========================================================================================+
-|                                   85. (Graphics) DRAW                                  |
+|                                   86. (Graphics) DRAW                                  |
 +========================================================================================+
 
 DRAW \"commands\"
@@ -4057,7 +4050,7 @@ Example 1: Let’s draw a house
     DRAW "R8U16L16D16R8U10NR8U6"    ' Window
 
 +========================================================================================+
-|                                 86. (Graphics) DRAWPOLY                                |
+|                                 87. (Graphics) DRAWPOLY                                |
 +========================================================================================+
 
 DRAWPOLY array [,x-origin,y-origin [, scalef [, color]]] [COLOR color] [FILLED]
@@ -4089,7 +4082,7 @@ Example 2: Polygon array without points
     drawpoly P, 200,200, 1.5 COLOR 4    ' Draw poly with offset, scaling and color
 
 +========================================================================================+
-|                                   87. (Graphics) IMAGE                                 |
+|                                   88. (Graphics) IMAGE                                 |
 +========================================================================================+
 
 IMAGE [#handle | fileName | http://path-to-file.png | image-var | array of pixmap data]
@@ -4925,7 +4918,7 @@ be used with cocos2d development
     main(tileset)
 
 +========================================================================================+
-|                                   88. (Graphics) LINE                                  |
+|                                   89. (Graphics) LINE                                  |
 +========================================================================================+
 
 LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]
@@ -4965,7 +4958,7 @@ Example 3: Using colors
     line 20, 60, 100, 140 color rgb(0,255,255)
 
 +========================================================================================+
-|                                   89. (Graphics) PAINT                                 |
+|                                   90. (Graphics) PAINT                                 |
 +========================================================================================+
 
 PAINT [STEP] x, y [,fill-color [,border-color]]
@@ -5015,7 +5008,7 @@ Example 2: Fill with specified fill-color and border-color
     paint 150,130, 11, RectColor        ' Border color needs do be set with RGB(...)
 
 +========================================================================================+
-|                                    90. (Graphics) PEN                                  |
+|                                    91. (Graphics) PEN                                  |
 +========================================================================================+
 
 PEN (0..14)
@@ -5137,7 +5130,7 @@ Example 3: Press a button
     wend
 
 +========================================================================================+
-|                                   91. (Graphics) PLOT                                  |
+|                                   92. (Graphics) PLOT                                  |
 +========================================================================================+
 
 PLOT xmin, xmax USE f(x)
@@ -5156,7 +5149,7 @@ Example
     plot 0, 2*pi USE f(x)
 
 +========================================================================================+
-|                                   92. (Graphics) POINT                                 |
+|                                   93. (Graphics) POINT                                 |
 +========================================================================================+
 
 POINT (x [, y])
@@ -5164,8 +5157,9 @@ POINT (x [, y])
 Returns the color of the pixel at x,y.
 
 If the y-argument is not specified, x specifies the following info-code:
-- 0: returns the current graphics cursor X-position - 1: returns the
-current graphics cursor Y-position
+
+-   0: returns the current graphics cursor X-position
+-   1: returns the current graphics cursor Y-position
 
 Example 1: Get color
 
@@ -5288,7 +5282,7 @@ Example 4: Get graphics cursor and color
     Pause
 
 +========================================================================================+
-|                                   93. (Graphics) PSET                                  |
+|                                   94. (Graphics) PSET                                  |
 +========================================================================================+
 
 PSET [STEP] x,y [, color| COLOR color]
@@ -5308,7 +5302,7 @@ Example:
     PSET STEP 10,10 COLOR 13    ' Point at 90,90 with color 7
 
 +========================================================================================+
-|                                   94. (Graphics) RECT                                  |
+|                                   95. (Graphics) RECT                                  |
 +========================================================================================+
 
 RECT [STEP] x,y [,|STEP x2,y2] [, color| COLOR color] [FILLED]
@@ -5346,7 +5340,7 @@ Example 2: Draw rectangles with color
     rect 20, 280, STEP 200, 100 FILLED
 
 +========================================================================================+
-|                                    95. (Graphics) RGB                                  |
+|                                    96. (Graphics) RGB                                  |
 +========================================================================================+
 
 RGB (r, g, b)
@@ -5396,7 +5390,7 @@ Example 3: Fading colors
     Next
 
 +========================================================================================+
-|                                   96. (Graphics) RGBF                                  |
+|                                   97. (Graphics) RGBF                                  |
 +========================================================================================+
 
 RGBF (r, g, b)
@@ -5446,7 +5440,7 @@ Example 3: Fading colors
     Next
 
 +========================================================================================+
-|                                 97. (Graphics) SHOWPAGE                                |
+|                                 98. (Graphics) SHOWPAGE                                |
 +========================================================================================+
 
 SHOWPAGE
@@ -5464,7 +5458,7 @@ Example
     next
 
 +========================================================================================+
-|                                98. (Graphics) TEXTHEIGHT                               |
+|                                99. (Graphics) TEXTHEIGHT                               |
 +========================================================================================+
 
 TEXTHEIGHT (s)
@@ -5478,7 +5472,7 @@ Example
     print txtheight("Hello world")      ' Output: 19
 
 +========================================================================================+
-|                                 99. (Graphics) TEXTWIDTH                               |
+|                                100. (Graphics) TEXTWIDTH                               |
 +========================================================================================+
 
 TEXTWIDTH (s)
@@ -5492,7 +5486,7 @@ Example
     print textwidth("Hello world")      ' Output: 88
 
 +========================================================================================+
-|                                   100. (Graphics) TXTH                                 |
+|                                   101. (Graphics) TXTH                                 |
 +========================================================================================+
 
 TXTH (s)
@@ -5506,7 +5500,7 @@ Example
     print txth("Hello world")      ' Output: 19
 
 +========================================================================================+
-|                                   101. (Graphics) TXTW                                 |
+|                                   102. (Graphics) TXTW                                 |
 +========================================================================================+
 
 TXTW (s)
@@ -5520,41 +5514,56 @@ Example
     print txtw("Hello world")      ' Output: 88
 
 +========================================================================================+
-|                                   102. (Graphics) VIEW                                 |
+|                                   103. (Graphics) VIEW                                 |
 +========================================================================================+
 
 VIEW [x1,y1,x2,y2 [,color [,border-color]]]
 
-Defines a viewport. The viewport defined by VIEW is disabled by a VIEW
-command with no parameters.
+Defines a viewport with starting point (upper left corner)) [x1,y1] and
+end point (lower right corner) [x2,y2]. The optional parameters color
+and border-color define the background color and the border color of the
+viewport, respectively. VIEW without parameters will disable the last
+set viewport.
 
--   x1,y1,x2,y2 - Corner coordinates of the viewport.
--   color If included, fills the viewport with the specified color.
--   border-color If included, draws a border, in a specified color,
-    around the defined viewport.
+Example
+
+    view                                            ' Disable viewport
+    rect 100,100, STEP 100,100 color 4 filled       ' Draw a rectangle in dark red
+
+    view 150,150, 300,300, 0, 13                    ' Set new viewport with black background and magenta border
+    rect 100,100, STEP 100,100 color 14 filled      ' Draw same rectangle in yellow
 
 +========================================================================================+
-|                                  103. (Graphics) WINDOW                                |
+|                                  104. (Graphics) WINDOW                                |
 +========================================================================================+
 
 WINDOW [x1,y1,x2,y2]
 
-Specifies “world” coordinates for the screen.
+Specifies “world” coordinates for the screen. The WINDOW command allows
+you to redefine the corners of the display screen as a pair of “world”
+coordinates. The coordinates of the upper-left corner of the screen is
+given by [x1, y1], the lower-left corner by [x2, y2].
 
-The WINDOW command allows you to redefine the corners of the display
-screen as a pair of “world” coordinates.
+The world space defined by WINDOW is disabled by a WINDOW command
+without parameters.
 
-The world space defined by WINDOW is disabled by a WINDOW command with
-no parameters.
+Example
 
-Note: the unusal coordinates are intended for Quick BASIC compatibility
-(possible bug).
+    ' Coordinate system with corners:
+    ' upper-left = [-20,-10]
+    ' lower-right= [ 20, 10] 
+    x1 = -20
+    y1 = -10
+    x2 =  10
+    y2 =  20
 
-    window 1, 320, 320, 1
-    rect 0, 0, 160, 160, 1 filled
-    rect 160, 160, 320, 320, 2 filled
-    rect 160, 0, 320, 160, 3 filled
-    rect 0, 160, 160, 320, 4 filled
+    window x1, x2, y2, y1
+
+    rect -20, -10 STEP 1, 1, 14 filled    ' Yellow:  upper-left
+    rect  19, -10 STEP 1, 1, 13 filled    ' Magenta: upper-right
+    rect  19,   9 STEP 1, 1, 12 filled    ' Red:     lower-right
+    rect -20,   9 STEP 1, 1, 10 filled    ' Green:   lower-left
+    circle 0, 0, 1, 1, 15 filled          ' White:   center
 
 WINDOW sub-commands (non-standard)
 
@@ -5563,48 +5572,59 @@ provides access to the following sub-commands.
 
 alert(message, title)
 
-Display an alert message.
+Display an alert window. The title of the window is title and the
+context is message.
 
     w = window()
     w.alert("This is an alert", "title")
 
 ask(message, title)
 
-Display a prompt to retrieve a user selection.
+Display a prompt window to retrieve a user selection. The choices are
+“Yes” and “No”. The title of the window is title and the context is
+message. The answer is stored in the window-object variable answer: 0
+for “Yes” and 1 for “No”.
 
     w = window()
+
     w.ask("Yes or no?", "Question")
+
     if w.answer == 0 then
-      w.alert("Yes!", "Answer")
+        print "Yes"
     else 
-      w.alert("No", "Answer")
+        print "No"
     endif
 
 graphicsScreen1(), graphicsScreen2()
 
-Select graphics mode screen 1 or 2 for output.
-
-    dim v(30)
-    for i = 0 to 30
-      v[i] = rnd
-    next i
-
-    sub draw_chart(n,s)
-      color 1,15: cls
-      chart n, v, s, 1, 1, xmax-2, ymax-2
-    end
+Select graphics mode screen 1 or 2 for output. When switching to a
+different screen, the context of the previous screen is stored in RAM.
+When switching back to the previous screen, the context will be
+restored.
 
     w = window()
-    w.graphicsScreen2(): draw_chart(1, 5)
-    w.graphicsScreen1(): draw_chart(2, 3)
 
+    w.graphicsScreen1()                      ' Set output to screen 1
+    rect 100,100 STEP 100,100, 15 filled
+
+    w.graphicsScreen2()                      ' Set output to screen 2
+    rect 150,150 STEP 100,100, 14 filled
+
+    ' Switch between both screens, no need to redaw the rectangles
     while 1
-      b = !b
-      if b then w.graphicsScreen1() else w.graphicsscreen2()
-      pause
+        b = !b
+        if b then 
+            w.graphicsScreen1()
+        else
+            w.graphicsscreen2()
+        endif
+      delay(500)
     wend
 
-insetTextScreen(x, y, w, h)
+insetTextScreen(x1, y1, x2, y2)
+
+Insert an area for text output from position [x1, y1] to position
+[x2, y2]
 
     w = window()
     ? "How does this look?"
@@ -5614,84 +5634,69 @@ insetTextScreen(x, y, w, h)
     next i
     pause
 
-menu(option1, option2…)
+menu(option1 [, option2, …, optionN)
 
-Displays a popup menu. The user response is available via INKEY.
+Displays a popup menu with the entries option1 to optionN. INKEY will
+return the number of the selected option starting with 0.
 
     w = window()
+
     w.menu("option1", "option2", "option3")
+
     select case asc(inkey)
-    case 0
-      print "one"
-    case 1
-      print "two"
-    case 2
-      print "three"
-    case else
-      print "unk"
+        case 0
+          print "one"
+        case 1
+          print "two"
+        case 2
+          print "three"
+        case else
+          print "unk"
     end select
 
 message(str)
 
-Displays a status message at the bottom of the screen.
+Displays a status message str at the bottom of the screen.
 
     w = window()
     w.message("Click to continue. ")
 
 setFont(size, unit, bold, italic)
 
-Sets the font to be double in size with bold and italic.
-
-“Unit” can be set to “em” to make size relative to the existing size,
-any other value will cause size to be avaluated as pixels.
+Sets the font size to size. unit can be set to “em” to make size
+relative to the existing size. Any other value will cause size to be
+avaluated as pixels. bold can be set to 0 or 1 to enable or disable bold
+font style. italic can be set to 0 or 1 to enable or disable italic font
+style.
 
     w = window()
-    dim buf
 
-    sub text(s)
-      local x, y, j, size, width, height
-      buf << s
-      y = ymax / 2
-      cls
-      size = 30
-      for j = len(buf) - 1 to 0 step - 1
-        size -= 2
-        w.setFont(size, "px", 0, 1)
-        width = txtw(buf[j])
-        height = txth(buf[j])
-        x = (xmax - width) / 2
-        y -= height
-        at x, y: print buf[j]
-      next j
-      delay 1200
-    end
+    w.setFont(15, "px", 0, 0)
+    print "Fixed size 15px"
 
-    text "A long time ago, in a galaxy far, far away..."
-    text "It is a period of civil war. Rebel"
-    text "spaceships, striking from a hidden"
-    text "base, have won their first victory"
-    text "against the evil Galactic Empire."
-    text "During the battle, Rebel spies managed"
-    text "to steal secret plans to the Empire's"
-    text "ultimate weapon, the Death Star, an"
-    text "armored space station with enough"
-    text "power to destroy an entire planet."
-    text "Pursued by the Empire's sinister agents,"
-    text "Princess Leia races home aboard her"
-    text "starship, custodian of the stolen plans"
-    text "that can save her people and restore"
-    text "freedom to the galaxy...."
+    w.setFont(2, "em", 0, 0)
+    print "Relative size 15px * 2"
+
+    w.setFont(15, "px", 1, 0)
+    print "Fixed size 15px bold"
+
+    w.setFont(15, "px", 0, 1)
+    print "Fixed size 15px italic"
+
+    w.setFont(15, "px", 1, 1)
+    print "Fixed size 15px bold italic"
 
 setLocation(x, y)
 
-Sets the location of the window on the screen.
+Sets the location of the window on the screen. The upper-left corner of
+the window will be at position [x, y] in pixel.
 
     w = window()
     w.setLocation(100, 100)
 
 setSize(w, h)
 
-Sets the width and height of the SmallBASIC window.
+Sets the width w and height h in pixel of the SmallBASIC window.
 
     w = window()
     w.setSize(800, 680)
@@ -5736,58 +5741,109 @@ Returns the active window colour theme.
     const colNav2  = theme.text6
 
 +========================================================================================+
-|                                   104. (Graphics) XMAX                                 |
+|                                   105. (Graphics) XMAX                                 |
 +========================================================================================+
 
 XMAX
 
-Holds the screen width in pixels
+Returns the screen width in pixels.
+
+See YMAX for screen height.
+
+Example
+
+    print "This window has " + XMAX + "x" + YMAX + " pixels"
+    ' Output: This window has 640x480 pixels
 
 +========================================================================================+
-|                                   105. (Graphics) XPOS                                 |
+|                                   106. (Graphics) XPOS                                 |
 +========================================================================================+
 
 XPOS
 
-Returns the current X position of the cursor in “characters”.
+Returns the current X-position of the text cursor in “characters”.
+
+See YPOS for Y-position.
+
+Example
+
+    locate 10,5
+    print XPOS, YPOS        ' Output 5   10
 
 +========================================================================================+
-|                                   106. (Graphics) YMAX                                 |
+|                                   107. (Graphics) YMAX                                 |
 +========================================================================================+
 
 YMAX
 
-Holds the screen height in pixels.
+Returns the screen height in pixels.
+
+See XMAX for screen width.
+
+Example
+
+    print "This window has " + XMAX + "x" + YMAX + " pixels"
+    ' Output: This window has 640x480 pixels
 
 +========================================================================================+
-|                                   107. (Graphics) YPOS                                 |
+|                                   108. (Graphics) YPOS                                 |
 +========================================================================================+
 
 YPOS
 
-Returns the current Y position of the cursor in “characters”.
+Returns the current Y-position of the text cursor in “characters”.
+
+See XPOS for X-position.
+
+Example
+
+    locate 10,5
+    print XPOS, YPOS        ' Output 5   10
 
 +========================================================================================+
-|                                   108. (Language) AND                                  |
+|                                   109. (Language) AND                                  |
 +========================================================================================+
 
 a AND b
 
 Logical AND. Right side is not evaluated if left side evaluates to
-False.
+FALSE.
+
+Truth table:
+
+   a   b   a AND b
+  --- --- ---------
+   0   0      0
+   0   1      0
+   1   0      0
+   1   1      1
+
+Example 1
 
     a = 1
     b = 0
 
-    print a and b   ' output is 0
+    print a and b   ' Output: 0
+
+Example 2: Using AND in an if-statement
+
+    a = 1
+    b = 0
 
     if(a == 1 and b == 0) then print "if statement 1"
-    if(a == 1 and b == 1) then print "if statement 2"       ' "if statement 2" will not be printed to the screen
+    if(a == 1 and b == 1) then print "if statement 2"
 
     c = "test"
 
     if(a == 1 and c == "test") then print "if statement 3"
-    if(a == 1 and c == "test2") then print "if statement 4" ' "if statement 4" will not be printed to the screen
+    if(a == 1 and c == "test2") then print "if statement 4"
+
+
+    ' Output:
+    ' if statement 1
+    ' if statement 3
+
+Example 3: Truth table for logical and bitwise operators
 
     ? " < SmallBASIC - Truth Table > "
     ?
@@ -5920,19 +5976,16 @@ The Sign-Bit Bug (part 2): Ways to workaround this bug:
 
 The code above produces different results on 32-bit and 64-bit systems;
 Therefore it leads to subtle bug with no run-time error, and no other
-indication.
-
-The reason for this inconsistency is the fact that SamllBASIC determine
-the type of variables on the fly. And while the sign bit in a 64-bits
-register is bit-63 - in a 32-bits register is bit-31.
-
-SmallBASIC integers are 32-bit signed integers. The sign bit of
+indication. The reason for this inconsistency is the fact that
+SamllBASIC determine the type of variables on the fly. And while the
+sign bit in a 64-bits register is bit-63 - in a 32-bits register is
+bit-31. SmallBASIC integers are 32-bit signed integers. The sign bit of
 SmallBASIC integer is bit-31 (base 0). It is Safe to manipulate only
 bits 0 to 30, on both 64-bit and 32-bit systems. But it is Not safe to
 manipulate the sign bit, bit-31.
 
 +========================================================================================+
-|                                    109. (Language) AS                                  |
+|                                    110. (Language) AS                                  |
 +========================================================================================+
 
 AS #fileN
@@ -5963,7 +6016,7 @@ Example:
     close #1
 
 +========================================================================================+
-|                                   110. (Language) BAND                                 |
+|                                   111. (Language) BAND                                 |
 +========================================================================================+
 
 a BAND b
@@ -6016,7 +6069,7 @@ operations.
     Print Using "The Unpacked date: 00/00/0000"; p_day, p_month, p_year;
 
 +========================================================================================+
-|                                    111. (Language) BG                                  |
+|                                    112. (Language) BG                                  |
 +========================================================================================+
 
 SOUND frq, dur [, vol] [BG]
@@ -6026,10 +6079,13 @@ while the sound plays.
 
 See SOUND.
 
+Example
+
     SOUND 1000, 1000 BG
+    pause
 
 +========================================================================================+
-|                                   112. (Language) BOR                                  |
+|                                   113. (Language) BOR                                  |
 +========================================================================================+
 
 a BOR b
@@ -6045,19 +6101,23 @@ Truth table:
    1   0      1
    1   1      1
 
-Example:
+See OR for logical or.
+
+Example
 
     print "1001 BOR 1110 = "; bin(0b1001 BOR 0b1100)
     ' Output: 1001 BOR 1110 = 1101
 
 +========================================================================================+
-|                                  113. (Language) BYREF                                 |
+|                                  114. (Language) BYREF                                 |
 +========================================================================================+
 
 BYREF
 
 Sub/func argument declaration. Changes to the variable will be passed
 back to the caller. Equivalent syntax to the @ character.
+
+Example
 
     sub Increment(BYREF i)
       i = i + 1
@@ -6068,12 +6128,14 @@ back to the caller. Equivalent syntax to the @ character.
     print x         ' output: 2
 
 +========================================================================================+
-|                                   114. (Language) CALL                                 |
+|                                   115. (Language) CALL                                 |
 +========================================================================================+
 
 CALL (fp)
 
-Invoke a sub or func by address pointer.
+Invoke a sub or func by address pointer p. Optional var1 to varN
+variables of every SmallBASIC data type can be passed to function or
+sub, the address pointer points to.
 
 Example 1: CALL with a subroutine pointer
 
@@ -6129,7 +6191,7 @@ Example 4: Passing function pointer to a function
     x = MyFunc(b,x): print x
 
 +========================================================================================+
-|                                   115. (Language) CASE                                 |
+|                                   116. (Language) CASE                                 |
 +========================================================================================+
 
 CASE expr
@@ -6138,7 +6200,9 @@ Branch condition for a SELECT statement.
 
 See SELECT for more information and examples.
 
-    x = 1 ' Change to see what happens
+Example
+
+    x = 1                 ' Change to see what happens
     select case x
         case 1
             print "x is 1"
@@ -6149,7 +6213,7 @@ See SELECT for more information and examples.
     end select
 
 +========================================================================================+
-|                                  116. (Language) CATCH                                 |
+|                                  117. (Language) CATCH                                 |
 +========================================================================================+
 
 CATCH [var | expr]
@@ -6180,23 +6244,23 @@ Example
     print "This point is reach, even if opening the file was not possible"
 
 +========================================================================================+
-|                                  117. (Language) CONST                                 |
+|                                  118. (Language) CONST                                 |
 +========================================================================================+
 
 CONST name = expr
 
-Declare a variable who’s value does not change during program execution.
+Declare a variable name who’s value does not change during program
+execution. name follows the rules for naming SmallBASIC variables. expr
+is an expression consisting of literals, with or without operators,
+only.
 
--   name - An identifier that follows the rules for naming BASIC
-    variables.
--   expr - An expression consisting of literals, with or without
-    operators, only.
+Example
 
     CONST G = 6.67259E-11
-    CONST PI = 3.1415
+    CONST PISQUARE = PI^2
 
 +========================================================================================+
-|                                 118. (Language) DECLARE                                |
+|                                 119. (Language) DECLARE                                |
 +========================================================================================+
 
 DECLARE FUNC xxx
@@ -6204,7 +6268,7 @@ DECLARE FUNC xxx
 Forward declare SUB or FUNC. Obsolete QB compatibility
 
 +========================================================================================+
-|                                   119. (Language) DEF                                  |
+|                                   120. (Language) DEF                                  |
 +========================================================================================+
 
 DEF name[(par1[,...])] = expression
@@ -6254,7 +6318,7 @@ Example 4: DEF and LOCAL
     end
 
 +========================================================================================+
-|                                    120. (Language) DO                                  |
+|                                    121. (Language) DO                                  |
 +========================================================================================+
 
 DO
@@ -6275,7 +6339,7 @@ Example 3
     While(i < 10) do i++
 
 +========================================================================================+
-|                                   121. (Language) ELIF                                 |
+|                                   122. (Language) ELIF                                 |
 +========================================================================================+
 
 ELIF
@@ -6303,7 +6367,7 @@ Example 2: using IF … ELSE … IF instead of ELIF
     fi
 
 +========================================================================================+
-|                                   122. (Language) ELSE                                 |
+|                                   123. (Language) ELSE                                 |
 +========================================================================================+
 
 ELSE
@@ -6320,7 +6384,7 @@ Example
     fi
 
 +========================================================================================+
-|                                  123. (Language) ELSEIF                                |
+|                                  124. (Language) ELSEIF                                |
 +========================================================================================+
 
 ELSEIF
@@ -6348,7 +6412,7 @@ Example 2: using IF … ELSE … IF instead of ELSEIF
     endif
 
 +========================================================================================+
-|                                   124. (Language) END                                  |
+|                                   125. (Language) END                                  |
 +========================================================================================+
 
 END
@@ -6386,7 +6450,7 @@ Example 3: End of the program
     wend
 
 +========================================================================================+
-|                                 125. (Language) END TRY                                |
+|                                 126. (Language) END TRY                                |
 +========================================================================================+
 
 END TRY
@@ -6408,7 +6472,7 @@ Example
     print "This point is reach, even if opening the file was not possible"
 
 +========================================================================================+
-|                                  126. (Language) ENDIF                                 |
+|                                  127. (Language) ENDIF                                 |
 +========================================================================================+
 
 ENDIF
@@ -6423,7 +6487,7 @@ Example
     endif
 
 +========================================================================================+
-|                                   127. (Language) EQV                                  |
+|                                   128. (Language) EQV                                  |
 +========================================================================================+
 
 a EQV b
@@ -6464,7 +6528,7 @@ Example 2: Bitwise equivalence of two numbers
     '     100111110101100001000001
 
 +========================================================================================+
-|                                   128. (Language) EXIT                                 |
+|                                   129. (Language) EXIT                                 |
 +========================================================================================+
 
 EXIT [FOR|LOOP|SUB|FUNC]
@@ -6516,7 +6580,7 @@ Example 4: func
     print MyFunc(10)  ' Output: 0, because return command in MyFunc will not be reached
 
 +========================================================================================+
-|                                  129. (Language) FALSE                                 |
+|                                  130. (Language) FALSE                                 |
 +========================================================================================+
 
 FALSE
@@ -6549,7 +6613,7 @@ Example 3: Use in a if statement
     if(ButtonPressed) then print "Button was pressed"
 
 +========================================================================================+
-|                                    130. (Language) FI                                  |
+|                                    131. (Language) FI                                  |
 +========================================================================================+
 
 FI
@@ -6564,7 +6628,7 @@ Example
     fi
 
 +========================================================================================+
-|                                   131. (Language) FOR                                  |
+|                                   132. (Language) FOR                                  |
 +========================================================================================+
 
 FOR expr
@@ -6695,7 +6759,7 @@ Example 8: Changing stop parameter inside the loop
     ' Output: 1 2 3 4 5
 
 +========================================================================================+
-|                                   132. (Language) FUNC                                 |
+|                                   133. (Language) FUNC                                 |
 +========================================================================================+
 
 FUNC foo (a, b)
@@ -6728,7 +6792,7 @@ Example 2: Using return
     END
 
 +========================================================================================+
-|                                  133. (Language) GOSUB                                 |
+|                                  134. (Language) GOSUB                                 |
 +========================================================================================+
 
 GOSUB label
@@ -6767,7 +6831,7 @@ Example 2: Same as example 1, but using a subroutine instead of GOSUB
     end
 
 +========================================================================================+
-|                                   134. (Language) GOTO                                 |
+|                                   135. (Language) GOTO                                 |
 +========================================================================================+
 
 GOTO label
@@ -6818,7 +6882,7 @@ Example 2
     Print "Out of loops now."
 
 +========================================================================================+
-|                                    135. (Language) IF                                  |
+|                                    136. (Language) IF                                  |
 +========================================================================================+
 
 IF expr
@@ -6937,7 +7001,7 @@ Example 4: IF … ELSEIF … ELSE
     ENDIF
 
 +========================================================================================+
-|                                   136. (Language) IFF                                  |
+|                                   137. (Language) IFF                                  |
 +========================================================================================+
 
 IFF expr
@@ -6976,7 +7040,7 @@ Example 3
     print ans 
 
 +========================================================================================+
-|                                   137. (Language) IMP                                  |
+|                                   138. (Language) IMP                                  |
 +========================================================================================+
 
 a IMP b
@@ -7019,7 +7083,7 @@ Example 2
     '     11110011
 
 +========================================================================================+
-|                                    138. (Language) IN                                  |
+|                                    139. (Language) IN                                  |
 +========================================================================================+
 
 a IN b
@@ -7131,7 +7195,7 @@ Example 5
     ? "   n In 10.5 : "; n In 10.5
 
 +========================================================================================+
-|                                  139. (Language) LABEL                                 |
+|                                  140. (Language) LABEL                                 |
 +========================================================================================+
 
 LABEL name
@@ -7151,7 +7215,7 @@ Example
     label LastLine
 
 +========================================================================================+
-|                                   140. (Language) LET                                  |
+|                                   141. (Language) LET                                  |
 +========================================================================================+
 
 LET var=expr
@@ -7165,7 +7229,7 @@ Example
     LET x = 4
 
 +========================================================================================+
-|                                   141. (Language) LIKE                                 |
+|                                   142. (Language) LIKE                                 |
 +========================================================================================+
 
 a LIKE b
@@ -7203,7 +7267,7 @@ Example 1
     print "-[Hello]-" Like "\\-\\[?*\\]\\-"   ' Output 1
 
 +========================================================================================+
-|                                  142. (Language) LOCAL                                 |
+|                                  143. (Language) LOCAL                                 |
 +========================================================================================+
 
 LOCAL
@@ -7236,7 +7300,7 @@ Example:
     end
 
 +========================================================================================+
-|                                  143. (Language) LSHIFT                                |
+|                                  144. (Language) LSHIFT                                |
 +========================================================================================+
 
 result = LSHIFT number, amount
@@ -7257,7 +7321,7 @@ Example 2:
     print bin(x lshift 3)       ' Output: 1000
 
 +========================================================================================+
-|                                   144. (Language) MDL                                  |
+|                                   145. (Language) MDL                                  |
 +========================================================================================+
 
 MDL
@@ -7270,7 +7334,7 @@ Example
     print 2.3 MDL 1     ' Output: 0.3
 
 +========================================================================================+
-|                                   145. (Language) MOD                                  |
+|                                   146. (Language) MOD                                  |
 +========================================================================================+
 
 a MOD b
@@ -7351,7 +7415,7 @@ Example 2: Prime or lowest divisor table
     ?:? "O=one is neither prime nor not prime"  ' ?:?"..." print blank line first
 
 +========================================================================================+
-|                                   146. (Language) NAND                                 |
+|                                   147. (Language) NAND                                 |
 +========================================================================================+
 
 a NAND b
@@ -7409,7 +7473,7 @@ Example 3: Two’s complement
     Wend
 
 +========================================================================================+
-|                                   147. (Language) NEXT                                 |
+|                                   148. (Language) NEXT                                 |
 +========================================================================================+
 
 NEXT
@@ -7423,7 +7487,7 @@ Example
     next
 
 +========================================================================================+
-|                                   148. (Language) NOR                                  |
+|                                   149. (Language) NOR                                  |
 +========================================================================================+
 
 a NOR b
@@ -7494,7 +7558,7 @@ Example 3: Set a bit
     Wend
 
 +========================================================================================+
-|                                   149. (Language) NOT                                  |
+|                                   150. (Language) NOT                                  |
 +========================================================================================+
 
 a NOT b
@@ -7540,7 +7604,7 @@ can use the following code:
     ' Output 101
 
 +========================================================================================+
-|                                    150. (Language) ON                                  |
+|                                    151. (Language) ON                                  |
 +========================================================================================+
 
 ON GOTO|GOSUB label1 [, ..., labelN]
@@ -7594,7 +7658,7 @@ Example 2: ON … GOSUB
     return
 
 +========================================================================================+
-|                                    151. (Language) OR                                  |
+|                                    152. (Language) OR                                  |
 +========================================================================================+
 
 a OR b
@@ -7621,7 +7685,7 @@ Example:
     endif
 
 +========================================================================================+
-|                                   152. (Language) REM                                  |
+|                                   153. (Language) REM                                  |
 +========================================================================================+
 
 REM comment
@@ -7693,7 +7757,7 @@ Example 2:
     REM Without explicit permission from MGA...
 
 +========================================================================================+
-|                                  153. (Language) REPEAT                                |
+|                                  154. (Language) REPEAT                                |
 +========================================================================================+
 
 REPEAT ... UNTIL expr
@@ -7724,7 +7788,7 @@ Example
     ' Output: 1 2 3 4 5 6 7 8 9
 
 +========================================================================================+
-|                                  154. (Language) RETURN                                |
+|                                  155. (Language) RETURN                                |
 +========================================================================================+
 
 RETURN
@@ -7760,7 +7824,7 @@ Example 2: Function
     end
 
 +========================================================================================+
-|                                  155. (Language) RSHIFT                                |
+|                                  156. (Language) RSHIFT                                |
 +========================================================================================+
 
 result = RSHIFT number, amount
@@ -7777,7 +7841,7 @@ Example
     print bin(n)            ' Output: 1
 
 +========================================================================================+
-|                                  156. (Language) SELECT                                |
+|                                  157. (Language) SELECT                                |
 +========================================================================================+
 
 SELECT CASE expr
@@ -7854,7 +7918,7 @@ Example 4: Using functions
     end select
 
 +========================================================================================+
-|                                   157. (Language) STEP                                 |
+|                                   158. (Language) STEP                                 |
 +========================================================================================+
 
 FOR t = 1 TO 10 STEP 2
@@ -7882,7 +7946,7 @@ Example 2: Negative step
     ' Output: 10 8 6 4 2
 
 +========================================================================================+
-|                                   158. (Language) STOP                                 |
+|                                   159. (Language) STOP                                 |
 +========================================================================================+
 
 STOP [error]
@@ -7909,7 +7973,7 @@ Example 2
     wend
 
 +========================================================================================+
-|                                   159. (Language) SUB                                  |
+|                                   160. (Language) SUB                                  |
 +========================================================================================+
 
 SUB foo (a, b)
@@ -7989,7 +8053,7 @@ Example 5: Nested sub procedures
     End Sub
 
 +========================================================================================+
-|                                   160. (Language) THEN                                 |
+|                                   161. (Language) THEN                                 |
 +========================================================================================+
 
 THEN
@@ -8010,7 +8074,7 @@ Example 2: Single-line
     if(a == 1) then print "one"
 
 +========================================================================================+
-|                                  161. (Language) THROW                                 |
+|                                  162. (Language) THROW                                 |
 +========================================================================================+
 
 THROW [info [, ...]]
@@ -8034,7 +8098,7 @@ Example 2: Initial a catch-able error
     end try
 
 +========================================================================================+
-|                                    162. (Language) TO                                  |
+|                                    163. (Language) TO                                  |
 +========================================================================================+
 
 FOR t = 1 TO 10
@@ -8049,7 +8113,7 @@ Example
     next
 
 +========================================================================================+
-|                                   163. (Language) TRUE                                 |
+|                                   164. (Language) TRUE                                 |
 +========================================================================================+
 
 TRUE
@@ -8082,7 +8146,7 @@ Example 3: Use in a if statement
     if(ButtonPressed) then print "Button was pressed"
 
 +========================================================================================+
-|                                   164. (Language) TRY                                  |
+|                                   165. (Language) TRY                                  |
 +========================================================================================+
 
 TRY
@@ -8215,412 +8279,502 @@ Example 4: Advanced error handling for opening files
     Fi
 
 +========================================================================================+
-|                                  165. (Language) UNTIL                                 |
+|                                  166. (Language) UNTIL                                 |
 +========================================================================================+
 
 UNTIL
 
-    a = 0: repeat: a++: ? a: UNTIL a = 10
+Ends a REPEAT … UNTIL loop. See REPEAT for more information.
+
+Example
+
+    C = 1
+    REPEAT
+        PRINT C
+        C = C + 1
+    UNTIL C == 10
+
+    ' Output: 1 2 3 4 5 6 7 8 9
 
 +========================================================================================+
-|                                   166. (Language) USE                                  |
+|                                   167. (Language) USE                                  |
 +========================================================================================+
 
 USE
 
-Used with various commands for passing a user-defined expression. eg
-SPLIT s," ",v USE TRIM(x). Trim each element of v.
+Used with various commands for passing a user-defined expression expr.
+
+Example: Split
+
+    s = "/etc/temp/filename1.ext  "        ' additional spaces at the end of the string
+    SPLIT s, "/", v, "temp" USE TRIM(x)    ' trim(x) will remove spaces at the beginning
+                                           ' and the end of the splitted strings;
+                                           ' try the example without "USE TRIM(x)"
+    FOR i = 0 TO UBOUND(v)
+      PRINT i;" [";v(i);"]"
+    NEXT
+
+    ' displays
+    ' 0 []
+    ' 1 [etc/temp]
+    ' 2 [filename1.ext]
 
 +========================================================================================+
-|                                   167. (Language) USG                                  |
+|                                   168. (Language) USG                                  |
 +========================================================================================+
 
 PRINT USG
 
-Synonym for USING
+PRINT USG uses the FORMAT function to display numbers and strings.
+
+See PRINT for more information. USG and USING are equivalent.
+
+Example
+
+    a = 1000
+    b = 2000
+    PRINT USG "#,###.##"; a                    
+    PRINT USG "#,###.## "; a; b                ' <- Format is applied to all variables         
+    PRINT USG "a = #####.00  b = #####"; a; b  ' <- One formated string with placeholders for two variables
+
+    ' Output: 1,000.
+    ' Output: 1,000. 2,000.             
+    ' Output: a =  1000.00  b =  2000   
 
 +========================================================================================+
-|                                  168. (Language) USING                                 |
+|                                  169. (Language) USING                                 |
 +========================================================================================+
 
 PRINT USING
 
-See PRINT, SPRINT
+PRINT USING uses the FORMAT function to display numbers and strings.
+
+See PRINT for more information. USG and USING are equivalent.
+
+Example
+
+    a = 1000
+    b = 2000
+    PRINT USING "#,###.##"; a                    
+    PRINT USING "#,###.## "; a; b                ' <- Format is applied to all variables         
+    PRINT USING "a = #####.00  b = #####"; a; b  ' <- One formated string with placeholders for two variables
+
+    ' Output: 1,000.
+    ' Output: 1,000. 2,000.             
+    ' Output: a =  1000.00  b =  2000   
 
 +========================================================================================+
-|                                   169. (Language) WEND                                 |
+|                                   170. (Language) WEND                                 |
 +========================================================================================+
 
 WEND
 
-Go back to the start of a WHILE statement.
+End of a WHILE … WEND loop. See WHILE for more information.
+
+Example
+
+    c = 1
+    WHILE c < 10
+        PRINT c
+        c = c + 1
+    WEND
+    ' Output: 1 2 3 4 5 6 7 8 9
 
 +========================================================================================+
-|                                  170. (Language) WHILE                                 |
+|                                  171. (Language) WHILE                                 |
 +========================================================================================+
 
 WHILE expr
 
-Loop while a test condition evaluates to true.
+Starts a WHILE … WEND loop.
 
-SmallBASIC starts by evaluating expression. If expression is nonzero
-(true), the next command is executed. If expression is zero (false),
-control passes to the first command following the next WEND command.
-
-When SmallBASIC encounters the WEND command, it reevaluates the
-expression parameter to the most recent WHILE. If that parameter is
-still nonzero (true), the process is repeated; otherwise, execution
-continues at the next command.
+A While-loop loops as long as the test condition expr evaluates to true.
+SmallBASIC starts by evaluating the expression. If the expression is
+nonzero (true), the next command in the loop is executed. If the
+expression is zero (false), control passes to the first command
+following the next WEND command. When SmallBASIC encounters the WEND
+command, it reevaluates the expression parameter to the most recent
+WHILE. If that parameter is still nonzero (true), the process is
+repeated; otherwise, execution continues at the next command.
 
 WHILE/WEND loops may be nested to any level of complexity, but there
 must be a WEND for each WHILE.
 
+See EXIT to exit a while-loop, even when expression is true.
 
-    C=1
-    WHILE C<10
-        PRINT C
-        C=C+1
+Example
+
+    c = 1
+    WHILE c < 10
+        PRINT c
+        c = c + 1
     WEND
-    ...
-    ' This is the same with that
-    FOR C=1 TO 9
-        PRINT C
-    NEXT
+    ' Output: 1 2 3 4 5 6 7 8 9
 
 +========================================================================================+
-|                                   171. (Language) XNOR                                 |
+|                                   172. (Language) XNOR                                 |
 +========================================================================================+
 
 a XNOR b
 
 Bitwise exclusive NOT OR.
 
-see Forum> Bug Reports >(same title) for details but XNOR is returning
-same as NOR
+Truth table:
+
+   a   b   a XNOR b
+  --- --- ----------
+   0   0      1
+   0   1      0
+   1   0      0
+   1   1      1
+
+Example 1
+
+The NOT-operation as part of XNOR performs a bitwise inversion on all
+bits of a number. This leads to the following (maybe unexpected) result:
+
+    print bin(0 xnor 0)     ' Output: 11111111111111111111111111111111
+
+Example 2: Operate XNOR only on last n bits
+
+If you want to operate NOR only on the last n bits of the numbers, you
+can use the following code:
+
+    n = 4
+    a = 0b1100
+    b = 0b1010
+
+    print bin((a XNOR b) BAND ((1 lshift n ) - 1)) 
+
+    ' Output 1001
 
 +========================================================================================+
-|                                   172. (Language) XOR                                  |
+|                                   173. (Language) XOR                                  |
 +========================================================================================+
 
 a XOR b
 
-Bitwise exclusive OR. Equivalent syntax to: a ~ b
+Bitwise exclusive OR.
 
+Truth table:
 
-    ' return true if n is ASCII code of letter (A-Z|a-z); e.g. ? isAbc(Asc("z"))
-    Def isAbc(n) = ((n >= 65 And n <= 90) Or (n >= 97 And n <= 122))
+   a   b   a XOR b
+  --- --- ---------
+   0   0      0
+   0   1      1
+   1   0      1
+   1   1      0
 
-    ' change case of string s; mode is -1, 0, 1 (lower, invert, upper). 
-    Func ccase(s, mode)
-      Local i, n
-      
-      For i = 1 To Len(s)
-        n = Asc(Mid(s, i, 1))
-        If isAbc(n) Then
-          Select Case mode
-            Case -1: n = n Bor  0b00100000 ' set bit-5 to lower case
-            Case  0: n = n Xor  0b00100000 ' invert bit-5 to invert case
-            Case  1: n = n Band 0b11011111 ' reset bit-5 to upper case 
-          End Select
-          s = Replace(s, i, Chr(n))
-        Endif
-      Next
-      ccase = s
-    End
+Example
 
-    ' run demo:
-    Repeat
-      Cls
-      Input "Enter a string (Enter empty to stop): ", s
-      
-      Print
-      Print "  Upper case: "; ccase(s, 1)
-      Print "  Lower case: "; ccase(s, -1)
-      Print " Invert case: "; ccase(s, 0)
-      Pause
-    Until s = ""
-
-XOR is Not equivalent syntax to: a ~ b
-    is bitwise NOT, for example: ~b
+    print 0 xor 1                     ' Output: 1
+    print bin(0b1100 xor 0b1010)      ' Output: 110
 
 +========================================================================================+
-|                                     173. (Math) ABS                                    |
+|                                     174. (Math) ABS                                    |
 +========================================================================================+
 
 ABS (x)
 
 Returns the absolute value of x.
 
+Example
+
     a =  1
     b = -1
 
-    print abs(a)
-    print abs(b)
+    print abs(a)      ' Output: 1
+    print abs(b)      ' Output: 1
 
 +========================================================================================+
-|                                    174. (Math) ABSMAX                                  |
+|                                    175. (Math) ABSMAX                                  |
 +========================================================================================+
 
 ABSMAX (...)
 
-Returns the absolute max value of x.
+Returns the absolute maximum value of var1 to varN. var1 to varN can be
+numbers and arrays of numbers.
 
-    ' absmax of three values
-    print absmax(-3,-1,2)
+See ABSMIN for absolute minimum value.
 
-    ' absmax of three variables
+Example 1: ABSMAX of several numbers
+
     a = -3
     b = -1
     c =  2
-    print absmax(a,b,c)
+    print absmax(a, b, c)      ' Output: 3
 
-    ' absmax of an array
+Example 2: ABSMAX of an array
+
     a = [-3,-1,2]
-    print absmax(a)
+    print absmax(a)            ' Output: 3
+
+Example 3: ABSMAX of mixed parameters
+
+    a = [-3,-1,2]
+    b = -2
+    print absmax(a, b)            ' Output: 3
 
 +========================================================================================+
-|                                    175. (Math) ABSMIN                                  |
+|                                    176. (Math) ABSMIN                                  |
 +========================================================================================+
 
 ABSMIN (...)
 
-Returns the absolute min value of x.
+Returns the absolute minumum value of var1 to varN. var1 to varN can be
+numbers and arrays of numbers.
 
-    ' absmin of three values
-    print absmin(-3,-1,2)
+See ABSMAX for absolute maximum value.
 
-    ' absmin of three variables
+Example 1: ABSMIN of several numbers
+
     a = -3
     b = -1
     c =  2
-    print absmin(a,b,c)
+    print absmin(a, b, c)      ' Output: 1
 
-    ' absmin of an array
+Example 2: ABSMIN of an array
+
     a = [-3,-1,2]
-    print absmin(a)
+    print absmin(a)            ' Output: 1
+
+Example 3: ABSMIN of mixed parameters
+
+    a = [-3,-1,2]
+    b = -2
+    print absmin(a, b)          ' Output: 1
 
 +========================================================================================+
-|                                     176. (Math) ACOS                                   |
+|                                     177. (Math) ACOS                                   |
 +========================================================================================+
 
 ACOS (x)
 
-Inverse cosine.
+Inverse cosine of x.
+
+Example
 
     a = cos(pi)
-    print acos(a)
+    print acos(a)       ' Output: 3.14159265358979  
 
 +========================================================================================+
-|                                    177. (Math) ACOSH                                   |
+|                                    178. (Math) ACOSH                                   |
 +========================================================================================+
 
 ACOSH (x)
 
-Inverse hyperbolic cosine
+Inverse hyperbolic cosine of x
+
+Example
 
     a = cosh(pi)
-    print a
+    print a             ' Output: 11.59195327552152
 
     b = acosh(a)
-    print b
+    print b             ' Output: 3.14159265358979
 
 +========================================================================================+
-|                                     178. (Math) ACOT                                   |
+|                                     179. (Math) ACOT                                   |
 +========================================================================================+
 
 ACOT (x)
 
-Inverse cotangent.
+Inverse cotangent of x.
 
-    a = cot(pi)
-    print a
+Example
+
+    a = cot(1)
+    print a             ' Output: 0.64209261593433
 
     b = acot(a)
-    print b
+    print b             ' Output: 1
 
 +========================================================================================+
-|                                    179. (Math) ACOTH                                   |
+|                                    180. (Math) ACOTH                                   |
 +========================================================================================+
 
 ACOTH (x)
 
-Inverse hyperbolic cotangent.
+Inverse hyperbolic cotangent of x.
+
+Example
 
     a = coth(pi)
-    print a
+    print a             ' Output: 1.00374187319732
 
     b = acoth(a)
-    print b
+    print b             ' Output: 3.14159265358979
 
 +========================================================================================+
-|                                     180. (Math) ACSC                                   |
+|                                     181. (Math) ACSC                                   |
 +========================================================================================+
 
 ACSC (x)
 
-Inverse cosecant.
+Inverse cosecant of x.
+
+Example
 
     a = csc(0.1)
-    print a
+    print a             ' Output: 10.01668613163478
 
     b = acsc(a)
-    print b
+    print b             ' Output: 0.1
 
 +========================================================================================+
-|                                    181. (Math) ACSCH                                   |
+|                                    182. (Math) ACSCH                                   |
 +========================================================================================+
 
 ACSCH (x)
 
-Inverse hyperbolic cosecant.
+Inverse hyperbolic cosecant of x.
+
+Example
 
     a = csch(0.1)
-    print a
+    print a             ' Output: 9.9833527572961
 
     b = acsch(a)
-    print b
+    print b             ' Output: 0.1
 
 +========================================================================================+
-|                                     182. (Math) ASEC                                   |
+|                                     183. (Math) ASEC                                   |
 +========================================================================================+
 
 ASEC (x)
 
-Inverse secant.
+Inverse secant of x.
+
+Example
 
     a = sec(0.1)
-    print a
+    print a             ' Output: 1.00502091840046
 
     b = asec(a)
-    print b
+    print b             ' Output: 0.1
 
 +========================================================================================+
-|                                    183. (Math) ASECH                                   |
+|                                    184. (Math) ASECH                                   |
 +========================================================================================+
 
 ASECH (x)
 
-Inverse hyperbolic secant.
+Inverse hyperbolic secant of x.
+
+Example
 
     a = sech(0.1)
-    print a
+    print a             ' Output: 0.99502074895323
 
     b = asech(a)
-    print b
+    print b             ' Output: 0.1
 
 +========================================================================================+
-|                                     184. (Math) ASIN                                   |
+|                                     185. (Math) ASIN                                   |
 +========================================================================================+
 
 ASIN (x)
 
-Inverse sine.
+Inverse sine of x.
+
+Example
 
     a = sin(0.5)
-    print a
+    print a                 ' Output: 0.4794255386042
 
     b = asin(a)
-    print b
+    print b                 ' Output: 0.5
 
 +========================================================================================+
-|                                    185. (Math) ASINH                                   |
+|                                    186. (Math) ASINH                                   |
 +========================================================================================+
 
 ASINH (x)
 
-Inverse hyperbolic sine.
+Inverse hyperbolic sine of x.
+
+Example
 
     a = sinh(0.5)
-    print a
+    print a             ' Output: 0.52109530549375
 
     b = asinh(a)
-    print b
+    print b             ' Output: 0.5
 
 +========================================================================================+
-|                                     186. (Math) ATAN                                   |
+|                                     187. (Math) ATAN                                   |
 +========================================================================================+
 
 ATAN (x)
 
-Inverse tangent.
+Inverse tangent of x.
 
-    a = tan(0.5)
+Example 1
+
+    a = tan(0.5)            ' Output: 0.54630248984379
     print a
 
     b = atan(a)
-    print b
-
-Little demo:
-
-    ' pin the tail.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-13
-    ' look how simple ATAN returns an angle from a ratio y/x 
-     
-    tw=txtw(string(22,"W")):xlimit=xmax-tw
-    th=txth("Q"):ylim=ymax-2*th
-    maxdistance=(xmax^2+ylim^2)^.5
-    winner=0 : windistance=maxdistance
-    for i=1400 to 0 step -100 ' draw target
-      if i mod 200=0 then cc=12 else cc=15 'alt red/white
-      circle 0,0,i,1,cc filled
-    next
-    color 14,4
-    for player=1 to 12
-      xtail=rnd*xlimit 'keeps the player tail in one line on the screen, hopefully
-      ytail=rnd*ylim   'keeps the player on the screen and screen from scrolling, hopefully
-      angle=deg(atan(ytail/xtail))\1 '<====== notice no angle involved with atan we feed it a ratio
-                                                      ' DEG converts the angle to degrees from radians
-      distance=((xtail^2+ytail^2)^.5)\1
-      tail="^<"+str(player)+" deg:"+str(angle)+" dist:"+str(distance)
-      at xtail,ytail:? tail
-      if distance < windistance then windistance=distance:winner=player
-      pause
-    next
-    color 15,0 'cause a screen scroll on purpose
-    at 0,ymax-th: ? "The winner is "+str(winner)+" at "+str(windistance)+" press any..."
-    pause
+    print b                 ' Output: 0.5
 
 +========================================================================================+
-|                                    187. (Math) ATAN2                                   |
+|                                    188. (Math) ATAN2                                   |
 +========================================================================================+
 
 ATAN2 (x, y)
 
-Inverse tangent (x,y).
+Returns the angle a in radians of a right-angled triangle, where x is
+the opposite side and y is the adjacent side.
 
+Example 1
 
-    'Both atan(n) and atan2(y, x) return an angle measured in radians.
-    'The return measure is from -pi to pi. In demo below it is converted
-    'to angle between 0 and 360 degrees.
-    'atan2 is better for detecting angle's quardrant because 
-    'x and y are given separartely.
-    'y the vertical change is given first.
-    centerX = xmax / 2 : centerY = ymax / 2
+    x = 10                       ' Opposite side of right-angled triangle
+    y = 100                      ' Adjacent side of right-angled triangle
+
+    print deg( atan2(x, y) )     ' Output: 5.71059313749964
+
+Example 2: Graphics demo
+
+    ' Both atan(n) and atan2(y, x) return an angle measured in radians.
+    ' The return measure is from -pi to pi. In demo below it is converted
+    ' to angle between 0 and 360 degrees.
+    ' atan2 is better for detecting angle's quardrant because 
+    ' x and y are given separartely.
+    ' y the vertical change is given first.
+
+    centerX = xmax / 2
+    centerY = ymax / 2
+
     pen on
+
     while asc(inkey) <> 27
-      cls
-      locate 0,20: ? "ATAN2 demo, used to detect angle of mouse to screen center."
-      line centerX, centerY, centerX + 200, centerY
-      at centerX + 210, centerY - 10 : ? "0 degrees (or radians)"
-      mouseX = pen(4) 
-      mouseY = pen(5)
-      line centerX, centerY, mouseX, mouseY, 15 'draw line from center to mouse
-      differenceX = mouseX - centerX
-      differenceY = mouseY - centerY 
-      a = atan2(differenceY, differenceX) '< notice y difference is listed first
-      
-      'VVVVVVVVVVVVVVVVVVVVVVVV  atan2 returns neg number for angles > 180
-      if a < 0 then a += 2 * pi  
-      '^^^^^^^^^^^^^^^^^^^^^^^^  if want a = 0 to 2*pi, instead of -pi to pi
-      
-      arc centerX, centerY, 100, 0, a 'draw the arc from 0 to angle
-      s = "Angle of mouse to center of screen ~ "+deg(a)\1+" degrees"
-      locate 30, 20 : ? s
-      showpage
-      delay 10
+        cls
+        locate 0,20: print  "ATAN2 demo, used to detect angle of mouse to screen center."
+        at centerX + 210, centerY - 10 : Print "0 degrees (or radians)"
+
+        line centerX, centerY, centerX + 200, centerY
+
+        mouseX = pen(4) 
+        mouseY = pen(5)
+
+        line centerX, centerY, mouseX, mouseY, 15 'draw line from center to mouse
+
+        differenceX = mouseX - centerX
+        differenceY = mouseY - centerY 
+        a = atan2(differenceY, differenceX)       ' < notice y difference is listed first
+
+        if a < 0 then a += 2 * pi                 ' atan2 returns neg number for angles > 180
+
+        arc centerX, centerY, 100, 0, a           'draw the arc from 0 to angle
+
+        s = "Angle of mouse to center of screen ~ " + deg(a)\1 + " degrees"
+        locate 30, 20 : print s
+        showpage
+        delay 10
     wend
 
 +========================================================================================+
-|                                    188. (Math) ATANH                                   |
+|                                    189. (Math) ATANH                                   |
 +========================================================================================+
 
 ATANH (x)
@@ -8636,31 +8790,35 @@ Example
     print b             ' Output: 0.5
 
 +========================================================================================+
-|                                     189. (Math) ATN                                    |
+|                                     190. (Math) ATN                                    |
 +========================================================================================+
 
 ATN (x)
 
-Inverse tangent. See ATAN(x)
+Inverse tangent of x. Equivalent to ATAN.
+
+Example
 
     a = tan(0.5)
-    print a
+    print a        ' Output: 0.54630248984379
 
     b = atan(a)
-    print b
+    print b        ' Output: 0.5
 
     c = atn(a)
-    print c
+    print c        ' Output: 0.5
 
 +========================================================================================+
-|                                     190. (Math) CEIL                                   |
+|                                     191. (Math) CEIL                                   |
 +========================================================================================+
 
 CEIL (x)
 
 Smallest integer value not less than x.
 
-For smallest integer value less then x see FLOOR(x)
+For smallest integer value less then x see FLOOR.
+
+Example
 
     print "ceil(1.1)  = "; ceil(1.1)
     print "ceil(1.5)  = "; ceil(1.5)
@@ -8669,21 +8827,31 @@ For smallest integer value less then x see FLOOR(x)
     print "ceil(-1.5) = "; ceil(-1.5)
     print "ceil(-1.9) = "; ceil(-1.9)
 
+    ' Output:
+    ' ceil(1.1)  = 2
+    ' ceil(1.5)  = 2
+    ' ceil(1.9)  = 2
+    ' ceil(-1.1) = -1
+    ' ceil(-1.5) = -1
+    ' ceil(-1.9) = -1
+
 +========================================================================================+
-|                                     191. (Math) COS                                    |
+|                                     192. (Math) COS                                    |
 +========================================================================================+
 
 COS (x)
 
-Cosine.
+Cosine of x. x is in radians.
+
+Example 1
 
     a = cos(0.5)
-    print a
+    print a             ' Output: 0.87758256189037
 
     b = acos(a)
-    print b
+    print b             ' Output:  0.5
 
-See SIN, TAN and ATAN.
+Example 2
 
 
     'TRIG lesson one.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12
@@ -8780,72 +8948,60 @@ See SIN, TAN and ATAN.
     pause
     wend
 
+Example 3
+
 At an angle around a given point, SIN and COS and radius (or distance)
-can locate the absolute screen x,y coordinate:
+can locate the absolute screen x,y coordinate.
 
-
-    ''' Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
-    ''' ah finally got diagramed analysis built into single quote commented code!!!
-    ''' the color codes match original Trig lesson one
-    '''reminder XMAX, YMAX and PI are built in constants
+    ' Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
+    ' ah finally got diagramed analysis built into single quote commented code!!!
+    ' the color codes match original Trig lesson one
+    ' reminder XMAX, YMAX and PI are built in constants
     CONST green =RGB(0,128,0)
-    ''' a central point cx,cy around which to draw 
+    ' a central point cx,cy around which to draw 
     cx=XMAX/2:cy=YMAX/2 'again cx,cy can be anywhere on screen so dont make them constant
-    '''highlight center
+    ' highlight center
     CIRCLE cx,cy,2,1,15
     r=200 'the radius or distance in pixels from cx,cy desired
     CIRCLE cx,cy,r,1,8  'we want a point somewhere on this circle, radius = constant distance away from point
-    '''      locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians
-    ''' here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)
+    ' locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians
+    ' here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)
     CIRCLE cx + r*COS(RAD(30)), cy + r*SIN(RAD(30)), 3, 1, 13   'x,y,r=3,aspect=1,color 13
-    ''' uncomment single comment lines for analysis
-    'legend
-    'LINE cx,cy,cx+r*COS(RAD(30)),cy,green 'adjacent leg in red
-    'LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 'leg opposite in blue
-    'LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12
-    'RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15
-    ''''             V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6
-    'ARC cx,cy,30,0,PI/6,1,14
-    'ARC cx,cy,35,0,RAD(30),1,14
+    legend
+    LINE cx,cy,cx+r*COS(RAD(30)),cy,green 'adjacent leg in red
+    LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 'leg opposite in blue
+    LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12
+    RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15
+    ' V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6
+    ARC cx,cy,30,0,PI/6,1,14
+    ARC cx,cy,35,0,RAD(30),1,14
 
-    '''                Another example at 240 degrees = 4*PI/3 radians
-    ''' here is 60+180=240 degrees in yellow both x and y are neg in relation to cx,cy
-    'CIRCLE cx + r*COS(RAD(240)), cy + r*SIN(RAD(240)), 3, 1, 14  'yellow
-    '''uncomment single comment lines for analysis
-    'legend
-    'LINE cx,cy,cx+r*COS(RAD(240)),cy,green 'adjacent leg in red
-    'LINE cx+r*COS(RAD(240)),cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),9 'leg opposite in blue
-    'LINE cx,cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),12
-    'RECT cx+r*COS(RAD(240))+2,cy-11 step 9,9,15
-    '''240 degrees =180 + 60 = PI + 2*PI/6 = PI+PI/3 = 4*PI/3 radians
-    '''               V end angle for arc in radians = RAD(240) or 4*PI/3 radians
-    'ARC cx,cy,15,0,4*PI/3,1,14
-    'ARC cx,cy,10,0,RAD(240),1,14
-    PAUSE
     sub legend
       at 0,0
       ?"green = leg adj, blue =leg opp, red = hypotenuse = radius"
       ?"white square is where the right angle is, yellow arcs mark angle in question
       ?"COS(yellow) = adj/hyp = green/red, red is radius of circle
       ?"SIN(yellow) = opp/hyp =  blue/red, red is radius of circle
-    end 
+    end
 
 +========================================================================================+
-|                                     192. (Math) COSH                                   |
+|                                     193. (Math) COSH                                   |
 +========================================================================================+
 
 COSH (x)
 
-Hyperbolic cosine
+Hyperbolic cosine of x.
+
+Example
 
     a = cosh(pi)
-    print a
+    print a                 ' Output: 11.59195327552152
 
     b = acosh(a)
-    print b
+    print b                 ' Output: 3.14159265358979
 
 +========================================================================================+
-|                                     193. (Math) COT                                    |
+|                                     194. (Math) COT                                    |
 +========================================================================================+
 
 COT (x)
@@ -8859,7 +9015,7 @@ Cotangent.
     print b
 
 +========================================================================================+
-|                                     194. (Math) COTH                                   |
+|                                     195. (Math) COTH                                   |
 +========================================================================================+
 
 COTH (x)
@@ -8873,7 +9029,7 @@ Cotangent hyperbolicus.
     print b
 
 +========================================================================================+
-|                                     195. (Math) CSC                                    |
+|                                     196. (Math) CSC                                    |
 +========================================================================================+
 
 CSC (x)
@@ -8887,7 +9043,7 @@ Cosecant.
     print b
 
 +========================================================================================+
-|                                     196. (Math) CSCH                                   |
+|                                     197. (Math) CSCH                                   |
 +========================================================================================+
 
 CSCH (x)
@@ -8901,7 +9057,7 @@ Hyperbolic cosecant.
     print b
 
 +========================================================================================+
-|                                     197. (Math) DEG                                    |
+|                                     198. (Math) DEG                                    |
 +========================================================================================+
 
 DEG (x)
@@ -8915,7 +9071,7 @@ Radians to degrees.
     print b
 
 +========================================================================================+
-|                                    198. (Math) DERIV                                   |
+|                                    199. (Math) DERIV                                   |
 +========================================================================================+
 
 DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
@@ -8963,7 +9119,7 @@ calculation error.
     print "Exact derivative at x = "; x; " : "; d(x)
 
 +========================================================================================+
-|                                    199. (Math) DETERM                                  |
+|                                    200. (Math) DETERM                                  |
 +========================================================================================+
 
 DETERM (A[, toler])
@@ -8975,7 +9131,7 @@ lowest acceptable number. default = 0.
     print determ(A)
 
 +========================================================================================+
-|                                   200. (Math) DIFFEQN                                  |
+|                                   201. (Math) DIFFEQN                                  |
 +========================================================================================+
 
 DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr
@@ -9041,7 +9197,7 @@ yf = result
     endif
 
 +========================================================================================+
-|                                     201. (Math) EXP                                    |
+|                                     202. (Math) EXP                                    |
 +========================================================================================+
 
 EXP (x)
@@ -9055,7 +9211,7 @@ Returns the value of e raised to the power of x.
     print b
 
 +========================================================================================+
-|                                   202. (Math) EXPRSEQ                                  |
+|                                   203. (Math) EXPRSEQ                                  |
 +========================================================================================+
 
 EXPRSEQ BYREF array, xmin, xmax, count USE expression
@@ -9073,7 +9229,7 @@ of its position as it is returned by the expression.
     print v2
 
 +========================================================================================+
-|                                     203. (Math) FIX                                    |
+|                                     204. (Math) FIX                                    |
 +========================================================================================+
 
 FIX (x)
@@ -9096,7 +9252,7 @@ Rounds x upwards to the nearest integer.
     print "ceil(-1.9) = "; ceil(-1.9)
 
 +========================================================================================+
-|                                    204. (Math) FLOOR                                   |
+|                                    205. (Math) FLOOR                                   |
 +========================================================================================+
 
 FLOOR (x)
@@ -9113,7 +9269,7 @@ For largest integer value greater then x see CEIL(x)
     print "floor(-1.9) = "; floor(-1.9)
 
 +========================================================================================+
-|                                     205. (Math) FRAC                                   |
+|                                     206. (Math) FRAC                                   |
 +========================================================================================+
 
 FRAC (x)
@@ -9123,7 +9279,7 @@ Fractional part of x.
     print frac(71.901)  ' Output: 0.901
 
 +========================================================================================+
-|                                     206. (Math) INT                                    |
+|                                     207. (Math) INT                                    |
 +========================================================================================+
 
 INT (x)
@@ -9162,7 +9318,7 @@ Example 2
     next
 
 +========================================================================================+
-|                                  207. (Math) INTERSECT                                 |
+|                                  208. (Math) INTERSECT                                 |
 +========================================================================================+
 
 INTERSECT Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, BYREF type, BYREF Rx, BYREF Ry
@@ -9205,7 +9361,7 @@ Example
     circle Rx,Ry, 5 color 12
 
 +========================================================================================+
-|                                   208. (Math) INVERSE                                  |
+|                                   209. (Math) INVERSE                                  |
 +========================================================================================+
 
 INVERSE (A)
@@ -9218,7 +9374,7 @@ Example
     print INVERSE(A)
 
 +========================================================================================+
-|                                    209. (Math) LINEQN                                  |
+|                                    210. (Math) LINEQN                                  |
 +========================================================================================+
 
 LINEQN (a, b [, toler])
@@ -9259,7 +9415,7 @@ Example
     ' Output: x = 1; y = 1; z = 3
 
 +========================================================================================+
-|                                     210. (Math) LOG                                    |
+|                                     211. (Math) LOG                                    |
 +========================================================================================+
 
 LOG (x)
@@ -9275,7 +9431,7 @@ Example:
     print b       ' Output: 2
 
 +========================================================================================+
-|                                    211. (Math) LOG10                                   |
+|                                    212. (Math) LOG10                                   |
 +========================================================================================+
 
 LOG10 (x)
@@ -9291,7 +9447,7 @@ Example:
     print b       ' Output: 2
 
 +========================================================================================+
-|                                   212. (Math) M3APPLY                                  |
+|                                   213. (Math) M3APPLY                                  |
 +========================================================================================+
 
 M3APPLY m3x3, BYREF poly
@@ -9322,7 +9478,7 @@ the last step translated. If the order is changed, the outcome might be
 different.
 
 +========================================================================================+
-|                                   213. (Math) M3IDENT                                  |
+|                                   214. (Math) M3IDENT                                  |
 +========================================================================================+
 
 M3IDENT BYREF m3x3
@@ -9353,7 +9509,7 @@ Example
     DRAWPOLY Rectangle
 
 +========================================================================================+
-|                                   214. (Math) M3ROTATE                                 |
+|                                   215. (Math) M3ROTATE                                 |
 +========================================================================================+
 
 M3ROTATE BYREF m3x3, angle [, x, y]
@@ -9396,7 +9552,7 @@ the last step translated. If the order is changed, the outcome might be
 different.
 
 +========================================================================================+
-|                                   215. (Math) M3SCALE                                  |
+|                                   216. (Math) M3SCALE                                  |
 +========================================================================================+
 
 M3SCALE BYREF m3x3, x, y, Sx, Sy
@@ -9440,7 +9596,7 @@ the last step translated. If the order is changed, the outcome might be
 different.
 
 +========================================================================================+
-|                                   216. (Math) M3TRANS                                  |
+|                                   217. (Math) M3TRANS                                  |
 +========================================================================================+
 
 M3TRANS BYREF m3x3, Tx, Ty
@@ -9477,7 +9633,7 @@ the last step translated. If the order is changed, the outcome might be
 different.
 
 +========================================================================================+
-|                                     217. (Math) MAX                                    |
+|                                     218. (Math) MAX                                    |
 +========================================================================================+
 
 MAX (...)
@@ -9494,7 +9650,7 @@ Example
     print MAX(x, 2, 9)                  ' Output: 9
 
 +========================================================================================+
-|                                     218. (Math) MIN                                    |
+|                                     219. (Math) MIN                                    |
 +========================================================================================+
 
 MIN (...)
@@ -9511,7 +9667,7 @@ Example
     print MIN(x, 2, -9)                 ' Output: -9
 
 +========================================================================================+
-|                                   219. (Math) POLYAREA                                 |
+|                                   220. (Math) POLYAREA                                 |
 +========================================================================================+
 
 POLYAREA (poly)
@@ -9535,7 +9691,7 @@ Example
     print "Exact area is 50x50 = 2500"
 
 +========================================================================================+
-|                                   220. (Math) POLYCENT                                 |
+|                                   221. (Math) POLYCENT                                 |
 +========================================================================================+
 
 POLYCENT
@@ -9563,7 +9719,7 @@ Example:
     circle centroid(0), centroid(1) , 5 color 5
 
 +========================================================================================+
-|                                   221. (Math) POLYEXT                                  |
+|                                   222. (Math) POLYEXT                                  |
 +========================================================================================+
 
 POLYEXT poly(), BYREF xmin, BYREF ymin, BYREF xmax, BYREF ymax
@@ -9584,7 +9740,7 @@ Example
     rect PolyXmin, PolyYmin, PolyXmax, PolyYmax  color 5
 
 +========================================================================================+
-|                                     222. (Math) POW                                    |
+|                                     223. (Math) POW                                    |
 +========================================================================================+
 
 POW (x, y)
@@ -9596,7 +9752,7 @@ Example
     print pow(5,2)   ' same as 5^2 = 25
 
 +========================================================================================+
-|                                   223. (Math) PTDISTLN                                 |
+|                                   224. (Math) PTDISTLN                                 |
 +========================================================================================+
 
 PTDISTLN (Bx,By,Cx,Cy,Ax,Ay)
@@ -9661,7 +9817,7 @@ Example 2: Interactive example to illustrate the geometry of PTDISTLN
     wend
 
 +========================================================================================+
-|                                  224. (Math) PTDISTSEG                                 |
+|                                  225. (Math) PTDISTSEG                                 |
 +========================================================================================+
 
 PTDISTSEG (Bx,By,Cx,Cy,Ax,Ay)
@@ -9737,7 +9893,7 @@ Example 2: Interactive example to illustrate the geometry of PTDISTSEG
     wend
 
 +========================================================================================+
-|                                    225. (Math) PTSIGN                                  |
+|                                    226. (Math) PTSIGN                                  |
 +========================================================================================+
 
 PTSIGN (Ax,Ay,Bx,By,Qx,Qy)
@@ -9790,7 +9946,7 @@ Example 2: Interactive example to illustrate the geometry of PTDISTLN
     wend
 
 +========================================================================================+
-|                                     226. (Math) RAD                                    |
+|                                     227. (Math) RAD                                    |
 +========================================================================================+
 
 RAD (x)
@@ -9806,7 +9962,7 @@ Example:
     print b      ' Output: 3.14..
 
 +========================================================================================+
-|                                     227. (Math) RND                                    |
+|                                     228. (Math) RND                                    |
 +========================================================================================+
 
 RND
@@ -9834,7 +9990,7 @@ Example 2: Random true/false; random integer between low/high
     print randlohi(10,20)
 
 +========================================================================================+
-|                                     228. (Math) ROOT                                   |
+|                                     229. (Math) ROOT                                   |
 +========================================================================================+
 
 ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr
@@ -9883,7 +10039,7 @@ Example 2
     ' Output: Root at 1.4140625
 
 +========================================================================================+
-|                                    229. (Math) ROUND                                   |
+|                                    230. (Math) ROUND                                   |
 +========================================================================================+
 
 ROUND (x [, decs])
@@ -9911,7 +10067,7 @@ Example 3: Round to decimal digits
     print round(A, 2)                ' Output: 12.35
 
 +========================================================================================+
-|                                     230. (Math) SEC                                    |
+|                                     231. (Math) SEC                                    |
 +========================================================================================+
 
 SEC (x)
@@ -9927,7 +10083,7 @@ Example
     print b     ' Output: 0.1
 
 +========================================================================================+
-|                                     231. (Math) SECH                                   |
+|                                     232. (Math) SECH                                   |
 +========================================================================================+
 
 SECH (x)
@@ -9941,7 +10097,7 @@ Hyperbolic secant of x.
     print b         ' Output: 0.1
 
 +========================================================================================+
-|                                    232. (Math) SEGCOS                                  |
+|                                    233. (Math) SEGCOS                                  |
 +========================================================================================+
 
 SEGCOS (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
@@ -10030,7 +10186,7 @@ Example 2
     wend
 
 +========================================================================================+
-|                                    233. (Math) SEGLEN                                  |
+|                                    234. (Math) SEGLEN                                  |
 +========================================================================================+
 
 SEGLEN (Ax,Ay,Bx,By)
@@ -10048,7 +10204,7 @@ Example
     print "SEGLEN: "; SEGLEN(Ax, Ay, Bx, By); " pixel"   ' Outut: SEGLEN: 111.8 Pixel
 
 +========================================================================================+
-|                                    234. (Math) SEGSIN                                  |
+|                                    235. (Math) SEGSIN                                  |
 +========================================================================================+
 
 SEGSIN (Ax,Ay,Bx,By,Cx,Cy,Dx,Dy)
@@ -10137,7 +10293,7 @@ Example 2
     wend
 
 +========================================================================================+
-|                                     235. (Math) SEQ                                    |
+|                                     236. (Math) SEQ                                    |
 +========================================================================================+
 
 SEQ (xmin, xmax, count)
@@ -10151,7 +10307,7 @@ Example
     print SEQ(2,10,5)  'Output: [2,4,6,8,10]
 
 +========================================================================================+
-|                                     236. (Math) SGN                                    |
+|                                     237. (Math) SGN                                    |
 +========================================================================================+
 
 SGN (x)
@@ -10166,7 +10322,7 @@ Example
     PRINT SGN(INT("-2"))           ' Output is:  -1
 
 +========================================================================================+
-|                                     237. (Math) SIN                                    |
+|                                     238. (Math) SIN                                    |
 +========================================================================================+
 
 SIN (x)
@@ -10333,7 +10489,7 @@ Example 4: Plot sin, cos and tan
     next
 
 +========================================================================================+
-|                                     238. (Math) SINH                                   |
+|                                     239. (Math) SINH                                   |
 +========================================================================================+
 
 SINH (x)
@@ -10349,7 +10505,7 @@ Example
     print b         ' Output: 0.5
 
 +========================================================================================+
-|                                     239. (Math) SQR                                    |
+|                                     240. (Math) SQR                                    |
 +========================================================================================+
 
 SQR (x)
@@ -10361,7 +10517,7 @@ Example:
     print sqr(2)        ' Output: 1.4142135623731  
 
 +========================================================================================+
-|                                   240. (Math) STATMEAN                                 |
+|                                   241. (Math) STATMEAN                                 |
 +========================================================================================+
 
 STATMEAN (...)
@@ -10395,7 +10551,7 @@ Example 4: Using numbers
     print statmean(A, B, C)   ' Output: 4
 
 +========================================================================================+
-|                                 241. (Math) STATMEANDEV                                |
+|                                 242. (Math) STATMEANDEV                                |
 +========================================================================================+
 
 STATMEANDEV (...)
@@ -10411,7 +10567,7 @@ Example
     print statmeandev(A)    ' Output: 3.6
 
 +========================================================================================+
-|                                  242. (Math) STATMEDIAN                                |
+|                                  243. (Math) STATMEDIAN                                |
 +========================================================================================+
 
 STATMEDIAN (...)
@@ -10428,7 +10584,7 @@ Example
     print statmedian(a)   ' output: 6
 
 +========================================================================================+
-|                                 243. (Math) STATSPREADP                                |
+|                                 244. (Math) STATSPREADP                                |
 +========================================================================================+
 
 STATSPREADS (...)
@@ -10448,7 +10604,7 @@ Example
     ' Unbiased sample variance: 3.7
 
 +========================================================================================+
-|                                 244. (Math) STATSPREADS                                |
+|                                 245. (Math) STATSPREADS                                |
 +========================================================================================+
 
 STATSPREADP (...)
@@ -10468,7 +10624,7 @@ Example
     ' Unbiased sample variance: 3.7
 
 +========================================================================================+
-|                                   245. (Math) STATSTD                                  |
+|                                   246. (Math) STATSTD                                  |
 +========================================================================================+
 
 STATSTD (...)
@@ -10503,7 +10659,7 @@ Example 4: Using numbers
     print statstd(A, B, C)  ' Output: 1
 
 +========================================================================================+
-|                                     246. (Math) SUM                                    |
+|                                     247. (Math) SUM                                    |
 +========================================================================================+
 
 SUM (...)
@@ -10518,7 +10674,7 @@ Example
     print sum(A, 1, 2, 3)       ' Output: 12
 
 +========================================================================================+
-|                                    247. (Math) SUMSQ                                   |
+|                                    248. (Math) SUMSQ                                   |
 +========================================================================================+
 
 SUMSQ (...)
@@ -10534,7 +10690,7 @@ Example
     print sumsq(A, 1, 2, 3)   ' Output: 28
 
 +========================================================================================+
-|                                     248. (Math) TAN                                    |
+|                                     249. (Math) TAN                                    |
 +========================================================================================+
 
 TAN (x)
@@ -10650,7 +10806,7 @@ the A in front of TAN or COS or SIN as give me “An Angle” without the A
 you get side ratios.
 
 +========================================================================================+
-|                                     249. (Math) TANH                                   |
+|                                     250. (Math) TANH                                   |
 +========================================================================================+
 
 TANH (x)
@@ -10664,56 +10820,45 @@ Hyperbolic tangent.
     print b
 
 +========================================================================================+
-|                                    250. (String) ASC                                   |
+|                                    251. (String) ASC                                   |
 +========================================================================================+
 
 ASC (s)
 
 Returns the ASCII code of first character of the string s.
 
-Also see CHR
+See CHR for converting a ASCII code to a character.
 
-    print "ASCII value of A is "; ASC("A")
+Example 1
 
-The following example prints an ASCII table.
+    print "ASCII value of A is "; ASC("A")      ' Output: ASCII value of A is 65
 
-
-    ' LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
-    ' LOCATE row, column - sets the next print location on screen, rows down, columns across
-    ' a MOD b - returns the remainder of a/b as integer 0 to b-1
-    '           for example odd number n mod 2 returns 1, while even number n mod 2 returns 0
-    '           n mod 10 returns 0,1,2,3,4,5,6,7,8 or 9  we will use this is demo
-    ' CHR - returns the CHaRracter for the ASC number, for demo we will print a chart of CHR for ASC numbers 32-128
-    ' ASC(Character) - is a number code for a print characters, 32 is the code for a space
-    ' ? - is shortcut for PRINT
-    ' RIGHT(string,n) - returns right most n characters of string
-    ' STR(n) - returns a number in string form
-    ' : - code statement seperator often used with LOCATE row, column : ? string
-    ' PAUSE optional-number-of-secs - waits for key press or mouse click and/or for a number seconds 
-    ' so lets user decide how long to wait
+Example 2: Create an ASCII table.
 
     LOCATE 1,16 : ? "ASC Table 30-129:"  ' locate print spot, print title for our app
-    FOR column=0 to 9                    ' print a header, 10 numbers plus + (to add to row value)
-      LOCATE 2,column*5+4 : ? "+";column
+
+    FOR column = 0 to 9                    ' print a header, 10 numbers plus + (to add to row value)
+      LOCATE 2, column * 5 + 4 : ? "+"; column
     NEXT
-    FOR row=3 to 12
-      LOCATE row,0 : ? RIGHT(" "+STR(row*10)+":",4)
+
+    FOR row = 3 to 12
+      LOCATE row, 0 : ? RIGHT(" " + STR(row * 10) + ":", 4)
     NEXT
+
     'main table
-    FOR ASCnumber=30 to 129              ' note ASC(32) = space so wont see anything in Table
-      row=ASCnumber\10                   ' \ rounds division down to integer
-      column=(ASCnumber MOD 10)*5+5      ' times 5 to space out the characters printed plus 5 for column labels
+    FOR ASCnumber = 30 to 129              ' note ASC(32) = space so wont see anything in Table
+      row = ASCnumber \ 10                 ' \ rounds division down to integer
+      column = (ASCnumber MOD 10) * 5 + 5  ' times 5 to space out the characters printed plus 5 for column labels
       LOCATE row,column : ? CHR(ASCnumber)
     NEXT
-    PAUSE
 
 +========================================================================================+
-|                                    251. (String) BCS                                   |
+|                                    252. (String) BCS                                   |
 +========================================================================================+
 
 BCS (s)
 
-Converts (B)ASIC-style strings to (C)-style (S)trings by masking escape
+Converts the BASIC-style string s to C-style string by masking escape
 codes. Escape codes in the string will not be applied to format the
 string when printed on the screen. Instead escape codes will be printed
 as they are.
@@ -10721,6 +10866,8 @@ as they are.
 See CBS to unmasked a c-style string, and see article “Escape codes” for
 more information about escape codes.
 
+Example
+
     ' define some escape codes
     const NORMAL             = "\e[0m"  ' = Cat(0)
     const BOLD               = "\e[1m"  ' = Cat(1)
@@ -10743,29 +10890,33 @@ more information about escape codes.
     ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    252. (String) BIN                                   |
+|                                    253. (String) BIN                                   |
 +========================================================================================+
 
 BIN (x)
 
 Returns the binary value of x as string.
 
+Example
+
     print hex(255)      ' output: FF
     print bin(8)        ' output: 1000
     print oct(16)       ' output: 20
 
 +========================================================================================+
-|                                    253. (String) CBS                                   |
+|                                    254. (String) CBS                                   |
 +========================================================================================+
 
 CBS (s)
 
-Converts (C)-style strings to (B)ASIC-style (S)trings by unmasking
-escape codes. Escape codes in the string will be applied to format the
-string when printed on the screen.
+Converts C-style string s to BASIC-style string by unmasking escape
+codes. Escape codes in the string will be applied to format the string
+when printed on the screen.
 
-See BCS to masked a Basic-style string, and see article “Escape codes”
+See BCS to masked a BASIC-style string, and see article “Escape codes”
 for more information about escape codes.
+
+Example
 
     ' define some escape codes
     const NORMAL             = "\e[0m"  ' = Cat(0)
@@ -10789,37 +10940,36 @@ for more information about escape codes.
     ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    254. (String) CHOP                                  |
+|                                    255. (String) CHOP                                  |
 +========================================================================================+
 
 CHOP (source)
 
-Chops off the last character of the string ‘source’ and returns the
-result.
+Chops off the last character of the string source.
+
+Example
 
     s = "Test"
-    print chop(s)
-
-    ' Output: Tes
+    print chop(s)    ' Output: Tes
 
 +========================================================================================+
-|                                    255. (String) CHR                                   |
+|                                    256. (String) CHR                                   |
 +========================================================================================+
 
 CHR (x)
 
-Returns one-char string of character with ASCII code x.
+Returns an one-char string of character with ASCII code x.
 
 See ASC to convert a character to ASCII code.
 
-Example 1:
+Example 1
 
-    print "ASCII code 65 is '" + chr(65) + "'"
+    print "ASCII code 65 is '" + chr(65) + "'"        ' Output ASCII code 65 is 'A'
 
-    ' Output ASCII code 65 is 'A'
+Example 2: Get escape character
 
-Example 2: The CHR command is useful for obtaining and printing the
-escape character (ASCII 27). For more information about escape codes see
+The CHR command is useful for obtaining and printing the escape
+character (ASCII 27). For more information about escape codes see
 article “Escape Codes”
 
     PRINT CHR(27) + "[1mTHIS IS BOLD" + CHR(27) + "[0m"
@@ -10828,8 +10978,10 @@ article “Escape Codes”
 
 Example 3: Print ASCII table
 
-    rem display the ASCII and the extended tables
+    REM display the ASCII and the extended tables
+
     For n = 0 To 255
+
       If n = 0 Then
         Color 15, 0: Locate 1, 1
         Print "Standard 7-bit ASCII table (character codes 0 - 127):";
@@ -10840,6 +10992,7 @@ Example 3: Print ASCII table
         Color 15, 0: Cls: Locate 1, 1
         Print "Nonstandard 8-bit Extended table (character codes 128 - 255):";
       Endif
+
       If n <= 31 Then ' control characters (e.g. new-line, tab, etc).
         Read c
       Elseif n = 32 Then ' regular space (invisible...)
@@ -10849,15 +11002,18 @@ Example 3: Print ASCII table
       Else
         c = Chr(n) ' ASCII code --> character
       Endif
+
       Locate (n Mod 16) + 3, (((n \ 16) Mod 8) * 9) + 1
 
       Color 7: Print Using "000 "; n; ' ASCII code
       Color 14: Print c; ' ASCII (or ANSI) character
     Next
+
     Color 7, 0: Print: Print
     Print " * Nonstandard characters might look different on another system."
 
     End
+
     ' nonprintable control characters (ASCII codes 0..31):
     Data "nul", "soh", "stx", "etx", "eot" ' 0..4
     Data "enq", "ack", "bel", "bs" , "tab" ' 5..9
@@ -10868,14 +11024,20 @@ Example 3: Print ASCII table
     Data "rs" , "us"  ' 30..31
 
 +========================================================================================+
-|                                  256. (String) DISCLOSE                                |
+|                                  257. (String) DISCLOSE                                |
 +========================================================================================+
 
 DISCLOSE (str[, pairs [, ignore-pairs]])
 
-Discloses a string.
+Discloses the string str. pairs is a string of 2n characters. Two
+consecutive characters form a pair. The characters of str which are
+positioned between the first matching pair of pairs will be returned.
+ignore-pairs is a string with 2n characters. Two consecutive characters
+form a ignore-pair. All characters of str between an ignore-pair will be
+ignored (not returned).
 
-Default pairs and ignore pairs
+if pairs and ingnore-pairs are not given, the following default pairs
+and ignore pairs will be used:
 
   First non white-space character   Check   Ignore
   --------------------------------- ------- ---------
@@ -10885,24 +11047,39 @@ Default pairs and ignore pairs
   [                                 []      " " ’ ’
   {                                 {}      " " ’ ’
   <                                 <>      " " ’ ’
-  "                                 " "     ’ ’
 
-Example
+Example 1: Disclose default pairs
 
-    s = "abc (abc)"
-    ? "1. "; s; tab(20); " -> "; disclose(s, "()")                  ' prints abc
+    s = "(abc)"
+    print disclose(s)                        ' Output: abc
 
-    s = "abc (a(bc))"
-    ? "2. "; s; tab(20); " -> "; disclose(s, "()")                  ' prints a(bc)
-    ? "3. "; s; tab(20); " -> "; disclose(disclose(s, "()"), "()")  ' prints bc
+Example 2: Disclose non-default pairs
 
-    s = "abc (a='(bc)')"
-    ? "4. "; s; tab(20); " -> "; disclose(s, "()", "''")             ' prints a='(bc)'
-    ? "5. "; s; tab(20); " -> "; disclose(disclose(s, "()", "''"), "()", "''")
-    ' prints nothing
+    s = "_abc_"
+    print disclose(s, "__")                  ' Output: abc
+
+    s = "([abc])"
+    print disclose(s, "[]")                  ' Output: abc
+
+    s = "([abc])"
+    print disclose(s, "[)")                  ' Output: abc]
+
+    s = "[(abc)]"
+    print disclose(s, "()[]")                ' Output: (abc)
+
+    s = "abc (def)"
+    print disclose(s, "()")                  ' Output: def
+
+    s = "abc (d(ef))"
+    print disclose(s, "()")                  ' Output: d(ef)
+
+Example 3: Disclose with ignore-pairs
+
+    s = "abc [d(ef)] (gh)"
+    print disclose(s, "()", "[]")            ' Output: gh
 
 +========================================================================================+
-|                                  257. (String) ENCLOSE                                 |
+|                                  258. (String) ENCLOSE                                 |
 +========================================================================================+
 
 ENCLOSE (str[, pair])
@@ -10927,7 +11104,7 @@ Example 2: Enclose letters
     print enclose(test, "aB")   ' output: a10B
 
 +========================================================================================+
-|                                   258. (String) FORMAT                                 |
+|                                   259. (String) FORMAT                                 |
 +========================================================================================+
 
 FORMAT (format, val)
@@ -11060,7 +11237,7 @@ money function that returns a flexible length string for a money amount
     end
 
 +========================================================================================+
-|                                    259. (String) HEX                                   |
+|                                    260. (String) HEX                                   |
 +========================================================================================+
 
 HEX (x)
@@ -11074,7 +11251,7 @@ Example
     print oct(16)       ' output: 20
 
 +========================================================================================+
-|                                   260. (String) INSTR                                  |
+|                                   261. (String) INSTR                                  |
 +========================================================================================+
 
 INSTR ([start,] s1, s2)
@@ -11096,7 +11273,7 @@ Example 2: Get position using a starting point
     print instr(3, s1, s2)  ' Output: 7  (instead of 1)
 
 +========================================================================================+
-|                                    261. (String) JOIN                                  |
+|                                    262. (String) JOIN                                  |
 +========================================================================================+
 
 JOIN words(), delimiters, string
@@ -11117,12 +11294,14 @@ Example
     PRINT s                       ' Output: etc/temp/1/filename.ext
 
 +========================================================================================+
-|                                   262. (String) LCASE                                  |
+|                                   263. (String) LCASE                                  |
 +========================================================================================+
 
 LCASE (s)
 
 Converts the string s to a lower case string ls.
+
+See UCASE for converting a string to upper case.
 
 Example
 
@@ -11130,7 +11309,7 @@ Example
     print lcase(s)      ' Output: abc
 
 +========================================================================================+
-|                                    263. (String) LEFT                                  |
+|                                    264. (String) LEFT                                  |
 +========================================================================================+
 
 LEFT (s [,n])
@@ -11145,7 +11324,7 @@ Example
     print LEFT(s, 3)   ' Output: abc
 
 +========================================================================================+
-|                                   264. (String) LEFTOF                                 |
+|                                   265. (String) LEFTOF                                 |
 +========================================================================================+
 
 LEFTOF (s1, s2)
@@ -11161,7 +11340,7 @@ Example
     print LEFTOF(s1, s2)      ' Output: abc
 
 +========================================================================================+
-|                                 265. (String) LEFTOFLAST                               |
+|                                 266. (String) LEFTOFLAST                               |
 +========================================================================================+
 
 LEFTOFLAST (s1, s2)
@@ -11177,7 +11356,7 @@ Example
     print LEFTOFLAST(s1, s2)      ' Output: abcdef
 
 +========================================================================================+
-|                                   266. (String) LOWER                                  |
+|                                   267. (String) LOWER                                  |
 +========================================================================================+
 
 LOWER (s)
@@ -11190,7 +11369,7 @@ Example:
     print lower(s)   ' Output: test-string
 
 +========================================================================================+
-|                                   267. (String) LTRIM                                  |
+|                                   268. (String) LTRIM                                  |
 +========================================================================================+
 
 LTRIM (s)
@@ -11209,7 +11388,7 @@ Example:
     ' -test    -
 
 +========================================================================================+
-|                                    268. (String) MID                                   |
+|                                    269. (String) MID                                   |
 +========================================================================================+
 
 MID (s, start [,length])
@@ -11225,7 +11404,7 @@ Example
     print MID(s, 3, 1)      ' Output: c
 
 +========================================================================================+
-|                                    269. (String) OCT                                   |
+|                                    270. (String) OCT                                   |
 +========================================================================================+
 
 OCT (x)
@@ -11239,7 +11418,7 @@ Example:
     print oct(16)       ' output: 20
 
 +========================================================================================+
-|                                  270. (String) REPLACE                                 |
+|                                  271. (String) REPLACE                                 |
 +========================================================================================+
 
 REPLACE (source, pos, str [, len])
@@ -11309,7 +11488,7 @@ Example 2:
     ? lset("Create TEXT");               colors(Replace("", 1, TEXT))
 
 +========================================================================================+
-|                                   271. (String) RIGHT                                  |
+|                                   272. (String) RIGHT                                  |
 +========================================================================================+
 
 RIGHT (s[,n])
@@ -11326,7 +11505,7 @@ Example
     print right(s,10)   ' Output: abcdef
 
 +========================================================================================+
-|                                  272. (String) RIGHTOF                                 |
+|                                  273. (String) RIGHTOF                                 |
 +========================================================================================+
 
 RIGHTOF (s1, s2)
@@ -11345,7 +11524,7 @@ Example
     print rightof(s, "xx")  ' Output: 
 
 +========================================================================================+
-|                                273. (String) RIGHTOFLAST                               |
+|                                274. (String) RIGHTOFLAST                               |
 +========================================================================================+
 
 RIGHTOFLAST (s1, s2)
@@ -11364,7 +11543,7 @@ Example
     print rightoflast(s, "xx")  ' Output:
 
 +========================================================================================+
-|                                   274. (String) RINSTR                                 |
+|                                   275. (String) RINSTR                                 |
 +========================================================================================+
 
 RINSTR ([start,] s1, s2)
@@ -11379,7 +11558,7 @@ Example
     print rinstr(6, s, "ab")   ' Output: 0
 
 +========================================================================================+
-|                                   275. (String) RTRIM                                  |
+|                                   276. (String) RTRIM                                  |
 +========================================================================================+
 
 RTRIM (s)
@@ -11394,7 +11573,7 @@ Example
     print ">" + rtrim(s) + "<"    ' Output: >  abcd<
 
 +========================================================================================+
-|                                   276. (String) SINPUT                                 |
+|                                   277. (String) SINPUT                                 |
 +========================================================================================+
 
 SINPUT src; var [, delim] [,var [, delim]] ...
@@ -11425,7 +11604,7 @@ Example 2: Split string with complex delimiters
     print vif, vcond, vdo                       ' Output: if    x>1    y
 
 +========================================================================================+
-|                                   277. (String) SPACE                                  |
+|                                   278. (String) SPACE                                  |
 +========================================================================================+
 
 SPACE (n)
@@ -11461,7 +11640,7 @@ Example 2: Insert string into a buffer
     Wend
 
 +========================================================================================+
-|                                    278. (String) SPC                                   |
+|                                    279. (String) SPC                                   |
 +========================================================================================+
 
 SPC (n)
@@ -11498,7 +11677,7 @@ Example 2: Insert string into a buffer
     Wend
 
 +========================================================================================+
-|                                   279. (String) SPLIT                                  |
+|                                   280. (String) SPLIT                                  |
 +========================================================================================+
 
 SPLIT string, delimiters, words() [, pairs] [USE expr]
@@ -11555,7 +11734,7 @@ Example 3: Using “USE expr”
     ' 2 [filename1.ext]
 
 +========================================================================================+
-|                                   280. (String) SPRINT                                 |
+|                                   281. (String) SPRINT                                 |
 +========================================================================================+
 
 SPRINT var; [USING...;] ...
@@ -11576,7 +11755,7 @@ Example
     print s1     ' Output: a + b = 1000 + 2000 = 3000
 
 +========================================================================================+
-|                                  281. (String) SQUEEZE                                 |
+|                                  282. (String) SQUEEZE                                 |
 +========================================================================================+
 
 SQUEEZE (s)
@@ -11594,7 +11773,7 @@ Example:
     ' [Hi there]
 
 +========================================================================================+
-|                                    282. (String) STR                                   |
+|                                    283. (String) STR                                   |
 +========================================================================================+
 
 STR (n)
@@ -11607,7 +11786,7 @@ Example
     s = str(n)
 
 +========================================================================================+
-|                                   283. (String) STRING                                 |
+|                                   284. (String) STRING                                 |
 +========================================================================================+
 
 STRING ( count [,start | s] )
@@ -11623,7 +11802,7 @@ Example
     print string(4, 65)         ' Output: AAAA
 
 +========================================================================================+
-|                                 284. (String) TRANSLATE                                |
+|                                 285. (String) TRANSLATE                                |
 +========================================================================================+
 
 TRANSLATE (source, what [, with])
@@ -11645,7 +11824,7 @@ Example 2: Remove
     print s1 + " -> "; s2          ' Output: ab_cd_ef -> ab__ef
 
 +========================================================================================+
-|                                    285. (String) TRIM                                  |
+|                                    286. (String) TRIM                                  |
 +========================================================================================+
 
 TRIM(s)
@@ -11664,101 +11843,69 @@ Example
     ' ->test<-
 
 +========================================================================================+
-|                                   286. (String) UCASE                                  |
+|                                   287. (String) UCASE                                  |
 +========================================================================================+
 
 UCASE (s)
 
-Converts the string s to upper case.
+Converts the string s to a upper case string us.
 
+See LCASE for converting a string to lower case. UCASE and UPPER are
+equivalent.
 
-    'The case of UPPER vs UCASE.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12
-    '
-    test="capital idea"
-    if upper(test)=ucase(test) then ?"UPPER and UCASE do the same thing." else ?"UPPER and UCASE are different."
-    pause
+Example
 
-output: UPPER and UCASE do the same thing.
+    s = "abc"
+    print ucase(s)      ' Output: ABC
 
 +========================================================================================+
-|                                   287. (String) UPPER                                  |
+|                                   288. (String) UPPER                                  |
 +========================================================================================+
 
 UPPER (s)
 
-Converts the string s to upper case.
+Converts the string s to a upper case string us.
 
-Yes, you should see the comment in UCASE.
+See LCASE and LOWER for converting a string to lower case. UPPER and
+UCASE are equivalent.
+
+Example
+
+    s = "abc"
+    print upper(s)      ' Output: ABC
 
 +========================================================================================+
-|                                    288. (String) VAL                                   |
+|                                    289. (String) VAL                                   |
 +========================================================================================+
 
 VAL (s)
 
-Returns the numeric value of string s.
+Returns the numeric value of string s. If s cannot be converted to a
+number, VAL will return 0. VAL does not evaluate the string.
 
-Here is an opportunity for enhancing SmallBASIC’s function VAL, this
-EVAL is only beginning of what might be done.
+Example
 
+    print val("123")        ' Output: 123
+    print val("123e2")      ' Output: 12300
+    print val("0xFF")       ' Output: 255
 
-    ' VAL test.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-05
-    s1="123.234*4+1000/2"
-    ? val(s1)
-    ? eval(s1)
-    pause
-    func eval(numericexpressionstring)
-      'working left to right, no parenthesis
-      e=0:cmd="+":ds=""
-      for i=1 to len(numericexpressionstring)
-        c=mid(numericexpressionstring,i,1)
-        if instr("0123456789.",c) then ds=ds+c
-        if instr("+-*/",c) or i=len(numericexpressionstring) then
-          'execute last cmd if one
-          if cmd<>""  then
-            d=val(ds)
-            select case cmd
-            case "+":e=e+d
-            case "-":e=e-d
-            case "*":e=e*d
-            case "/":e=e/d
-            end select
-            ds="":cmd=""
-          end if
-          if i<>len(numericexpressionstring) then cmd=c
-        end if
-      next
-      'eval=str(e) '<=== I am setting up something for Turtle strings
-      eval=e        '<=== normal people and usage might want this
-    end
-
-Math EVAL function = evaluates a string as though it were an expression
-and returns a result.
-
-I’ve written in Euphoria 4 correct math EVAL function, you can download
-it and see how it works, if you’re really into it:
-rapideuphoria.com*math_eval_v1_1_0.zip
-
-It is straightforward to translate that Euphoria code into SmallBASIC
-code. EVAL must be around here somewhere, it is a classic. I thought I
-might find a version in TinyBASIC but I am too much into getting a
-turtle string to repeat to hunt for it at moment.
-
-The VAL command just converts a string to a number. For EVAL type
-functionality, the CHAIN command is somewhat similar.
+    print val("123*2")      ' Output: 123
+    print val("123abcd")    ' Output: 0
+    print val("seven")      ' Output: 0
 
 +========================================================================================+
-|                                   289. (System) CHAIN                                  |
+|                                   290. (System) CHAIN                                  |
 +========================================================================================+
 
 CHAIN source
 
-Compile and run the given source. Source can be a file name, a line of
+Compile and run the given source. source can be a file name, a line of
 code or an array of code. Use ENV to share variables with the parent
 process.
 
-Example 1: Using constants; Note: \" is used to create a quote inside
-the string
+Example 1: Using constants
+
+Note: \" is used to create a quote inside the string
 
     Chain "? \"100 + 50 is: \"; 100 + 50" 
 
@@ -11865,7 +12012,7 @@ Example 6: Creating an eval function
     ? eval("Rad((45 * 3) - 20) * 2")
 
 +========================================================================================+
-|                                  290. (System) COMMAND                                 |
+|                                  291. (System) COMMAND                                 |
 +========================================================================================+
 
 COMMAND
@@ -11927,7 +12074,7 @@ When “test.bas” is:
     ' Third parameter : fileName 
 
 +========================================================================================+
-|                                    291. (System) CWD                                   |
+|                                    292. (System) CWD                                   |
 +========================================================================================+
 
 CWD
@@ -11937,7 +12084,7 @@ Gets current working directory.
     print cwd
 
 +========================================================================================+
-|                                   292. (System) DELAY                                  |
+|                                   293. (System) DELAY                                  |
 +========================================================================================+
 
 DELAY ms
@@ -11950,7 +12097,7 @@ system clock.
     print "done"
 
 +========================================================================================+
-|                                    293. (System) ENV                                   |
+|                                    294. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -12029,7 +12176,7 @@ General suggestions using Environment Variables
     may be different then “sb1” on some systems (Linux for example).
 
 +========================================================================================+
-|                                    294. (System) ENV                                   |
+|                                    295. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -12109,7 +12256,7 @@ General suggestions using Environment Variables
     may be different then “sb1” on some systems (Linux for example).
 
 +========================================================================================+
-|                                    295. (System) EXEC                                  |
+|                                    296. (System) EXEC                                  |
 +========================================================================================+
 
 EXEC file
@@ -12137,7 +12284,7 @@ Example 2: Execute with parameters
     exec(enclose("shutdown -h now"))
 
 +========================================================================================+
-|                                   296. (System) EXPORT                                 |
+|                                   297. (System) EXPORT                                 |
 +========================================================================================+
 
 EXPORT thing
@@ -12165,7 +12312,7 @@ Example: Create an unit
     end
 
 +========================================================================================+
-|                                    297. (System) FRE                                   |
+|                                    298. (System) FRE                                   |
 +========================================================================================+
 
 FRE (x)
@@ -12219,7 +12366,7 @@ Example
     print "Free RAM: "; fre(-12)
 
 +========================================================================================+
-|                                    298. (System) HOME                                  |
+|                                    299. (System) HOME                                  |
 +========================================================================================+
 
 HOME
@@ -12237,7 +12384,7 @@ Example 2: Change working directory to home directory
     print cwd
 
 +========================================================================================+
-|                                   299. (System) IMPORT                                 |
+|                                   300. (System) IMPORT                                 |
 +========================================================================================+
 
 IMPORT
@@ -12256,7 +12403,7 @@ Example 1: Import raylib module
     import raylib as r
 
 +========================================================================================+
-|                                  300. (System) INCLUDE                                 |
+|                                  301. (System) INCLUDE                                 |
 +========================================================================================+
 
 INCLUDE source-file.bas
@@ -12292,7 +12439,7 @@ Create second file wich will include part1.bas.
     ' 5 4 3 2 1
 
 +========================================================================================+
-|                                   301. (System) MAXINT                                 |
+|                                   302. (System) MAXINT                                 |
 +========================================================================================+
 
 MAXINT
@@ -12305,7 +12452,7 @@ Example
     print MAXINT        ' Output 9223372036854775807
 
 +========================================================================================+
-|                                    302. (System) NIL                                   |
+|                                    303. (System) NIL                                   |
 +========================================================================================+
 
 NIL
@@ -12326,7 +12473,7 @@ Example 2
     ' Output: b is not set
 
 +========================================================================================+
-|                                   303. (System) OPTION                                 |
+|                                   304. (System) OPTION                                 |
 +========================================================================================+
 
 OPTION keyword
@@ -12366,7 +12513,7 @@ Used to pass parameters to the run-time environment.
   -----------------------------------------------------------------------
 
 +========================================================================================+
-|                                   304. (System) PAUSE                                  |
+|                                   305. (System) PAUSE                                  |
 +========================================================================================+
 
 PAUSE [secs]
@@ -12404,7 +12551,7 @@ Example 2
     wend
 
 +========================================================================================+
-|                                     305. (System) PI                                   |
+|                                     306. (System) PI                                   |
 +========================================================================================+
 
 PI
@@ -12417,7 +12564,7 @@ Example
     print cos(2*PI)     ' Output: 1
 
 +========================================================================================+
-|                                  306. (System) PROGLINE                                |
+|                                  307. (System) PROGLINE                                |
 +========================================================================================+
 
 PROGLINE
@@ -12432,7 +12579,7 @@ Returns the current program line number.
     ' 2
 
 +========================================================================================+
-|                                 307. (System) RANDOMIZE                                |
+|                                 308. (System) RANDOMIZE                                |
 +========================================================================================+
 
 RANDOMIZE [int]
@@ -12447,7 +12594,7 @@ Example:
     randomize 15
 
 +========================================================================================+
-|                                    308. (System) RUN                                   |
+|                                    309. (System) RUN                                   |
 +========================================================================================+
 
 RUN cmdstr
@@ -12521,7 +12668,7 @@ Example 1: Querry whether Linux or Windows is used
     print "Windows: " + IS_WINDOWS
 
 +========================================================================================+
-|                                   309. (System) SBVER                                  |
+|                                   310. (System) SBVER                                  |
 +========================================================================================+
 
 SBVER
@@ -12533,7 +12680,7 @@ Example
     print SBVER    ' Output: 12.26 Console Unix_64 Tue, 06 Jun 2023
 
 +========================================================================================+
-|                                    310. (System) SELF                                  |
+|                                    311. (System) SELF                                  |
 +========================================================================================+
 
 SELF
@@ -12590,7 +12737,7 @@ Example 2: Simple Class
     A.Decrement(4) : print A.GetX()
 
 +========================================================================================+
-|                                  311. (System) STKDUMP                                 |
+|                                  312. (System) STKDUMP                                 |
 +========================================================================================+
 
 STKDUMP
@@ -12598,7 +12745,7 @@ STKDUMP
 Display internal execution stack.
 
 +========================================================================================+
-|                                   312. (System) TROFF                                  |
+|                                   313. (System) TROFF                                  |
 +========================================================================================+
 
 TROFF
@@ -12621,7 +12768,7 @@ Example
     <2><3><3><3><3><3><5>
 
 +========================================================================================+
-|                                    313. (System) TRON                                  |
+|                                    314. (System) TRON                                  |
 +========================================================================================+
 
 TRON
@@ -12640,7 +12787,7 @@ Example
     ' Output: <2><3><3><3><3><3>
 
 +========================================================================================+
-|                                    314. (System) UNIT                                  |
+|                                    315. (System) UNIT                                  |
 +========================================================================================+
 
 UNIT name
@@ -12659,12 +12806,12 @@ unit.
     or projects, the same way the internal routine “PRINT” is useful for
     many programs, and not only for specific one.
 
-Use EXPORT to export procedured, functions, constants or variables. Only
-exported names can be access in the main program.
+Use EXPORT to export procedures, functions, constants or variables. Only
+exported names can be accessed in the main program.
 
 Example 1: Simple Unit
 
-First an example of the unit. Please save it with the filename
+First, an example of the unit. Please save it with the filename
 “MyTestUnit.bas”
 
     UNIT MyTestUnit
@@ -12682,7 +12829,7 @@ First an example of the unit. Please save it with the filename
         print "a + b = "; a + b
     end
 
-Second an example on how to use the unit.
+Second, an example on how to use the unit.
 
     import MyTestUnit as u
 
@@ -12694,10 +12841,9 @@ Second an example on how to use the unit.
     u.MyVar = u.MyVar + 5
     print u.MyVar
 
-Example 2: An unit for using string
+Example 2: An unit for using strings
 
-The UNIT file is strlib.bas:
-
+The UNIT file. Please save as strlib.bas.
 
     ' File: strlib.bas
     ' ------------

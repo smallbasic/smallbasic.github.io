@@ -1,17 +1,18 @@
 <h1 id="absmin">ABSMIN</h1>
 <blockquote>
-<p>ABSMIN (…)</p>
+<p>f = ABSMIN (var1 [, var2, … , varN] )</p>
 </blockquote>
-<p>Returns the absolute min value of x.</p>
-<pre><code>&#39; absmin of three values
-print absmin(-3,-1,2)
-
-&#39; absmin of three variables
-a = -3
+<p>Returns the absolute minumum value of <code>var1</code> to <code>varN</code>. <code>var1</code> to <code>varN</code> can be numbers and arrays of numbers.</p>
+<p>See ABSMAX for absolute maximum value.</p>
+<h3 id="example-1-absmin-of-several-numbers">Example 1: ABSMIN of several numbers</h3>
+<pre><code>a = -3
 b = -1
 c =  2
-print absmin(a,b,c)
-
-&#39; absmin of an array
-a = [-3,-1,2]
-print absmin(a)</code></pre>
+print absmin(a, b, c)      &#39; Output: 1</code></pre>
+<h3 id="example-2-absmin-of-an-array">Example 2: ABSMIN of an array</h3>
+<pre><code>a = [-3,-1,2]
+print absmin(a)            &#39; Output: 1</code></pre>
+<h3 id="example-3-absmin-of-mixed-parameters">Example 3: ABSMIN of mixed parameters</h3>
+<pre><code>a = [-3,-1,2]
+b = -2
+print absmin(a, b)          &#39; Output: 1</code></pre>

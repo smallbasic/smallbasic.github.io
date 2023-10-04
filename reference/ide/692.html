@@ -2,19 +2,14 @@
 <blockquote>
 <p>WHILE expr</p>
 </blockquote>
-<p>Loop while a test condition evaluates to true.</p>
-<p>SmallBASIC starts by evaluating expression. If expression is nonzero (true), the next command is executed. If expression is zero (false), control passes to the first command following the next WEND command.</p>
-<p>When SmallBASIC encounters the WEND command, it reevaluates the expression parameter to the most recent WHILE. If that parameter is still nonzero (true), the process is repeated; otherwise, execution continues at the next command.</p>
+<p>Starts a WHILE … WEND loop.</p>
+<p>A While-loop loops as long as the test condition <code>expr</code> evaluates to true. SmallBASIC starts by evaluating the expression. If the expression is nonzero (true), the next command in the loop is executed. If the expression is zero (false), control passes to the first command following the next WEND command. When SmallBASIC encounters the WEND command, it reevaluates the expression parameter to the most recent WHILE. If that parameter is still nonzero (true), the process is repeated; otherwise, execution continues at the next command.</p>
 <p>WHILE/WEND loops may be nested to any level of complexity, but there must be a WEND for each WHILE.</p>
-<pre><code>
-C=1
-WHILE C&lt;10
-    PRINT C
-    C=C+1
+<p>See EXIT to exit a while-loop, even when expression is true.</p>
+<h3 id="example">Example</h3>
+<pre><code>c = 1
+WHILE c &lt; 10
+    PRINT c
+    c = c + 1
 WEND
-...
-&#39; This is the same with that
-FOR C=1 TO 9
-    PRINT C
-NEXT
-</code></pre>
+&#39; Output: 1 2 3 4 5 6 7 8 9</code></pre>

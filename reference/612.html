@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>CHART</h1>
-  <blockquote>CHART charttype, array() [, style [, x1, y1, x2, y2]]</blockquote>
+  <blockquote>CHART charttype, A [, style [, x1, y1, x2, y2]]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,8 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Draws a chart of array values in the rectangular area x1,y1,x2,y2. The array stores y-values only: [y1, y2, y3, … yn]. The x-axis of the chart has the values 1,2,3,…n.</p>
+<p>Draws a chart of array values in the rectangular area given by the points <code>[x1, y1]</code> and <code>[x2, y2]</code>. The array <code>A</code> stores y-values only: [y1, y2, y3, … yn]. The x-axis of the chart has the values 1,2,3,…n.</p>
+<p><code>charttype</code> is a number with the following values:</p>
 <table>
 <thead>
 <tr class="header">
@@ -92,6 +93,7 @@
 </tr>
 </tbody>
 </table>
+<p><code>style</code> is a number with the following values:</p>
 <table>
 <thead>
 <tr class="header">
@@ -119,12 +121,12 @@
 </tbody>
 </table>
 <p>See PLOT for plotting functions.</p>
-<p>Example 1: Linechart with marks and ruler</p>
+<h3 id="example-1-linechart-with-marks-and-ruler">Example 1: Linechart with marks and ruler</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>demo = [<span class="dv">1.5</span>,<span class="dv">2</span>,<span class="dv">3.5</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6.5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9.5</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12.5</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">0</span>, <span class="dv">15</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">cls</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">Chart</span> <span class="dv">1</span>, demo, <span class="dv">3</span>, <span class="dv">150</span>, <span class="dv">150</span>, <span class="dv">750</span>, <span class="dv">550</span></span></code></pre></div>
-<p>Example 2: All charttypes and styles in one glance</p>
+<h3 id="example-2-all-charttypes-and-styles-in-one-glance">Example 2: All charttypes and styles in one glance</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dt">Const</span> LINE_CHART = <span class="dv">1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="dt">Const</span> BAR_CHART  = <span class="dv">2</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>demo = [<span class="dv">1.5</span>,<span class="dv">2</span>,<span class="dv">3.5</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6.5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9.5</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12.5</span>]</span>
@@ -205,7 +207,7 @@ CHART by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Dec 2022 20:34:00 +0100
+      This page was last edited on Tue, 19 Sep 2023 16:07:13 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

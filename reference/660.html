@@ -73,7 +73,15 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="dv">0</span>: <span class="kw">repeat</span>: a++: ? a: <span class="kw">UNTIL </span>a = <span class="dv">10</span></span></code></pre></div>
+<p>Ends a REPEAT … UNTIL loop. See REPEAT for more information.</p>
+<h3 id="example">Example</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>C = <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">REPEAT</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="kw">PRINT</span> C</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    C = C + <span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">UNTIL </span>C == <span class="dv">10</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Output: 1 2 3 4 5 6 7 8 9</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using UNTIL</div>
     <div class="linklist">
@@ -197,7 +205,7 @@ UNTIL by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 22 Mar 2018 20:09:41 +1000
+      This page was last edited on Tue, 12 Sep 2023 14:35:42 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

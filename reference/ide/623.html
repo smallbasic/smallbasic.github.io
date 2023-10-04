@@ -1,10 +1,11 @@
 <h1 id="view">VIEW</h1>
 <blockquote>
-<p>VIEW [x1,y1,x2,y2 [,color [,border-color]]]</p>
+<p>VIEW [x1, y1, x2, y2 [, color [, border-color]]]</p>
 </blockquote>
-<p>Defines a viewport. The viewport defined by VIEW is disabled by a VIEW command with no parameters.</p>
-<ul>
-<li>x1,y1,x2,y2 - Corner coordinates of the viewport.</li>
-<li>color If included, fills the viewport with the specified color.</li>
-<li>border-color If included, draws a border, in a specified color, around the defined viewport.</li>
-</ul>
+<p>Defines a viewport with starting point (upper left corner)) <code>[x1,y1]</code> and end point (lower right corner) <code>[x2,y2]</code>. The optional parameters <code>color</code> and <code>border-color</code> define the background color and the border color of the viewport, respectively. VIEW without parameters will disable the last set viewport.</p>
+<h3 id="example">Example</h3>
+<pre><code>view                                            &#39; Disable viewport
+rect 100,100, STEP 100,100 color 4 filled       &#39; Draw a rectangle in dark red
+
+view 150,150, 300,300, 0, 13                    &#39; Set new viewport with black background and magenta border
+rect 100,100, STEP 100,100 color 14 filled      &#39; Draw same rectangle in yellow</code></pre>

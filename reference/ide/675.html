@@ -1,6 +1,49 @@
 <h1 id="xnor">XNOR</h1>
 <blockquote>
-<p>a XNOR b</p>
+<p>n = a XNOR b</p>
 </blockquote>
 <p>Bitwise exclusive NOT OR.</p>
-<p>see Forum&gt; Bug Reports &gt;(same title) for details but XNOR is returning same as NOR</p>
+<p>Truth table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">a</th>
+<th style="text-align: center;">b</th>
+<th style="text-align: center;">a XNOR b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-1">Example 1</h3>
+<p>The NOT-operation as part of XNOR performs a bitwise inversion on all bits of a number. This leads to the following (maybe unexpected) result:</p>
+<pre><code>print bin(0 xnor 0)     &#39; Output: 11111111111111111111111111111111</code></pre>
+<h3 id="example-2-operate-xnor-only-on-last-n-bits">Example 2: Operate XNOR only on last n bits</h3>
+<p>If you want to operate NOR only on the last <code>n</code> bits of the numbers, you can use the following code:</p>
+<pre><code>n = 4
+a = 0b1100
+b = 0b1010
+
+print bin((a XNOR b) BAND ((1 lshift n ) - 1)) 
+
+&#39; Output 1001</code></pre>

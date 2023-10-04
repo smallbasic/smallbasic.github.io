@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>CALL</h1>
-  <blockquote>CALL (fp)</blockquote>
+  <blockquote>CALL (p [, var1 [, …, varN])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,8 +73,8 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Invoke a sub or func by address pointer.</p>
-<p>Example 1: CALL with a subroutine pointer</p>
+<p>Invoke a sub or func by address pointer <code>p</code>. Optional <code>var1</code> to <code>varN</code> variables of every SmallBASIC data type can be passed to function or sub, the address pointer points to.</p>
+<h3 id="example-1-call-with-a-subroutine-pointer">Example 1: CALL with a subroutine pointer</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">sub </span>MyPrint(i)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="kw">print</span> i</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">end</span></span>
@@ -82,7 +82,7 @@
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>a = @MyPrint</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">call</span> a, <span class="st">&quot;test&quot;</span>      <span class="co">&#39; when using CALL for subroutines,</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>                    <span class="co">&#39; please use CALL without brakets</span></span></code></pre></div>
-<p>Example 2: CALL with a function pointer</p>
+<h3 id="example-2-call-with-a-function-pointer">Example 2: CALL with a function pointer</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">func </span>Increment(i, b)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">return</span>  i + b</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">end</span></span>
@@ -92,7 +92,7 @@
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>y = <span class="fu">call</span>(a,x,<span class="dv">2</span>)     <span class="co">&#39; when using CALL for functions,</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>                    <span class="co">&#39; please use CALL with brakets</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">print</span> y</span></code></pre></div>
-<p>Example 3: CALL with a subroutine pointer and BYREF:</p>
+<h3 id="example-3-call-with-a-subroutine-pointer-and-byref">Example 3: CALL with a subroutine pointer and BYREF:</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">sub </span>Increment(<span class="dt">byref</span> i, b)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  i = i + b</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">end</span></span>
@@ -101,7 +101,7 @@
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>a = @Increment</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="fu">call</span> a,x,<span class="dv">2</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="kw">print</span> x</span></code></pre></div>
-<p>Example 4: Passing function pointer to a function</p>
+<h3 id="example-4-passing-function-pointer-to-a-function">Example 4: Passing function pointer to a function</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">func </span>Increment(i)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  <span class="kw">return</span> i + <span class="dv">1</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">end</span></span>
@@ -242,7 +242,7 @@ CALL by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 3 Dec 2022 12:17:16 +0100
+      This page was last edited on Tue, 19 Sep 2023 14:53:45 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

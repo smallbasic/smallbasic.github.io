@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>ARC</h1>
-  <blockquote>ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]</blockquote>
+  <blockquote>ARC [STEP] x, y, r, astart, aend [, aspect [, color]] [COLOR color]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,14 +73,32 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Draws an arc. - x, y: center point - r: radius - astart, aend: first,last angle in radians - aspect: aspect ratio - color: line color</p>
+<p>Draws an arc:</p>
+<ul>
+<li><code>[x, y]</code>: center point</li>
+<li><code>r</code>: radius in pixel</li>
+<li><code>astart</code>, <code>aend</code>: first anf last angle in radians</li>
+<li><code>aspect</code>: aspect ratio</li>
+<li><code>color</code>: line color</li>
+</ul>
+<p>If STEP is used <code>x</code> and <code>y</code> are a step from the last position of the graphics cursor.</p>
+<h3 id="example-1">Example 1</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>x = <span class="dv">100</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>y = <span class="dv">100</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>r = <span class="dv">50</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>astart = <span class="dv">0</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>aend = <span class="fu">rad</span>(<span class="dv">90</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="fu">ARC</span> x,y,r,astart,aend</span></code></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="fu">ARC</span> x, y, r, astart, aend</span></code></pre></div>
+<h3 id="example-2-using-step">Example 2: Using STEP</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>x = <span class="dv">50</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>y = <span class="dv">50</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>r = <span class="dv">50</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>astart = <span class="dv">0</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>aend = <span class="fu">rad</span>(<span class="dv">90</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="fu">pset</span>(<span class="dv">100</span>,<span class="dv">100</span>)                      <span class="co">&#39; Draw point at 100,100 and set the graphics cursor to 100,100</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="fu">ARC</span> STEP x, y, r, astart, aend     <span class="co">&#39; make a step from 100,100 by 50 pixels in x and 50 pixels in y</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using ARC</div>
     <div class="linklist">
@@ -166,7 +184,7 @@ ARC by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 1 Dec 2022 20:31:01 +0100
+      This page was last edited on Mon, 18 Sep 2023 15:33:32 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

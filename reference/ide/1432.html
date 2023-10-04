@@ -1,113 +1,20 @@
 <h1 id="array">ARRAY</h1>
 <blockquote>
-<p>ARRAY [var | expr]</p>
+<p>A = ARRAY [s | expr]</p>
 </blockquote>
-<p>Creates a ARRAY or MAP variable from the given string or expression.</p>
-<p>The ARRAY command supports JSON (Javascript object notation) syntax. The MAP provides value-key pair access along with array or dotted notation. The MAP can be converted back into a JSON string using the STR command. You can test whether a variable is a MAP using the ISMAP command.</p>
+<p>Creates a ARRAY or MAP variable from the given string <code>s</code> or expression <code>expr</code>. The ARRAY command supports JSON (Javascript object notation) syntax. The MAP provides value-key pair access along with array or dotted notation.</p>
+<p>See STR for converting a MAP variable into a JSON string.</p>
+<h3 id="example-1-json-string-to-map">Example 1: JSON string to MAP</h3>
 <pre><code>a = array(&quot;{Name: Alice, Age: 20}&quot;)
 print a
-print a.Name + &quot; is &quot; + a.Age + &quot; years old&quot;</code></pre>
-<p>Instead of using ARRAY, the following shorter syntax will give the same result:</p>
-<pre><code>a = {Name: Alice, Age: 20}
-print a
-print a.Name + &quot; is &quot; + a.Age + &quot; years old&quot;</code></pre>
-<p>The following example shows a possible JSON representation describing a person:</p>
-<pre><code>{
-  &quot;firstName&quot;: &quot;John&quot;,
-  &quot;lastName&quot;: &quot;Smith&quot;,
-  &quot;isAlive&quot;: true,
-  &quot;age&quot;: 25,
-  &quot;address&quot;: {
-    &quot;streetAddress&quot;: &quot;21 2nd Street&quot;,
-    &quot;city&quot;: &quot;New York&quot;,
-    &quot;state&quot;: &quot;NY&quot;,
-    &quot;postalCode&quot;: &quot;10021-3100&quot;
-  },
-  &quot;phoneNumbers&quot;: [
-    {
-      &quot;type&quot;: &quot;home&quot;,
-      &quot;number&quot;: &quot;212 555-1234&quot;
-    },
-    {
-      &quot;type&quot;: &quot;office&quot;,
-      &quot;number&quot;: &quot;646 555-4567&quot;
-    },
-    {
-      &quot;type&quot;: &quot;mobile&quot;,
-      &quot;number&quot;: &quot;123 456-7890&quot;
-    }
-  ],
-  &quot;children&quot;: [],
-  &quot;spouse&quot;: null
-}</code></pre>
-<p>Example 1:</p>
-<pre><code>Def uline(text) = Cat(2) + text + Cat(-2) &#39; Underline text
-Cls
-? uline(&quot;1-Dimension Map Array:&quot;)
-?
-a = Array(&quot;{x:100, y:300, title:top-left}&quot;)
-? &quot;a is:       &quot;; a
-? &quot;a is map?   &quot;; Ismap(a)
-?
-? &quot;a.x is:     &quot;; a.x
-? &quot;a.y is:     &quot;; a.y
-? &quot;a.title is: &quot;; a.title
-?
-a.x = &quot;N/A&quot;
-? &quot;a.x is now: &quot;; a.x
-?
-?:?:? &quot; Press any key...&quot;
-Pause
-Cls
-? uline(&quot;1-Dimension Map Array, with 1-D Nested Map Array:&quot;)
-?
-Dim a(1 To 10, 1 To 2)
-a(5, 1) = Array(&quot;{x:1, y:3, down:{x:4, y:7}}&quot;)
-? &quot;a(5, 1) is:            &quot;; a(5, 1)
-? &quot;a(5, 1) is map?        &quot;; Ismap(a(5, 1))
-? &quot;a is map?              &quot;; Ismap(a)
-?
-? &quot;a(5, 1).x is:          &quot;; a(5, 1).x
-? &quot;a(5, 1).y is:          &quot;; a(5, 1).y
-? &quot;a(5, 1).down.x is:     &quot;; a(5, 1).down.x
-? &quot;a(5, 1).down.y is:     &quot;; a(5, 1).down.y
-?
-a(5, 1).down.x = &quot;N/A&quot;
-? &quot;a(5, 1).down.x is now: &quot;; a(5, 1).down.x
-?
-?:?:? &quot; Press any key...&quot;
-Pause
-Cls
-? uline(&quot;1-Dimension Map Array, with Two 1-D Nested Map Arrays:&quot;)
-?
-a = Array(&quot;{x:1, y:3, down:[{x:4, y:7}, {x:6, y:9}]}&quot;)
-? &quot;a is:               &quot;; a
-? &quot;a is map?           &quot;; Ismap(a)
-?
-? &quot;a.x is:             &quot;; a.x
-? &quot;a.y is:             &quot;; a.y
-? &quot;a.down(0).x is:     &quot;; a.down(0).x
-? &quot;a.down(0).y is:     &quot;; a.down(0).y
-? &quot;a.down(1).x is:     &quot;; a.down(1).x
-? &quot;a.down(1).y is:     &quot;; a.down(1).y
-?
-a.down(1).x = &quot;N/A&quot;
-? &quot;a.down(1).x is now: &quot;; a.down(1).x
-?
-?:?:? &quot; Press any key...&quot;
-Pause
-Cls
-? uline(&quot;Create 1-Dimension Map Array without using ARRAY Keyword:&quot;)
-?
-b.x = 40
-b.y = 50
-b.title = &quot;Top-Left&quot;
-? &quot;b.x is:     &quot;; b.x
-? &quot;b.y is:     &quot;; b.y
-? &quot;b.title is: &quot;; b.title
-?
-? &quot;b is:       &quot;; b
-? &quot;b is map?   &quot;; Ismap(b)
-?
-?:?:? &quot; Press any key...&quot;
-Pause</code></pre>
+print a.Name + &quot; is &quot; + a.Age + &quot; years old&quot;
+
+&#39; Output:
+&#39; {&quot;Age&quot;:20,&quot;Name&quot;:&quot;Alice&quot;}
+&#39; Alice is 20 years old</code></pre>
+<h3 id="example-2-json-with-nested-map">Example 2: JSON with nested MAP</h3>
+<pre><code>a = Array(&quot;{x:1, y:3, down:{x:4, y:7}}&quot;)
+print a                                    &#39; Output: {&quot;down&quot;:{&quot;y&quot;:7,&quot;x&quot;:4},&quot;x&quot;:1,&quot;y&quot;:3}</code></pre>
+<h3 id="example-3-array-string-to-array">Example 3: Array string to array</h3>
+<pre><code>a = Array(&quot;[1,2,3]&quot;)
+print a                 &#39; Output: [1,2,3]</code></pre>

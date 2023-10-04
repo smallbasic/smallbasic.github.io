@@ -1,14 +1,15 @@
 <h1 id="cos">COS</h1>
 <blockquote>
-<p>COS (x)</p>
+<p>f = COS (x)</p>
 </blockquote>
-<p>Cosine.</p>
+<p>Cosine of <code>x</code>. <code>x</code> is in radians.</p>
+<h3 id="example-1">Example 1</h3>
 <pre><code>a = cos(0.5)
-print a
+print a             &#39; Output: 0.87758256189037
 
 b = acos(a)
-print b</code></pre>
-<p>See SIN, TAN and ATAN.</p>
+print b             &#39; Output:  0.5</code></pre>
+<h3 id="example-2">Example 2</h3>
 <pre><code>
 &#39;TRIG lesson one.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12
 &#39;note: the lines in the diagram have been thickened to help see and identify the color
@@ -102,53 +103,36 @@ at 0,0
 ?
 ?&quot;press any for first screen again...&quot;
 pause
-wend
-</code></pre>
-<p>At an angle around a given point, SIN and COS and radius (or distance) can locate the absolute screen x,y coordinate:</p>
-<pre><code>
-&#39;&#39;&#39; Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
-&#39;&#39;&#39; ah finally got diagramed analysis built into single quote commented code!!!
-&#39;&#39;&#39; the color codes match original Trig lesson one
-&#39;&#39;&#39;reminder XMAX, YMAX and PI are built in constants
+wend</code></pre>
+<h3 id="example-3">Example 3</h3>
+<p>At an angle around a given point, SIN and COS and radius (or distance) can locate the absolute screen x,y coordinate.</p>
+<pre><code>&#39; Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16
+&#39; ah finally got diagramed analysis built into single quote commented code!!!
+&#39; the color codes match original Trig lesson one
+&#39; reminder XMAX, YMAX and PI are built in constants
 CONST green =RGB(0,128,0)
-&#39;&#39;&#39; a central point cx,cy around which to draw 
+&#39; a central point cx,cy around which to draw 
 cx=XMAX/2:cy=YMAX/2 &#39;again cx,cy can be anywhere on screen so dont make them constant
-&#39;&#39;&#39;highlight center
+&#39; highlight center
 CIRCLE cx,cy,2,1,15
 r=200 &#39;the radius or distance in pixels from cx,cy desired
 CIRCLE cx,cy,r,1,8  &#39;we want a point somewhere on this circle, radius = constant distance away from point
-&#39;&#39;&#39;      locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians
-&#39;&#39;&#39; here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)
+&#39; locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians
+&#39; here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)
 CIRCLE cx + r*COS(RAD(30)), cy + r*SIN(RAD(30)), 3, 1, 13   &#39;x,y,r=3,aspect=1,color 13
-&#39;&#39;&#39; uncomment single comment lines for analysis
-&#39;legend
-&#39;LINE cx,cy,cx+r*COS(RAD(30)),cy,green &#39;adjacent leg in red
-&#39;LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 &#39;leg opposite in blue
-&#39;LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12
-&#39;RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15
-&#39;&#39;&#39;&#39;             V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6
-&#39;ARC cx,cy,30,0,PI/6,1,14
-&#39;ARC cx,cy,35,0,RAD(30),1,14
+legend
+LINE cx,cy,cx+r*COS(RAD(30)),cy,green &#39;adjacent leg in red
+LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 &#39;leg opposite in blue
+LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12
+RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15
+&#39; V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6
+ARC cx,cy,30,0,PI/6,1,14
+ARC cx,cy,35,0,RAD(30),1,14
 
-&#39;&#39;&#39;                Another example at 240 degrees = 4*PI/3 radians
-&#39;&#39;&#39; here is 60+180=240 degrees in yellow both x and y are neg in relation to cx,cy
-&#39;CIRCLE cx + r*COS(RAD(240)), cy + r*SIN(RAD(240)), 3, 1, 14  &#39;yellow
-&#39;&#39;&#39;uncomment single comment lines for analysis
-&#39;legend
-&#39;LINE cx,cy,cx+r*COS(RAD(240)),cy,green &#39;adjacent leg in red
-&#39;LINE cx+r*COS(RAD(240)),cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),9 &#39;leg opposite in blue
-&#39;LINE cx,cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),12
-&#39;RECT cx+r*COS(RAD(240))+2,cy-11 step 9,9,15
-&#39;&#39;&#39;240 degrees =180 + 60 = PI + 2*PI/6 = PI+PI/3 = 4*PI/3 radians
-&#39;&#39;&#39;               V end angle for arc in radians = RAD(240) or 4*PI/3 radians
-&#39;ARC cx,cy,15,0,4*PI/3,1,14
-&#39;ARC cx,cy,10,0,RAD(240),1,14
-PAUSE
 sub legend
   at 0,0
   ?&quot;green = leg adj, blue =leg opp, red = hypotenuse = radius&quot;
   ?&quot;white square is where the right angle is, yellow arcs mark angle in question
   ?&quot;COS(yellow) = adj/hyp = green/red, red is radius of circle
   ?&quot;SIN(yellow) = opp/hyp =  blue/red, red is radius of circle
-end 
-</code></pre>
+end</code></pre>

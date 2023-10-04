@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>ATAN2</h1>
-  <blockquote>ATAN2 (x, y)</blockquote>
+  <blockquote>a = ATAN2 (x, y)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,38 +73,50 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Inverse tangent (x,y).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">&#39;Both atan(n) and atan2(y, x) return an angle measured in radians.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">&#39;The return measure is from -pi to pi. In demo below it is converted</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">&#39;to angle between 0 and 360 degrees.</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">&#39;atan2 is better for detecting angle&#39;s quardrant because </span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">&#39;x and y are given separartely.</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39;y the vertical change is given first.</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>centerX = <span class="dt">xmax</span> / <span class="dv">2</span> : centerY = <span class="dt">ymax</span> / <span class="dv">2</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">pen</span> <span class="kw">on</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">while </span><span class="fu">asc</span>(<span class="kw">inkey</span>) &lt;&gt; <span class="dv">27</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  <span class="fu">cls</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="fu">locate</span> <span class="dv">0</span>,<span class="dv">20</span>: ? <span class="st">&quot;ATAN2 demo, used to detect angle of mouse to screen center.&quot;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  <span class="fu">line</span> centerX, centerY, centerX + <span class="dv">200</span>, centerY</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  <span class="fu">at</span> centerX + <span class="dv">210</span>, centerY - <span class="dv">10</span> : ? <span class="st">&quot;0 degrees (or radians)&quot;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>  mouseX = <span class="fu">pen</span>(<span class="dv">4</span>) </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>  mouseY = <span class="fu">pen</span>(<span class="dv">5</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>  <span class="fu">line</span> centerX, centerY, mouseX, mouseY, <span class="dv">15</span> <span class="co">&#39;draw line from center to mouse</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>  differenceX = mouseX - centerX</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>  differenceY = mouseY - centerY </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>  a = <span class="fu">atan2</span>(differenceY, differenceX) <span class="co">&#39;&lt; notice y difference is listed first</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>  </span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>  <span class="co">&#39;VVVVVVVVVVVVVVVVVVVVVVVV  atan2 returns neg number for angles &gt; 180</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>  <span class="kw">if </span>a &lt; <span class="dv">0</span> <span class="kw">then a </span>+= <span class="dv">2</span> * <span class="dt">pi</span>  </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>  <span class="co">&#39;^^^^^^^^^^^^^^^^^^^^^^^^  if want a = 0 to 2*pi, instead of -pi to pi</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>  </span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>  <span class="fu">arc</span> centerX, centerY, <span class="dv">100</span>, <span class="dv">0</span>, a <span class="co">&#39;draw the arc from 0 to angle</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>  s = <span class="st">&quot;Angle of mouse to center of screen ~ &quot;</span>+<span class="fu">deg</span>(a)\<span class="dv">1</span>+<span class="st">&quot; degrees&quot;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>  <span class="fu">locate</span> <span class="dv">30</span>, <span class="dv">20</span> : ? s</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>  <span class="fu">showpage</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>  <span class="fu">delay</span> <span class="dv">10</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
+<p>Returns the angle <code>a</code> in radians of a right-angled triangle, where <code>x</code> is the opposite side and <code>y</code> is the adjacent side.</p>
+<h3 id="example-1">Example 1</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>x = <span class="dv">10</span>                       <span class="co">&#39; Opposite side of right-angled triangle</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>y = <span class="dv">100</span>                      <span class="co">&#39; Adjacent side of right-angled triangle</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">deg</span>( <span class="fu">atan2</span>(x, y) )     <span class="co">&#39; Output: 5.71059313749964</span></span></code></pre></div>
+<h3 id="example-2-graphics-demo">Example 2: Graphics demo</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Both atan(n) and atan2(y, x) return an angle measured in radians.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; The return measure is from -pi to pi. In demo below it is converted</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; to angle between 0 and 360 degrees.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; atan2 is better for detecting angle&#39;s quardrant because </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; x and y are given separartely.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">&#39; y the vertical change is given first.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>centerX = <span class="dt">xmax</span> / <span class="dv">2</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>centerY = <span class="dt">ymax</span> / <span class="dv">2</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="fu">pen</span> <span class="kw">on</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">while </span><span class="fu">asc</span>(<span class="kw">inkey</span>) &lt;&gt; <span class="dv">27</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    <span class="fu">cls</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="fu">locate</span> <span class="dv">0</span>,<span class="dv">20</span>: <span class="kw">print</span>  <span class="st">&quot;ATAN2 demo, used to detect angle of mouse to screen center.&quot;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    <span class="fu">at</span> centerX + <span class="dv">210</span>, centerY - <span class="dv">10</span> : <span class="kw">Print</span> <span class="st">&quot;0 degrees (or radians)&quot;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    <span class="fu">line</span> centerX, centerY, centerX + <span class="dv">200</span>, centerY</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>    mouseX = <span class="fu">pen</span>(<span class="dv">4</span>) </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>    mouseY = <span class="fu">pen</span>(<span class="dv">5</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>    <span class="fu">line</span> centerX, centerY, mouseX, mouseY, <span class="dv">15</span> <span class="co">&#39;draw line from center to mouse</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>    differenceX = mouseX - centerX</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    differenceY = mouseY - centerY </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>    a = <span class="fu">atan2</span>(differenceY, differenceX)       <span class="co">&#39; &lt; notice y difference is listed first</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>    <span class="kw">if </span>a &lt; <span class="dv">0</span> <span class="kw">then a </span>+= <span class="dv">2</span> * <span class="dt">pi</span>                 <span class="co">&#39; atan2 returns neg number for angles &gt; 180</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>    <span class="fu">arc</span> centerX, centerY, <span class="dv">100</span>, <span class="dv">0</span>, a           <span class="co">&#39;draw the arc from 0 to angle</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>    s = <span class="st">&quot;Angle of mouse to center of screen ~ &quot;</span> + <span class="fu">deg</span>(a)\<span class="dv">1</span> + <span class="st">&quot; degrees&quot;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>    <span class="fu">locate</span> <span class="dv">30</span>, <span class="dv">20</span> : <span class="kw">print</span> s</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>    <span class="fu">showpage</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>    <span class="fu">delay</span> <span class="dv">10</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using ATAN2</div>
     <div class="linklist">
@@ -218,7 +230,7 @@ ATAN2 by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 16 Oct 2022 19:17:49 +0200
+      This page was last edited on Tue, 19 Sep 2023 14:04:58 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

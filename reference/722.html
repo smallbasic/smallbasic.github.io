@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>COS</h1>
-  <blockquote>COS (x)</blockquote>
+  <blockquote>f = COS (x)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,13 +73,14 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Cosine.</p>
+<p>Cosine of <code>x</code>. <code>x</code> is in radians.</p>
+<h3 id="example-1">Example 1</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="fu">cos</span>(<span class="dv">0.5</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> a</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> a             <span class="co">&#39; Output: 0.87758256189037</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>b = <span class="fu">acos</span>(a)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> b</span></code></pre></div>
-<p>See SIN, TAN and ATAN.</p>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> b             <span class="co">&#39; Output:  0.5</span></span></code></pre></div>
+<h3 id="example-2">Example 2</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39;TRIG lesson one.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-12</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39;note: the lines in the diagram have been thickened to help see and identify the color</span></span>
@@ -174,53 +175,38 @@
 <span id="cb2-92"><a href="#cb2-92" aria-hidden="true"></a>?<span class="st">&quot;press any for first screen again...&quot;</span></span>
 <span id="cb2-93"><a href="#cb2-93" aria-hidden="true"></a><span class="kw">pause</span></span>
 <span id="cb2-94"><a href="#cb2-94" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
-<p>At an angle around a given point, SIN and COS and radius (or distance) can locate the absolute screen x,y coordinate:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; ah finally got diagramed analysis built into single quote commented code!!!</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; the color codes match original Trig lesson one</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;reminder XMAX, YMAX and PI are built in constants</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="dt">CONST</span> green =<span class="fu">RGB</span>(<span class="dv">0</span>,<span class="dv">128</span>,<span class="dv">0</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; a central point cx,cy around which to draw </span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>cx=<span class="dt">XMAX</span>/<span class="dv">2</span>:cy=<span class="dt">YMAX</span>/<span class="dv">2</span> <span class="co">&#39;again cx,cy can be anywhere on screen so dont make them constant</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;highlight center</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx,cy,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">15</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>r=<span class="dv">200</span> <span class="co">&#39;the radius or distance in pixels from cx,cy desired</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx,cy,r,<span class="dv">1</span>,<span class="dv">8</span>  <span class="co">&#39;we want a point somewhere on this circle, radius = constant distance away from point</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;      locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx + r*<span class="fu">COS</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)), cy + r*<span class="fu">SIN</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)), <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">13</span>   <span class="co">&#39;x,y,r=3,aspect=1,color 13</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; uncomment single comment lines for analysis</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co">&#39;legend</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">&#39;LINE cx,cy,cx+r*COS(RAD(30)),cy,green &#39;adjacent leg in red</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co">&#39;LINE cx+r*COS(RAD(30)),cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),9 &#39;leg opposite in blue</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">&#39;LINE cx,cy,cx+r*COS(RAD(30)),cy + r*SIN(RAD(30)),12</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="co">&#39;RECT cx+r*COS(RAD(30))-11,cy+2 step 9,9,15</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;&#39;             V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">&#39;ARC cx,cy,30,0,PI/6,1,14</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">&#39;ARC cx,cy,35,0,RAD(30),1,14</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;                Another example at 240 degrees = 4*PI/3 radians</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="co">&#39;&#39;&#39; here is 60+180=240 degrees in yellow both x and y are neg in relation to cx,cy</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="co">&#39;CIRCLE cx + r*COS(RAD(240)), cy + r*SIN(RAD(240)), 3, 1, 14  &#39;yellow</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;uncomment single comment lines for analysis</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="co">&#39;legend</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="co">&#39;LINE cx,cy,cx+r*COS(RAD(240)),cy,green &#39;adjacent leg in red</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="co">&#39;LINE cx+r*COS(RAD(240)),cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),9 &#39;leg opposite in blue</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="co">&#39;LINE cx,cy,cx+r*COS(RAD(240)),cy + r*SIN(RAD(240)),12</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a><span class="co">&#39;RECT cx+r*COS(RAD(240))+2,cy-11 step 9,9,15</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;240 degrees =180 + 60 = PI + 2*PI/6 = PI+PI/3 = 4*PI/3 radians</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;               V end angle for arc in radians = RAD(240) or 4*PI/3 radians</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="co">&#39;ARC cx,cy,15,0,4*PI/3,1,14</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="co">&#39;ARC cx,cy,10,0,RAD(240),1,14</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="kw">PAUSE</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a><span class="kw">sub </span>legend</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a>  <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>  ?<span class="st">&quot;green = leg adj, blue =leg opp, red = hypotenuse = radius&quot;</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>  ?<span class="st">&quot;white square is where the right angle is, yellow arcs mark angle in question</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>  ?<span class="st">&quot;COS(yellow) = adj/hyp = green/red, red is radius of circle</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a>  ?<span class="st">&quot;SIN(yellow) = opp/hyp =  blue/red, red is radius of circle</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a><span class="kw">end </span></span></code></pre></div>
+<h3 id="example-3">Example 3</h3>
+<p>At an angle around a given point, SIN and COS and radius (or distance) can locate the absolute screen x,y coordinate.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; Diagrammed SIN and COS.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-16</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39; ah finally got diagramed analysis built into single quote commented code!!!</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39; the color codes match original Trig lesson one</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39; reminder XMAX, YMAX and PI are built in constants</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="dt">CONST</span> green =<span class="fu">RGB</span>(<span class="dv">0</span>,<span class="dv">128</span>,<span class="dv">0</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">&#39; a central point cx,cy around which to draw </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>cx=<span class="dt">XMAX</span>/<span class="dv">2</span>:cy=<span class="dt">YMAX</span>/<span class="dv">2</span> <span class="co">&#39;again cx,cy can be anywhere on screen so dont make them constant</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">&#39; highlight center</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx,cy,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">15</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>r=<span class="dv">200</span> <span class="co">&#39;the radius or distance in pixels from cx,cy desired</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx,cy,r,<span class="dv">1</span>,<span class="dv">8</span>  <span class="co">&#39;we want a point somewhere on this circle, radius = constant distance away from point</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">&#39; locate point 30 degrees and r distance from cx,cy       30 degrees = PI/6 radians</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">&#39; here is 30 degrees in tiny purple circle around x=r*cos(rad(30),y=r*sin(rad(30)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="fu">CIRCLE</span> cx + r*<span class="fu">COS</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)), cy + r*<span class="fu">SIN</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)), <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">13</span>   <span class="co">&#39;x,y,r=3,aspect=1,color 13</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>legend</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="fu">LINE</span> cx,cy,cx+r*<span class="fu">COS</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)),cy,green <span class="co">&#39;adjacent leg in red</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="fu">LINE</span> cx+r*<span class="fu">COS</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)),cy,cx+r*<span class="fu">COS</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)),cy + r*<span class="fu">SIN</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)),<span class="dv">9</span> <span class="co">&#39;leg opposite in blue</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="fu">LINE</span> cx,cy,cx+r*<span class="fu">COS</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)),cy + r*<span class="fu">SIN</span>(<span class="fu">RAD</span>(<span class="dv">30</span>)),<span class="dv">12</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="fu">RECT</span> cx+r*<span class="fu">COS</span>(<span class="fu">RAD</span>(<span class="dv">30</span>))-<span class="dv">11</span>,cy+<span class="dv">2</span> step <span class="dv">9</span>,<span class="dv">9</span>,<span class="dv">15</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">&#39; V there are 12, 30 degree angles in circle (2*PI) so 2*PI/12 or PI/6</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="fu">ARC</span> cx,cy,<span class="dv">30</span>,<span class="dv">0</span>,<span class="dt">PI</span>/<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">14</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="fu">ARC</span> cx,cy,<span class="dv">35</span>,<span class="dv">0</span>,<span class="fu">RAD</span>(<span class="dv">30</span>),<span class="dv">1</span>,<span class="dv">14</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="kw">sub </span>legend</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>  <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>  ?<span class="st">&quot;green = leg adj, blue =leg opp, red = hypotenuse = radius&quot;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>  ?<span class="st">&quot;white square is where the right angle is, yellow arcs mark angle in question</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>  ?<span class="st">&quot;COS(yellow) = adj/hyp = green/red, red is radius of circle</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>  ?<span class="st">&quot;SIN(yellow) = opp/hyp =  blue/red, red is radius of circle</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using COS</div>
     <div class="linklist">
@@ -356,7 +342,7 @@ COS by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 16 Oct 2022 19:37:06 +0200
+      This page was last edited on Thu, 21 Sep 2023 14:46:22 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

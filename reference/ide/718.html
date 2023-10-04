@@ -1,37 +1,48 @@
 <h1 id="atan2">ATAN2</h1>
 <blockquote>
-<p>ATAN2 (x, y)</p>
+<p>a = ATAN2 (x, y)</p>
 </blockquote>
-<p>Inverse tangent (x,y).</p>
-<pre><code>
-&#39;Both atan(n) and atan2(y, x) return an angle measured in radians.
-&#39;The return measure is from -pi to pi. In demo below it is converted
-&#39;to angle between 0 and 360 degrees.
-&#39;atan2 is better for detecting angle&#39;s quardrant because 
-&#39;x and y are given separartely.
-&#39;y the vertical change is given first.
-centerX = xmax / 2 : centerY = ymax / 2
+<p>Returns the angle <code>a</code> in radians of a right-angled triangle, where <code>x</code> is the opposite side and <code>y</code> is the adjacent side.</p>
+<h3 id="example-1">Example 1</h3>
+<pre><code>x = 10                       &#39; Opposite side of right-angled triangle
+y = 100                      &#39; Adjacent side of right-angled triangle
+
+print deg( atan2(x, y) )     &#39; Output: 5.71059313749964</code></pre>
+<h3 id="example-2-graphics-demo">Example 2: Graphics demo</h3>
+<pre><code>&#39; Both atan(n) and atan2(y, x) return an angle measured in radians.
+&#39; The return measure is from -pi to pi. In demo below it is converted
+&#39; to angle between 0 and 360 degrees.
+&#39; atan2 is better for detecting angle&#39;s quardrant because 
+&#39; x and y are given separartely.
+&#39; y the vertical change is given first.
+
+centerX = xmax / 2
+centerY = ymax / 2
+
 pen on
+
 while asc(inkey) &lt;&gt; 27
-  cls
-  locate 0,20: ? &quot;ATAN2 demo, used to detect angle of mouse to screen center.&quot;
-  line centerX, centerY, centerX + 200, centerY
-  at centerX + 210, centerY - 10 : ? &quot;0 degrees (or radians)&quot;
-  mouseX = pen(4) 
-  mouseY = pen(5)
-  line centerX, centerY, mouseX, mouseY, 15 &#39;draw line from center to mouse
-  differenceX = mouseX - centerX
-  differenceY = mouseY - centerY 
-  a = atan2(differenceY, differenceX) &#39;&lt; notice y difference is listed first
-  
-  &#39;VVVVVVVVVVVVVVVVVVVVVVVV  atan2 returns neg number for angles &gt; 180
-  if a &lt; 0 then a += 2 * pi  
-  &#39;^^^^^^^^^^^^^^^^^^^^^^^^  if want a = 0 to 2*pi, instead of -pi to pi
-  
-  arc centerX, centerY, 100, 0, a &#39;draw the arc from 0 to angle
-  s = &quot;Angle of mouse to center of screen ~ &quot;+deg(a)\1+&quot; degrees&quot;
-  locate 30, 20 : ? s
-  showpage
-  delay 10
-wend
-</code></pre>
+    cls
+    locate 0,20: print  &quot;ATAN2 demo, used to detect angle of mouse to screen center.&quot;
+    at centerX + 210, centerY - 10 : Print &quot;0 degrees (or radians)&quot;
+
+    line centerX, centerY, centerX + 200, centerY
+
+    mouseX = pen(4) 
+    mouseY = pen(5)
+
+    line centerX, centerY, mouseX, mouseY, 15 &#39;draw line from center to mouse
+
+    differenceX = mouseX - centerX
+    differenceY = mouseY - centerY 
+    a = atan2(differenceY, differenceX)       &#39; &lt; notice y difference is listed first
+
+    if a &lt; 0 then a += 2 * pi                 &#39; atan2 returns neg number for angles &gt; 180
+
+    arc centerX, centerY, 100, 0, a           &#39;draw the arc from 0 to angle
+
+    s = &quot;Angle of mouse to center of screen ~ &quot; + deg(a)\1 + &quot; degrees&quot;
+    locate 30, 20 : print s
+    showpage
+    delay 10
+wend</code></pre>

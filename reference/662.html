@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>AND</h1>
-  <blockquote>a AND b</blockquote>
+  <blockquote>n = a AND b</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,65 +73,107 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Logical AND. Right side is not evaluated if left side evaluates to False.</p>
+<p>Logical AND. Right side is not evaluated if left side evaluates to FALSE.</p>
+<p>Truth table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">a</th>
+<th style="text-align: center;">b</th>
+<th style="text-align: center;">a AND b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-1">Example 1</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="dv">1</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>b = <span class="dv">0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> a <span class="kw">and</span> b   <span class="co">&#39; output is 0</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">if(</span>a == <span class="dv">1</span> <span class="kw">and</span> b == <span class="dv">0</span>) <span class="kw">then pr</span>int <span class="st">&quot;if statement 1&quot;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">if(</span>a == <span class="dv">1</span> <span class="kw">and</span> b == <span class="dv">1</span>) <span class="kw">then pr</span>int <span class="st">&quot;if statement 2&quot;</span>       <span class="co">&#39; &quot;if statement 2&quot; will not be printed to the screen</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>c = <span class="st">&quot;test&quot;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="kw">if(</span>a == <span class="dv">1</span> <span class="kw">and</span> c == <span class="st">&quot;test&quot;</span>) <span class="kw">then pr</span>int <span class="st">&quot;if statement 3&quot;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">if(</span>a == <span class="dv">1</span> <span class="kw">and</span> c == <span class="st">&quot;test2&quot;</span>) <span class="kw">then pr</span>int <span class="st">&quot;if statement 4&quot;</span> <span class="co">&#39; &quot;if statement 4&quot; will not be printed to the screen</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>? <span class="st">&quot; &lt; SmallBASIC - Truth Table &gt; &quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>?</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>? <span class="st">&quot;                          OUTPUTS (0=False, 1=True)                       &quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>? <span class="st">&quot;           +---------------+---------------------------------------------+&quot;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>? <span class="st">&quot;           |  Logical (per |                  Bitwise                    |&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>? <span class="st">&quot;   INPUTS  |   expression) |         (for each bit in result)            |&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>? <span class="st">&quot; +---------+---------------+---------------------------------------------+&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>? <span class="st">&quot; |  a   b  | AND  OR NOT(b)| BAND BOR ~(b) NAND NOR  XOR  XNOR EQV  IMP  |&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>? <span class="st">&quot; +---------+---------------+---------------------------------------------+&quot;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">&#39; Display table (0 and 1 equivalent to 0b0 and 0b1):</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">For </span>a = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">1</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>  <span class="kw">For </span>b = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">1</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    ? <span class="kw">Usg</span> <span class="st">&quot; |  0   0  |&quot;</span>; a, b;</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    ? <span class="kw">Usg</span> <span class="st">&quot;  0  &quot;</span>;</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="co">&#39; Logical (result compared to False):</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">AND</span> b) &lt;&gt; <span class="dv">0</span>;</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">OR</span>  b) &lt;&gt; <span class="dv">0</span>;</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (  <span class="kw">NOT</span> b) &lt;&gt; <span class="dv">0</span>;</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>    ? <span class="st">&quot;|&quot;</span>;</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>    <span class="co">&#39; Bitwise (result is in bit-0):</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">BAND</span> b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">BOR</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (  ~    b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">NAND</span> b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">NOR</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">XOR</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">XNOR</span> b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">EQV</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">IMP</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>    ? <span class="st">&quot;|&quot;</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>  <span class="kw">Next </span>b</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="kw">Next </span>a</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>? <span class="st">&quot; +---------+---------------+---------------------------------------------+&quot;</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>? <span class="st">&quot; * For Logical operators 0 is False and any other value is True.&quot;</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>? <span class="st">&quot; * NOT, ~ (Bitwise NOT), operators using only right side value/expression.&quot;</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>? <span class="st">&quot; * XNOR and EQV is the same gate (both return the same result).&quot;</span></span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> a <span class="kw">and</span> b   <span class="co">&#39; Output: 0</span></span></code></pre></div>
+<h3 id="example-2-using-and-in-an-if-statement">Example 2: Using AND in an if-statement</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>a = <span class="dv">1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>b = <span class="dv">0</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">if(</span>a == <span class="dv">1</span> <span class="kw">and</span> b == <span class="dv">0</span>) <span class="kw">then pr</span>int <span class="st">&quot;if statement 1&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">if(</span>a == <span class="dv">1</span> <span class="kw">and</span> b == <span class="dv">1</span>) <span class="kw">then pr</span>int <span class="st">&quot;if statement 2&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>c = <span class="st">&quot;test&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">if(</span>a == <span class="dv">1</span> <span class="kw">and</span> c == <span class="st">&quot;test&quot;</span>) <span class="kw">then pr</span>int <span class="st">&quot;if statement 3&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">if(</span>a == <span class="dv">1</span> <span class="kw">and</span> c == <span class="st">&quot;test2&quot;</span>) <span class="kw">then pr</span>int <span class="st">&quot;if statement 4&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="co">&#39; Output:</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">&#39; if statement 1</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">&#39; if statement 3</span></span></code></pre></div>
+<h3 id="example-3-truth-table-for-logical-and-bitwise-operators">Example 3: Truth table for logical and bitwise operators</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>? <span class="st">&quot; &lt; SmallBASIC - Truth Table &gt; &quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>?</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>? <span class="st">&quot;                          OUTPUTS (0=False, 1=True)                       &quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>? <span class="st">&quot;           +---------------+---------------------------------------------+&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>? <span class="st">&quot;           |  Logical (per |                  Bitwise                    |&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>? <span class="st">&quot;   INPUTS  |   expression) |         (for each bit in result)            |&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>? <span class="st">&quot; +---------+---------------+---------------------------------------------+&quot;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>? <span class="st">&quot; |  a   b  | AND  OR NOT(b)| BAND BOR ~(b) NAND NOR  XOR  XNOR EQV  IMP  |&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>? <span class="st">&quot; +---------+---------------+---------------------------------------------+&quot;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">&#39; Display table (0 and 1 equivalent to 0b0 and 0b1):</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="kw">For </span>a = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">1</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>  <span class="kw">For </span>b = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    ? <span class="kw">Usg</span> <span class="st">&quot; |  0   0  |&quot;</span>; a, b;</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    ? <span class="kw">Usg</span> <span class="st">&quot;  0  &quot;</span>;</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    <span class="co">&#39; Logical (result compared to False):</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">AND</span> b) &lt;&gt; <span class="dv">0</span>;</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">OR</span>  b) &lt;&gt; <span class="dv">0</span>;</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (  <span class="kw">NOT</span> b) &lt;&gt; <span class="dv">0</span>;</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>    ? <span class="st">&quot;|&quot;</span>;</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>    <span class="co">&#39; Bitwise (result is in bit-0):</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">BAND</span> b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">BOR</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (  ~    b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">NAND</span> b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">NOR</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">XOR</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">XNOR</span> b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">EQV</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>    ? <span class="kw">Usg</span>; (a <span class="kw">IMP</span>  b) <span class="kw">Band</span> <span class="dv">1</span>;</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>    ? <span class="st">&quot;|&quot;</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>  <span class="kw">Next </span>b</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="kw">Next </span>a</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>? <span class="st">&quot; +---------+---------------+---------------------------------------------+&quot;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>? <span class="st">&quot; * For Logical operators 0 is False and any other value is True.&quot;</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>? <span class="st">&quot; * NOT, ~ (Bitwise NOT), operators using only right side value/expression.&quot;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a>? <span class="st">&quot; * XNOR and EQV is the same gate (both return the same result).&quot;</span></span></code></pre></div>
 <h2 id="for-experts">For experts:</h2>
 <p>The Sign-Bit Bug (part 2): Ways to workaround this bug:</p>
 <ol type="1">
 <li><p>It is Safe to manipulate the lower bits, 0 to 30. If your program don’t need to manipulate whole 32-bits of integer, then you can safely BAND numbers with 0x7FFFFFFF to create 31-bit unsigned integers (bit-31+ are cleared). But you must make sure when using math functions or bitwise NOT (~) that the sign bit (bit-31) always remains intact, i.e. = 0.</p></li>
 <li><p>A slower way, but safe, is to manipulate 32 bits using BIN() function. In this way you can temporarily convert a number to binary string of 32-bits, manipulate whole 32 bits using regular string manipulation, and then convert the binary string back to number, for example: assuming that BIN() returns 32-bits binary string (as it should):</p></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>   s = <span class="fu">Bin</span>(number)         <span class="co">&#39; convert number to binary string</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>   s = <span class="fu">Replace</span>(s, <span class="dv">1</span>, <span class="st">&quot;1&quot;</span>)  <span class="co">&#39; set bit-31</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>   s = <span class="fu">Replace</span>(s, <span class="dv">32</span>, <span class="st">&quot;0&quot;</span>) <span class="co">&#39; reset bit-0</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>   number = <span class="fu">Val</span>(s)         <span class="co">&#39; convert binary string back to number</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>   s = <span class="fu">Bin</span>(number)         <span class="co">&#39; convert number to binary string</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>   s = <span class="fu">Replace</span>(s, <span class="dv">1</span>, <span class="st">&quot;1&quot;</span>)  <span class="co">&#39; set bit-31</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>   s = <span class="fu">Replace</span>(s, <span class="dv">32</span>, <span class="st">&quot;0&quot;</span>) <span class="co">&#39; reset bit-0</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>   number = <span class="fu">Val</span>(s)         <span class="co">&#39; convert binary string back to number</span></span></code></pre></div>
 <p>This code will work the same way on both 64-bit and 32-bit systems. It allows you to Shift/Rotate 32-bit numbers safely. So if you don’t need the speed of bitwise operators, then this is easy and safe way.</p>
 <ol start="3" type="1">
 <li><p>If you still need to manipulate whole 32 bits, using fast bitwise operators, in a safe way that will give the same results on 32-bit and 64-bit systems, then it’s possible. Just be aware of the following:</p>
@@ -142,51 +184,49 @@
 <li><p>To shift bits right: clear the upper bits including the sign bit; then divide by POW(2, bits).</p></li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">REM SmallBASIC</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">REM created: 11/03/2016</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">REM I&#39;m using smallbasic_0.12.2, 32-bit and 64-bit versions for Linux.</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">&#39; The Sign-Bit Bug:</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">&#39; -----------------</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">&#39; The Sign Bit, (or the &quot;Most Significant Bit&quot;, or the &quot;Leftmost Bit&quot;,</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">&#39; or bit-31 of SmallBASIC integer) - is a bit in a signed number that</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">&#39; indicates the sign of a number.</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co">&#39; If you write a Bit Manipulation code, be aware that SmallBASIC is</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="co">&#39; interpreting your code differnetly on 32-bit or 64-bit system:</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="co">&#39; For example, run the following code on 32-bit and 64-bit systems:</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>? <span class="st">&quot;Assigning hexadecimal number to variable or constant:&quot;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>n = <span class="dv">0xFFFFFFFF</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>? n</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: -1</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 4294967295</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>?</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>? <span class="st">&quot;Bitwise NOT (~) a number:&quot;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>n = ~<span class="dv">0xFFFFFFFF</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>? <span class="fu">Bin</span>(n)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: 00000000000000000000000000000000</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 10000000000000000000000000000000</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>?</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a>? <span class="st">&quot;Raising to power of 32+ bit number:&quot;</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>n = <span class="fu">Pow</span>(<span class="dv">2</span>, <span class="dv">32</span>) - <span class="dv">1</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>? <span class="fu">Bin</span>(n)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: 10000000000000000000000000000000</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 11111111111111111111111111111111</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a>?</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a>? <span class="st">&quot;Using 64-bit double number instead of 32-bit integer:&quot;</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a>n = <span class="dv">0xFFFFFFFF</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a>? <span class="fu">Bin</span>(n)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a><span class="co">&#39;  The same result on both systems:</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: 11111111111111111111111111111111</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 11111111111111111111111111111111</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true"></a>?</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true"></a>? <span class="st">&quot;Using hexadecimal number *in-line*:&quot;</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true"></a>n = <span class="dv">0xFFFFFFFF</span> <span class="kw">Band</span> <span class="dv">0x7FFFFFFF</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true"></a>? n</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true"></a><span class="co">&#39;  The same result on both systems:</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: 2147483647</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 2147483647</span></span></code></pre></div>
-<p>The code above produces different results on 32-bit and 64-bit systems; Therefore it leads to subtle bug with no run-time error, and no other indication.</p>
-<p>The reason for this inconsistency is the fact that SamllBASIC determine the type of variables on the fly. And while the sign bit in a 64-bits register is bit-63 - in a 32-bits register is bit-31.</p>
-<p>SmallBASIC integers are 32-bit signed integers. The sign bit of SmallBASIC integer is bit-31 (base 0). It is Safe to manipulate only bits 0 to 30, on both 64-bit and 32-bit systems. But it is Not safe to manipulate the sign bit, bit-31.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">REM SmallBASIC</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">REM created: 11/03/2016</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">REM I&#39;m using smallbasic_0.12.2, 32-bit and 64-bit versions for Linux.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">&#39; The Sign-Bit Bug:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">&#39; -----------------</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">&#39; The Sign Bit, (or the &quot;Most Significant Bit&quot;, or the &quot;Leftmost Bit&quot;,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">&#39; or bit-31 of SmallBASIC integer) - is a bit in a signed number that</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">&#39; indicates the sign of a number.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">&#39; If you write a Bit Manipulation code, be aware that SmallBASIC is</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">&#39; interpreting your code differnetly on 32-bit or 64-bit system:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">&#39; For example, run the following code on 32-bit and 64-bit systems:</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>? <span class="st">&quot;Assigning hexadecimal number to variable or constant:&quot;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>n = <span class="dv">0xFFFFFFFF</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>? n</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: -1</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 4294967295</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>?</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>? <span class="st">&quot;Bitwise NOT (~) a number:&quot;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>n = ~<span class="dv">0xFFFFFFFF</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>? <span class="fu">Bin</span>(n)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: 00000000000000000000000000000000</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 10000000000000000000000000000000</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>?</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a>? <span class="st">&quot;Raising to power of 32+ bit number:&quot;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>n = <span class="fu">Pow</span>(<span class="dv">2</span>, <span class="dv">32</span>) - <span class="dv">1</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a>? <span class="fu">Bin</span>(n)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: 10000000000000000000000000000000</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 11111111111111111111111111111111</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a>?</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>? <span class="st">&quot;Using 64-bit double number instead of 32-bit integer:&quot;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>n = <span class="dv">0xFFFFFFFF</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a>? <span class="fu">Bin</span>(n)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a><span class="co">&#39;  The same result on both systems:</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: 11111111111111111111111111111111</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 11111111111111111111111111111111</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a>?</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a>? <span class="st">&quot;Using hexadecimal number *in-line*:&quot;</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a>n = <span class="dv">0xFFFFFFFF</span> <span class="kw">Band</span> <span class="dv">0x7FFFFFFF</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a>? n</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a><span class="co">&#39;  The same result on both systems:</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a><span class="co">&#39; On 32-bit system n is: 2147483647</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a><span class="co">&#39; On 64-bit system n is: 2147483647</span></span></code></pre></div>
+<p>The code above produces different results on 32-bit and 64-bit systems; Therefore it leads to subtle bug with no run-time error, and no other indication. The reason for this inconsistency is the fact that SamllBASIC determine the type of variables on the fly. And while the sign bit in a 64-bits register is bit-63 - in a 32-bits register is bit-31. SmallBASIC integers are 32-bit signed integers. The sign bit of SmallBASIC integer is bit-31 (base 0). It is Safe to manipulate only bits 0 to 30, on both 64-bit and 32-bit systems. But it is Not safe to manipulate the sign bit, bit-31.</p>
   <div class="lavenderBox">
     <div class="header">Code samples using AND</div>
     <div class="linklist">
@@ -310,7 +350,7 @@ AND by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 13 Dec 2022 23:43:02 +0100
+      This page was last edited on Mon, 18 Sep 2023 15:05:26 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

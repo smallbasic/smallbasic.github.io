@@ -73,13 +73,10 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Change permissions of a file. See also ACCESS.</p>
-<ul>
-<li>file - A string expression that follows OS file naming conventions.</li>
-<li>mode - Compatible with system call chmod()‘s ’mode’ parameter.</li>
-</ul>
-<p>Linux:</p>
-<p>mode is a number best represented in octal: 0oUGO with U: User; G: Group; O: Other</p>
+<p>Change permissions of a file. The string <code>file</code> holds the file name and follows OS file naming conventions. <code>mode</code> provides the file permission and must be compatible with system call chmod()‘s ’mode’ parameter.</p>
+<p>See ACCESS to get information on file permissions.</p>
+<h2 id="linux">Linux</h2>
+<p><code>mode</code> is a number best represented in octal: 0oUGO with U: User; G: Group; O: Other</p>
 <p>U, G and O are each defined the following way:</p>
 <table>
 <thead>
@@ -123,6 +120,7 @@
 </tr>
 </tbody>
 </table>
+<h3 id="example">Example</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; Make myfile available to anyone (read/write)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">CHMOD</span> <span class="st">&quot;myfile.bas&quot;</span>, <span class="dv">0o666</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
@@ -132,6 +130,14 @@
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Make myfile available to user (read/write)</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39; All others only read</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">CHMOD</span> <span class="st">&quot;myfile.bas&quot;</span>, <span class="dv">0o644</span></span></code></pre></div>
+<h2 id="windows">Windows</h2>
+<p>in Windows the read-only flag can be set with <code>mode = 1</code> and unset with <code>mode = -1</code></p>
+<h3 id="example-1">Example</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Make myfile read-only</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">CHMOD</span> <span class="st">&quot;myfile.bas&quot;</span>, <span class="dv">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; Make myfile read and write</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="fu">CHMOD</span> <span class="st">&quot;myfile.bas&quot;</span>, <span class="dv">-1</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using CHMOD</div>
     <div class="linklist">
@@ -165,6 +171,7 @@
       <a href="/reference/609.html">LOF </a>&nbsp;
       <a href="/reference/593.html">MKDIR </a>&nbsp;
       <a href="/reference/594.html">OPEN </a>&nbsp;
+      <a href="/reference/601.html">READ </a>&nbsp;
       <a href="/reference/595.html">RENAME </a>&nbsp;
       <a href="/reference/596.html">RMDIR </a>&nbsp;
       <a href="/reference/597.html">SEEK </a>&nbsp;
@@ -193,7 +200,7 @@ CHMOD by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Dec 2022 20:53:45 +0100
+      This page was last edited on Thu, 21 Sep 2023 10:18:33 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

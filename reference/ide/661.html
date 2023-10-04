@@ -1,5 +1,18 @@
 <h1 id="use">USE</h1>
 <blockquote>
-<p>USE</p>
+<p>USE expr</p>
 </blockquote>
-<p>Used with various commands for passing a user-defined expression. eg <code>SPLIT s," ",v USE TRIM(x)</code>. Trim each element of v.</p>
+<p>Used with various commands for passing a user-defined expression <code>expr</code>.</p>
+<h3 id="example-split">Example: Split</h3>
+<pre><code>s = &quot;/etc/temp/filename1.ext  &quot;        &#39; additional spaces at the end of the string
+SPLIT s, &quot;/&quot;, v, &quot;temp&quot; USE TRIM(x)    &#39; trim(x) will remove spaces at the beginning
+                                       &#39; and the end of the splitted strings;
+                                       &#39; try the example without &quot;USE TRIM(x)&quot;
+FOR i = 0 TO UBOUND(v)
+  PRINT i;&quot; [&quot;;v(i);&quot;]&quot;
+NEXT
+
+&#39; displays
+&#39; 0 []
+&#39; 1 [etc/temp]
+&#39; 2 [filename1.ext]</code></pre>

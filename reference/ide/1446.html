@@ -7,9 +7,9 @@
 <li>UNIT supports ‘namespace’ (Namespaces allow reuse of same names in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both using a function with the same name, “Set”, but in different contexts).</li>
 <li>While UNIT can be used as a collection of sub-routines for your own program, UNIT is particularly useful for creating a general-purpose library. General purpose libraries can be useful for many programs or projects, the same way the internal routine “PRINT” is useful for many programs, and not only for specific one.</li>
 </ul>
-<p>Use EXPORT to export procedured, functions, constants or variables. Only exported names can be access in the main program.</p>
+<p>Use EXPORT to export procedures, functions, constants or variables. Only exported names can be accessed in the main program.</p>
 <h3 id="example-1-simple-unit">Example 1: Simple Unit</h3>
-<p>First an example of the unit. Please save it with the filename “MyTestUnit.bas”</p>
+<p>First, an example of the unit. Please save it with the filename “MyTestUnit.bas”</p>
 <pre><code>UNIT MyTestUnit
 
 export MyFunc
@@ -24,7 +24,7 @@ end
 sub MySub(a,b)
     print &quot;a + b = &quot;; a + b
 end</code></pre>
-<p>Second an example on how to use the unit.</p>
+<p>Second, an example on how to use the unit.</p>
 <pre><code>import MyTestUnit as u
 
 u.MySub(1,2)
@@ -34,10 +34,9 @@ print u.MyConst
 
 u.MyVar = u.MyVar + 5
 print u.MyVar</code></pre>
-<h3 id="example-2-an-unit-for-using-string">Example 2: An unit for using string</h3>
-<p>The UNIT file is strlib.bas:</p>
-<pre><code>
-&#39; File: strlib.bas
+<h3 id="example-2-an-unit-for-using-strings">Example 2: An unit for using strings</h3>
+<p>The UNIT file. Please save as strlib.bas.</p>
+<pre><code>&#39; File: strlib.bas
 &#39; ------------
 &#39; In this demo we are using UNIT to add more useful String commands to
 &#39; SmallBASIC, by carefully creating our own String-Library: strlib.bas
@@ -84,8 +83,7 @@ Func Rset(s, b)
   Else
     Rset = Space(b - l) + s
   Fi
-End
-</code></pre>
+End</code></pre>
 <p>Demo file, demo.bas, which is using strlib.bas above:</p>
 <pre><code>&#39; Here we declare that this file is using another UNIT file.
 &#39; Note: The actual file name must be in lower case for Linux OS.

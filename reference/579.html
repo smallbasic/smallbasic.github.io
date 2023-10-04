@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>WEEKDAY</h1>
-  <blockquote>WEEKDAY (dmy| (d,m,y)| julian_date)</blockquote>
+  <blockquote>n = WEEKDAY (dmy | (d,m,y) | julian_date)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,14 +73,15 @@
       <a href="/pages/date.html">Date</a>
     </p>
   </div>
-<p>Returns the day of the week (0 = Sunday).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(DATE)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(<span class="fu">Julian</span>(<span class="dv">31</span>, <span class="dv">12</span>, <span class="dv">2001</span>))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(<span class="dv">31</span>, <span class="dv">12</span>, <span class="dv">2001</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>SPLIT <span class="st">&quot;Sun Mon Tue Wed Thu Fri Sat&quot;</span>, <span class="st">&quot; &quot;</span>, wd</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>today = <span class="st">&quot;Today is &quot;</span> + wd(<span class="fu">WEEKDAY</span>(DATE)) + <span class="st">&quot; &quot;</span> + DATE</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">PRINT</span> today</span></code></pre></div>
+<p>Returns the day of the week as a number between <code>0</code> and <code>6</code>. Sunday is <code>0</code>. WEEKDAY accepts a string <code>dmy</code> as returned by DATE, a number <code>julian_date</code> as returned by JULIAN or a date given by the three numbers <code>d</code> for day, <code>m</code> for month and <code>y</code> for year.</p>
+<h3 id="example-1">Example 1</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(DATE)                     <span class="co">&#39; Output: 3  -&gt; Wednesday</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(<span class="fu">Julian</span>(<span class="dv">31</span>, <span class="dv">12</span>, <span class="dv">2023</span>))     <span class="co">&#39; Output: 0  -&gt; Sunday</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">WeekDay</span>(<span class="dv">31</span>, <span class="dv">12</span>, <span class="dv">2023</span>)             <span class="co">&#39; Output: 0  -&gt; Sunday</span></span></code></pre></div>
+<h3 id="example-2">Example 2</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>SPLIT <span class="st">&quot;Sun Mon Tue Wed Thu Fri Sat&quot;</span>, <span class="st">&quot; &quot;</span>, wd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Today is &quot;</span> + wd(<span class="fu">WEEKDAY</span>(DATE)) + <span class="st">&quot; &quot;</span> + DATE </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; Output: Today is Wed 13/09/2023</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Date</div>
     <div class="linklist">
@@ -115,7 +116,7 @@ WEEKDAY by submitting a <a href="https://github.com/smallbasic/smallbasic.github
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 21 Mar 2018 22:05:29 +1000
+      This page was last edited on Wed, 13 Sep 2023 15:57:51 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

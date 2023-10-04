@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>ACCESS</h1>
-  <blockquote>ACCESS (file)</blockquote>
+  <blockquote>n = ACCESS (file)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,70 +73,66 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Returns the access rights of the file.</p>
-<ul>
-<li>file - A string expression that follows OS file naming conventions.</li>
-</ul>
-<p>Returns file permissions as per chmod() and stat() system calls.</p>
-<p>The bits (in octal):</p>
+<p>Returns the access rights of a file. The string <code>file</code> follows OS file naming conventions. The returned file permission number <code>n</code> follows the permission pattern of the chmod() and stat() system calls. The bits of <code>n</code> (in octal) are:</p>
 <table>
 <thead>
 <tr class="header">
-<th>Bits</th>
-<th>Permission</th>
+<th style="text-align: center;">Bits</th>
+<th style="text-align: left;">Permission</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>0o4000</td>
-<td>set user ID on execution</td>
+<td style="text-align: center;">0o4000</td>
+<td style="text-align: left;">set user ID on execution</td>
 </tr>
 <tr class="even">
-<td>0o2000</td>
-<td>set group ID on execution</td>
+<td style="text-align: center;">0o2000</td>
+<td style="text-align: left;">set group ID on execution</td>
 </tr>
 <tr class="odd">
-<td>0o1000</td>
-<td>sticky bit</td>
+<td style="text-align: center;">0o1000</td>
+<td style="text-align: left;">sticky bit</td>
 </tr>
 <tr class="even">
-<td>0o400</td>
-<td>read by owner</td>
+<td style="text-align: center;">0o400</td>
+<td style="text-align: left;">read by owner</td>
 </tr>
 <tr class="odd">
-<td>0o200</td>
-<td>write by owner</td>
+<td style="text-align: center;">0o200</td>
+<td style="text-align: left;">write by owner</td>
 </tr>
 <tr class="even">
-<td>0o100</td>
-<td>execute/search by owner</td>
+<td style="text-align: center;">0o100</td>
+<td style="text-align: left;">execute/search by owner</td>
 </tr>
 <tr class="odd">
-<td>0o40</td>
-<td>read by group</td>
+<td style="text-align: center;">0o40</td>
+<td style="text-align: left;">read by group</td>
 </tr>
 <tr class="even">
-<td>0o20</td>
-<td>write by group</td>
+<td style="text-align: center;">0o20</td>
+<td style="text-align: left;">write by group</td>
 </tr>
 <tr class="odd">
-<td>0o10</td>
-<td>execute/search by group</td>
+<td style="text-align: center;">0o10</td>
+<td style="text-align: left;">execute/search by group</td>
 </tr>
 <tr class="even">
-<td>0o4</td>
-<td>read by others</td>
+<td style="text-align: center;">0o4</td>
+<td style="text-align: left;">read by others</td>
 </tr>
 <tr class="odd">
-<td>0o2</td>
-<td>write by others</td>
+<td style="text-align: center;">0o2</td>
+<td style="text-align: left;">write by others</td>
 </tr>
 <tr class="even">
-<td>0o1</td>
-<td>execute/search by others</td>
+<td style="text-align: center;">0o1</td>
+<td style="text-align: left;">execute/search by others</td>
 </tr>
 </tbody>
 </table>
+<h3 id="example">Example</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">IF ACCESS</span>(<span class="st">&quot;/bin/sh&quot;</span>) <span class="kw">AND</span> <span class="dv">0o4</span> <span class="kw">THEN</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>   <span class="kw">PRINT</span> <span class="st">&quot;Others can read the file&quot;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">ENDIF</span></span></code></pre></div>
@@ -182,6 +178,7 @@
       <a href="/reference/609.html">LOF </a>&nbsp;
       <a href="/reference/593.html">MKDIR </a>&nbsp;
       <a href="/reference/594.html">OPEN </a>&nbsp;
+      <a href="/reference/601.html">READ </a>&nbsp;
       <a href="/reference/595.html">RENAME </a>&nbsp;
       <a href="/reference/596.html">RMDIR </a>&nbsp;
       <a href="/reference/597.html">SEEK </a>&nbsp;
@@ -210,7 +207,7 @@ ACCESS by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Wed, 30 Nov 2022 22:52:46 +0100
+      This page was last edited on Fri, 15 Sep 2023 15:18:46 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

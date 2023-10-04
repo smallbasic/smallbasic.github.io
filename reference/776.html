@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>CHR</h1>
-  <blockquote>CHR (x)</blockquote>
+  <blockquote>s = CHR (x)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,55 +73,60 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-<p>Returns one-char string of character with ASCII code x.</p>
+<p>Returns an one-char string of character with ASCII code <code>x</code>.</p>
 <p>See ASC to convert a character to ASCII code.</p>
-<p>Example 1:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;ASCII code 65 is &#39;&quot;</span> + <span class="fu">chr</span>(<span class="dv">65</span>) + <span class="st">&quot;&#39;&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">&#39; Output ASCII code 65 is &#39;A&#39;</span></span></code></pre></div>
-<p>Example 2: The CHR command is useful for obtaining and printing the escape character (ASCII 27). For more information about escape codes see article “Escape Codes”</p>
+<h3 id="example-1">Example 1</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;ASCII code 65 is &#39;&quot;</span> + <span class="fu">chr</span>(<span class="dv">65</span>) + <span class="st">&quot;&#39;&quot;</span>        <span class="co">&#39; Output ASCII code 65 is &#39;A&#39;</span></span></code></pre></div>
+<h3 id="example-2-get-escape-character">Example 2: Get escape character</h3>
+<p>The CHR command is useful for obtaining and printing the escape character (ASCII 27). For more information about escape codes see article “Escape Codes”</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[1mTHIS IS BOLD&quot;</span> + <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[0m&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[3mThis is italic&quot;</span> + <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[0m&quot;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[4mThis is underline&quot;</span></span></code></pre></div>
-<p>Example 3: Print ASCII table</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">rem display the ASCII and the extended tables</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">For </span>n = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">255</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="kw">If </span>n = <span class="dv">0</span> <span class="kw">Then</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="dv">0</span>: <span class="fu">Locate</span> <span class="dv">1</span>, <span class="dv">1</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="kw">Print</span> <span class="st">&quot;Standard 7-bit ASCII table (character codes 0 - 127):&quot;</span>;</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="kw">Elseif</span> n = <span class="dv">128</span> <span class="kw">Then</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    <span class="kw">print</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">print</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="kw">Input</span> <span class="st">&quot;Press return to see nonstandard table&quot;</span>, k</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="dv">0</span>: <span class="fu">Cls</span>: <span class="fu">Locate</span> <span class="dv">1</span>, <span class="dv">1</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    <span class="kw">Print</span> <span class="st">&quot;Nonstandard 8-bit Extended table (character codes 128 - 255):&quot;</span>;</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>  <span class="kw">Endif</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>  <span class="kw">If </span>n &lt;= <span class="dv">31</span> <span class="kw">Then</span> <span class="co">&#39; control characters (e.g. new-line, tab, etc).</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    <span class="fu">Read</span> c</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>  <span class="kw">Elseif</span> n = <span class="dv">32</span> <span class="kw">Then</span> <span class="co">&#39; regular space (invisible...)</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    c = <span class="st">&quot;sp&quot;</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>  <span class="kw">Elseif</span> n = <span class="dv">127</span> <span class="kw">Then</span> <span class="co">&#39; lonesome control character &quot;del&quot;</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    c = <span class="st">&quot;del&quot;</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>  <span class="kw">Else</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>    c = <span class="fu">Chr</span>(n) <span class="co">&#39; ASCII code --&gt; character</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>  <span class="kw">Endif</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>  <span class="fu">Locate</span> (n <span class="kw">Mod</span> <span class="dv">16</span>) + <span class="dv">3</span>, (((n \ <span class="dv">16</span>) <span class="kw">Mod</span> <span class="dv">8</span>) * <span class="dv">9</span>) + <span class="dv">1</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">7</span>: <span class="kw">Print</span> Using <span class="st">&quot;000 &quot;</span>; n; <span class="co">&#39; ASCII code</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">14</span>: <span class="kw">Print</span> c; <span class="co">&#39; ASCII (or ANSI) character</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="kw">Next</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">7</span>, <span class="dv">0</span>: <span class="kw">Print</span>: <span class="kw">Print</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot; * Nonstandard characters might look different on another system.&quot;</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="kw">End</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="co">&#39; nonprintable control characters (ASCII codes 0..31):</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;nul&quot;</span>, <span class="st">&quot;soh&quot;</span>, <span class="st">&quot;stx&quot;</span>, <span class="st">&quot;etx&quot;</span>, <span class="st">&quot;eot&quot;</span> <span class="co">&#39; 0..4</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;enq&quot;</span>, <span class="st">&quot;ack&quot;</span>, <span class="st">&quot;bel&quot;</span>, <span class="st">&quot;bs&quot;</span> , <span class="st">&quot;tab&quot;</span> <span class="co">&#39; 5..9</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;lf&quot;</span> , <span class="st">&quot;vt&quot;</span> , <span class="st">&quot;np&quot;</span> , <span class="st">&quot;cr&quot;</span> , <span class="st">&quot;so&quot;</span>  <span class="co">&#39; 10..14</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;si&quot;</span> , <span class="st">&quot;dle&quot;</span>, <span class="st">&quot;dc1&quot;</span>, <span class="st">&quot;dc2&quot;</span>, <span class="st">&quot;dc3&quot;</span> <span class="co">&#39; 15..19</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;dc4&quot;</span>, <span class="st">&quot;nak&quot;</span>, <span class="st">&quot;syn&quot;</span>, <span class="st">&quot;etb&quot;</span>, <span class="st">&quot;can&quot;</span> <span class="co">&#39; 20..24</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;em&quot;</span> , <span class="st">&quot;eof&quot;</span>, <span class="st">&quot;esc&quot;</span>, <span class="st">&quot;fs&quot;</span> , <span class="st">&quot;gs&quot;</span>  <span class="co">&#39; 25..29</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;rs&quot;</span> , <span class="st">&quot;us&quot;</span>  <span class="co">&#39; 30..31</span></span></code></pre></div>
+<h3 id="example-3-print-ascii-table">Example 3: Print ASCII table</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">REM display the ASCII and the extended tables</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">For </span>n = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">255</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="kw">If </span>n = <span class="dv">0</span> <span class="kw">Then</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="dv">0</span>: <span class="fu">Locate</span> <span class="dv">1</span>, <span class="dv">1</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    <span class="kw">Print</span> <span class="st">&quot;Standard 7-bit ASCII table (character codes 0 - 127):&quot;</span>;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  <span class="kw">Elseif</span> n = <span class="dv">128</span> <span class="kw">Then</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="kw">print</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    <span class="kw">print</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    <span class="kw">Input</span> <span class="st">&quot;Press return to see nonstandard table&quot;</span>, k</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    <span class="fu">Color</span> <span class="dv">15</span>, <span class="dv">0</span>: <span class="fu">Cls</span>: <span class="fu">Locate</span> <span class="dv">1</span>, <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    <span class="kw">Print</span> <span class="st">&quot;Nonstandard 8-bit Extended table (character codes 128 - 255):&quot;</span>;</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>  <span class="kw">Endif</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>  <span class="kw">If </span>n &lt;= <span class="dv">31</span> <span class="kw">Then</span> <span class="co">&#39; control characters (e.g. new-line, tab, etc).</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    <span class="fu">Read</span> c</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>  <span class="kw">Elseif</span> n = <span class="dv">32</span> <span class="kw">Then</span> <span class="co">&#39; regular space (invisible...)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>    c = <span class="st">&quot;sp&quot;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>  <span class="kw">Elseif</span> n = <span class="dv">127</span> <span class="kw">Then</span> <span class="co">&#39; lonesome control character &quot;del&quot;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>    c = <span class="st">&quot;del&quot;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>  <span class="kw">Else</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>    c = <span class="fu">Chr</span>(n) <span class="co">&#39; ASCII code --&gt; character</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>  <span class="kw">Endif</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>  <span class="fu">Locate</span> (n <span class="kw">Mod</span> <span class="dv">16</span>) + <span class="dv">3</span>, (((n \ <span class="dv">16</span>) <span class="kw">Mod</span> <span class="dv">8</span>) * <span class="dv">9</span>) + <span class="dv">1</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">7</span>: <span class="kw">Print</span> Using <span class="st">&quot;000 &quot;</span>; n; <span class="co">&#39; ASCII code</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>  <span class="fu">Color</span> <span class="dv">14</span>: <span class="kw">Print</span> c; <span class="co">&#39; ASCII (or ANSI) character</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="kw">Next</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">7</span>, <span class="dv">0</span>: <span class="kw">Print</span>: <span class="kw">Print</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot; * Nonstandard characters might look different on another system.&quot;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a><span class="kw">End</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="co">&#39; nonprintable control characters (ASCII codes 0..31):</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;nul&quot;</span>, <span class="st">&quot;soh&quot;</span>, <span class="st">&quot;stx&quot;</span>, <span class="st">&quot;etx&quot;</span>, <span class="st">&quot;eot&quot;</span> <span class="co">&#39; 0..4</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;enq&quot;</span>, <span class="st">&quot;ack&quot;</span>, <span class="st">&quot;bel&quot;</span>, <span class="st">&quot;bs&quot;</span> , <span class="st">&quot;tab&quot;</span> <span class="co">&#39; 5..9</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;lf&quot;</span> , <span class="st">&quot;vt&quot;</span> , <span class="st">&quot;np&quot;</span> , <span class="st">&quot;cr&quot;</span> , <span class="st">&quot;so&quot;</span>  <span class="co">&#39; 10..14</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;si&quot;</span> , <span class="st">&quot;dle&quot;</span>, <span class="st">&quot;dc1&quot;</span>, <span class="st">&quot;dc2&quot;</span>, <span class="st">&quot;dc3&quot;</span> <span class="co">&#39; 15..19</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;dc4&quot;</span>, <span class="st">&quot;nak&quot;</span>, <span class="st">&quot;syn&quot;</span>, <span class="st">&quot;etb&quot;</span>, <span class="st">&quot;can&quot;</span> <span class="co">&#39; 20..24</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;em&quot;</span> , <span class="st">&quot;eof&quot;</span>, <span class="st">&quot;esc&quot;</span>, <span class="st">&quot;fs&quot;</span> , <span class="st">&quot;gs&quot;</span>  <span class="co">&#39; 25..29</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a><span class="dt">Data</span> <span class="st">&quot;rs&quot;</span> , <span class="st">&quot;us&quot;</span>  <span class="co">&#39; 30..31</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using CHR</div>
     <div class="linklist">
@@ -219,7 +224,7 @@ CHR by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 18 Dec 2022 17:53:26 +0100
+      This page was last edited on Thu, 21 Sep 2023 11:44:05 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

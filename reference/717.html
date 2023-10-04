@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>ATAN</h1>
-  <blockquote>ATAN (x)</blockquote>
+  <blockquote>f = ATAN (x)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,39 +73,13 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Inverse tangent.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="fu">tan</span>(<span class="dv">0.5</span>)</span>
+<p>Inverse tangent of <code>x</code>.</p>
+<h3 id="example-1">Example 1</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="fu">tan</span>(<span class="dv">0.5</span>)            <span class="co">&#39; Output: 0.54630248984379</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> a</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>b = <span class="fu">atan</span>(a)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> b</span></code></pre></div>
-<p>Little demo:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; pin the tail.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-13</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; look how simple ATAN returns an angle from a ratio y/x </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>tw=<span class="fu">txtw</span>(<span class="fu">string</span>(<span class="dv">22</span>,<span class="st">&quot;W&quot;</span>)):xlimit=<span class="dt">xmax</span>-tw</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>th=<span class="fu">txth</span>(<span class="st">&quot;Q&quot;</span>):ylim=<span class="dt">ymax</span><span class="dv">-2</span>*th</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>maxdistance=(<span class="dt">xmax</span>^<span class="dv">2</span>+ylim^<span class="dv">2</span>)^.<span class="dv">5</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>winner=<span class="dv">0</span> : windistance=maxdistance</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">for </span>i=<span class="dv">1400</span> <span class="kw">to</span> <span class="dv">0</span> step <span class="dv">-100</span> <span class="co">&#39; draw target</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  <span class="kw">if </span>i <span class="kw">mod</span> <span class="dv">200</span>=<span class="dv">0</span> <span class="kw">then cc</span>=<span class="dv">12</span> <span class="kw">else</span> cc=<span class="dv">15</span> <span class="co">&#39;alt red/white</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  <span class="fu">circle</span> <span class="dv">0</span>,<span class="dv">0</span>,i,<span class="dv">1</span>,cc filled</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">14</span>,<span class="dv">4</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">for </span>player=<span class="dv">1</span> <span class="kw">to</span> <span class="dv">12</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>  xtail=<span class="fu">rnd</span>*xlimit <span class="co">&#39;keeps the player tail in one line on the screen, hopefully</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>  ytail=<span class="fu">rnd</span>*ylim   <span class="co">&#39;keeps the player on the screen and screen from scrolling, hopefully</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>  angle=<span class="fu">deg</span>(<span class="fu">atan</span>(ytail/xtail))\<span class="dv">1</span> <span class="co">&#39;&lt;====== notice no angle involved with atan we feed it a ratio</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>                                                  <span class="co">&#39; DEG converts the angle to degrees from radians</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>  distance=((xtail^<span class="dv">2</span>+ytail^<span class="dv">2</span>)^.<span class="dv">5</span>)\<span class="dv">1</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>  tail=<span class="st">&quot;^&lt;&quot;</span>+<span class="fu">str</span>(player)+<span class="st">&quot; deg:&quot;</span>+<span class="fu">str</span>(angle)+<span class="st">&quot; dist:&quot;</span>+<span class="fu">str</span>(distance)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>  <span class="fu">at</span> xtail,ytail:? tail</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>  <span class="kw">if </span>distance &lt; windistance <span class="kw">then wi</span>ndistance=distance:winner=player</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>  <span class="kw">pause</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">15</span>,<span class="dv">0</span> <span class="co">&#39;cause a screen scroll on purpose</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="fu">at</span> <span class="dv">0</span>,<span class="dt">ymax</span>-th: ? <span class="st">&quot;The winner is &quot;</span>+<span class="fu">str</span>(winner)+<span class="st">&quot; at &quot;</span>+<span class="fu">str</span>(windistance)+<span class="st">&quot; press any...&quot;</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="kw">pause</span></span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> b                 <span class="co">&#39; Output: 0.5</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using ATAN</div>
     <div class="linklist">
@@ -226,7 +200,7 @@ ATAN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 16 Oct 2022 19:01:05 +0200
+      This page was last edited on Tue, 19 Sep 2023 10:57:11 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

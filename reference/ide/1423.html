@@ -2,4 +2,15 @@
 <blockquote>
 <p>PRINT USG</p>
 </blockquote>
-<p>Synonym for USING</p>
+<p>PRINT USG uses the FORMAT function to display numbers and strings.</p>
+<p>See PRINT for more information. USG and USING are equivalent.</p>
+<h3 id="example">Example</h3>
+<pre><code>a = 1000
+b = 2000
+PRINT USG &quot;#,###.##&quot;; a                    
+PRINT USG &quot;#,###.## &quot;; a; b                &#39; &lt;- Format is applied to all variables         
+PRINT USG &quot;a = #####.00  b = #####&quot;; a; b  &#39; &lt;- One formated string with placeholders for two variables
+
+&#39; Output: 1,000.
+&#39; Output: 1,000. 2,000.             
+&#39; Output: a =  1000.00  b =  2000   </code></pre>

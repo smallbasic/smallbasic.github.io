@@ -1,20 +1,36 @@
 <h1 id="append">APPEND</h1>
 <blockquote>
-<p>APPEND a, val [, val [, …]]</p>
+<p>APPEND a, var1 [, var2 [, …, varN]]</p>
 </blockquote>
-<p>Inserts the values at the end of the specified array.</p>
-<ul>
-<li>a - An array-variable.</li>
-<li>val - Any value or expression</li>
-</ul>
+<p>Inserts the values <code>var1</code> to <code>varN</code> at the end of the array <code>a</code>. <code>var1</code> to <code>varN</code> can be any data type.</p>
+<p>Instead of APPEND the <code>&lt;&lt;</code> Operator can be used.</p>
+<h3 id="example-1-append-single-number">Example 1: Append single number</h3>
 <pre><code>a = [1,2,3]
 print &quot;Before APPEND: &quot;; a
 
 APPEND a, 4
-print &quot;After APPEND : &quot;; a</code></pre>
-<p>Instead of APPEND the <code>&lt;&lt;</code> Operator can be used.</p>
+print &quot;After APPEND : &quot;; a
+
+&#39; Output:
+&#39; Before APPEND: [1,2,3]
+&#39; After APPEND : [1,2,3,4]</code></pre>
+<h3 id="example-2-append-multiple-numbers">Example 2: Append multiple numbers</h3>
 <pre><code>a = [1,2,3]
-print &quot;Before &lt;&lt; operaror: &quot;; a
+
+APPEND a, 4, 5
+print a              &#39; Output: [1,2,3,4,5]</code></pre>
+<h3 id="example-3-append-an-array">Example 3: Append an array</h3>
+<pre><code>a = [1,2,3]
+
+APPEND a, [4,5,6]
+print a              &#39; Output: [1,2,3,[4,5,6]]</code></pre>
+<h3 id="example-4-append-a-string">Example 4: Append a string</h3>
+<pre><code>a = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+
+APPEND a, &quot;d&quot;
+print a                 &#39; Output: [a,b,c,d]</code></pre>
+<h3 id="example-5-using-operator">Example 5: Using &lt;&lt; operator</h3>
+<pre><code>a = [1,2,3]
 
 a &lt;&lt; 4
-print &quot;After &lt;&lt; operator : &quot;; a</code></pre>
+print a                  &#39; Output: [1,2,3,4]</code></pre>

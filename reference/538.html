@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>CAT</h1>
-  <blockquote>CAT (x)</blockquote>
+  <blockquote>s = CAT (x)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,57 +73,58 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Returns an escape code to format a string.</p>
+<p>Returns an escape code to format a string. The values of <code>x</code> are listed in teh followin table:</p>
 <table>
 <thead>
 <tr class="header">
-<th>x</th>
+<th style="text-align: right;">x</th>
 <th>format</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>0</td>
+<td style="text-align: right;">0</td>
 <td>reset</td>
 </tr>
 <tr class="even">
-<td>1</td>
+<td style="text-align: right;">1</td>
 <td>bold</td>
 </tr>
 <tr class="odd">
-<td>-1</td>
+<td style="text-align: right;">-1</td>
 <td>bold off</td>
 </tr>
 <tr class="even">
-<td>2</td>
+<td style="text-align: right;">2</td>
 <td>underline</td>
 </tr>
 <tr class="odd">
-<td>-2</td>
+<td style="text-align: right;">-2</td>
 <td>underline off</td>
 </tr>
 <tr class="even">
-<td>3</td>
+<td style="text-align: right;">3</td>
 <td>reverse</td>
 </tr>
 <tr class="odd">
-<td>-3</td>
+<td style="text-align: right;">-3</td>
 <td>reverse off</td>
 </tr>
 </tbody>
 </table>
 <p>For more information about escape codes please see the article “Escape codes”.</p>
+<h3 id="example">Example</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">14</span>, <span class="dv">1</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>? <span class="fu">Cat</span>(<span class="dv">1</span>); <span class="st">&quot;This is Bold text&quot;</span>; <span class="fu">Cat</span>(-<span class="dv">1</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>?</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>? <span class="fu">Cat</span>(<span class="dv">2</span>); <span class="st">&quot;This is Underline text&quot;</span>; <span class="fu">Cat</span>(-<span class="dv">2</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>?</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>? <span class="fu">Cat</span>(<span class="dv">3</span>); <span class="st">&quot;This is Reverse text&quot;</span>; <span class="fu">Cat</span>(-<span class="dv">3</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>? </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">Cat</span>(<span class="dv">1</span>); <span class="st">&quot;This is Bold text&quot;</span>; <span class="fu">Cat</span>(-<span class="dv">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">Cat</span>(<span class="dv">2</span>); <span class="st">&quot;This is Underline text&quot;</span>; <span class="fu">Cat</span>(-<span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">Cat</span>(<span class="dv">3</span>); <span class="st">&quot;This is Reverse text&quot;</span>; <span class="fu">Cat</span>(-<span class="dv">3</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">print</span> </span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39; Cat(0) resets ALL attributes, including colors.</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>? <span class="fu">Cat</span>(<span class="dv">1</span>); <span class="fu">Cat</span>(<span class="dv">2</span>); <span class="st">&quot;This is Bold &amp; Underline text&quot;</span>; <span class="fu">Cat</span>(<span class="dv">0</span>) </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>?</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>? <span class="fu">Cat</span>(<span class="dv">2</span>); <span class="fu">Cat</span>(<span class="dv">3</span>); <span class="st">&quot;This is Underline &amp; Reverse text (with default colors)&quot;</span>; <span class="fu">Cat</span>(<span class="dv">0</span>)</span></code></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">Cat</span>(<span class="dv">1</span>); <span class="fu">Cat</span>(<span class="dv">2</span>); <span class="st">&quot;This is Bold &amp; Underline text&quot;</span>; <span class="fu">Cat</span>(<span class="dv">0</span>) </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">print</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">Cat</span>(<span class="dv">2</span>); <span class="fu">Cat</span>(<span class="dv">3</span>); <span class="st">&quot;This is Underline &amp; Reverse text (with default colors)&quot;</span>; <span class="fu">Cat</span>(<span class="dv">0</span>)</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using CAT</div>
     <div class="linklist">
@@ -200,7 +201,7 @@ CAT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200
+      This page was last edited on Tue, 19 Sep 2023 15:04:19 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

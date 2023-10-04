@@ -1,12 +1,30 @@
 <h1 id="arc">ARC</h1>
 <blockquote>
-<p>ARC [STEP] x,y,r,astart,aend [,aspect [,color]] [COLOR color]</p>
+<p>ARC [STEP] x, y, r, astart, aend [, aspect [, color]] [COLOR color]</p>
 </blockquote>
-<p>Draws an arc. - x, y: center point - r: radius - astart, aend: first,last angle in radians - aspect: aspect ratio - color: line color</p>
+<p>Draws an arc:</p>
+<ul>
+<li><code>[x, y]</code>: center point</li>
+<li><code>r</code>: radius in pixel</li>
+<li><code>astart</code>, <code>aend</code>: first anf last angle in radians</li>
+<li><code>aspect</code>: aspect ratio</li>
+<li><code>color</code>: line color</li>
+</ul>
+<p>If STEP is used <code>x</code> and <code>y</code> are a step from the last position of the graphics cursor.</p>
+<h3 id="example-1">Example 1</h3>
 <pre><code>x = 100
 y = 100
 r = 50
 astart = 0
 aend = rad(90)
 
-ARC x,y,r,astart,aend</code></pre>
+ARC x, y, r, astart, aend</code></pre>
+<h3 id="example-2-using-step">Example 2: Using STEP</h3>
+<pre><code>x = 50
+y = 50
+r = 50
+astart = 0
+aend = rad(90)
+
+pset(100,100)                      &#39; Draw point at 100,100 and set the graphics cursor to 100,100
+ARC STEP x, y, r, astart, aend     &#39; make a step from 100,100 by 50 pixels in x and 50 pixels in y</code></pre>

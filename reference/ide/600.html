@@ -1,117 +1,24 @@
 <h1 id="write">WRITE</h1>
 <blockquote>
-<p>WRITE #fileN; var1 [, …]</p>
+<p>WRITE #fileN, var1 [, var2, … , varN]</p>
 </blockquote>
-<p>Store variables to a file as binary data.</p>
-<p>The READ/WRITE command set is used to store variables to a file as binary data. The common problem with INPUT/PRINT set is there are many conflicts with data. &gt; PRINT #1; “Hello, world” The above example only wrote one string and you want read it in one variable, but this is impossible for INPUT command to understand, because INPUT finds the separator comma, so it thinks there are two variables not one. So, now, you can store arrays, strings etc and what you write is what you will read the next time. <em>The parameters can be variables ONLY.</em> <em>Its very bad idea to mixed READ/WRITE commands with INPUT/PRINT commands in the same file.</em></p>
-<p>This is how to store numeric arrays into files, WRITE # and read them out again, READ #. The graphic example is longer but also useful as utility…</p>
-<pre><code>
-&#39; WRITE READ.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-03
-const secwide=200
-const sechigh=200
-dim sect(secwide,sechigh)
-dim fsect(secwide,sechigh)
-for i=1 to 100
-  if rnd&lt;.5 then
-    circle rnd*xmax,rnd*ymax,rnd*100,1,7+(rnd*9)\\1
-  else
-    circle rnd*xmax,rnd*ymax,rnd*100,1,7+(rnd*9)\\1 filled
-  fi
-next
-getsec 200,400          &#39;&lt;== load array with data
-rect 200,400,400,600,15 &#39;&lt;=== draw square around the section captured
-savesect                &#39;&lt;== array data to file
-input &quot;OK press enter for write read test &quot;;temp
-cls
-loadsect     &#39;&lt;== file data to array
-x=100:y=100
-while 1
-  cls
-  drwsec x,y &#39;&lt;== using data from file
-  showpage
-  delay 10
-  x=x+5:y=y+5
-wend
-sub savesect
-  open &quot;READ WRITE test.dat&quot; for output as #1
-  local x,y
-  for y=0 to sechigh
-    for x=0 to secwide
-      write #1,sect(x,y) &#39;&lt;==== array data to file
-    next
-  next
-  close #1
-end
-sub loadsect
-   open &quot;READ WRITE test.dat&quot; for input as #1
-  local x,y
-  for y=0 to sechigh
-    for x=0 to secwide
-      read #1,fsect(x,y)  &#39;&lt;=== load file array
-    next
-  next
-  close #1 
-end
-sub getsec(xstart,ystart)
-  local x,y
-  &#39;these are all global
-  for y=0 to sechigh
-    for x=0 to secwide
-      sect(x,y)=POINT(xstart+x,ystart+y) &#39;&lt;== data from screen points
-    next
-  next
-end 
-sub drwsec(leftx,topy)
-  local x,y
-  for y=0 to sechigh
-    for x=0 to secwide
-      pset x+leftx,y+topy,fsect(x,y) &#39;&lt;== array from file
-    next
-  next
-end 
-</code></pre>
-<pre><code>
-&#39; This demo sets properties of each tile in a matrix,
-&#39; then it stores the array in config file,
-&#39; then it loads the array from that config file.
-&#39; Note: WRITE/READ are using binary format for storing numbers, therefore
-&#39;       number 1, for example, takes the same space as number -26845339.14
-Const TILES_X    = 20 &#39; Maximum tiles in x axis
-Const TILES_Y    = 15 &#39; Maximum tiles in y axis
-Const PROPERTIES = 3  &#39; Maximum properties for each tile in the matrix.
-Const P_FILENAME = 1 &#39; Some demo properties for each tile
-Const P_FILETYPE = 2
-Const P_HIDE     = 3
-&#39; Create 3-dimension array to store tiles properties:
-Dim tile(1 To TILES_X, 1 To TILES_Y, 1 To PROPERTIES)
-&#39; Demo to set a single tile properties, at x,y=10,2 in matrix:
-tile(10, 2, P_FILENAME) = &quot;bricks.bmp&quot; &#39; file name to load tile from
-tile(10, 2, P_FILETYPE) = &quot;BMP16&quot;      &#39; format of tile-file  
-tile(10, 2, P_HIDE)     = 1            &#39; hide/show [1/0] this tile
- 
-&#39; Save tiles in config file 1:
-Open &quot;tiles1.cfg&quot; For Output As #1
-For y = 1 To TILES_Y
-  For x = 1 To TILES_X
-    For p = 1 To PROPERTIES
-      Write #1; tile(x, y, p)
-    Next p
-  Next x
-Next y
-Close #1
-&#39; Load tiles from config file 1:
-Open &quot;tiles1.cfg&quot; For Input As #1
-For y = 1 To TILES_Y
-  For x = 1 To TILES_X
-    For p = 1 To PROPERTIES
-      Read #1; tile(x, y, p)
-    Next p
-  Next x
-Next y
-Close #1
-&#39; Print demo of a single tile properties, at x,y=10,2 in matrix:
-? &quot;File name to load tile from: &quot;; tile(10, 2, P_FILENAME)
-? &quot;Format of tile-file: &quot;; tile(10, 2, P_FILETYPE)
-? &quot;Hide/Show [1/0] this tile: &quot;; tile(10, 2, P_HIDE)
-Pause
-</code></pre>
+<p>Store variables <code>var1</code> to <code>varN</code> to a file as binary data. Variables can be numbers, strings and arrays.</p>
+<p>See READ for reading variables from a file.</p>
+<h3 id="example">Example</h3>
+<pre><code>a = 12.3
+b = &quot;test&quot;
+c = [1,2,3,4]
+
+&#39; Write variables to file
+open &quot;text.bin&quot; for output as #1
+write #1, a, b, c
+close #1
+
+&#39; Read variables from file
+open &quot;text.bin&quot; for input as #1
+read #1, a, b, c
+close #1
+
+print a
+print b
+print c</code></pre>

@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>ABSMIN</h1>
-  <blockquote>ABSMIN (…)</blockquote>
+  <blockquote>f = ABSMIN (var1 [, var2, … , varN] )</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,19 +73,20 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Returns the absolute min value of x.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; absmin of three values</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">absmin</span>(-<span class="dv">3</span>,-<span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">&#39; absmin of three variables</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>a = <span class="dv">-3</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>b = <span class="dv">-1</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>c =  <span class="dv">2</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">absmin</span>(a,b,c)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">&#39; absmin of an array</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>a = [-<span class="dv">3</span>,-<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">absmin</span>(a)</span></code></pre></div>
+<p>Returns the absolute minumum value of <code>var1</code> to <code>varN</code>. <code>var1</code> to <code>varN</code> can be numbers and arrays of numbers.</p>
+<p>See ABSMAX for absolute maximum value.</p>
+<h3 id="example-1-absmin-of-several-numbers">Example 1: ABSMIN of several numbers</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="dv">-3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>b = <span class="dv">-1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>c =  <span class="dv">2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">absmin</span>(a, b, c)      <span class="co">&#39; Output: 1</span></span></code></pre></div>
+<h3 id="example-2-absmin-of-an-array">Example 2: ABSMIN of an array</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>a = [-<span class="dv">3</span>,-<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">absmin</span>(a)            <span class="co">&#39; Output: 1</span></span></code></pre></div>
+<h3 id="example-3-absmin-of-mixed-parameters">Example 3: ABSMIN of mixed parameters</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>a = [-<span class="dv">3</span>,-<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>b = <span class="dv">-2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">absmin</span>(a, b)          <span class="co">&#39; Output: 1</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -187,7 +188,7 @@ ABSMIN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Fri, 14 Oct 2022 20:36:54 +0200
+      This page was last edited on Fri, 15 Sep 2023 15:10:35 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

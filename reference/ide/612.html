@@ -1,8 +1,9 @@
 <h1 id="chart">CHART</h1>
 <blockquote>
-<p>CHART charttype, array() [, style [, x1, y1, x2, y2]]</p>
+<p>CHART charttype, A [, style [, x1, y1, x2, y2]]</p>
 </blockquote>
-<p>Draws a chart of array values in the rectangular area x1,y1,x2,y2. The array stores y-values only: [y1, y2, y3, … yn]. The x-axis of the chart has the values 1,2,3,…n.</p>
+<p>Draws a chart of array values in the rectangular area given by the points <code>[x1, y1]</code> and <code>[x2, y2]</code>. The array <code>A</code> stores y-values only: [y1, y2, y3, … yn]. The x-axis of the chart has the values 1,2,3,…n.</p>
+<p><code>charttype</code> is a number with the following values:</p>
 <table>
 <thead>
 <tr class="header">
@@ -21,6 +22,7 @@
 </tr>
 </tbody>
 </table>
+<p><code>style</code> is a number with the following values:</p>
 <table>
 <thead>
 <tr class="header">
@@ -48,12 +50,12 @@
 </tbody>
 </table>
 <p>See PLOT for plotting functions.</p>
-<p>Example 1: Linechart with marks and ruler</p>
+<h3 id="example-1-linechart-with-marks-and-ruler">Example 1: Linechart with marks and ruler</h3>
 <pre><code>demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]
 Color 0, 15
 cls
 Chart 1, demo, 3, 150, 150, 750, 550</code></pre>
-<p>Example 2: All charttypes and styles in one glance</p>
+<h3 id="example-2-all-charttypes-and-styles-in-one-glance">Example 2: All charttypes and styles in one glance</h3>
 <pre><code>Const LINE_CHART = 1
 Const BAR_CHART  = 2
 demo = [1.5,2,3.5,4,5,6.5,7,8,9.5,10,11,12.5]

@@ -1,17 +1,18 @@
 <h1 id="absmax">ABSMAX</h1>
 <blockquote>
-<p>ABSMAX (…)</p>
+<p>f = ABSMAX (var1 [, var2, … , varN] )</p>
 </blockquote>
-<p>Returns the absolute max value of x.</p>
-<pre><code>&#39; absmax of three values
-print absmax(-3,-1,2)
-
-&#39; absmax of three variables
-a = -3
+<p>Returns the absolute maximum value of <code>var1</code> to <code>varN</code>. <code>var1</code> to <code>varN</code> can be numbers and arrays of numbers.</p>
+<p>See ABSMIN for absolute minimum value.</p>
+<h3 id="example-1-absmax-of-several-numbers">Example 1: ABSMAX of several numbers</h3>
+<pre><code>a = -3
 b = -1
 c =  2
-print absmax(a,b,c)
-
-&#39; absmax of an array
-a = [-3,-1,2]
-print absmax(a)</code></pre>
+print absmax(a, b, c)      &#39; Output: 3</code></pre>
+<h3 id="example-2-absmax-of-an-array">Example 2: ABSMAX of an array</h3>
+<pre><code>a = [-3,-1,2]
+print absmax(a)            &#39; Output: 3</code></pre>
+<h3 id="example-3-absmax-of-mixed-parameters">Example 3: ABSMAX of mixed parameters</h3>
+<pre><code>a = [-3,-1,2]
+b = -2
+print absmax(a, b)            &#39; Output: 3</code></pre>

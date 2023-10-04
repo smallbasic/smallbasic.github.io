@@ -73,12 +73,16 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Changes the current working directory.</p>
+<p>Changes the current working directory to <code>dir</code>. In Windows <code>\</code> needs to be replaced by <code>\\</code></p>
 <p>See CWD to get the current working directory.</p>
-<p>Example 1: Linux</p>
+<h3 id="example-1-linux">Example 1: Linux</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">cwd</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">chdir</span> <span class="st">&quot;/usr/bin&quot;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">cwd</span></span></code></pre></div>
+<h3 id="example-2-windows">Example 2: Windows</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">cwd</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">chdir</span> <span class="st">&quot;C:\\&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">cwd</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using CHDIR</div>
     <div class="linklist">
@@ -112,6 +116,7 @@
       <a href="/reference/609.html">LOF </a>&nbsp;
       <a href="/reference/593.html">MKDIR </a>&nbsp;
       <a href="/reference/594.html">OPEN </a>&nbsp;
+      <a href="/reference/601.html">READ </a>&nbsp;
       <a href="/reference/595.html">RENAME </a>&nbsp;
       <a href="/reference/596.html">RMDIR </a>&nbsp;
       <a href="/reference/597.html">SEEK </a>&nbsp;
@@ -140,7 +145,7 @@ CHDIR by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Dec 2022 20:38:19 +0100
+      This page was last edited on Tue, 19 Sep 2023 16:35:19 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

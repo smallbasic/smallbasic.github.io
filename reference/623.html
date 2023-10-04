@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>VIEW</h1>
-  <blockquote>VIEW [x1,y1,x2,y2 [,color [,border-color]]]</blockquote>
+  <blockquote>VIEW [x1, y1, x2, y2 [, color [, border-color]]]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,12 +73,13 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Defines a viewport. The viewport defined by VIEW is disabled by a VIEW command with no parameters.</p>
-<ul>
-<li>x1,y1,x2,y2 - Corner coordinates of the viewport.</li>
-<li>color If included, fills the viewport with the specified color.</li>
-<li>border-color If included, draws a border, in a specified color, around the defined viewport.</li>
-</ul>
+<p>Defines a viewport with starting point (upper left corner)) <code>[x1,y1]</code> and end point (lower right corner) <code>[x2,y2]</code>. The optional parameters <code>color</code> and <code>border-color</code> define the background color and the border color of the viewport, respectively. VIEW without parameters will disable the last set viewport.</p>
+<h3 id="example">Example</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">view</span>                                            <span class="co">&#39; Disable viewport</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">100</span>,<span class="dv">100</span>, STEP <span class="dv">100</span>,<span class="dv">100</span> <span class="fu">color</span> <span class="dv">4</span> filled       <span class="co">&#39; Draw a rectangle in dark red</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">view</span> <span class="dv">150</span>,<span class="dv">150</span>, <span class="dv">300</span>,<span class="dv">300</span>, <span class="dv">0</span>, <span class="dv">13</span>                    <span class="co">&#39; Set new viewport with black background and magenta border</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">100</span>,<span class="dv">100</span>, STEP <span class="dv">100</span>,<span class="dv">100</span> <span class="fu">color</span> <span class="dv">14</span> filled      <span class="co">&#39; Draw same rectangle in yellow</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using VIEW</div>
     <div class="linklist">
@@ -164,7 +165,7 @@ VIEW by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Wed, 13 Sep 2023 15:15:18 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

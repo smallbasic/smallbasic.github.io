@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>BGETC</h1>
-  <blockquote>BGETC (fileN)</blockquote>
+  <blockquote>c = BGETC (fileN)</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,8 +73,9 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Reads and returns a byte from file or device (Binary mode).</p>
+<p>Reads and returns a byte from file or device in binary mode.</p>
 <p>See BPUTC for writing bytes to a file or device.</p>
+<h3 id="example">Example</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; create a binary file</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;BinaryFile.txt&quot;</span> <span class="kw">for output as</span> #<span class="dv">1</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
@@ -125,6 +126,7 @@
       <a href="/reference/609.html">LOF </a>&nbsp;
       <a href="/reference/593.html">MKDIR </a>&nbsp;
       <a href="/reference/594.html">OPEN </a>&nbsp;
+      <a href="/reference/601.html">READ </a>&nbsp;
       <a href="/reference/595.html">RENAME </a>&nbsp;
       <a href="/reference/596.html">RMDIR </a>&nbsp;
       <a href="/reference/597.html">SEEK </a>&nbsp;
@@ -153,7 +155,7 @@ BGETC by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Dec 2022 15:54:13 +0100
+      This page was last edited on Tue, 19 Sep 2023 14:39:21 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

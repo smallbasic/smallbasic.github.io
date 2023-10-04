@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>APPEND</h1>
-  <blockquote>APPEND a, val [, val [, …]]</blockquote>
+  <blockquote>APPEND a, var1 [, var2 [, …, varN]]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,22 +73,38 @@
       <a href="/pages/data.html">Data</a>
     </p>
   </div>
-<p>Inserts the values at the end of the specified array.</p>
-<ul>
-<li>a - An array-variable.</li>
-<li>val - Any value or expression</li>
-</ul>
+<p>Inserts the values <code>var1</code> to <code>varN</code> at the end of the array <code>a</code>. <code>var1</code> to <code>varN</code> can be any data type.</p>
+<p>Instead of APPEND the <code>&lt;&lt;</code> Operator can be used.</p>
+<h3 id="example-1-append-single-number">Example 1: Append single number</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Before APPEND: &quot;</span>; a</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">APPEND</span> a, <span class="dv">4</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;After APPEND : &quot;</span>; a</span></code></pre></div>
-<p>Instead of APPEND the <code>&lt;&lt;</code> Operator can be used.</p>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;After APPEND : &quot;</span>; a</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Output:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39; Before APPEND: [1,2,3]</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">&#39; After APPEND : [1,2,3,4]</span></span></code></pre></div>
+<h3 id="example-2-append-multiple-numbers">Example 2: Append multiple numbers</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>a = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Before &lt;&lt; operaror: &quot;</span>; a</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>a &lt;&lt; <span class="dv">4</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;After &lt;&lt; operator : &quot;</span>; a</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">APPEND</span> a, <span class="dv">4</span>, <span class="dv">5</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">print</span> a              <span class="co">&#39; Output: [1,2,3,4,5]</span></span></code></pre></div>
+<h3 id="example-3-append-an-array">Example 3: Append an array</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>a = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">APPEND</span> a, [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">print</span> a              <span class="co">&#39; Output: [1,2,3,[4,5,6]]</span></span></code></pre></div>
+<h3 id="example-4-append-a-string">Example 4: Append a string</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>a = [<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">APPEND</span> a, <span class="st">&quot;d&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">print</span> a                 <span class="co">&#39; Output: [a,b,c,d]</span></span></code></pre></div>
+<h3 id="example-5-using-operator">Example 5: Using &lt;&lt; operator</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>a = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>a &lt;&lt; <span class="dv">4</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">print</span> a                  <span class="co">&#39; Output: [1,2,3,4]</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using APPEND</div>
     <div class="linklist">
@@ -162,7 +178,7 @@ APPEND by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 1 Dec 2022 20:21:10 +0100
+      This page was last edited on Mon, 18 Sep 2023 15:24:09 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

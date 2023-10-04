@@ -73,7 +73,18 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Synonym for USING</p>
+<p>PRINT USG uses the FORMAT function to display numbers and strings.</p>
+<p>See PRINT for more information. USG and USING are equivalent.</p>
+<h3 id="example">Example</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a = <span class="dv">1000</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>b = <span class="dv">2000</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="kw">USG</span> <span class="st">&quot;#,###.##&quot;</span>; a                    </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="kw">USG</span> <span class="st">&quot;#,###.## &quot;</span>; a; b                <span class="co">&#39; &lt;- Format is applied to all variables         </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="kw">USG</span> <span class="st">&quot;a = #####.00  b = #####&quot;</span>; a; b  <span class="co">&#39; &lt;- One formated string with placeholders for two variables</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Output: 1,000.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">&#39; Output: 1,000. 2,000.             </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">&#39; Output: a =  1000.00  b =  2000   </span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using USG</div>
     <div class="linklist">
@@ -169,7 +180,7 @@ USG by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 17 Mar 2018 11:54:15 +1000
+      This page was last edited on Tue, 12 Sep 2023 17:11:46 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

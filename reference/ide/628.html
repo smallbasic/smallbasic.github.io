@@ -3,7 +3,11 @@
 <p>n = POINT (x [, y])</p>
 </blockquote>
 <p>Returns the color of the pixel at <code>x</code>,<code>y</code>.</p>
-<p>If the y-argument is not specified, <code>x</code> specifies the following info-code: - 0: returns the current graphics cursor X-position - 1: returns the current graphics cursor Y-position</p>
+<p>If the y-argument is not specified, <code>x</code> specifies the following info-code:</p>
+<ul>
+<li>0: returns the current graphics cursor X-position</li>
+<li>1: returns the current graphics cursor Y-position</li>
+</ul>
 <h3 id="example-1-get-color">Example 1: Get color</h3>
 <pre><code>print point(100,100)        &#39; Output: -2038815</code></pre>
 <h3 id="example-2-get-graphics-cursor-position">Example 2: Get graphics cursor position</h3>

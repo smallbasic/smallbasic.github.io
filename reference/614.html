@@ -73,72 +73,77 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Specifies the foreground and background colors.</p>
+<p>Specifies the foreground color <code>foreground-color</code> and the optinal background color <code>background-color</code>.</p>
 <p>See RGB and RGBF to create colors.</p>
-<p>Example 1: Assigning SmallBASIC standard colors to text</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">For </span>back = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">7</span> <span class="kw">Do</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  text = back <span class="kw">Xor</span> <span class="dv">15</span> <span class="co">&#39; count down text color (15 to 8)</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="fu">Color</span> text, back</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="kw">Print</span> Using <span class="st">&quot; text_, back COLOR ##, ## &quot;</span>; text, back;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="fu">Color</span> back, text <span class="co">&#39; reverse colors</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="kw">Print</span> Using <span class="st">&quot; text_, back COLOR ##, ## &quot;</span>; back, text</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">Next</span></span></code></pre></div>
-<p>Example 2: Assigning RGB-colors to text</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot;Try color printing with some RGB shades&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">Print</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">For </span>shade = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">10</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  text = <span class="fu">rgb</span>(shade*<span class="dv">25</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  back=<span class="fu">rgb</span>(<span class="dv">255</span>-shade*<span class="dv">25</span>,<span class="dv">255</span>-shade*<span class="dv">25</span>,<span class="dv">255</span>-shade*<span class="dv">25</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  <span class="fu">Color</span> text, back</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot;Here is black to red on white to black &quot;</span>;shade*<span class="dv">25</span>;<span class="st">&quot;,&quot;</span>;<span class="dv">255-25</span>*shade</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>  <span class="fu">Color</span> back, text <span class="co">&#39; reverse colors</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot;Here is reverse white to black  on black  to red.&quot;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>  <span class="kw">print</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">Next</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">Pause</span></span></code></pre></div>
-<p>Example 3: Using RGB and RGBF to draw a magenta filled rectangle with white boarder</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">color</span> <span class="fu">rgb</span>(<span class="dv">255</span>,<span class="dv">67</span>,<span class="dv">133</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">100</span> filled  <span class="co">&#39; filling always with foreground color</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="fu">color</span> <span class="fu">rgbf</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">100</span></span></code></pre></div>
-<p>Here is a chart of the 16 SmallBASIC standard colors and their numbers:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; Color chart of the 16 SmallBASIC standard colors</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">&#39; for 0 = black to 15 = bright white</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>dy=<span class="dt">ymax</span>/<span class="dv">16</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">for </span>i=<span class="dv">0</span> <span class="kw">to</span> <span class="dv">15</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>  <span class="fu">rect</span> <span class="dv">0</span>,i*dy,<span class="dt">xmax</span>,i*dy+dy,i filled</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  <span class="fu">at</span> <span class="dv">0</span>,i*dy:? i;</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
-<p>You may Include “color_const.bas” file in another file to make your code more clear.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">&#39; demo - add these lines to another BAS file:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">&#39; ------------------------------------------</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">&#39;  Include &quot;color_const.bas&quot; &#39; actuall filename must be lower case for Linux.</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">&#39;  Circle 200, 200, 50, 1, YELLOW FILLED</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">&#39;  Color BRIGHT_MAGENTA, BLUE: ? &quot;Bright Magenta on Blue&quot;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">&#39; ------------------------------------------</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">&#39; color_const.bas - COLOR values for characters and pixels:</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="dt">Const</span> BLACK           = <span class="dv">0</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="dt">Const</span> BLUE            = <span class="dv">1</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="dt">Const</span> GREEN           = <span class="dv">2</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="dt">Const</span> CYAN            = <span class="dv">3</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="dt">Const</span> RED             = <span class="dv">4</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="dt">Const</span> MAGENTA         = <span class="dv">5</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="dt">Const</span> BROWN           = <span class="dv">6</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="dt">Const</span> WHITE           = <span class="dv">7</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="dt">Const</span> GRAY            = <span class="dv">8</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_BLUE     = <span class="dv">9</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_GREEN    = <span class="dv">10</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_CYAN     = <span class="dv">11</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_RED      = <span class="dv">12</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_MAGENTA  = <span class="dv">13</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a><span class="dt">Const</span> YELLOW          = <span class="dv">14</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_WHITE    = <span class="dv">15</span></span></code></pre></div>
+<h3 id="example-1">Example 1</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">color</span> <span class="dv">14</span>, <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Yellow text on blue background&quot;</span></span></code></pre></div>
+<h3 id="example-2-assigning-smallbasic-standard-colors-to-text">Example 2: Assigning SmallBASIC standard colors to text</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">For </span>back = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">7</span> <span class="kw">Do</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  text = back <span class="kw">Xor</span> <span class="dv">15</span> <span class="co">&#39; count down text color (15 to 8)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="fu">Color</span> text, back</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="kw">Print</span> Using <span class="st">&quot; FG and BG COLOR: ##, ## &quot;</span>; text, back;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  <span class="fu">Color</span> back, text <span class="co">&#39; reverse colors</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="kw">Print</span> Using <span class="st">&quot; FG and BG COLOR: ##, ## &quot;</span>; back, text</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">Next</span></span></code></pre></div>
+<h3 id="example-3-assigning-rgb-colors-to-text">Example 3: Assigning RGB-colors to text</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot;Try color printing with some RGB shades&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">Print</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">For </span>shade = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">10</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  text = <span class="fu">rgb</span>(shade * <span class="dv">25</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  back = <span class="fu">rgb</span>(<span class="dv">255</span> - shade * <span class="dv">25</span>, <span class="dv">255</span> - shade * <span class="dv">25</span>, <span class="dv">255</span> - shade * <span class="dv">25</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  <span class="fu">Color</span> text, back</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot;Here is black to red on white to black &quot;</span>; shade * <span class="dv">25</span>; <span class="st">&quot;,&quot;</span>; <span class="dv">255</span> - <span class="dv">25</span> * shade</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>  </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>  <span class="fu">Color</span> back, text <span class="co">&#39; reverse colors</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>  </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot;Here is reverse white to black on black to red.&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>  <span class="kw">print</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="kw">Next</span></span></code></pre></div>
+<h3 id="example-4-using-rgb-and-rgbf-to-draw-a-magenta-filled-rectangle-with-white-boarder">Example 4: Using RGB and RGBF to draw a magenta filled rectangle with white boarder</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">color</span> <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">67</span>, <span class="dv">133</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">100</span> filled  <span class="co">&#39; filling always with foreground color</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="fu">color</span> <span class="fu">rgbf</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">100</span></span></code></pre></div>
+<h3 id="example-5-chart-of-the-16-smallbasic-standard-colors-and-their-numbers">Example 5: Chart of the 16 SmallBASIC standard colors and their numbers</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">&#39; Color chart of the 16 SmallBASIC standard colors</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">&#39; for 0 = black to 15 = bright white</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>dy = <span class="dt">ymax</span> / <span class="dv">16</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">15</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>  <span class="fu">rect</span> <span class="dv">0</span>, i * dy, <span class="dt">xmax</span>, i * dy + dy, i filled</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>  <span class="fu">at</span> <span class="dv">0</span>, i * dy : <span class="kw">print</span> i;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
+<h3 id="example-6">Example 6</h3>
+<p>You may include “color_const.bas” file in another file to make your code more clear.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">&#39; demo - add these lines to another BAS file:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">&#39; ------------------------------------------</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">&#39;  Include &quot;color_const.bas&quot; &#39; actuall filename must be lower case for Linux.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">&#39;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">&#39;  Circle 200, 200, 50, 1, YELLOW FILLED</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">&#39;  Color BRIGHT_MAGENTA, BLUE: ? &quot;Bright Magenta on Blue&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">&#39; ------------------------------------------</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">&#39; color_const.bas - COLOR values for characters and pixels:</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="dt">Const</span> BLACK           = <span class="dv">0</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="dt">Const</span> BLUE            = <span class="dv">1</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="dt">Const</span> GREEN           = <span class="dv">2</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="dt">Const</span> CYAN            = <span class="dv">3</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="dt">Const</span> RED             = <span class="dv">4</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="dt">Const</span> MAGENTA         = <span class="dv">5</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="dt">Const</span> BROWN           = <span class="dv">6</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="dt">Const</span> WHITE           = <span class="dv">7</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="dt">Const</span> GRAY            = <span class="dv">8</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_BLUE     = <span class="dv">9</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_GREEN    = <span class="dv">10</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_CYAN     = <span class="dv">11</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_RED      = <span class="dv">12</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_MAGENTA  = <span class="dv">13</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a><span class="dt">Const</span> YELLOW          = <span class="dv">14</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="dt">Const</span> BRIGHT_WHITE    = <span class="dv">15</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using COLOR</div>
     <div class="linklist">
@@ -224,7 +229,7 @@ COLOR by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 18 Dec 2022 20:03:01 +0100
+      This page was last edited on Thu, 21 Sep 2023 13:54:34 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
