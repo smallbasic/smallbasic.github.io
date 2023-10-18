@@ -244,12 +244,17 @@ Examples
 #inc:"mylib.bas"
 ...
 MyLibProc "Hi"
-*Arrays and Matrices*
-Define a 3x2 matrix
-A = [11, 12; 21, 22; 31, 32]
 ```
 
+
+### Arrays and Matrices
+
+Define a 3x2 matrix
+
+`A = [11, 12; 21, 22; 31, 32]`
+
 That creates the array
+
 
 -- --
 11 12
