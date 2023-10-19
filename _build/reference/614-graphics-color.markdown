@@ -2,7 +2,7 @@
 
 > COLOR foreground-color [, background-color]
 
-Specifies the foreground color `foreground-color` and the optinal background color `background-color`.
+Specifies the foreground color `foreground-color` and the optional background color `background-color`.
 
 See RGB and RGBF to create colors.
 
