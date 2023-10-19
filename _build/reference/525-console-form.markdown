@@ -1,6 +1,6 @@
 # FORM
 
-> FORM(formMap)
+> f = FORM(formMap)
 
 Creates a form object `f` from a MAP variable `formMap`. Form object `f` gives access to the following GUI elements:
 
@@ -22,7 +22,7 @@ In listboxes and dropdown listboxes press and hold mouse button to scroll throug
 |-------------|-------------------------------|
 | doEvents()  | Process system events for mouse and keyboard handling.
 | close()     | Closes the active FORM.
-| refresh(n)  | n = 1 Copy the UI state into the FORM input variables. n = 0 Update the UI state using the FORM input variables.
+| refresh(n)  | `n = 1` copy the UI state into the FORM input variables `f.inputs`. `n = 0` update the UI state using the FORM input variables `f.inputs`.
 
 The form object `f` may contain the following properties:
 
@@ -69,6 +69,17 @@ The type attribute can be one of the following:
 | "choice"  | Dropdown listbox.
 | "text"    | Single or multi-line text input.
 | "image"   | Image button.
+
+### Change or read the GUI elements
+
+Once the GUI elements are rendered on screen they can be changed for exapmle to respond to user input. By calling `f.refresh(1)` the current state of the GUI elements will be copied to the `f`. The content of `f` is rendered to screen, when calling `f.refresh(0)`. `f.inputs` is an array of MAP variables. The first element of that array is the first GUI element added to `formMap.inputs`. For example the color of the first element should be changed:
+
+```
+f.inputs[0].color = 12
+f.refresh(0)
+```
+
+To get a list of all available elements of the n-th GUI element, you can simply use `print f.inputs[n]`.
 
 ### Example 1: Creating a push button using callback function
 
@@ -174,6 +185,8 @@ l.y = 120
 l.height = 200
 l.width = 100
 l.value = "cats|dogs|fish|birds|insects"
+' alternative way is to pass an array:
+' l.value = ["cats", "dogs", "fish", "birds", "insects"]
 l.color = rgb(255, 255, 255)
 l.backgroundColor = rgb(100, 100, 100)
 
@@ -202,6 +215,8 @@ l.x = 120
 l.y = 120
 l.width = 100
 l.value = "cats|dogs|fish|birds|insects"
+' alternative way is to pass an array:
+' l.value = ["cats", "dogs", "fish", "birds", "insects"]
 l.color = rgb(255, 255, 255)
 l.backgroundColor = rgb(100, 100, 100)
 
