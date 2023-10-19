@@ -2,7 +2,7 @@
 
 > DEFINEKEY k, sub
 
-Binds a keystroke to a user defined function. To unbind the keystroke definition pass 0 as the `sub` argument.
+Binds a keycode `k` to a user defined sub routine `sub`. When the key is pressed, the coresponding sub routine will be called. To unbind the keycode definition pass `0` as the `sub` argument.
 
 Keycodes for PC keyboard
 
@@ -33,7 +33,7 @@ Keycodes for PC keyboard
 | Shift + A to Z   | asc("A") to asc("Z")                           |
 
 
-## Examples
+### Examples
 
 Example 1: Bind keystroke for left and right arrow key
 
@@ -57,13 +57,13 @@ wend
 ```
 
 
-Example 2: Unbind a keystroke
+### Example 2: Unbind a keystroke
 
 ```
 DEFINEKEY 0xFF04, 0
 ```
 
-Example 3: Etch-a-Sketch
+### Example 3: Etch-a-Sketch
 
 ```
 ' DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
@@ -131,7 +131,7 @@ sub quit
 end
 ```
 
-Example 4: This example is outdated and just a reference for buttons in PALM OS
+### Example 4: This example is outdated and just a reference for buttons in PALM OS
 
 ```
 ' Note:
