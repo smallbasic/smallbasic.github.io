@@ -2,7 +2,9 @@
 
 > DELAY ms
 
-Delay for a specified amount of milliseconds. Note DELAY depends on the system clock.
+Delay for a specified amount of milliseconds `ms`. Note DELAY depends on the system clock.
+
+### Example
 
 ```
 print "Wait 1000ms..."
