@@ -72,7 +72,7 @@ The type attribute can be one of the following:
 
 ### Change or read the GUI elements
 
-Once the GUI elements are rendered on screen they can be changed for exapmle to respond to user input. By calling `f.refresh(1)` the current state of the GUI elements will be copied to the `f`. The content of `f` is rendered to screen, when calling `f.refresh(0)`. `f.inputs` is an array of MAP variables. The first element of that array is the first GUI element added to `formMap.inputs`. For example the color of the first element should be changed:
+Once the GUI elements are rendered on screen they can be changed for example to respond to user input. By calling `f.refresh(1)` the current state of the GUI elements will be copied to `f`. The content of `f` is rendered to screen, when calling `f.refresh(0)`. `f.inputs` is an array of MAP variables. The first element of that array is the first GUI element added to `formMap.inputs`. For example the color of the first element can be changed:
 
 ```
 f.inputs[0].color = 12
