@@ -1,8 +1,10 @@
 # COT
 
-> COT (x)
+> f = COT (x)
 
-Cotangent.
+Cotangent of `x`.
+
+### Example
 
 ```
 a = cot(pi)
