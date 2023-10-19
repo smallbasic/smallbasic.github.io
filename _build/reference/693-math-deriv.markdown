@@ -2,15 +2,17 @@
 
 > DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
 
-Calculation of derivative. errcode = 0 for success; otherwise calculation error. 
+Calculation of derivative.
 
 
-* x: value of x
-* maxtries: maximum number of retries
-* maxerr: tolerance
-* errcode: 0 for success; otherwise calculation error
-* result: the result
-* expr: f(x)
+* `x`: value of x
+* `maxtries`: maximum number of retries
+* `maxerr`: tolerance
+* `errcode`: 0 for success; otherwise calculation error
+* `result`: the result
+* `expr`: the function f(x)
+
+### Example 1
 
 ```
 ' What is the derivative of f(x) for a given x
@@ -29,6 +31,8 @@ def d(x) = 4*x ' Exact derivative of f(x) for comparision
 print "Result of DERIV  at x = "; x; " : "; result
 print "Exact derivative at x = "; x; " : "; d(x)
 ```
+
+### Example 2
 
 ```
 ' What is the derivative of f(x) for a given x
