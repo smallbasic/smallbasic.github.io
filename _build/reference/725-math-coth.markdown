@@ -1,8 +1,10 @@
 # COTH
 
-> COTH (x)
+> f = COTH (x)
 
-Cotangent hyperbolicus.
+Cotangent hyperbolicus of `x`.
+
+### Example
 
 ```
 a = coth(pi)
