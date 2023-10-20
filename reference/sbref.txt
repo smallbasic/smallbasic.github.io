@@ -1,4 +1,4 @@
-SmallBASIC Language reference [04/10/2023]
+SmallBASIC Language reference [20/10/2023]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -109,8 +109,9 @@ Example
 
 DEFINEKEY k,sub
 
-Binds a keystroke to a user defined function. To unbind the keystroke
-definition pass 0 as the sub argument.
+Binds a keycode k to a user defined sub routine sub. When the key is
+pressed, the coresponding sub routine will be called. To unbind the
+keycode definition pass 0 as the sub argument.
 
 Keycodes for PC keyboard
 
@@ -231,8 +232,7 @@ Example 3: Etch-a-Sketch
       stop
     end
 
-Example 4: This example is outdated and just a reference for buttons in
-PALM OS
+Example 4: This example is outdated and just a reference for buttons in PALM OS
 
     ' Note:
     ' * You may Include "definekey_const.bas" file in another file to make your code more clear.
@@ -355,9 +355,9 @@ form object f:
 
   close()              Closes the active FORM.
 
-  refresh(n)           n = 1 Copy the UI state into the FORM input
-                       variables. n = 0 Update the UI state using the
-                       FORM input variables.
+  refresh(n)           n = 1 copy the UI state into the FORM input
+                       variables f.inputs. n = 0 update the UI state
+                       using the FORM input variables f.inputs.
   -----------------------------------------------------------------------
 
 The form object f may contain the following properties:
@@ -406,6 +406,22 @@ The type attribute can be one of the following:
   “choice”    Dropdown listbox.
   “text”      Single or multi-line text input.
   “image”     Image button.
+
+Change or read the GUI elements
+
+Once the GUI elements are rendered on screen they can be changed for
+example to respond to user input. By calling f.refresh(1) the current
+state of the GUI elements will be copied to f. The content of f is
+rendered to screen, when calling f.refresh(0). f.inputs is an array of
+MAP variables. The first element of that array is the first GUI element
+added to formMap.inputs. For example the color of the first element can
+be changed:
+
+    f.inputs[0].color = 12
+    f.refresh(0)
+
+To get a list of all available elements of the n-th GUI element, you can
+simply use print f.inputs[n].
 
 Example 1: Creating a push button using callback function
 
@@ -502,6 +518,8 @@ Example 5: Creating a listbox
     l.height = 200
     l.width = 100
     l.value = "cats|dogs|fish|birds|insects"
+    ' alternative way is to pass an array:
+    ' l.value = ["cats", "dogs", "fish", "birds", "insects"]
     l.color = rgb(255, 255, 255)
     l.backgroundColor = rgb(100, 100, 100)
 
@@ -528,6 +546,8 @@ Example 6: Creating a dropdown listbox
     l.y = 120
     l.width = 100
     l.value = "cats|dogs|fish|birds|insects"
+    ' alternative way is to pass an array:
+    ' l.value = ["cats", "dogs", "fish", "birds", "insects"]
     l.color = rgb(255, 255, 255)
     l.backgroundColor = rgb(100, 100, 100)
 
@@ -1623,9 +1643,9 @@ DATA commands are non executable statements that supply a stream of data
 constants for use by READ commands. All the items supplied by all the
 DATA commands in a program make up one continuous “string” of
 information that is accessed in order by your program’s READ commands.
-Use RESTORE ro specify which data block should be read next.
+Use RESTORE to specify which data block should be read next.
 
-Example 1:
+Example 1
 
     FOR I = 1 TO 3
         READ v
@@ -1669,25 +1689,21 @@ Example 3: Specify which data block should be read.
 
 DELETE a, idx [, count]
 
-Deletes ‘count’ elements at position ‘idx’ of array ‘a’.
-
--   a - An array-variable.
--   idx - Position in the array.
--   count - The number of the elements to be deleted.
+Deletes count elements at position idx of array A.
 
 Example 1: Delete element at position 2
 
-    a = [1,2,3,4,5]
-    print a
+    a = [1, 2, 3, 4, 5]
+    print a                 ' Output: [1,2,3,4,5]
     delete a, 2
-    print a
+    print a                 ' Output: [1,2,4,5]
 
 Example 2: Delete two elements starting at position 2
 
-    b = [1,2,3,4,5]
-    print b
+    b = [1, 2, 3, 4, 5]
+    print b                 ' Output: [1,2,3,4,5]
     delete b, 2, 2
-    print b
+    print b                 ' Output: [1,2,5]
 
 +========================================================================================+
 |                                      23. (Data) DIM                                    |
@@ -2400,9 +2416,11 @@ Example 3: Using option base 1
 
 DATE
 
-Returns the current date as string “DD/MM/YYYY”.
+Returns the current date as string with format “DD/MM/YYYY”.
 
-See DATEDMY for splitting a date to integers.
+See DATEDMY for splitting a date-string to integers.
+
+Example
 
     DateString = date
     datedmy DateString, d, m, y
@@ -2428,7 +2446,10 @@ See also DATE.
 
 DATEFMT (format, dmy| (d,m,y)| julian_date)
 
-Returns formatted date string.
+Returns a formatted date string. The input date can be given as a
+date-string returned by DATE, as the integers d for day, m for month and
+y for year, or as a julian date. format is a string specifying the
+format of the date:
 
   Format   Desription
   -------- --------------------------
@@ -2445,8 +2466,12 @@ Returns formatted date string.
 
 See also DATE and DATEDMY.
 
-    PRINT DATEFMT("ddd dd, mm/yy", "23/11/2001")
-    REM prints "Fri 23, 11/01"
+Example
+
+    PRINT DATEFMT("ddd dd, mm/yy", 23, 11, 2001)            ' Output: Fri 23, 11/01
+    PRINT DATEFMT("mm.dd.yy"     , "23/11/2001")            ' Output: 11.23.01
+    PRINT DATEFMT("dd.mm.yyyy"   , DATE)                    ' Output: 19.10.2023
+    PRINT DATEFMT("dddd"         , JULIAN("23/11/2001"))    ' Output: Friday
 
 +========================================================================================+
 |                                    46. (Date) JULIAN                                   |
@@ -3903,7 +3928,7 @@ Example 5: Turn off anti-aliasing
 
 COLOR foreground-color [, background-color]
 
-Specifies the foreground color foreground-color and the optinal
+Specifies the foreground color foreground-color and the optional
 background color background-color.
 
 See RGB and RGBF to create colors.
@@ -5446,7 +5471,10 @@ Example 3: Fading colors
 SHOWPAGE
 
 This command is used to display pending graphics operations allowing for
-smooth animations.
+smooth animations. If SHOWPAGE is used, the internal SmallBASIC graphics
+update mechanism is set to manual mode. To enable automatic mode again,
+call SHOWPAGE with the optional parameter n = 1. This is useful, if the
+FORM command is used to display GUI elements.
 
 Example
 
@@ -6273,20 +6301,20 @@ Forward declare SUB or FUNC. Obsolete QB compatibility
 
 DEF name[(par1[,...])] = expression
 
-Defines a single line function.
+Defines a single line function with the function name name and the
+parameters par1 to parN. expression is a valid SmallBASIC expression
+returning a value.
 
 See FUNC for multiline functions and SUB for multiline subroutines.
 
 Example 1: Function with one parameter
 
     def f(x) = 2*x+3
-
     print f(3)
 
 Example 2: Function with two parameters
 
     def f(x,y) = 2*x + 3*sin(y)
-
     print f(1,2)
 
 Example 3: Random number between low and high
@@ -6301,7 +6329,6 @@ Example 3: Random number between low and high
     print randf(0, 100)
 
 Example 4: DEF and LOCAL
-
 
     ' DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
     'can I use DEF locally in a sub without interfering with main variable or DEF names
@@ -9006,7 +9033,9 @@ Example
 
 COT (x)
 
-Cotangent.
+Cotangent of x.
+
+Example
 
     a = cot(pi)
     print a
@@ -9020,7 +9049,9 @@ Cotangent.
 
 COTH (x)
 
-Cotangent hyperbolicus.
+Cotangent hyperbolicus of x.
+
+Example
 
     a = coth(pi)
     print a
@@ -9034,7 +9065,9 @@ Cotangent hyperbolicus.
 
 CSC (x)
 
-Cosecant.
+Cosecant of x.
+
+Example
 
     a = csc(0.1)
     print a
@@ -9048,7 +9081,9 @@ Cosecant.
 
 CSCH (x)
 
-Hyperbolic cosecant.
+Hyperbolic cosecant of x.
+
+Example
 
     a = csch(0.1)
     print a
@@ -9062,7 +9097,9 @@ Hyperbolic cosecant.
 
 DEG (x)
 
-Radians to degrees.
+Converts radians x to degrees.
+
+Example
 
     a = deg(pi)
     print a
@@ -9076,15 +9113,16 @@ Radians to degrees.
 
 DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr
 
-Calculation of derivative. errcode = 0 for success; otherwise
-calculation error.
+Calculation of derivative.
 
 -   x: value of x
 -   maxtries: maximum number of retries
 -   maxerr: tolerance
 -   errcode: 0 for success; otherwise calculation error
 -   result: the result
--   expr: f(x)
+-   expr: the function f(x)
+
+Example 1
 
     ' What is the derivative of f(x) for a given x
 
@@ -9101,6 +9139,8 @@ calculation error.
 
     print "Result of DERIV  at x = "; x; " : "; result
     print "Exact derivative at x = "; x; " : "; d(x)
+
+Example 2
 
     ' What is the derivative of f(x) for a given x
 
@@ -12081,6 +12121,8 @@ CWD
 
 Gets current working directory.
 
+Example
+
     print cwd
 
 +========================================================================================+
@@ -12089,8 +12131,10 @@ Gets current working directory.
 
 DELAY ms
 
-Delay for a specified amount of milliseconds. Note DELAY depends on the
-system clock.
+Delay for a specified amount of milliseconds ms. Note DELAY depends on
+the system clock.
+
+Example
 
     print "Wait 1000ms..."
     delay(1000)

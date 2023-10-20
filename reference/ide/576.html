@@ -1,8 +1,8 @@
 <h1 id="datefmt">DATEFMT</h1>
 <blockquote>
-<p>DATEFMT (format, dmy| (d,m,y)| julian_date)</p>
+<p>s = DATEFMT (format, dmy| (d,m,y)| julian_date)</p>
 </blockquote>
-<p>Returns formatted date string.</p>
+<p>Returns a formatted date string. The input date can be given as a date-string returned by DATE, as the integers <code>d</code> for day, <code>m</code> for month and <code>y</code> for year, or as a julian date. <code>format</code> is a string specifying the format of the date:</p>
 <table>
 <thead>
 <tr class="header">
@@ -54,5 +54,8 @@
 </tbody>
 </table>
 <p>See also DATE and DATEDMY.</p>
-<pre><code>PRINT DATEFMT(&quot;ddd dd, mm/yy&quot;, &quot;23/11/2001&quot;)
-REM prints &quot;Fri 23, 11/01&quot;</code></pre>
+<h3 id="example">Example</h3>
+<pre><code>PRINT DATEFMT(&quot;ddd dd, mm/yy&quot;, 23, 11, 2001)            &#39; Output: Fri 23, 11/01
+PRINT DATEFMT(&quot;mm.dd.yy&quot;     , &quot;23/11/2001&quot;)            &#39; Output: 11.23.01
+PRINT DATEFMT(&quot;dd.mm.yyyy&quot;   , DATE)                    &#39; Output: 19.10.2023
+PRINT DATEFMT(&quot;dddd&quot;         , JULIAN(&quot;23/11/2001&quot;))    &#39; Output: Friday</code></pre>

@@ -1,8 +1,8 @@
 <h1 id="showpage">SHOWPAGE</h1>
 <blockquote>
-<p>SHOWPAGE</p>
+<p>SHOWPAGE ([n])</p>
 </blockquote>
-<p>This command is used to display pending graphics operations allowing for smooth animations.</p>
+<p>This command is used to display pending graphics operations allowing for smooth animations. If SHOWPAGE is used, the internal SmallBASIC graphics update mechanism is set to manual mode. To enable automatic mode again, call SHOWPAGE with the optional parameter <code>n = 1</code>. This is useful, if the FORM command is used to display GUI elements.</p>
 <h3 id="example">Example</h3>
 <pre><code>for x = 10 to 100
     cls

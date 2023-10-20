@@ -73,7 +73,7 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Binds a keystroke to a user defined function. To unbind the keystroke definition pass 0 as the <code>sub</code> argument.</p>
+<p>Binds a keycode <code>k</code> to a user defined sub routine <code>sub</code>. When the key is pressed, the coresponding sub routine will be called. To unbind the keycode definition pass <code>0</code> as the <code>sub</code> argument.</p>
 <p>Keycodes for PC keyboard</p>
 <table>
 <thead>
@@ -177,7 +177,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="examples">Examples</h2>
+<h3 id="examples">Examples</h3>
 <p>Example 1: Bind keystroke for left and right arrow key</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">defineKey</span> <span class="dv">0xFF04</span>, Increase      <span class="co">&#39;Left arrow</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">defineKey</span> <span class="dv">0xFF05</span>, Decrease      <span class="co">&#39;Right arrow</span></span>
@@ -195,9 +195,9 @@
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span>: <span class="kw">print</span> t + <span class="st">&quot;: &quot;</span> + x + <span class="st">&quot;    &quot;</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">50</span>)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
-<p>Example 2: Unbind a keystroke</p>
+<h3 id="example-2-unbind-a-keystroke">Example 2: Unbind a keystroke</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">DEFINEKEY</span> <span class="dv">0xFF04</span>, <span class="dv">0</span></span></code></pre></div>
-<p>Example 3: Etch-a-Sketch</p>
+<h3 id="example-3-etch-a-sketch">Example 3: Etch-a-Sketch</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39;remember Etch-A-Sketch?</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39;definekey key,sub</span></span>
@@ -261,7 +261,7 @@
 <span id="cb3-61"><a href="#cb3-61" aria-hidden="true"></a><span class="kw">sub </span>quit</span>
 <span id="cb3-62"><a href="#cb3-62" aria-hidden="true"></a>  <span class="kw">stop</span></span>
 <span id="cb3-63"><a href="#cb3-63" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
-<p>Example 4: This example is outdated and just a reference for buttons in PALM OS</p>
+<h3 id="example-4-this-example-is-outdated-and-just-a-reference-for-buttons-in-palm-os">Example 4: This example is outdated and just a reference for buttons in PALM OS</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; Note:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">&#39; * You may Include &quot;definekey_const.bas&quot; file in another file to make your code more clear.</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">&#39;</span></span>
@@ -405,7 +405,7 @@ DEFINEKEY by submitting a <a href="https://github.com/smallbasic/smallbasic.gith
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 12 Sep 2023 19:20:08 +0930
+      This page was last edited on Thu, 19 Oct 2023 15:37:25 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

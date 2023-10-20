@@ -1,18 +1,16 @@
 <h1 id="def">DEF</h1>
 <blockquote>
-<p>DEF name[(par1[,…])] = expression</p>
+<p>DEF name[(par1 [, … , parN])] = expression</p>
 </blockquote>
-<p>Defines a single line function.</p>
+<p>Defines a single line function with the function name <code>name</code> and the parameters <code>par1</code> to <code>parN</code>. <code>expression</code> is a valid SmallBASIC expression returning a value.</p>
 <p>See FUNC for multiline functions and SUB for multiline subroutines.</p>
-<p>Example 1: Function with one parameter</p>
+<h3 id="example-1-function-with-one-parameter">Example 1: Function with one parameter</h3>
 <pre><code>def f(x) = 2*x+3
-
 print f(3)</code></pre>
-<p>Example 2: Function with two parameters</p>
+<h3 id="example-2-function-with-two-parameters">Example 2: Function with two parameters</h3>
 <pre><code>def f(x,y) = 2*x + 3*sin(y)
-
 print f(1,2)</code></pre>
-<p>Example 3: Random number between low and high</p>
+<h3 id="example-3-random-number-between-low-and-high">Example 3: Random number between low and high</h3>
 <pre><code>&#39; A function for random integer numbers between low and high (inclusive)
 DEF randi(lo, hi) = (RND * (hi - lo + 1))\1 + lo
 
@@ -21,9 +19,8 @@ DEF randf(lo, hi) = (RND * (hi - lo + 1)) + lo
 
 print randi(0, 100)
 print randf(0, 100)</code></pre>
-<p>Example 4: DEF and LOCAL</p>
-<pre><code>
-&#39; DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
+<h3 id="example-4-def-and-local">Example 4: DEF and LOCAL</h3>
+<pre><code>&#39; DEF and LOCAL.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-04-06
 &#39;can I use DEF locally in a sub without interfering with main variable or DEF names
 def aboutMe() = &quot;I am texting from main code.&quot;
 ? &quot;Hi, &quot;;aboutMe
@@ -35,5 +32,4 @@ sub mySub()
   local aboutMe
   def aboutMe() = &quot;I am texting from mySub.&quot;
 ? &quot;Hi, &quot;;aboutMe
-end
-</code></pre>
+end</code></pre>

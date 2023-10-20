@@ -2,7 +2,7 @@
 <blockquote>
 <p>DEFINEKEY k, sub</p>
 </blockquote>
-<p>Binds a keystroke to a user defined function. To unbind the keystroke definition pass 0 as the <code>sub</code> argument.</p>
+<p>Binds a keycode <code>k</code> to a user defined sub routine <code>sub</code>. When the key is pressed, the coresponding sub routine will be called. To unbind the keycode definition pass <code>0</code> as the <code>sub</code> argument.</p>
 <p>Keycodes for PC keyboard</p>
 <table>
 <thead>
@@ -106,7 +106,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="examples">Examples</h2>
+<h3 id="examples">Examples</h3>
 <p>Example 1: Bind keystroke for left and right arrow key</p>
 <pre><code>defineKey 0xFF04, Increase      &#39;Left arrow
 defineKey 0xFF05, Decrease      &#39;Right arrow
@@ -124,9 +124,9 @@ while(1)
     at 0,0: print t + &quot;: &quot; + x + &quot;    &quot;
     delay(50)
 wend</code></pre>
-<p>Example 2: Unbind a keystroke</p>
+<h3 id="example-2-unbind-a-keystroke">Example 2: Unbind a keystroke</h3>
 <pre><code>DEFINEKEY 0xFF04, 0</code></pre>
-<p>Example 3: Etch-a-Sketch</p>
+<h3 id="example-3-etch-a-sketch">Example 3: Etch-a-Sketch</h3>
 <pre><code>&#39; DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30
 &#39;remember Etch-A-Sketch?
 &#39;definekey key,sub
@@ -190,7 +190,7 @@ end
 sub quit
   stop
 end</code></pre>
-<p>Example 4: This example is outdated and just a reference for buttons in PALM OS</p>
+<h3 id="example-4-this-example-is-outdated-and-just-a-reference-for-buttons-in-palm-os">Example 4: This example is outdated and just a reference for buttons in PALM OS</h3>
 <pre><code>&#39; Note:
 &#39; * You may Include &quot;definekey_const.bas&quot; file in another file to make your code more clear.
 &#39;

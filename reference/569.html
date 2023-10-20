@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>DATA</h1>
-  <blockquote>DATA constant1 [,constant2]…</blockquote>
+  <blockquote>DATA constant1 [, constant2] … [, constantN]</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -74,8 +74,8 @@
     </p>
   </div>
 <p>Stores one or more constants, of any type, for subsequent access via READ command.</p>
-<p>DATA commands are non executable statements that supply a stream of data constants for use by READ commands. All the items supplied by all the DATA commands in a program make up one continuous “string” of information that is accessed in order by your program’s READ commands. Use RESTORE ro specify which data block should be read next.</p>
-<p>Example 1:</p>
+<p>DATA commands are non executable statements that supply a stream of data constants for use by READ commands. All the items supplied by all the DATA commands in a program make up one continuous “string” of information that is accessed in order by your program’s READ commands. Use RESTORE to specify which data block should be read next.</p>
+<h3 id="example-1">Example 1</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">FOR </span>I = <span class="dv">1</span> <span class="kw">TO</span> <span class="dv">3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="fu">READ</span> v</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="kw">PRINT</span> v</span>
@@ -83,7 +83,7 @@
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">END</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="dt">DATA</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span></span></code></pre></div>
-<p>Example 2: Using several data commands.</p>
+<h3 id="example-2-using-several-data-commands.">Example 2: Using several data commands.</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">FOR </span>I = <span class="dv">1</span> <span class="kw">TO</span> <span class="dv">6</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="fu">READ</span> v</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="kw">PRINT</span> v</span>
@@ -93,7 +93,7 @@
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="dt">DATA</span> <span class="dv">1</span>,<span class="dv">2</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="dt">DATA</span> <span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="dt">DATA</span> <span class="dv">6</span></span></code></pre></div>
-<p>Example 3: Specify which data block should be read.</p>
+<h3 id="example-3-specify-which-data-block-should-be-read.">Example 3: Specify which data block should be read.</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">RESTORE</span> MyDataBlock</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">FOR </span>I = <span class="dv">1</span> <span class="kw">TO</span> <span class="dv">3</span></span>
@@ -189,7 +189,7 @@ DATA by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sat, 24 Dec 2022 15:11:22 +0100
+      This page was last edited on Thu, 19 Oct 2023 15:14:23 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

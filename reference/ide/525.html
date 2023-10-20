@@ -1,6 +1,6 @@
 <h1 id="form">FORM</h1>
 <blockquote>
-<p>FORM(formMap)</p>
+<p>f = FORM(formMap)</p>
 </blockquote>
 <p>Creates a form object <code>f</code> from a MAP variable <code>formMap</code>. Form object <code>f</code> gives access to the following GUI elements:</p>
 <ul>
@@ -37,7 +37,7 @@
 </tr>
 <tr class="odd">
 <td>refresh(n)</td>
-<td>n = 1 Copy the UI state into the FORM input variables. n = 0 Update the UI state using the FORM input variables.</td>
+<td><code>n = 1</code> copy the UI state into the FORM input variables <code>f.inputs</code>. <code>n = 0</code> update the UI state using the FORM input variables <code>f.inputs</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -191,6 +191,11 @@
 </tr>
 </tbody>
 </table>
+<h3 id="change-or-read-the-gui-elements">Change or read the GUI elements</h3>
+<p>Once the GUI elements are rendered on screen they can be changed for example to respond to user input. By calling <code>f.refresh(1)</code> the current state of the GUI elements will be copied to <code>f</code>. The content of <code>f</code> is rendered to screen, when calling <code>f.refresh(0)</code>. <code>f.inputs</code> is an array of MAP variables. The first element of that array is the first GUI element added to <code>formMap.inputs</code>. For example the color of the first element can be changed:</p>
+<pre><code>f.inputs[0].color = 12
+f.refresh(0)</code></pre>
+<p>To get a list of all available elements of the n-th GUI element, you can simply use <code>print f.inputs[n]</code>.</p>
 <h3 id="example-1-creating-a-push-button-using-callback-function">Example 1: Creating a push button using callback function</h3>
 <pre><code>button.type = &quot;button&quot;
 button.x = 120
@@ -277,6 +282,8 @@ l.y = 120
 l.height = 200
 l.width = 100
 l.value = &quot;cats|dogs|fish|birds|insects&quot;
+&#39; alternative way is to pass an array:
+&#39; l.value = [&quot;cats&quot;, &quot;dogs&quot;, &quot;fish&quot;, &quot;birds&quot;, &quot;insects&quot;]
 l.color = rgb(255, 255, 255)
 l.backgroundColor = rgb(100, 100, 100)
 
@@ -301,6 +308,8 @@ l.x = 120
 l.y = 120
 l.width = 100
 l.value = &quot;cats|dogs|fish|birds|insects&quot;
+&#39; alternative way is to pass an array:
+&#39; l.value = [&quot;cats&quot;, &quot;dogs&quot;, &quot;fish&quot;, &quot;birds&quot;, &quot;insects&quot;]
 l.color = rgb(255, 255, 255)
 l.backgroundColor = rgb(100, 100, 100)
 

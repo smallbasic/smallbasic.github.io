@@ -2,15 +2,16 @@
 <blockquote>
 <p>DERIV x, maxtries, maxerr, BYREF result, BYREF errcode USE expr</p>
 </blockquote>
-<p>Calculation of derivative. errcode = 0 for success; otherwise calculation error.</p>
+<p>Calculation of derivative.</p>
 <ul>
-<li>x: value of x</li>
-<li>maxtries: maximum number of retries</li>
-<li>maxerr: tolerance</li>
-<li>errcode: 0 for success; otherwise calculation error</li>
-<li>result: the result</li>
-<li>expr: f(x)</li>
+<li><code>x</code>: value of x</li>
+<li><code>maxtries</code>: maximum number of retries</li>
+<li><code>maxerr</code>: tolerance</li>
+<li><code>errcode</code>: 0 for success; otherwise calculation error</li>
+<li><code>result</code>: the result</li>
+<li><code>expr</code>: the function f(x)</li>
 </ul>
+<h3 id="example-1">Example 1</h3>
 <pre><code>&#39; What is the derivative of f(x) for a given x
 
 def f(x) = 2*x^2+2
@@ -26,6 +27,7 @@ def d(x) = 4*x &#39; Exact derivative of f(x) for comparision
 
 print &quot;Result of DERIV  at x = &quot;; x; &quot; : &quot;; result
 print &quot;Exact derivative at x = &quot;; x; &quot; : &quot;; d(x)</code></pre>
+<h3 id="example-2">Example 2</h3>
 <pre><code>&#39; What is the derivative of f(x) for a given x
 
 def f(x) = x^3 + 2 * exp(2*x)

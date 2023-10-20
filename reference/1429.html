@@ -65,7 +65,7 @@
     </div>
 <div class="article">
   <h1>SHOWPAGE</h1>
-  <blockquote>SHOWPAGE</blockquote>
+  <blockquote>SHOWPAGE ([n])</blockquote>
   <div class="siteSub">
     <p>
       <a href="/">Home</a> &gt;
@@ -73,7 +73,7 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>This command is used to display pending graphics operations allowing for smooth animations.</p>
+<p>This command is used to display pending graphics operations allowing for smooth animations. If SHOWPAGE is used, the internal SmallBASIC graphics update mechanism is set to manual mode. To enable automatic mode again, call SHOWPAGE with the optional parameter <code>n = 1</code>. This is useful, if the FORM command is used to display GUI elements.</p>
 <h3 id="example">Example</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">for </span>x = <span class="dv">10</span> <span class="kw">to</span> <span class="dv">100</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="fu">cls</span></span>
@@ -166,7 +166,7 @@ SHOWPAGE by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 13 Apr 2023 13:58:49 +0200
+      This page was last edited on Fri, 6 Oct 2023 19:59:03 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
