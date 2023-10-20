@@ -1,8 +1,10 @@
 # DEG
 
-> DEG (x)
+> f = DEG (x)
 
-Radians to degrees.
+Converts radians `x` to degrees.
+
+### Example
 
 ```
 a = deg(pi)

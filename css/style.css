@@ -275,13 +275,13 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 0.17em;
 }
 .article h1 {
-  font-family: 'Linux Libertine','Georgia','Times',serif;
+  font-family: sans-serif;;
   border-bottom: 1px solid #a2a9b1;
 }
 .article h2 {
   font-size: 1.6em;
   margin: 0.5em 0 0.5em 0;
-  font-family: 'Linux Libertine','Georgia','Times',serif;
+  font-family: sans-serif;;
   border-bottom: 1px solid #a2a9b1;
   line-height: 1.4em;
   padding-bottom: 0em;
@@ -331,7 +331,7 @@ a:hover {
   position: absolute;
 }
 .sidebar h3 {
-  font-size: 0.75em;
+  font-size: 1em;
   color: #4d4d4d;
   font-weight: normal;
   margin: 0.5em 0 0 0;
@@ -344,7 +344,7 @@ a:hover {
   line-height: 1.125em;
   margin: 0;
   padding: 0.25em 0;
-  font-size: 0.75em;
+  font-size: 1em;
   word-wrap: break-word;
 }
 div.articleRight {
@@ -472,7 +472,7 @@ div.articleRightInner {
   border-left: 1px solid #a7d7f9;
   background: #FFF;
   line-height: 1.6;
-  font-size: 0.875em;
+  font-size: 1em;
   border-top: 1px solid #a7d7f9;
   border-bottom: 1px solid #a7d7f9;
 }

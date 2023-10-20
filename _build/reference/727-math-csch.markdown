@@ -1,8 +1,10 @@
 # CSCH
 
-> CSCH (x)
+> f = CSCH (x)
 
-Hyperbolic cosecant.
+Hyperbolic cosecant of `x`.
+
+### Example
 
 ```
 a = csch(0.1)

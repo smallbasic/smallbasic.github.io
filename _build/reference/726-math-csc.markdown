@@ -1,8 +1,10 @@
 # CSC
 
-> CSC (x)
+> f = CSC (x)
 
-Cosecant.
+Cosecant of `x`.
+
+### Example
 
 ```
 a = csc(0.1)
