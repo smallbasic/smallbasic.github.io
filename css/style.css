@@ -608,11 +608,11 @@ span.user {
 }
 @media screen and (max-width: 550px) {
   .sidebar {
-    width: 5em;
+    width: 5.8em;
     padding: 3px 0.5em 10px 0.5em;
   }
   .mainsection {
-    margin: 0 0 0 5.2em;
+    margin: 0 0 0 6em;
   }
   .contentsPanel {
     width: auto;
@@ -622,6 +622,9 @@ span.user {
   }
   .navigation > h4 {
     font-size: .7em;
+  }
+  .navigation > ul {
+    font-size: .85em;
   }
 }
 @media screen and (max-width: 400px) {
