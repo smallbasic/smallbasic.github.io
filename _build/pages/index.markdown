@@ -15,13 +15,25 @@ func AddStrings(a, b)
 end
 ```
 
-## Multi-platform
+## Programming Made Easy for All
 
-SmallBASIC is released for Windows, Linux and Android. It can be build from source for many other POSIX compliant operating systems including Raspberry Pi OS for the Raspberry Pi. Thanks to the build in IDE programs can be written on your Android powered tablet or mobile phone and executed immediately ([Downloads](/pages/download.html)).
+SmallBASIC is available for various operating systems, including
+Windows, Linux, and Android. You can even build it from source to run
+on many other POSIX-compliant systems, such as Raspberry Pi OS for the
+Raspberry Pi. With its built-in Integrated Development Environment
+(IDE), you can write programs on your Android-powered tablet or mobile
+phone and run them instantly. If you want to get started, you can
+download SmallBASIC from our ([Downloads](/pages/download.html)) page.
 
-Your program can be bundled with all necessary libraries to create executable files for Windows (exe-files) or Linux (AppImage). For Android a signed pkg can be created and for example distributed using Google play ([Distribute your program](/pages/distributiontool.html)).
+SmallBASIC makes it easy to bundle your program with all the necessary
+libraries, creating executable files for Windows (exe-files) or Linux
+(AppImage). For Android, you can create a signed package (pkg) and
+distribute it through platforms like Google Play. Learn more about
+distributing your program on our ([Distribution](/pages/distributiontool.html)) page.
 
-Additionally you can start programming with the online version of SmallBASIC in your browser right now: [Start online](/online/sbasic.html).
+If you prefer an online experience, you can start programming with the
+web-based version of SmallBASIC in your browser right now.
+Just click on [Start online](/online/sbasic.html) to begin coding.
 
 ## Editors, IDE and SmallBASIC versions
 
@@ -61,7 +73,7 @@ const screenWidth = 800
 const screenHeight = 450
 
 rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window")
-rl.SetTargetFPS(60) 
+rl.SetTargetFPS(60)
 
 while (!rl.WindowShouldClose())
     rl.BeginDrawing()
