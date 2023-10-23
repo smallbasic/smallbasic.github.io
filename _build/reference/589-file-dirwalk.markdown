@@ -1,11 +1,10 @@
 # DIRWALK
 
-> DIRWALK directory [, wildcards] [USE ...]
+> DIRWALK dir [, wildcards] [USE f(x)]
 
-Walk through the specified directories. The user-defined function must returns zero to stop the process.
-The user defined function takes `x` as a parameter. `x` contains information about the current file.
+Walk through the specified directory `dir` and its subdirectories. The user defined function `f(x)` takes `x` as a parameter. `x` contains information about the current file. `f(x)` must return zero to stop the process. `wildcards` can be used to filter the files.
 
-## Example 1: Print all files
+### Example 1: Print all files
 
 ```
 FUNC PRNF(x)
@@ -16,7 +15,7 @@ END
 DIRWALK "." USE PRNF(x)
 ```
 
-## Example 2: Create a list of all files
+### Example 2: Create a list of all files
 
 ```
 FUNC ListFiles(x)
@@ -31,7 +30,7 @@ for n in FileList
 next
 ```
 
-## Example 3: Search for a certain file using wildcards
+### Example 3: Search for a certain file using wildcards
 
 ```
 FUNC ListFiles(x)
@@ -46,7 +45,7 @@ for n in FileList
 next
 ```
 
-## Example 4: Search a certain file using user defined function
+### Example 4: Search a certain file using user defined function
 
 ```
 func SearchFile(x)
@@ -63,7 +62,7 @@ DIRWALK "." USE SearchFile(x)
 print path
 ```
 
-## Example 5: Using wilcards
+### Example 5: Using wilcards
 
 ```
 FUNC ListFiles(x)
@@ -78,7 +77,7 @@ for n in FileList
 next
 ```
 
-## Example 6: File list utility
+### Example 6: File list utility
 
 ~~~
 
