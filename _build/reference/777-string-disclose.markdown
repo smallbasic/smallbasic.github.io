@@ -15,7 +15,7 @@ if `pairs` and  `ingnore-pairs` are not given, the following default pairs and i
 | {                               | {}    | " " ' ' |
 | <                               | <>    | " " ' ' |
 
-## Example 1: Disclose default pairs
+### Example 1: Disclose default pairs
 
 ```
 s = "(abc)"
