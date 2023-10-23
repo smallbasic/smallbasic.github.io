@@ -4,12 +4,15 @@
 
 Solving first-order differential equations using Runge-Kutta method.
 
-dy/dx = f(y,x) with start condition: y(x = x0) = y0 
+- `expr` : f(y,x) = dy/dx with start condition: y(x = x0) = y0 
+- `x0`, `y0` : initial x, y  
+- `xf` : final x
+- `yf` : result
+- `maxseq` : equivalent to precision
+- `maxerr` : maximum allowed error 
+- `errcode` : 0 for success; otherwise calculation error  
 
-x0,y0 = initial x,y  
-xf = final x  
-errcode = 0 for success; otherwise calculation error  
-yf = result
+### Example 1
 
 ```
 ' Solving dy/dx = 7*y^2 * x^3 with start condition y(2) = 3 
@@ -37,6 +40,8 @@ if(errcode != 0) then
     print "Increasing maxseg might help"
 endif
 ```
+
+### Example 2
 
 ```
 ' Defining the differential equation for a stiffness system
