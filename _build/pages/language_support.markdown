@@ -14,4 +14,6 @@ Contents
 #. [Geany](/pages/language_support_geany.html)
 #. [Sublime Text](/pages/language_support_sublimetext.html)
 #. [KDE Kate](/pages/language_support_kdekate.html)
+#. [jEdit](/pages/language_support_jedit.html)
+#. [Micro](/pages/language_support_micro.html)
 :::

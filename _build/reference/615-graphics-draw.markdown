@@ -2,10 +2,10 @@
 
 > DRAW CommandString
 
-Draw lines as specified by the given CommandString. The CommandString is created using commands from the Graphics Definition Language.
+Draw lines as specified by the given `CommandString`. The `CommandString` is created using commands from the Graphics Definition Language.
 The start point for drawing can be defined using the PSET command. COLOR can be used to change the color of the lines.
 
-## Graphics Definition Language
+### Graphics Definition Language
 
 In the movement instructions below, n specifies a distance to move in pixel.
 
@@ -24,7 +24,7 @@ In the movement instructions below, n specifies a distance to move in pixel.
 | N       | A prefix command. Next movement command moves, but returns immediately to previous point.
 
 
-## Example 1: Let's draw a house
+### Example 1: Let's draw a house
 
 ```
 COLOR 9

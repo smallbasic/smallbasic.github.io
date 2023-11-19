@@ -137,12 +137,12 @@ dim png
 i.save(png)
 ```
 
-### Clip command (console version only)
+### Clip command
 
-Reduces the size of the image.
+Clips the image. Next draw or show command will display only this part of the image. On the same image a new clip can be set.
 
 ```
-png.clip(left, top, right, bottom)
+i.clip(left, top, width, height)
 ```
 
 ### Filter command (console version only)
