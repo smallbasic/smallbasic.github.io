@@ -1,4 +1,4 @@
-SmallBASIC Language reference [20/10/2023]
+SmallBASIC Language reference [19/11/2023]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -2886,9 +2886,10 @@ Example
 
 DIRWALK directory [, wildcards] [USE ...]
 
-Walk through the specified directories. The user-defined function must
-returns zero to stop the process. The user defined function takes x as a
-parameter. x contains information about the current file.
+Walk through the specified directory dir and its subdirectories. The
+user defined function f(x) takes x as a parameter. x contains
+information about the current file. f(x) must return zero to stop the
+process. wildcards can be used to filter the files.
 
 Example 1: Print all files
 
@@ -4235,11 +4236,12 @@ name or array
     dim png
     i.save(png)
 
-Clip command (console version only)
+Clip command
 
-Reduces the size of the image.
+Clips the image. Next draw or show command will display only this part
+of the image. On the same image a new clip can be set.
 
-    png.clip(left, top, right, bottom)
+    i.clip(left, top, width, height)
 
 Filter command (console version only)
 
@@ -9164,11 +9166,13 @@ Example 2
 
 DETERM (A[, toler])
 
-Determinant of A. toler = tolerance number. the absolute value of the
-lowest acceptable number. default = 0.
+Determinant of A. toler is the tolerance number. It is equivalent to the
+absolute value of the lowest acceptable number. Default value is 0.
+
+Example
 
     A = [ 0, 1, 2; 3, 2, 1; 1, 1, 0]
-    print determ(A)
+    print determ(A)                    ' Output: 3
 
 +========================================================================================+
 |                                   201. (Math) DIFFEQN                                  |
@@ -9178,12 +9182,15 @@ DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr
 
 Solving first-order differential equations using Runge-Kutta method.
 
-dy/dx = f(y,x) with start condition: y(x = x0) = y0
+-   expr : f(y,x) = dy/dx with start condition: y(x = x0) = y0
+-   x0, y0 : initial x, y
+-   xf : final x
+-   yf : result
+-   maxseq : equivalent to precision
+-   maxerr : maximum allowed error
+-   errcode : 0 for success; otherwise calculation error
 
-x0,y0 = initial x,y
-xf = final x
-errcode = 0 for success; otherwise calculation error
-yf = result
+Example 1
 
     ' Solving dy/dx = 7*y^2 * x^3 with start condition y(2) = 3 
 
@@ -9209,6 +9216,8 @@ yf = result
         print "Error solving equation"
         print "Increasing maxseg might help"
     endif
+
+Example 2
 
     ' Defining the differential equation for a stiffness system
 

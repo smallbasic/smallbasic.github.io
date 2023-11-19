@@ -84,9 +84,9 @@ i = Image(im)</code></pre>
 <p>The save command saves the image data into the given file handle, file name or array</p>
 <pre><code>dim png
 i.save(png)</code></pre>
-<h3 id="clip-command-console-version-only">Clip command (console version only)</h3>
-<p>Reduces the size of the image.</p>
-<pre><code>png.clip(left, top, right, bottom)</code></pre>
+<h3 id="clip-command">Clip command</h3>
+<p>Clips the image. Next draw or show command will display only this part of the image. On the same image a new clip can be set.</p>
+<pre><code>i.clip(left, top, width, height)</code></pre>
 <h3 id="filter-command-console-version-only">Filter command (console version only)</h3>
 <p>Calls the supplied callback function on each pixel</p>
 <pre><code>func colorToAlpha(x)

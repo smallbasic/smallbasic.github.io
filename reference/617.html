@@ -155,9 +155,9 @@
 <p>The save command saves the image data into the given file handle, file name or array</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="dt">dim</span> png</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>i.save(png)</span></code></pre></div>
-<h3 id="clip-command-console-version-only">Clip command (console version only)</h3>
-<p>Reduces the size of the image.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>png.clip(<span class="fu">left</span>, top, <span class="fu">right</span>, bottom)</span></code></pre></div>
+<h3 id="clip-command">Clip command</h3>
+<p>Clips the image. Next draw or show command will display only this part of the image. On the same image a new clip can be set.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>i.clip(<span class="fu">left</span>, top, width, height)</span></code></pre></div>
 <h3 id="filter-command-console-version-only">Filter command (console version only)</h3>
 <p>Calls the supplied callback function on each pixel</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">func </span>colorToAlpha(x)</span>
@@ -904,7 +904,7 @@ IMAGE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Tue, 12 Sep 2023 19:20:08 +0930
+      This page was last edited on Mon, 6 Nov 2023 21:11:57 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
