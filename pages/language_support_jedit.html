@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SmallBASIC | language_support</title>
+  <title>SmallBASIC | language_support_jedit</title>
   <meta name="description" content="SmallBASIC | One more basic">
-  <link rel="canonical" href="/language_support.html">
-  <link rel="keywords" href="language_support">
+  <link rel="canonical" href="/language_support_jedit.html">
+  <link rel="keywords" href="language_support_jedit">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
   <script src="/clipboard.js"></script>
@@ -58,31 +58,35 @@
       </div>
       <div class="tabsRight">
         <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/language_support.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/language_support.markdown">View history</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/language_support_jedit.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/language_support_jedit.markdown">View history</a></li>
         </ul>
       </div>
     </div>
 <div class="article">
-<h1 id="language-support">Language Support</h1>
+<h1 id="smallbasic-in-jedit">SmallBASIC in jEdit</h1>
 <blockquote>
-<p>Using your favorite text editor</p>
+<p>Using jEdit</p>
 </blockquote>
-<p>The SDL and FLTK versions of SmallBASIC come with an integrated editor. If you are more familiar with Visual Studio Code, Atom, Sublime Text, KDE Kate or Geany, you will find on the following pages instructions on how to setup syntax highlighting, code snippets and program execution directly from these editors.</p>
-<div class="contentsPanel">
-<div class="contentsHeader">
-<p>Contents</p>
-</div>
-<ol>
-<li><a href="/pages/language_support_vscode.html">Visual Studio Code</a></li>
-<li><a href="/pages/language_support_atom.html">Atom</a></li>
-<li><a href="/pages/language_support_geany.html">Geany</a></li>
-<li><a href="/pages/language_support_sublimetext.html">Sublime Text</a></li>
-<li><a href="/pages/language_support_kdekate.html">KDE Kate</a></li>
-<li><a href="/pages/language_support_jedit.html">jEdit</a></li>
-<li><a href="/pages/language_support_micro.html">Micro</a></li>
-</ol>
-</div>
+<p><em>“jEdit is a free software text editor available under GPL-2.0-or-later. It is written in Java and runs on any operating system with Java support, including BSD, Linux, macOS and Windows.” (<a href="https://en.wikipedia.org/wiki/JEdit">wikipedia</a>)</em></p>
+<figure>
+<img src="https://github.com/Joe7M/smallbasic.jedit.syntaxcoloring/blob/main/Screenshot.png" alt="" /><figcaption>Example</figcaption>
+</figure>
+<h2 id="setup-syntax-highlighting-and-coloring">Setup Syntax Highlighting and Coloring</h2>
+<ul>
+<li>Download the file <code>smallbasic.xml</code> from <a href="https://github.com/Joe7M/smallbasic.jedit.syntaxcoloring">Github</a></li>
+<li>Start jedit</li>
+<li>Go to <code>Utilities -&gt; Global Options -&gt; Editing -&gt; Edit Modes</code></li>
+<li>In the section <code>Add Mode</code> create a new mode:
+<ul>
+<li>Mode Name: ‘smallbasic’</li>
+<li>Select Mode File: select <code>smallbasic.xml</code></li>
+<li>File Name Glob: <code>*.bas</code></li>
+<li>First Line Glob: leave empty</li>
+</ul></li>
+<li>Click button <code>Add Mode</code></li>
+</ul>
+<p>Tip: In <code>Utilities -&gt; Global Options -&gt; Editing -&gt; Edit Modes</code> you can remove <code>vbscript</code> from the section <code>Selected modes</code> to make SmallBASIC the standard syntax highlighting for bas files.</p>
 </div>
     <div class="pagefooter">
       This page was last edited on Sat, 18 Nov 2023 20:05:55 +0100
