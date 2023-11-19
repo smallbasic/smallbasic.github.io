@@ -4,7 +4,7 @@
 
 _"jEdit is a free software text editor available under GPL-2.0-or-later. It is written in Java and runs on any operating system with Java support, including BSD, Linux, macOS and Windows. " ([wikipedia](https://en.wikipedia.org/wiki/JEdit))_
 
-![Example](https://github.com/Joe7M/smallbasic.jedit.syntaxcoloring/blob/main/Screenshot.png)
+![Example](https://raw.githubusercontent.com/Joe7M/smallbasic.jedit.syntaxcoloring/main/Screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 
