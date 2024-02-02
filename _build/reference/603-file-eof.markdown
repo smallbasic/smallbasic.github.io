@@ -2,7 +2,7 @@
 
 > EOF (fileN)
 
-Returns true if the file pointer is at end of the file. For COMx and SOCL VFS returns true if the connection is broken.
+Returns true if the file pointer is at end of the file. For serial port (RS232) and TCP/IP socket connection `EOF` returns true if the connection is broken. For socket connection the return value of`EOF` will be updated every time data is recieved or send.
 
 ### Example 1: Reading data from a file
 
