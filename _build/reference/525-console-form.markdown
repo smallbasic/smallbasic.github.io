@@ -83,6 +83,8 @@ To get a list of all available elements of the n-th GUI element, you can simply 
 
 ### Example 1: Creating a push button using callback function
 
+When using buttons in combination with callback functions, the `doEvents()` function is not necessary. Without this function the execution of the program will not be blocked. In the following example a number will be incremented in a while loop and printed to the screen. When the button is pressed, the callback function is executed and will block the program until the callback function ends.
+
 ```
 button.type = "button"
 button.x = 120
@@ -96,16 +98,19 @@ formMAP.inputs << button
 f = form(formMAP)
 
 while 1
-  f.doEvents()
+  ii++
+  locate 0,0: print ii
+  delay(100)  
 wend
 
 f.close()
 
 sub ButtonClicked()
-  at 0,0
+  locate 1,0
   Clicked++
   print "Button clicked " + Clicked + " times"
 end
+
 ```
 
 ### Example 2: Creating a push button using doEvents result
