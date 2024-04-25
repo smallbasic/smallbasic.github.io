@@ -5,6 +5,18 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.27 (25 April 2024)**
+
+- Add new function android.request
+- Add new function TRANSPOSE()
+- Add experimental ioio-otg support
+- Fix download error when there are duplicate scratch.bas files
+- Fix TSAVE bug #205
+- Fix bug: LINEQN tolerance
+- Fix floating-point number round-precision bug
+- Fix redim regression
+- Fix: RTRIM changes input string
+
 **12.26 (31 March 2023)**
 
 - Fixed "0 IMP 0" returns now correct result 1 (Joe7M)

@@ -147,6 +147,37 @@
 <p>SPEAK</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>android.speak(text)</span></code></pre></div>
 <p>Performs text to speech (default is ENGLISH).</p>
+<h2 id="https-web-request">HTTPS Web request</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>android.request(url, [postData, authToken])</span></code></pre></div>
+<ul>
+<li><code>url</code>: The URL endpoint for the request.</li>
+<li><code>data</code> (optional): Data to send in the request body. If provided, the request method is <code>POST</code> with <code>Content-Type: application/json</code>. If omitted, the request method defaults to <code>GET</code>.</li>
+<li><code>token</code>: (optional): Bearer authentication token for a <code>POST</code> request.</li>
+</ul>
+<p>The <code>REQUEST</code> function enables making HTTPS requests (either <code>POST</code> or <code>GET</code> methods), supporting secure connections that are not possible with the <code>OPEN</code> command.</p>
+<p><strong>Note</strong>: For desktop versions, you can utilize the <code>RUN</code> command with <code>curl</code> for similar functionality.</p>
+<pre><code>import android
+
+const endpoint = &quot;https://llamafile/v1/chat/completions&quot;
+const apiKey = &quot;no-key&quot;
+
+func request(content)
+  local post_data
+  dim post_data.messages(0 to 1)
+  post_data.model = &quot;gpt-3.5-turbo&quot;
+  post_data.messages[0].role = &quot;system&quot;
+  post_data.messages[0].content = &quot;You are a helpful assistant&quot;
+  post_data.messages[1].role = &quot;user&quot;
+  post_data.messages[1].content = content
+  return array(android.request(endpoint, post_data, apiKey))
+end 
+
+while 1
+  input &quot;Question: &quot;, prompt
+  response = request(prompt)
+  print response.choices[0].message.content
+wend</code></pre>
+<p>The code snippet demonstrates how to use REQUEST to interact with a specified endpoint, providing necessary data and token for authentication.</p>
 <h2 id="how-to-edit-and-run-a-program">How to edit and run a program</h2>
 <h3 id="internal-editor">Internal editor:</h3>
 <ul>
