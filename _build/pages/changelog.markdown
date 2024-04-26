@@ -1,6 +1,27 @@
 Changelog
 =========
 
+**12.27 (26 April 2024) **
+
+- Add new function TRANSPOSE()
+- Allow modules to return objects with methods that take arguments
+- Fix TSAVE bug #205
+- Fix bug #149: Problem with big hex numbers in windows
+- Fix bug: LINEQN tolerance
+- Fix building on Cygwin
+- Fix floating-point number round-precision bug when converting a floating-point number to string.
+- Fix for RoundPrecisionBug
+- Fix linking issue on MSYS2
+- Fix parameter number error when calling a unit sub/func
+- Fix redim regression
+- Fix: RTRIM changes input string
+- Improvements for image.save()
+- Serial port improvements.
+- Show a runtime error if a module calls exit()
+- Bugfix for image.clip() and image.save()
+- Fix image save
+- Added mechanism for cleaning up resources when the associated map falls out of scope
+
 **12.26 (26 March 2023) **
 
 - FLTK and SDL version numbers now included in SBVER

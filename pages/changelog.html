@@ -65,11 +65,36 @@
     </div>
 <div class="article">
 <h1 id="changelog">Changelog</h1>
+<p><strong>12.27 (26 April 2024) </strong></p>
+<ul>
+<li>Add new function TRANSPOSE()</li>
+<li>Allow modules to return objects with methods that take
+arguments</li>
+<li>Fix TSAVE bug #205</li>
+<li>Fix bug #149: Problem with big hex numbers in windows</li>
+<li>Fix bug: LINEQN tolerance</li>
+<li>Fix building on Cygwin</li>
+<li>Fix floating-point number round-precision bug when converting a
+floating-point number to string.</li>
+<li>Fix for RoundPrecisionBug</li>
+<li>Fix linking issue on MSYS2</li>
+<li>Fix parameter number error when calling a unit sub/func</li>
+<li>Fix redim regression</li>
+<li>Fix: RTRIM changes input string</li>
+<li>Improvements for image.save()</li>
+<li>Serial port improvements.</li>
+<li>Show a runtime error if a module calls exit()</li>
+<li>Bugfix for image.clip() and image.save()</li>
+<li>Fix image save</li>
+<li>Added mechanism for cleaning up resources when the associated map
+falls out of scope</li>
+</ul>
 <p><strong>12.26 (26 March 2023) </strong></p>
 <ul>
 <li>FLTK and SDL version numbers now included in SBVER</li>
 <li>Fixed “0 IMP 0” returns now correct result 1 (Joe7M)</li>
-<li>Fixed BIN and changes to return values of POLYCENT and POLYAREA (Joe7M)</li>
+<li>Fixed BIN and changes to return values of POLYCENT and POLYAREA
+(Joe7M)</li>
 <li>Fixed DIM lower bound (Joe7M)</li>
 <li>Fixed EQV bug. “0 EQV 0” will return correct result “1” (Joe7M)</li>
 <li>Fixed RECT FILLED when the coordinates are inverted</li>
@@ -79,12 +104,14 @@
 <li>Fixed bug in BGETC when using sockets (Joe7M)</li>
 <li>Fixed display of floating point numbers with high precision</li>
 <li>Fixed editor display issues with DOS line-endings</li>
-<li>Fixed for BIN and changes to return values of POLYCENT and POLYAREA (Joe7M)</li>
+<li>Fixed for BIN and changes to return values of POLYCENT and POLYAREA
+(Joe7M)</li>
 <li>Fixed functions Polyarea, Polycent (Joe7M)</li>
 <li>Fixed line-chart line drawing to use current foreground color</li>
 <li>Fixed printing chr(0) into a file or network interface</li>
 <li>INPUT #F; now supports up to 64 parameters</li>
-<li>Implemented STATMEDIAN() to calculate the median of a data sample in statistics (Joe7M)</li>
+<li>Implemented STATMEDIAN() to calculate the median of a data sample in
+statistics (Joe7M)</li>
 <li>Implemented STATSTD() to calculate standard deviation (Joe7M)</li>
 <li>RGB and RGBF now clamp parameters (Joe7M)</li>
 <li>Updated CHART line drawing to use current foreground color</li>
@@ -99,13 +126,17 @@
 <li>Fixed hashmap access issue</li>
 <li>Fixed http_read to handle large HTTP headers</li>
 <li>Implemented window.setLocation(x,y) #102</li>
-<li>Removed ‘Meaningless’ CDBL, CINT, CREAL. These can be poly-filled with ‘DEF’ if required.</li>
-<li>Update plugin system to allow loading to be driven by the IMPORT statement</li>
-<li>m3Apply no longer crashes if the second argument is not an array</li>
+<li>Removed ‘Meaningless’ CDBL, CINT, CREAL. These can be poly-filled
+with ‘DEF’ if required.</li>
+<li>Update plugin system to allow loading to be driven by the IMPORT
+statement</li>
+<li>m3Apply no longer crashes if the second argument is not an
+array</li>
 <li>parse JSON with SB “;” dimension syntax</li>
 <li>Added -i command switch for live mode</li>
 </ul>
-<p>This will run the BASIC program in a loop. It can be used with the debug module to rerun whenever the source code changes:</p>
+<p>This will run the BASIC program in a loop. It can be used with the
+debug module to rerun whenever the source code changes:</p>
 <pre><code>import debug
 run(&quot;xdotool windowactivate `xdotool search --onlyvisible --name \&quot;Emacs\&quot;`&quot;)
 while (!debug.IsSourceModified())
@@ -114,7 +145,8 @@ wend</code></pre>
 <p><strong>12.23 (30 August 2021) </strong></p>
 <ul>
 <li>Allow RGB to be used with image array passed to IMAGE</li>
-<li>Fix CIRCLE command to ensure radius uses the WINDOW coordinate system</li>
+<li>Fix CIRCLE command to ensure radius uses the WINDOW coordinate
+system</li>
 <li>Fix PSET display of extra pixel</li>
 <li>Fix RGB handling with IMAGE</li>
 <li>Fix array append regression #122</li>
@@ -183,7 +215,8 @@ wend</code></pre>
 </ul>
 <p><strong>0.12.15 / 0.12.16 (only released for Android) </strong></p>
 <ul>
-<li>SDL: added -n command line option to run then not pause for back key</li>
+<li>SDL: added -n command line option to run then not pause for back
+key</li>
 <li>SDL: update editor find and replace</li>
 <li>COMMON: Implemented - FOR character IN string</li>
 <li>UI: ALT+F4 from edit/run now returns to edit</li>
@@ -197,11 +230,15 @@ wend</code></pre>
 </ul>
 <p><strong>0.12.14 (18 October 2018)</strong></p>
 <ul>
-<li>Changed UI display from black to be a slightly lighter onyx color.</li>
-<li>Implemented embedding octal codes to allow: print “\033[1mBold\033[0m”</li>
+<li>Changed UI display from black to be a slightly lighter onyx
+color.</li>
+<li>Implemented embedding octal codes to allow: print
+“\033[1mBold\033[0m”</li>
 <li>Fix crash when passing zero as format argument to DATEFMT</li>
-<li>Fix crash when attempting to load an image from a failed network connection</li>
-<li>Fix error message when command “LINE INPUT” attempts to read a non open file</li>
+<li>Fix crash when attempting to load an image from a failed network
+connection</li>
+<li>Fix error message when command “LINE INPUT” attempts to read a non
+open file</li>
 <li>Fix navigation when network access down then available</li>
 <li>Minor runtime optimization</li>
 </ul>
@@ -211,12 +248,14 @@ wend</code></pre>
 <li>Added solarized color schemes</li>
 <li>Added window.setSize function</li>
 <li>Add limited support embedded octal values in strings</li>
-<li>F2 key in editor now launched keyword help into updated web site</li>
+<li>F2 key in editor now launched keyword help into updated web
+site</li>
 <li>F11 key in editor now toggles fullscreen</li>
 <li>Fix TLOAD input error handling</li>
 <li>Fix incorrect file loading with ALT+1-9 command</li>
 <li>Fix problem with SEQ command</li>
-<li>Fix trailing spaces with LOCAL command when terminated with comma</li>
+<li>Fix trailing spaces with LOCAL command when terminated with
+comma</li>
 <li>UNITPATH replaced with SBASICPATH which also works for modules</li>
 </ul>
 <p><strong>0.12.12 (4 Feb 2018)</strong></p>
@@ -226,20 +265,25 @@ wend</code></pre>
 </ul>
 <p><strong>0.12.11 (30 Dec 2017)</strong></p>
 <ul>
-<li>Fix issue with image save() command to ensure resulting array has correct dimensions</li>
-<li>Fix issue with display driver escape ESCm (reset scroll position)</li>
-<li>Build with SDL2-2.0.5 to avoid issues with audio using SDL2-2.0.7</li>
+<li>Fix issue with image save() command to ensure resulting array has
+correct dimensions</li>
+<li>Fix issue with display driver escape ESCm (reset scroll
+position)</li>
+<li>Build with SDL2-2.0.5 to avoid issues with audio using
+SDL2-2.0.7</li>
 </ul>
 <p><strong>0.12.10 (25 Dec 2017)</strong></p>
 <ul>
 <li>COMMON: Add support code arrays declared over multiple lines</li>
 <li>COMMON: Assign multiple variables from an ARRAY (1)</li>
 <li>COMMON: Can now declare an empty array with: a=[]</li>
-<li>COMMON: FUNC can now use RETURN statement as synonym for FUNCNAME=result (1)</li>
+<li>COMMON: FUNC can now use RETURN statement as synonym for
+FUNCNAME=result (1)</li>
 <li>COMMON: Fix FUNC call as pseudo class method (1)</li>
 <li>COMMON: Fix PROGLINE when using multi-line strings</li>
 <li>COMMON: Fix handling for code array passed as function argument</li>
-<li>COMMON: Fix inline local variable declaration for complex assignments</li>
+<li>COMMON: Fix inline local variable declaration for complex
+assignments</li>
 <li>COMMON: Fix issue when LOCAL used inside while loop</li>
 <li>COMMON: Fix issue with INPUT command</li>
 <li>COMMON: Fix line number count when using multi-line strings</li>
@@ -250,14 +294,18 @@ wend</code></pre>
 <li>COMMON: Implemented Maxint system constant (1)</li>
 <li>COMMON: Implemented Nil system constant (1)</li>
 <li>COMMON: Implemented OPTION AUTOLOCAL runtime option (2)</li>
-<li>COMMON: LEFT, RIGHT, REPLACE, INSTR, RINSTR no longer error on invalid pos input</li>
+<li>COMMON: LEFT, RIGHT, REPLACE, INSTR, RINSTR no longer error on
+invalid pos input</li>
 <li>COMMON: MID command now returns blank for invalid index input</li>
-<li>COMMON: Now errors when using a keyword as part of a MAP variable</li>
+<li>COMMON: Now errors when using a keyword as part of a MAP
+variable</li>
 <li>COMMON: Performance optimisations</li>
 <li>COMMON: REPLACE str argument can now be a number type</li>
 <li>COMMON: SUB can now use RETURN statement</li>
-<li>COMMON: VAL command now ignored any input trailing non digit chars</li>
-<li>COMMON: dirwalk callback now provides properties path,name,depth,mtime,size,dir</li>
+<li>COMMON: VAL command now ignored any input trailing non digit
+chars</li>
+<li>COMMON: dirwalk callback now provides properties
+path,name,depth,mtime,size,dir</li>
 <li>COMMON: raise error when FUNC return value not assigned</li>
 <li>COMMON: removed experimental reference variable concept</li>
 <li>COMMON: update png and editor libs</li>
@@ -269,10 +317,12 @@ wend</code></pre>
 <li>SDL: PEN OFF command now hides the cursor</li>
 <li>SDL: Added ALT+= command</li>
 <li>SDL: Update ALT+. to work with error handling</li>
-<li>UI: The FORM command now reports an error when IMAGE input fails to load</li>
+<li>UI: The FORM command now reports an error when IMAGE input fails to
+load</li>
 <li>UI: add missing ‘Select All’ menu option</li>
 <li>UI: shell now displays size and date columns</li>
-<li>ANDROID: Fix crash when displaying an alert with extended ascii chars</li>
+<li>ANDROID: Fix crash when displaying an alert with extended ascii
+chars</li>
 <li>ANDROID: Fix crash when exporting from IDE</li>
 <li>ANDROID: Fix exit when navigating to non-permitted path</li>
 <li>ANDROID: add missing key mappings for DEL,ESC,HOME,BRK,FN(1-12)</li>
@@ -281,7 +331,8 @@ wend</code></pre>
 <ol type="1">
 <li>See 2048.bas for examples<br />
 </li>
-<li>OPTION AUTOLOCAL causes all variables used only inside a SUB or FUNC to have local scope.<br />
+<li>OPTION AUTOLOCAL causes all variables used only inside a SUB or FUNC
+to have local scope.<br />
 </li>
 </ol>
 <p><strong>0.12.9 (April 15 2017)</strong></p>
@@ -317,7 +368,8 @@ wend</code></pre>
 <li>Added sound. Play .WAV files using PLAY(“file://” + path).</li>
 <li>Fixed web server file handling in windows version.</li>
 <li>Fixed regression with array parsing.</li>
-<li>Updated error message when calling built-in FUNC without assigning the result.</li>
+<li>Updated error message when calling built-in FUNC without assigning
+the result.</li>
 <li>Fixed TAB to use character positions not pixels.</li>
 <li>Fixed issue with nested try/catch.</li>
 <li>Fixed NOSOUND.</li>
@@ -326,7 +378,8 @@ wend</code></pre>
 <li>Fixed Clear keyboard buffer before pause.</li>
 <li>Fixed cursor display with INPUT command.</li>
 <li>Fixed error handling when passing arg to built-in no-arg FUNCS.</li>
-<li>Fixed an issue with screenshots on windows caused by path handling.</li>
+<li>Fixed an issue with screenshots on windows caused by path
+handling.</li>
 </ul>
 <p><strong>0.12.7 (September 17 2016)</strong></p>
 <ul>
@@ -342,11 +395,13 @@ wend</code></pre>
 <li>Fixed memory access issue with SPRINT (node/1594)</li>
 <li>Fixed memory issue with REPLACE</li>
 <li>Fixed memory leak with LINPUT command</li>
-<li>Fixed screen switching when program screen has different font size</li>
+<li>Fixed screen switching when program screen has different font
+size</li>
 <li>Fixed memory access issues uncovered with new test all.bas</li>
 <li>Fixed value of i when FOR loop body not executed (node/1611)</li>
 <li>Implemented editor now allows run by selection</li>
-<li>Implemented editor widget now remembers the undo buffer between program runs</li>
+<li>Implemented editor widget now remembers the undo buffer between
+program runs</li>
 <li>Implemented editor F10 option to set the command$ variable</li>
 <li>Implemented editor double click to select word</li>
 <li>Implemented var pooling</li>
@@ -360,15 +415,18 @@ wend</code></pre>
 <li>Fix to prevent const overwriting another const</li>
 <li>Updated MID and REPLACE for performance</li>
 <li>POINT(0) and POINT(1) values now reset with each program run</li>
-<li>POINT(-x, -y) now provides access to the base screen image. For better</li>
+<li>POINT(-x, -y) now provides access to the base screen image. For
+better</li>
 <li>performance use the IMAGE.SAVE sub command</li>
 <li>Fixes for unit case sensitivity</li>
 <li>Fixes for RUN/EXEC</li>
 <li>Fixed memory handling issues with UNITs</li>
 <li>Fixed memory issue related to SUB/FUNC pointers</li>
 <li>Removed TICKSPERSEC</li>
-<li>Removed BALLOC, MALLOC and VADR keywords. Removed duplicate ENVIRON</li>
-<li>Removed system constants BPP and VIDADR, OSNAME, LINECHART, BARCHART</li>
+<li>Removed BALLOC, MALLOC and VADR keywords. Removed duplicate
+ENVIRON</li>
+<li>Removed system constants BPP and VIDADR, OSNAME, LINECHART,
+BARCHART</li>
 <li>Added TIMESTAMP to return the modified-datetime of a file</li>
 <li>Added LSHIFT and RSHIFT bit shift operators</li>
 <li>SBVER now includes build information</li>
@@ -379,27 +437,32 @@ wend</code></pre>
 <li>Editor now displays the correct filename in the title bar</li>
 <li>Added “industrial” editor theme from Shian (slot 2)</li>
 <li>Fixed editor highlighting</li>
-<li>Runtime errors now show source screen with red error highlighter</li>
-<li>Form refresh command now takes an boolean arg, true=push ui state to vars</li>
+<li>Runtime errors now show source screen with red error
+highlighter</li>
+<li>Form refresh command now takes an boolean arg, true=push ui state to
+vars</li>
 <li>The IMAGE argument can now be PNG data stored in an INT array</li>
 <li>The IMAGE argument can now be x,y,w,h screen corordinates</li>
 <li>The IMAGE argument can now be a 2-D array of POINTS</li>
 <li>Updated IMAGE sub-command to save 2-D array of POINT</li>
-<li>Added window.setFont command to set font size, bold and italic. example:</li>
+<li>Added window.setFont command to set font size, bold and italic.
+example:</li>
 <li>w = window():w.setFont(10, “pt”, false, true)</li>
 <li>TRUE is now always returned as 1</li>
 <li>Added file manager to main shell program</li>
 <li>Fixed problem with escaped chars using FORMAT</li>
 <li>Fixed problem with XNOR command result</li>
 <li>Fixed problem with IMP and EQV command result</li>
-<li>Fixed issues with INKEY command to allow ALT/SHIFT/CTRL states to be returned</li>
+<li>Fixed issues with INKEY command to allow ALT/SHIFT/CTRL states to be
+returned</li>
 <li>Fixed capslock handling</li>
 <li>Fixed issues with TRY/CATCH</li>
 <li>Fixed using POINT to retrieve IMAGE data</li>
 <li>Fixed issues with CHAIN</li>
 <li>Fixed TLOAD to work correctly with TRY/CATCH</li>
 <li>Fixed XPOS and YPOS to return 0 based values</li>
-<li>Fixed compiler checking for redundant symbols, for example: let a = 1 2 3</li>
+<li>Fixed compiler checking for redundant symbols, for example: let a =
+1 2 3</li>
 <li>Added editor command F3+F4 - export to mobile SmallBASIC</li>
 <li>Added editor command ALT+. to change cursor positioning.</li>
 </ul>
@@ -409,10 +472,12 @@ wend</code></pre>
 <p>See android release notes page</p>
 <p><strong>0.12.2 (December 10 2015)</strong></p>
 <ul>
-<li>Implemented loading recent files via ALT+1 .. ALT+9, Display list ALT+0</li>
+<li>Implemented loading recent files via ALT+1 .. ALT+9, Display list
+ALT+0</li>
 <li>Fix potential editor crash with empty support widget</li>
 <li>Fix potential crash with debug target</li>
-<li>Fix restore path to only function when no other arguments supplied</li>
+<li>Fix restore path to only function when no other arguments
+supplied</li>
 </ul>
 <p><strong>0.12.1 (November 29 2015)</strong></p>
 <ul>
@@ -427,7 +492,8 @@ wend</code></pre>
 <li>Fix screen dump invalid file name for online files</li>
 <li>Fix file manager .bas file case sensitivity</li>
 <li>Fix editor markup on map fields that look like keywords</li>
-<li>Fix scanner inserting line-no bytecode for empty or comment lines</li>
+<li>Fix scanner inserting line-no bytecode for empty or comment
+lines</li>
 <li>Implemented editor F2 command to display online help</li>
 <li>Implemented calling IMAGE with another image variable</li>
 <li>Implemented restoring the last folder when re-launching</li>
@@ -445,19 +511,38 @@ wend</code></pre>
 </ul>
 <p><strong>0.11.20 (September 09 2015)</strong></p>
 <p>Editor fixes:<br />
-- Now displays an i-beam/edit cursor - Fixed highlighting for numbers and keywords - Pressing F1 key for keywords surrounded by punctuation now works correctly - Fixed page scrolling with up/down arrow keys - Pressing tab at the bottom no longer jumps to the top - The editor context menu now includes additional items - Added editor bookmark/breakpoint handling</p>
+- Now displays an i-beam/edit cursor - Fixed highlighting for numbers
+and keywords - Pressing F1 key for keywords surrounded by punctuation
+now works correctly - Fixed page scrolling with up/down arrow keys -
+Pressing tab at the bottom no longer jumps to the top - The editor
+context menu now includes additional items - Added editor
+bookmark/breakpoint handling</p>
 <p>Added a basic debugger:<br />
-- Debugging relies on a network socket for communication between the two processes. - You may need to accept a firewall warning to allow this communication. - The default listening port number is 4000. This can be changed with a startup option, for example: sbasic -p 4001<br />
+- Debugging relies on a network socket for communication between the two
+processes. - You may need to accept a firewall warning to allow this
+communication. - The default listening port number is 4000. This can be
+changed with a startup option, for example: sbasic -p 4001<br />
 </p>
 <p>To debug a program:<br />
-- Turn on editing. Display the context menu (right mouse click), then click the “Editor” option. It should it show “Editor [ON]” when you next re-display the context menu. - Navigate to a .BAS file, then click the file name. This should display the program in the editor. - Press F5. A new window should appear. - Press F6 to step thru each program line, or press F7 to continue - Press ESC to end the debugging session. - To set a breakpoint, press Ctrl+T (C-t) on the desired program line. - The breakpoint doubles as a bookmark. Press (C-g) to goto the next bookmark/breakpoint line. - Now when you press F7 in a debug session, the program will pause at the breakpoint line.</p>
+- Turn on editing. Display the context menu (right mouse click), then
+click the “Editor” option. It should it show “Editor [ON]” when you next
+re-display the context menu. - Navigate to a .BAS file, then click the
+file name. This should display the program in the editor. - Press F5. A
+new window should appear. - Press F6 to step thru each program line, or
+press F7 to continue - Press ESC to end the debugging session. - To set
+a breakpoint, press Ctrl+T (C-t) on the desired program line. - The
+breakpoint doubles as a bookmark. Press (C-g) to goto the next
+bookmark/breakpoint line. - Now when you press F7 in a debug session,
+the program will pause at the breakpoint line.</p>
 <p>Debugger limitations:<br />
-- The variables/stack data is currently unnamed. - The bytecode includes redundant line information for full comment lines</p>
+- The variables/stack data is currently unnamed. - The bytecode includes
+redundant line information for full comment lines</p>
 <p><strong>0.11.19 (August 19 2015)</strong></p>
 <ul>
 <li>Fix display output before DELAY</li>
 <li>Fix LET command problem found in 32bit linux</li>
-<li>Removed obsolete/unimplemented keywords WSPLIT, PLOT2, UNLOADLIB</li>
+<li>Removed obsolete/unimplemented keywords WSPLIT, PLOT2,
+UNLOADLIB</li>
 <li>Made a few minor performance improvements</li>
 <li>Fixed PRINT 1/1000 and other floating point rounding issues</li>
 <li>Fixed problem with 59 char INPUT prompt</li>
@@ -478,11 +563,17 @@ end select</code></pre>
 <p><strong>0.11.18</strong></p>
 <p>Windows:</p>
 <ul>
-<li>Pressing the [Backspace] key will now re-display the launcher when a program has completed.</li>
-<li>The startup font size is now based on logical point size of 11 points. You may need to change your Zoom setting to account for this change.</li>
-<li>The window title now correctly displays the BASIC program file name.</li>
-<li>Fixed a regression with returning system memory information (Command FRE)</li>
-<li>Workaround for incorrect mouse cursor displayed at startup when double clicking in explorer to start.</li>
+<li>Pressing the [Backspace] key will now re-display the launcher when a
+program has completed.</li>
+<li>The startup font size is now based on logical point size of 11
+points. You may need to change your Zoom setting to account for this
+change.</li>
+<li>The window title now correctly displays the BASIC program file
+name.</li>
+<li>Fixed a regression with returning system memory information (Command
+FRE)</li>
+<li>Workaround for incorrect mouse cursor displayed at startup when
+double clicking in explorer to start.</li>
 </ul>
 <p><strong>0.11.17</strong></p>
 <p>Android:</p>
@@ -497,15 +588,23 @@ end select</code></pre>
 <ul>
 <li>Improved graphics and runtime performance.</li>
 <li>Source code view displays line numbers</li>
-<li>Line drawing now uses antialiasing to produce smoother looking lines. You can turn this feature off by placing the following statement at the start of your program:</li>
+<li>Line drawing now uses antialiasing to produce smoother looking
+lines. You can turn this feature off by placing the following statement
+at the start of your program:</li>
 </ul>
 <pre><code>Option Predef Antialias OFF</code></pre>
 <ul>
 <li>Improved syntax error messages</li>
-<li>Updated the PAUSE statement to allow waiting until a system event has occurred. This allows you to pause execution until there is a touch or mouse event, without any CPU usage overhead. To use this feature, pass TRUE as the PAUSE argument, i.e. PAUSE TRUE.</li>
+<li>Updated the PAUSE statement to allow waiting until a system event
+has occurred. This allows you to pause execution until there is a touch
+or mouse event, without any CPU usage overhead. To use this feature,
+pass TRUE as the PAUSE argument, i.e. PAUSE TRUE.</li>
 <li>Improved INPUT widget including clipboard handling.</li>
 <li>Update INKEY to return ALT, CTRL, ALT+CTRL key information</li>
-<li>Added timer func support. When called as a function, the TIMER keyword accepts two arguments: a timeout value (in milliseconds) and the name of a call back FUNC. Note the timeout value only provides approximate millisecond precision.</li>
+<li>Added timer func support. When called as a function, the TIMER
+keyword accepts two arguments: a timeout value (in milliseconds) and the
+name of a call back FUNC. Note the timeout value only provides
+approximate millisecond precision.</li>
 </ul>
 <pre><code>Sub timer_func
     print &quot;Timer called: &quot;, Timer
@@ -556,7 +655,11 @@ f.close()</code></pre>
 <ul>
 <li>Update IMAGE handling.</li>
 </ul>
-<p>There are two supported image formats PNG and XPM. PNG images can to be loaded using the OPEN command, or by passing the filename string as an argument to the Image creator function. XPM images can also optionally be passed as a string argument to the Image creator function.</p>
+<p>There are two supported image formats PNG and XPM. PNG images can to
+be loaded using the OPEN command, or by passing the filename string as
+an argument to the Image creator function. XPM images can also
+optionally be passed as a string argument to the Image creator
+function.</p>
 <pre><code>REM Use the OPEN statement to open the image file
 Open &quot;1234.png&quot; as #1
 
@@ -643,92 +746,202 @@ w.showKeypad()</code></pre>
 <p><strong>0.11.16</strong></p>
 <p>This release includes language and performance improvements.</p>
 <p>Variables:</p>
-<p>The MAP variable type combines the features of previously separate “User Defined Structures” and “Associated Array” variables. The MAP provides value-key pair access along with array or dotted notation. The MAP can be initialized from a String variable using the ARRAY command. The ARRAY command supports JSON (Javascript object notation) syntax.</p>
-<p>The MAP can be converted back into a JSON string using the STR command. You can test whether a variable is a MAP using the ISMAP command.</p>
-<p>The ARRAY command can be used to process web services results. For example: https://raw.githubusercontent.com/smallbasic/SmallBASIC/master/samples/distro-examples/devio/google.bas</p>
-<p>The REF variable type is a “reference” to another variable (like a pointer in c). You create a reference by assigning a variable with the BYREF keyword (or @ symbol). For example LET c = @ b. You can test whether a variable is a reference using the ISREF command.</p>
+<p>The MAP variable type combines the features of previously separate
+“User Defined Structures” and “Associated Array” variables. The MAP
+provides value-key pair access along with array or dotted notation. The
+MAP can be initialized from a String variable using the ARRAY command.
+The ARRAY command supports JSON (Javascript object notation) syntax.</p>
+<p>The MAP can be converted back into a JSON string using the STR
+command. You can test whether a variable is a MAP using the ISMAP
+command.</p>
+<p>The ARRAY command can be used to process web services results. For
+example:
+https://raw.githubusercontent.com/smallbasic/SmallBASIC/master/samples/distro-examples/devio/google.bas</p>
+<p>The REF variable type is a “reference” to another variable (like a
+pointer in c). You create a reference by assigning a variable with the
+BYREF keyword (or @ symbol). For example LET c = @ b. You can test
+whether a variable is a reference using the ISREF command.</p>
 <p>Commands:</p>
-<p>The IMGW and IMGH commands have been replaced with the single IMAGE command. IMAGE takes a file pointer and returns a system object allowing full control of the image placement. Note: In this release only the language aspect has been implemented. This feature will be completed in the next build.</p>
-<p>Added the SHOWPAGE command. This command is used to display pending graphics operations allowing for smooth animations.</p>
-<p>Added TRY/CATCH support - see http://smallbasic.sourceforge.net/?q=node/1229</p>
+<p>The IMGW and IMGH commands have been replaced with the single IMAGE
+command. IMAGE takes a file pointer and returns a system object allowing
+full control of the image placement. Note: In this release only the
+language aspect has been implemented. This feature will be completed in
+the next build.</p>
+<p>Added the SHOWPAGE command. This command is used to display pending
+graphics operations allowing for smooth animations.</p>
+<p>Added TRY/CATCH support - see
+http://smallbasic.sourceforge.net/?q=node/1229</p>
 <p>Compiler:</p>
 <ul>
-<li>It is now possible to use unary-operators on array elements, for example a(0)++.</li>
+<li>It is now possible to use unary-operators on array elements, for
+example a(0)++.</li>
 <li>Handling of round brackets with FUNC calls has been fixed.</li>
 <li>Renamed command “#UNIT-PATH:” to “UNITPATH”</li>
 <li>Renamed command “#INC:” to “INCLUDE”</li>
 <li>Fixed/implemented INCLUDE command.</li>
 </ul>
 <p>2014-07-07 Update SDL to use SDL2 and common widget</p>
-<p>2014-06-14 Fix crash evaluating “a \ b” Fix INPUT command in FLTK for scrolled display</p>
-<p>2014-06-11 Android changes: - Run by URL/QrCode. - Implemented BEEP/SOUND - Screen layout adjusts when virtual keypad displayed</p>
+<p>2014-06-14 Fix crash evaluating “a \ b” Fix INPUT command in FLTK for
+scrolled display</p>
+<p>2014-06-11 Android changes: - Run by URL/QrCode. - Implemented
+BEEP/SOUND - Screen layout adjusts when virtual keypad displayed</p>
 <p>2014-04-20 Released Windows version 0.11.5</p>
-<p>2013-12-30 Fix android display clip handling Fix android import from IDE Console is now a graphics screen Replace battery drain error with console warning</p>
-<p>2013-12-18 Android version 0.11.4 Built with android NDK for huge performance increase Web service for remote file edit/run Can now launch .bas files from Android file browser Added program restart command</p>
+<p>2013-12-30 Fix android display clip handling Fix android import from
+IDE Console is now a graphics screen Replace battery drain error with
+console warning</p>
+<p>2013-12-18 Android version 0.11.4 Built with android NDK for huge
+performance increase Web service for remote file edit/run Can now launch
+.bas files from Android file browser Added program restart command</p>
 <p>2013-02-09 Added support for empty parentheses in sub/func calls</p>
-<p>2012-12-18 AT and PEN now work with WINDOW based coordinates. This will allow programs written for PalmOS to appear correctly on modern mobile screen resolutions.</p>
-<p>2012-12-09 Released 0.11.2 android version to google play Added the ability to change the font size</p>
+<p>2012-12-18 AT and PEN now work with WINDOW based coordinates. This
+will allow programs written for PalmOS to appear correctly on modern
+mobile screen resolutions.</p>
+<p>2012-12-09 Released 0.11.2 android version to google play Added the
+ability to change the font size</p>
 <p>2012-12-01 Released 0.11.1 android version to google play</p>
 <p>2012-09-25 MoSync port nearing completion</p>
 <p>2012-07-29 Fixed a bug with nested case statements</p>
-<p>2011-04-14 Removed POKE and BCOPY. These never really worked correcly and would be fairly insecure in the web model if they did.</p>
+<p>2011-04-14 Removed POKE and BCOPY. These never really worked correcly
+and would be fairly insecure in the web model if they did.</p>
 <p>2011-03-19 QT port started</p>
 <p>2011-01-22 Fix compilation errors (fltk build) for 64bit ubuntu</p>
-<p>2010-12-15 Fix for floating point display (tracker 3136093) issue found with printing 1/1000</p>
-<p>2010-07-31 Fix for PAUSE cmd (tracker 1651503) to pause correct length of time - Case was mostly already fixed in 0.10.7.</p>
-<p>2010-06-19 Fix form TEXT command to use correct integer datatype Fix misc issues with const char* uncovered with new gcc Fix duplicate prompt whe INPUT command used in text mode</p>
+<p>2010-12-15 Fix for floating point display (tracker 3136093) issue
+found with printing 1/1000</p>
+<p>2010-07-31 Fix for PAUSE cmd (tracker 1651503) to pause correct
+length of time - Case was mostly already fixed in 0.10.7.</p>
+<p>2010-06-19 Fix form TEXT command to use correct integer datatype Fix
+misc issues with const char* uncovered with new gcc Fix duplicate prompt
+whe INPUT command used in text mode</p>
 <p>2010-05-15 Version 0.10.7 was released</p>
 <p>2010-05-07 updated window title display</p>
-<p>2010-05-01 inkey now returns shifted keys added DOFORM option return on a key event updated calc to use the keyboard</p>
-<p>2010-04-28 fix for windows socket handling cleanup code for display of break message</p>
-<p>2010-04-19 Added new sample programs, tetris and sokoban Fix to make plugins work with files containing dos file line endings Added select-all command. Run-selection now works with logprint mode. Fixed run startup mode on linux Added ctrl+f1 help mode Fix for executor cleanup crash when breaking from invalid call to sub Included missing tdestroy function for MingW build (fix for memory leak under windows) Programs now run with cwd set to the .bas filename Updated help for doform and button commands Fix for display of list and label form button types after their variable contents have changed Fixed a problem with SELECT/CASE with complex program usage (tracker id 1683450) Fix for -v command line arg when passed w/out another arg Fix for PolyLine crash when invalid args passed Pass focus to MainWindow when closing the form to ensure inkey gets updated Prevent default window key processing when keys passed into basic program Esc key returns focus to editor when command or browser widget has focus Added simple stack trace as part of runtime error message New hot-key - ctrl+e to focus the editor New editor keystrokes - ctrl+b toggle break-to-line, ctrl+t toggle log-print, ctrl+w toggle hide-ide Cls command does nothing in non-interactive mode Fix for regression with returning and passing UDS values DIRWALK now just logs an error (instead of terminating the program) when it encounters a folder that it cannot open Added search examples option for keyword help Fix for find and goto commands to work with readonly files Show font selection menu using the target font. Fix to allow help page link to a system file Can now pass a url to the html command which opens in a real browser Imlemented new code publish tool Editor plugins now invoked in non-interactive mode INPUT command now issues a prompt dialog when in non-interactive mode Restore main window focus after closing color selection window Updated getHomeDir() to use APPDATA env-var for windows BAS_HOME var no longer contains trailing slash-char.</p>
-<p>2010-03-08 UDS and HASH types now work with FOR-IN and also return sensible values when used with the LEN command. Fixed crash when converting between UDS and HASH types.</p>
-<p>2010-03-07 Fixed a bug where hitting break from inside a SUB that had the result being assigned to another variable would cause a crash</p>
-<p>2010-02-18 Updated saving and restoring many properties from config.txt File open uses current buffer file path Creates backup files Fixed minor display issues with the File Open Widget</p>
+<p>2010-05-01 inkey now returns shifted keys added DOFORM option return
+on a key event updated calc to use the keyboard</p>
+<p>2010-04-28 fix for windows socket handling cleanup code for display
+of break message</p>
+<p>2010-04-19 Added new sample programs, tetris and sokoban Fix to make
+plugins work with files containing dos file line endings Added
+select-all command. Run-selection now works with logprint mode. Fixed
+run startup mode on linux Added ctrl+f1 help mode Fix for executor
+cleanup crash when breaking from invalid call to sub Included missing
+tdestroy function for MingW build (fix for memory leak under windows)
+Programs now run with cwd set to the .bas filename Updated help for
+doform and button commands Fix for display of list and label form button
+types after their variable contents have changed Fixed a problem with
+SELECT/CASE with complex program usage (tracker id 1683450) Fix for -v
+command line arg when passed w/out another arg Fix for PolyLine crash
+when invalid args passed Pass focus to MainWindow when closing the form
+to ensure inkey gets updated Prevent default window key processing when
+keys passed into basic program Esc key returns focus to editor when
+command or browser widget has focus Added simple stack trace as part of
+runtime error message New hot-key - ctrl+e to focus the editor New
+editor keystrokes - ctrl+b toggle break-to-line, ctrl+t toggle
+log-print, ctrl+w toggle hide-ide Cls command does nothing in
+non-interactive mode Fix for regression with returning and passing UDS
+values DIRWALK now just logs an error (instead of terminating the
+program) when it encounters a folder that it cannot open Added search
+examples option for keyword help Fix for find and goto commands to work
+with readonly files Show font selection menu using the target font. Fix
+to allow help page link to a system file Can now pass a url to the html
+command which opens in a real browser Imlemented new code publish tool
+Editor plugins now invoked in non-interactive mode INPUT command now
+issues a prompt dialog when in non-interactive mode Restore main window
+focus after closing color selection window Updated getHomeDir() to use
+APPDATA env-var for windows BAS_HOME var no longer contains trailing
+slash-char.</p>
+<p>2010-03-08 UDS and HASH types now work with FOR-IN and also return
+sensible values when used with the LEN command. Fixed crash when
+converting between UDS and HASH types.</p>
+<p>2010-03-07 Fixed a bug where hitting break from inside a SUB that had
+the result being assigned to another variable would cause a crash</p>
+<p>2010-02-18 Updated saving and restoring many properties from
+config.txt File open uses current buffer file path Creates backup files
+Fixed minor display issues with the File Open Widget</p>
 <p>2010-02-05 Updated the editor code browser</p>
-<p>2010-01-29 Added the DEFINEKEY command Updated internal event handling to allow INKEY to function correctly without excessive CPU usage</p>
+<p>2010-01-29 Added the DEFINEKEY command Updated internal event
+handling to allow INKEY to function correctly without excessive CPU
+usage</p>
 <p>2009-12-14 Version 0.10.6 released</p>
 <p>2009-11-27 Implemented TTY widget</p>
 <p>2009-11-06 final fix for matrix inverse bug</p>
 <p>2009-09-04 0.10.5 for windows released</p>
-<p>2009-08-23 Fix for desktop icon display (ALT+Tab) under X11 (ubuntu)</p>
-<p>2009-08-14 Fix for sub/func navigation tool to internally use line numbers in lieu of label searching.</p>
-<p>2009-08-08 Reworked editor toobar so there is now a command selection and only one text input field.</p>
-<p>2009-08-02 Updated calc.bas to work with the new DOFORM api Fixes for the FLTK DOFORM API to allow the updated calc.bas to work reliably</p>
+<p>2009-08-23 Fix for desktop icon display (ALT+Tab) under X11
+(ubuntu)</p>
+<p>2009-08-14 Fix for sub/func navigation tool to internally use line
+numbers in lieu of label searching.</p>
+<p>2009-08-08 Reworked editor toobar so there is now a command selection
+and only one text input field.</p>
+<p>2009-08-02 Updated calc.bas to work with the new DOFORM api Fixes for
+the FLTK DOFORM API to allow the updated calc.bas to work reliably</p>
 <p>2009-07-28 Implemented editor colour selection in FLTK build.</p>
-<p>2009-07-26 Implemented editor font selection in FLTK build. Fixed memoryTest.bas sample</p>
+<p>2009-07-26 Implemented editor font selection in FLTK build. Fixed
+memoryTest.bas sample</p>
 <p>2009-07-22 Implemented “ELSE IF” syntax</p>
 <p>2009-07-11 fltk - file widget displays sorted items</p>
-<p>2009-06-29 update variables to use 64 bits fix for matrix inverse bug</p>
+<p>2009-06-29 update variables to use 64 bits fix for matrix inverse
+bug</p>
 <p>2009-06-13 updated form API in fltk version</p>
 <p>2009-04-13 incorporate agg into fltk version (reverted for now)</p>
-<p>2009-01-14 in osd_getpixel() for X11, offset x/y as getPixel is relative to the outer window FileWidget allow input of a custom path</p>
-<p>2009-01-07 Updated FileWidget to allow relative paths for saveas. Updated to handle readonly edit buffers. Fixed a few compiler warnings</p>
+<p>2009-01-14 in osd_getpixel() for X11, offset x/y as getPixel is
+relative to the outer window FileWidget allow input of a custom path</p>
+<p>2009-01-07 Updated FileWidget to allow relative paths for saveas.
+Updated to handle readonly edit buffers. Fixed a few compiler
+warnings</p>
 <p>2008-11-26 FLTK 0.10.2 was released</p>
-<p>2008-11-23 FLTK: Fix for possible crash with html command used in plain window mode. Fix for file widget for directory names with space characters.</p>
+<p>2008-11-23 FLTK: Fix for possible crash with html command used in
+plain window mode. Fix for file widget for directory names with space
+characters.</p>
 <p>2008-11-16 FLTK: Fix for invalid values returned by PEN command.</p>
-<p>2008-10-26 FLTK: Fixed a few problems with find and replace. Implemented Rename Word command.</p>
+<p>2008-10-26 FLTK: Fixed a few problems with find and replace.
+Implemented Rename Word command.</p>
 <p>2008-08-16 * released windows version 0.10.1</p>
-<p>2008-08-01 * passing length &lt; 0 to MID no longer causes stackdump</p>
+<p>2008-08-01 * passing length &lt; 0 to MID no longer causes
+stackdump</p>
 <p>2008-07-17 * refactor FLTK to allow opening of multiple editors</p>
-<p>2008-07-05 * cleanup ansi codes from output in dev_null driver. fixed logprint command * fixed “open for append” * added FLTK -n non-interactive flag (prevents the gui from being displayed)</p>
+<p>2008-07-05 * cleanup ansi codes from output in dev_null driver. fixed
+logprint command * fixed “open for append” * added FLTK -n
+non-interactive flag (prevents the gui from being displayed)</p>
 <p>2008-07-01 * Implemented program restart option in FLTK</p>
-<p>2008-06-28 * Updated to build FLTK version using MingW under Cygwin (see below).</p>
-<p>2008-06-26 * Added build support for MingW under Cygwin. This is simpler than installing Msys, simply install MingW to say c:, then change your .bash_profile with: export PATH=/c/MinGW/bin:$PATH Then re-run configure (under cygwin bash) and a non-cygwin console version will be produced which can run under cmd.exe, explorer.exe etc.</p>
-<p>2008-06-20 * Can now supply program arguments on FLTK version command line: sbasici -r t5.bas foo -or- sbasici t5.bas foo -or- ls | sbasic t5.bas – also: echo foo | sbasic foo.bas –</p>
-<p>2008-06-06 * Implemented the ability to declare a local variable and assign a value to it on the same line, eg local foo = “foo”</p>
+<p>2008-06-28 * Updated to build FLTK version using MingW under Cygwin
+(see below).</p>
+<p>2008-06-26 * Added build support for MingW under Cygwin. This is
+simpler than installing Msys, simply install MingW to say c:, then
+change your .bash_profile with: export PATH=/c/MinGW/bin:$PATH Then
+re-run configure (under cygwin bash) and a non-cygwin console version
+will be produced which can run under cmd.exe, explorer.exe etc.</p>
+<p>2008-06-20 * Can now supply program arguments on FLTK version command
+line: sbasici -r t5.bas foo -or- sbasici t5.bas foo -or- ls | sbasic
+t5.bas – also: echo foo | sbasic foo.bas –</p>
+<p>2008-06-06 * Implemented the ability to declare a local variable and
+assign a value to it on the same line, eg local foo = “foo”</p>
 <p>2008-06-04 * Fixed problem with trailing backslash in strings</p>
 <p>2008-06-01 * Add support for hash arrays (rainy day)</p>
-<p>2008-05-26 * Updated module building to use autotools * Fix regression with console build * Fix for expression if (foo.x) * UDS copy operations now always as by reference * Can now refer to UDS field within parenthesis * Updated FLTK online help * Fix support for composite expressions such as “ar.ch(0).foo”</p>
-<p>2008-05-24 * Updated SDL forms to work with guichan 0.8.1 * Fixed problem with FLTK HelpWidget displaying large pages</p>
-<p>2008-05-15 * Update FLTK forms implementation to be like the SDL implementation * FLTK now correctly implements DELAY * Updated help.bas help plugin to include an index</p>
-<p>2008-05-07 * FLTK: allow applications to set the window geometry using: option predef grmode WxH</p>
+<p>2008-05-26 * Updated module building to use autotools * Fix
+regression with console build * Fix for expression if (foo.x) * UDS copy
+operations now always as by reference * Can now refer to UDS field
+within parenthesis * Updated FLTK online help * Fix support for
+composite expressions such as “ar.ch(0).foo”</p>
+<p>2008-05-24 * Updated SDL forms to work with guichan 0.8.1 * Fixed
+problem with FLTK HelpWidget displaying large pages</p>
+<p>2008-05-15 * Update FLTK forms implementation to be like the SDL
+implementation * FLTK now correctly implements DELAY * Updated help.bas
+help plugin to include an index</p>
+<p>2008-05-07 * FLTK: allow applications to set the window geometry
+using: option predef grmode WxH</p>
 <p>2008-04-26 * Source code release for version 0.10.0</p>
-<p>2008-03-31 * Various fixes for FLTK build * Implemented outside file change check in FLTK build * Implemented file drop support in FLTK build * Not being able to save an sbx file is no longer a fatal error * runtime .bas files can now be read-only files. * break command updates global last error string</p>
-<p>2008-03-15 * re-migrated code from cvs - this time with full history</p>
-<p>2007-12-31 * Fixed a problem in the SDL version with pressing ctrl+c while the “press any key to close” message was being displayed</p>
-<p>2007-12-02 version 0.9.9.0 * moved code to subversion * see src/fltk/README.TXT for updated project indent settings</p>
-<p>2007-11-03 version 0.9.8.3 * refactored console_main * added the ability to include a path component in a unit name, eg: import other.something.foo ? foo.my_var</p>
+<p>2008-03-31 * Various fixes for FLTK build * Implemented outside file
+change check in FLTK build * Implemented file drop support in FLTK build
+* Not being able to save an sbx file is no longer a fatal error *
+runtime .bas files can now be read-only files. * break command updates
+global last error string</p>
+<p>2008-03-15 * re-migrated code from cvs - this time with full
+history</p>
+<p>2007-12-31 * Fixed a problem in the SDL version with pressing ctrl+c
+while the “press any key to close” message was being displayed</p>
+<p>2007-12-02 version 0.9.9.0 * moved code to subversion * see
+src/fltk/README.TXT for updated project indent settings</p>
+<p>2007-11-03 version 0.9.8.3 * refactored console_main * added the
+ability to include a path component in a unit name, eg: import
+other.something.foo ? foo.my_var</p>
 <pre><code>  Then in the foo.bas file:
 
   Unit other.something.Foo
@@ -737,20 +950,39 @@ w.showKeypad()</code></pre>
   The unit file should be saved in $UNITPATH/other/something.
   If not defined, $UNITPATH is inferred as the host program
   file directory.</code></pre>
-<p>2007-10-10 * A runtime error is now created in lieu of crashing when you pass a value less than 0 to the LEFT and RIGHT string commands. * The runtime error for LEFT,RIGHT,REPLACE,MID,INSTR,RINSTR now includes the invalid index in the message</p>
-<p>2007-08-31 * Fixed a problem referring to UDS fields from an array eg x = foo(0).x</p>
-<p>2007-08-18 * Fixed a problem with the short-circuit eval code causing incorrect true/false return IP’s being calculated</p>
-<p>2007-08-02 * The IN operator when applied to arrays now returns the 1 based index position, eg: a &lt;&lt; “cat” a &lt;&lt; “dog” ? “dog” in a ’prints 2</p>
-<p>2007-07-21 * Implemented experimental logical expression short-circuit evaluation</p>
-<p>2007-07-12 * (re) Implemented user defined structures * AnsiWidget added to FLTK core package</p>
+<p>2007-10-10 * A runtime error is now created in lieu of crashing when
+you pass a value less than 0 to the LEFT and RIGHT string commands. *
+The runtime error for LEFT,RIGHT,REPLACE,MID,INSTR,RINSTR now includes
+the invalid index in the message</p>
+<p>2007-08-31 * Fixed a problem referring to UDS fields from an array eg
+x = foo(0).x</p>
+<p>2007-08-18 * Fixed a problem with the short-circuit eval code causing
+incorrect true/false return IP’s being calculated</p>
+<p>2007-08-02 * The IN operator when applied to arrays now returns the 1
+based index position, eg: a &lt;&lt; “cat” a &lt;&lt; “dog” ? “dog” in a
+’prints 2</p>
+<p>2007-07-21 * Implemented experimental logical expression
+short-circuit evaluation</p>
+<p>2007-07-12 * (re) Implemented user defined structures * AnsiWidget
+added to FLTK core package</p>
 <p>2007-06-23 * TSAVE now correctly closes the opened file</p>
 <p>2007-04-27 * Added GUI support to SDL version using guichan</p>
-<p>2007-04-19 * Implemented user defined structures * Commited Attila Haraszti’s SDL code and changes for configure.in * Added syntax support for ‘==’</p>
-<p>2006-11-14 * Updated DATE and TIME error messages to provide extra information</p>
-<p>2006-10-23 * Added more info the index out of range runtime error message * Fixed configure.in for cygwin build</p>
-<p>2006-08-19 * added “multiline” option to the TEXT command to support the multiline edit control (GTK) * fixed RINSTR command to work as advertised. * TSAVE can now take a file number arg like TLOAD</p>
-<p>2006-08-16 * Fixed error message with unterminated strings in a sub or func. complained about missing END instead of the missing " char * Quoted strings no longer required the end quote char. A new line is taken as the end of string.</p>
-<p>2006-08-12 * added support for func/sub pointer variables used with the call statement:</p>
+<p>2007-04-19 * Implemented user defined structures * Commited Attila
+Haraszti’s SDL code and changes for configure.in * Added syntax support
+for ‘==’</p>
+<p>2006-11-14 * Updated DATE and TIME error messages to provide extra
+information</p>
+<p>2006-10-23 * Added more info the index out of range runtime error
+message * Fixed configure.in for cygwin build</p>
+<p>2006-08-19 * added “multiline” option to the TEXT command to support
+the multiline edit control (GTK) * fixed RINSTR command to work as
+advertised. * TSAVE can now take a file number arg like TLOAD</p>
+<p>2006-08-16 * Fixed error message with unterminated strings in a sub
+or func. complained about missing END instead of the missing ” char *
+Quoted strings no longer required the end quote char. A new line is
+taken as the end of string.</p>
+<p>2006-08-12 * added support for func/sub pointer variables used with
+the call statement:</p>
 <pre><code>      func foo(s)
        foo=&quot;foo!&quot;+s
       end
@@ -766,10 +998,15 @@ w.showKeypad()</code></pre>
 
 * USRCALL has been removed since it never worked and the above
       is a better replacement (IMHO)</code></pre>
-<p>2006-07-28 * updated chain command to take string or array of string arguments in lieu of a file name. After calling this command, the calling program now successfully resumes. * added HAVE_C_MALLOC to replace complicated memory routines with simple malloc/free calls * added GRID+TAB button support to GTK build</p>
+<p>2006-07-28 * updated chain command to take string or array of string
+arguments in lieu of a file name. After calling this command, the
+calling program now successfully resumes. * added HAVE_C_MALLOC to
+replace complicated memory routines with simple malloc/free calls *
+added GRID+TAB button support to GTK build</p>
 <p>2006-05-27 * added form support to GTK build</p>
 <p>2006-05-27 * bc_store_string() now handles escaped double quotes</p>
-<p>2006-04-12 * updated sockcl_open() to handle server listen sockets</p>
+<p>2006-04-12 * updated sockcl_open() to handle server listen
+sockets</p>
 <p><strong>VERSION 0.9.0</strong></p>
 <pre><code>2004-05-01: ndc
     Human language depented files for messages and keywords.
@@ -1460,7 +1697,7 @@ ex:
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>
