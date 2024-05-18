@@ -169,6 +169,47 @@ android.speak(text)
 
 Performs text to speech (default is ENGLISH).
 
+## HTTPS Web request
+
+```smallbasic
+android.request(url, [postData, authToken])
+```
+
+- `url`: The URL endpoint for the request.
+- `data` (optional): Data to send in the request body. If provided, the request method is `POST` with `Content-Type: application/json`. If omitted, the request method defaults to `GET`.
+- `token`: (optional): Bearer authentication token for a `POST` request.
+
+The `REQUEST` function enables making HTTPS requests (either `POST` or `GET` methods), supporting secure connections that are not possible with the `OPEN` command.
+
+**Note**: For desktop versions, you can utilize the `RUN` command with `curl` for similar functionality.
+
+```
+import android
+
+const endpoint = "https://llamafile/v1/chat/completions"
+const apiKey = "no-key"
+
+func request(content)
+  local post_data
+  dim post_data.messages(0 to 1)
+  post_data.model = "gpt-3.5-turbo"
+  post_data.messages[0].role = "system"
+  post_data.messages[0].content = "You are a helpful assistant"
+  post_data.messages[1].role = "user"
+  post_data.messages[1].content = content
+  return array(android.request(endpoint, post_data, apiKey))
+end 
+
+while 1
+  input "Question: ", prompt
+  response = request(prompt)
+  print response.choices[0].message.content
+wend
+```
+
+The code snippet demonstrates how to use REQUEST to interact with a specified endpoint, providing necessary data and token for authentication.
+
+
 ## How to edit and run a program
 
 ### Internal editor:

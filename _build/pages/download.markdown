@@ -11,13 +11,13 @@
 
 ## Windows
 
-[12.26](https://github.com/smallbasic/SmallBASIC/releases/download/12_26/smallbasic_12.26.zip){target="_blank"}
+[12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/smallbasic_12.27.zip){target="_blank"}
 
 ## Linux
 
-- [SDL 64 bit AppImage - 12.26](https://github.com/smallbasic/SmallBASIC/releases/download/12_26/SmallBASIC-SDL_12.26-x86_64.AppImage){target="_blank"}
-- [FLTK 64 bit AppImage - 12.26](https://github.com/smallbasic/SmallBASIC/releases/download/12_26/SmallBASIC-FLTK_12.26-x86_64.AppImage){target="_blank"}
-- [Console 64 bit AppImage - 12.26](https://github.com/smallbasic/SmallBASIC/releases/download/12_26/SmallBASIC-Console_12.26-x86_64.AppImage){target="_blank"}
+- [SDL 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-SDL_12.27-x86_64.AppImage){target="_blank"}
+- [FLTK 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-FLTK_12.27-x86_64.AppImage){target="_blank"}
+- [Console 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-Console_12.27-x86_64.AppImage){target="_blank"}
 - [Ubuntu 32 bit - 0.12.9](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.9/smallbasic_0.12.9_i386.deb){target="_blank"}
 - [Raspberry PI - 0.12.6](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.6/smallbasic_0.12.6_armhf.deb){target="_blank"}
 
@@ -35,7 +35,7 @@
 
 ## Source code
 
-[12.26](https://github.com/smallbasic/SmallBASIC/releases/download/12_26/smallbasic-12.26.tar.gz){target="_blank"}
+[12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/smallbasic-12.27.tar.gz){target="_blank"}
 
 ## Other releases
 
