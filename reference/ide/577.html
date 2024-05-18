@@ -2,12 +2,17 @@
 <blockquote>
 <p>j = JULIAN (dmy | (d,m,y))</p>
 </blockquote>
-<p>Returns the Julian date. Dates must be greater than 1/1/100 AD. The date can be passed as the string <code>dmy</code> with the format <code>DD/MM/YYYY</code>. Alternatively the date can be given by specificing the parameters <code>d</code> for days, <code>m</code> for months and <code>y</code> for years.</p>
+<p>Returns the Julian date. Dates must be greater than 1/1/100 AD. The
+date can be passed as the string <code>dmy</code> with the format
+<code>DD/MM/YYYY</code>. Alternatively the date can be given by
+specificing the parameters <code>d</code> for days, <code>m</code> for
+months and <code>y</code> for years.</p>
 <h3 id="example-1-basic-usage">Example 1: Basic usage</h3>
 <pre><code>PRINT Julian(&quot;31/12/2001&quot;)
 PRINT Julian(31, 12, 2001)
 PRINT Julian(DATE)</code></pre>
-<h3 id="example-2-difference-in-days-between-two-dates">Example 2: Difference in days between two dates</h3>
+<h3 id="example-2-difference-in-days-between-two-dates">Example 2:
+Difference in days between two dates</h3>
 <pre><code>today = Julian(Date())
 past = Julian(31, 12, 2001)
 print today - past; &quot; days past since 31/12/2001&quot;</code></pre>

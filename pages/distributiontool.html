@@ -64,8 +64,13 @@
       </div>
     </div>
 <div class="article">
-<h1 id="distribution-tool-for-smallbasic">Distribution Tool for SmallBASIC</h1>
-<p>Package your SmallBASIC program with all the files needed and share the package with your friends. The packages for Windows contain an exe-file for starting your program. The Linux AppImage can be directly executed. Android apk can be uploaded to the Google play store or transfered via USB to an android device.</p>
+<h1 id="distribution-tool-for-smallbasic">Distribution Tool for
+SmallBASIC</h1>
+<p>Package your SmallBASIC program with all the files needed and share
+the package with your friends. The packages for Windows contain an
+exe-file for starting your program. The Linux AppImage can be directly
+executed. Android apk can be uploaded to the Google play store or
+transfered via USB to an android device.</p>
 <p>The following packages can be created:</p>
 <ul>
 <li>Distribution Tool for Windows:
@@ -85,87 +90,164 @@
 </ul></li>
 </ul>
 <h2 id="how-to-use">How to use</h2>
-<h3 id="distribution-tool-for-windows">Distribution Tool for Windows</h3>
+<h3 id="distribution-tool-for-windows">Distribution Tool for
+Windows</h3>
 <figure>
-<img src="https://github.com/Joe7M/smallbasic.DistributionTool/raw/main/screenshot/screenshot.png" alt="" /><figcaption>Screenshot of Distribution Tool</figcaption>
+<img
+src="https://github.com/Joe7M/smallbasic.DistributionTool/raw/main/screenshot/screenshot.png"
+alt="Screenshot of Distribution Tool" />
+<figcaption aria-hidden="true">Screenshot of Distribution
+Tool</figcaption>
 </figure>
 <ul>
-<li>Download the newest release of the <a href="https://github.com/Joe7M/smallbasic.DistributionTool/releases">Distribution Tool for Windows (zip file)</a></li>
+<li>Download the newest release of the <a
+href="https://github.com/Joe7M/smallbasic.DistributionTool/releases">Distribution
+Tool for Windows (zip file)</a></li>
 <li>Extract the zip file and start <em>DistributionTool.exe</em></li>
-<li><em>Source Directory</em>: Directory where your SmallBASIC program and all the assets are located</li>
-<li><em>Destination Directory</em>: Directory where the final packaged program should be saved.</li>
-<li><em>Name of Basic File</em>: The name of your basic file. If you have several basic files, then give the one which should be started.</li>
-<li><em>Name of Program (without .exe)</em>: The name of the final executable file. Please don’t add .exe. This will be done automaticlly.</li>
+<li><em>Source Directory</em>: Directory where your SmallBASIC program
+and all the assets are located</li>
+<li><em>Destination Directory</em>: Directory where the final packaged
+program should be saved.</li>
+<li><em>Name of Basic File</em>: The name of your basic file. If you
+have several basic files, then give the one which should be
+started.</li>
+<li><em>Name of Program (without .exe)</em>: The name of the final
+executable file. Please don’t add .exe. This will be done
+automaticlly.</li>
 <li>Package Version:
 <ul>
-<li><em>Windows - Package Directory</em>: All files are copied to a directory. You will find a .exe file for executing your program and a DATA folder with all necessary files. Please don’t rename or delete the DATA folder.</li>
-<li><em>Windows - Self Extracting Archive</em>: A self extracting archive (using 7z) will be created. After running the archive exe a folder similar to Windows - Package Directory will be created.</li>
+<li><em>Windows - Package Directory</em>: All files are copied to a
+directory. You will find a .exe file for executing your program and a
+DATA folder with all necessary files. Please don’t rename or delete the
+DATA folder.</li>
+<li><em>Windows - Self Extracting Archive</em>: A self extracting
+archive (using 7z) will be created. After running the archive exe a
+folder similar to Windows - Package Directory will be created.</li>
 </ul></li>
 <li>SmallBASIC Version:
 <ul>
-<li><em>SDL2 (sbasicg)</em>: choose if your program is written for the SDL version of SmallBASIC</li>
-<li><em>Console (sbasic)</em>: choose if your program is written for the console version (i.e. when using plugins like raylib or nuklear)</li>
+<li><em>SDL2 (sbasicg)</em>: choose if your program is written for the
+SDL version of SmallBASIC</li>
+<li><em>Console (sbasic)</em>: choose if your program is written for the
+console version (i.e. when using plugins like raylib or nuklear)</li>
 </ul></li>
 <li>Click the button <em>Package my Program</em></li>
 </ul>
 <h3 id="distribution-tool-for-linux">Distribution Tool for Linux</h3>
 <ul>
-<li>Download the newest release of the <a href="https://github.com/Joe7M/smallbasic.DistributionTool/releases">Distribution Tool for Linux (AppImage file)</a></li>
-<li>Start the AppImage file (it might be necessary to make it executable: _chmod a+x DistributionTool*.AppImage_ )</li>
-<li><em>Source Directory</em>: Directory where your SmallBASIC program and all the assets are located</li>
-<li><em>Destination Directory</em>: Directory where the final packaged program should be saved</li>
-<li><em>Name of Basic File</em>: The name of your basic file. If you have several basic files, then give the one which should be started.</li>
-<li><em>Name of Program (without .exe)</em>: The name of the final executable file. Please don’t add .exe. This will be done automaticlly.</li>
-<li><em>Category (for Linux)</em>: Choose a category for your program. When creating an AppImage the category will be used.</li>
+<li>Download the newest release of the <a
+href="https://github.com/Joe7M/smallbasic.DistributionTool/releases">Distribution
+Tool for Linux (AppImage file)</a></li>
+<li>Start the AppImage file (it might be necessary to make it
+executable: _chmod a+x DistributionTool*.AppImage_ )</li>
+<li><em>Source Directory</em>: Directory where your SmallBASIC program
+and all the assets are located</li>
+<li><em>Destination Directory</em>: Directory where the final packaged
+program should be saved</li>
+<li><em>Name of Basic File</em>: The name of your basic file. If you
+have several basic files, then give the one which should be
+started.</li>
+<li><em>Name of Program (without .exe)</em>: The name of the final
+executable file. Please don’t add .exe. This will be done
+automaticlly.</li>
+<li><em>Category (for Linux)</em>: Choose a category for your program.
+When creating an AppImage the category will be used.</li>
 <li>Package Version:
 <ul>
-<li><em>Windows - Package Directory</em>: All files are copied to a directory. You will find a .exe file for executing your program and a DATA folder with all necessary files. Please don’t rename or delete the DATA folder.</li>
-<li><em>Windows - Self Extracting Archive</em>: A self extracting archive (using 7z) will be created. After running the archive exe a folder similar to Windows - Package Directory will be created.</li>
-<li><em>Linux - AppImage</em>: An executable AppImage will be created.</li>
+<li><em>Windows - Package Directory</em>: All files are copied to a
+directory. You will find a .exe file for executing your program and a
+DATA folder with all necessary files. Please don’t rename or delete the
+DATA folder.</li>
+<li><em>Windows - Self Extracting Archive</em>: A self extracting
+archive (using 7z) will be created. After running the archive exe a
+folder similar to Windows - Package Directory will be created.</li>
+<li><em>Linux - AppImage</em>: An executable AppImage will be
+created.</li>
 </ul></li>
 <li>SmallBASIC Version:
 <ul>
-<li><em>SDL2 (sbasicg)</em>: choose if your program is written for the SDL version of SmallBASIC</li>
-<li><em>Console (sbasic)</em>: choose if your program is written for the console version (i.e. when using plugins like raylib or nuklear)</li>
+<li><em>SDL2 (sbasicg)</em>: choose if your program is written for the
+SDL version of SmallBASIC</li>
+<li><em>Console (sbasic)</em>: choose if your program is written for the
+console version (i.e. when using plugins like raylib or nuklear)</li>
 </ul></li>
 <li>Click the button <em>Package my Program</em></li>
 </ul>
-<h3 id="distribution-tool-for-android">Distribution Tool for Android</h3>
+<h3 id="distribution-tool-for-android">Distribution Tool for
+Android</h3>
 <figure>
-<img src="https://github.com/Joe7M/smallbasic.DistributionTool/raw/main/screenshot/AndroidDistTool.png" alt="" /><figcaption>Screenshot of Distribution Tool</figcaption>
+<img
+src="https://github.com/Joe7M/smallbasic.DistributionTool/raw/main/screenshot/AndroidDistTool.png"
+alt="Screenshot of Distribution Tool" />
+<figcaption aria-hidden="true">Screenshot of Distribution
+Tool</figcaption>
 </figure>
-<p>The Distribution-Tool for Android is so far only available for Linux and tested with Ubuntu 22.04 and Manjaro.</p>
+<p>The Distribution-Tool for Android is so far only available for Linux
+and tested with Ubuntu 22.04 and Manjaro.</p>
 <ul>
-<li>Download the newest release of the <a href="https://github.com/Joe7M/smallbasic.DistributionTool/releases">Distribution Tool for Android</a></li>
-<li>Create a Distribution-Tool folder and copy the AppImage file to that folder</li>
+<li>Download the newest release of the <a
+href="https://github.com/Joe7M/smallbasic.DistributionTool/releases">Distribution
+Tool for Android</a></li>
+<li>Create a Distribution-Tool folder and copy the AppImage file to that
+folder</li>
 <li>Install Java (and zip)
 <ul>
 <li>Ubuntu: <code>sudo apt install default-jdk</code></li>
 <li>Manjaro: <code>sudo pacman -S jdk-openjdk zip</code></li>
 </ul></li>
-<li>Since google does not allow to package a fully configured Android SDK with the distribution tool, you have to download the <a href="https://developer.android.com/studio/index.html#command-tools">command-line tools for Linux</a> and unzip the file to the Distribution-Tool folder. Beside the AppImage you should have a folder called cmdline-tools now.</li>
-<li>Start the AppImage file (it might be necessary to make it executable: <code>chmod a+x DistributionTool*.AppImage</code> ). It will download and setup all necessary Android SDK components.</li>
-<li>Create a key to sign your Android app. The key needs to be created only ones and can be used for all your apps. <code>keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias</code> will create a keystore called my-release-key.jks with a key called my-alias. Feel free to change the names.</li>
-<li>Create app icons. An easy way is to use an online icon creator, like <a href="https://icon.kitchen/">icon.kitchen</a>. Download the created icon set and unzip the file.</li>
-<li>If you want to transfer your newly created app to your android device, you have to <a href="https://developer.android.com/studio/command-line/adb#Enabling">enable USB debugging</a>.</li>
+<li>Since google does not allow to package a fully configured Android
+SDK with the distribution tool, you have to download the <a
+href="https://developer.android.com/studio/index.html#command-tools">command-line
+tools for Linux</a> and unzip the file to the Distribution-Tool folder.
+Beside the AppImage you should have a folder called cmdline-tools
+now.</li>
+<li>Start the AppImage file (it might be necessary to make it
+executable: <code>chmod a+x DistributionTool*.AppImage</code> ). It will
+download and setup all necessary Android SDK components.</li>
+<li>Create a key to sign your Android app. The key needs to be created
+only ones and can be used for all your apps.
+<code>keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias</code>
+will create a keystore called my-release-key.jks with a key called
+my-alias. Feel free to change the names.</li>
+<li>Create app icons. An easy way is to use an online icon creator, like
+<a href="https://icon.kitchen/">icon.kitchen</a>. Download the created
+icon set and unzip the file.</li>
+<li>If you want to transfer your newly created app to your android
+device, you have to <a
+href="https://developer.android.com/studio/command-line/adb#Enabling">enable
+USB debugging</a>.</li>
 </ul>
 <p>GUI-Interface</p>
 <ul>
-<li><em>Application Name</em>: Name of the application on the Android device</li>
-<li><em>Basic file</em>: Name of your basic file. If you have several basic files, then give the one which should be started</li>
-<li><em>Source</em>: Directory where your SmallBASIC program and all the assets are located</li>
-<li><em>Destination</em>: Directory where the final packaged program should be saved</li>
-<li><em>Icon res</em>: Directory where the icons are located (needs to be a valid icon res-directory)</li>
+<li><em>Application Name</em>: Name of the application on the Android
+device</li>
+<li><em>Basic file</em>: Name of your basic file. If you have several
+basic files, then give the one which should be started</li>
+<li><em>Source</em>: Directory where your SmallBASIC program and all the
+assets are located</li>
+<li><em>Destination</em>: Directory where the final packaged program
+should be saved</li>
+<li><em>Icon res</em>: Directory where the icons are located (needs to
+be a valid icon res-directory)</li>
 <li><em>Keystore file</em>: Your keystore file</li>
 <li><em>Keystore password</em>: Password for the keystore file</li>
 <li><em>Key alias</em>: Alias of the key to be used for signing</li>
 <li><em>Key password</em>: Password of the key</li>
-<li><em>Transfer to device with adb after packaging</em>: When checked, the app will be installed on your Android device. The device must be connected to the computer using USB and adb debugging must be enabled on the device. (might not work when in a virtual machine).</li>
+<li><em>Transfer to device with adb after packaging</em>: When checked,
+the app will be installed on your Android device. The device must be
+connected to the computer using USB and adb debugging must be enabled on
+the device. (might not work when in a virtual machine).</li>
 </ul>
 <h3 id="assets">Assets</h3>
-<p>If your program needs assets like images or sounds, then please place all the assets in the same folder as your basic file or in a subfolder. Don’t use absolute paths to load the assets. Instead of <em>C:\MyProgram\assets\image.png</em> please use relative paths like assets\image.png or ./assets/image.png.</p>
+<p>If your program needs assets like images or sounds, then please place
+all the assets in the same folder as your basic file or in a subfolder.
+Don’t use absolute paths to load the assets. Instead of
+<em>C:\MyProgram\assets\image.png</em> please use relative paths like
+assets\image.png or ./assets/image.png.</p>
 <h3 id="plugins">Plugins</h3>
-<p>The official plugins (i.e. raylib, nuklear) are include in the package. If you have your own plugin please copy it to the same folder as your basic file.</p>
+<p>The official plugins (i.e. raylib, nuklear) are include in the
+package. If you have your own plugin please copy it to the same folder
+as your basic file.</p>
 </div>
     <div class="pagefooter">
       This page was last edited on Thu, 13 Oct 2022 19:35:34 +0200

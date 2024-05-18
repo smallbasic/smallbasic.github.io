@@ -2,8 +2,13 @@
 <blockquote>
 <p>WINDOW [x1, x2, y2, y1]</p>
 </blockquote>
-<p>Specifies “world” coordinates for the screen. The WINDOW command allows you to redefine the corners of the display screen as a pair of “world” coordinates. The coordinates of the upper-left corner of the screen is given by <code>[x1, y1]</code>, the lower-left corner by <code>[x2, y2]</code>.</p>
-<p>The world space defined by WINDOW is disabled by a WINDOW command without parameters.</p>
+<p>Specifies “world” coordinates for the screen. The WINDOW command
+allows you to redefine the corners of the display screen as a pair of
+“world” coordinates. The coordinates of the upper-left corner of the
+screen is given by <code>[x1, y1]</code>, the lower-left corner by
+<code>[x2, y2]</code>.</p>
+<p>The world space defined by WINDOW is disabled by a WINDOW command
+without parameters.</p>
 <h3 id="example">Example</h3>
 <pre><code>&#39; Coordinate system with corners:
 &#39; upper-left = [-20,-10]
@@ -20,14 +25,21 @@ rect  19, -10 STEP 1, 1, 13 filled    &#39; Magenta: upper-right
 rect  19,   9 STEP 1, 1, 12 filled    &#39; Red:     lower-right
 rect -20,   9 STEP 1, 1, 10 filled    &#39; Green:   lower-left
 circle 0, 0, 1, 1, 15 filled          &#39; White:   center</code></pre>
-<h2 id="window-sub-commands-non-standard">WINDOW sub-commands (non-standard)</h2>
-<p>WINDOW is also overloaded as a function, returning a system object which provides access to the following sub-commands.</p>
+<h2 id="window-sub-commands-non-standard">WINDOW sub-commands
+(non-standard)</h2>
+<p>WINDOW is also overloaded as a function, returning a system object
+which provides access to the following sub-commands.</p>
 <h3 id="alertmessage-title">alert(message, title)</h3>
-<p>Display an alert window. The title of the window is <code>title</code> and the context is <code>message</code>.</p>
+<p>Display an alert window. The title of the window is
+<code>title</code> and the context is <code>message</code>.</p>
 <pre><code>w = window()
 w.alert(&quot;This is an alert&quot;, &quot;title&quot;)</code></pre>
 <h3 id="askmessage-title">ask(message, title)</h3>
-<p>Display a prompt window to retrieve a user selection. The choices are “Yes” and “No”. The title of the window is <code>title</code> and the context is <code>message</code>. The answer is stored in the window-object variable <code>answer</code>: <code>0</code> for “Yes” and <code>1</code> for “No”.</p>
+<p>Display a prompt window to retrieve a user selection. The choices are
+“Yes” and “No”. The title of the window is <code>title</code> and the
+context is <code>message</code>. The answer is stored in the
+window-object variable <code>answer</code>: <code>0</code> for “Yes” and
+<code>1</code> for “No”.</p>
 <pre><code>w = window()
 
 w.ask(&quot;Yes or no?&quot;, &quot;Question&quot;)
@@ -37,8 +49,12 @@ if w.answer == 0 then
 else 
     print &quot;No&quot;
 endif</code></pre>
-<h3 id="graphicsscreen1-graphicsscreen2">graphicsScreen1(), graphicsScreen2()</h3>
-<p>Select graphics mode screen 1 or 2 for output. When switching to a different screen, the context of the previous screen is stored in RAM. When switching back to the previous screen, the context will be restored.</p>
+<h3 id="graphicsscreen1-graphicsscreen2">graphicsScreen1(),
+graphicsScreen2()</h3>
+<p>Select graphics mode screen 1 or 2 for output. When switching to a
+different screen, the context of the previous screen is stored in RAM.
+When switching back to the previous screen, the context will be
+restored.</p>
 <pre><code>w = window()
 
 w.graphicsScreen1()                      &#39; Set output to screen 1
@@ -58,7 +74,8 @@ while 1
   delay(500)
 wend</code></pre>
 <h3 id="insettextscreenx1-y1-x2-y2">insetTextScreen(x1, y1, x2, y2)</h3>
-<p>Insert an area for text output from position <code>[x1, y1]</code> to position <code>[x2, y2]</code></p>
+<p>Insert an area for text output from position <code>[x1, y1]</code> to
+position <code>[x2, y2]</code></p>
 <pre><code>w = window()
 ? &quot;How does this look?&quot;
 w.insetTextScreen(5,10,90,90)
@@ -66,8 +83,11 @@ for i = 0 to 200
   ? &quot;This is in the text screen&quot;
 next i
 pause</code></pre>
-<h3 id="menuoption1-option2-optionn">menu(option1 [, option2, …, optionN)</h3>
-<p>Displays a popup menu with the entries <code>option1</code> to <code>optionN</code>. INKEY will return the number of the selected option starting with <code>0</code>.</p>
+<h3 id="menuoption1-option2-optionn">menu(option1 [, option2, …,
+optionN)</h3>
+<p>Displays a popup menu with the entries <code>option1</code> to
+<code>optionN</code>. INKEY will return the number of the selected
+option starting with <code>0</code>.</p>
 <pre><code>w = window()
 
 w.menu(&quot;option1&quot;, &quot;option2&quot;, &quot;option3&quot;)
@@ -83,11 +103,18 @@ select case asc(inkey)
       print &quot;unk&quot;
 end select</code></pre>
 <h3 id="messagestr">message(str)</h3>
-<p>Displays a status message <code>str</code> at the bottom of the screen.</p>
+<p>Displays a status message <code>str</code> at the bottom of the
+screen.</p>
 <pre><code>w = window()
 w.message(&quot;Click to continue. &quot;)</code></pre>
-<h3 id="setfontsize-unit-bold-italic">setFont(size, unit, bold, italic)</h3>
-<p>Sets the font size to <code>size</code>. <code>unit</code> can be set to “em” to make size relative to the existing size. Any other value will cause size to be avaluated as pixels. <code>bold</code> can be set to <code>0</code> or <code>1</code> to enable or disable bold font style. <code>italic</code> can be set to <code>0</code> or <code>1</code> to enable or disable italic font style.</p>
+<h3 id="setfontsize-unit-bold-italic">setFont(size, unit, bold,
+italic)</h3>
+<p>Sets the font size to <code>size</code>. <code>unit</code> can be set
+to “em” to make size relative to the existing size. Any other value will
+cause size to be avaluated as pixels. <code>bold</code> can be set to
+<code>0</code> or <code>1</code> to enable or disable bold font style.
+<code>italic</code> can be set to <code>0</code> or <code>1</code> to
+enable or disable italic font style.</p>
 <pre><code>w = window()
 
 w.setFont(15, &quot;px&quot;, 0, 0)
@@ -105,11 +132,13 @@ print &quot;Fixed size 15px italic&quot;
 w.setFont(15, &quot;px&quot;, 1, 1)
 print &quot;Fixed size 15px bold italic&quot;</code></pre>
 <h3 id="setlocationx-y">setLocation(x, y)</h3>
-<p>Sets the location of the window on the screen. The upper-left corner of the window will be at position <code>[x, y]</code> in pixel.</p>
+<p>Sets the location of the window on the screen. The upper-left corner
+of the window will be at position <code>[x, y]</code> in pixel.</p>
 <pre><code>w = window()
 w.setLocation(100, 100)</code></pre>
 <h3 id="setsizew-h">setSize(w, h)</h3>
-<p>Sets the width <code>w</code> and height <code>h</code> in pixel of the SmallBASIC window.</p>
+<p>Sets the width <code>w</code> and height <code>h</code> in pixel of
+the SmallBASIC window.</p>
 <pre><code>w = window()
 w.setSize(800, 680)</code></pre>
 <h3 id="showkeypad">showKeypad()</h3>
@@ -121,7 +150,8 @@ w.showKeypad()</code></pre>
 <pre><code>w = window()
 w.hideKeypad()</code></pre>
 <h3 id="textscreen">textScreen()</h3>
-<p>Select the text mode for output. Text mode can display more text but is slow.</p>
+<p>Select the text mode for output. Text mode can display more text but
+is slow.</p>
 <pre><code>w = window()
 w.textScreen()
 for i = 0 to 1000

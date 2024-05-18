@@ -2,9 +2,13 @@
 <blockquote>
 <p>SELECT CASE expr</p>
 </blockquote>
-<p>Perform multiple tests on the expression <code>expr</code>. Offers a more concise syntax to writing successive IF tests. Once a case statement is fullfilled the select-case structure will be exited and all following case statements will not be tested anymore.</p>
+<p>Perform multiple tests on the expression <code>expr</code>. Offers a
+more concise syntax to writing successive IF tests. Once a case
+statement is fullfilled the select-case structure will be exited and all
+following case statements will not be tested anymore.</p>
 <p>See also IF … THEN … ELIF … ELSE … FI structure.</p>
-<h3 id="example-1-basic-select-case-expression">Example 1: Basic select-case expression</h3>
+<h3 id="example-1-basic-select-case-expression">Example 1: Basic
+select-case expression</h3>
 <pre><code>x = 12 &#39; Change value to see what happens
 select case x
     case 12
@@ -14,7 +18,9 @@ select case x
     case else
         print &quot;x is not 12,13,14,15&quot;        
 end select</code></pre>
-<h3 id="example-2-exit-of-a-select-structure-once-a-test-was-successful">Example 2: Exit of a select structure once a test was successful</h3>
+<h3
+id="example-2-exit-of-a-select-structure-once-a-test-was-successful">Example
+2: Exit of a select structure once a test was successful</h3>
 <pre><code>x = 2
 select case x
     case 2
@@ -22,7 +28,8 @@ select case x
     case 2
         print &quot;This will never be printed&quot;
 end select</code></pre>
-<h3 id="example-3-use-iff-to-check-a-range">Example 3: Use IFF to check a range</h3>
+<h3 id="example-3-use-iff-to-check-a-range">Example 3: Use IFF to check
+a range</h3>
 <pre><code>x = 4 &#39; Change value to see what happens
 select case x
     case iff(x &lt;= 4, x, x + 1)

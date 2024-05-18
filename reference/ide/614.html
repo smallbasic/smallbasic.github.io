@@ -2,12 +2,14 @@
 <blockquote>
 <p>COLOR foreground-color [, background-color]</p>
 </blockquote>
-<p>Specifies the foreground color <code>foreground-color</code> and the optional background color <code>background-color</code>.</p>
+<p>Specifies the foreground color <code>foreground-color</code> and the
+optional background color <code>background-color</code>.</p>
 <p>See RGB and RGBF to create colors.</p>
 <h3 id="example-1">Example 1</h3>
 <pre><code>color 14, 1
 print &quot;Yellow text on blue background&quot;</code></pre>
-<h3 id="example-2-assigning-smallbasic-standard-colors-to-text">Example 2: Assigning SmallBASIC standard colors to text</h3>
+<h3 id="example-2-assigning-smallbasic-standard-colors-to-text">Example
+2: Assigning SmallBASIC standard colors to text</h3>
 <pre><code>For back = 0 To 7 Do
   text = back Xor 15 &#39; count down text color (15 to 8)
   
@@ -17,7 +19,8 @@ print &quot;Yellow text on blue background&quot;</code></pre>
   Color back, text &#39; reverse colors
   Print Using &quot; FG and BG COLOR: ##, ## &quot;; back, text
 Next</code></pre>
-<h3 id="example-3-assigning-rgb-colors-to-text">Example 3: Assigning RGB-colors to text</h3>
+<h3 id="example-3-assigning-rgb-colors-to-text">Example 3: Assigning
+RGB-colors to text</h3>
 <pre><code>Print &quot;Try color printing with some RGB shades&quot;
 Print
 For shade = 0 To 10
@@ -33,13 +36,18 @@ For shade = 0 To 10
   Print &quot;Here is reverse white to black on black to red.&quot;
   print
 Next</code></pre>
-<h3 id="example-4-using-rgb-and-rgbf-to-draw-a-magenta-filled-rectangle-with-white-boarder">Example 4: Using RGB and RGBF to draw a magenta filled rectangle with white boarder</h3>
+<h3
+id="example-4-using-rgb-and-rgbf-to-draw-a-magenta-filled-rectangle-with-white-boarder">Example
+4: Using RGB and RGBF to draw a magenta filled rectangle with white
+boarder</h3>
 <pre><code>color rgb(255, 67, 133)
 rect 10, 10, 100, 100 filled  &#39; filling always with foreground color
 
 color rgbf(1, 1, 1)
 rect 10, 10, 100, 100</code></pre>
-<h3 id="example-5-chart-of-the-16-smallbasic-standard-colors-and-their-numbers">Example 5: Chart of the 16 SmallBASIC standard colors and their numbers</h3>
+<h3
+id="example-5-chart-of-the-16-smallbasic-standard-colors-and-their-numbers">Example
+5: Chart of the 16 SmallBASIC standard colors and their numbers</h3>
 <pre><code>&#39; Color chart of the 16 SmallBASIC standard colors
 &#39; for 0 = black to 15 = bright white
 dy = ymax / 16
@@ -48,7 +56,8 @@ for i = 0 to 15
   at 0, i * dy : print i;
 next</code></pre>
 <h3 id="example-6">Example 6</h3>
-<p>You may include “color_const.bas” file in another file to make your code more clear.</p>
+<p>You may include “color_const.bas” file in another file to make your
+code more clear.</p>
 <pre><code>&#39; demo - add these lines to another BAS file:
 &#39; ------------------------------------------
 &#39;  Include &quot;color_const.bas&quot; &#39; actuall filename must be lower case for Linux.

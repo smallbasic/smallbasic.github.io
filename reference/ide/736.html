@@ -6,13 +6,22 @@
 <ul>
 <li><code>A</code> equation coefficience as a matrix</li>
 <li><code>B</code> results of the equations as a column-vector</li>
-<li><code>C</code> result as a Nx1 matrix with the values of the unknowns</li>
-<li><code>toler</code> tolerance number (the absolute value of the lowest acceptable number). Default value is <code>0</code> (tolerance not applied).</li>
+<li><code>C</code> result as a Nx1 matrix with the values of the
+unknowns</li>
+<li><code>toler</code> tolerance number (the absolute value of the
+lowest acceptable number). Default value is <code>0</code> (tolerance
+not applied).</li>
 </ul>
 <blockquote>
-<p>One possible problem is numerical instability, caused by the possibility of dividing by very small numbers. If, for example, the leading coefficient of one of the rows is very close to zero, […] one would need to divide by that number. This means that any error existed for the number that was close to zero would be amplified. <a href="https://en.m.wikipedia.org/wiki/Gaussian_elimination">Wikipedia</a></p>
+<p>One possible problem is numerical instability, caused by the
+possibility of dividing by very small numbers. If, for example, the
+leading coefficient of one of the rows is very close to zero, […] one
+would need to divide by that number. This means that any error existed
+for the number that was close to zero would be amplified. <a
+href="https://en.m.wikipedia.org/wiki/Gaussian_elimination">Wikipedia</a></p>
 </blockquote>
-<p>The tolerance number can be used to ensure, that no division by numbers smaller than <code>toler</code> will be performed.</p>
+<p>The tolerance number can be used to ensure, that no division by
+numbers smaller than <code>toler</code> will be performed.</p>
 <h3 id="example">Example</h3>
 <pre><code>&#39; Solve:
 &#39;  x -  y + 2z =  6

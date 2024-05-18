@@ -1,17 +1,21 @@
 <h1 id="diffeqn">DIFFEQN</h1>
 <blockquote>
-<p>DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE expr</p>
+<p>DIFFEQN x0, y0, xf, maxseg, maxerr, BYREF yf, BYREF errcode USE
+expr</p>
 </blockquote>
-<p>Solving first-order differential equations using Runge-Kutta method.</p>
+<p>Solving first-order differential equations using Runge-Kutta
+method.</p>
 <ul>
-<li><code>expr</code> : f(y,x) = dy/dx with start condition: y(x = x0) = y0</li>
+<li><code>expr</code> : f(y,x) = dy/dx with start condition: y(x = x0) =
+y0</li>
 <li><code>x0</code>, <code>y0</code> : initial x, y<br />
 </li>
 <li><code>xf</code> : final x</li>
 <li><code>yf</code> : result</li>
 <li><code>maxseq</code> : equivalent to precision</li>
 <li><code>maxerr</code> : maximum allowed error</li>
-<li><code>errcode</code> : 0 for success; otherwise calculation error</li>
+<li><code>errcode</code> : 0 for success; otherwise calculation
+error</li>
 </ul>
 <h3 id="example-1">Example 1</h3>
 <pre><code>&#39; Solving dy/dx = 7*y^2 * x^3 with start condition y(2) = 3 

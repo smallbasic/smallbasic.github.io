@@ -2,7 +2,10 @@
 <blockquote>
 <p>FRE (x)</p>
 </blockquote>
-<p>Returns system memory information. eg, 0 = free memory. If a value is not supported by the operating system, <code>fre</code> will return 0. <code>fre()</code> without a parameter returns the free physical memory.</p>
+<p>Returns system memory information. eg, 0 = free memory. If a value is
+not supported by the operating system, <code>fre</code> will return 0.
+<code>fre()</code> without a parameter returns the free physical
+memory.</p>
 <h3 id="windows">Windows</h3>
 <table>
 <thead>
@@ -61,8 +64,12 @@
 </tr>
 </tbody>
 </table>
-<h3 id="alternative-for-linux-with-kernel-3.x-and-android">Alternative for LINUX with kernel &gt; 3.x and ANDROID</h3>
-<p><code>fre</code> can be used to read the values of the file <code>/proc/meminfo</code>. In a console please type <code>cat /proc/meminfo</code>. Output should look similar to this (but more lines):</p>
+<h3 id="alternative-for-linux-with-kernel-3.x-and-android">Alternative
+for LINUX with kernel &gt; 3.x and ANDROID</h3>
+<p><code>fre</code> can be used to read the values of the file
+<code>/proc/meminfo</code>. In a console please type
+<code>cat /proc/meminfo</code>. Output should look similar to this (but
+more lines):</p>
 <pre><code>MemTotal:        3630512 kB
 MemFree:          117204 kB
 MemAvailable:     601308 kB
@@ -71,7 +78,8 @@ Cached:          1002608 kB
 SwapCached:        58640 kB
 Active:           857224 kB
 Inactive:        1781244 kB</code></pre>
-<p>To querry with <code>fre</code> the value of the first line, use <code>fre(0)</code>, for second line <code>fre(1)</code>, and so on.</p>
+<p>To querry with <code>fre</code> the value of the first line, use
+<code>fre(0)</code>, for second line <code>fre(1)</code>, and so on.</p>
 <h3 id="example">Example</h3>
 <pre><code>print &quot;Free memory: &quot;; fre()
 print &quot;Total RAM: &quot;; fre(-10)

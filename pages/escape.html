@@ -65,7 +65,11 @@
     </div>
 <div class="article">
 <h1 id="escape-codes">Escape codes</h1>
-<p>SmallBASIC supports a number of escape codes for controlling the display. The codes allow you to set foreground and background colors, change the font and also set underline and inverse text display. The escape codes are based on <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes</a>.</p>
+<p>SmallBASIC supports a number of escape codes for controlling the
+display. The codes allow you to set foreground and background colors,
+change the font and also set underline and inverse text display. The
+escape codes are based on <a
+href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes</a>.</p>
 <h2 id="supported-standard-codes">Supported standard codes</h2>
 <pre><code>  \a      beep
   \t      tab (20 px)
@@ -88,57 +92,71 @@
   \e[27m  set reverse off
   \e[nm   n colors - 30..37 foreground, 40..47 background</code></pre>
 <h2 id="using-escape-codes-directly">Using escape codes directly</h2>
-<p>Instead of <code>\e</code> the command CHR(27) is useful for obtaining and printing the escape character.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[1mTHIS IS BOLD&quot;</span> + <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[0m&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[3mThis is italic&quot;</span>  + <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[0m&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[4mThis is underline&quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="st">&quot;\e[32mGreen text&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="st">&quot;\e[32m\e[47mGreen text on white background&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="st">&quot;First line\nSecond Line&quot;</span></span></code></pre></div>
+<p>Instead of <code>\e</code> the command CHR(27) is useful for
+obtaining and printing the escape character.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[1mTHIS IS BOLD&quot;</span> + <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[0m&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[3mThis is italic&quot;</span>  + <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[0m&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">CHR</span>(<span class="dv">27</span>) + <span class="st">&quot;[4mThis is underline&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="st">&quot;\e[32mGreen text&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="st">&quot;\e[32m\e[47mGreen text on white background&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="st">&quot;First line\nSecond Line&quot;</span></span></code></pre></div>
 <h2 id="using-the-escapecode-unit">Using the EscapeCode Unit</h2>
-<p>The EscapeCode Unit makes it easier to use escape codes and to deal with different colors for foreground and background. The unit can be downloaded or copy pasted from the <a href="https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas">SmallBASIC Github website</a>. Please save the unit in the same directory as your basic file.</p>
+<p>The EscapeCode Unit makes it easier to use escape codes and to deal
+with different colors for foreground and background. The unit can be
+downloaded or copy pasted from the <a
+href="https://github.com/smallbasic/smallbasic.plugins/blob/master/units/EscapeCodes.bas">SmallBASIC
+Github website</a>. Please save the unit in the same directory as your
+basic file.</p>
 <p>Here an example on how to use the unit:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; SmallBASIC 12.25</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39; Example for using UNIT &quot;EscapeCodes&quot;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39; For more information see: https://smallbasic.github.io/pages/escape.html</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="pp">import</span> EscapeCodes <span class="kw">as</span> esc</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;FORMATING TEXT:&quot;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">print</span> esc.NORMAL + <span class="st">&quot;WITHOUT ANY FORMAT &quot;</span> + esc.ITALIC + <span class="st">&quot;ITALIC &quot;</span> + esc.ITALIC_OFF + esc.BOLD + <span class="st">&quot;BOLD &quot;</span> + esc.BOLD_OFF + esc.UNDERLINE + <span class="st">&quot;UNDERLINE &quot;</span> + esc.UNDERLINE_OFF + esc.REVERSE + <span class="st">&quot;REVERSE&quot;</span> + esc.REVERSE_OFF</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;USE COLORS:&quot;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="kw">print</span> esc.BG_BLACK   + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="kw">print</span> esc.BG_RED     + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="kw">print</span> esc.BG_GREEN   + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="kw">print</span> esc.BG_YELLOW  + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="kw">print</span> esc.BG_BLUE    + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="kw">print</span> esc.BG_MAGENTA + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="kw">print</span> esc.BG_CYAN    + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="kw">print</span> esc.BG_WHITE   + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="kw">print</span> esc.NORMAL</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;USE COLORS AND FORMATS:&quot;</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="kw">print</span> esc.NORMAL + esc.BOLD + esc.UNDERLINE + esc.GREEN + esc.BG_WHITE + <span class="st">&quot;BOLD + UNDELINE + COLOR&quot;</span> + esc.NORMAL</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;CONTROL THE CURSOR:&quot;</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="kw">print</span> esc.MOVE_TO_COLUMN(<span class="dv">4</span>) + <span class="st">&quot;MOVE TO COLUMN 4&quot;</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;TABS:&quot;</span> + esc.TB + <span class="st">&quot;ONE TAB&quot;</span> + esc.TB + esc.TB + <span class="st">&quot;TWO MORE TABS&quot;</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;YOU SHOULD NOT READ THIS&quot;</span> + esc.RET + <span class="st">&quot;RETURN TO BEGIN OF LINE &quot;</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;FIRST LINE&quot;</span> + esc.NEXTLINE + <span class="st">&quot;NEXT LINE&quot;</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="kw">print</span> esc.SAVECURSOR + <span class="st">&quot;YOU SHOULD NOT READ THIS&quot;</span> </span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="kw">print</span> esc.RESTORECURSOR + esc.CLEAR_LINE + <span class="st">&quot;SAVE AND RESTORE THE CURSOR POSITION&quot;</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;OTHER:&quot;</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="kw">print</span> esc.QUOTE + <span class="st">&quot;YOU CAN USE QUOTES&quot;</span> + esc.QUOTE</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="kw">print</span> esc.BP + <span class="st">&quot;A BEEP SHOULD BE AUDIBLE&quot;</span></span></code></pre></div>
-<h2 id="escape-codes-in-smallbasic-console-version">Escape codes in SmallBASIC console version</h2>
-<p>In the console version of SmallBASIC (sbasic.exe or sbasic) most of the escape codes, for example <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes at wikipedia</a>, can be used in version 12.25 or later. Support of escape codes depends on the operating system and the terminal you are using.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; SmallBASIC 12.25</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example for using UNIT &quot;EscapeCodes&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; For more information see: https://smallbasic.github.io/pages/escape.html</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> EscapeCodes <span class="kw">as</span> esc</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;FORMATING TEXT:&quot;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.NORMAL + <span class="st">&quot;WITHOUT ANY FORMAT &quot;</span> + esc.ITALIC + <span class="st">&quot;ITALIC &quot;</span> + esc.ITALIC_OFF + esc.BOLD + <span class="st">&quot;BOLD &quot;</span> + esc.BOLD_OFF + esc.UNDERLINE + <span class="st">&quot;UNDERLINE &quot;</span> + esc.UNDERLINE_OFF + esc.REVERSE + <span class="st">&quot;REVERSE&quot;</span> + esc.REVERSE_OFF</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;USE COLORS:&quot;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BG_BLACK   + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BG_RED     + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BG_GREEN   + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BG_YELLOW  + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BG_BLUE    + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BG_MAGENTA + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BG_CYAN    + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BG_WHITE   + esc.BLACK + <span class="st">&quot;  BLACK  &quot;</span> + esc.RED + <span class="st">&quot;   RED   &quot;</span> + esc.GREEN + <span class="st">&quot;  GREEN  &quot;</span> + esc.YELLOW + <span class="st">&quot; YELLOW &quot;</span> + esc.BLUE + <span class="st">&quot;  BLUE    &quot;</span> + esc.MAGENTA + <span class="st">&quot; MAGENTA &quot;</span> + esc.CYAN + <span class="st">&quot;  CYAN  &quot;</span> + esc.WHITE + <span class="st">&quot;  WHITE  &quot;</span> + esc.NORMAL</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.NORMAL</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;USE COLORS AND FORMATS:&quot;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.NORMAL + esc.BOLD + esc.UNDERLINE + esc.GREEN + esc.BG_WHITE + <span class="st">&quot;BOLD + UNDELINE + COLOR&quot;</span> + esc.NORMAL</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;CONTROL THE CURSOR:&quot;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.MOVE_TO_COLUMN(<span class="dv">4</span>) + <span class="st">&quot;MOVE TO COLUMN 4&quot;</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;TABS:&quot;</span> + esc.TB + <span class="st">&quot;ONE TAB&quot;</span> + esc.TB + esc.TB + <span class="st">&quot;TWO MORE TABS&quot;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;YOU SHOULD NOT READ THIS&quot;</span> + esc.RET + <span class="st">&quot;RETURN TO BEGIN OF LINE &quot;</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;FIRST LINE&quot;</span> + esc.NEXTLINE + <span class="st">&quot;NEXT LINE&quot;</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.SAVECURSOR + <span class="st">&quot;YOU SHOULD NOT READ THIS&quot;</span> </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.RESTORECURSOR + esc.CLEAR_LINE + <span class="st">&quot;SAVE AND RESTORE THE CURSOR POSITION&quot;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;OTHER:&quot;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.QUOTE + <span class="st">&quot;YOU CAN USE QUOTES&quot;</span> + esc.QUOTE</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> esc.BP + <span class="st">&quot;A BEEP SHOULD BE AUDIBLE&quot;</span></span></code></pre></div>
+<h2 id="escape-codes-in-smallbasic-console-version">Escape codes in
+SmallBASIC console version</h2>
+<p>In the console version of SmallBASIC (sbasic.exe or sbasic) most of
+the escape codes, for example <a
+href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes at
+wikipedia</a>, can be used in version 12.25 or later. Support of escape
+codes depends on the operating system and the terminal you are
+using.</p>
 </div>
     <div class="pagefooter">
       This page was last edited on Sat, 9 Sep 2023 22:31:16 +0200

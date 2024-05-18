@@ -3,8 +3,16 @@
 <p>WHILE expr</p>
 </blockquote>
 <p>Starts a WHILE … WEND loop.</p>
-<p>A While-loop loops as long as the test condition <code>expr</code> evaluates to true. SmallBASIC starts by evaluating the expression. If the expression is nonzero (true), the next command in the loop is executed. If the expression is zero (false), control passes to the first command following the next WEND command. When SmallBASIC encounters the WEND command, it reevaluates the expression parameter to the most recent WHILE. If that parameter is still nonzero (true), the process is repeated; otherwise, execution continues at the next command.</p>
-<p>WHILE/WEND loops may be nested to any level of complexity, but there must be a WEND for each WHILE.</p>
+<p>A While-loop loops as long as the test condition <code>expr</code>
+evaluates to true. SmallBASIC starts by evaluating the expression. If
+the expression is nonzero (true), the next command in the loop is
+executed. If the expression is zero (false), control passes to the first
+command following the next WEND command. When SmallBASIC encounters the
+WEND command, it reevaluates the expression parameter to the most recent
+WHILE. If that parameter is still nonzero (true), the process is
+repeated; otherwise, execution continues at the next command.</p>
+<p>WHILE/WEND loops may be nested to any level of complexity, but there
+must be a WEND for each WHILE.</p>
 <p>See EXIT to exit a while-loop, even when expression is true.</p>
 <h3 id="example">Example</h3>
 <pre><code>c = 1

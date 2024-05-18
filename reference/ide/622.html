@@ -2,7 +2,13 @@
 <blockquote>
 <p>RECT [STEP] x1,y1 [,|STEP x2,y2] [, color| COLOR color] [FILLED]</p>
 </blockquote>
-<p>Draws a rectangle from point <code>x1,y1</code> to point <code>x2,y1</code>. If STEP is used, start point and/or end point are relative to the current graphics cursor position. The line color of the rectangle will be <code>color</code>. If <code>color</code> is omitted then the current foreground color will be used as line color. When using FILLED, the rectangle will be filled with color <code>color</code> or with the current foreground color.</p>
+<p>Draws a rectangle from point <code>x1,y1</code> to point
+<code>x2,y1</code>. If STEP is used, start point and/or end point are
+relative to the current graphics cursor position. The line color of the
+rectangle will be <code>color</code>. If <code>color</code> is omitted
+then the current foreground color will be used as line color. When using
+FILLED, the rectangle will be filled with color <code>color</code> or
+with the current foreground color.</p>
 <h3 id="example-1-draw-rectangles">Example 1: Draw rectangles</h3>
 <pre><code>                                &#39; Draws a rectangle:
 rect 200, 100                   &#39; at point [0,0], width 200, height 100
@@ -12,7 +18,8 @@ rect STEP 10,10, 420, 220       &#39; from last graphics cursor position + [10,1
                                 &#39; to point [420,100]
 rect STEP 10,10, STEP 200, 100  &#39; from last graphics cursor position + [10,10],
                                 &#39; width 200, height 100</code></pre>
-<h3 id="example-2-draw-rectangles-with-color">Example 2: Draw rectangles with color</h3>
+<h3 id="example-2-draw-rectangles-with-color">Example 2: Draw rectangles
+with color</h3>
 <pre><code>rect 10, 10, STEP 200, 100, 12
 rect 20, 20, STEP 200, 100 COLOR 13
 rect 30, 30, STEP 200, 100, rgb(50,255,20)

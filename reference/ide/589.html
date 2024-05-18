@@ -2,7 +2,11 @@
 <blockquote>
 <p>DIRWALK dir [, wildcards] [USE f(x)]</p>
 </blockquote>
-<p>Walk through the specified directory <code>dir</code> and its subdirectories. The user defined function <code>f(x)</code> takes <code>x</code> as a parameter. <code>x</code> contains information about the current file. <code>f(x)</code> must return zero to stop the process. <code>wildcards</code> can be used to filter the files.</p>
+<p>Walk through the specified directory <code>dir</code> and its
+subdirectories. The user defined function <code>f(x)</code> takes
+<code>x</code> as a parameter. <code>x</code> contains information about
+the current file. <code>f(x)</code> must return zero to stop the
+process. <code>wildcards</code> can be used to filter the files.</p>
 <h3 id="example-1-print-all-files">Example 1: Print all files</h3>
 <pre><code>FUNC PRNF(x)
   ? x
@@ -10,7 +14,8 @@
 END
 
 DIRWALK &quot;.&quot; USE PRNF(x)</code></pre>
-<h3 id="example-2-create-a-list-of-all-files">Example 2: Create a list of all files</h3>
+<h3 id="example-2-create-a-list-of-all-files">Example 2: Create a list
+of all files</h3>
 <pre><code>FUNC ListFiles(x)
   FileList &lt;&lt; x
   return true
@@ -21,7 +26,8 @@ DIRWALK &quot;.&quot; USE ListFiles(x)
 for n in FileList
   print n.path, n.name
 next</code></pre>
-<h3 id="example-3-search-for-a-certain-file-using-wildcards">Example 3: Search for a certain file using wildcards</h3>
+<h3 id="example-3-search-for-a-certain-file-using-wildcards">Example 3:
+Search for a certain file using wildcards</h3>
 <pre><code>FUNC ListFiles(x)
   FileList &lt;&lt; x
   return true
@@ -32,7 +38,9 @@ DIRWALK &quot;.&quot;, &quot;scratch.bas&quot; USE ListFiles(x)
 for n in FileList
   print n.path
 next</code></pre>
-<h3 id="example-4-search-a-certain-file-using-user-defined-function">Example 4: Search a certain file using user defined function</h3>
+<h3
+id="example-4-search-a-certain-file-using-user-defined-function">Example
+4: Search a certain file using user defined function</h3>
 <pre><code>func SearchFile(x)
   if(x.name == &quot;scratch.bas&quot;)
     path = x.path

@@ -2,10 +2,14 @@
 <blockquote>
 <p>THROW [info [, …]]</p>
 </blockquote>
-<p>The THROW command is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program. Optional a string <code>info</code> can be used to create an error message.</p>
+<p>The THROW command is used to initiate a catch-able error. If there is
+no surrounding TRY/CATCH block, THROW can be used to abort the program.
+Optional a string <code>info</code> can be used to create an error
+message.</p>
 <h3 id="example-1-abort-a-program">Example 1: Abort a program</h3>
 <pre><code>throw(&quot;Error&quot;)</code></pre>
-<h3 id="example-2-initial-a-catch-able-error">Example 2: Initial a catch-able error</h3>
+<h3 id="example-2-initial-a-catch-able-error">Example 2: Initial a
+catch-able error</h3>
 <pre><code>try
     a = 1
     if(a == 1) then throw(&quot;a == 1&quot;)

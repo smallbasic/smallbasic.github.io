@@ -2,15 +2,22 @@
 <blockquote>
 <p>DEF name[(par1 [, … , parN])] = expression</p>
 </blockquote>
-<p>Defines a single line function with the function name <code>name</code> and the parameters <code>par1</code> to <code>parN</code>. <code>expression</code> is a valid SmallBASIC expression returning a value.</p>
-<p>See FUNC for multiline functions and SUB for multiline subroutines.</p>
-<h3 id="example-1-function-with-one-parameter">Example 1: Function with one parameter</h3>
+<p>Defines a single line function with the function name
+<code>name</code> and the parameters <code>par1</code> to
+<code>parN</code>. <code>expression</code> is a valid SmallBASIC
+expression returning a value.</p>
+<p>See FUNC for multiline functions and SUB for multiline
+subroutines.</p>
+<h3 id="example-1-function-with-one-parameter">Example 1: Function with
+one parameter</h3>
 <pre><code>def f(x) = 2*x+3
 print f(3)</code></pre>
-<h3 id="example-2-function-with-two-parameters">Example 2: Function with two parameters</h3>
+<h3 id="example-2-function-with-two-parameters">Example 2: Function with
+two parameters</h3>
 <pre><code>def f(x,y) = 2*x + 3*sin(y)
 print f(1,2)</code></pre>
-<h3 id="example-3-random-number-between-low-and-high">Example 3: Random number between low and high</h3>
+<h3 id="example-3-random-number-between-low-and-high">Example 3: Random
+number between low and high</h3>
 <pre><code>&#39; A function for random integer numbers between low and high (inclusive)
 DEF randi(lo, hi) = (RND * (hi - lo + 1))\1 + lo
 

@@ -2,7 +2,9 @@
 <blockquote>
 <p>CHAIN source</p>
 </blockquote>
-<p>Compile and run the given source. <code>source</code> can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process.</p>
+<p>Compile and run the given source. <code>source</code> can be a file
+name, a line of code or an array of code. Use ENV to share variables
+with the parent process.</p>
 <h3 id="example-1-using-constants">Example 1: Using constants</h3>
 <p>Note: <code>\"</code> is used to create a quote inside the string</p>
 <pre><code>Chain &quot;? \&quot;100 + 50 is: \&quot;; 100 + 50&quot; 
@@ -26,7 +28,8 @@ a &lt;&lt; &quot;Next i&quot;
 Chain a 
 
 &#39; Output: 3 6 9 12 15</code></pre>
-<h3 id="example-4-using-a-file-and-returning-a-value">Example 4: Using a file and returning a value</h3>
+<h3 id="example-4-using-a-file-and-returning-a-value">Example 4: Using a
+file and returning a value</h3>
 <pre><code>&#39; First we have to create a bas-file to show how chain works with files
 
 &#39; Create an array
@@ -81,7 +84,8 @@ Chain lines
 Color 7:  ? &quot;I&#39;m The Parent Program...&quot;
 ?
 Color 15: ? &quot;Child program returned value: &quot;; Env(&quot;SB1&quot;)</code></pre>
-<h3 id="example-6-creating-an-eval-function">Example 6: Creating an eval function</h3>
+<h3 id="example-6-creating-an-eval-function">Example 6: Creating an eval
+function</h3>
 <pre><code>&#39; Dedicated to MGA.
 &#39; s is any legal SmallBASIC Math Expression as String, e.g. &quot;1 + 2 / 4&quot;
 Func eval(s)

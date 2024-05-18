@@ -3,9 +3,16 @@
 <p>REPEAT … UNTIL expr</p>
 </blockquote>
 <p>Begins the definition of a REPEAT/UNTIL loop.</p>
-<p>SmallBASIC starts executing the commands between the REPEAT and UNTIL commands. When SmallBASIC encounters the UNTIL command, it evaluates the expression parameter <code>expr</code>. If that parameter is zero (false), the process will be repeated; otherwise, execution continues at the next command. The REPEAT/UNTIL loop evaluates the expression at the end of the loop. Therefore at least one loop is performed.</p>
-<p>REPEAT/UNTIL loops may be nested to any level of complexity, but there must be an UNTIL for each REPEAT.</p>
-<p>See WHILE…WEND loop if you want to evaluate the expression at the begin of the loop.</p>
+<p>SmallBASIC starts executing the commands between the REPEAT and UNTIL
+commands. When SmallBASIC encounters the UNTIL command, it evaluates the
+expression parameter <code>expr</code>. If that parameter is zero
+(false), the process will be repeated; otherwise, execution continues at
+the next command. The REPEAT/UNTIL loop evaluates the expression at the
+end of the loop. Therefore at least one loop is performed.</p>
+<p>REPEAT/UNTIL loops may be nested to any level of complexity, but
+there must be an UNTIL for each REPEAT.</p>
+<p>See WHILE…WEND loop if you want to evaluate the expression at the
+begin of the loop.</p>
 <h3 id="example">Example</h3>
 <pre><code>C = 1
 REPEAT

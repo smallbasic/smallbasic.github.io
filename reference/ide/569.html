@@ -2,8 +2,13 @@
 <blockquote>
 <p>DATA constant1 [, constant2] … [, constantN]</p>
 </blockquote>
-<p>Stores one or more constants, of any type, for subsequent access via READ command.</p>
-<p>DATA commands are non executable statements that supply a stream of data constants for use by READ commands. All the items supplied by all the DATA commands in a program make up one continuous “string” of information that is accessed in order by your program’s READ commands. Use RESTORE to specify which data block should be read next.</p>
+<p>Stores one or more constants, of any type, for subsequent access via
+READ command.</p>
+<p>DATA commands are non executable statements that supply a stream of
+data constants for use by READ commands. All the items supplied by all
+the DATA commands in a program make up one continuous “string” of
+information that is accessed in order by your program’s READ commands.
+Use RESTORE to specify which data block should be read next.</p>
 <h3 id="example-1">Example 1</h3>
 <pre><code>FOR I = 1 TO 3
     READ v
@@ -12,7 +17,8 @@ NEXT
 END
 
 DATA 1,2,3</code></pre>
-<h3 id="example-2-using-several-data-commands.">Example 2: Using several data commands.</h3>
+<h3 id="example-2-using-several-data-commands.">Example 2: Using several
+data commands.</h3>
 <pre><code>FOR I = 1 TO 6
     READ v
     PRINT v
@@ -22,7 +28,8 @@ END
 DATA 1,2
 DATA 3,4,5
 DATA 6</code></pre>
-<h3 id="example-3-specify-which-data-block-should-be-read.">Example 3: Specify which data block should be read.</h3>
+<h3 id="example-3-specify-which-data-block-should-be-read.">Example 3:
+Specify which data block should be read.</h3>
 <pre><code>RESTORE MyDataBlock
 
 FOR I = 1 TO 3

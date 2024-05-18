@@ -36,10 +36,14 @@
 </tbody>
 </table>
 <h3 id="example-1">Example 1</h3>
-<p>The NOT-operation as part of NAND performs a bitwise inversion on all bits of a number. This leads to the following (maybe unexpected) result:</p>
+<p>The NOT-operation as part of NAND performs a bitwise inversion on all
+bits of a number. This leads to the following (maybe unexpected)
+result:</p>
 <pre><code>print 1 NAND 1   &#39; Output: 11111111111111111111111111111110</code></pre>
-<h3 id="example-2-operate-nand-only-on-last-n-bits">Example 2: Operate NAND only on last n bits</h3>
-<p>If you want to operate NAND only on the last <code>n</code> bits of the numbers, you can use the following code:</p>
+<h3 id="example-2-operate-nand-only-on-last-n-bits">Example 2: Operate
+NAND only on last n bits</h3>
+<p>If you want to operate NAND only on the last <code>n</code> bits of
+the numbers, you can use the following code:</p>
 <pre><code>n = 4
 a = 0b1101
 b = 0b1001
@@ -49,7 +53,10 @@ print bin((a NAND b) BAND ((1 lshift n ) - 1))
 &#39; Output 110</code></pre>
 <h3 id="example-3-twos-complement">Example 3: Two’s complement</h3>
 <blockquote>
-<p>Two’s complement is a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent negative value. (<a href="https://en.wikipedia.org/wiki/Two%27s_complement">Wikipedia</a>)</p>
+<p>Two’s complement is a mathematical operation to reversibly convert a
+positive binary number into a negative binary number with equivalent
+negative value. (<a
+href="https://en.wikipedia.org/wiki/Two%27s_complement">Wikipedia</a>)</p>
 </blockquote>
 <pre><code>&#39; Two&#39;s complement is the standard way of representing negative integers in binary. 
 &#39; The sign is changed by inverting all of the bits and adding one.

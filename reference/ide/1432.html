@@ -2,7 +2,10 @@
 <blockquote>
 <p>A = ARRAY [s | expr]</p>
 </blockquote>
-<p>Creates a ARRAY or MAP variable from the given string <code>s</code> or expression <code>expr</code>. The ARRAY command supports JSON (Javascript object notation) syntax. The MAP provides value-key pair access along with array or dotted notation.</p>
+<p>Creates a ARRAY or MAP variable from the given string <code>s</code>
+or expression <code>expr</code>. The ARRAY command supports JSON
+(Javascript object notation) syntax. The MAP provides value-key pair
+access along with array or dotted notation.</p>
 <p>See STR for converting a MAP variable into a JSON string.</p>
 <h3 id="example-1-json-string-to-map">Example 1: JSON string to MAP</h3>
 <pre><code>a = array(&quot;{Name: Alice, Age: 20}&quot;)
@@ -12,9 +15,11 @@ print a.Name + &quot; is &quot; + a.Age + &quot; years old&quot;
 &#39; Output:
 &#39; {&quot;Age&quot;:20,&quot;Name&quot;:&quot;Alice&quot;}
 &#39; Alice is 20 years old</code></pre>
-<h3 id="example-2-json-with-nested-map">Example 2: JSON with nested MAP</h3>
+<h3 id="example-2-json-with-nested-map">Example 2: JSON with nested
+MAP</h3>
 <pre><code>a = Array(&quot;{x:1, y:3, down:{x:4, y:7}}&quot;)
 print a                                    &#39; Output: {&quot;down&quot;:{&quot;y&quot;:7,&quot;x&quot;:4},&quot;x&quot;:1,&quot;y&quot;:3}</code></pre>
-<h3 id="example-3-array-string-to-array">Example 3: Array string to array</h3>
+<h3 id="example-3-array-string-to-array">Example 3: Array string to
+array</h3>
 <pre><code>a = Array(&quot;[1,2,3]&quot;)
 print a                 &#39; Output: [1,2,3]</code></pre>

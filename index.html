@@ -68,119 +68,211 @@
 <blockquote>
 <p>one more basic</p>
 </blockquote>
-<p>SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for everyday calculations, scripts and prototypes. SmallBASIC includes trigonometric, matrices and algebra functions, a built in IDE, a powerful string library, system, sound, graphic commands and communication via serial or sockets along with structured programming syntax.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; Example for using functions in SmallBASIC</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>s = AddStrings(<span class="st">&quot;My&quot;</span>, <span class="st">&quot;String&quot;</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> s</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">func </span>AddStrings(a, b)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="kw">return</span> a + b</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
-<h2 id="programming-made-easy-for-all">Programming Made Easy for All</h2>
-<p>SmallBASIC is available for various operating systems, including Windows, Linux, and Android. You can even build it from source to run on many other POSIX-compliant systems, such as Raspberry Pi OS for the Raspberry Pi. With its built-in Integrated Development Environment (IDE), you can write programs on your Android-powered tablet or mobile phone and run them instantly. If you want to get started, you can download SmallBASIC from our (<a href="/pages/download.html">Downloads</a>) page.</p>
-<p>SmallBASIC makes it easy to bundle your program with all the necessary libraries, creating executable files for Windows (exe-files) or Linux (AppImage). For Android, you can create a signed package (pkg) and distribute it through platforms like Google Play. Learn more about distributing your program on our (<a href="/pages/distributiontool.html">Distribution</a>) page.</p>
-<p>If you prefer an online experience, you can start programming with the web-based version of SmallBASIC in your browser right now. Just click on <a href="/online/sbasic.html">Start online</a> to begin coding.</p>
-<h2 id="editors-ide-and-smallbasic-versions">Editors, IDE and SmallBASIC versions</h2>
-<p>SmallBASIC comes in three different flavors for the desktop. The SDL version offers a simple but efficient IDE and is perfect for working with graphics. The FLTK version has a great IDE. The console version doesn’t offer an IDE and is text-only but works perfect with plugins like raylib or nuklear (<a href="/pages/download.html">Downloads</a>).</p>
-<p>No matter which SmallBASIC version you prefer, external editors like Visual Studio Code, Geany, Sublime Text or KDE Kate can be setup for syntax highlighting or code execution (<a href="/language_support.html">Setup external editors</a>).</p>
-<p>Instructions on how to use the editor in the SDL and Android version can be found in the article <a href="/pages/android.html">Android</a></p>
+<p>SmallBASIC is a fast and easy to learn BASIC language interpreter
+ideal for everyday calculations, scripts and prototypes. SmallBASIC
+includes trigonometric, matrices and algebra functions, a built in IDE,
+a powerful string library, system, sound, graphic commands and
+communication via serial or sockets along with structured programming
+syntax.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example for using functions in SmallBASIC</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s = AddStrings(<span class="st">&quot;My&quot;</span>, <span class="st">&quot;String&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> s</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>AddStrings(a, b)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> a + b</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<h2 id="programming-made-easy-for-all">Programming Made Easy for
+All</h2>
+<p>SmallBASIC is available for various operating systems, including
+Windows, Linux, and Android. You can even build it from source to run on
+many other POSIX-compliant systems, such as Raspberry Pi OS for the
+Raspberry Pi. With its built-in Integrated Development Environment
+(IDE), you can write programs on your Android-powered tablet or mobile
+phone and run them instantly. If you want to get started, you can
+download SmallBASIC from our (<a
+href="/pages/download.html">Downloads</a>) page.</p>
+<p>SmallBASIC makes it easy to bundle your program with all the
+necessary libraries, creating executable files for Windows (exe-files)
+or Linux (AppImage). For Android, you can create a signed package (pkg)
+and distribute it through platforms like Google Play. Learn more about
+distributing your program on our (<a
+href="/pages/distributiontool.html">Distribution</a>) page.</p>
+<p>If you prefer an online experience, you can start programming with
+the web-based version of SmallBASIC in your browser right now. Just
+click on <a href="/online/sbasic.html">Start online</a> to begin
+coding.</p>
+<h2 id="editors-ide-and-smallbasic-versions">Editors, IDE and SmallBASIC
+versions</h2>
+<p>SmallBASIC comes in three different flavors for the desktop. The SDL
+version offers a simple but efficient IDE and is perfect for working
+with graphics. The FLTK version has a great IDE. The console version
+doesn’t offer an IDE and is text-only but works perfect with plugins
+like raylib or nuklear (<a
+href="/pages/download.html">Downloads</a>).</p>
+<p>No matter which SmallBASIC version you prefer, external editors like
+Visual Studio Code, Geany, Sublime Text or KDE Kate can be setup for
+syntax highlighting or code execution (<a
+href="/language_support.html">Setup external editors</a>).</p>
+<p>Instructions on how to use the editor in the SDL and Android version
+can be found in the article <a
+href="/pages/android.html">Android</a></p>
 <h2 id="units">Units</h2>
-<p>Units are sets of functions, procedures and constants bundled in a BASIC-library and can be imported in your program. Units use their own namespace and therefore are separated from your program.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Example for importing the CSS color-name unit</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="pp">Import</span> crgb <span class="kw">as</span> c</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="fu">Color</span> c.Black, c.Tomato</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot; Standard CSS Tomato background color &quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="fu">Color</span> c.Black, c.LightSteelBlue</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot; Standard CSS LightSteelBlue background color &quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">400</span> <span class="fu">COLOR</span> c.DeepPink filled</span></code></pre></div>
+<p>Units are sets of functions, procedures and constants bundled in a
+BASIC-library and can be imported in your program. Units use their own
+namespace and therefore are separated from your program.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example for importing the CSS color-name unit</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">Import</span> crgb <span class="kw">as</span> c</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> c.Black, c.Tomato</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot; Standard CSS Tomato background color &quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> c.Black, c.LightSteelBlue</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot; Standard CSS LightSteelBlue background color &quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">400</span> <span class="fu">COLOR</span> c.DeepPink filled</span></code></pre></div>
 <h2 id="plugins">Plugins</h2>
-<p>Plugins are libraries written in C which extent the functionality of SmallBASIC. SmallBASIC offers an API to write your own plugins. The following plugins are part of the release version of SmallBASIC: raylib (2D and 3D game development), nuklear (GUI programming), clipboard, gifencoder and WebSockets. You can also import a plugin for the Raspberry Pi to use the GPIO ports and some additional hardware like displays or temperature sensors.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; Example how to use raylib to open a window and print text.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="pp">import</span> raylib <span class="kw">as</span> rl</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="pp">import</span> raylibc <span class="kw">as</span> c</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="dt">const</span> screenWidth = <span class="dv">800</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="dt">const</span> screenHeight = <span class="dv">450</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>rl.InitWindow(screenWidth, screenHeight, <span class="st">&quot;raylib [core] example - basic window&quot;</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>rl.SetTargetFPS(<span class="dv">60</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">while </span>(!rl.WindowShouldClose())</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    rl.BeginDrawing()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>        rl.ClearBackground(c.RAYWHITE)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>        rl.DrawText(<span class="st">&quot;Congrats! You created your first window!&quot;</span>, <span class="dv">190</span>, <span class="dv">200</span>, <span class="dv">20</span>, c.LIGHTGRAY)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    rl.EndDrawing()</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>rl.CloseWindow()</span></code></pre></div>
+<p>Plugins are libraries written in C which extent the functionality of
+SmallBASIC. SmallBASIC offers an API to write your own plugins. The
+following plugins are part of the release version of SmallBASIC: raylib
+(2D and 3D game development), nuklear (GUI programming), clipboard,
+gifencoder and WebSockets. You can also import a plugin for the
+Raspberry Pi to use the GPIO ports and some additional hardware like
+displays or temperature sensors.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example how to use raylib to open a window and print text.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> raylib <span class="kw">as</span> rl</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> raylibc <span class="kw">as</span> c</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenWidth = <span class="dv">800</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenHeight = <span class="dv">450</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>rl.InitWindow(screenWidth, screenHeight, <span class="st">&quot;raylib [core] example - basic window&quot;</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>rl.SetTargetFPS(<span class="dv">60</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span>(!rl.WindowShouldClose())</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    rl.BeginDrawing()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        rl.ClearBackground(c.RAYWHITE)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        rl.DrawText(<span class="st">&quot;Congrats! You created your first window!&quot;</span>, <span class="dv">190</span>, <span class="dv">200</span>, <span class="dv">20</span>, c.LIGHTGRAY)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    rl.EndDrawing()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>rl.CloseWindow()</span></code></pre></div>
 <h2 id="more-information">More information</h2>
-<p>Read more in the short <a href="/pages/guide.html">user guide</a> or in the <a href="/pages/vade.html">SmallBASIC handbook</a>. See the documentation of all SmallBASIC commands in the <a href="/pages/reference.html">language reference</a> or browse additional articles in the <a href="/pages/articles.html">article section</a>.</p>
+<p>Read more in the short <a href="/pages/guide.html">user guide</a> or
+in the <a href="/pages/vade.html">SmallBASIC handbook</a>. See the
+documentation of all SmallBASIC commands in the <a
+href="/pages/reference.html">language reference</a> or browse additional
+articles in the <a href="/pages/articles.html">article section</a>.</p>
 <h2 id="news">News</h2>
-<h3 id="smallbasic-version-12.26-has-been-released-for-windows-linux-and-web-browser">SmallBASIC version 12.26 has been released for Windows, Linux and web browser</h3>
+<h3
+id="smallbasic-version-12.26-has-been-released-for-windows-linux-and-web-browser">SmallBASIC
+version 12.26 has been released for Windows, Linux and web browser</h3>
 <div class="date">
 <div class="line-block">March 26, 2023</div>
 </div>
-<p>For details see: <a href="https://github.com/smallbasic/SmallBASIC/releases/tag/12_26">Latest release</a>. Please report any issues to either the forum, email or github issues page.</p>
-<h3 id="smallbasic-version-12.24-has-been-released-for-windows-linux-and-web-browser">SmallBASIC version 12.24 has been released for Windows, Linux and web browser</h3>
+<p>For details see: <a
+href="https://github.com/smallbasic/SmallBASIC/releases/tag/12_26">Latest
+release</a>. Please report any issues to either the forum, email or
+github issues page.</p>
+<h3
+id="smallbasic-version-12.24-has-been-released-for-windows-linux-and-web-browser">SmallBASIC
+version 12.24 has been released for Windows, Linux and web browser</h3>
 <div class="date">
 <div class="line-block">June 20, 2022</div>
 </div>
-<p>For details see: <a href="https://github.com/smallbasic/SmallBASIC/releases/tag/v12.24">Latest release</a>. Please report any issues to either the forum, email or github issues page.</p>
-<h3 id="new-article-language-support-provided-by-joe7m">New article: “Language Support” provided by Joe7M</h3>
+<p>For details see: <a
+href="https://github.com/smallbasic/SmallBASIC/releases/tag/v12.24">Latest
+release</a>. Please report any issues to either the forum, email or
+github issues page.</p>
+<h3 id="new-article-language-support-provided-by-joe7m">New article:
+“Language Support” provided by Joe7M</h3>
 <div class="date">
 <div class="line-block">February 15, 2022</div>
 </div>
-<p>For details see: <a href="/pages/language_support.html">Language Support</a></p>
-<h3 id="smallbasic-version-12.23-has-been-released">SmallBASIC version 12.23 has been released</h3>
+<p>For details see: <a href="/pages/language_support.html">Language
+Support</a></p>
+<h3 id="smallbasic-version-12.23-has-been-released">SmallBASIC version
+12.23 has been released</h3>
 <div class="date">
 <div class="line-block">August 31, 2021</div>
 </div>
-<p>For details see: <a href="https://github.com/smallbasic/SmallBASIC/releases/tag/v12.23">Latest release</a>. Please report any issues to either the forum, email or github issues page.</p>
-<h3 id="smallbasic-version-12.20-has-been-released">SmallBASIC version 12.20 has been released</h3>
+<p>For details see: <a
+href="https://github.com/smallbasic/SmallBASIC/releases/tag/v12.23">Latest
+release</a>. Please report any issues to either the forum, email or
+github issues page.</p>
+<h3 id="smallbasic-version-12.20-has-been-released">SmallBASIC version
+12.20 has been released</h3>
 <div class="date">
 <div class="line-block">January 8, 2021</div>
 </div>
-<p>This release includes new loadable modules with support for <a href="https://www.raylib.com/">RAYLIB</a>, <a href="https://github.com/Immediate-Mode-UI/Nuklear">Nuklear</a> and WebSockets. For details see: <a href="https://github.com/smallbasic/SmallBASIC/releases/tag/v12.20">release notes</a>. Please report any issues to either the forum, email or github issues page.</p>
-<h3 id="smallbasic-version-12.19-has-been-released">SmallBASIC version 12.19 has been released</h3>
+<p>This release includes new loadable modules with support for <a
+href="https://www.raylib.com/">RAYLIB</a>, <a
+href="https://github.com/Immediate-Mode-UI/Nuklear">Nuklear</a> and
+WebSockets. For details see: <a
+href="https://github.com/smallbasic/SmallBASIC/releases/tag/v12.20">release
+notes</a>. Please report any issues to either the forum, email or github
+issues page.</p>
+<h3 id="smallbasic-version-12.19-has-been-released">SmallBASIC version
+12.19 has been released</h3>
 <div class="date">
 <div class="line-block">July 16, 2020</div>
 </div>
-<p>For details see: <a href="https://github.com/smallbasic/SmallBASIC/releases/tag/12_19">release notes</a>. Please report any issues to either the forum, email or github issues page.</p>
-<h3 id="new-teaching-resource-programming-smallbasic-provided-by-gerard-thomas-labèrnia">New teaching resource: “Programming SmallBASIC” provided by Gerard Thomas Labèrnia</h3>
+<p>For details see: <a
+href="https://github.com/smallbasic/SmallBASIC/releases/tag/12_19">release
+notes</a>. Please report any issues to either the forum, email or github
+issues page.</p>
+<h3
+id="new-teaching-resource-programming-smallbasic-provided-by-gerard-thomas-labèrnia">New
+teaching resource: “Programming SmallBASIC” provided by Gerard Thomas
+Labèrnia</h3>
 <div class="date">
 <div class="line-block">April 11, 2020</div>
 </div>
 <p>For details see: <a href="/pages/articles.html">Articles</a></p>
-<h3 id="smallbasic-version-0.12.18-has-been-released">SmallBASIC version 0.12.18 has been released</h3>
+<h3 id="smallbasic-version-0.12.18-has-been-released">SmallBASIC version
+0.12.18 has been released</h3>
 <div class="date">
 <div class="line-block">March 16, 2020</div>
 </div>
-<p>For details see: <a href="https://github.com/smallbasic/SmallBASIC/releases/tag/0_12_18">release notes</a>. Please report any issues to either the forum, email or github issues page.</p>
-<h3 id="smallbasic-version-0.12.17-has-been-released">SmallBASIC version 0.12.17 has been released</h3>
+<p>For details see: <a
+href="https://github.com/smallbasic/SmallBASIC/releases/tag/0_12_18">release
+notes</a>. Please report any issues to either the forum, email or github
+issues page.</p>
+<h3 id="smallbasic-version-0.12.17-has-been-released">SmallBASIC version
+0.12.17 has been released</h3>
 <div class="date">
 <div class="line-block">December 22, 2019</div>
 </div>
-<p>For details see: <a href="https://github.com/smallbasic/SmallBASIC/releases/tag/0_12_17">release notes</a>. The windows package includes sbasici.exe which is a recreation of the previous FLTK version. Please report any issues to either the forum, email or github issues page.</p>
+<p>For details see: <a
+href="https://github.com/smallbasic/SmallBASIC/releases/tag/0_12_17">release
+notes</a>. The windows package includes sbasici.exe which is a
+recreation of the previous FLTK version. Please report any issues to
+either the forum, email or github issues page.</p>
 <h3 id="new-discussion-forum">New discussion forum</h3>
 <div class="date">
 <div class="line-block">October 29, 2019</div>
 </div>
-<p>The Retrogamecoding and Basicprogramming Forum is scheduled for closure on 4th of November 2019. A new forum has been created at www.syntaxbomb.com. Click the <strong>Discuss</strong> link above and join the discussion!</p>
-<h3 id="cool-new-sample-program-news-on-progress">Cool new sample program, news on progress</h3>
+<p>The Retrogamecoding and Basicprogramming Forum is scheduled for
+closure on 4th of November 2019. A new forum has been created at
+www.syntaxbomb.com. Click the <strong>Discuss</strong> link above and
+join the discussion!</p>
+<h3 id="cool-new-sample-program-news-on-progress">Cool new sample
+program, news on progress</h3>
 <div class="date">
 <div class="line-block">June 2, 2019</div>
 </div>
 <p><a href="/posts/2019-06-02.html">Read more</a></p>
-<h3 id="smallbasic-version-0.12.14-has-been-released">SmallBASIC version 0.12.14 has been released</h3>
+<h3 id="smallbasic-version-0.12.14-has-been-released">SmallBASIC version
+0.12.14 has been released</h3>
 <div class="date">
 <div class="line-block">November 22, 2018</div>
 </div>
 <p><a href="/pages/changelog.html">Read more</a></p>
-<h3 id="smallbasic-version-0.12.13-has-been-released">SmallBASIC version 0.12.13 has been released</h3>
+<h3 id="smallbasic-version-0.12.13-has-been-released">SmallBASIC version
+0.12.13 has been released</h3>
 <div class="date">
 <div class="line-block">September 13, 2018</div>
 </div>
@@ -192,7 +284,8 @@
 <div class="line-block">March 29, 2018</div>
 </div>
 <p><a href="/posts/2018-29-03.html">Read more</a></p>
-<h3 id="smallbasic-version-0.12.10-has-been-released">SmallBASIC version 0.12.10 has been released</h3>
+<h3 id="smallbasic-version-0.12.10-has-been-released">SmallBASIC version
+0.12.10 has been released</h3>
 <div class="date">
 <div class="line-block">December 24, 2017</div>
 </div>

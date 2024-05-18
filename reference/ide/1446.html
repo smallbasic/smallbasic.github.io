@@ -2,14 +2,24 @@
 <blockquote>
 <p>UNIT name</p>
 </blockquote>
-<p>Declares the source module as a unit. Units are a set of procedures, functions, constants or variables that can be used by another program or unit.</p>
+<p>Declares the source module as a unit. Units are a set of procedures,
+functions, constants or variables that can be used by another program or
+unit.</p>
 <ul>
-<li>UNIT supports ‘namespace’ (Namespaces allow reuse of same names in different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both using a function with the same name, “Set”, but in different contexts).</li>
-<li>While UNIT can be used as a collection of sub-routines for your own program, UNIT is particularly useful for creating a general-purpose library. General purpose libraries can be useful for many programs or projects, the same way the internal routine “PRINT” is useful for many programs, and not only for specific one.</li>
+<li>UNIT supports ‘namespace’ (Namespaces allow reuse of same names in
+different contexts. e.g. BitLib.Set(x) and StrLib.Set(x) are both using
+a function with the same name, “Set”, but in different contexts).</li>
+<li>While UNIT can be used as a collection of sub-routines for your own
+program, UNIT is particularly useful for creating a general-purpose
+library. General purpose libraries can be useful for many programs or
+projects, the same way the internal routine “PRINT” is useful for many
+programs, and not only for specific one.</li>
 </ul>
-<p>Use EXPORT to export procedures, functions, constants or variables. Only exported names can be accessed in the main program.</p>
+<p>Use EXPORT to export procedures, functions, constants or variables.
+Only exported names can be accessed in the main program.</p>
 <h3 id="example-1-simple-unit">Example 1: Simple Unit</h3>
-<p>First, an example of the unit. Please save it with the filename “MyTestUnit.bas”</p>
+<p>First, an example of the unit. Please save it with the filename
+“MyTestUnit.bas”</p>
 <pre><code>UNIT MyTestUnit
 
 export MyFunc
@@ -34,7 +44,8 @@ print u.MyConst
 
 u.MyVar = u.MyVar + 5
 print u.MyVar</code></pre>
-<h3 id="example-2-an-unit-for-using-strings">Example 2: An unit for using strings</h3>
+<h3 id="example-2-an-unit-for-using-strings">Example 2: An unit for
+using strings</h3>
 <p>The UNIT file. Please save as strlib.bas.</p>
 <pre><code>&#39; File: strlib.bas
 &#39; ------------

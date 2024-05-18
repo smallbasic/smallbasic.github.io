@@ -2,7 +2,8 @@
 <blockquote>
 <p>IF expr</p>
 </blockquote>
-<p>Tests the expression and if it evaluates to a non-zero value, program flow will resume after the following THEN statement.</p>
+<p>Tests the expression and if it evaluates to a non-zero value, program
+flow will resume after the following THEN statement.</p>
 <h3 id="block-style-if">Block-style IF</h3>
 <pre><code>IF expression1 [THEN]
     .
@@ -19,20 +20,34 @@
     .
 ]
 ENDIF| FI</code></pre>
-<p>Causes SmallBASIC to make a decision based on the value of an expression.</p>
+<p>Causes SmallBASIC to make a decision based on the value of an
+expression.</p>
 <ul>
-<li>expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.</li>
+<li>expression - An expression; 0 is equivalent to FALSE, while all
+other values are equivalent to TRUE.</li>
 <li>commands - One or more commands.</li>
 </ul>
-<p>Each expression in the IF/ELSEIF construct is tested in order. As soon as an expression is found to be TRUE, then its corresponding commands are executed. If no expressions are TRUE, then the commands following the ELSE keyword are executed. If ELSE is not specified, then execution continues with the command following the ENDIF.</p>
-<p>IF, ELSE, ELSEIF, and ENDIF must all be the first keywords on their respective lines.</p>
-<p>THEN is optional, but if its defined it must be the last keyword on its line; if anything other than a comment follows on the same line with THEN, BASIC thinks it’s reading a single-line IF/THEN/ELSE construct. IF blocks may be nested.</p>
+<p>Each expression in the IF/ELSEIF construct is tested in order. As
+soon as an expression is found to be TRUE, then its corresponding
+commands are executed. If no expressions are TRUE, then the commands
+following the ELSE keyword are executed. If ELSE is not specified, then
+execution continues with the command following the ENDIF.</p>
+<p>IF, ELSE, ELSEIF, and ENDIF must all be the first keywords on their
+respective lines.</p>
+<p>THEN is optional, but if its defined it must be the last keyword on
+its line; if anything other than a comment follows on the same line with
+THEN, BASIC thinks it’s reading a single-line IF/THEN/ELSE construct. IF
+blocks may be nested.</p>
 <h3 id="single-line-if">Single-line IF</h3>
 <pre><code>IF expression THEN [num-label]|[command] [ELSE [num-label]|[command]]</code></pre>
-<p>Causes SmallBASIC to make a decision based on the value of an expression.</p>
+<p>Causes SmallBASIC to make a decision based on the value of an
+expression.</p>
 <ul>
-<li>expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.</li>
-<li>command - Any legal command or a numeric label. If a number is specified, it is equivalent to a GOTO command with the specified numeric-label.</li>
+<li>expression - An expression; 0 is equivalent to FALSE, while all
+other values are equivalent to TRUE.</li>
+<li>command - Any legal command or a numeric label. If a number is
+specified, it is equivalent to a GOTO command with the specified
+numeric-label.</li>
 </ul>
 <h3 id="example-1-block-style-if">Example 1: Block-style IF</h3>
 <pre><code>x = 1

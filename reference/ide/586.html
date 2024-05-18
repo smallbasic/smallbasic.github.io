@@ -2,10 +2,14 @@
 <blockquote>
 <p>CHMOD file, mode</p>
 </blockquote>
-<p>Change permissions of a file. The string <code>file</code> holds the file name and follows OS file naming conventions. <code>mode</code> provides the file permission and must be compatible with system call chmod()‘s ’mode’ parameter.</p>
+<p>Change permissions of a file. The string <code>file</code> holds the
+file name and follows OS file naming conventions. <code>mode</code>
+provides the file permission and must be compatible with system call
+chmod()‘s ’mode’ parameter.</p>
 <p>See ACCESS to get information on file permissions.</p>
 <h2 id="linux">Linux</h2>
-<p><code>mode</code> is a number best represented in octal: 0oUGO with U: User; G: Group; O: Other</p>
+<p><code>mode</code> is a number best represented in octal: 0oUGO with
+U: User; G: Group; O: Other</p>
 <p>U, G and O are each defined the following way:</p>
 <table>
 <thead>
@@ -60,7 +64,8 @@ CHMOD &quot;myfile.bas&quot;, 0o777
 &#39; All others only read
 CHMOD &quot;myfile.bas&quot;, 0o644</code></pre>
 <h2 id="windows">Windows</h2>
-<p>in Windows the read-only flag can be set with <code>mode = 1</code> and unset with <code>mode = -1</code></p>
+<p>in Windows the read-only flag can be set with <code>mode = 1</code>
+and unset with <code>mode = -1</code></p>
 <h3 id="example-1">Example</h3>
 <pre><code>&#39; Make myfile read-only
 CHMOD &quot;myfile.bas&quot;, 1

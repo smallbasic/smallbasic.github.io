@@ -2,7 +2,8 @@
 <blockquote>
 <p>PLAY string</p>
 </blockquote>
-<p>Play musical notes, a mp3 or ogg sound file. The music string is composed of the following building blocks:</p>
+<p>Play musical notes, a mp3 or ogg sound file. The music string is
+composed of the following building blocks:</p>
 <table>
 <colgroup>
 <col style="width: 32%" />
@@ -21,7 +22,8 @@
 </tr>
 <tr class="even">
 <td style="text-align: center;">On</td>
-<td style="text-align: left;">Octave n = 0..6, n = &lt; moves down one octave, n = &gt; moves up one octave</td>
+<td style="text-align: left;">Octave n = 0..6, n = &lt; moves down one
+octave, n = &gt; moves up one octave</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Nn</td>
@@ -37,7 +39,8 @@
 </tr>
 <tr class="even">
 <td style="text-align: center;">Tn</td>
-<td style="text-align: left;">Tempo n = 32..255. Number of 1/4 notes per minute.</td>
+<td style="text-align: left;">Tempo n = 32..255. Number of 1/4 notes per
+minute.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">MS</td>
@@ -69,15 +72,19 @@
 </tr>
 </tbody>
 </table>
-<p>To play a sound file use <code>file://filename</code> as string. When playing on background, program execution continuous. If the end of the program is reach, the playback will stop.</p>
+<p>To play a sound file use <code>file://filename</code> as string. When
+playing on background, program execution continuous. If the end of the
+program is reach, the playback will stop.</p>
 <h3 id="example-1-play-a-note">Example 1: Play a note</h3>
 <pre><code>play &quot;L2A&quot;    &#39; note A with length 1/2</code></pre>
-<h3 id="example-2-play-multiple-notes">Example 2: Play multiple notes</h3>
+<h3 id="example-2-play-multiple-notes">Example 2: Play multiple
+notes</h3>
 <pre><code>&#39; Set volume to 50%
 play &quot;V10&quot;  
 &#39; Play Menuet by J. Sebastian Bach
 play &quot;T180L8O3MN O4D4O3MLGABO4C O4D4O3MNG4MLG4 O4MNE4MLCDEF# O4G4O3MNG4MLG4 O4MNC4MLDCO3BA O3MNB4MLO4CO3BAG O3MNA4MLBAGF# G2.MN&quot;</code></pre>
-<h3 id="example-3-play-notes-on-background">Example 3: Play notes on background</h3>
+<h3 id="example-3-play-notes-on-background">Example 3: Play notes on
+background</h3>
 <pre><code>play &quot;MBL2A&quot;    &#39; note A with length 1/2 on background
 pause           &#39; make sure, that program will not end</code></pre>
 <h3 id="example-4-play-a-sound-file">Example 4: Play a sound file</h3>

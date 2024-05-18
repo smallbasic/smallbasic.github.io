@@ -2,7 +2,9 @@
 <blockquote>
 <p>l = LOF (fileN)</p>
 </blockquote>
-<p>Returns the length <code>l</code> of a file with the file handle <code>fileN</code> in bytes. For other devices, returns the number of available data.</p>
+<p>Returns the length <code>l</code> of a file with the file handle
+<code>fileN</code> in bytes. For other devices, returns the number of
+available data.</p>
 <h3 id="example-1-length-of-a-file">Example 1: Length of a file</h3>
 <pre><code>&#39; create a text file
 open &quot;MyDemoFile.txt&quot; for output as #1
@@ -24,7 +26,8 @@ for ii = 1 to  FileLength
 next
 
 close #1</code></pre>
-<h3 id="example-2-get-available-data-for-a-socket-connection">Example 2: Get available data for a socket connection</h3>
+<h3 id="example-2-get-available-data-for-a-socket-connection">Example 2:
+Get available data for a socket connection</h3>
 <pre><code>open &quot;SOCL:10000&quot; as #1     &#39; Open socket at port 10000
 
 while (eof(1))              &#39; Loop until connection is closed

@@ -2,7 +2,9 @@
 <blockquote>
 <p>INKEY</p>
 </blockquote>
-<p>Returns the last key-code in keyboard buffer, or an empty string if there are no keys. Special key-codes like the function-keys are returned as 2-byte string.</p>
+<p>Returns the last key-code in keyboard buffer, or an empty string if
+there are no keys. Special key-codes like the function-keys are returned
+as 2-byte string.</p>
 <h3 id="example-1">Example 1</h3>
 <pre><code>WHILE(1)
   k = INKEY
@@ -16,7 +18,9 @@
   SHOWPAGE
 WEND</code></pre>
 <h3 id="example-2">Example 2</h3>
-<p>The following program will return the keycode and a string for every pressed key. The string can be used in an if-statement to querry if the key was pressed. See example 3 how to use the string.</p>
+<p>The following program will return the keycode and a string for every
+pressed key. The string can be used in an if-statement to querry if the
+key was pressed. See example 3 how to use the string.</p>
 <pre><code>while(1)
   k = INKEY
 
@@ -36,7 +40,8 @@ WEND</code></pre>
   
   showpage
 wend</code></pre>
-<h3 id="example-3-querry-if-a-key-was-pressed">Example 3: Querry if a key was pressed</h3>
+<h3 id="example-3-querry-if-a-key-was-pressed">Example 3: Querry if a
+key was pressed</h3>
 <p>See example 2 to get the keycodes for the keys.</p>
 <pre><code>const KeyUp = chr(27) + chr(9)
 const KeyDown = chr(27) + chr(10)
@@ -149,7 +154,8 @@ While True
     Fi
   End Select
 Wend</code></pre>
-<h3 id="example-5-a-basic-key-code-unit">Example 5: A basic key code UNIT</h3>
+<h3 id="example-5-a-basic-key-code-unit">Example 5: A basic key code
+UNIT</h3>
 <pre><code>REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)
 REM Purpose:   Special key values returned by INKEY.
 REM            (Values returned by INKEY cannot be used for DEFINEKEY).

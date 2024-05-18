@@ -1,9 +1,14 @@
 <h1 id="sinput">SINPUT</h1>
 <blockquote>
-<p>SINPUT src; var1 [, delim1] [,var2 [, delim2]] … [,varN [, delimN]]</p>
+<p>SINPUT src; var1 [, delim1] [,var2 [, delim2]] … [,varN [,
+delimN]]</p>
 </blockquote>
-<p>Splits the string <code>src</code> into substrings which are separated by delimiters <code>delim1</code> to <code>delimN</code> and returns the substrings as <code>var1</code> to <code>varN</code>. Delimiters can be single characters, numbers or strings.</p>
-<h3 id="example-1-split-string-with-delimiter">Example 1: Split string with delimiter “,”</h3>
+<p>Splits the string <code>src</code> into substrings which are
+separated by delimiters <code>delim1</code> to <code>delimN</code> and
+returns the substrings as <code>var1</code> to <code>varN</code>.
+Delimiters can be single characters, numbers or strings.</p>
+<h3 id="example-1-split-string-with-delimiter">Example 1: Split string
+with delimiter “,”</h3>
 <pre><code>src = &quot;1456,Peter,8&quot;
 
 SINPUT src; id, &quot;,&quot;, name, &quot;,&quot;, age 
@@ -16,7 +21,8 @@ print &quot;Age : &quot; + age
 &#39; ID  : 1456
 &#39; Name: Peter
 &#39; Age : 8</code></pre>
-<h3 id="example-2-split-string-with-complex-delimiters">Example 2: Split string with complex delimiters</h3>
+<h3 id="example-2-split-string-with-complex-delimiters">Example 2: Split
+string with complex delimiters</h3>
 <pre><code>src = &quot;if x&gt;1 then y&quot;
 SINPUT src; vif, &quot; &quot;, vcond, &quot;then&quot;, vdo
 print vif, vcond, vdo                       &#39; Output: if    x&gt;1    y</code></pre>

@@ -40,7 +40,9 @@
 <pre><code>print &quot;1011 AND 1101 = &quot;; bin(0b1011 band 0b1101)
 &#39; Output: 1011 AND 1101 = 1001</code></pre>
 <h3 id="example-2">Example 2</h3>
-<p>The following example will first pack a date into a single integer and then unpack the integer to get the original date using bitwise operations.</p>
+<p>The following example will first pack a date into a single integer
+and then unpack the integer to get the original date using bitwise
+operations.</p>
 <pre><code>Def shl(n, c) = n * Pow(2, c)         &#39; shift-left c bits in n
 Def shr(n, c) = n \ Pow(2, c)         &#39; shift-right c bits in n
 Def mask(c) = Pow(2, c) - 1           &#39; return a mask of c bits

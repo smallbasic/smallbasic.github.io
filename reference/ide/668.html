@@ -2,20 +2,33 @@
 <blockquote>
 <p>c = a LIKE b</p>
 </blockquote>
-<p>Regular-expression operator. Compares the left part <code>a</code> of the expression with the right side regex pattern <code>b</code> and returns <code>true</code> or <code>false</code>.</p>
+<p>Regular-expression operator. Compares the left part <code>a</code> of
+the expression with the right side regex pattern <code>b</code> and
+returns <code>true</code> or <code>false</code>.</p>
 <ul>
-<li><code>*</code> matches any sequence of characters (zero or more)</li>
+<li><code>*</code> matches any sequence of characters (zero or
+more)</li>
 <li><code>?</code> matches any character</li>
 <li><code>[SET]</code> matches any character in the specified set</li>
-<li><code>[!SET]</code> or <code>[^SET]</code> matches any character not in the specified set</li>
+<li><code>[!SET]</code> or <code>[^SET]</code> matches any character not
+in the specified set</li>
 </ul>
-<p>A set is composed of characters or ranges. A range is defined by character - hyphen - character (as in 0-9 or A-Z). <code>[0-9a-zA-Z_]</code> is the minimal set of characters allowed in the <code>[..]</code> pattern construct. To suppress the special syntactic significance of any of <code>"[]*?!^-\</code>, and match the character exactly, precede it with a <code>\\</code>.</p>
-<p>For more information about regular-expressions please see http://www.regular-expressions.info/examples.html.</p>
-<h3 id="option-for-matching-algorithm">Option for matching algorithm</h3>
+<p>A set is composed of characters or ranges. A range is defined by
+character - hyphen - character (as in 0-9 or A-Z).
+<code>[0-9a-zA-Z_]</code> is the minimal set of characters allowed in
+the <code>[..]</code> pattern construct. To suppress the special
+syntactic significance of any of <code>"[]*?!^-\</code>, and match the
+character exactly, precede it with a <code>\\</code>.</p>
+<p>For more information about regular-expressions please see
+http://www.regular-expressions.info/examples.html.</p>
+<h3 id="option-for-matching-algorithm">Option for matching
+algorithm</h3>
 <blockquote>
 <p>OPTION MATCH PCRE [CASELESS]|SIMPLE</p>
 </blockquote>
-<p><code>PCRE</code> sets as default matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple one with <code>SIMPLE</code>.</p>
+<p><code>PCRE</code> sets as default matching algorithm to
+(P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple
+one with <code>SIMPLE</code>.</p>
 <h3 id="example-1">Example 1</h3>
 <pre><code>print &quot;Hello&quot; LIKE &quot;*[oO]&quot;                &#39; Output 1
 print &quot;Hello&quot; LIKE &quot;He??o&quot;                &#39; Output 1

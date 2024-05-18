@@ -66,17 +66,24 @@
 <div class="article">
 <h1 id="new-features">New features</h1>
 <blockquote>
-<p>SmallBASIC has a number of new features intended to broaden its appeal as a general purpose scripting language (Note - Written in 2008).</p>
+<p>SmallBASIC has a number of new features intended to broaden its
+appeal as a general purpose scripting language (Note - Written in
+2008).</p>
 </blockquote>
-<h2 id="local-variable-declaration-and-assignment">Local variable declaration and assignment</h2>
+<h2 id="local-variable-declaration-and-assignment">Local variable
+declaration and assignment</h2>
 <p>You can now declare and assign a local variable on the same line</p>
 <pre><code>local foo = &quot;foo&quot;</code></pre>
-<h2 id="program-defined-window-geometry">Program defined window geometry</h2>
-<p>The SDL version now allow the window geometry to be set from your program.</p>
+<h2 id="program-defined-window-geometry">Program defined window
+geometry</h2>
+<p>The SDL version now allow the window geometry to be set from your
+program.</p>
 <pre><code>  option predef grmode 200x300</code></pre>
 <h2 id="user-defined-structures">User defined structures</h2>
-<p>User defined structures in SmallBASIC are a form of compound variable allowing individual elements to be referenced.</p>
-<p>The following example loads the system password table and prints the contents of the first user (works only in Linux):</p>
+<p>User defined structures in SmallBASIC are a form of compound variable
+allowing individual elements to be referenced.</p>
+<p>The following example loads the system password table and prints the
+contents of the first user (works only in Linux):</p>
 <pre><code>tload &quot;/etc/passwd&quot;, buffer
 
 dim users
@@ -97,8 +104,12 @@ next row
 
 print users(0)</code></pre>
 <h2 id="associative-arrays">Associative arrays</h2>
-<p>Regular SmallBASIC arrays are indexed by integers within the upper and lower bounds of the array. Associative arrays take a string as the array index and like plain SmallBASIC variables, come into existence when ever they are referenced.</p>
-<p>The following example loads the system password table then prints the groupID value of the “mail” user account:</p>
+<p>Regular SmallBASIC arrays are indexed by integers within the upper
+and lower bounds of the array. Associative arrays take a string as the
+array index and like plain SmallBASIC variables, come into existence
+when ever they are referenced.</p>
+<p>The following example loads the system password table then prints the
+groupID value of the “mail” user account:</p>
 <pre><code>tload &quot;/etc/passwd&quot;, buffer
 
 users = {}
@@ -121,25 +132,36 @@ next row
 
 print users(&quot;mail&quot;).userId</code></pre>
 <h2 id="unit-name-pathing">Unit name pathing</h2>
-<p>Units now have the ability to include a path component in a unit name.</p>
+<p>Units now have the ability to include a path component in a unit
+name.</p>
 <pre><code>import other.something.foo
 ? foo.my_var</code></pre>
 <p>Then in the foo.bas file:</p>
 <pre><code>Unit other.something.Foo
 export my_var</code></pre>
-<p>The unit file would be saved in $UNITPATH/other/something. If not defined, $UNITPATH is inferred from the host program directory.</p>
+<p>The unit file would be saved in $UNITPATH/other/something. If not
+defined, $UNITPATH is inferred from the host program directory.</p>
 <h2 id="in-operator">IN operator</h2>
-<p>When applied to arrays the IN operator now returns the 1 based index position, for example:</p>
+<p>When applied to arrays the IN operator now returns the 1 based index
+position, for example:</p>
 <pre><code>a &lt;&lt; &quot;cat&quot;
 a &lt;&lt; &quot;dog&quot;
 print &quot;dog&quot; in a &#39; prints 2</code></pre>
-<h2 id="logical-expression-short-circuit-evaluation">Logical expression short-circuit evaluation</h2>
-<p>In the code fragment below, if A and B are both func’s and the A func returns TRUE, then the B func is not called since the expression outcome will still be the same, the expression will evaluate to TRUE.</p>
+<h2 id="logical-expression-short-circuit-evaluation">Logical expression
+short-circuit evaluation</h2>
+<p>In the code fragment below, if A and B are both func’s and the A func
+returns TRUE, then the B func is not called since the expression outcome
+will still be the same, the expression will evaluate to TRUE.</p>
 <pre><code>if (A OR B) ...</code></pre>
-<p>In the next code fragment, if C and D are both func’s and the C func returns FALSE, then the D func is not called since the expression outcome will still be the same, the expression will evaluate to FALSE.</p>
+<p>In the next code fragment, if C and D are both func’s and the C func
+returns FALSE, then the D func is not called since the expression
+outcome will still be the same, the expression will evaluate to
+FALSE.</p>
 <pre><code>if (C AND D) ...</code></pre>
 <h2 id="funcsub-pointers">Func/Sub pointers</h2>
-<p>The @ operator can be used to obtain the address of a sub or func. The call statement is then used to invoke the sub or func pointed to by the pointer variable.</p>
+<p>The @ operator can be used to obtain the address of a sub or func.
+The call statement is then used to invoke the sub or func pointed to by
+the pointer variable.</p>
 <pre><code>func foo(s)
  foo=&quot;foo!&quot;+s
 end
@@ -155,19 +177,25 @@ pb = @bar
 call pb
 call @bar</code></pre>
 <h2 id="enhanced-chain">Enhanced chain</h2>
-<p>The chain command can now take a string or array of strings as the argument in lieu of a file name. After calling chain, the calling program now successfully resumes.</p>
+<p>The chain command can now take a string or array of strings as the
+argument in lieu of a file name. After calling chain, the calling
+program now successfully resumes.</p>
 <pre><code>tload list, code
 chain code</code></pre>
 <h2 id="lazy-strings">Lazy strings</h2>
-<p>Strings are normally defined using double quote characters. If the closing quote character is not present then the end of line marker is used to terminate the string definition, for example:</p>
+<p>Strings are normally defined using double quote characters. If the
+closing quote character is not present then the end of line marker is
+used to terminate the string definition, for example:</p>
 <pre><code>a = &quot;this is a string
 b = &quot; and this is another string
 ? a;b</code></pre>
 <h2 id="double-equals">Double equals</h2>
-<p>BASIC traditionally uses a single equals symbol for assignment and comparison, for example:</p>
+<p>BASIC traditionally uses a single equals symbol for assignment and
+comparison, for example:</p>
 <pre><code>a = &quot;cat&quot;
 if (a = &quot;cat&quot;): print &quot;cat&quot;: endif</code></pre>
-<p>SmallBASIC now allows you to use double equals to avoid a clash of programming habits with other languages you may happen to use.</p>
+<p>SmallBASIC now allows you to use double equals to avoid a clash of
+programming habits with other languages you may happen to use.</p>
 <pre><code>a = &quot;cat&quot;
 if (a == &quot;cat&quot;): print &quot;cat&quot;: endif</code></pre>
 </div>

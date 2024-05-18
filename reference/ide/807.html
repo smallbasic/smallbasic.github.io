@@ -3,8 +3,11 @@
 <p>ENV expr</p>
 </blockquote>
 <p>Adds a variable to the current environment variable-table.</p>
-<p>ENV can be used as SUB for setting and deleting Environment Variables and ENV can be used as a FUNCtion for returning a particular Environmet Variable or the whole set of them into an array.</p>
-<h3 id="example-1-setting-and-getting-evironment-variables">Example 1: Setting and getting Evironment Variables</h3>
+<p>ENV can be used as SUB for setting and deleting Environment Variables
+and ENV can be used as a FUNCtion for returning a particular Environmet
+Variable or the whole set of them into an array.</p>
+<h3 id="example-1-setting-and-getting-evironment-variables">Example 1:
+Setting and getting Evironment Variables</h3>
 <pre><code>SB1 = 5
 SB2 = &quot;My evironment variable&quot;
 
@@ -19,17 +22,22 @@ print ENV(&quot;SB1&quot;)
 print ENV(&quot;SB2&quot;)
 print ENV(&quot;SB3&quot;)
 print ENV(&quot;SB4&quot;)</code></pre>
-<h3 id="example-2-querry-all-environment-variables">Example 2: Querry all Environment Variables</h3>
+<h3 id="example-2-querry-all-environment-variables">Example 2: Querry
+all Environment Variables</h3>
 <pre><code>AllEnv = ENV(&quot;&quot;)
 
 for a in AllEnv
     print a
 next</code></pre>
-<h3 id="example-3-linux-querry-desktop_session">Example 3: (Linux) Querry DESKTOP_SESSION</h3>
+<h3 id="example-3-linux-querry-desktop_session">Example 3: (Linux)
+Querry DESKTOP_SESSION</h3>
 <pre><code>print ENV(&quot;DESKTOP_SESSION&quot;)    &#39;i.e will print &quot;plasma&quot; if using KDE</code></pre>
-<h3 id="example-4-delete-a-environment-variable-doesnt-work-in-linux">Example 4: Delete a Environment Variable (doesn’t work in Linux)</h3>
+<h3
+id="example-4-delete-a-environment-variable-doesnt-work-in-linux">Example
+4: Delete a Environment Variable (doesn’t work in Linux)</h3>
 <pre><code>ENV(&quot;SB1=&quot;)   &#39; Deletes SB1</code></pre>
-<h3 id="example-5-using-env-and-chain-to-create-a-eval-function">Example 5: Using ENV and CHAIN to create a eval-function</h3>
+<h3 id="example-5-using-env-and-chain-to-create-a-eval-function">Example
+5: Using ENV and CHAIN to create a eval-function</h3>
 <pre><code>&#39; Dedicated to MGA.
 &#39; s is any legal SmallBASIC Math Expression as String, e.g. &quot;1 + 2 / 4&quot;
 Func eval(s)
@@ -46,11 +54,19 @@ End Func
 ? eval(&quot;1 + 2 / 4&quot;)
 ? eval(&quot;6 * (Pow(2, 4) * 8)&quot;)
 ? eval(&quot;Rad((45 * 3) - 20) * 2&quot;)</code></pre>
-<h3 id="general-suggestions-using-environment-variables">General suggestions using Environment Variables</h3>
+<h3 id="general-suggestions-using-environment-variables">General
+suggestions using Environment Variables</h3>
 <ol type="1">
-<li>Never use names which are already used by the system or another process, such as “PATH”, “HOME”, “PWD”, etc. You should check which variable names are already in use.</li>
-<li>Use short and unique names, such as: “SB1”, SB2" or “SBv1”, “SBv2”, etc. It will keep the environment-variables-table readable, and will save space in the table.</li>
-<li>Don’t create more variables then you need. Reuse any variable which is not used. i.e. if “SB1” is unused anymore, then reuse it.</li>
-<li>On some systems the environment-variables-table is unique for each session (Linux for example) and this may be a bit confusing.</li>
-<li>Environment variables may or may not be case sensitive, i.e. “SB1” may be different then “sb1” on some systems (Linux for example).</li>
+<li>Never use names which are already used by the system or another
+process, such as “PATH”, “HOME”, “PWD”, etc. You should check which
+variable names are already in use.</li>
+<li>Use short and unique names, such as: “SB1”, SB2” or “SBv1”, “SBv2”,
+etc. It will keep the environment-variables-table readable, and will
+save space in the table.</li>
+<li>Don’t create more variables then you need. Reuse any variable which
+is not used. i.e. if “SB1” is unused anymore, then reuse it.</li>
+<li>On some systems the environment-variables-table is unique for each
+session (Linux for example) and this may be a bit confusing.</li>
+<li>Environment variables may or may not be case sensitive, i.e. “SB1”
+may be different then “sb1” on some systems (Linux for example).</li>
 </ol>

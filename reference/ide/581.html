@@ -2,9 +2,12 @@
 <blockquote>
 <p>APPEND a, var1 [, var2 [, …, varN]]</p>
 </blockquote>
-<p>Inserts the values <code>var1</code> to <code>varN</code> at the end of the array <code>a</code>. <code>var1</code> to <code>varN</code> can be any data type.</p>
+<p>Inserts the values <code>var1</code> to <code>varN</code> at the end
+of the array <code>a</code>. <code>var1</code> to <code>varN</code> can
+be any data type.</p>
 <p>Instead of APPEND the <code>&lt;&lt;</code> Operator can be used.</p>
-<h3 id="example-1-append-single-number">Example 1: Append single number</h3>
+<h3 id="example-1-append-single-number">Example 1: Append single
+number</h3>
 <pre><code>a = [1,2,3]
 print &quot;Before APPEND: &quot;; a
 
@@ -14,7 +17,8 @@ print &quot;After APPEND : &quot;; a
 &#39; Output:
 &#39; Before APPEND: [1,2,3]
 &#39; After APPEND : [1,2,3,4]</code></pre>
-<h3 id="example-2-append-multiple-numbers">Example 2: Append multiple numbers</h3>
+<h3 id="example-2-append-multiple-numbers">Example 2: Append multiple
+numbers</h3>
 <pre><code>a = [1,2,3]
 
 APPEND a, 4, 5
@@ -29,7 +33,8 @@ print a              &#39; Output: [1,2,3,[4,5,6]]</code></pre>
 
 APPEND a, &quot;d&quot;
 print a                 &#39; Output: [a,b,c,d]</code></pre>
-<h3 id="example-5-using-operator">Example 5: Using &lt;&lt; operator</h3>
+<h3 id="example-5-using-operator">Example 5: Using &lt;&lt;
+operator</h3>
 <pre><code>a = [1,2,3]
 
 a &lt;&lt; 4

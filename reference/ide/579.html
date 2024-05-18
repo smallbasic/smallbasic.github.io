@@ -2,7 +2,12 @@
 <blockquote>
 <p>n = WEEKDAY (dmy | (d,m,y) | julian_date)</p>
 </blockquote>
-<p>Returns the day of the week as a number between <code>0</code> and <code>6</code>. Sunday is <code>0</code>. WEEKDAY accepts a string <code>dmy</code> as returned by DATE, a number <code>julian_date</code> as returned by JULIAN or a date given by the three numbers <code>d</code> for day, <code>m</code> for month and <code>y</code> for year.</p>
+<p>Returns the day of the week as a number between <code>0</code> and
+<code>6</code>. Sunday is <code>0</code>. WEEKDAY accepts a string
+<code>dmy</code> as returned by DATE, a number <code>julian_date</code>
+as returned by JULIAN or a date given by the three numbers
+<code>d</code> for day, <code>m</code> for month and <code>y</code> for
+year.</p>
 <h3 id="example-1">Example 1</h3>
 <pre><code>PRINT WeekDay(DATE)                     &#39; Output: 3  -&gt; Wednesday
 PRINT WeekDay(Julian(31, 12, 2023))     &#39; Output: 0  -&gt; Sunday

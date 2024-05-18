@@ -2,8 +2,12 @@
 <blockquote>
 <p>REDIM var([lower TO] upper [, …] [, …])</p>
 </blockquote>
-<p>Reshape the array <code>var</code> while preserving the contents of the array. The array will have <code>(upper - lower) + 1</code> elements. If <code>lower</code> is not specified, and <code>OPTION BASE 1</code> hasn’t been used, elements start at 0.</p>
-<p>Redim can be used to add more elements to an array, to reshape a row-vector to a column-vector or reshape to a matrix.</p>
+<p>Reshape the array <code>var</code> while preserving the contents of
+the array. The array will have <code>(upper - lower) + 1</code>
+elements. If <code>lower</code> is not specified, and
+<code>OPTION BASE 1</code> hasn’t been used, elements start at 0.</p>
+<p>Redim can be used to add more elements to an array, to reshape a
+row-vector to a column-vector or reshape to a matrix.</p>
 <h3 id="examples">Examples</h3>
 <pre><code>A = [1, 2, 3, 4, 5, 6, 7, 8, 9]     &#39; Row vector (1D array) with 9 elements
 print A                             &#39; Output: [1,2,3,4,5,6,7,8,9]

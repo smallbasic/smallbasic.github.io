@@ -2,21 +2,28 @@
 <blockquote>
 <p>lb = LBOUND (array [, dim])</p>
 </blockquote>
-<p>Returns the lower bound <code>lb</code> of an array <code>array</code>. <code>dim</code> can be used to specifiy, at which dimension the lower bound should be returned if <code>array</code> is a multi-dimensional array. If <code>dim</code> is not used the lower bound of the first dimension will be returned.</p>
+<p>Returns the lower bound <code>lb</code> of an array
+<code>array</code>. <code>dim</code> can be used to specifiy, at which
+dimension the lower bound should be returned if <code>array</code> is a
+multi-dimensional array. If <code>dim</code> is not used the lower bound
+of the first dimension will be returned.</p>
 <p>See UBOUND for upper bound of an array.</p>
-<h3 id="example-1-lower-bound-of-one-dimensional-arrays">Example 1: Lower bound of one-dimensional arrays</h3>
+<h3 id="example-1-lower-bound-of-one-dimensional-arrays">Example 1:
+Lower bound of one-dimensional arrays</h3>
 <pre><code>dim A(5)
 dim B(5 to 10)
 
 print lbound(A)     &#39; Output: 0
 print lbound(B)     &#39; Output: 5</code></pre>
-<h3 id="example-2-lower-bound-of-multi-dimensional-arrays">Example 2: Lower bound of multi-dimensional arrays</h3>
+<h3 id="example-2-lower-bound-of-multi-dimensional-arrays">Example 2:
+Lower bound of multi-dimensional arrays</h3>
 <pre><code>dim A(5,6,7)
 dim B(5 to 10, 7 to 12, 9 to 14)
 
 print lbound(A, 2)     &#39; Output: 0
 print lbound(B, 2)     &#39; Output: 7</code></pre>
-<h3 id="example-3-using-option-base-1">Example 3: Using option base 1</h3>
+<h3 id="example-3-using-option-base-1">Example 3: Using option base
+1</h3>
 <pre><code>option base 1
 
 dim A(5)

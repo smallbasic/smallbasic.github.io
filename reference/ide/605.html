@@ -2,14 +2,19 @@
 <blockquote>
 <p>FILES (exp)</p>
 </blockquote>
-<p>Returns an array with the filenames. If there are no files, <code>FILES</code> returns an empty array. <code>exp</code> can contain the wildcards <code>*</code> and <code>?</code>. <code>exp</code> can include a path.</p>
-<h3 id="example-1-list-all-files-in-the-current-directory">Example 1: List all files in the current directory</h3>
+<p>Returns an array with the filenames. If there are no files,
+<code>FILES</code> returns an empty array. <code>exp</code> can contain
+the wildcards <code>*</code> and <code>?</code>. <code>exp</code> can
+include a path.</p>
+<h3 id="example-1-list-all-files-in-the-current-directory">Example 1:
+List all files in the current directory</h3>
 <pre><code>FileNames = files(&quot;*.*&quot;)
 
 for f in FileNames
     print f
 next</code></pre>
-<h3 id="example-2-list-all-files-matching-search-string">Example 2: List all files matching search string</h3>
+<h3 id="example-2-list-all-files-matching-search-string">Example 2: List
+all files matching search string</h3>
 <pre><code>FileNames = files(&quot;t?st.bas&quot;)
 
 for f in FileNames

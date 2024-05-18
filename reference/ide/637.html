@@ -2,8 +2,12 @@
 <blockquote>
 <p>CALL (p [, var1 [, …, varN])</p>
 </blockquote>
-<p>Invoke a sub or func by address pointer <code>p</code>. Optional <code>var1</code> to <code>varN</code> variables of every SmallBASIC data type can be passed to function or sub, the address pointer points to.</p>
-<h3 id="example-1-call-with-a-subroutine-pointer">Example 1: CALL with a subroutine pointer</h3>
+<p>Invoke a sub or func by address pointer <code>p</code>. Optional
+<code>var1</code> to <code>varN</code> variables of every SmallBASIC
+data type can be passed to function or sub, the address pointer points
+to.</p>
+<h3 id="example-1-call-with-a-subroutine-pointer">Example 1: CALL with a
+subroutine pointer</h3>
 <pre><code>sub MyPrint(i)
   print i
 end
@@ -11,7 +15,8 @@ end
 a = @MyPrint
 call a, &quot;test&quot;      &#39; when using CALL for subroutines,
                     &#39; please use CALL without brakets</code></pre>
-<h3 id="example-2-call-with-a-function-pointer">Example 2: CALL with a function pointer</h3>
+<h3 id="example-2-call-with-a-function-pointer">Example 2: CALL with a
+function pointer</h3>
 <pre><code>func Increment(i, b)
   return  i + b
 end
@@ -21,7 +26,8 @@ a = @Increment
 y = call(a,x,2)     &#39; when using CALL for functions,
                     &#39; please use CALL with brakets
 print y</code></pre>
-<h3 id="example-3-call-with-a-subroutine-pointer-and-byref">Example 3: CALL with a subroutine pointer and BYREF:</h3>
+<h3 id="example-3-call-with-a-subroutine-pointer-and-byref">Example 3:
+CALL with a subroutine pointer and BYREF:</h3>
 <pre><code>sub Increment(byref i, b)
   i = i + b
 end
@@ -30,7 +36,8 @@ x = 1
 a = @Increment
 call a,x,2
 print x</code></pre>
-<h3 id="example-4-passing-function-pointer-to-a-function">Example 4: Passing function pointer to a function</h3>
+<h3 id="example-4-passing-function-pointer-to-a-function">Example 4:
+Passing function pointer to a function</h3>
 <pre><code>func Increment(i)
   return i + 1
 end

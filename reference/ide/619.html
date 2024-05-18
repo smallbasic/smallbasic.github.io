@@ -2,10 +2,19 @@
 <blockquote>
 <p>PAINT [STEP] x, y [,fill-color [,border-color]]</p>
 </blockquote>
-<p>Fills an enclosed area on the graphics screen with the color <code>fill-color</code>. <code>x</code> and <code>y</code> are screen coordinates within the area that is to be filled.</p>
-<p>If <code>border-color</code> is specified then PAINT will fill outwards until is meets the specified border-color. If the border-color is not specified then PAINT will fill the area until it meets a color which is not the original color at <code>[x,y]</code>. Please note that border-color needs to be specified using the functions RGB or RGBF.</p>
-<p>If the keyword STEP is used, <code>x</code> and <code>y</code> move the graphics cursor in pixel. The area will be filled starting from this new position of the graphics cursor.</p>
-<h3 id="example-1-fill-without-specified-border-color">Example 1: Fill without specified border-color</h3>
+<p>Fills an enclosed area on the graphics screen with the color
+<code>fill-color</code>. <code>x</code> and <code>y</code> are screen
+coordinates within the area that is to be filled.</p>
+<p>If <code>border-color</code> is specified then PAINT will fill
+outwards until is meets the specified border-color. If the border-color
+is not specified then PAINT will fill the area until it meets a color
+which is not the original color at <code>[x,y]</code>. Please note that
+border-color needs to be specified using the functions RGB or RGBF.</p>
+<p>If the keyword STEP is used, <code>x</code> and <code>y</code> move
+the graphics cursor in pixel. The area will be filled starting from this
+new position of the graphics cursor.</p>
+<h3 id="example-1-fill-without-specified-border-color">Example 1: Fill
+without specified border-color</h3>
 <pre><code>&#39; draw a diamond shaped polygon
 polygon = [[100,100], [150,50], [200,100], [150,200], [100,100]]
 color 14
@@ -18,7 +27,9 @@ rect 120,60,180,180
 &#39; fill area inside
 color 12
 paint 150,130</code></pre>
-<h3 id="example-2-fill-with-specified-fill-color-and-border-color">Example 2: Fill with specified fill-color and border-color</h3>
+<h3
+id="example-2-fill-with-specified-fill-color-and-border-color">Example
+2: Fill with specified fill-color and border-color</h3>
 <pre><code>&#39; draw a diamond shaped polygon
 polygon = [[100,100], [150,50], [200,100], [150,200], [100,100]]
 color 14

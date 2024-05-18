@@ -66,7 +66,8 @@
 <div class="article">
 <h1 id="android-changelog">Android Changelog</h1>
 <div class="siteSub">
-<p><a href="/">Home</a> &gt; <a href="/pages/articles.html">Articles</a></p>
+<p><a href="/">Home</a> &gt; <a
+href="/pages/articles.html">Articles</a></p>
 </div>
 <p><strong>12.27 (25 April 2024)</strong></p>
 <ul>
@@ -89,16 +90,19 @@
 <li>Fixed RGB and RGBF now clamp parameters (Joe7M)</li>
 <li>Fixed bug in BGETC when using sockets (Joe7M)</li>
 <li>Fixed editor display issues with DOS line-endings</li>
-<li>Fixed for BIN and changes to return values of POLYCENT and POLYAREA (Joe7M)</li>
+<li>Fixed for BIN and changes to return values of POLYCENT and POLYAREA
+(Joe7M)</li>
 <li>Fixed line-chart line drawing to use current foreground color</li>
 <li>Fixed printing chr(0) into a file or network interface</li>
 <li>Fixed setenv error #187</li>
-<li>Implemented STATMEDIAN() to calculate the median of a data sample in statistics (Joe7M)</li>
+<li>Implemented STATMEDIAN() to calculate the median of a data sample in
+statistics (Joe7M)</li>
 <li>Implemented STATSTD() to calculate standard deviation (Joe7M)</li>
 </ul>
 <p><strong>12.25 (23 December 2022)</strong></p>
 <ul>
-<li>Implemented a new web service for managing files via desktop browser</li>
+<li>Implemented a new web service for managing files via desktop
+browser</li>
 <li>Fixed a problem with TRIM which broke the TinyBASIC.bas sample</li>
 <li>Fixed RECT FILLED when the coordinates are inverted</li>
 <li>Fixed SPLIT command - empty input now gives zero length output</li>
@@ -111,7 +115,8 @@
 <p><strong>12.23 (31 August 2021)</strong></p>
 <ul>
 <li>Fix array append regression #122</li>
-<li>Hide keypad on run. Show keypad for INPUT, then re-hide on completion.</li>
+<li>Hide keypad on run. Show keypad for INPUT, then re-hide on
+completion.</li>
 </ul>
 <p><strong>12.22 (16 July 2021)</strong></p>
 <ul>
@@ -121,13 +126,15 @@
 <li>Fixed array access regression</li>
 <li>Implemented image.draw(), fix image.save in andoid #115</li>
 <li>Removed “requestLegacyExternalStorage” for AppStore compliance</li>
-<li>Removed path navigation to show unified view of available folders</li>
+<li>Removed path navigation to show unified view of available
+folders</li>
 <li>Removed samsung keypad warning</li>
 </ul>
 <p><strong>12.21 (14 April 2021)</strong></p>
 <ul>
 <li>Added range checking for the web services port</li>
-<li>Fix CIRCLE command to ensure radius uses the WINDOW coordinate system</li>
+<li>Fix CIRCLE command to ensure radius uses the WINDOW coordinate
+system</li>
 <li>Fix to ensure the default VIEW is maintained during resizing</li>
 <li>Fix square bracket field access issue</li>
 <li>Fix crash when line length limit exceeded</li>
@@ -184,7 +191,8 @@
 <p><strong>0.12.14.2 (16 November 2018)</strong></p>
 <ul>
 <li>Fix navigation when network access down then available</li>
-<li>Changed UI display from black to be a slightly lighter onyx color.</li>
+<li>Changed UI display from black to be a slightly lighter onyx
+color.</li>
 <li>Update help tip in scratch window</li>
 </ul>
 <p><strong>0.12.14.1 (14 October 2018)</strong></p>
@@ -195,8 +203,10 @@
 </ul>
 <p><strong>0.12.14 (28 September 2018)</strong></p>
 <ul>
-<li>Fix error message when command “LINE INPUT” attempts to read a non open file</li>
-<li>Fix crash when attempting to load an image from a failed network connection</li>
+<li>Fix error message when command “LINE INPUT” attempts to read a non
+open file</li>
+<li>Fix crash when attempting to load an image from a failed network
+connection</li>
 </ul>
 <p><strong>0.12.13.1 (13 September 2018)</strong></p>
 <ul>
@@ -210,14 +220,18 @@
 <li>The build now targets the latest android version</li>
 <li>Updated path handling to remove hard coded /sdcard paths</li>
 <li>Updated the build system to use android studio</li>
-<li>Fix trailing spaces with LOCAL command when terminated with comma</li>
+<li>Fix trailing spaces with LOCAL command when terminated with
+comma</li>
 <li>Fix TLOAD input error handling</li>
 </ul>
 <p><strong>0.12.11 30 Dec, 2017</strong></p>
 <ul>
-<li>Fix issue with image save() command to ensure resulting array has correct dimensions</li>
-<li>Fix issue with display driver escape ESCm (reset scroll position)</li>
-<li>Fix potential crash when passing non string arguments to some built-in string funcs</li>
+<li>Fix issue with image save() command to ensure resulting array has
+correct dimensions</li>
+<li>Fix issue with display driver escape ESCm (reset scroll
+position)</li>
+<li>Fix potential crash when passing non string arguments to some
+built-in string funcs</li>
 </ul>
 <p><strong>0.12.10 24 Dec, 2017</strong></p>
 <ul>
@@ -226,9 +240,11 @@
 <li>COMMON: Add support code arrays declared over multiple lines</li>
 <li>COMMON: Assign multiple variables from an ARRAY (1)</li>
 <li>COMMON: Can now declare an empty array with: a=[]</li>
-<li>COMMON: FUNC can now use RETURN statement as synonym for FUNCNAME=result (1)</li>
+<li>COMMON: FUNC can now use RETURN statement as synonym for
+FUNCNAME=result (1)</li>
 <li>COMMON: Fix FUNC call as pseudo class method (1)</li>
-<li>COMMON: Fix inline local variable declaration for complex assignments</li>
+<li>COMMON: Fix inline local variable declaration for complex
+assignments</li>
 <li>COMMON: Fix issue with INPUT command</li>
 <li>COMMON: Fix line number count when using multi-line strings</li>
 <li>COMMON: Fix potential infinite loop using the MAX command</li>
@@ -236,18 +252,23 @@
 <li>COMMON: Implemented Maxint system constant (1)</li>
 <li>COMMON: Implemented Nil system constant (1)</li>
 <li>COMMON: Implemented OPTION AUTOLOCAL runtime option (2)</li>
-<li>COMMON: MID, LEFT, RIGHT, REPLACE, INSTR, RINSTR no longer error on invalid pos input</li>
-<li>COMMON: Now errors when using a keyword as part of a MAP variable</li>
+<li>COMMON: MID, LEFT, RIGHT, REPLACE, INSTR, RINSTR no longer error on
+invalid pos input</li>
+<li>COMMON: Now errors when using a keyword as part of a MAP
+variable</li>
 <li>COMMON: Minor performance optimisations</li>
 <li>COMMON: REPLACE str argument can now be a number type</li>
 <li>COMMON: SUB can now use RETURN statement (1)</li>
-<li>COMMON: VAL command now ignores any input trailing non digit chars</li>
-<li>UI: The FORM command now reports an error when IMAGE input fails to load</li>
+<li>COMMON: VAL command now ignores any input trailing non digit
+chars</li>
+<li>UI: The FORM command now reports an error when IMAGE input fails to
+load</li>
 </ul>
 <ol type="1">
 <li>See 2048.bas for examples<br />
 </li>
-<li>OPTION AUTOLOCAL causes all variables used only inside a SUB or FUNC<br />
+<li>OPTION AUTOLOCAL causes all variables used only inside a SUB or
+FUNC<br />
 to have local scope.</li>
 </ol>
 <p><strong>0.12.9 April 15, 2017</strong></p>
@@ -276,7 +297,8 @@ to have local scope.</li>
 <li>Added android LOCATION handling</li>
 <li>Added sound. Play .WAV files using PLAY(“file://” + path)</li>
 <li>Fixed regression with array parsing</li>
-<li>Updated error message when calling built-in FUNC without assigning the result</li>
+<li>Updated error message when calling built-in FUNC without assigning
+the result</li>
 <li>Fixed TAB to use character positions not pixels</li>
 <li>Fixed issue with nested try/catch</li>
 <li>Fixed NOSOUND</li>
@@ -287,13 +309,15 @@ to have local scope.</li>
 <ul>
 <li>Updates to improve performance and stability</li>
 <li>Fixed issues with various keywords</li>
-<li>See “desktop release notes page”:http://smallbasic.sourceforge.net/?q=node/1246 for details.</li>
+<li>See “desktop release notes
+page”:http://smallbasic.sourceforge.net/?q=node/1246 for details.</li>
 </ul>
 <p><strong>0.12.6 May 15, 2016</strong></p>
 <ul>
 <li>Updates to improve performance and stability</li>
 <li>Fixed issues with various keywords</li>
-<li>See “desktop release notes page”:http://smallbasic.sourceforge.net/?q=node/1246 for details.</li>
+<li>See “desktop release notes
+page”:http://smallbasic.sourceforge.net/?q=node/1246 for details.</li>
 </ul>
 <p><strong>0.12.5 February 13, 2016</strong></p>
 <ul>
@@ -302,9 +326,12 @@ to have local scope.</li>
 </ul>
 <p><strong>0.12.4 February 1, 2016</strong></p>
 <ul>
-<li>Fix pause and resume handling, see http://smallbasic.sourceforge.net/?q=node/1377</li>
-<li>Added caching of online samples to avoid reloading over the network</li>
-<li>Pressing the back button from an online sample now returns to the samples home page</li>
+<li>Fix pause and resume handling, see
+http://smallbasic.sourceforge.net/?q=node/1377</li>
+<li>Added caching of online samples to avoid reloading over the
+network</li>
+<li>Pressing the back button from an online sample now returns to the
+samples home page</li>
 <li>The shell program now does case-less .bas file sorting</li>
 </ul>
 <p><strong>0.12.1 November 29, 2015</strong></p>
@@ -315,7 +342,8 @@ to have local scope.</li>
 <li>Fix over scroll issue with line number widget</li>
 <li>Fix file manager .bas file case sensitivity</li>
 <li>Fix editor markup on map fields that look like keywords</li>
-<li>Fix scanner inserting line-no bytecode for empty or comment lines</li>
+<li>Fix scanner inserting line-no bytecode for empty or comment
+lines</li>
 <li>Fix editor run error message display time length</li>
 <li>Implemented calling IMAGE with another image variable</li>
 </ul>
@@ -327,7 +355,8 @@ to have local scope.</li>
 <li>Fix TSAVE with try/catch</li>
 <li>Fix PRINT 1/1000 and other floating point rounding issues</li>
 <li>Fix problem with 59 char INPUT prompt</li>
-<li>Removed obsolete/unimplemented keywords WSPLIT, PLOT2, UNLOADLIB</li>
+<li>Removed obsolete/unimplemented keywords WSPLIT, PLOT2,
+UNLOADLIB</li>
 <li>Added multi-item case selection</li>
 </ul>
 <p><strong>0.11.17 March 22, 2015</strong></p>
@@ -337,10 +366,13 @@ to have local scope.</li>
 <li>Updated to freetype version 2.5.5 and NDK version r10d</li>
 <li>Improved graphics and runtime performance.</li>
 <li>Source code view displays line numbers</li>
-<li>Source code view displays error information for program error line</li>
-<li>Line drawing now uses antialiasing to produce smoother looking lines.</li>
+<li>Source code view displays error information for program error
+line</li>
+<li>Line drawing now uses antialiasing to produce smoother looking
+lines.</li>
 <li>Improved syntax error messages</li>
-<li>Updated the PAUSE statement to allow waiting until a system event has occurred</li>
+<li>Updated the PAUSE statement to allow waiting until a system event
+has occurred</li>
 <li>Improved INPUT widget including clipboard handling.</li>
 <li>Update INKEY to return ALT, CTRL, ALT+CTRL key information</li>
 <li>Added timer func support.</li>
@@ -348,7 +380,9 @@ to have local scope.</li>
 <li>Update IMAGE handling</li>
 <li>Added WINDOW system object to control the ansiwidget</li>
 </ul>
-<p>See the “Release notes”:http://smallbasic.sourceforge.net/?q=node/1246 article for more information</p>
+<p>See the “Release
+notes”:http://smallbasic.sourceforge.net/?q=node/1246 article for more
+information</p>
 <p><strong>0.11.11 July 28, 2014</strong></p>
 <ul>
 <li>Fix build to use correct processor optimisations</li>
@@ -379,22 +413,33 @@ to have local scope.</li>
 <p><strong>0.11.6 June 22, 2014</strong></p>
 <ul>
 <li>Implemented BEEP/SOUND. Only background play mode is supported.</li>
-<li>Implemented launch by URL. This allows SmallBASIC programs to be embedded in a QR code and launched from a separate QR code reader program. The URL format is smallbasic://x/CODE. CODE can URL encoded text, or BASE64 gzipped text. I’ll make a web page to create the image if there is enough interest. Note, programs launched via QR codes will not be able to execute any of the FILE based commands.</li>
-<li>Implemented screen layout handling to adjust the display when the virtual keypad is displayed.</li>
+<li>Implemented launch by URL. This allows SmallBASIC programs to be
+embedded in a QR code and launched from a separate QR code reader
+program. The URL format is smallbasic://x/CODE. CODE can URL encoded
+text, or BASE64 gzipped text. I’ll make a web page to create the image
+if there is enough interest. Note, programs launched via QR codes will
+not be able to execute any of the FILE based commands.</li>
+<li>Implemented screen layout handling to adjust the display when the
+virtual keypad is displayed.</li>
 <li>Fixed potential crash evaluating “a \ b”.</li>
-<li>Fixed a display issue when scrolling beyond the virtual screen size.</li>
-<li>The printed Web Service information now includes the system IP address.</li>
-<li>Updated support tools; android-ndk-r9d, freetype-2.5.3, libpng-1.6.12.</li>
+<li>Fixed a display issue when scrolling beyond the virtual screen
+size.</li>
+<li>The printed Web Service information now includes the system IP
+address.</li>
+<li>Updated support tools; android-ndk-r9d, freetype-2.5.3,
+libpng-1.6.12.</li>
 </ul>
 <p><strong>0.11.5 Jan 4, 2014</strong></p>
 <ul>
 <li>Replaced battery drain error with console warning.</li>
 <li>Console is now a graphics screen.</li>
-<li>Fixed minor display and event handler bugs affecting some samples programs.</li>
+<li>Fixed minor display and event handler bugs affecting some samples
+programs.</li>
 </ul>
 <p><strong>0.11.4 Dec 18, 2013</strong></p>
 <ul>
-<li>Built with android NDK for performance and to allow future versions to use native app features.</li>
+<li>Built with android NDK for performance and to allow future versions
+to use native app features.</li>
 <li>Added web service for remote file edit/run.</li>
 <li>Can now launch bas files from Android file browser.</li>
 <li>Added restart command.</li>
@@ -402,7 +447,9 @@ to have local scope.</li>
 </ul>
 <p><strong>0.11.3 Dec 19, 2012</strong></p>
 <ul>
-<li>AT and PEN now work with WINDOW based coordinates. This will allow programs written for PalmOS to appear correctly on modern mobile screen resolutions.</li>
+<li>AT and PEN now work with WINDOW based coordinates. This will allow
+programs written for PalmOS to appear correctly on modern mobile screen
+resolutions.</li>
 </ul>
 <p><strong>0.11.2 Dec 8, 2012</strong></p>
 <ul>

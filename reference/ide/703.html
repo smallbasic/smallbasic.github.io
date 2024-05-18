@@ -1,15 +1,19 @@
 <h1 id="root">ROOT</h1>
 <blockquote>
-<p>ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE expr</p>
+<p>ROOT low, high, segs, maxerr, BYREF result, BYREF errcode USE
+expr</p>
 </blockquote>
 <p>Roots of f(x).</p>
-<p>ROOT will find the first x-intercept of the given function ( where f(x) = 0 ) in the interval [<code>low</code>, <code>high</code>]</p>
+<p>ROOT will find the first x-intercept of the given function ( where
+f(x) = 0 ) in the interval [<code>low</code>, <code>high</code>]</p>
 <ul>
 <li><code>low</code>: the lower limit</li>
 <li><code>high</code>: the upper limit</li>
 <li><code>segs</code>: the number of segments (spaces)</li>
-<li><code>maxerr</code>: tolerance (IF ABS(f(x)) &lt; maxerr THEN OK)</li>
-<li><code>errcode</code>: 0 for success; otherwise calculation error</li>
+<li><code>maxerr</code>: tolerance (IF ABS(f(x)) &lt; maxerr THEN
+OK)</li>
+<li><code>errcode</code>: 0 for success; otherwise calculation
+error</li>
 <li><code>result</code>: the result</li>
 <li><code>expr</code>: the given function</li>
 </ul>

@@ -2,9 +2,15 @@
 <blockquote>
 <p>SPLIT s, delim, byref words [, pairs] [USE expr]</p>
 </blockquote>
-<p>Splits the string <code>s</code> at the position of the given delimiters <code>delim</code> and returns an array <code>words</code> with the splitted substrings. The optional parameter <code>pairs</code> can be used to group words. The optional <code>Use expr</code> is applied to every splitted substring. If <code>delim</code> contains more than one character, each character representing a delimiter.</p>
+<p>Splits the string <code>s</code> at the position of the given
+delimiters <code>delim</code> and returns an array <code>words</code>
+with the splitted substrings. The optional parameter <code>pairs</code>
+can be used to group words. The optional <code>Use expr</code> is
+applied to every splitted substring. If <code>delim</code> contains more
+than one character, each character representing a delimiter.</p>
 <p>See SINPUT for an alternative command to split a string.</p>
-<h3 id="example-1-split-a-string-using-two-delimiters">Example 1: Split a string using two delimiters</h3>
+<h3 id="example-1-split-a-string-using-two-delimiters">Example 1: Split
+a string using two delimiters</h3>
 <pre><code>s = &quot;/etc/temp/filename.ext&quot;
 SPLIT s, &quot;/.&quot;, v                    &#39; Splits the string using the delimiters &quot;/&quot; and &quot;.&quot;
 FOR i = 0 TO UBOUND(v)
@@ -17,7 +23,8 @@ NEXT
 &#39; 2 [temp]
 &#39; 3 [filename]
 &#39; 4 [ext]</code></pre>
-<h3 id="example-2-using-the-argument-pairs">Example 2 : Using the argument “pairs”</h3>
+<h3 id="example-2-using-the-argument-pairs">Example 2 : Using the
+argument “pairs”</h3>
 <pre><code>s = &quot;/etc/temp/filename.ext&quot;
 SPLIT s, &quot;/&quot;, v, &quot;temp&quot;
 FOR i = 0 TO UBOUND(v)

@@ -17,27 +17,33 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">0</td>
-<td style="text-align: left;">True (non zero) if there is a new pen or mouse event</td>
+<td style="text-align: left;">True (non zero) if there is a new pen or
+mouse event</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">1</td>
-<td style="text-align: left;">x position of last pen down, tap, mouse button down</td>
+<td style="text-align: left;">x position of last pen down, tap, mouse
+button down</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">2</td>
-<td style="text-align: left;">y position of last pen down, tap, mouse button down</td>
+<td style="text-align: left;">y position of last pen down, tap, mouse
+button down</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">3</td>
-<td style="text-align: left;">True if pen is down, mouse left button is pressed or tap</td>
+<td style="text-align: left;">True if pen is down, mouse left button is
+pressed or tap</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">4</td>
-<td style="text-align: left;">Pen, tap: last/current x position, MOUSE: the current x position only if the left mouse button is pressed</td>
+<td style="text-align: left;">Pen, tap: last/current x position, MOUSE:
+the current x position only if the left mouse button is pressed</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">5</td>
-<td style="text-align: left;">Pen, tap: last/current y position, MOUSE: the current x position only if the left mouse button is pressed</td>
+<td style="text-align: left;">Pen, tap: last/current y position, MOUSE:
+the current x position only if the left mouse button is pressed</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">10</td>
@@ -49,20 +55,27 @@
 </tr>
 <tr class="odd">
 <td style="text-align: center;">12</td>
-<td style="text-align: left;">true if the left mouse button is pressed</td>
+<td style="text-align: left;">true if the left mouse button is
+pressed</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">13</td>
-<td style="text-align: left;">true if the right mouse button is pressed</td>
+<td style="text-align: left;">true if the right mouse button is
+pressed</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">14</td>
-<td style="text-align: left;">true if the middle mouse button is pressed</td>
+<td style="text-align: left;">true if the middle mouse button is
+pressed</td>
 </tr>
 </tbody>
 </table>
-<p>PEN must be enabled prior to use of this function with <code>Pen ON|OFF</code></p>
-<p>Most important values are 3, 4 and 5. With <code>PEN(3)</code> you will know, if the left mouse button was pressed or the screen was tapped. With <code>PEN(4)</code> and <code>PEN(5)</code> you will get the coordinates of that click or tap. See example 2 and 3.</p>
+<p>PEN must be enabled prior to use of this function with
+<code>Pen ON|OFF</code></p>
+<p>Most important values are 3, 4 and 5. With <code>PEN(3)</code> you
+will know, if the left mouse button was pressed or the screen was
+tapped. With <code>PEN(4)</code> and <code>PEN(5)</code> you will get
+the coordinates of that click or tap. See example 2 and 3.</p>
 <h3 id="example-1-overview">Example 1: Overview</h3>
 <pre><code>Print &quot;  Move and click the Pen or Mouse [press Esc to stop]...&quot;
 Print
@@ -82,7 +95,8 @@ While Inkey &lt;&gt; Chr(27) Do                 &#39; Press Esc key to exit loop
   print
   print &quot;Mouse Left, Middle, Right down: &quot;, Pen(12), Pen(14), Pen(13);
 Wend</code></pre>
-<h3 id="example-2-get-position-of-tap-or-mouse-click">Example 2: Get position of tap or mouse click</h3>
+<h3 id="example-2-get-position-of-tap-or-mouse-click">Example 2: Get
+position of tap or mouse click</h3>
 <pre><code>pen on
 
 print &quot;Press left mouse button or tab screen. Press q to quit.&quot;

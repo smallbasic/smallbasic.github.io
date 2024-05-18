@@ -2,10 +2,16 @@
 <blockquote>
 <p>LOCAL var1 [, var2, …, varn]</p>
 </blockquote>
-<p>Declare local variables inside a SUB or FUNC. Local variables are independent of global variables of the same name.</p>
-<p>If inside a sub or a function a local variable with the same name as an already existing global variabale is declared, the global variable can’t be accessed inside that function or sub. Changing the local varibale will not change the global variable.</p>
-<p>Local variables no longer exist once the SUB or FUNC has returned.</p>
-<p>Use local variables insides subs or functions to make sure, that global variables with the same names are not accidentally changed.</p>
+<p>Declare local variables inside a SUB or FUNC. Local variables are
+independent of global variables of the same name.</p>
+<p>If inside a sub or a function a local variable with the same name as
+an already existing global variabale is declared, the global variable
+can’t be accessed inside that function or sub. Changing the local
+varibale will not change the global variable.</p>
+<p>Local variables no longer exist once the SUB or FUNC has
+returned.</p>
+<p>Use local variables insides subs or functions to make sure, that
+global variables with the same names are not accidentally changed.</p>
 <h3 id="example">Example:</h3>
 <pre><code>A = 1   &#39; global variable
 

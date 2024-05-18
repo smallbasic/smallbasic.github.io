@@ -43,13 +43,54 @@ line x1, y1, x1 + 100, y1 + 100*TAN(RAD(angle))     &#39; &lt;== HERE IS TAN
 arc x1, y1, 100, 0, RAD(angle), 1, 14               &#39; 14 = color yellow</code></pre>
 <h3 id="trigonometry-lesson">Trigonometry lesson</h3>
 <p>Review:</p>
-<p>Trigonometry is the study of right triangles, those that have one 90 degree angle AKA Pi/2 in radians. These right triangles are infinite in a rectilinear coordinate system with x,y referring to screen position in relation to an origin point (0,0).</p>
-<p>In SmallBASIC the y axis increases from top to bottom and in SmallBASIC the angle measures used for arguments to SIN and COS and the other Trig Angles are expected to be in radian measure as opposed to degree measure.</p>
-<p>This is a standard conflict and source of confusion from what you might learn in math class and doing stuff on a computer. For all triangles that have all 3 angles the same, their legs will have exactly the same ratios between themselves.</p>
-<p>Feed a trig function an angle and it will return the special ratio between the sides of the triangle that is universal to all triangles that have the same equal angle measures. Feed the COS function an angle and it will return the universal ratio for the leg adjacent divided by the hypotenuse. ( Adjacent means next to or attached in the case of angles.)</p>
-<p>Some more information gained from study or right angles: The COS for one acute angle in a right triangle is the SIN for the other acute angle. For 45 degree angle (Pi/4 radians) the two legs are the same therefore SIN(RAD(45 degrees)) = COS(RAD(45 degrees)) = .7071… notice if that is squared =.5 exactly 1-COS(angle)<sup>2=SIN(angle)</sup>2 As the angle size approaches 0, COS(angle) &gt; 1 and SIN(angle) &gt;0 At angle = 0 you have more a line segment than a triangle.</p>
-<p>Similarly as angle approaches 90 degrees = Pi/2 radians, the COS(angle) ratio approaches&gt; 0 and SIN(angle) &gt;1 Trig functions are Unary Operators, they take one argument, an angle expressed in Radians, and return to you the ratio of the triangle sides involved.</p>
-<p>The COS returns the ratio of the leg adjacent the angle divided by the hypotenuse. adj/hyp The SIN function returns the leg opposite the angle fed the function divided by the hypotenuse. opp/hyp The third main trig function is TAN, tangent. opp/adj The TAN(angle in radians) returns the ratio of the opp side divided by the adjacent side.</p>
-<p>In SmallBASIC this is very handy because side opposite/ side adjacent is the same as y/x the same two items that define a point location! Can you see what this means? Does a chill of revelation run up and down your spine? Oh! that means for any point x,y on the screen, I can find the angle it is from the origin!</p>
-<p>It is the ATAN(y/x) We are almost ready now to play pin the tail on the donkey! Hang in there… The A before the TAN, the A before the SIN, COS… means ARC ATAN is pronounced ARC TANGENT; ACOS is pronounced ARC COSINE; ASIN is pronounced ARC SIN.</p>
-<p>In each the ARC means The Angle whose Trig Ratio is: (ratio of two sides) so ATAN is the Angle whose TAN ratio is (opp leg lentgh/adj leg length) We feed ATAN a leg ratio argument and it tells what angle that ratio came from. ARC in the Language reference is referred to as “the inverse” If TAN( an angle) = ratio then ATAN( ratio=opp/adj ) = an angle (in radians) DEG(ATAN(opp/adj) = an angle in degrees You can think or the A in front of TAN or COS or SIN as give me “An Angle” without the A you get side ratios.</p>
+<p>Trigonometry is the study of right triangles, those that have one 90
+degree angle AKA Pi/2 in radians. These right triangles are infinite in
+a rectilinear coordinate system with x,y referring to screen position in
+relation to an origin point (0,0).</p>
+<p>In SmallBASIC the y axis increases from top to bottom and in
+SmallBASIC the angle measures used for arguments to SIN and COS and the
+other Trig Angles are expected to be in radian measure as opposed to
+degree measure.</p>
+<p>This is a standard conflict and source of confusion from what you
+might learn in math class and doing stuff on a computer. For all
+triangles that have all 3 angles the same, their legs will have exactly
+the same ratios between themselves.</p>
+<p>Feed a trig function an angle and it will return the special ratio
+between the sides of the triangle that is universal to all triangles
+that have the same equal angle measures. Feed the COS function an angle
+and it will return the universal ratio for the leg adjacent divided by
+the hypotenuse. ( Adjacent means next to or attached in the case of
+angles.)</p>
+<p>Some more information gained from study or right angles: The COS for
+one acute angle in a right triangle is the SIN for the other acute
+angle. For 45 degree angle (Pi/4 radians) the two legs are the same
+therefore SIN(RAD(45 degrees)) = COS(RAD(45 degrees)) = .7071… notice if
+that is squared =.5 exactly 1-COS(angle)<sup>2=SIN(angle)</sup>2 As the
+angle size approaches 0, COS(angle) &gt; 1 and SIN(angle) &gt;0 At angle
+= 0 you have more a line segment than a triangle.</p>
+<p>Similarly as angle approaches 90 degrees = Pi/2 radians, the
+COS(angle) ratio approaches&gt; 0 and SIN(angle) &gt;1 Trig functions
+are Unary Operators, they take one argument, an angle expressed in
+Radians, and return to you the ratio of the triangle sides involved.</p>
+<p>The COS returns the ratio of the leg adjacent the angle divided by
+the hypotenuse. adj/hyp The SIN function returns the leg opposite the
+angle fed the function divided by the hypotenuse. opp/hyp The third main
+trig function is TAN, tangent. opp/adj The TAN(angle in radians) returns
+the ratio of the opp side divided by the adjacent side.</p>
+<p>In SmallBASIC this is very handy because side opposite/ side adjacent
+is the same as y/x the same two items that define a point location! Can
+you see what this means? Does a chill of revelation run up and down your
+spine? Oh! that means for any point x,y on the screen, I can find the
+angle it is from the origin!</p>
+<p>It is the ATAN(y/x) We are almost ready now to play pin the tail on
+the donkey! Hang in there… The A before the TAN, the A before the SIN,
+COS… means ARC ATAN is pronounced ARC TANGENT; ACOS is pronounced ARC
+COSINE; ASIN is pronounced ARC SIN.</p>
+<p>In each the ARC means The Angle whose Trig Ratio is: (ratio of two
+sides) so ATAN is the Angle whose TAN ratio is (opp leg lentgh/adj leg
+length) We feed ATAN a leg ratio argument and it tells what angle that
+ratio came from. ARC in the Language reference is referred to as “the
+inverse” If TAN( an angle) = ratio then ATAN( ratio=opp/adj ) = an angle
+(in radians) DEG(ATAN(opp/adj) = an angle in degrees You can think or
+the A in front of TAN or COS or SIN as give me “An Angle” without the A
+you get side ratios.</p>

@@ -68,63 +68,92 @@
 <blockquote>
 <p>Using Atom</p>
 </blockquote>
-<p><em>"Atom is a free and open-source text and source code editor for macOS, Linux, and Microsoft Windows with support for plug-ins written in JavaScript, and embedded Git Control. Developed by GitHub, Atom is a desktop application built using web technologies. Most of the extending packages have free software licenses and are community-built and maintained. Atom is based on Electron (formerly known as Atom Shell),a framework that enables cross-platform desktop applications using Chromium and Node.js.Atom was initially written in CoffeeScript and Less, but much of it has been converted to JavaScript.</em> <em>Atom was released from beta, as version 1.0, on 25 June 2015. Its developers call it a “hackable text editor for the 21st Century”, as it is fully customizable in HTML, CSS, and JavaScript." (<a href="https://en.wikipedia.org/wiki/Atom_(text_editor)">wikipedia</a>)</em></p>
+<p><em>“Atom is a free and open-source text and source code editor for
+macOS, Linux, and Microsoft Windows with support for plug-ins written in
+JavaScript, and embedded Git Control. Developed by GitHub, Atom is a
+desktop application built using web technologies. Most of the extending
+packages have free software licenses and are community-built and
+maintained. Atom is based on Electron (formerly known as Atom Shell),a
+framework that enables cross-platform desktop applications using
+Chromium and Node.js.Atom was initially written in CoffeeScript and
+Less, but much of it has been converted to JavaScript.</em> <em>Atom was
+released from beta, as version 1.0, on 25 June 2015. Its developers call
+it a “hackable text editor for the 21st Century”, as it is fully
+customizable in HTML, CSS, and JavaScript.” (<a
+href="https://en.wikipedia.org/wiki/Atom_(text_editor)">wikipedia</a>)</em></p>
 <figure>
-<img src="https://github.com/Joe7M/smallbasic.atom.syntaxcoloring/raw/main/Screenshot.png" alt="" /><figcaption>Example</figcaption>
+<img
+src="https://github.com/Joe7M/smallbasic.atom.syntaxcoloring/raw/main/Screenshot.png"
+alt="Example" />
+<figcaption aria-hidden="true">Example</figcaption>
 </figure>
-<h2 id="setup-syntax-highlighting-and-coloring">Setup Syntax Highlighting and Coloring</h2>
-<p>The Atom package for syntax highlighting and code snippets can be installed with the build in package manager. Go to “Edit-&gt;Preferences-&gt;Install”. Search for “lang-smallbasic” and install the package.</p>
+<h2 id="setup-syntax-highlighting-and-coloring">Setup Syntax
+Highlighting and Coloring</h2>
+<p>The Atom package for syntax highlighting and code snippets can be
+installed with the build in package manager. Go to
+“Edit-&gt;Preferences-&gt;Install”. Search for “lang-smallbasic” and
+install the package.</p>
 <h2 id="setup-code-execution">Setup Code Execution</h2>
-<p>To execute the bas-file, a package for command execution needs to be installed. Please search for “atom-shell-commands” and install it. Next you have to open the atom config-file “Edit-&gt;Config”. Insert the following code into “config.cson”:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cson"><code class="sourceCode coffee"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="st">&quot;atom-shell-commands&quot;</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    commands<span class="kw">:</span> <span class="kw">[</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>      <span class="kw">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>        name<span class="kw">:</span> <span class="st">&quot;run&quot;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>        command<span class="kw">:</span> <span class="st">&quot;C:/Users/Joe7M/Documents/SmallBASIC/bin/sbasicg.exe&quot;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>        arguments<span class="kw">:</span> <span class="kw">[</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>          <span class="st">&quot;-r&quot;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>          <span class="st">&quot;{FileName}&quot;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>        <span class="kw">]</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>        options<span class="kw">:</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>          cwd<span class="kw">:</span> <span class="st">&quot;{FileDir}&quot;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>          keymap<span class="kw">:</span> <span class="st">&quot;f8&quot;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>          save<span class="kw">:</span> <span class="ot">true</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>      <span class="kw">}</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="kw">]</span></span></code></pre></div>
+<p>To execute the bas-file, a package for command execution needs to be
+installed. Please search for “atom-shell-commands” and install it. Next
+you have to open the atom config-file “Edit-&gt;Config”. Insert the
+following code into “config.cson”:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cson"><code class="sourceCode coffee"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;atom-shell-commands&quot;</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    commands<span class="kw">:</span> <span class="kw">[</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        name<span class="kw">:</span> <span class="st">&quot;run&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        command<span class="kw">:</span> <span class="st">&quot;C:/Users/Joe7M/Documents/SmallBASIC/bin/sbasicg.exe&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        arguments<span class="kw">:</span> <span class="kw">[</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;-r&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;{FileName}&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">]</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        options<span class="kw">:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>          cwd<span class="kw">:</span> <span class="st">&quot;{FileDir}&quot;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>          keymap<span class="kw">:</span> <span class="st">&quot;f8&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>          save<span class="kw">:</span> <span class="ot">true</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">]</span></span></code></pre></div>
 <p>Afterwards your config.cson file should look similar to this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cson"><code class="sourceCode coffee"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="st">&quot;*&quot;</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="st">&quot;atom-shell-commands&quot;</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    commands<span class="kw">:</span> <span class="kw">[</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>      <span class="kw">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>        name<span class="kw">:</span> <span class="st">&quot;run&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>        command<span class="kw">:</span> <span class="st">&quot;C:/Users/Joe7M/Documents/SmallBASIC/bin/sbasicg.exe&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>        arguments<span class="kw">:</span> <span class="kw">[</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>          <span class="st">&quot;-r&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>          <span class="st">&quot;{FileName}&quot;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>        <span class="kw">]</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>        options<span class="kw">:</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>          cwd<span class="kw">:</span> <span class="st">&quot;{FileDir}&quot;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>          keymap<span class="kw">:</span> <span class="st">&quot;f8&quot;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>          save<span class="kw">:</span> <span class="ot">true</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>      <span class="kw">}</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    <span class="kw">]</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>  core<span class="kw">:</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    telemetryConsent<span class="kw">:</span> <span class="st">&quot;no&quot;</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>  <span class="st">&quot;exception-reporting&quot;</span><span class="kw">:</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>    userId<span class="kw">:</span> <span class="st">&quot;xxxx-xxxx-xxxx-xxxx&quot;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>  <span class="st">&quot;exec-in-cmd&quot;</span><span class="kw">:</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>    terminal<span class="kw">:</span> <span class="st">&quot;konsole&quot;</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>  welcome<span class="kw">:</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    showOnStartup<span class="kw">:</span> <span class="ot">false</span></span></code></pre></div>
-<p>Please edit the following line to match your system, for example in Windows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cson"><code class="sourceCode coffee"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>command<span class="kw">:</span> <span class="st">&quot;C:/Users/Joe7M/Documents/SmallBASIC/bin/sbasicg.exe&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cson"><code class="sourceCode coffee"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;*&quot;</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;atom-shell-commands&quot;</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    commands<span class="kw">:</span> <span class="kw">[</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        name<span class="kw">:</span> <span class="st">&quot;run&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        command<span class="kw">:</span> <span class="st">&quot;C:/Users/Joe7M/Documents/SmallBASIC/bin/sbasicg.exe&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        arguments<span class="kw">:</span> <span class="kw">[</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;-r&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;{FileName}&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">]</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        options<span class="kw">:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>          cwd<span class="kw">:</span> <span class="st">&quot;{FileDir}&quot;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>          keymap<span class="kw">:</span> <span class="st">&quot;f8&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>          save<span class="kw">:</span> <span class="ot">true</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">}</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">]</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  core<span class="kw">:</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    telemetryConsent<span class="kw">:</span> <span class="st">&quot;no&quot;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;exception-reporting&quot;</span><span class="kw">:</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    userId<span class="kw">:</span> <span class="st">&quot;xxxx-xxxx-xxxx-xxxx&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;exec-in-cmd&quot;</span><span class="kw">:</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    terminal<span class="kw">:</span> <span class="st">&quot;konsole&quot;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  welcome<span class="kw">:</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    showOnStartup<span class="kw">:</span> <span class="ot">false</span></span></code></pre></div>
+<p>Please edit the following line to match your system, for example in
+Windows:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cson"><code class="sourceCode coffee"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>command<span class="kw">:</span> <span class="st">&quot;C:/Users/Joe7M/Documents/SmallBASIC/bin/sbasicg.exe&quot;</span></span></code></pre></div>
 <p>please use “/” in Windows instead of the usual “\”.</p>
 <p>In Linux:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cson"><code class="sourceCode coffee"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>command<span class="kw">:</span> <span class="st">&quot;/home/Joe7M/SmallBASIC/bin/sbasicg&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cson"><code class="sourceCode coffee"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>command<span class="kw">:</span> <span class="st">&quot;/home/Joe7M/SmallBASIC/bin/sbasicg&quot;</span></span></code></pre></div>
 <p>With</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cson"><code class="sourceCode coffee"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>keymap<span class="kw">:</span> <span class="st">&quot;f8&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cson"><code class="sourceCode coffee"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>keymap<span class="kw">:</span> <span class="st">&quot;f8&quot;</span></span></code></pre></div>
 <p>you can choose the key to execute the script.</p>
-<p>After successful installation you can start the SmallBASIC file by pressing F8 or by “Packages-&gt;Atom Shell Commands-&gt;run”</p>
+<p>After successful installation you can start the SmallBASIC file by
+pressing F8 or by “Packages-&gt;Atom Shell Commands-&gt;run”</p>
 </div>
     <div class="pagefooter">
       This page was last edited on Tue, 15 Feb 2022 13:00:25 +1000

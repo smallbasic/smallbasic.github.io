@@ -2,10 +2,17 @@
 <blockquote>
 <p>SOUND freq, dur [, vol] [BG]</p>
 </blockquote>
-<p>Plays a sound with the frequency <code>freg</code> in Hz for a duration <code>dur</code> in milliseconds. The optional parameter <code>vol</code> controls the volume of the sound. Volume is in the range from 0 to 100, where 100 is maximum volume. If the optional parameter <code>BG</code> is given, the sound will play in the background: SmallBASIC will not wait with program execution until the sound has finished.</p>
+<p>Plays a sound with the frequency <code>freg</code> in Hz for a
+duration <code>dur</code> in milliseconds. The optional parameter
+<code>vol</code> controls the volume of the sound. Volume is in the
+range from 0 to 100, where 100 is maximum volume. If the optional
+parameter <code>BG</code> is given, the sound will play in the
+background: SmallBASIC will not wait with program execution until the
+sound has finished.</p>
 <h3 id="example1-play-sound">Example1 : Play sound</h3>
 <pre><code>Sound 1000, 800, 50             &#39; 1000 Hz, 800 ms, 50% volume</code></pre>
-<h3 id="example-2-play-sound-in-background">Example 2: Play sound in background</h3>
+<h3 id="example-2-play-sound-in-background">Example 2: Play sound in
+background</h3>
 <pre><code>Sound 1000, 800, 50 BG          &#39; 1000 Hz, 800 ms, 50% volume
 print &quot;This line will be printed immediately&quot;
 pause</code></pre>

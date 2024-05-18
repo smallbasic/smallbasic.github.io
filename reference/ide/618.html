@@ -2,12 +2,21 @@
 <blockquote>
 <p>LINE [STEP] x,y [,|STEP x2,y2] [, color| COLOR color]</p>
 </blockquote>
-<p>Draws a line from the point (x,y) to the point (x2,y2). If <code>STEP</code> is used, the graphics cursor is moved by a step of x and y pixels. When <code>color</code> is specified, instead of the actual foreground color the line will be drawn with the color <code>color</code>.</p>
-<p>By default LINE draws with anti-aliasing. For details, see: <a href="https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm">Xiaolin Wu’s line algorithm</a>. To turn off anti-aliasing, add this to the start of your program:</p>
+<p>Draws a line from the point (x,y) to the point (x2,y2). If
+<code>STEP</code> is used, the graphics cursor is moved by a step of x
+and y pixels. When <code>color</code> is specified, instead of the
+actual foreground color the line will be drawn with the color
+<code>color</code>.</p>
+<p>By default LINE draws with anti-aliasing. For details, see: <a
+href="https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm">Xiaolin
+Wu’s line algorithm</a>. To turn off anti-aliasing, add this to the
+start of your program:</p>
 <pre><code>option predef antialias off</code></pre>
-<h3 id="example-1-line-defined-by-two-points">Example 1: Line defined by two points</h3>
+<h3 id="example-1-line-defined-by-two-points">Example 1: Line defined by
+two points</h3>
 <pre><code>line 20, 20, 100, 100</code></pre>
-<h3 id="example-2-line-defined-using-step">Example 2: Line defined using STEP</h3>
+<h3 id="example-2-line-defined-using-step">Example 2: Line defined using
+STEP</h3>
 <pre><code>line 20, 20, STEP 80,80                      &#39; Line starts at point (20,20) 
                                              &#39; and ends at point (20+80, 20+80) -&gt; (100,100)
 line STEP -80, -70, STEP 80,80               &#39; Line starts at last graphics cursor position 

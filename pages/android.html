@@ -69,93 +69,162 @@
 <p>SmallBASIC for Android guide</p>
 </blockquote>
 <h2 id="getting-started">Getting started</h2>
-<p>The system menu is accessed by the “three vertical dots” button in the bottom right corner of the screen.</p>
-<p><img src="/images/android_menu1.png" title="System Menu button" /></p>
-<p>The items displayed depend on whether the file browser, code editor or a running program is active.</p>
+<p>The system menu is accessed by the “three vertical dots” button in
+the bottom right corner of the screen.</p>
+<p><img src="/images/android_menu1.png"
+title="System Menu button" /></p>
+<p>The items displayed depend on whether the file browser, code editor
+or a running program is active.</p>
 <p><img src="/images/android_menu2.png" title="System Menu" /></p>
-<p>When the file browser is active you should see an “Editor” item followed by either [ON] or [OFF]. If it shows “OFF” then press the item to switch it to “ON”.</p>
-<p>Before you start editing a program you should navigate to the “SmallBASIC” folder. You can get there by pressing “[Go Up]” until you hit the root level “/”. You should then see an entry for “SmallBASIC”. If there’s not enough room to display the entire text it might appear as something like “storage/emulated/0/SmallBAS~”. You may need to accept a permission request to allow access to this folder when you first launch SmallBASIC for the first time. Also make sure you <strong>do not</strong> select the internal “net.sourceforge.smallbasic” folder since this could be overwritten in a future SmallBASIC update.</p>
+<p>When the file browser is active you should see an “Editor” item
+followed by either [ON] or [OFF]. If it shows “OFF” then press the item
+to switch it to “ON”.</p>
+<p>Before you start editing a program you should navigate to the
+“SmallBASIC” folder. You can get there by pressing “[Go Up]” until you
+hit the root level “/”. You should then see an entry for “SmallBASIC”.
+If there’s not enough room to display the entire text it might appear as
+something like “storage/emulated/0/SmallBAS~”. You may need to accept a
+permission request to allow access to this folder when you first launch
+SmallBASIC for the first time. Also make sure you <strong>do
+not</strong> select the internal “net.sourceforge.smallbasic” folder
+since this could be overwritten in a future SmallBASIC update.</p>
 <p><img src="/images/android_navigate.png" title="System Menu" /></p>
-<p>Now press the “[File]” link in the top left corner of the screen. This will take you to the file manager. From here you can enter a file name then press “[New]” to create it. Now press “[&lt;&lt;]” to exit the file manager.</p>
+<p>Now press the “[File]” link in the top left corner of the screen.
+This will take you to the file manager. From here you can enter a file
+name then press “[New]” to create it. Now press “[&lt;&lt;]” to exit the
+file manager.</p>
 <p><img src="/images/android_create_file.png" title="System Menu" /></p>
-<p>Your new file should be listed in the file browser. Press the file name link. You should finally see the program editor. If the keypad does not appear, press the system menu button and select “Show Keypad”. For best results you may need to install a separate keyboard. “AnySoftKeyboard”, “Hacker’s Key” and “GBoard” all seem to work well.</p>
-<p>Start typing out your program. When you are ready to test your program, press the system menu button then select “Run”.</p>
-<p>In the help screen, the “&gt;” characters on the left are buttons to expand (or contract) the help item contents. In the editor, the line number display also functions as a scrollbar. If you want to write a quick experimental program you can use the “[Scratch]” option to bypass the above file name setup steps.</p>
+<p>Your new file should be listed in the file browser. Press the file
+name link. You should finally see the program editor. If the keypad does
+not appear, press the system menu button and select “Show Keypad”. For
+best results you may need to install a separate keyboard.
+“AnySoftKeyboard”, “Hacker’s Key” and “GBoard” all seem to work
+well.</p>
+<p>Start typing out your program. When you are ready to test your
+program, press the system menu button then select “Run”.</p>
+<p>In the help screen, the “&gt;” characters on the left are buttons to
+expand (or contract) the help item contents. In the editor, the line
+number display also functions as a scrollbar. If you want to write a
+quick experimental program you can use the “[Scratch]” option to bypass
+the above file name setup steps.</p>
 <p><img src="/images/android_scroll.png" title="System Menu" /></p>
-<p>All of the above UI elements are written in SmallBASIC, see <a href="https://github.com/smallbasic/SmallBASIC/blob/master/src/platform/android/app/src/main/assets/main.bas">main.bas</a></p>
-<h2 id="using-location-sensor-and-text-to-speech-services.">Using Location, Sensor and Text to speech services.</h2>
-<p>To use the following services, your program must start with the following two lines:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">option</span> predef load modules</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="pp">import</span> android</span></code></pre></div>
-<p>The first line tell SmallBASIC to dynamically load runtime modules. The second line imports the android module.</p>
+<p>All of the above UI elements are written in SmallBASIC, see <a
+href="https://github.com/smallbasic/SmallBASIC/blob/master/src/platform/android/app/src/main/assets/main.bas">main.bas</a></p>
+<h2 id="using-location-sensor-and-text-to-speech-services.">Using
+Location, Sensor and Text to speech services.</h2>
+<p>To use the following services, your program must start with the
+following two lines:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">option</span> predef load modules</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> android</span></code></pre></div>
+<p>The first line tell SmallBASIC to dynamically load runtime modules.
+The second line imports the android module.</p>
 <h2 id="location">Location</h2>
 <p>GPS_ON</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>android.gps_on()</span></code></pre></div>
-<p>Instructs the system to commence recording location information. Note: This relies on the device location services being enabled by the user.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>android.gps_on()</span></code></pre></div>
+<p>Instructs the system to commence recording location information.
+Note: This relies on the device location services being enabled by the
+user.</p>
 <p>GPS_OFF</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>android.gps_off()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>android.gps_off()</span></code></pre></div>
 <p>Turns off recording of location information.</p>
 <p>LOCATION</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>l = android.location()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>l = android.location()</span></code></pre></div>
 <p>Returns a MAP variable holding the following details:</p>
 <ul>
 <li>latitude - the latitude, in degrees.</li>
 <li>longitude - the longitude, in degrees.</li>
-<li>speed - the speed if it is available, in meters/second over ground.</li>
+<li>speed - the speed if it is available, in meters/second over
+ground.</li>
 <li>accuracy - the estimated accuracy of this location, in meters.</li>
 <li>altitude - altitude if available, in meters</li>
 <li>bearing - the bearing, in degrees</li>
 <li>provider - whether data obtained from GPS or network</li>
 </ul>
-<p>Note: the location data is updated internally at 1 second intervals.</p>
-<p>For more details, see: <a href="https://developer.android.com/reference/android/location/Location.html" class="uri">https://developer.android.com/reference/android/location/Location.html</a></p>
+<p>Note: the location data is updated internally at 1 second
+intervals.</p>
+<p>For more details, see: <a
+href="https://developer.android.com/reference/android/location/Location.html"
+class="uri">https://developer.android.com/reference/android/location/Location.html</a></p>
 <h2 id="sensor">Sensor</h2>
 <p>SENSOR_ON</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="dt">const</span> SensorAccelerometer = <span class="dv">0</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="dt">const</span> SensorMagneticField = <span class="dv">1</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="dt">const</span> SensorGyroscope = <span class="dv">2</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="dt">const</span> SensorLight = <span class="dv">3</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="dt">const</span> SensorProximity = <span class="dv">4</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>android.sensor_on(n)</span></code></pre></div>
-<p>Enables the given sensor (currently only one may be enabled at a time). Throws an exception if the given sensor is not available (for example, not all devices have a gyroscope).</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> SensorAccelerometer = <span class="dv">0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> SensorMagneticField = <span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> SensorGyroscope = <span class="dv">2</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> SensorLight = <span class="dv">3</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> SensorProximity = <span class="dv">4</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>android.sensor_on(n)</span></code></pre></div>
+<p>Enables the given sensor (currently only one may be enabled at a
+time). Throws an exception if the given sensor is not available (for
+example, not all devices have a gyroscope).</p>
 <p>SENSOR_OFF</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>android.sensor_off()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>android.sensor_off()</span></code></pre></div>
 <p>Disables any active sensor.</p>
 <p>SENSOR</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>s = android.sensor()</span></code></pre></div>
-<p>Returns a MAP variable holding sensor details. x, y, z - The spatial position light - (SensorLight) distance - (SensorProximity)</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>s = android.sensor()</span></code></pre></div>
+<p>Returns a MAP variable holding sensor details. x, y, z - The spatial
+position light - (SensorLight) distance - (SensorProximity)</p>
 <p>For more details, see:</p>
 <ul>
-<li><a href="http://i.stack.imgur.com/skBui.jpg" class="uri">http://i.stack.imgur.com/skBui.jpg</a></li>
-<li><a href="https://developer.android.com/reference/android/hardware/SensorEvent.html" class="uri">https://developer.android.com/reference/android/hardware/SensorEvent.html</a></li>
+<li><a href="http://i.stack.imgur.com/skBui.jpg"
+class="uri">http://i.stack.imgur.com/skBui.jpg</a></li>
+<li><a
+href="https://developer.android.com/reference/android/hardware/SensorEvent.html"
+class="uri">https://developer.android.com/reference/android/hardware/SensorEvent.html</a></li>
 </ul>
 <h2 id="text-to-speech">Text to speech</h2>
 <p>Output data as spoken text.</p>
-<p>Notes: - The text to speech module takes a moment to initialise. This is performed the first time you call SPEAK. - You may want to turn off the system setting to send TTS usage statistics to google before using this feature.</p>
+<p>Notes: - The text to speech module takes a moment to initialise. This
+is performed the first time you call SPEAK. - You may want to turn off
+the system setting to send TTS usage statistics to google before using
+this feature.</p>
 <p>TTS_PITCH</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>android.tts_pitch(n)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>android.tts_pitch(n)</span></code></pre></div>
 <p>Sets the voice pitch (default is 1.0).</p>
 <p>TTS_RATE</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>android.tts_rate(n)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>android.tts_rate(n)</span></code></pre></div>
 <p>Sets the rate of speaking (default is 1.0)</p>
 <p>TTS_LANG</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>android.tts_lang(s)</span></code></pre></div>
-<p>Sets the locale, for example “en”, “de”, “fr” for English, German, France. May cause the system to download the language codec if not already installed.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>android.tts_lang(s)</span></code></pre></div>
+<p>Sets the locale, for example “en”, “de”, “fr” for English, German,
+France. May cause the system to download the language codec if not
+already installed.</p>
 <p>TTS_OFF</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>android.tts_off()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>android.tts_off()</span></code></pre></div>
 <p>Turns off text to speech output.</p>
 <p>SPEAK</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>android.speak(text)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>android.speak(text)</span></code></pre></div>
 <p>Performs text to speech (default is ENGLISH).</p>
 <h2 id="https-web-request">HTTPS Web request</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>android.request(url, [postData, authToken])</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>android.request(url, [postData, authToken])</span></code></pre></div>
 <ul>
 <li><code>url</code>: The URL endpoint for the request.</li>
-<li><code>data</code> (optional): Data to send in the request body. If provided, the request method is <code>POST</code> with <code>Content-Type: application/json</code>. If omitted, the request method defaults to <code>GET</code>.</li>
-<li><code>token</code>: (optional): Bearer authentication token for a <code>POST</code> request.</li>
+<li><code>data</code> (optional): Data to send in the request body. If
+provided, the request method is <code>POST</code> with
+<code>Content-Type: application/json</code>. If omitted, the request
+method defaults to <code>GET</code>.</li>
+<li><code>token</code>: (optional): Bearer authentication token for a
+<code>POST</code> request.</li>
 </ul>
-<p>The <code>REQUEST</code> function enables making HTTPS requests (either <code>POST</code> or <code>GET</code> methods), supporting secure connections that are not possible with the <code>OPEN</code> command.</p>
-<p><strong>Note</strong>: For desktop versions, you can utilize the <code>RUN</code> command with <code>curl</code> for similar functionality.</p>
+<p>The <code>REQUEST</code> function enables making HTTPS requests
+(either <code>POST</code> or <code>GET</code> methods), supporting
+secure connections that are not possible with the <code>OPEN</code>
+command.</p>
+<p><strong>Note</strong>: For desktop versions, you can utilize the
+<code>RUN</code> command with <code>curl</code> for similar
+functionality.</p>
 <pre><code>import android
 
 const endpoint = &quot;https://llamafile/v1/chat/completions&quot;
@@ -177,8 +246,11 @@ while 1
   response = request(prompt)
   print response.choices[0].message.content
 wend</code></pre>
-<p>The code snippet demonstrates how to use REQUEST to interact with a specified endpoint, providing necessary data and token for authentication.</p>
-<h2 id="how-to-edit-and-run-a-program">How to edit and run a program</h2>
+<p>The code snippet demonstrates how to use REQUEST to interact with a
+specified endpoint, providing necessary data and token for
+authentication.</p>
+<h2 id="how-to-edit-and-run-a-program">How to edit and run a
+program</h2>
 <h3 id="internal-editor">Internal editor:</h3>
 <ul>
 <li>Display the menu, then click Editor [ON]</li>
@@ -187,32 +259,41 @@ wend</code></pre>
 <h3 id="desktop-smallbasic">Desktop SmallBASIC</h3>
 <ul>
 <li>Enter the port number in the setup screen.</li>
-<li>Connect your desktop machine and your mobile device to the same wifi network.</li>
+<li>Connect your desktop machine and your mobile device to the same wifi
+network.</li>
 <li>Launch desktop SmallBASIC.</li>
 <li>Right click and select “Editor [ON]”.</li>
 <li>Navigate to the .bas file then click the link to begin editing.</li>
-<li>Press F3, then enter the address shown in the android about screen (IP:PORT).</li>
+<li>Press F3, then enter the address shown in the android about screen
+(IP:PORT).</li>
 <li>Enter the security code, then press enter.</li>
-<li>Once the settings are successful, you can press F4 to upload your program again.</li>
+<li>Once the settings are successful, you can press F4 to upload your
+program again.</li>
 </ul>
 <h3 id="file-browser">File browser:</h3>
 <ul>
 <li>Write and debug the program with desktop SmallBASIC.</li>
 <li>Copy the .bas file to your SDCard.</li>
-<li>Launch SmallBASIC, then navigate to the file in the built-in file browser, then tap the link to run.</li>
-<li>or, navigate to the file in the system file browser, then tap the link to start SmallBASIC and run the program.</li>
+<li>Launch SmallBASIC, then navigate to the file in the built-in file
+browser, then tap the link to run.</li>
+<li>or, navigate to the file in the system file browser, then tap the
+link to start SmallBASIC and run the program.</li>
 </ul>
 <h3 id="separate-editor-on-device">Separate editor on device:</h3>
 <ul>
-<li>Write your SmallBASIC program in a separate editor on your device.</li>
-<li>Task switch to SmallBASIC, then run the program using the built-in file browser.</li>
+<li>Write your SmallBASIC program in a separate editor on your
+device.</li>
+<li>Task switch to SmallBASIC, then run the program using the built-in
+file browser.</li>
 </ul>
 <h3 id="web-service">Web Service:</h3>
 <ul>
 <li>Enter the port number in the setup screen.</li>
-<li>Connect your desktop machine and your mobile device to the same wifi network.</li>
+<li>Connect your desktop machine and your mobile device to the same wifi
+network.</li>
 <li>Launch a desktop browser then enter http://:</li>
-<li>A simple web page is displayed. Enter your SmallBASIC program then click run.</li>
+<li>A simple web page is displayed. Enter your SmallBASIC program then
+click run.</li>
 </ul>
 <h3 id="qrcode">QRcode:</h3>
 <ul>
@@ -221,14 +302,19 @@ wend</code></pre>
 <li>Scan the QRCode in the separate decoder program.</li>
 <li>Click okay to launch SmallBASIC and the encoded program.</li>
 </ul>
-<p>Note: the tool to convert source code to QR codes is here: <a href="https://github.com/smallbasic/SmallBASIC/tree/master/web/qrcode">qrcode</a></p>
+<p>Note: the tool to convert source code to QR codes is here: <a
+href="https://github.com/smallbasic/SmallBASIC/tree/master/web/qrcode">qrcode</a></p>
 <h2 id="playing-music">Playing music</h2>
 <p>PLAY(“file:///sdcard/VoiceRecorder/recordings/hello.mp3”)</p>
-<p>Use the PLAY command with the prefix “file://” to play an audio track. For supported formats, see:</p>
-<p><a href="https://developer.android.com/guide/appendix/media-formats.html" class="uri">https://developer.android.com/guide/appendix/media-formats.html</a></p>
+<p>Use the PLAY command with the prefix “file://” to play an audio
+track. For supported formats, see:</p>
+<p><a
+href="https://developer.android.com/guide/appendix/media-formats.html"
+class="uri">https://developer.android.com/guide/appendix/media-formats.html</a></p>
 <h2 id="release-history">Release history</h2>
 <p><a href="android_changelog.html">Android changelog</a></p>
-<h2 id="privacy-policy">Privacy Policy <a href="#privacy-policy"></a></h2>
+<h2 id="privacy-policy">Privacy Policy <a
+href="#privacy-policy"></a></h2>
 <p><a href="privacy.html">Privacy Policy</a></p>
 </div>
     <div class="pagefooter">

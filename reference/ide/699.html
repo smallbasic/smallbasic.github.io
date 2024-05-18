@@ -2,7 +2,9 @@
 <blockquote>
 <p>M3ROTATE BYREF M, angle [, x, y]</p>
 </blockquote>
-<p>Multiply the 2D transformation matrix <code>M</code> by a rotation matrix with an angle <code>angle</code> and a rotation center <code>x</code>,<code>y</code>. <code>M</code> is a 3x3 matrix.</p>
+<p>Multiply the 2D transformation matrix <code>M</code> by a rotation
+matrix with an angle <code>angle</code> and a rotation center
+<code>x</code>,<code>y</code>. <code>M</code> is a 3x3 matrix.</p>
 <p>If x = 0 and y = 0 the rotation matrix has the form:</p>
 <pre><code>       | cos(angle) -sin(angle)  0 |
 MRot = | sin(angle)  cos(angle)  0 |
@@ -25,4 +27,8 @@ M3ROTATE M, 45*pi/180                        &#39; Rotate by 45°
 M3APPLY M, Rectangle                         &#39; Transform the rectangle
 
 DRAWPOLY Rectangle</code></pre>
-<p>M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When performing matrix multiplication, then last matrix is applied first. In the example above, the rectangle is first rotated, then scaled and in the last step translated. If the order is changed, the outcome might be different.</p>
+<p>M3TRANS, M3SCALE and M3ROTATE perform a matrix multiplication. When
+performing matrix multiplication, then last matrix is applied first. In
+the example above, the rectangle is first rotated, then scaled and in
+the last step translated. If the order is changed, the outcome might be
+different.</p>

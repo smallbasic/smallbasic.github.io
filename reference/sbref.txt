@@ -1422,12 +1422,18 @@ Example 3: Print strings and variables
 
 PRINT SEPARATORS
 
-   Separator  Description
-  ----------- --------------------------------------------------------------
-    TAB(n)    Moves cursor position to the nth column.
-    SPC(n)    Prints a number of spaces specified by n.
-       ;      Separates numbers, expressions or strings
-       ,      Separates numbers, expressions or strings and insert one TAB
+  -----------------------------------------------------------------------
+     Separator    Description
+  --------------- -------------------------------------------------------
+      TAB(n)      Moves cursor position to the nth column.
+
+      SPC(n)      Prints a number of spaces specified by n.
+
+         ;        Separates numbers, expressions or strings
+
+         ,        Separates numbers, expressions or strings and insert
+                  one TAB
+  -----------------------------------------------------------------------
 
 If ; and , are used as last character of a print command, carriage
 return/line feed (new line) will be suppressed after printing.
@@ -11208,12 +11214,12 @@ and ignore pairs will be used:
 
   First non white-space character   Check   Ignore
   --------------------------------- ------- ---------
-  "                                 " "     ’ ’
-  ’                                 ’ ’     " "
-  (                                 ()      " " ’ ’
-  [                                 []      " " ’ ’
-  {                                 {}      " " ’ ’
-  <                                 <>      " " ’ ’
+  ”                                 ” ”     ’ ’
+  ’                                 ’ ’     ” ”
+  (                                 ()      ” ” ’ ’
+  [                                 []      ” ” ’ ’
+  {                                 {}      ” ” ’ ’
+  <                                 <>      ” ” ’ ’
 
 Example 1: Disclose default pairs
 
@@ -12336,7 +12342,7 @@ General suggestions using Environment Variables
 1.  Never use names which are already used by the system or another
     process, such as “PATH”, “HOME”, “PWD”, etc. You should check which
     variable names are already in use.
-2.  Use short and unique names, such as: “SB1”, SB2" or “SBv1”, “SBv2”,
+2.  Use short and unique names, such as: “SB1”, SB2” or “SBv1”, “SBv2”,
     etc. It will keep the environment-variables-table readable, and will
     save space in the table.
 3.  Don’t create more variables then you need. Reuse any variable which
@@ -12416,7 +12422,7 @@ General suggestions using Environment Variables
 1.  Never use names which are already used by the system or another
     process, such as “PATH”, “HOME”, “PWD”, etc. You should check which
     variable names are already in use.
-2.  Use short and unique names, such as: “SB1”, SB2" or “SBv1”, “SBv2”,
+2.  Use short and unique names, such as: “SB1”, SB2” or “SBv1”, “SBv2”,
     etc. It will keep the environment-variables-table readable, and will
     save space in the table.
 3.  Don’t create more variables then you need. Reuse any variable which

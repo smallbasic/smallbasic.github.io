@@ -66,43 +66,71 @@
 <div class="article">
 <h1 id="sbasicg-sdl">sbasicg (SDL)</h1>
 <h2 id="live-mode">Live mode</h2>
-<p>Live mode uses a secondary output window to display the results of your program whenever you press save.</p>
-<p>To enter live mode, press the <code>F8</code> key from the file editor. Note the keystroke help window documents the <code>F8</code> key along with other supported functions.</p>
+<p>Live mode uses a secondary output window to display the results of
+your program whenever you press save.</p>
+<p>To enter live mode, press the <code>F8</code> key from the file
+editor. Note the keystroke help window documents the <code>F8</code> key
+along with other supported functions.</p>
 <p><img src="/images/press_f8.png" title="Press F8" /></p>
-<p>Start making changes to your program, then press <code>Ctrl + s</code> to save your changes to the file. The program output will appear in the secondary window. The secondary window will run the program to completion. It then waits until the file has changed before restarting the program. Note if you press save while your program is waiting for user input, then changes will not yet appear.</p>
+<p>Start making changes to your program, then press
+<code>Ctrl + s</code> to save your changes to the file. The program
+output will appear in the secondary window. The secondary window will
+run the program to completion. It then waits until the file has changed
+before restarting the program. Note if you press save while your program
+is waiting for user input, then changes will not yet appear.</p>
 <p><img src="/images/press_save.png" title="Press Save" /></p>
 <h2 id="debugging">Debugging</h2>
-<p>sbasicg supports a limited form of interactive debugging. You can set a break-point by pressing <code>Ctrl + t</code> over the intended program line. This also allows you to use the <code>Ctrl + g</code> keystroke to navigate between markers.</p>
+<p>sbasicg supports a limited form of interactive debugging. You can set
+a break-point by pressing <code>Ctrl + t</code> over the intended
+program line. This also allows you to use the <code>Ctrl + g</code>
+keystroke to navigate between markers.</p>
 <p><img src="/images/control_t.png" title="Set marker" /></p>
-<p>Press the <code>F5</code> key to start the debugging session. This will cause a secondary output window to appear.</p>
+<p>Press the <code>F5</code> key to start the debugging session. This
+will cause a secondary output window to appear.</p>
 <p><img src="/images/debug.png" title="Start debugging" /></p>
-<p>You can now press <code>F6</code> to step through program lines, or <code>F7</code> to continue. The program will either then run to completion or stop when encountering a marker line. A dump of variables and the current stack position appear in the right hand pane. Note this can become very messy with large programs limiting its usefulness. The alternative is to use the LOGPRINT command. This outputs to the DebugView app in Windows or to the bash console in Linux.</p>
+<p>You can now press <code>F6</code> to step through program lines, or
+<code>F7</code> to continue. The program will either then run to
+completion or stop when encountering a marker line. A dump of variables
+and the current stack position appear in the right hand pane. Note this
+can become very messy with large programs limiting its usefulness. The
+alternative is to use the LOGPRINT command. This outputs to the
+DebugView app in Windows or to the bash console in Linux.</p>
 <p><img src="/images/press_f6.png" title="Step through code" /></p>
-<h2 id="how-to-use-better-looking-fonts-in-the-windows-version">How to use better looking fonts in the Windows version</h2>
+<h2 id="how-to-use-better-looking-fonts-in-the-windows-version">How to
+use better looking fonts in the Windows version</h2>
 <ol type="1">
 <li>Envy font</li>
 </ol>
 <ul>
-<li><p>Download <a href="http://download.damieng.com/fonts/original/EnvyCodeR-PR7.zip" class="uri">http://download.damieng.com/fonts/original/EnvyCodeR-PR7.zip</a></p></li>
-<li><p>Unzip and copy “Envy Code R.ttf” and “Envy Code R Bold.ttf” into the same folder as sbasicg.exe.</p></li>
+<li><p>Download <a
+href="http://download.damieng.com/fonts/original/EnvyCodeR-PR7.zip"
+class="uri">http://download.damieng.com/fonts/original/EnvyCodeR-PR7.zip</a></p></li>
+<li><p>Unzip and copy “Envy Code R.ttf” and “Envy Code R Bold.ttf” into
+the same folder as sbasicg.exe.</p></li>
 </ul>
 <ol start="2" type="1">
 <li>Adobe Source Code Pro</li>
 </ol>
 <ul>
-<li><p>Download https://www.1001fonts.com/download/source-code-pro.zip</p></li>
-<li><p>Unzip and copy SourceCodePro-Regular.ttf and SourceCodePro-Bold.ttf into the same folder as sbasicg.exe.</p></li>
+<li><p>Download
+https://www.1001fonts.com/download/source-code-pro.zip</p></li>
+<li><p>Unzip and copy SourceCodePro-Regular.ttf and
+SourceCodePro-Bold.ttf into the same folder as sbasicg.exe.</p></li>
 </ul>
-<p>Note: if all of the above are present, the envy font takes precedence.</p>
+<p>Note: if all of the above are present, the envy font takes
+precedence.</p>
 <p>You need to restart SmallBASIC for the new font to be displayed.</p>
-<h2 id="how-to-use-better-looking-fonts-in-the-linux-version">How to use better looking fonts in the Linux version</h2>
+<h2 id="how-to-use-better-looking-fonts-in-the-linux-version">How to use
+better looking fonts in the Linux version</h2>
 <ul>
-<li>Download the Envy or Source Code Pro fonts as per above instructions</li>
+<li>Download the Envy or Source Code Pro fonts as per above
+instructions</li>
 <li>Copy the .ttf files to ~/.fonts.</li>
 <li>Invoke the following command:</li>
 </ul>
 <p>$ sudo fc-cache -fv</p>
-<p>You can select then select one if the following using the -f command line argument:</p>
+<p>You can select then select one if the following using the -f command
+line argument:</p>
 <pre><code>&quot;Envy Code R&quot;
 &quot;Source Code Pro&quot;
 &quot;Ubuntu Mono&quot;
@@ -122,17 +150,33 @@ sbasicg --font=&quot;Liberation Mono&quot;</code></pre>
 [Ctrl] + [up-arrow] Line up scrolled display
 [Ctrl] + [down-arrow] Line down scrolled display
 [Ctrl] + [p] Screen dump</code></pre>
-<h2 id="how-to-help-design-a-better-looking-editor-color-theme">How to help design a better looking editor color theme</h2>
-<p>There are a number of color themes available in the text editor. You can switch between themes by pressing ALT+t while editing a file. When SmallBASIC starts, the last theme is read from the settings.txt file (under %APPDATA%/SmallBASIC in windows and ~/.config/SmallBASIC in linux) and when it exits the current settings are written back to the file.</p>
-<p>The steps below should give just enough functionality to help design a better looking theme. Sorry, it’s a bit of a convoluted process.</p>
+<h2 id="how-to-help-design-a-better-looking-editor-color-theme">How to
+help design a better looking editor color theme</h2>
+<p>There are a number of color themes available in the text editor. You
+can switch between themes by pressing ALT+t while editing a file. When
+SmallBASIC starts, the last theme is read from the settings.txt file
+(under %APPDATA%/SmallBASIC in windows and ~/.config/SmallBASIC in
+linux) and when it exits the current settings are written back to the
+file.</p>
+<p>The steps below should give just enough functionality to help design
+a better looking theme. Sorry, it’s a bit of a convoluted process.</p>
 <ol type="1">
-<li>Start SmallBASIC, then click to edit a .bas file, then press ALT+t four times. You are now looking at the modifiable theme.</li>
+<li>Start SmallBASIC, then click to edit a .bas file, then press ALT+t
+four times. You are now looking at the modifiable theme.</li>
 <li>Exit SmallBASIC (Alt+f4).</li>
-<li>Copy settings.txt into a separate file (say settings.new), then open settings.new in a programming editor in linux: $ cd ~/.config/SmallBASIC $ cp settings.txt settings.new</li>
-<li>Repeat: Make any changes to the hex values (see below) in settings.new, copy settings.new to settings.txt, and then restart SmallBASIC to inspect the changes. in linux: $ cp settings.new settings.txt &amp;&amp; sbasicg -e foo.bas</li>
-<li>Once you have something looking fantastic, email me your settings and I’ll include them in the next release.</li>
+<li>Copy settings.txt into a separate file (say settings.new), then open
+settings.new in a programming editor in linux: $ cd ~/.config/SmallBASIC
+$ cp settings.txt settings.new</li>
+<li>Repeat: Make any changes to the hex values (see below) in
+settings.new, copy settings.new to settings.txt, and then restart
+SmallBASIC to inspect the changes. in linux: $ cp settings.new
+settings.txt &amp;&amp; sbasicg -e foo.bas</li>
+<li>Once you have something looking fantastic, email me your settings
+and I’ll include them in the next release.</li>
 </ol>
-<p>— settings.txt — 529,173,640,480,100,0,1,0 c8cedb,a7aebc,484f5f,a7aebc,a7aebc,00bb00,2e3436,888a85,000000,4d483b,000000,2b313a,0083f8,ff9d00,31ccac,c679dd,0083f8 …</p>
+<p>— settings.txt — 529,173,640,480,100,0,1,0
+c8cedb,a7aebc,484f5f,a7aebc,a7aebc,00bb00,2e3436,888a85,000000,4d483b,000000,2b313a,0083f8,ff9d00,31ccac,c679dd,0083f8
+…</p>
 <p>Offsets for the above color hex values</p>
 <pre><code>0 - color
 1 - selection_color

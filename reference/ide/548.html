@@ -2,34 +2,51 @@
 <blockquote>
 <p>SEARCH A, key, BYREF idx [USE cmpfunc( var1, var2)]</p>
 </blockquote>
-<p>Scans an array <code>A</code> for the key <code>key</code> and returns the position <code>idx</code> of the element. If the key is not found <code>idx</code> contains the value <code>(LBOUND(A)-1)</code>. In default-base arrays (starting with element zero) <code>-1</code> will be returned.</p>
-<p>The optional compare function <code>cmpfunc</code> takes 2 vars <code>var1</code> and <code>var2</code>. <code>var1</code> contains the value of the actuell element and <code>var2</code> is equal to <code>key</code>. The compare function must return <code>0</code> or <code>1</code> (<code>false</code> or <code>true</code>). When it returns <code>1</code>, the search will stop and the current element position is returned in <code>idx</code>.</p>
-<h3 id="example-1-1d-array-of-numbers">Example 1: 1D array of numbers</h3>
+<p>Scans an array <code>A</code> for the key <code>key</code> and
+returns the position <code>idx</code> of the element. If the key is not
+found <code>idx</code> contains the value <code>(LBOUND(A)-1)</code>. In
+default-base arrays (starting with element zero) <code>-1</code> will be
+returned.</p>
+<p>The optional compare function <code>cmpfunc</code> takes 2 vars
+<code>var1</code> and <code>var2</code>. <code>var1</code> contains the
+value of the actuell element and <code>var2</code> is equal to
+<code>key</code>. The compare function must return <code>0</code> or
+<code>1</code> (<code>false</code> or <code>true</code>). When it
+returns <code>1</code>, the search will stop and the current element
+position is returned in <code>idx</code>.</p>
+<h3 id="example-1-1d-array-of-numbers">Example 1: 1D array of
+numbers</h3>
 <pre><code>option base 1
 
 A = [1,9,6,4,5,3,7,8,2]         &#39; 1D array with 9 elements
 SEARCH A, 3, ElementID          
 print &quot;Element: &quot;; ElementID    &#39; Output: Element: 6</code></pre>
-<h3 id="example-2-2d-array-of-numbers">Example 2: 2D array of numbers</h3>
+<h3 id="example-2-2d-array-of-numbers">Example 2: 2D array of
+numbers</h3>
 <pre><code>option base 1
 
 A = [1,9,6;4,5,3;7,8,2]         &#39; 2D matrix with 3x3 elements
 SEARCH A, 3, ElementID
 print &quot;Element: &quot;; ElementID    &#39; Output: Element: 6</code></pre>
-<h3 id="example-3-get-the-element-position-of-the-maximum-value-of-an-1d-array">Example 3: Get the element position of the maximum value of an 1D array</h3>
+<h3
+id="example-3-get-the-element-position-of-the-maximum-value-of-an-1d-array">Example
+3: Get the element position of the maximum value of an 1D array</h3>
 <pre><code>option base 1
 
 A = [1,9,6,4,5,3,7,8,2]
 m = max(A)
 SEARCH A, m, ElementID
 PRINT &quot;Element: &quot;; ElementID    &#39; Output: Element: 2</code></pre>
-<h3 id="example-4-1d-array-of-strings">Example 4: 1D array of strings</h3>
+<h3 id="example-4-1d-array-of-strings">Example 4: 1D array of
+strings</h3>
 <pre><code>option base 1
 
 A = [&quot;car&quot;, &quot;dog&quot;, &quot;house&quot;, &quot;paper&quot;]
 SEARCH A, &quot;house&quot;, ElementID
 PRINT &quot;Element: &quot;; ElementID        &#39; Output: Element: 3</code></pre>
-<h3 id="example-5-compare-function-find-first-element-greater-than-the-key">Example 5: Compare function, find first element greater than the key</h3>
+<h3
+id="example-5-compare-function-find-first-element-greater-than-the-key">Example
+5: Compare function, find first element greater than the key</h3>
 <pre><code>option base 1
 
 func findgreater(x,y)
@@ -39,7 +56,10 @@ end
 A = [1,2,3,4,5,6,7,8,9]
 search A, 5, ElementID USE findgreater(x,y)
 PRINT &quot;Element: &quot;; ElementID         &#39; Output: Element: 6</code></pre>
-<h3 id="example-6-compare-function-find-first-element-which-can-be-divided-by-the-key">Example 6: Compare function, find first element which can be divided by the key</h3>
+<h3
+id="example-6-compare-function-find-first-element-which-can-be-divided-by-the-key">Example
+6: Compare function, find first element which can be divided by the
+key</h3>
 <pre><code>option base 1
 
 func FindFirstDivider(x,y)
@@ -49,7 +69,10 @@ end
 A = [1,5,7,4,5,6,7,8,9]
 search A, 3, ElementID USE FindFirstDivider(x,y)
 PRINT &quot;Element: &quot;; ElementID         &#39; Output: Element: 6</code></pre>
-<h3 id="example-7-compare-function-find-first-element-with-string-length-given-by-the-key">Example 7: Compare function, find first element with string length given by the key</h3>
+<h3
+id="example-7-compare-function-find-first-element-with-string-length-given-by-the-key">Example
+7: Compare function, find first element with string length given by the
+key</h3>
 <pre><code>func FindFirstStringWithLenght(x,y)
     FindFirstStringWithLenght = ( len(x) != y )
 end

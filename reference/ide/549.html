@@ -2,17 +2,28 @@
 <blockquote>
 <p>SORT byref A [USE cmpfunc( x, y )]</p>
 </blockquote>
-<p>Sorts an array <code>A</code> in ascending order. The sorted array is return as <code>A</code>, therefore overwriting the initial array. If a compare function <code>cmpfunc</code> is specified, this function will be used for comparision. The compare function takes two elements of <code>A</code> as <code>x</code>, <code>y</code> to compare and must return:</p>
+<p>Sorts an array <code>A</code> in ascending order. The sorted array is
+return as <code>A</code>, therefore overwriting the initial array. If a
+compare function <code>cmpfunc</code> is specified, this function will
+be used for comparision. The compare function takes two elements of
+<code>A</code> as <code>x</code>, <code>y</code> to compare and must
+return:</p>
 <ul>
-<li><code>-1</code> if <code>x</code> is to be placed before <code>y</code></li>
-<li><code>1</code> if <code>y</code> is to be placed before <code>x</code></li>
-<li><code>0</code> if it doesn’t matter which is placed first (which is usually the case when the elements are equal)</li>
+<li><code>-1</code> if <code>x</code> is to be placed before
+<code>y</code></li>
+<li><code>1</code> if <code>y</code> is to be placed before
+<code>x</code></li>
+<li><code>0</code> if it doesn’t matter which is placed first (which is
+usually the case when the elements are equal)</li>
 </ul>
-<h3 id="example-1-sorting-in-ascending-order">Example 1: Sorting in ascending order</h3>
+<h3 id="example-1-sorting-in-ascending-order">Example 1: Sorting in
+ascending order</h3>
 <pre><code>A = [5, 3, 8, 2, 1, 7, 9]
 sort A
 print A                         &#39; Output [1,2,3,5,7,8,9]</code></pre>
-<h3 id="example-2-sorting-in-ascending-order-using-a-compare-function">Example 2: Sorting in ascending order using a compare function</h3>
+<h3
+id="example-2-sorting-in-ascending-order-using-a-compare-function">Example
+2: Sorting in ascending order using a compare function</h3>
 <pre><code>func cmpfunc_ascending(x, y)
     if x == y
         return 0
@@ -26,7 +37,9 @@ end
 A = [5, 3, 8, 2, 1, 7, 9]
 sort A use cmpfunc_ascending(x, y)
 print A                         &#39; Output [1,2,3,5,7,8,9]</code></pre>
-<h3 id="example-3-sorting-in-descending-order-using-a-compare-function">Example 3: Sorting in descending order using a compare function</h3>
+<h3
+id="example-3-sorting-in-descending-order-using-a-compare-function">Example
+3: Sorting in descending order using a compare function</h3>
 <pre><code>func cmpfunc_descending(x, y)
     if x == y
         return 0

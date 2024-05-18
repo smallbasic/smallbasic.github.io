@@ -2,12 +2,15 @@
 <blockquote>
 <p>LOCATE row, column</p>
 </blockquote>
-<p>Moves the console (text-mode) cursor to the specified position. <code>row</code> and <code>column</code> are in text-mode character cells.</p>
+<p>Moves the console (text-mode) cursor to the specified position.
+<code>row</code> and <code>column</code> are in text-mode character
+cells.</p>
 <p>See AT for positioning the cursor in pixel.</p>
 <h3 id="example-1">Example 1:</h3>
 <pre><code>locate 5,7
 print &quot;text at row 5 and column 7&quot;</code></pre>
-<h3 id="example-2-print-text-always-in-center-of-window">Example 2: Print text always in center of window</h3>
+<h3 id="example-2-print-text-always-in-center-of-window">Example 2:
+Print text always in center of window</h3>
 <pre><code>&#39; Define functions to calculate lines and columns
 Def lines() = (Ymax + 1) \ Txth(&quot;x&quot;)   &#39; maximum lines in window
 Def columns() = (Xmax + 1) \ Txtw(&quot;x&quot;) &#39; maximum columns in window

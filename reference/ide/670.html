@@ -2,7 +2,8 @@
 <blockquote>
 <p>m = a MOD b</p>
 </blockquote>
-<p>Calculates the Modulus. Returns the remainder of <code>a/b</code> as integer. Equivalent syntax to % and MDL.</p>
+<p>Calculates the Modulus. Returns the remainder of <code>a/b</code> as
+integer. Equivalent syntax to % and MDL.</p>
 <h3 id="example-1">Example 1</h3>
 <pre><code>print  5 mod 2    &#39; Output 1
 print 12 mod 5    &#39; Output 2</code></pre>
@@ -32,7 +33,8 @@ FOR ASCnumber = 30 to 129                   &#39; note ASC(32) = space so wont s
     column = (ASCnumber MOD 10) * 5 + 5     &#39; times 5 to space out the characters printed plus 5 for column labels
     LOCATE row, column : ? CHR(ASCnumber)
 NEXT</code></pre>
-<h3 id="example-2-prime-or-lowest-divisor-table">Example 2: Prime or lowest divisor table</h3>
+<h3 id="example-2-prime-or-lowest-divisor-table">Example 2: Prime or
+lowest divisor table</h3>
 <pre><code>&#39; more MOD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23
 &#39;
 &#39; n MOD m - returns the remainder of n divided by m, if 0 then m divides n perfectly

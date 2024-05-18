@@ -2,21 +2,28 @@
 <blockquote>
 <p>ub = UBOUND (array [, dim])</p>
 </blockquote>
-<p>Returns the upper bound <code>ub</code> of an array <code>array</code>. <code>dim</code> can be used to specifiy, at which dimension the upper bound should be returned if <code>array</code> is a multi-dimensional array. If <code>dim</code> is not used the upper bound of the first dimension will be returned.</p>
+<p>Returns the upper bound <code>ub</code> of an array
+<code>array</code>. <code>dim</code> can be used to specifiy, at which
+dimension the upper bound should be returned if <code>array</code> is a
+multi-dimensional array. If <code>dim</code> is not used the upper bound
+of the first dimension will be returned.</p>
 <p>See LBOUND for lower bound of an array.</p>
-<h3 id="example-1-upper-bound-of-one-dimensional-arrays">Example 1: Upper bound of one-dimensional arrays</h3>
+<h3 id="example-1-upper-bound-of-one-dimensional-arrays">Example 1:
+Upper bound of one-dimensional arrays</h3>
 <pre><code>dim A(5)
 dim B(5 to 10)
 
 print ubound(A)     &#39; Output: 5
 print ubound(B)     &#39; Output: 10</code></pre>
-<h3 id="example-2-upper-bound-of-multi-dimensional-arrays">Example 2: Upper bound of multi-dimensional arrays</h3>
+<h3 id="example-2-upper-bound-of-multi-dimensional-arrays">Example 2:
+Upper bound of multi-dimensional arrays</h3>
 <pre><code>dim A(5,6,7)
 dim B(5 to 10, 7 to 12, 9 to 14)
 
 print ubound(A, 2)     &#39; Output: 6
 print ubound(B, 2)     &#39; Output: 12</code></pre>
-<h3 id="example-3-using-option-base-1">Example 3: Using option base 1</h3>
+<h3 id="example-3-using-option-base-1">Example 3: Using option base
+1</h3>
 <pre><code>option base 1
 
 dim A(5)

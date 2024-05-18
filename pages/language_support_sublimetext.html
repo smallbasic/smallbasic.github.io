@@ -65,28 +65,48 @@
     </div>
 <div class="article">
 <h1 id="smallbasic-in-sublime-text">SmallBASIC in Sublime Text</h1>
-<p><em>“Sublime Text is a shareware text and source code editor available for Windows, macOS, and Linux. It natively supports many programming languages and markup languages. Users can customize it with themes and expand its functionality with plugins, typically community-built and maintained under free-software licenses. […] The editor utilizes minimal interface and contains features for programmers including configurable syntax highlighting, code folding, search-and-replace supporting regular-expressions, terminal output window, and more. It is proprietary software, but a free evaluation version is available.” (<a href="https://en.wikipedia.org/wiki/Sublime_Text">wikipedia</a>)</em></p>
+<p><em>“Sublime Text is a shareware text and source code editor
+available for Windows, macOS, and Linux. It natively supports many
+programming languages and markup languages. Users can customize it with
+themes and expand its functionality with plugins, typically
+community-built and maintained under free-software licenses. […] The
+editor utilizes minimal interface and contains features for programmers
+including configurable syntax highlighting, code folding,
+search-and-replace supporting regular-expressions, terminal output
+window, and more. It is proprietary software, but a free evaluation
+version is available.” (<a
+href="https://en.wikipedia.org/wiki/Sublime_Text">wikipedia</a>)</em></p>
 <figure>
-<img src="https://raw.githubusercontent.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/main/screenshot.png" alt="" /><figcaption>Example</figcaption>
+<img
+src="https://raw.githubusercontent.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/main/screenshot.png"
+alt="Example" />
+<figcaption aria-hidden="true">Example</figcaption>
 </figure>
 <h2 id="installation">Installation</h2>
-<p>The files for syntax highlighting can be downloaded from <a href="https://github.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/">Github</a>.</p>
-<p>Copy the files in the folder “package” to the User directory in the Sublime Text package folder. The Sublime Text package folder can be open within Sublime Text under Preferences -&gt; Browse Packages.</p>
+<p>The files for syntax highlighting can be downloaded from <a
+href="https://github.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/">Github</a>.</p>
+<p>Copy the files in the folder “package” to the User directory in the
+Sublime Text package folder. The Sublime Text package folder can be open
+within Sublime Text under Preferences -&gt; Browse Packages.</p>
 <h2 id="script-execution">Script execution</h2>
-<p>Please edit the file <code>SmallBASIC.sublime-build</code> to configure script execution.</p>
+<p>Please edit the file <code>SmallBASIC.sublime-build</code> to
+configure script execution.</p>
 <h3 id="linux">Linux</h3>
-<p>The default file launches sbasicg (SDL-version) in Linux. sbasicg must be in the search path.</p>
+<p>The default file launches sbasicg (SDL-version) in Linux. sbasicg
+must be in the search path.</p>
 <pre><code>{
     &quot;cmd&quot;: [&quot;cmd&quot;, &quot;/c&quot;, &quot;sbasicg&quot;, &quot;-r&quot;, &quot;$file&quot;],
     &quot;selector&quot;: &quot;source.SmallBASIC&quot;
 }</code></pre>
-<p>Replace sbasicg by sbasic if you want to launch the console version. You can also include the full path.</p>
+<p>Replace sbasicg by sbasic if you want to launch the console version.
+You can also include the full path.</p>
 <pre><code>{
     &quot;cmd&quot;: [&quot;cmd&quot;, &quot;/c&quot;, &quot;sbasic&quot;, &quot;$file&quot;],
     &quot;selector&quot;: &quot;source.SmallBASIC&quot;
 }</code></pre>
 <h3 id="windows">Windows</h3>
-<p>Replace sbasicg by sbasicg.exe. You can include the full path if sbasicg.exe is not in the search path.</p>
+<p>Replace sbasicg by sbasicg.exe. You can include the full path if
+sbasicg.exe is not in the search path.</p>
 <pre><code>{
     &quot;cmd&quot;: [&quot;cmd&quot;, &quot;/c&quot;, &quot;sbasicg.exe&quot;, &quot;-r&quot; &quot;$file&quot;],
     &quot;selector&quot;: &quot;source.SmallBASIC&quot;

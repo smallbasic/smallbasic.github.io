@@ -66,29 +66,45 @@
 <div class="article">
 <h1 id="trycatch">Try/Catch</h1>
 <blockquote>
-<p>TRY/CATCH is used to trap errors allowing a program to recover without having to be restarted.</p>
+<p>TRY/CATCH is used to trap errors allowing a program to recover
+without having to be restarted.</p>
 </blockquote>
 <p><strong>TRY</strong></p>
 <p>The TRY statement introduces a TRY/CATCH block.</p>
 <p><strong>CATCH [var | expr]</strong></p>
-<p>The CATCH statement is used to CATCH an run-time error. This is typically used with errors raised when calling a file system command that cannot be completed, for example attempting to open a non-existent file.</p>
-<p>The CATCH statement has two modes. You can supply a variable argument to store the error string. Alternatively you can supply an expression. When the raised error matches the (String) expression, the error will be caught.</p>
-<p>When using the expression mode, you can supply a succession of CATCH statements to handle various error messages separately.</p>
+<p>The CATCH statement is used to CATCH an run-time error. This is
+typically used with errors raised when calling a file system command
+that cannot be completed, for example attempting to open a non-existent
+file.</p>
+<p>The CATCH statement has two modes. You can supply a variable argument
+to store the error string. Alternatively you can supply an expression.
+When the raised error matches the (String) expression, the error will be
+caught.</p>
+<p>When using the expression mode, you can supply a succession of CATCH
+statements to handle various error messages separately.</p>
 <p><strong>END TRY</strong></p>
-<p>The <strong>END TRY</strong> statement marks the end of a TRY/CATCH block.</p>
+<p>The <strong>END TRY</strong> statement marks the end of a TRY/CATCH
+block.</p>
 <p><strong>THROW</strong></p>
-<p>The THROW command (previously known as <strong>RTE</strong>) is used to initiate a catch-able error. If there is no surrounding TRY/CATCH block, THROW can be used to abort the program.</p>
+<p>The THROW command (previously known as <strong>RTE</strong>) is used
+to initiate a catch-able error. If there is no surrounding TRY/CATCH
+block, THROW can be used to abort the program.</p>
 <p><strong>Example</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">try</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a> <span class="fu">open</span> <span class="st">&quot;com2000:&quot;</span> <span class="kw">AS</span> #<span class="dv">1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">catch</span> err</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  ? <span class="st">&quot;in catch: open failed&quot;</span>;err</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">end try</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">try</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">open</span> <span class="st">&quot;com2000:&quot;</span> <span class="kw">AS</span> #<span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">catch</span> err</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  ? <span class="st">&quot;in catch: open failed&quot;</span>;err</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end try</span></span></code></pre></div>
 <p><strong>Try/Catch in other languages</strong></p>
 <ul>
-<li><a href="http://www.cplusplus.com/doc/tutorial/exceptions">C++</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch">Javascript</a></li>
-<li><a href="http://msdn.microsoft.com/en-AU/library/fk6t46tz.aspx">Visual Basic</a></li>
+<li><a
+href="http://www.cplusplus.com/doc/tutorial/exceptions">C++</a></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch">Javascript</a></li>
+<li><a
+href="http://msdn.microsoft.com/en-AU/library/fk6t46tz.aspx">Visual
+Basic</a></li>
 </ul>
 <p><strong>History</strong></p>
 <p>The TRY/CATCH mechanism was introduced in version 0.11.15.</p>
