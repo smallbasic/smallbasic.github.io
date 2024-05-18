@@ -107,17 +107,23 @@
 </tbody>
 </table>
 <h3 id="example-1">Example 1</h3>
-<p>The NOT-operation as part of XNOR performs a bitwise inversion on all bits of a number. This leads to the following (maybe unexpected) result:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">bin</span>(<span class="dv">0</span> <span class="kw">xnor</span> <span class="dv">0</span>)     <span class="co">&#39; Output: 11111111111111111111111111111111</span></span></code></pre></div>
-<h3 id="example-2-operate-xnor-only-on-last-n-bits">Example 2: Operate XNOR only on last n bits</h3>
-<p>If you want to operate NOR only on the last <code>n</code> bits of the numbers, you can use the following code:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>n = <span class="dv">4</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>a = 0b1100</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>b = 0b1010</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">bin</span>((a <span class="kw">XNOR</span> b) <span class="kw">BAND</span> ((<span class="dv">1</span> <span class="kw">lshift</span> n ) - <span class="dv">1</span>)) </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; Output 1001</span></span></code></pre></div>
+<p>The NOT-operation as part of XNOR performs a bitwise inversion on all
+bits of a number. This leads to the following (maybe unexpected)
+result:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">bin</span>(<span class="dv">0</span> <span class="kw">xnor</span> <span class="dv">0</span>)     <span class="co">&#39; Output: 11111111111111111111111111111111</span></span></code></pre></div>
+<h3 id="example-2-operate-xnor-only-on-last-n-bits">Example 2: Operate
+XNOR only on last n bits</h3>
+<p>If you want to operate NOR only on the last <code>n</code> bits of
+the numbers, you can use the following code:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n = <span class="dv">4</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a = <span class="dv">0</span>b1100</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>b = <span class="dv">0</span>b1010</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">bin</span>((a <span class="kw">XNOR</span> b) <span class="kw">BAND</span> ((<span class="dv">1</span> <span class="kw">lshift</span> n ) - <span class="dv">1</span>)) </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output 1001</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Language</div>
     <div class="linklist">
@@ -211,7 +217,7 @@ XNOR by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

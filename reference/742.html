@@ -73,19 +73,24 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>returns the centroid of a polygon <code>poly</code> as an array. The first element contains the x- the second element contains the y-coordinate of the centroid. POLYCENT will return an empty array if the area of the polygon is zero and the centroid is undefined.</p>
-<p>POLYCENT is based on code from the article “Centroid of a Polygon” by Gerard Bashein and Paul R. Detmer.</p>
+<p>returns the centroid of a polygon <code>poly</code> as an array. The
+first element contains the x- the second element contains the
+y-coordinate of the centroid. POLYCENT will return an empty array if the
+area of the polygon is zero and the centroid is undefined.</p>
+<p>POLYCENT is based on code from the article “Centroid of a Polygon” by
+Gerard Bashein and Paul R. Detmer.</p>
 <p>See DRAWPOLY for more information on how to define the polygon.</p>
 <h3 id="example">Example:</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>polygon = [[<span class="dv">50</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">100</span>], [<span class="dv">50</span>,<span class="dv">100</span>], [<span class="dv">50</span>,<span class="dv">50</span>]]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">&#39; Calculate centroid</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>centroid = <span class="fu">polycent</span>(polygon)  </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Centroid is at: &quot;</span>; centroid</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Draw polygon and a circle at position of the centroid</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="fu">drawpoly</span> polygon <span class="fu">color</span> <span class="dv">12</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">circle</span> centroid(<span class="dv">0</span>), centroid(<span class="dv">1</span>) , <span class="dv">5</span> <span class="fu">color</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>polygon = [[<span class="dv">50</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">100</span>], [<span class="dv">50</span>,<span class="dv">100</span>], [<span class="dv">50</span>,<span class="dv">50</span>]]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Calculate centroid</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>centroid = <span class="fu">polycent</span>(polygon)  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Centroid is at: &quot;</span>; centroid</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Draw polygon and a circle at position of the centroid</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">drawpoly</span> polygon <span class="fu">color</span> <span class="dv">12</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">circle</span> centroid(<span class="dv">0</span>), centroid(<span class="dv">1</span>) , <span class="dv">5</span> <span class="fu">color</span> <span class="dv">5</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -166,6 +171,7 @@
       <a href="/reference/765.html">SUMSQ </a>&nbsp;
       <a href="/reference/766.html">TAN </a>&nbsp;
       <a href="/reference/767.html">TANH </a>&nbsp;
+      <a href="/reference/1802.html">TRANSPOSE </a>&nbsp;
     </div>
     <div class="subtitle">
       If there is insufficient information on this page and you wish learn more about POLYCENT,
@@ -191,7 +197,7 @@ POLYCENT by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

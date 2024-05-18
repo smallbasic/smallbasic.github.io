@@ -73,26 +73,40 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Regular-expression operator. Compares the left part <code>a</code> of the expression with the right side regex pattern <code>b</code> and returns <code>true</code> or <code>false</code>.</p>
+<p>Regular-expression operator. Compares the left part <code>a</code> of
+the expression with the right side regex pattern <code>b</code> and
+returns <code>true</code> or <code>false</code>.</p>
 <ul>
-<li><code>*</code> matches any sequence of characters (zero or more)</li>
+<li><code>*</code> matches any sequence of characters (zero or
+more)</li>
 <li><code>?</code> matches any character</li>
 <li><code>[SET]</code> matches any character in the specified set</li>
-<li><code>[!SET]</code> or <code>[^SET]</code> matches any character not in the specified set</li>
+<li><code>[!SET]</code> or <code>[^SET]</code> matches any character not
+in the specified set</li>
 </ul>
-<p>A set is composed of characters or ranges. A range is defined by character - hyphen - character (as in 0-9 or A-Z). <code>[0-9a-zA-Z_]</code> is the minimal set of characters allowed in the <code>[..]</code> pattern construct. To suppress the special syntactic significance of any of <code>"[]*?!^-\</code>, and match the character exactly, precede it with a <code>\\</code>.</p>
-<p>For more information about regular-expressions please see http://www.regular-expressions.info/examples.html.</p>
-<h3 id="option-for-matching-algorithm">Option for matching algorithm</h3>
+<p>A set is composed of characters or ranges. A range is defined by
+character - hyphen - character (as in 0-9 or A-Z).
+<code>[0-9a-zA-Z_]</code> is the minimal set of characters allowed in
+the <code>[..]</code> pattern construct. To suppress the special
+syntactic significance of any of <code>"[]*?!^-\</code>, and match the
+character exactly, precede it with a <code>\\</code>.</p>
+<p>For more information about regular-expressions please see
+http://www.regular-expressions.info/examples.html.</p>
+<h3 id="option-for-matching-algorithm">Option for matching
+algorithm</h3>
 <blockquote>
 <p>OPTION MATCH PCRE [CASELESS]|SIMPLE</p>
 </blockquote>
-<p><code>PCRE</code> sets as default matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple one with <code>SIMPLE</code>.</p>
+<p><code>PCRE</code> sets as default matching algorithm to
+(P)erl-(C)ompatible (R)egular (E)xpressions library or back to simple
+one with <code>SIMPLE</code>.</p>
 <h3 id="example-1">Example 1</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;*[oO]&quot;</span>                <span class="co">&#39; Output 1</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;He??o&quot;</span>                <span class="co">&#39; Output 1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;hello&quot;</span>                <span class="co">&#39; Output 0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;[Hh]*&quot;</span>                <span class="co">&#39; Output 1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;-[Hello]-&quot;</span> <span class="kw">Like</span> <span class="st">&quot;\\-\\[?*\\]\\-&quot;</span>   <span class="co">&#39; Output 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;*[oO]&quot;</span>                <span class="co">&#39; Output 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;He??o&quot;</span>                <span class="co">&#39; Output 1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;hello&quot;</span>                <span class="co">&#39; Output 0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Hello&quot;</span> <span class="kw">LIKE</span> <span class="st">&quot;[Hh]*&quot;</span>                <span class="co">&#39; Output 1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;-[Hello]-&quot;</span> <span class="kw">Like</span> <span class="st">&quot;\\-\\[?*\\]\\-&quot;</span>   <span class="co">&#39; Output 1</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using LIKE</div>
     <div class="linklist">
@@ -220,7 +234,7 @@ LIKE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

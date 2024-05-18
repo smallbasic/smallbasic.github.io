@@ -73,44 +73,60 @@
       <a href="/pages/data.html">Data</a>
     </p>
   </div>
-<p>Sorts an array <code>A</code> in ascending order. The sorted array is return as <code>A</code>, therefore overwriting the initial array. If a compare function <code>cmpfunc</code> is specified, this function will be used for comparision. The compare function takes two elements of <code>A</code> as <code>x</code>, <code>y</code> to compare and must return:</p>
+<p>Sorts an array <code>A</code> in ascending order. The sorted array is
+return as <code>A</code>, therefore overwriting the initial array. If a
+compare function <code>cmpfunc</code> is specified, this function will
+be used for comparision. The compare function takes two elements of
+<code>A</code> as <code>x</code>, <code>y</code> to compare and must
+return:</p>
 <ul>
-<li><code>-1</code> if <code>x</code> is to be placed before <code>y</code></li>
-<li><code>1</code> if <code>y</code> is to be placed before <code>x</code></li>
-<li><code>0</code> if it doesn’t matter which is placed first (which is usually the case when the elements are equal)</li>
+<li><code>-1</code> if <code>x</code> is to be placed before
+<code>y</code></li>
+<li><code>1</code> if <code>y</code> is to be placed before
+<code>x</code></li>
+<li><code>0</code> if it doesn’t matter which is placed first (which is
+usually the case when the elements are equal)</li>
 </ul>
-<h3 id="example-1-sorting-in-ascending-order">Example 1: Sorting in ascending order</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">sort</span> A</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [1,2,3,5,7,8,9]</span></span></code></pre></div>
-<h3 id="example-2-sorting-in-ascending-order-using-a-compare-function">Example 2: Sorting in ascending order using a compare function</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">func </span>cmpfunc_ascending(x, y)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="kw">if </span>x == y</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">0</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="kw">elseif</span> x &gt; y</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">1</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">-1</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="kw">endif</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="fu">sort</span> A <span class="kw">use</span> cmpfunc_ascending(x, y)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [1,2,3,5,7,8,9]</span></span></code></pre></div>
-<h3 id="example-3-sorting-in-descending-order-using-a-compare-function">Example 3: Sorting in descending order using a compare function</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">func </span>cmpfunc_descending(x, y)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    <span class="kw">if </span>x == y</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">0</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="kw">elseif</span> x &lt; y</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">1</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>        <span class="kw">return</span> <span class="dv">-1</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">endif</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="fu">sort</span> A <span class="kw">use</span> cmpfunc_descending(x, y)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [9,8,7,5,3,2,1]</span></span></code></pre></div>
+<h3 id="example-1-sorting-in-ascending-order">Example 1: Sorting in
+ascending order</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> A</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [1,2,3,5,7,8,9]</span></span></code></pre></div>
+<h3
+id="example-2-sorting-in-ascending-order-using-a-compare-function">Example
+2: Sorting in ascending order using a compare function</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>cmpfunc_ascending(x, y)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if </span>x == y</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="dv">0</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">elseif</span> x &gt; y</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="dv">1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> -<span class="dv">1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">endif</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> A <span class="kw">use</span> cmpfunc_ascending(x, y)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [1,2,3,5,7,8,9]</span></span></code></pre></div>
+<h3
+id="example-3-sorting-in-descending-order-using-a-compare-function">Example
+3: Sorting in descending order using a compare function</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>cmpfunc_descending(x, y)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if </span>x == y</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="dv">0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">elseif</span> x &lt; y</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="dv">1</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> -<span class="dv">1</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">endif</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> A <span class="kw">use</span> cmpfunc_descending(x, y)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A                         <span class="co">&#39; Output [9,8,7,5,3,2,1]</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using SORT</div>
     <div class="linklist">
@@ -186,7 +202,7 @@ SORT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

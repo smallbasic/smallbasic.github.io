@@ -73,7 +73,9 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Creates a form object <code>f</code> from a MAP variable <code>formMap</code>. Form object <code>f</code> gives access to the following GUI elements:</p>
+<p>Creates a form object <code>f</code> from a MAP variable
+<code>formMap</code>. Form object <code>f</code> gives access to the
+following GUI elements:</p>
 <ul>
 <li>Push button</li>
 <li>Label</li>
@@ -83,9 +85,12 @@
 <li>Single or multi-line text input</li>
 <li>Image button</li>
 </ul>
-<p>In listboxes and dropdown listboxes press and hold mouse button to scroll through the items. Alternatively arrow keys can be used. Press return or space for selecting the highlighted item.</p>
+<p>In listboxes and dropdown listboxes press and hold mouse button to
+scroll through the items. Alternatively arrow keys can be used. Press
+return or space for selecting the highlighted item.</p>
 <h3 id="the-form-object">The form object</h3>
-<p><code>f = form(formMAP)</code> provides access to the following sub-commands of the form object <code>f</code>:</p>
+<p><code>f = form(formMAP)</code> provides access to the following
+sub-commands of the form object <code>f</code>:</p>
 <table>
 <colgroup>
 <col style="width: 29%" />
@@ -108,11 +113,14 @@
 </tr>
 <tr class="odd">
 <td>refresh(n)</td>
-<td><code>n = 1</code> copy the UI state into the FORM input variables <code>f.inputs</code>. <code>n = 0</code> update the UI state using the FORM input variables <code>f.inputs</code>.</td>
+<td><code>n = 1</code> copy the UI state into the FORM input variables
+<code>f.inputs</code>. <code>n = 0</code> update the UI state using the
+FORM input variables <code>f.inputs</code>.</td>
 </tr>
 </tbody>
 </table>
-<p>The form object <code>f</code> may contain the following properties:</p>
+<p>The form object <code>f</code> may contain the following
+properties:</p>
 <table>
 <thead>
 <tr class="header">
@@ -136,8 +144,13 @@
 </tbody>
 </table>
 <h3 id="defining-the-input-fields">Defining the input fields</h3>
-<p><code>inputs</code> is an array of type MAP, each element may contain the following attributes:</p>
+<p><code>inputs</code> is an array of type MAP, each element may contain
+the following attributes:</p>
 <table>
+<colgroup>
+<col style="width: 53%" />
+<col style="width: 46%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Attribute</th>
@@ -195,7 +208,8 @@
 </tr>
 <tr class="odd">
 <td>isExternal</td>
-<td>Whether the <code>link</code> field opens in an external browser.</td>
+<td>Whether the <code>link</code> field opens in an external
+browser.</td>
 </tr>
 <tr class="even">
 <td>resizable</td>
@@ -262,295 +276,330 @@
 </tr>
 </tbody>
 </table>
-<h3 id="change-or-read-the-gui-elements">Change or read the GUI elements</h3>
-<p>Once the GUI elements are rendered on screen they can be changed for example to respond to user input. By calling <code>f.refresh(1)</code> the current state of the GUI elements will be copied to <code>f</code>. The content of <code>f</code> is rendered to screen, when calling <code>f.refresh(0)</code>. <code>f.inputs</code> is an array of MAP variables. The first element of that array is the first GUI element added to <code>formMap.inputs</code>. For example the color of the first element can be changed:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>f.inputs[<span class="dv">0</span>].<span class="fu">color</span> = <span class="dv">12</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>f.refresh(<span class="dv">0</span>)</span></code></pre></div>
-<p>To get a list of all available elements of the n-th GUI element, you can simply use <code>print f.inputs[n]</code>.</p>
-<h3 id="example-1-creating-a-push-button-using-callback-function">Example 1: Creating a push button using callback function</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>button.type = <span class="st">&quot;button&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>button.x = <span class="dv">120</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>button.y = <span class="dv">120</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>button.<span class="kw">label</span> = <span class="st">&quot;Button&quot;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>button.backgroundcolor = <span class="fu">rgb</span>(<span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>button.onclick = @ButtonClicked     <span class="co">&#39; Callback function, definition see below</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>formMAP.inputs &lt;&lt; button</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>f = <span class="fu">form</span>(formMAP)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>  f.doEvents()</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>f.<span class="fu">close</span>()</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">sub </span>ButtonClicked()</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>  <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>  Clicked++</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Button clicked &quot;</span> + Clicked + <span class="st">&quot; times&quot;</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
-<h3 id="example-2-creating-a-push-button-using-doevents-result">Example 2: Creating a push button using doEvents result</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>button.type = <span class="st">&quot;button&quot;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>button.x = <span class="dv">120</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>button.y = <span class="dv">120</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>button.<span class="kw">label</span> = <span class="st">&quot;Button&quot;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>button.backgroundcolor = <span class="fu">rgb</span>(<span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>button.value = <span class="dv">1</span>  <span class="co">&#39; unique value to identify the button</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>formMAP.inputs &lt;&lt; button</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>f = <span class="fu">form</span>(formMAP)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>  f.doEvents()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>  <span class="kw">if(</span>f.value == <span class="dv">1</span>) <span class="kw">then</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    ii++</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;Button cklicked &quot;</span> + ii + <span class="st">&quot; times.&quot;</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>  <span class="kw">endif </span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>f.<span class="fu">close</span>()</span></code></pre></div>
+<h3 id="change-or-read-the-gui-elements">Change or read the GUI
+elements</h3>
+<p>Once the GUI elements are rendered on screen they can be changed for
+example to respond to user input. By calling <code>f.refresh(1)</code>
+the current state of the GUI elements will be copied to <code>f</code>.
+The content of <code>f</code> is rendered to screen, when calling
+<code>f.refresh(0)</code>. <code>f.inputs</code> is an array of MAP
+variables. The first element of that array is the first GUI element
+added to <code>formMap.inputs</code>. For example the color of the first
+element can be changed:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f.inputs[<span class="dv">0</span>].<span class="fu">color</span> = <span class="dv">12</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>f.refresh(<span class="dv">0</span>)</span></code></pre></div>
+<p>To get a list of all available elements of the n-th GUI element, you
+can simply use <code>print f.inputs[n]</code>.</p>
+<h3
+id="example-1-creating-a-push-button-using-callback-function">Example 1:
+Creating a push button using callback function</h3>
+<p>When using buttons in combination with callback functions, the
+<code>doEvents()</code> function is not necessary. Without this function
+the execution of the program will not be blocked. In the following
+example a number will be incremented in a while loop and printed to the
+screen. When the button is pressed, the callback function is executed
+and will block the program until the callback function ends.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>button.type = <span class="st">&quot;button&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>button.x = <span class="dv">120</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>button.y = <span class="dv">120</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>button.<span class="kw">label</span> = <span class="st">&quot;Button&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>button.backgroundcolor = <span class="fu">rgb</span>(<span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>button.onclick = @ButtonClicked     <span class="co">&#39; Callback function, definition see below</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>formMAP.inputs &lt;&lt; button</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(formMAP)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  ii++</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">locate</span> <span class="dv">0</span>,<span class="dv">0</span>: <span class="kw">print</span> ii</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span>(<span class="dv">100</span>)  </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>ButtonClicked()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">locate</span> <span class="dv">1</span>,<span class="dv">0</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  Clicked++</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> <span class="st">&quot;Button clicked &quot;</span> + Clicked + <span class="st">&quot; times&quot;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<h3 id="example-2-creating-a-push-button-using-doevents-result">Example
+2: Creating a push button using doEvents result</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>button.type = <span class="st">&quot;button&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>button.x = <span class="dv">120</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>button.y = <span class="dv">120</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>button.<span class="kw">label</span> = <span class="st">&quot;Button&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>button.backgroundcolor = <span class="fu">rgb</span>(<span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>button.value = <span class="dv">1</span>  <span class="co">&#39; unique value to identify the button</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>formMAP.inputs &lt;&lt; button</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(formMAP)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  f.doEvents()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if(</span>f.value == <span class="dv">1</span>) <span class="kw">then</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    ii++</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> <span class="st">&quot;Button cklicked &quot;</span> + ii + <span class="st">&quot; times.&quot;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">endif </span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span></code></pre></div>
 <h3 id="example-3-creating-a-label">Example 3: Creating a label</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>l.type = <span class="st">&quot;label&quot;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>l.x = <span class="dv">120</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>l.y = <span class="dv">120</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>l.<span class="kw">label</span> = <span class="st">&quot;Label&quot;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>l.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>f.inputs &lt;&lt; l</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>f = <span class="fu">form</span>(f)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>  f.doEvents()</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>f.<span class="fu">close</span>()</span></code></pre></div>
-<h3 id="example-4-creating-a-link-to-an-external-website">Example 4: Creating a link to an external website</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>l.type = <span class="st">&quot;link&quot;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>l.x = <span class="dv">120</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>l.y = <span class="dv">120</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>l.<span class="kw">label</span> = <span class="st">&quot;Link to SmallBASIC website&quot;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>l.value = <span class="st">&quot;https://smallbasic.github.io&quot;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>l.isExternal = <span class="dt">true</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>l.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">255</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>f.inputs &lt;&lt; l</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>f = <span class="fu">form</span>(f)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>  f.doEvents()</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>f.<span class="fu">close</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>l.type = <span class="st">&quot;label&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>l.x = <span class="dv">120</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>l.y = <span class="dv">120</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>l.<span class="kw">label</span> = <span class="st">&quot;Label&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>l.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; l</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(f)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  f.doEvents()</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span></code></pre></div>
+<h3 id="example-4-creating-a-link-to-an-external-website">Example 4:
+Creating a link to an external website</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>l.type = <span class="st">&quot;link&quot;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>l.x = <span class="dv">120</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>l.y = <span class="dv">120</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>l.<span class="kw">label</span> = <span class="st">&quot;Link to SmallBASIC website&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>l.value = <span class="st">&quot;https://smallbasic.github.io&quot;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>l.isExternal = <span class="dt">true</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>l.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">255</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; l</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(f)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  f.doEvents()</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span></code></pre></div>
 <h3 id="example-5-creating-a-listbox">Example 5: Creating a listbox</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>l.type = <span class="st">&quot;listbox&quot;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>l.x = <span class="dv">120</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>l.y = <span class="dv">120</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>l.height = <span class="dv">200</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>l.width = <span class="dv">100</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>l.value = <span class="st">&quot;cats|dogs|fish|birds|insects&quot;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">&#39; alternative way is to pass an array:</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">&#39; l.value = [&quot;cats&quot;, &quot;dogs&quot;, &quot;fish&quot;, &quot;birds&quot;, &quot;insects&quot;]</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>l.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>l.backgroundColor = <span class="fu">rgb</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>f.inputs &lt;&lt; l</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>f = <span class="fu">form</span>(f)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>  f.doEvents()</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>  </span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a>  <span class="co">&#39; Check for value of the active input field</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a>  <span class="kw">if </span>(<span class="fu">len</span>(f.value) &gt; <span class="dv">0</span>) <span class="kw">then</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a>    <span class="kw">print</span> f.value; <span class="st">&quot;                  &quot;</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a>  <span class="kw">end if </span> </span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a>f.<span class="fu">close</span>()</span></code></pre></div>
-<h3 id="example-6-creating-a-dropdown-listbox">Example 6: Creating a dropdown listbox</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>l.type = <span class="st">&quot;choice&quot;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>l.x = <span class="dv">120</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>l.y = <span class="dv">120</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>l.width = <span class="dv">100</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>l.value = <span class="st">&quot;cats|dogs|fish|birds|insects&quot;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">&#39; alternative way is to pass an array:</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">&#39; l.value = [&quot;cats&quot;, &quot;dogs&quot;, &quot;fish&quot;, &quot;birds&quot;, &quot;insects&quot;]</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>l.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>l.backgroundColor = <span class="fu">rgb</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>f.inputs &lt;&lt; l</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>f = <span class="fu">form</span>(f)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>  f.doEvents()</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a>  </span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a>  <span class="co">&#39; Check for value of the active input field</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a>  <span class="kw">if </span>(<span class="fu">len</span>(f.value) &gt; <span class="dv">0</span>) <span class="kw">then</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a>    <span class="kw">print</span> f.value; <span class="st">&quot;                  &quot;</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a>  <span class="kw">end if </span> </span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a>f.<span class="fu">close</span>()</span></code></pre></div>
-<h3 id="example-7-creating-a-text-input-field">Example 7: Creating a text input field</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>t.type = <span class="st">&quot;text&quot;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>t.x = <span class="dv">120</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>t.y = <span class="dv">120</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>t.width = <span class="dv">300</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>t.value = <span class="st">&quot;Add more text&quot;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">&#39; t.height = 100  &#39; if hight is not defined, single line field</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>t.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>t.backgroundColor = <span class="fu">rgb</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>t.length = <span class="dv">50</span> <span class="co">&#39; number of characters</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">&#39; create additionally an OK-Button to update the form object</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="co">&#39; otherwise the text field blocks loop</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>b.type = <span class="st">&quot;button&quot;</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>b.x = <span class="dv">120</span> + t.width + <span class="dv">10</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>b.y = <span class="dv">120</span> </span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a>b.<span class="kw">label</span> = <span class="st">&quot;OK&quot;</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>b.backgroundcolor = <span class="fu">rgb</span>(<span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a>b.onclick = @OKButtonClicked</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a>f.inputs &lt;&lt; t</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a>f.inputs &lt;&lt; b</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a>f = <span class="fu">form</span>(f)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true"></a>  f.doEvents()  </span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true"></a></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true"></a>f.<span class="fu">close</span>()</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true"></a></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true"></a><span class="kw">sub </span>OKButtonClicked()</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true"></a>   f.refresh(<span class="dv">1</span>)              <span class="co">&#39; Update the form object</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true"></a>   <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true"></a>   <span class="kw">print</span> f.inputs[<span class="dv">0</span>].value   <span class="co">&#39; Text field is the first element added to the formMAP</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
-<h3 id="example-8-image-button-using-callback-function">Example 8: Image button using callback function</h3>
-<p>In this example a callback function will be used. If you want to use the doEvents result instead, have a look at example 2.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co">&#39; Create a simple button and save it as png</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">&#39; If you have already an image for you button,</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co">&#39; this part is not necessary.</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="fu">circle</span> <span class="dv">100</span>,<span class="dv">100</span>,<span class="dv">100</span> <span class="fu">color</span> <span class="dv">15</span> filled</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>ButtonImage = <span class="fu">image</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">200</span>,<span class="dv">200</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>ButtonImage.save(<span class="st">&quot;button.png&quot;</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="fu">cls</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a> </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="co">&#39; Define image button</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a>button.type = <span class="st">&quot;image&quot;</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a>button.name = <span class="st">&quot;button.png&quot;</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a>button.x = <span class="dv">120</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a>button.y = <span class="dv">120</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a>button.onclick = @ButtonClicked     <span class="co">&#39; Callback function, definition see below.</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a> </span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a>formMAP.inputs &lt;&lt; button</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a> </span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a>f = <span class="fu">form</span>(formMAP)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a> </span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a>  f.doEvents()</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a> </span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a>f.<span class="fu">close</span>()</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true"></a> </span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true"></a><span class="kw">sub </span>ButtonClicked()</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true"></a>  <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true"></a>  Clicked++</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true"></a>  <span class="kw">print</span> <span class="st">&quot;Button clicked &quot;</span> + Clicked + <span class="st">&quot; times&quot;</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>l.type = <span class="st">&quot;listbox&quot;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>l.x = <span class="dv">120</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>l.y = <span class="dv">120</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>l.height = <span class="dv">200</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>l.width = <span class="dv">100</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>l.value = <span class="st">&quot;cats|dogs|fish|birds|insects&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; alternative way is to pass an array:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; l.value = [&quot;cats&quot;, &quot;dogs&quot;, &quot;fish&quot;, &quot;birds&quot;, &quot;insects&quot;]</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>l.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>l.backgroundColor = <span class="fu">rgb</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; l</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(f)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  f.doEvents()</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; Check for value of the active input field</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>(<span class="fu">len</span>(f.value) &gt; <span class="dv">0</span>) <span class="kw">then</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> f.value; <span class="st">&quot;                  &quot;</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end if </span> </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span></code></pre></div>
+<h3 id="example-6-creating-a-dropdown-listbox">Example 6: Creating a
+dropdown listbox</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>l.type = <span class="st">&quot;choice&quot;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>l.x = <span class="dv">120</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>l.y = <span class="dv">120</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>l.width = <span class="dv">100</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>l.value = <span class="st">&quot;cats|dogs|fish|birds|insects&quot;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; alternative way is to pass an array:</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; l.value = [&quot;cats&quot;, &quot;dogs&quot;, &quot;fish&quot;, &quot;birds&quot;, &quot;insects&quot;]</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>l.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>l.backgroundColor = <span class="fu">rgb</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; l</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(f)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  f.doEvents()</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; Check for value of the active input field</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>(<span class="fu">len</span>(f.value) &gt; <span class="dv">0</span>) <span class="kw">then</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> f.value; <span class="st">&quot;                  &quot;</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end if </span> </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span></code></pre></div>
+<h3 id="example-7-creating-a-text-input-field">Example 7: Creating a
+text input field</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>t.type = <span class="st">&quot;text&quot;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>t.x = <span class="dv">120</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>t.y = <span class="dv">120</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>t.width = <span class="dv">300</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>t.value = <span class="st">&quot;Add more text&quot;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; t.height = 100  &#39; if hight is not defined, single line field</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>t.<span class="fu">color</span> = <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>t.backgroundColor = <span class="fu">rgb</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>t.length = <span class="dv">50</span> <span class="co">&#39; number of characters</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; create additionally an OK-Button to update the form object</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; otherwise the text field blocks loop</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>b.type = <span class="st">&quot;button&quot;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>b.x = <span class="dv">120</span> + t.width + <span class="dv">10</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>b.y = <span class="dv">120</span> </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>b.<span class="kw">label</span> = <span class="st">&quot;OK&quot;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>b.backgroundcolor = <span class="fu">rgb</span>(<span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>b.onclick = @OKButtonClicked</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; t</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; b</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(f)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  f.doEvents()  </span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>OKButtonClicked()</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>   f.refresh(<span class="dv">1</span>)              <span class="co">&#39; Update the form object</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>   <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>   <span class="kw">print</span> f.inputs[<span class="dv">0</span>].value   <span class="co">&#39; Text field is the first element added to the formMAP</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<h3 id="example-8-image-button-using-callback-function">Example 8: Image
+button using callback function</h3>
+<p>In this example a callback function will be used. If you want to use
+the doEvents result instead, have a look at example 2.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Create a simple button and save it as png</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; If you have already an image for you button,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; this part is not necessary.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">circle</span> <span class="dv">100</span>,<span class="dv">100</span>,<span class="dv">100</span> <span class="fu">color</span> <span class="dv">15</span> filled</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ButtonImage = <span class="fu">image</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">200</span>,<span class="dv">200</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ButtonImage.save(<span class="st">&quot;button.png&quot;</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cls</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Define image button</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>button.type = <span class="st">&quot;image&quot;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>button.name = <span class="st">&quot;button.png&quot;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>button.x = <span class="dv">120</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>button.y = <span class="dv">120</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>button.onclick = @ButtonClicked     <span class="co">&#39; Callback function, definition see below.</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>formMAP.inputs &lt;&lt; button</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(formMAP)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  f.doEvents()</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>ButtonClicked()</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  Clicked++</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> <span class="st">&quot;Button clicked &quot;</span> + Clicked + <span class="st">&quot; times&quot;</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
 <h3 id="example-9-one-more-example">Example 9: One more example</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>f.handleKeys = <span class="dv">0</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">&#39; create some buttons</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>button1.y = <span class="dv">120</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>button1.<span class="kw">label</span> = <span class="st">&quot;Button1&quot;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>button1.value = <span class="st">&quot;valueofButton1&quot;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>button1.backgroundcolor = <span class="fu">rgb</span>(<span class="dv">255</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>button1.onclick = @HelloWorld <span class="co">&#39;this prints on load</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>button2.x = <span class="dv">-1</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>button2.y = <span class="dv">120</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>button2.<span class="kw">label</span> = <span class="st">&quot;Button2&quot;</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>button2.value = <span class="st">&quot;valueofButton2&quot;</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>button3.value = <span class="st">&quot;cats&quot;</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a>button3.x = <span class="dv">-1</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a>button3.y = <span class="dv">120</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a>button3.background = <span class="dv">223344</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a>b4.type = <span class="st">&quot;choice&quot;</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a>b4.value = <span class="st">&quot;cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish&quot;</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a>b4.selectedIndex = <span class="dv">2</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a>b4.x = <span class="dv">-1</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a>b4.y = <span class="dv">120</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a>b5.type = <span class="st">&quot;list&quot;</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a>b5.value = <span class="st">&quot;cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|end|lol&quot;</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a>b5.x = <span class="dv">-1</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a>b5.y = <span class="dv">120</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true"></a>b5.height = <span class="dv">120</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true"></a>b6.type = <span class="st">&quot;text&quot;</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true"></a>b6.value = <span class="st">&quot;cats&quot;</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true"></a>b6.length=<span class="dv">30</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true"></a>b6.x = <span class="dv">-1</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true"></a>b6.y = <span class="dv">120</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true"></a>b6.width = <span class="dv">50</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true"></a>b6.noFocus = <span class="dv">0</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true"></a><span class="co">&#39; add buttons to the form</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true"></a>f.inputs &lt;&lt; button1</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true"></a>f.inputs &lt;&lt; button2</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true"></a>f.inputs &lt;&lt; button3</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true"></a>f.inputs &lt;&lt; b4</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true"></a>f.inputs &lt;&lt; b5</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true"></a>f.inputs &lt;&lt; b6</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true"></a>f.backgroundcolor = <span class="st">&quot;green&quot;</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true"></a><span class="co">&#39; at this stage &#39;f&#39; is just a plain user defined structure (map)</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true"></a><span class="co">&#39; after calling FORM, &#39;f&#39; becomes a system form object with three special functions</span></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true"></a><span class="co">&#39; doEvents, close and refresh (see sokoban.bas for refresh)</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true"></a>f = <span class="fu">form</span>(f)</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true"></a><span class="co">&#39; the string version of the form is JSON  (see https://en.wikipedia.org/wiki/JSON)</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true"></a><span class="fu">TSAVE</span> <span class="st">&quot;f.frm&quot;</span>, f</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true"></a>  <span class="co">&#39; pump the system event queue</span></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true"></a>  f.doEvents()</span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true"></a>  <span class="co">&#39; process the event</span></span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true"></a>  in$ = <span class="kw">inkey</span></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true"></a>  <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true"></a>  <span class="kw">if </span><span class="fu">len</span>(in$)&gt;<span class="dv">1</span> <span class="kw">then</span></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true"></a>    flag= <span class="fu">asc</span>(<span class="fu">left</span>(in$,<span class="dv">1</span>))</span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true"></a>    keychar =<span class="fu">right</span>(in$,<span class="dv">1</span>)</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true"></a>  n= <span class="fu">asc</span>(keychar)</span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true"></a>    <span class="kw">if </span>(flag == <span class="dv">1</span>)</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true"></a>      ? <span class="st">&quot;Ctrl    : &quot;</span>;keychar ; <span class="st">&quot;   &quot;</span></span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true"></a>    <span class="kw">else</span> <span class="kw">if </span>(flag == <span class="dv">2</span>)</span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true"></a>      ? <span class="st">&quot;Alt    : &quot;</span>; keychar</span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true"></a>    <span class="kw">else</span> <span class="kw">if </span>(flag == <span class="dv">3</span>)</span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true"></a>      ? <span class="st">&quot;Ctrl+Alt: &quot;</span>; keychar ; <span class="st">&quot;   &quot;</span></span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true"></a>      ? <span class="st">&quot;Arrow: &quot;</span>; n ; <span class="st">&quot;   &quot;</span></span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true"></a>    <span class="kw">end if</span></span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true"></a>  <span class="kw">else</span></span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true"></a>    vkey = <span class="fu">asc</span>(in$)</span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true"></a>    <span class="kw">if </span>(vkey == <span class="dv">8</span>) <span class="kw">then</span></span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true"></a>      ? <span class="st">&quot;backspace!&quot;</span></span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true"></a>    <span class="kw">else</span> <span class="kw">if </span>(vkey == <span class="dv">127</span>) <span class="kw">then</span></span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true"></a>      ? <span class="st">&quot;delete !&quot;</span></span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true"></a>      ? <span class="st">&quot; key=           &quot;</span>; in$; <span class="st">&quot; &quot;</span>; vkey</span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true"></a>    <span class="kw">endif</span></span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true"></a><span class="kw">endif</span></span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true"></a><span class="kw">if </span>b6.value &lt;&gt; <span class="st">&quot;cats&quot;</span> <span class="kw">then</span> ? b6.value</span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true"></a>  <span class="kw">if </span>(<span class="fu">len</span>(f.value) &gt; <span class="dv">0</span>) <span class="kw">then</span></span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true"></a>    <span class="kw">print</span> f.value; <span class="st">&quot;                  &quot;</span></span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true"></a>  <span class="kw">end if</span></span>
-<span id="cb10-80"><a href="#cb10-80" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true"></a>f.<span class="fu">close</span>()</span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true"></a><span class="kw">func </span>HelloWorld</span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true"></a>? <span class="st">&quot;hello world&quot;</span></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>f.handleKeys = <span class="dv">0</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; create some buttons</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>button1.y = <span class="dv">120</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>button1.<span class="kw">label</span> = <span class="st">&quot;Button1&quot;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>button1.value = <span class="st">&quot;valueofButton1&quot;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>button1.backgroundcolor = <span class="fu">rgb</span>(<span class="dv">255</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>button1.onclick = @HelloWorld <span class="co">&#39;this prints on load</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>button2.x = -<span class="dv">1</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>button2.y = <span class="dv">120</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>button2.<span class="kw">label</span> = <span class="st">&quot;Button2&quot;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>button2.value = <span class="st">&quot;valueofButton2&quot;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>button3.value = <span class="st">&quot;cats&quot;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>button3.x = -<span class="dv">1</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>button3.y = <span class="dv">120</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>button3.background = <span class="dv">223344</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>b4.type = <span class="st">&quot;choice&quot;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>b4.value = <span class="st">&quot;cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish&quot;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>b4.selectedIndex = <span class="dv">2</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>b4.x = -<span class="dv">1</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>b4.y = <span class="dv">120</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>b5.type = <span class="st">&quot;list&quot;</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>b5.value = <span class="st">&quot;cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|cats|dogs|Fish|end|lol&quot;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>b5.x = -<span class="dv">1</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>b5.y = <span class="dv">120</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>b5.height = <span class="dv">120</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>b6.type = <span class="st">&quot;text&quot;</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>b6.value = <span class="st">&quot;cats&quot;</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>b6.length=<span class="dv">30</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>b6.x = -<span class="dv">1</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>b6.y = <span class="dv">120</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>b6.width = <span class="dv">50</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>b6.noFocus = <span class="dv">0</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; add buttons to the form</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; button1</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; button2</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; button3</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; b4</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; b5</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>f.inputs &lt;&lt; b6</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>f.backgroundcolor = <span class="st">&quot;green&quot;</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; at this stage &#39;f&#39; is just a plain user defined structure (map)</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; after calling FORM, &#39;f&#39; becomes a system form object with three special functions</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; doEvents, close and refresh (see sokoban.bas for refresh)</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>f = <span class="fu">form</span>(f)</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; the string version of the form is JSON  (see https://en.wikipedia.org/wiki/JSON)</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="fu">TSAVE</span> <span class="st">&quot;f.frm&quot;</span>, f</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; pump the system event queue</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>  f.doEvents()</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; process the event</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>  in$ = <span class="kw">inkey</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span><span class="fu">len</span>(in$)&gt;<span class="dv">1</span> <span class="kw">then</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>    flag= <span class="fu">asc</span>(<span class="fu">left</span>(in$,<span class="dv">1</span>))</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>    keychar =<span class="fu">right</span>(in$,<span class="dv">1</span>)</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>  n= <span class="fu">asc</span>(keychar)</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if </span>(flag == <span class="dv">1</span>)</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>      ? <span class="st">&quot;Ctrl    : &quot;</span>;keychar ; <span class="st">&quot;   &quot;</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span> <span class="kw">if </span>(flag == <span class="dv">2</span>)</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>      ? <span class="st">&quot;Alt    : &quot;</span>; keychar</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span> <span class="kw">if </span>(flag == <span class="dv">3</span>)</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>      ? <span class="st">&quot;Ctrl+Alt: &quot;</span>; keychar ; <span class="st">&quot;   &quot;</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>      ? <span class="st">&quot;Arrow: &quot;</span>; n ; <span class="st">&quot;   &quot;</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end if</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>    vkey = <span class="fu">asc</span>(in$)</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if </span>(vkey == <span class="dv">8</span>) <span class="kw">then</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>      ? <span class="st">&quot;backspace!&quot;</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span> <span class="kw">if </span>(vkey == <span class="dv">127</span>) <span class="kw">then</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>      ? <span class="st">&quot;delete !&quot;</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>      ? <span class="st">&quot; key=           &quot;</span>; in$; <span class="st">&quot; &quot;</span>; vkey</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">endif</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="kw">endif</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="kw">if </span>b6.value &lt;&gt; <span class="st">&quot;cats&quot;</span> <span class="kw">then</span> ? b6.value</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>(<span class="fu">len</span>(f.value) &gt; <span class="dv">0</span>) <span class="kw">then</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> f.value; <span class="st">&quot;                  &quot;</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end if</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>f.<span class="fu">close</span>()</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>HelloWorld</span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot;hello world&quot;</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using FORM</div>
     <div class="linklist">
@@ -627,11 +676,11 @@ FORM by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 19 Oct 2023 14:48:19 +0200
+      This page was last edited on Mon, 12 Feb 2024 21:25:54 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

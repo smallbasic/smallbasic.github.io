@@ -73,27 +73,31 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-<p>Returns the ASCII code of first character of the string <code>s</code>.</p>
+<p>Returns the ASCII code of first character of the string
+<code>s</code>.</p>
 <p>See CHR for converting a ASCII code to a character.</p>
 <h3 id="example-1">Example 1</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;ASCII value of A is &quot;</span>; <span class="fu">ASC</span>(<span class="st">&quot;A&quot;</span>)      <span class="co">&#39; Output: ASCII value of A is 65</span></span></code></pre></div>
-<h3 id="example-2-create-an-ascii-table.">Example 2: Create an ASCII table.</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">LOCATE</span> <span class="dv">1</span>,<span class="dv">16</span> : ? <span class="st">&quot;ASC Table 30-129:&quot;</span>  <span class="co">&#39; locate print spot, print title for our app</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">FOR </span>column = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span>                    <span class="co">&#39; print a header, 10 numbers plus + (to add to row value)</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="fu">LOCATE</span> <span class="dv">2</span>, column * <span class="dv">5</span> + <span class="dv">4</span> : ? <span class="st">&quot;+&quot;</span>; column</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">NEXT</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">FOR </span>row = <span class="dv">3</span> <span class="kw">to</span> <span class="dv">12</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="fu">LOCATE</span> row, <span class="dv">0</span> : ? <span class="fu">RIGHT</span>(<span class="st">&quot; &quot;</span> + <span class="fu">STR</span>(row * <span class="dv">10</span>) + <span class="st">&quot;:&quot;</span>, <span class="dv">4</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">NEXT</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39;main table</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">FOR </span>ASCnumber = <span class="dv">30</span> <span class="kw">to</span> <span class="dv">129</span>              <span class="co">&#39; note ASC(32) = space so wont see anything in Table</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>  row = ASCnumber \ <span class="dv">10</span>                 <span class="co">&#39; \ rounds division down to integer</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>  column = (ASCnumber <span class="kw">MOD</span> <span class="dv">10</span>) * <span class="dv">5</span> + <span class="dv">5</span>  <span class="co">&#39; times 5 to space out the characters printed plus 5 for column labels</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>  <span class="fu">LOCATE</span> row,column : ? <span class="fu">CHR</span>(ASCnumber)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">NEXT</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;ASCII value of A is &quot;</span>; <span class="fu">ASC</span>(<span class="st">&quot;A&quot;</span>)      <span class="co">&#39; Output: ASCII value of A is 65</span></span></code></pre></div>
+<h3 id="example-2-create-an-ascii-table.">Example 2: Create an ASCII
+table.</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">LOCATE</span> <span class="dv">1</span>,<span class="dv">16</span> : ? <span class="st">&quot;ASC Table 30-129:&quot;</span>  <span class="co">&#39; locate print spot, print title for our app</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>column = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span>                    <span class="co">&#39; print a header, 10 numbers plus + (to add to row value)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">LOCATE</span> <span class="dv">2</span>, column * <span class="dv">5</span> + <span class="dv">4</span> : ? <span class="st">&quot;+&quot;</span>; column</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>row = <span class="dv">3</span> <span class="kw">to</span> <span class="dv">12</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">LOCATE</span> row, <span class="dv">0</span> : ? <span class="fu">RIGHT</span>(<span class="st">&quot; &quot;</span> + <span class="fu">STR</span>(row * <span class="dv">10</span>) + <span class="st">&quot;:&quot;</span>, <span class="dv">4</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;main table</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>ASCnumber = <span class="dv">30</span> <span class="kw">to</span> <span class="dv">129</span>              <span class="co">&#39; note ASC(32) = space so wont see anything in Table</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  row = ASCnumber \ <span class="dv">10</span>                 <span class="co">&#39; \ rounds division down to integer</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  column = (ASCnumber <span class="kw">MOD</span> <span class="dv">10</span>) * <span class="dv">5</span> + <span class="dv">5</span>  <span class="co">&#39; times 5 to space out the characters printed plus 5 for column labels</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">LOCATE</span> row,column : ? <span class="fu">CHR</span>(ASCnumber)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using ASC</div>
     <div class="linklist">
@@ -195,7 +199,7 @@ ASC by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

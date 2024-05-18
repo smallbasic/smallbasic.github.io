@@ -73,41 +73,63 @@
       <a href="/pages/system.html">System</a>
     </p>
   </div>
-<p>Loads a secondary copy of the system shell and executes a program or a shell command given by the string <code>cmdstr</code>. The execution of the calling BASIC program will be stoped and control returns to the BASIC program once the system command has completed. If RUN is called as a function, the return value <code>s</code> holds the text output of the executed command as a string.</p>
-<p>System commands, especially on Linux, are very powerful, and can add lots of valuable features to a SmallBASIC program. With system commands you can configure the COM port, send email (Linux at least), get lots of information about the environment, etc.</p>
-<p>In the Android version you can use <code>s = RUN</code> to look at information in the /proc file system.</p>
-<p>See EXEC if control should return to the BASIC program immediately.</p>
+<p>Loads a secondary copy of the system shell and executes a program or
+a shell command given by the string <code>cmdstr</code>. The execution
+of the calling BASIC program will be stoped and control returns to the
+BASIC program once the system command has completed. If RUN is called as
+a function, the return value <code>s</code> holds the text output of the
+executed command as a string.</p>
+<p>System commands, especially on Linux, are very powerful, and can add
+lots of valuable features to a SmallBASIC program. With system commands
+you can configure the COM port, send email (Linux at least), get lots of
+information about the environment, etc.</p>
+<p>In the Android version you can use <code>s = RUN</code> to look at
+information in the /proc file system.</p>
+<p>See EXEC if control should return to the BASIC program
+immediately.</p>
 <h2 id="use-run-in-windows">Use RUN in Windows</h2>
-<p>In Windows (tested with Win10) you have to call the programm <code>cmd</code> which opens a command line window. The command you want to execute will be a parameter of <code>cmd</code>. Additional the parameter <code>/C</code> needs to be added to quit the command line window after execution of the command.</p>
+<p>In Windows (tested with Win10) you have to call the programm
+<code>cmd</code> which opens a command line window. The command you want
+to execute will be a parameter of <code>cmd</code>. Additional the
+parameter <code>/C</code> needs to be added to quit the command line
+window after execution of the command.</p>
 <h3 id="example-1-run-as-a-function">Example 1: RUN as a function</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>s = <span class="fu">run</span>(<span class="st">&quot;cmd /C dir&quot;</span>)                              <span class="co">&#39; Execute DIR and</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> s                                            <span class="co">&#39; print a list of files in the current directory</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>s = <span class="fu">run</span>(<span class="st">&quot;cmd /C copy rename.txt rename1.txt&quot;</span>)      <span class="co">&#39; Copy a file (please create the file rename.txt before testing)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> s                                            <span class="co">&#39; Prints the text output of copy</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>s = <span class="fu">run</span>(<span class="st">&quot;cmd /C dir&quot;</span>)                              <span class="co">&#39; Execute DIR and</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> s                                            <span class="co">&#39; print a list of files in the current directory</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>s = <span class="fu">run</span>(<span class="st">&quot;cmd /C copy rename.txt rename1.txt&quot;</span>)      <span class="co">&#39; Copy a file (please create the file rename.txt before testing)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> s                                            <span class="co">&#39; Prints the text output of copy</span></span></code></pre></div>
 <h3 id="example-2-run-as-procedure">Example 2: RUN as procedure</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">run</span>(<span class="st">&quot;cmd /C copy rename.txt rename1.txt&quot;</span>)          <span class="co">&#39; Copy a file (please create the file rename.txt before testing)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">run</span>(<span class="st">&quot;cmd /C notepad.exe&quot;</span>)                          <span class="co">&#39; Start Notepad and wait until Notepad was closed        </span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>(<span class="st">&quot;cmd /C copy rename.txt rename1.txt&quot;</span>)          <span class="co">&#39; Copy a file (please create the file rename.txt before testing)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>(<span class="st">&quot;cmd /C notepad.exe&quot;</span>)                          <span class="co">&#39; Start Notepad and wait until Notepad was closed        </span></span></code></pre></div>
 <h2 id="use-run-in-linux">Use RUN in Linux</h2>
-<p>Commands to execute are case sensitive in Linux. Each command shell has an unique environment-variables-table; which means that you cannot always share environment variables with commands executed by RUN.</p>
+<p>Commands to execute are case sensitive in Linux. Each command shell
+has an unique environment-variables-table; which means that you cannot
+always share environment variables with commands executed by RUN.</p>
 <h3 id="example-1-run-as-a-function-1">Example 1: RUN as a function</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>s = <span class="fu">Run</span>(<span class="st">&quot;ls&quot;</span>)                                      <span class="co">&#39; Execute ls and print a list of files in the</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">print</span> s                                            <span class="co">&#39; current directory</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>s = <span class="fu">run</span>(<span class="st">&quot;cp rename.txt rename1.txt&quot;</span>)               <span class="co">&#39; Copy a file (please create the file rename.txt before testing)</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">print</span> s                                            <span class="co">&#39; Prints the text output of cy</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>s = <span class="fu">Run</span>(<span class="st">&quot;ls&quot;</span>)                                      <span class="co">&#39; Execute ls and print a list of files in the</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> s                                            <span class="co">&#39; current directory</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>s = <span class="fu">run</span>(<span class="st">&quot;cp rename.txt rename1.txt&quot;</span>)               <span class="co">&#39; Copy a file (please create the file rename.txt before testing)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> s                                            <span class="co">&#39; Prints the text output of cy</span></span></code></pre></div>
 <h3 id="example-2-run-as-procedure-1">Example 2: RUN as procedure</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">run</span>(<span class="st">&quot;cp rename.txt rename1.txt&quot;</span>)                   <span class="co">&#39; Copy a file (please create the file rename.txt before testing)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="fu">run</span>(<span class="st">&quot;gedit&quot;</span>)                                       <span class="co">&#39; Start gedit (if installed) and wait until gedit was closed        </span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>(<span class="st">&quot;cp rename.txt rename1.txt&quot;</span>)                   <span class="co">&#39; Copy a file (please create the file rename.txt before testing)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span>(<span class="st">&quot;gedit&quot;</span>)                                       <span class="co">&#39; Start gedit (if installed) and wait until gedit was closed        </span></span></code></pre></div>
 <h2 id="other-examples">Other Examples</h2>
-<h3 id="example-1-querry-whether-linux-or-windows-is-used">Example 1: Querry whether Linux or Windows is used</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="dt">const</span> IS_LINUX = (<span class="fu">Left</span>(<span class="fu">HOME</span>, <span class="dv">1</span>) = <span class="st">&quot;/&quot;</span>)  <span class="co">&#39; Check if it&#39;s a Linux system</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="dt">const</span> IS_WINDOWS = <span class="kw">Not</span> IS_LINUX</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;LINUX:   &quot;</span> + IS_LINUX</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Windows: &quot;</span> + IS_WINDOWS</span></code></pre></div>
+<h3 id="example-1-querry-whether-linux-or-windows-is-used">Example 1:
+Querry whether Linux or Windows is used</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> IS_LINUX = (<span class="fu">Left</span>(<span class="fu">HOME</span>, <span class="dv">1</span>) = <span class="st">&quot;/&quot;</span>)  <span class="co">&#39; Check if it&#39;s a Linux system</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> IS_WINDOWS = <span class="kw">Not</span> IS_LINUX</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;LINUX:   &quot;</span> + IS_LINUX</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Windows: &quot;</span> + IS_WINDOWS</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using RUN</div>
     <div class="linklist">
@@ -196,7 +218,7 @@ RUN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

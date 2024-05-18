@@ -73,142 +73,186 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Specifies “world” coordinates for the screen. The WINDOW command allows you to redefine the corners of the display screen as a pair of “world” coordinates. The coordinates of the upper-left corner of the screen is given by <code>[x1, y1]</code>, the lower-left corner by <code>[x2, y2]</code>.</p>
-<p>The world space defined by WINDOW is disabled by a WINDOW command without parameters.</p>
+<p>Specifies “world” coordinates for the screen. The WINDOW command
+allows you to redefine the corners of the display screen as a pair of
+“world” coordinates. The coordinates of the upper-left corner of the
+screen is given by <code>[x1, y1]</code>, the lower-left corner by
+<code>[x2, y2]</code>.</p>
+<p>The world space defined by WINDOW is disabled by a WINDOW command
+without parameters.</p>
 <h3 id="example">Example</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; Coordinate system with corners:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">&#39; upper-left = [-20,-10]</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">&#39; lower-right= [ 20, 10] </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>x1 = <span class="dv">-20</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>y1 = <span class="dv">-10</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>x2 =  <span class="dv">10</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>y2 =  <span class="dv">20</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">window</span> x1, x2, y2, y1</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">-20</span>, <span class="dv">-10</span> STEP <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">14</span> filled    <span class="co">&#39; Yellow:  upper-left</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="fu">rect</span>  <span class="dv">19</span>, <span class="dv">-10</span> STEP <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">13</span> filled    <span class="co">&#39; Magenta: upper-right</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="fu">rect</span>  <span class="dv">19</span>,   <span class="dv">9</span> STEP <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">12</span> filled    <span class="co">&#39; Red:     lower-right</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">-20</span>,   <span class="dv">9</span> STEP <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span> filled    <span class="co">&#39; Green:   lower-left</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="fu">circle</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">15</span> filled          <span class="co">&#39; White:   center</span></span></code></pre></div>
-<h2 id="window-sub-commands-non-standard">WINDOW sub-commands (non-standard)</h2>
-<p>WINDOW is also overloaded as a function, returning a system object which provides access to the following sub-commands.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Coordinate system with corners:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; upper-left = [-20,-10]</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; lower-right= [ 20, 10] </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x1 = -<span class="dv">20</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y1 = -<span class="dv">10</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x2 =  <span class="dv">10</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y2 =  <span class="dv">20</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">window</span> x1, x2, y2, y1</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> -<span class="dv">20</span>, -<span class="dv">10</span> STEP <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">14</span> filled    <span class="co">&#39; Yellow:  upper-left</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span>  <span class="dv">19</span>, -<span class="dv">10</span> STEP <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">13</span> filled    <span class="co">&#39; Magenta: upper-right</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span>  <span class="dv">19</span>,   <span class="dv">9</span> STEP <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">12</span> filled    <span class="co">&#39; Red:     lower-right</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> -<span class="dv">20</span>,   <span class="dv">9</span> STEP <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span> filled    <span class="co">&#39; Green:   lower-left</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">circle</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">15</span> filled          <span class="co">&#39; White:   center</span></span></code></pre></div>
+<h2 id="window-sub-commands-non-standard">WINDOW sub-commands
+(non-standard)</h2>
+<p>WINDOW is also overloaded as a function, returning a system object
+which provides access to the following sub-commands.</p>
 <h3 id="alertmessage-title">alert(message, title)</h3>
-<p>Display an alert window. The title of the window is <code>title</code> and the context is <code>message</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>w.alert(<span class="st">&quot;This is an alert&quot;</span>, <span class="st">&quot;title&quot;</span>)</span></code></pre></div>
+<p>Display an alert window. The title of the window is
+<code>title</code> and the context is <code>message</code>.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>w.alert(<span class="st">&quot;This is an alert&quot;</span>, <span class="st">&quot;title&quot;</span>)</span></code></pre></div>
 <h3 id="askmessage-title">ask(message, title)</h3>
-<p>Display a prompt window to retrieve a user selection. The choices are “Yes” and “No”. The title of the window is <code>title</code> and the context is <code>message</code>. The answer is stored in the window-object variable <code>answer</code>: <code>0</code> for “Yes” and <code>1</code> for “No”.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>w.ask(<span class="st">&quot;Yes or no?&quot;</span>, <span class="st">&quot;Question&quot;</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">if </span>w.answer == <span class="dv">0</span> <span class="kw">then</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;Yes&quot;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">else</span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;No&quot;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">endif</span></span></code></pre></div>
-<h3 id="graphicsscreen1-graphicsscreen2">graphicsScreen1(), graphicsScreen2()</h3>
-<p>Select graphics mode screen 1 or 2 for output. When switching to a different screen, the context of the previous screen is stored in RAM. When switching back to the previous screen, the context will be restored.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>w.graphicsScreen1()                      <span class="co">&#39; Set output to screen 1</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">100</span>,<span class="dv">100</span> STEP <span class="dv">100</span>,<span class="dv">100</span>, <span class="dv">15</span> filled</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>w.graphicsScreen2()                      <span class="co">&#39; Set output to screen 2</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="fu">rect</span> <span class="dv">150</span>,<span class="dv">150</span> STEP <span class="dv">100</span>,<span class="dv">100</span>, <span class="dv">14</span> filled</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co">&#39; Switch between both screens, no need to redaw the rectangles</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>    b = !b</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    <span class="kw">if </span>b <span class="kw">then</span> </span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>        w.graphicsScreen1()</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>        w.graphicsscreen2()</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>    <span class="kw">endif</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>  <span class="fu">delay</span>(<span class="dv">500</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
+<p>Display a prompt window to retrieve a user selection. The choices are
+“Yes” and “No”. The title of the window is <code>title</code> and the
+context is <code>message</code>. The answer is stored in the
+window-object variable <code>answer</code>: <code>0</code> for “Yes” and
+<code>1</code> for “No”.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>w.ask(<span class="st">&quot;Yes or no?&quot;</span>, <span class="st">&quot;Question&quot;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">if </span>w.answer == <span class="dv">0</span> <span class="kw">then</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> <span class="st">&quot;Yes&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">else</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> <span class="st">&quot;No&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">endif</span></span></code></pre></div>
+<h3 id="graphicsscreen1-graphicsscreen2">graphicsScreen1(),
+graphicsScreen2()</h3>
+<p>Select graphics mode screen 1 or 2 for output. When switching to a
+different screen, the context of the previous screen is stored in RAM.
+When switching back to the previous screen, the context will be
+restored.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>w.graphicsScreen1()                      <span class="co">&#39; Set output to screen 1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">100</span>,<span class="dv">100</span> STEP <span class="dv">100</span>,<span class="dv">100</span>, <span class="dv">15</span> filled</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>w.graphicsScreen2()                      <span class="co">&#39; Set output to screen 2</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">150</span>,<span class="dv">150</span> STEP <span class="dv">100</span>,<span class="dv">100</span>, <span class="dv">14</span> filled</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Switch between both screens, no need to redaw the rectangles</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    b = !b</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if </span>b <span class="kw">then</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        w.graphicsScreen1()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        w.graphicsscreen2()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">endif</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span>(<span class="dv">500</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
 <h3 id="insettextscreenx1-y1-x2-y2">insetTextScreen(x1, y1, x2, y2)</h3>
-<p>Insert an area for text output from position <code>[x1, y1]</code> to position <code>[x2, y2]</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>? <span class="st">&quot;How does this look?&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>w.insetTextScreen(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">90</span>,<span class="dv">90</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">200</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>  ? <span class="st">&quot;This is in the text screen&quot;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="kw">next </span>i</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="kw">pause</span></span></code></pre></div>
-<h3 id="menuoption1-option2-optionn">menu(option1 [, option2, …, optionN)</h3>
-<p>Displays a popup menu with the entries <code>option1</code> to <code>optionN</code>. INKEY will return the number of the selected option starting with <code>0</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>w.menu(<span class="st">&quot;option1&quot;</span>, <span class="st">&quot;option2&quot;</span>, <span class="st">&quot;option3&quot;</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">select case </span><span class="fu">asc</span>(<span class="kw">inkey</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>    <span class="kw">case</span> <span class="dv">0</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>      <span class="kw">print</span> <span class="st">&quot;one&quot;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>    <span class="kw">case</span> <span class="dv">1</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>      <span class="kw">print</span> <span class="st">&quot;two&quot;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>    <span class="kw">case</span> <span class="dv">2</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>      <span class="kw">print</span> <span class="st">&quot;three&quot;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>    <span class="kw">case</span> <span class="kw">else</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>      <span class="kw">print</span> <span class="st">&quot;unk&quot;</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="kw">end select</span></span></code></pre></div>
+<p>Insert an area for text output from position <code>[x1, y1]</code> to
+position <code>[x2, y2]</code></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot;How does this look?&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>w.insetTextScreen(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">90</span>,<span class="dv">90</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">200</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ? <span class="st">&quot;This is in the text screen&quot;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">next </span>i</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">pause</span></span></code></pre></div>
+<h3 id="menuoption1-option2-optionn">menu(option1 [, option2, …,
+optionN)</h3>
+<p>Displays a popup menu with the entries <code>option1</code> to
+<code>optionN</code>. INKEY will return the number of the selected
+option starting with <code>0</code>.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>w.menu(<span class="st">&quot;option1&quot;</span>, <span class="st">&quot;option2&quot;</span>, <span class="st">&quot;option3&quot;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">select case </span><span class="fu">asc</span>(<span class="kw">inkey</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">case</span> <span class="dv">0</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">print</span> <span class="st">&quot;one&quot;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">case</span> <span class="dv">1</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">print</span> <span class="st">&quot;two&quot;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">case</span> <span class="dv">2</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">print</span> <span class="st">&quot;three&quot;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">case</span> <span class="kw">else</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">print</span> <span class="st">&quot;unk&quot;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end select</span></span></code></pre></div>
 <h3 id="messagestr">message(str)</h3>
-<p>Displays a status message <code>str</code> at the bottom of the screen.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>w.message(<span class="st">&quot;Click to continue. &quot;</span>)</span></code></pre></div>
-<h3 id="setfontsize-unit-bold-italic">setFont(size, unit, bold, italic)</h3>
-<p>Sets the font size to <code>size</code>. <code>unit</code> can be set to “em” to make size relative to the existing size. Any other value will cause size to be avaluated as pixels. <code>bold</code> can be set to <code>0</code> or <code>1</code> to enable or disable bold font style. <code>italic</code> can be set to <code>0</code> or <code>1</code> to enable or disable italic font style.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>w.setFont(<span class="dv">15</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Fixed size 15px&quot;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>w.setFont(<span class="dv">2</span>, <span class="st">&quot;em&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Relative size 15px * 2&quot;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>w.setFont(<span class="dv">15</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Fixed size 15px bold&quot;</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>w.setFont(<span class="dv">15</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Fixed size 15px italic&quot;</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>w.setFont(<span class="dv">15</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Fixed size 15px bold italic&quot;</span></span></code></pre></div>
+<p>Displays a status message <code>str</code> at the bottom of the
+screen.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>w.message(<span class="st">&quot;Click to continue. &quot;</span>)</span></code></pre></div>
+<h3 id="setfontsize-unit-bold-italic">setFont(size, unit, bold,
+italic)</h3>
+<p>Sets the font size to <code>size</code>. <code>unit</code> can be set
+to “em” to make size relative to the existing size. Any other value will
+cause size to be avaluated as pixels. <code>bold</code> can be set to
+<code>0</code> or <code>1</code> to enable or disable bold font style.
+<code>italic</code> can be set to <code>0</code> or <code>1</code> to
+enable or disable italic font style.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>w.setFont(<span class="dv">15</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Fixed size 15px&quot;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>w.setFont(<span class="dv">2</span>, <span class="st">&quot;em&quot;</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Relative size 15px * 2&quot;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>w.setFont(<span class="dv">15</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Fixed size 15px bold&quot;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>w.setFont(<span class="dv">15</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Fixed size 15px italic&quot;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>w.setFont(<span class="dv">15</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Fixed size 15px bold italic&quot;</span></span></code></pre></div>
 <h3 id="setlocationx-y">setLocation(x, y)</h3>
-<p>Sets the location of the window on the screen. The upper-left corner of the window will be at position <code>[x, y]</code> in pixel.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>w.setLocation(<span class="dv">100</span>, <span class="dv">100</span>)</span></code></pre></div>
+<p>Sets the location of the window on the screen. The upper-left corner
+of the window will be at position <code>[x, y]</code> in pixel.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>w.setLocation(<span class="dv">100</span>, <span class="dv">100</span>)</span></code></pre></div>
 <h3 id="setsizew-h">setSize(w, h)</h3>
-<p>Sets the width <code>w</code> and height <code>h</code> in pixel of the SmallBASIC window.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>w.setSize(<span class="dv">800</span>, <span class="dv">680</span>)</span></code></pre></div>
+<p>Sets the width <code>w</code> and height <code>h</code> in pixel of
+the SmallBASIC window.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>w.setSize(<span class="dv">800</span>, <span class="dv">680</span>)</span></code></pre></div>
 <h3 id="showkeypad">showKeypad()</h3>
 <p>Raises the virtual keypad on android.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>w.showKeypad()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>w.showKeypad()</span></code></pre></div>
 <h3 id="hidekeypad">hideKeypad()</h3>
 <p>Hides the virtual keypad on android.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>w.hideKeypad()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>w.hideKeypad()</span></code></pre></div>
 <h3 id="textscreen">textScreen()</h3>
-<p>Select the text mode for output. Text mode can display more text but is slow.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>w.textScreen()</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">1000</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>  ? <span class="st">&quot;hello &quot;</span> + i</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="kw">next for</span></span></code></pre></div>
+<p>Select the text mode for output. Text mode can display more text but
+is slow.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>w.textScreen()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">1000</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  ? <span class="st">&quot;hello &quot;</span> + i</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">next for</span></span></code></pre></div>
 <h3 id="theme">theme</h3>
 <p>Returns the active window colour theme.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>w = <span class="fu">window</span>()</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="dt">const</span> theme = w.theme</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="dt">const</span> colBkGnd = theme.background</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="dt">const</span> colText  = theme.text5</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a><span class="dt">const</span> colFile  = theme.text2</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a><span class="dt">const</span> colDir   = theme.text3</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a><span class="dt">const</span> colText2 = theme.text4</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="dt">const</span> colNav   = theme.text1</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a><span class="dt">const</span> colNav2  = theme.text6</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>w = <span class="fu">window</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> theme = w.theme</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> colBkGnd = theme.background</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> colText  = theme.text5</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> colFile  = theme.text2</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> colDir   = theme.text3</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> colText2 = theme.text4</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> colNav   = theme.text1</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> colNav2  = theme.text6</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using WINDOW</div>
     <div class="linklist">
@@ -298,7 +342,7 @@ WINDOW by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

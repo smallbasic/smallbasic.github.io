@@ -2,12 +2,15 @@
 <blockquote>
 <p>OPEN file [FOR {INPUT|OUTPUT|APPEND}] AS #fileN</p>
 </blockquote>
-<p>Makes a file, device or network connection available for sequential input, sequential output.</p>
+<p>Makes a file, device or network connection available for sequential
+input, sequential output.</p>
 <ul>
-<li>file - A string expression that follows OS file naming conventions.</li>
-<li>fileN - A file-handle (integer 1 to 256).</li>
+<li><code>file</code> - A string expression that follows OS file naming
+conventions.</li>
+<li><code>fileN</code> - A file-handle (integer 1 to 256).</li>
 </ul>
-<h3 id="file-mode">File-mode</h3>
+<h3 id="open-a-file">Open a file</h3>
+<p><code>open "test.txt" for INPUT as #1</code></p>
 <table>
 <thead>
 <tr class="header">
@@ -30,42 +33,39 @@
 </tr>
 </tbody>
 </table>
-<p>If an existing file is opened for output, the file will be deleted and an empty file will be created. The files are always opened as shared. You can use FREEFILE to get the next unused file-handle. Use PRINT, INPUT, BGETC and BPUTC to read from or write to a file or device.</p>
-<h3 id="open-rs232-socket-url-or-image">Open RS232, socket, URL or image</h3>
-<p>With OPEN you can also open a network connection. Depending on the kind of connection the following file names can be used:</p>
-<table>
-<colgroup>
-<col style="width: 70%" />
-<col style="width: 30%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Connection Type</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>URL</td>
-<td><code>open "http://api.duckduckgo.com/?q=Cars&amp;format=json" as #1</code></td>
-</tr>
-<tr class="even">
-<td>Image</td>
-<td><code>open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1</code></td>
-</tr>
-<tr class="odd">
-<td>Socket</td>
-<td><code>open "SOCL:192.168.178.76:8080" as #1</code></td>
-</tr>
-<tr class="even">
-<td>Serial Port (RS232)</td>
-<td><code>open "COM1:19200" as # 1</code></td>
-</tr>
-</tbody>
-</table>
-<p>More information with examples can be found in the article “Network programming”.</p>
-<h4 id="open-com-port-rs232">Open COM port (RS232)</h4>
-<p>You can open a connection to a device using the serial port with <code>open "COMn:speed" AS #1</code>, where n is the number of the port and speed is the baud rate. To open the first serial port with a baud rate of 19200 use: <code>open "COM1:19200" as #1</code>. In Windows COM1 and in Linux /dev/ttys1 would be opened.</p>
+<p>If an existing file is opened for output, the file will be deleted
+and an empty file will be created. The files are always opened as
+shared. You can use FREEFILE to get the next unused file-handle. Use
+PRINT, INPUT, BGETC and BPUTC to read from or write to a file or
+device.</p>
+<h4 id="open-a-com-port-rs232">Open a COM port (RS232)</h4>
+<p>You can open a connection to a device using the serial port with
+<code>open "COMn:speed" AS #1</code>, where <code>n</code> is the number
+of the port and <code>speed</code> is the baud rate. To open the first
+serial port with a baud rate of 19200 use:
+<code>open "COM1:19200" as #1</code>. In Windows COM1 and in Linux
+/dev/ttys1 would be opened.</p>
+<h4 id="open-a-tcpip-socket">Open a TCP/IP socket</h4>
+<p>You can open a connection to a device using a TCP/IP socket with
+<code>open "SOCL:IP:PORT" AS #1</code>, where <code>IP</code> is a valid
+host name or IP address and <code>port</code> is an open port.</p>
+<p><code>open "SOCL:192.168.178.76:8080" as #1</code></p>
+<p>If you omit the host name or IP address in the <code>SOCL:</code>
+string passed to the OPEN command, SmallBASIC will listen for
+connections from another host/process.</p>
+<p><code>open "SOCL:8080" as #1</code></p>
+<h3 id="open-an-image">Open an image</h3>
+<p>Use the prefix <code>HTTP:</code> with the <code>OPEN</code> command
+to open an image file over the network. You can then pass the file
+number to the <code>IMAGE</code> command. This returns an system object
+which can then be used to manipulate images in the graphical version of
+SmallBASIC.</p>
+<p><code>open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1</code></p>
+<h3 id="open-a-http-connection">Open a HTTP connection</h3>
+<p>Use the prefix <code>HTTP:</code> with the <code>OPEN</code> command
+to open a network HTTP connection. You can then use the file number with
+the <code>TLOAD</code> command to read the data.</p>
+<p><code>open "http://api.duckduckgo.com/?q=Cars&amp;format=json" as #1</code></p>
 <h3 id="example-1-open-a-file">Example 1: Open a file:</h3>
 <pre><code>&#39; create a text file
 open &quot;MyDemoFile.txt&quot; for output as #1
@@ -85,33 +85,80 @@ while(!eof(1))   &#39; eof works only without #
 wend
 
 close #1</code></pre>
-<h3 id="example-2-open-a-socket">Example 2: Open a socket</h3>
+<h3 id="example-2-open-a-socket-for-listening-server">Example 2: Open a
+socket for listening (server)</h3>
 <pre><code>open &quot;SOCL:10000&quot; as #1     &#39; Open socket at port 10000
 
-while (eof(1))              &#39; Loop until connection is closed
+while (!eof(1))             &#39; Loop until connection is closed
 
     l = lof(1)              &#39; Querry how much data is in the queue
 
     if(l) then              &#39; if data is available
-        s = INPUT(l, #1)    &#39; get all data
+        s = INPUT(l, 1)     &#39; get all data
         print s
     endif
 
 wend
 
 close #1</code></pre>
-<h3 id="example-3-open-a-com-port-rs232">Example 3: Open a COM port (RS232)</h3>
-<pre><code>open &quot;COM1:19200&quot; as # 1    &#39; Open COM1  with 19200 bauds
+<h3 id="example-3-open-a-socket-as-client">Example 3: Open a socket as
+client</h3>
+<pre><code>open &quot;SOCL:192.168.1.10:10000&quot; as #1     &#39; Connect to server
 
-while (eof(1))              &#39; Loop until connection is closed
+print #1, &quot;Hello world&quot;                  &#39; Send string to server
+
+close #1</code></pre>
+<h3 id="example-4-open-a-com-port-rs232">Example 4: Open a COM port
+(RS232)</h3>
+<pre><code>open &quot;COM1:19200&quot; as #1    &#39; Open COM1  with 19200 bauds
+
+while (!eof(1))             &#39; Loop until connection is closed
 
     l = lof(1)              &#39; Querry how much data is in the queue
 
     if(l) then              &#39; if data is available
-        s = INPUT(l, #1)    &#39; get all data
+        s = INPUT(l, 1)     &#39; get all data
         print s
     endif
 
 wend
 
 close #1</code></pre>
+<h3 id="example-5-open-an-image-over-network">Example 5: Open an image
+over network</h3>
+<pre><code>&#39; open some random image I found on the net
+open &quot;http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png&quot; as #1
+
+i = image(#1)
+i.show(100,50)</code></pre>
+<h3 id="example-6-connect-to-an-http-server">Example 6: Connect to an
+HTTP server</h3>
+<pre><code>print &quot;DuckDuckGo Search&quot;
+while 1
+  print &#39;&lt;=== when cycle around need to isolate input prompt
+  input &quot;(Just enter quits) Term? &quot;, queryTerm
+  if trim(queryTerm)=&quot;&quot; then ? &quot;Cheers!&quot;:end  &#39;&lt;=== need a way out
+  url = &quot;http://api.duckduckgo.com/?q=&quot; + trim(queryTerm) + &quot;&amp;format=json&quot;
+  open url as #1
+  if (eof(1)) then
+    throw &quot;Connection failed: &quot; + url
+  fi
+
+  dim results
+  tload #1, results
+  json = array(results)
+  num_results = len(json.RelatedTopics)
+  for i = 0 to num_results - 1
+    if (isarray(json.RelatedTopics(i).topics)) then
+      num_topics = len(json.RelatedTopics(i).Topics)
+      for t = 0 to num_topics - 1
+        print cat(1); &quot;  &quot;; json.RelatedTopics(i).Topics(t).FirstURL; cat(0)
+        print &quot;  &quot;; json.RelatedTopics(i).Topics(t).text
+      next t
+    else
+      print cat(1); &quot;  &quot;; json.RelatedTopics(i).FirstURL; cat(0)
+      print &quot;  &quot;; json.RelatedTopics(i).Text
+    endif
+  next i
+  Close #1  &#39;&lt;===== oh this helps!
+wend</code></pre>

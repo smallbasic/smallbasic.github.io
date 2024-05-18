@@ -73,29 +73,35 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Reads a whole text line from file or console and stores it in the string <code>var</code>. If a file handle <code>#fileN</code> is specified, LINPUT will read from the corresponding file otherwise it will read from the console. LINPUT has the same function as LINEINPUT.</p>
+<p>Reads a whole text line from file or console and stores it in the
+string <code>var</code>. If a file handle <code>#fileN</code> is
+specified, LINPUT will read from the corresponding file otherwise it
+will read from the console. LINPUT has the same function as
+LINEINPUT.</p>
 <h3 id="example-1-read-from-console">Example 1: Read from console</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">LINPUT</span> S</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">PRINT</span> S</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">LINPUT</span> S</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> S</span></code></pre></div>
 <h3 id="example-2-read-from-file">Example 2: Read from file</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; create a file</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;File.txt&quot;</span> <span class="kw">for output as</span> #<span class="dv">1</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">print</span> #<span class="dv">1</span>, <span class="st">&quot;First line&quot;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> #<span class="dv">1</span>, <span class="st">&quot;Second line&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">&#39; open file and print content</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;File.txt&quot;</span> <span class="kw">for input as</span> #<span class="dv">1</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="fu">LINPUT</span> #<span class="dv">1</span>, S</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">Print</span> S</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="fu">LINPUT</span> #<span class="dv">1</span>, S</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">Print</span> S</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; create a file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">open</span> <span class="st">&quot;File.txt&quot;</span> <span class="kw">for output as</span> #<span class="dv">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> #<span class="dv">1</span>, <span class="st">&quot;First line&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> #<span class="dv">1</span>, <span class="st">&quot;Second line&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span> #<span class="dv">1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; open file and print content</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">open</span> <span class="st">&quot;File.txt&quot;</span> <span class="kw">for input as</span> #<span class="dv">1</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">LINPUT</span> #<span class="dv">1</span>, S</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> S</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">LINPUT</span> #<span class="dv">1</span>, S</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> S</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Console</div>
     <div class="linklist">
@@ -142,7 +148,7 @@ LINPUT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

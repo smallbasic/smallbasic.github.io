@@ -73,31 +73,34 @@
       <a href="/pages/system.html">System</a>
     </p>
   </div>
-<p>Waits for a key press, a mouse click or the optional amount of seconds <code>secs</code>before executing next statement.</p>
+<p>Waits for a key press, a mouse click or the optional amount of
+seconds <code>secs</code>before executing next statement.</p>
 <p>PAUSE may interfere with INKEY or PEN events.</p>
 <h3 id="example-1">Example 1</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Before PAUSE - press a key, mouse button or wait 5s&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">pause</span> <span class="dv">5</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;After PAUSE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Before PAUSE - press a key, mouse button or wait 5s&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">pause</span> <span class="dv">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;After PAUSE&quot;</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; ribbons.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-24</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; new and improved update of SB and Bpf posts 2015-04-16 B+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">at</span> <span class="dv">80</span>,<span class="dv">610</span>: ? <span class="st">&quot;Wait 8 secs or press any for next screen...&quot;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="dt">const</span> a = <span class="dv">127</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    b = <span class="fu">rnd</span>^<span class="dv">2</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    c = <span class="fu">rnd</span>^<span class="dv">2</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    d = <span class="fu">rnd</span>^<span class="dv">2</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    <span class="kw">for </span>x = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">600</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>      cl = <span class="fu">RGB</span>(a + a * <span class="fu">sin</span>(b * x), a + a * <span class="fu">sin</span>(c * x), a + a * <span class="fu">sin</span>(d * x))</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>      <span class="fu">line</span> x, i * <span class="dv">60</span> + <span class="dv">1</span> step <span class="dv">0</span>, <span class="dv">60</span>, cl</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="kw">next </span>x</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>  <span class="kw">next </span>i</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>  <span class="kw">pause</span> <span class="dv">8</span> <span class="co">&#39;&lt;=========== pause waits 8 secs or key press</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; ribbons.bas SmallBASIC 0.12.2 [B+=MGA] 2016-03-24</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; new and improved update of SB and Bpf posts 2015-04-16 B+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">at</span> <span class="dv">80</span>,<span class="dv">610</span>: ? <span class="st">&quot;Wait 8 secs or press any for next screen...&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> a = <span class="dv">127</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">for </span>i = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    b = <span class="fu">rnd</span>^<span class="dv">2</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    c = <span class="fu">rnd</span>^<span class="dv">2</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    d = <span class="fu">rnd</span>^<span class="dv">2</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">for </span>x = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">600</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      cl = <span class="fu">RGB</span>(a + a * <span class="fu">sin</span>(b * x), a + a * <span class="fu">sin</span>(c * x), a + a * <span class="fu">sin</span>(d * x))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">line</span> x, i * <span class="dv">60</span> + <span class="dv">1</span> step <span class="dv">0</span>, <span class="dv">60</span>, cl</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">next </span>x</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">next </span>i</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">pause</span> <span class="dv">8</span> <span class="co">&#39;&lt;=========== pause waits 8 secs or key press</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using PAUSE</div>
     <div class="linklist">
@@ -186,7 +189,7 @@ PAUSE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

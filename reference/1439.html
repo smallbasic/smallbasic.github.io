@@ -73,102 +73,112 @@
       <a href="/pages/system.html">System</a>
     </p>
   </div>
-<p>Compile and run the given source. <code>source</code> can be a file name, a line of code or an array of code. Use ENV to share variables with the parent process.</p>
+<p>Compile and run the given source. <code>source</code> can be a file
+name, a line of code or an array of code. Use ENV to share variables
+with the parent process.</p>
 <h3 id="example-1-using-constants">Example 1: Using constants</h3>
 <p>Note: <code>\"</code> is used to create a quote inside the string</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">Chain</span> <span class="st">&quot;? \&quot;</span><span class="dv">100</span> + <span class="dv">50</span> is: \<span class="st">&quot;; 100 + 50&quot;</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">&#39; Output: 100 + 50 is: 150</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Chain</span> <span class="st">&quot;? \&quot;</span><span class="dv">100</span> + <span class="dv">50</span> is: \<span class="st">&quot;; 100 + 50&quot;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 100 + 50 is: 150</span></span></code></pre></div>
 <h3 id="example-2-using-variables">Example 2: Using variables</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">Env</span> <span class="st">&quot;SB1=6&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">Env</span> <span class="st">&quot;SB2=2&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">Chain</span> <span class="st">&quot;? Env(\&quot;</span>SB1\<span class="st">&quot;) ^ Env(\&quot;</span>SB2\<span class="st">&quot;)&quot;</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; Output: 36</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Env</span> <span class="st">&quot;SB1=6&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Env</span> <span class="st">&quot;SB2=2&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Chain</span> <span class="st">&quot;? Env(\&quot;</span>SB1\<span class="st">&quot;) ^ Env(\&quot;</span>SB2\<span class="st">&quot;)&quot;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 36</span></span></code></pre></div>
 <h3 id="example-3-using-an-array">Example 3: Using an array</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">Env</span> <span class="st">&quot;SB1=3&quot;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="dt">Dim</span> a()          </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;x = Env(\&quot;</span>SB1\<span class="st">&quot;)&quot;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;For i = 1 To 5&quot;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;? i * x; Spc(1);&quot;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;Next i&quot;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="fu">Chain</span> a </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">&#39; Output: 3 6 9 12 15</span></span></code></pre></div>
-<h3 id="example-4-using-a-file-and-returning-a-value">Example 4: Using a file and returning a value</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; First we have to create a bas-file to show how chain works with files</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">&#39; Create an array</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="fu">Env</span> <span class="st">&quot;SB1=4&quot;</span>  </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="dt">Dim</span> a()      </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;x = Env(\&quot;</span>SB1\<span class="st">&quot;)&quot;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;For i = 1 To 5&quot;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;? i * x; Spc(1);&quot;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;Next i&quot;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>a &lt;&lt; <span class="st">&quot;Env \&quot;</span>SB1=\<span class="st">&quot; + Str(i):&quot;</span>    <span class="co">&#39; Return value using SB1</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co">&#39; Write array to file</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="fu">tsave</span>(<span class="st">&quot;chaindemo.bas&quot;</span>, a)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="co">&#39; Peparations are done. Now a bas-file can be chained</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="fu">Chain</span> <span class="st">&quot;chaindemo.bas&quot;</span> </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="kw">print</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Return value SB1 is: &quot;</span>; <span class="fu">Env</span>(<span class="st">&quot;SB1&quot;</span>); </span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="co">&#39; Output: </span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="co">&#39; 4 8 12 16 20</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="co">&#39; Return value SB1 is: 6</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Env</span> <span class="st">&quot;SB1=3&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">Dim</span> a()          </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;x = Env(\&quot;</span>SB1\<span class="st">&quot;)&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;For i = 1 To 5&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;? i * x; Spc(1);&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;Next i&quot;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">Chain</span> a </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 3 6 9 12 15</span></span></code></pre></div>
+<h3 id="example-4-using-a-file-and-returning-a-value">Example 4: Using a
+file and returning a value</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; First we have to create a bas-file to show how chain works with files</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Create an array</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">Env</span> <span class="st">&quot;SB1=4&quot;</span>  </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dt">Dim</span> a()      </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;x = Env(\&quot;</span>SB1\<span class="st">&quot;)&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;For i = 1 To 5&quot;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;? i * x; Spc(1);&quot;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;Next i&quot;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>a &lt;&lt; <span class="st">&quot;Env \&quot;</span>SB1=\<span class="st">&quot; + Str(i):&quot;</span>    <span class="co">&#39; Return value using SB1</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Write array to file</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">tsave</span>(<span class="st">&quot;chaindemo.bas&quot;</span>, a)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Peparations are done. Now a bas-file can be chained</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">Chain</span> <span class="st">&quot;chaindemo.bas&quot;</span> </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Return value SB1 is: &quot;</span>; <span class="fu">Env</span>(<span class="st">&quot;SB1&quot;</span>); </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: </span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; 4 8 12 16 20</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Return value SB1 is: 6</span></span></code></pre></div>
 <h3 id="example-5">Example 5:</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">&#39; Create demo bas file (could be any SmallBASIC file):</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="fu">Open</span> <span class="st">&quot;chaindemo.bas&quot;</span> <span class="kw">For Output As</span> #<span class="dv">1</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;Sub count10(n)&quot;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;  Local i&quot;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;  Color 14&quot;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;  For i = n To 10</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;    Print i; &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;, &quot;</span>) + <span class="st">&quot;;&quot;</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;  Next i&quot;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;  Env &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;SB1=&quot;</span>) + <span class="st">&quot; + Str(i) &#39; return value to parent</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;End Sub&quot;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>? #<span class="dv">1</span>, </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;Color 7: ? &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;I&#39;m The Child Program...! I can count!&quot;</span>) + <span class="st">&quot;: ?&quot;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>? #<span class="dv">1</span>, </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;n = Val(Env(&quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;SB1&quot;</span>) + <span class="st">&quot;)) &#39; get value from parent&quot;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>? #<span class="dv">1</span>, </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;count10 n &#39; run sub-routine to count n to 10&quot;</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>? #<span class="dv">1</span>, </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>? #<span class="dv">1</span>, <span class="st">&quot;?:?&quot;</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="fu">Close</span> #<span class="dv">1</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="co">&#39; Load demo bas file into array:</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="fu">Tload</span> <span class="st">&quot;chaindemo.bas&quot;</span>, lines</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a><span class="fu">Env</span> <span class="st">&quot;SB1=2&quot;</span> <span class="co">&#39; Set value for child program (1..10)</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="co">&#39; Execute the demo bas file (the array):</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a><span class="fu">Chain</span> lines</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a><span class="co">&#39; now print the return value from child program:</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">7</span>:  ? <span class="st">&quot;I&#39;m The Parent Program...&quot;</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>?</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">15</span>: ? <span class="st">&quot;Child program returned value: &quot;</span>; <span class="fu">Env</span>(<span class="st">&quot;SB1&quot;</span>)</span></code></pre></div>
-<h3 id="example-6-creating-an-eval-function">Example 6: Creating an eval function</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">&#39; Dedicated to MGA.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">&#39; s is any legal SmallBASIC Math Expression as String, e.g. &quot;1 + 2 / 4&quot;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">Func </span>eval(s)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>  <span class="fu">Chain</span> <span class="st">&quot;Env &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;SBEVAL=&quot;</span>) + <span class="st">&quot; + Str(&quot;</span> + s + <span class="st">&quot;)&quot;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>  eval = <span class="fu">Val</span>(<span class="fu">Env</span>(<span class="st">&quot;SBEVAL&quot;</span>))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="kw">End Func</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">&#39; now run few demos:</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>? eval(<span class="st">&quot;1+2&quot;</span>) </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>? eval(<span class="st">&quot;Rad(45) * 2&quot;</span>) </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>? eval(<span class="st">&quot;PI / 2 + PI&quot;</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>? eval(<span class="st">&quot;0b1111 * Pow(2, 4)&quot;</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>? eval(<span class="st">&quot;Sin(2) * Tan(4) / Cos(6)&quot;</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>? eval(<span class="st">&quot;1 + 2 / 4&quot;</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>? eval(<span class="st">&quot;6 * (Pow(2, 4) * 8)&quot;</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>? eval(<span class="st">&quot;Rad((45 * 3) - 20) * 2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Create demo bas file (could be any SmallBASIC file):</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Open</span> <span class="st">&quot;chaindemo.bas&quot;</span> <span class="kw">For Output As</span> #<span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;Sub count10(n)&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;  Local i&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;  Color 14&quot;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;  For i = n To 10</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;    Print i; &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;, &quot;</span>) + <span class="st">&quot;;&quot;</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;  Next i&quot;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;  Env &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;SB1=&quot;</span>) + <span class="st">&quot; + Str(i) &#39; return value to parent</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;End Sub&quot;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;Color 7: ? &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;I&#39;m The Child Program...! I can count!&quot;</span>) + <span class="st">&quot;: ?&quot;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;n = Val(Env(&quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;SB1&quot;</span>) + <span class="st">&quot;)) &#39; get value from parent&quot;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;count10 n &#39; run sub-routine to count n to 10&quot;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>? #<span class="dv">1</span>, <span class="st">&quot;?:?&quot;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">Close</span> #<span class="dv">1</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Load demo bas file into array:</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">Tload</span> <span class="st">&quot;chaindemo.bas&quot;</span>, lines</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">Env</span> <span class="st">&quot;SB1=2&quot;</span> <span class="co">&#39; Set value for child program (1..10)</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Execute the demo bas file (the array):</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">Chain</span> lines</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; now print the return value from child program:</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> <span class="dv">7</span>:  ? <span class="st">&quot;I&#39;m The Parent Program...&quot;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>?</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> <span class="dv">15</span>: ? <span class="st">&quot;Child program returned value: &quot;</span>; <span class="fu">Env</span>(<span class="st">&quot;SB1&quot;</span>)</span></code></pre></div>
+<h3 id="example-6-creating-an-eval-function">Example 6: Creating an eval
+function</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Dedicated to MGA.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; s is any legal SmallBASIC Math Expression as String, e.g. &quot;1 + 2 / 4&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">Func </span>eval(s)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Chain</span> <span class="st">&quot;Env &quot;</span> + <span class="fu">Enclose</span>(<span class="st">&quot;SBEVAL=&quot;</span>) + <span class="st">&quot; + Str(&quot;</span> + s + <span class="st">&quot;)&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  eval = <span class="fu">Val</span>(<span class="fu">Env</span>(<span class="st">&quot;SBEVAL&quot;</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">End Func</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; now run few demos:</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>? eval(<span class="st">&quot;1+2&quot;</span>) </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>? eval(<span class="st">&quot;Rad(45) * 2&quot;</span>) </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>? eval(<span class="st">&quot;PI / 2 + PI&quot;</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>? eval(<span class="st">&quot;0b1111 * Pow(2, 4)&quot;</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>? eval(<span class="st">&quot;Sin(2) * Tan(4) / Cos(6)&quot;</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>? eval(<span class="st">&quot;1 + 2 / 4&quot;</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>? eval(<span class="st">&quot;6 * (Pow(2, 4) * 8)&quot;</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>? eval(<span class="st">&quot;Rad((45 * 3) - 20) * 2&quot;</span>)</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using CHAIN</div>
     <div class="linklist">
@@ -229,7 +239,7 @@ CHAIN by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

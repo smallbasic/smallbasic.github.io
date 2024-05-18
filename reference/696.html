@@ -73,7 +73,11 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Calculates the intersection of two line segments AB and CD given by the point <code>Ax</code>, <code>Ay</code>, <code>Bx</code>, <code>By</code> and <code>Cx</code>, <code>Cy</code>, <code>Dx</code>, <code>Dy</code>.</p>
+</blockquote>
+<p>Calculates the intersection of two line segments AB and CD given by
+the point <code>Ax</code>, <code>Ay</code>, <code>Bx</code>,
+<code>By</code> and <code>Cx</code>, <code>Cy</code>, <code>Dx</code>,
+<code>Dy</code>.</p>
 <p>Returns:</p>
 <ul>
 <li>Rx, Ry = coordinates of crossing point.</li>
@@ -87,26 +91,27 @@
 </ul></li>
 </ul>
 <h3 id="example">Example</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; Line segment AB</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>Ax = <span class="dv">50</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>Ay = <span class="dv">50</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>Bx = <span class="dv">100</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>By = <span class="dv">100</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">&#39; Line segment CD</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>Cx = <span class="dv">100</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>Cy =  <span class="dv">50</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>Dx =  <span class="dv">50</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>Dy = <span class="dv">100</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="fu">intersect</span> Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, type, Rx, Ry</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Intersection at x = &quot;</span>; Rx; <span class="st">&quot;, y = &quot;</span>; Ry</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="co">&#39; Draw lines and a circle at the calculated crossing point</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="fu">line</span> Ax, Ay, Bx, By <span class="fu">color</span> <span class="dv">5</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="fu">line</span> Cx, Cy, Dx, Dy <span class="fu">color</span> <span class="dv">8</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="fu">circle</span> Rx,Ry, <span class="dv">5</span> <span class="fu">color</span> <span class="dv">12</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Line segment AB</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Ax = <span class="dv">50</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Ay = <span class="dv">50</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Bx = <span class="dv">100</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>By = <span class="dv">100</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Line segment CD</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Cx = <span class="dv">100</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Cy =  <span class="dv">50</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Dx =  <span class="dv">50</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Dy = <span class="dv">100</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span> Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, type, Rx, Ry</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Intersection at x = &quot;</span>; Rx; <span class="st">&quot;, y = &quot;</span>; Ry</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Draw lines and a circle at the calculated crossing point</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">line</span> Ax, Ay, Bx, By <span class="fu">color</span> <span class="dv">5</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">line</span> Cx, Cy, Dx, Dy <span class="fu">color</span> <span class="dv">8</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">circle</span> Rx,Ry, <span class="dv">5</span> <span class="fu">color</span> <span class="dv">12</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using INTERSECT</div>
     <div class="linklist">
@@ -198,6 +203,7 @@
       <a href="/reference/765.html">SUMSQ </a>&nbsp;
       <a href="/reference/766.html">TAN </a>&nbsp;
       <a href="/reference/767.html">TANH </a>&nbsp;
+      <a href="/reference/1802.html">TRANSPOSE </a>&nbsp;
     </div>
     <div class="subtitle">
       If there is insufficient information on this page and you wish learn more about INTERSECT,
@@ -223,7 +229,7 @@ INTERSECT by submitting a <a href="https://github.com/smallbasic/smallbasic.gith
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

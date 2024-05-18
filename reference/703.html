@@ -73,43 +73,49 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
+</blockquote>
 <p>Roots of f(x).</p>
-<p>ROOT will find the first x-intercept of the given function ( where f(x) = 0 ) in the interval [<code>low</code>, <code>high</code>]</p>
+<p>ROOT will find the first x-intercept of the given function ( where
+f(x) = 0 ) in the interval [<code>low</code>, <code>high</code>]</p>
 <ul>
 <li><code>low</code>: the lower limit</li>
 <li><code>high</code>: the upper limit</li>
 <li><code>segs</code>: the number of segments (spaces)</li>
-<li><code>maxerr</code>: tolerance (IF ABS(f(x)) &lt; maxerr THEN OK)</li>
-<li><code>errcode</code>: 0 for success; otherwise calculation error</li>
+<li><code>maxerr</code>: tolerance (IF ABS(f(x)) &lt; maxerr THEN
+OK)</li>
+<li><code>errcode</code>: 0 for success; otherwise calculation
+error</li>
 <li><code>result</code>: the result</li>
 <li><code>expr</code>: the given function</li>
 </ul>
 <h3 id="example-1">Example 1</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">def</span> f1(x) = x - <span class="dv">2</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">&#39; Theory: x - 2 = 0 -&gt; x = 2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">ROOT</span> <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">500</span>, <span class="dv">0.001</span>, result, errcode <span class="kw">USE</span> f1(x)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">if(</span>errcode) <span class="kw">then</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="st">&quot;No root found&quot;</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">else</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;Root at &quot;</span>; result</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">endif</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co">&#39; Output: Root at 1.99951171875</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(x) = x - <span class="dv">2</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Theory: x - 2 = 0 -&gt; x = 2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ROOT</span> <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">500</span>, <span class="dv">0.001</span>, result, errcode <span class="kw">USE</span> f1(x)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">if(</span>errcode) <span class="kw">then</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span>(<span class="st">&quot;No root found&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">else</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> <span class="st">&quot;Root at &quot;</span>; result</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">endif</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: Root at 1.99951171875</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">def</span> f2(x) = x^<span class="dv">2</span> - <span class="dv">2</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39; Theory: x^2 - 2 = 0 -&gt; x^2 = 2 -&gt; x = +/-sqr(2) = +/-1.41</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">ROOT</span> <span class="dv">-1</span>, <span class="dv">2</span>, <span class="dv">500</span>, <span class="dv">0.001</span>, result, errcode <span class="kw">USE</span> f2(x)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">if(</span>errcode) <span class="kw">then</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="st">&quot;No root found&quot;</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">else</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="kw">print</span> <span class="st">&quot;Root at &quot;</span>; result </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="kw">endif</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">&#39; Output: Root at 1.4140625</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f2(x) = x^<span class="dv">2</span> - <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Theory: x^2 - 2 = 0 -&gt; x^2 = 2 -&gt; x = +/-sqr(2) = +/-1.41</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ROOT</span> -<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">500</span>, <span class="dv">0.001</span>, result, errcode <span class="kw">USE</span> f2(x)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">if(</span>errcode) <span class="kw">then</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span>(<span class="st">&quot;No root found&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">else</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> <span class="st">&quot;Root at &quot;</span>; result </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">endif</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: Root at 1.4140625</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using ROOT</div>
     <div class="linklist">
@@ -201,6 +207,7 @@
       <a href="/reference/765.html">SUMSQ </a>&nbsp;
       <a href="/reference/766.html">TAN </a>&nbsp;
       <a href="/reference/767.html">TANH </a>&nbsp;
+      <a href="/reference/1802.html">TRANSPOSE </a>&nbsp;
     </div>
     <div class="subtitle">
       If there is insufficient information on this page and you wish learn more about ROOT,
@@ -226,7 +233,7 @@ ROOT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

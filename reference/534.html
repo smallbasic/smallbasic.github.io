@@ -73,7 +73,8 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Play musical notes, a mp3 or ogg sound file. The music string is composed of the following building blocks:</p>
+<p>Play musical notes, a mp3 or ogg sound file. The music string is
+composed of the following building blocks:</p>
 <table>
 <colgroup>
 <col style="width: 32%" />
@@ -92,7 +93,8 @@
 </tr>
 <tr class="even">
 <td style="text-align: center;">On</td>
-<td style="text-align: left;">Octave n = 0..6, n = &lt; moves down one octave, n = &gt; moves up one octave</td>
+<td style="text-align: left;">Octave n = 0..6, n = &lt; moves down one
+octave, n = &gt; moves up one octave</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Nn</td>
@@ -108,7 +110,8 @@
 </tr>
 <tr class="even">
 <td style="text-align: center;">Tn</td>
-<td style="text-align: left;">Tempo n = 32..255. Number of 1/4 notes per minute.</td>
+<td style="text-align: left;">Tempo n = 32..255. Number of 1/4 notes per
+minute.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">MS</td>
@@ -140,22 +143,30 @@
 </tr>
 </tbody>
 </table>
-<p>To play a sound file use <code>file://filename</code> as string. When playing on background, program execution continuous. If the end of the program is reach, the playback will stop.</p>
+<p>To play a sound file use <code>file://filename</code> as string. When
+playing on background, program execution continuous. If the end of the
+program is reach, the playback will stop.</p>
 <h3 id="example-1-play-a-note">Example 1: Play a note</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">play</span> <span class="st">&quot;L2A&quot;</span>    <span class="co">&#39; note A with length 1/2</span></span></code></pre></div>
-<h3 id="example-2-play-multiple-notes">Example 2: Play multiple notes</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; Set volume to 50%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">play</span> <span class="st">&quot;V10&quot;</span>  </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; Play Menuet by J. Sebastian Bach</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">play</span> <span class="st">&quot;T180L8O3MN O4D4O3MLGABO4C O4D4O3MNG4MLG4 O4MNE4MLCDEF# O4G4O3MNG4MLG4 O4MNC4MLDCO3BA O3MNB4MLO4CO3BAG O3MNA4MLBAGF# G2.MN&quot;</span></span></code></pre></div>
-<h3 id="example-3-play-notes-on-background">Example 3: Play notes on background</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">play</span> <span class="st">&quot;MBL2A&quot;</span>    <span class="co">&#39; note A with length 1/2 on background</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">pause</span>           <span class="co">&#39; make sure, that program will not end</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span> <span class="st">&quot;L2A&quot;</span>    <span class="co">&#39; note A with length 1/2</span></span></code></pre></div>
+<h3 id="example-2-play-multiple-notes">Example 2: Play multiple
+notes</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Set volume to 50%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span> <span class="st">&quot;V10&quot;</span>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Play Menuet by J. Sebastian Bach</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span> <span class="st">&quot;T180L8O3MN O4D4O3MLGABO4C O4D4O3MNG4MLG4 O4MNE4MLCDEF# O4G4O3MNG4MLG4 O4MNC4MLDCO3BA O3MNB4MLO4CO3BAG O3MNA4MLBAGF# G2.MN&quot;</span></span></code></pre></div>
+<h3 id="example-3-play-notes-on-background">Example 3: Play notes on
+background</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span> <span class="st">&quot;MBL2A&quot;</span>    <span class="co">&#39; note A with length 1/2 on background</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">pause</span>           <span class="co">&#39; make sure, that program will not end</span></span></code></pre></div>
 <h3 id="example-4-play-a-sound-file">Example 4: Play a sound file</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; Copy a mp3 file to the working directory and name it test.mp3</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="fu">play</span> <span class="st">&quot;file://test.mp3&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">pause</span>                    <span class="co">&#39; make sure, that program will not end</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Copy a mp3 file to the working directory and name it test.mp3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">play</span> <span class="st">&quot;file://test.mp3&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">pause</span>                    <span class="co">&#39; make sure, that program will not end</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using PLAY</div>
     <div class="linklist">
@@ -236,7 +247,7 @@ PLAY by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

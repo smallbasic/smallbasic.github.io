@@ -73,24 +73,42 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Prints to stderr. The syntax is the same as the command PRINT. LOGPRINT can be used to print log messages to a different output. The nicely formated output of your program will not be messed up by the log messages.</p>
+<p>Prints to stderr. The syntax is the same as the command PRINT.
+LOGPRINT can be used to print log messages to a different output. The
+nicely formated output of your program will not be messed up by the log
+messages.</p>
 <h3 id="example">Example:</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">logprint</span> <span class="st">&quot;Error message goes to stderr&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Normal text goes to sdtout&quot;</span></span></code></pre></div>
-<h3 id="stderr-with-sbasicg-sdl-version">stderr with sbasicg (SDL-version)</h3>
-<p>When starting sbasicg or sbasicg.exe from a command line, this command line will be the stderr output. When using PRINT the text will be displayed in the program window. When using LOGPRINT the text will be printed to the the command line window and not displayed in the program window.</p>
-<h3 id="stderr-with-sbasic-console-version">stderr with sbasic (console version)</h3>
-<p>The command line is usually stderr and stdout at the same time. Text printed with PRINT and text printed with LOGPRINT will be displayed in the command line window.</p>
-<h3 id="redirect-stderr-to-a-file-linux">Redirect stderr to a file (Linux)</h3>
-<p>In Linux sdterr can be easily redirected to a file (i.e. error.txt):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">logprint</span> <span class="st">&quot;Error message goes to stderr&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Normal text goes to sdtout&quot;</span></span></code></pre></div>
+<h3 id="stderr-with-sbasicg-sdl-version">stderr with sbasicg
+(SDL-version)</h3>
+<p>When starting sbasicg or sbasicg.exe from a command line, this
+command line will be the stderr output. When using PRINT the text will
+be displayed in the program window. When using LOGPRINT the text will be
+printed to the the command line window and not displayed in the program
+window.</p>
+<h3 id="stderr-with-sbasic-console-version">stderr with sbasic (console
+version)</h3>
+<p>The command line is usually stderr and stdout at the same time. Text
+printed with PRINT and text printed with LOGPRINT will be displayed in
+the command line window.</p>
+<h3 id="redirect-stderr-to-a-file-linux">Redirect stderr to a file
+(Linux)</h3>
+<p>In Linux sdterr can be easily redirected to a file
+(i.e. error.txt):</p>
 <p>Start the basic-file from a command line:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>SDL-version    : sbasicg test.bas <span class="dv">2</span>&gt;error.txt</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>Console-version: sbasic test.bas <span class="dv">2</span>&gt;error.txt</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>SDL-version    : sbasicg test.bas <span class="dv">2</span>&gt;error.txt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Console-version: sbasic test.bas <span class="dv">2</span>&gt;error.txt</span></code></pre></div>
 <p>with test.bas:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">logprint</span> <span class="st">&quot;Error message goes to stderr&quot;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Normal text goes to sdtout&quot;</span></span></code></pre></div>
-<p>Afer running the program the file error.txt will appear with the content:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>Error message goes <span class="kw">to</span> stderr</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">logprint</span> <span class="st">&quot;Error message goes to stderr&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Normal text goes to sdtout&quot;</span></span></code></pre></div>
+<p>Afer running the program the file error.txt will appear with the
+content:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Error message goes <span class="kw">to</span> stderr</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using LOGPRINT</div>
     <div class="linklist">
@@ -146,7 +164,7 @@ LOGPRINT by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

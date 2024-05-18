@@ -73,8 +73,15 @@
       <a href="/pages/string.html">String</a>
     </p>
   </div>
-<p>Discloses the string <code>str</code>. <code>pairs</code> is a string of 2n characters. Two consecutive characters form a pair. The characters of <code>str</code> which are positioned between the first matching pair of <code>pairs</code> will be returned. <code>ignore-pairs</code> is a string with 2n characters. Two consecutive characters form a ignore-pair. All characters of <code>str</code> between an ignore-pair will be ignored (not returned).</p>
-<p>if <code>pairs</code> and <code>ingnore-pairs</code> are not given, the following default pairs and ignore pairs will be used:</p>
+<p>Discloses the string <code>str</code>. <code>pairs</code> is a string
+of 2n characters. Two consecutive characters form a pair. The characters
+of <code>str</code> which are positioned between the first matching pair
+of <code>pairs</code> will be returned. <code>ignore-pairs</code> is a
+string with 2n characters. Two consecutive characters form a
+ignore-pair. All characters of <code>str</code> between an ignore-pair
+will be ignored (not returned).</p>
+<p>if <code>pairs</code> and <code>ingnore-pairs</code> are not given,
+the following default pairs and ignore pairs will be used:</p>
 <table>
 <thead>
 <tr class="header">
@@ -85,61 +92,67 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>"</td>
-<td>" "</td>
+<td>”</td>
+<td>” ”</td>
 <td>’ ’</td>
 </tr>
 <tr class="even">
 <td>’</td>
 <td>’ ’</td>
-<td>" "</td>
+<td>” ”</td>
 </tr>
 <tr class="odd">
 <td>(</td>
 <td>()</td>
-<td>" " ’ ’</td>
+<td>” ” ’ ’</td>
 </tr>
 <tr class="even">
 <td>[</td>
 <td>[]</td>
-<td>" " ’ ’</td>
+<td>” ” ’ ’</td>
 </tr>
 <tr class="odd">
 <td>{</td>
 <td>{}</td>
-<td>" " ’ ’</td>
+<td>” ” ’ ’</td>
 </tr>
 <tr class="even">
 <td>&lt;</td>
 <td>&lt;&gt;</td>
-<td>" " ’ ’</td>
+<td>” ” ’ ’</td>
 </tr>
 </tbody>
 </table>
-<h3 id="example-1-disclose-default-pairs">Example 1: Disclose default pairs</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>s = <span class="st">&quot;(abc)&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">disclose</span>(s)                        <span class="co">&#39; Output: abc</span></span></code></pre></div>
-<h3 id="example-2-disclose-non-default-pairs">Example 2: Disclose non-default pairs</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>s = <span class="st">&quot;_abc_&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;__&quot;</span>)                  <span class="co">&#39; Output: abc</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>s = <span class="st">&quot;([abc])&quot;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;[]&quot;</span>)                  <span class="co">&#39; Output: abc</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>s = <span class="st">&quot;([abc])&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;[)&quot;</span>)                  <span class="co">&#39; Output: abc]</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>s = <span class="st">&quot;[(abc)]&quot;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;()[]&quot;</span>)                <span class="co">&#39; Output: (abc)</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>s = <span class="st">&quot;abc (def)&quot;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;()&quot;</span>)                  <span class="co">&#39; Output: def</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>s = <span class="st">&quot;abc (d(ef))&quot;</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;()&quot;</span>)                  <span class="co">&#39; Output: d(ef)</span></span></code></pre></div>
-<h3 id="example-3-disclose-with-ignore-pairs">Example 3: Disclose with ignore-pairs</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>s = <span class="st">&quot;abc [d(ef)] (gh)&quot;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;()&quot;</span>, <span class="st">&quot;[]&quot;</span>)            <span class="co">&#39; Output: gh</span></span></code></pre></div>
+<h3 id="example-1-disclose-default-pairs">Example 1: Disclose default
+pairs</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;(abc)&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">disclose</span>(s)                        <span class="co">&#39; Output: abc</span></span></code></pre></div>
+<h3 id="example-2-disclose-non-default-pairs">Example 2: Disclose
+non-default pairs</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;_abc_&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;__&quot;</span>)                  <span class="co">&#39; Output: abc</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;([abc])&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;[]&quot;</span>)                  <span class="co">&#39; Output: abc</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;([abc])&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;[)&quot;</span>)                  <span class="co">&#39; Output: abc]</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;[(abc)]&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;()[]&quot;</span>)                <span class="co">&#39; Output: (abc)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;abc (def)&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;()&quot;</span>)                  <span class="co">&#39; Output: def</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;abc (d(ef))&quot;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;()&quot;</span>)                  <span class="co">&#39; Output: d(ef)</span></span></code></pre></div>
+<h3 id="example-3-disclose-with-ignore-pairs">Example 3: Disclose with
+ignore-pairs</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;abc [d(ef)] (gh)&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">disclose</span>(s, <span class="st">&quot;()&quot;</span>, <span class="st">&quot;[]&quot;</span>)            <span class="co">&#39; Output: gh</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using DISCLOSE</div>
     <div class="linklist">
@@ -214,7 +227,7 @@ DISCLOSE by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

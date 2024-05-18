@@ -73,7 +73,10 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Binds a keycode <code>k</code> to a user defined sub routine <code>sub</code>. When the key is pressed, the coresponding sub routine will be called. To unbind the keycode definition pass <code>0</code> as the <code>sub</code> argument.</p>
+<p>Binds a keycode <code>k</code> to a user defined sub routine
+<code>sub</code>. When the key is pressed, the coresponding sub routine
+will be called. To unbind the keycode definition pass <code>0</code> as
+the <code>sub</code> argument.</p>
 <p>Keycodes for PC keyboard</p>
 <table>
 <thead>
@@ -179,175 +182,182 @@
 </table>
 <h3 id="examples">Examples</h3>
 <p>Example 1: Bind keystroke for left and right arrow key</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">defineKey</span> <span class="dv">0xFF04</span>, Increase      <span class="co">&#39;Left arrow</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">defineKey</span> <span class="dv">0xFF05</span>, Decrease      <span class="co">&#39;Right arrow</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">sub </span>Increase</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>   x = x + <span class="dv">1</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">sub </span>Decrease</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>   x = x - <span class="dv">1</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    t = <span class="fu">ticks</span>()</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span>: <span class="kw">print</span> t + <span class="st">&quot;: &quot;</span> + x + <span class="st">&quot;    &quot;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="fu">delay</span>(<span class="dv">50</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defineKey</span> <span class="dv">0xFF04</span>, Increase      <span class="co">&#39;Left arrow</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defineKey</span> <span class="dv">0xFF05</span>, Decrease      <span class="co">&#39;Right arrow</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>Increase</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   x = x + <span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>Decrease</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>   x = x - <span class="dv">1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    t = <span class="fu">ticks</span>()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">at</span> <span class="dv">0</span>,<span class="dv">0</span>: <span class="kw">print</span> t + <span class="st">&quot;: &quot;</span> + x + <span class="st">&quot;    &quot;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">delay</span>(<span class="dv">50</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
 <h3 id="example-2-unbind-a-keystroke">Example 2: Unbind a keystroke</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">DEFINEKEY</span> <span class="dv">0xFF04</span>, <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DEFINEKEY</span> <span class="dv">0xFF04</span>, <span class="dv">0</span></span></code></pre></div>
 <h3 id="example-3-etch-a-sketch">Example 3: Etch-a-Sketch</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39;remember Etch-A-Sketch?</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39;definekey key,sub</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39;example: </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">definekey</span> <span class="dv">0xFF04</span>, moveleft   <span class="co">&#39;press left arrow</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">definekey</span> <span class="dv">0xFF05</span>, moveright  <span class="co">&#39;press right arrow</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">definekey</span> <span class="dv">0xFF09</span>, moveup     <span class="co">&#39;press up arror</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="kw">definekey</span> <span class="dv">0xFF0A</span>, movedown   <span class="co">&#39;press down arrow</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="kw">definekey</span> <span class="dv">99</span>, togglecolor    <span class="co">&#39;press c for color toggle black (erase), blue, red, white</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="kw">definekey</span> <span class="dv">115</span>, togglestepper <span class="co">&#39;press s for stepper 1,5,10,50</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="kw">definekey</span> <span class="dv">27</span>, quit           <span class="co">&#39;press esc to quit</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>colr=<span class="dv">15</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>stepper=<span class="dv">1</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>tx=<span class="dt">xmax</span>/<span class="dv">2</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>ty=<span class="dt">ymax</span>/<span class="dv">2</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="fu">pset</span> tx,ty,<span class="dv">0</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>  <span class="fu">color</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>  <span class="fu">locate</span> <span class="dv">0</span>,<span class="dv">0</span>:? <span class="fu">spc</span>(<span class="dv">100</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>  <span class="fu">color</span> colr,<span class="dv">0</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>  <span class="fu">locate</span> <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>  <span class="kw">if </span>colr=<span class="dv">0</span> <span class="kw">then co</span>lor colr,<span class="dv">15</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>  ?<span class="st">&quot;tx= &quot;</span>;tx;<span class="st">&quot; ty= &quot;</span>;ty;<span class="st">&quot; c= &quot;</span>;colr;<span class="st">&quot; s=&quot;</span>;stepper;</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>  <span class="kw">if </span>colr=<span class="dv">0</span> <span class="kw">then co</span>lor colr,<span class="dv">0</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>  lc=(lc+<span class="dv">1</span>) <span class="kw">mod</span> <span class="dv">2</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>  <span class="kw">if </span>lc <span class="kw">then ps</span>et step <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">14</span> <span class="kw">else</span> <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>  <span class="fu">delay</span> <span class="dv">60</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="kw">sub </span>moveleft</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>  <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>  <span class="kw">if </span>tx-stepper&gt;=<span class="dv">0</span> <span class="kw">then tx</span>-=stepper:<span class="fu">line</span> step -stepper,<span class="dv">0</span> <span class="kw">else</span> <span class="fu">beep</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="kw">sub </span>moveright</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>  <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>  <span class="kw">if </span>tx+stepper&lt;=<span class="dt">xmax</span> <span class="kw">then tx</span>+=stepper:<span class="fu">line</span> step stepper,<span class="dv">0</span> <span class="kw">else</span> <span class="fu">beep</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="kw">sub </span>moveup</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a>  <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a>  <span class="kw">if </span>ty-stepper&gt;=<span class="dv">0</span> <span class="kw">then ty</span>-=stepper:<span class="fu">line</span> step <span class="dv">0</span>,-stepper <span class="kw">else</span> <span class="fu">beep</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a><span class="kw">sub </span>movedown</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>  <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>  <span class="kw">if </span>ty+stepper&lt;=<span class="dt">ymax</span> <span class="kw">then ty</span>+=stepper:<span class="fu">line</span> step <span class="dv">0</span>,stepper <span class="kw">else</span> <span class="fu">beep</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a><span class="kw">sub </span>togglecolor</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a>  <span class="kw">select case </span>colr</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a>  <span class="kw">case</span> <span class="dv">0</span> : colr=<span class="dv">9</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>  <span class="kw">case</span> <span class="dv">9</span> : colr=<span class="dv">12</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a>  <span class="kw">case</span> <span class="dv">12</span>: colr=<span class="dv">15</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true"></a>  <span class="kw">case</span> <span class="dv">15</span>: colr=<span class="dv">0</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true"></a>  <span class="kw">end select</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true"></a><span class="kw">sub </span>togglestepper</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true"></a>  <span class="kw">select case </span>stepper</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true"></a>  <span class="kw">case</span> <span class="dv">1</span> : stepper=<span class="dv">5</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true"></a>  <span class="kw">case</span> <span class="dv">5</span> : stepper=<span class="dv">10</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true"></a>  <span class="kw">case</span> <span class="dv">10</span>: stepper=<span class="dv">50</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true"></a>  <span class="kw">case</span> <span class="dv">50</span>: stepper=<span class="dv">1</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true"></a>  <span class="kw">end select</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true"></a><span class="kw">sub </span>quit</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true"></a>  <span class="kw">stop</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
-<h3 id="example-4-this-example-is-outdated-and-just-a-reference-for-buttons-in-palm-os">Example 4: This example is outdated and just a reference for buttons in PALM OS</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; Note:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">&#39; * You may Include &quot;definekey_const.bas&quot; file in another file to make your code more clear.</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">&#39; * Created using SmallBASIC version 0.12.2 (on Linux Mint 17.3).</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">&#39; * More keys might be included in future/other versions of SmallBASIC.</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">&#39; * Values for DEFINEKEY cannot be used for INKEY.</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">&#39; * I could not verify all keys (especially CTRL &amp; ALT seems not to work).</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">&#39; * Key codes are from &quot;keymap.h&quot;: https://sourceforge.net/p/smallbasic/code/HEAD/tree/trunk/smallbasic/src/keymap.h</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="co">&#39; Demo - add these lines to another BAS file:</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="co">&#39; ------------------------------------------</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co">&#39;  Include &quot;definekey_const.bas&quot;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="co">&#39;  Definekey DK_LEFT, left_arrow</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="co">&#39;  Sub left_arrow: i++: ? i; &quot; &quot;;</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="co">&#39;  End Sub</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="co">&#39;  ? &quot;Press Left-Arrow key, or Ctrl+B to stop...&quot;: Pause</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="co">&#39;  While 1: Wend</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">&#39; ------------------------------------------</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="co">&#39; definekey_const.bas - DEFINEKEY key codes (keymap.h; 30/4/2010)</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="co">&#39; Note: bind a regular character with &#39;DEFINEKEY Asc(&quot;a&quot;), sub&#39;</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="dt">Const</span> IS_PALM_OS = (<span class="fu">Left</span>(OSNAME, <span class="dv">1</span>) = <span class="st">&quot;P&quot;</span>) <span class="co">&#39; Else is_UNIX / is_Windows</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="co">&#39; PalmOS - H/W keys:</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="dt">Const</span> DK_PALM_PGUP  = <span class="dv">0xFF01</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="dt">Const</span> DK_PALM_PGDN  = <span class="dv">0xFF02</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="dt">Const</span> DK_PALM_BTN1  = <span class="dv">0xFF03</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a><span class="dt">Const</span> DK_PALM_BTN2  = <span class="dv">0xFF04</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a><span class="dt">Const</span> DK_PALM_BTN3  = <span class="dv">0xFF05</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a><span class="dt">Const</span> DK_PALM_BTN4  = <span class="dv">0xFF06</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a><span class="dt">Const</span> DK_PALM_FIND  = <span class="dv">0xFF07</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a><span class="dt">Const</span> DK_PALM_CALC  = <span class="dv">0xFF08</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a><span class="dt">Const</span> DK_BREAK      = <span class="kw">Iff</span>(IS_PALM_OS, DK_PALM_BTN4, <span class="dv">0x3</span>) <span class="co">&#39; MemoPad, Ctrl+C</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a><span class="dt">Const</span> DK_DELETE     = <span class="dv">127</span> <span class="co">&#39; (in keymap.h: DELETE = 8,  BACKSPACE = 127)</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true"></a><span class="dt">Const</span> DK_BACKSPACE  = <span class="dv">8</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true"></a><span class="dt">Const</span> DK_TAB        = <span class="dv">9</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true"></a><span class="dt">Const</span> DK_ENTER      = <span class="dv">13</span>  <span class="co">&#39; 13 is CR (in keymap.h: ENTER = &#39;\\n&#39;)</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true"></a><span class="co">&#39; Common with Handhelds (0xFF00 to 0xFF0F):</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true"></a><span class="dt">Const</span> DK_PGUP       = <span class="dv">0xFF01</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true"></a><span class="dt">Const</span> DK_PRIOR      = DK_PGUP</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true"></a><span class="dt">Const</span> DK_PGDN       = <span class="dv">0xFF02</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true"></a><span class="dt">Const</span> DK_<span class="kw">NEXT </span>      = DK_PGDN</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true"></a><span class="dt">Const</span> DK_LEFT       = <span class="dv">0xFF04</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true"></a><span class="dt">Const</span> DK_RIGHT      = <span class="dv">0xFF05</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true"></a><span class="dt">Const</span> DK_UP         = <span class="dv">0xFF09</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true"></a><span class="dt">Const</span> DK_DN         = <span class="dv">0xFF0A</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true"></a><span class="dt">Const</span> DK_DOWN       = DK_DN</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true"></a><span class="co">&#39; Common on PCs (0xFF10 to 0xFF1F):</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true"></a><span class="dt">Const</span> DK_INSERT     = <span class="dv">0xFF10</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true"></a><span class="dt">Const</span> DK_HOME       = <span class="dv">0xFF11</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true"></a><span class="dt">Const</span> DK_<span class="kw">END </span>       = <span class="dv">0xFF12</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true"></a><span class="co">&#39; Other application keys:</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true"></a><span class="dt">Const</span> DK_MENU       = <span class="dv">0xFF1F</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true"></a><span class="co">&#39; Function keys (16 codes), e.g. Definekey DK_FUNC(1):</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true"></a><span class="kw">Def</span> DK_FUNC(x)      = <span class="dv">0xFFF0</span> + x   <span class="co">&#39; -- Verified with 1-12 (F1-F12)</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true"></a><span class="kw">Def</span> DK_SFUNC(x)     = <span class="dv">0xFFE0</span> + x   <span class="co">&#39; ( ...is it for F13-F16 ? )</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true"></a><span class="co">&#39; Control keys, e.g. Definekey DK_CTRL(ASC(&quot;R&quot;)):</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true"></a><span class="kw">Def</span> DK_CTRL(x)      = x - <span class="dv">64</span>   <span class="co">&#39; x must be a capital character</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true"></a><span class="co">&#39; Alt keys, e.g. Definekey DK_ALT(ASC(&quot;r&quot;)):</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true"></a><span class="kw">Def</span> DK_ALT(x)       = <span class="dv">0xFF20</span> + (x - <span class="kw">Iff</span>(x &gt;= <span class="dv">97</span>, <span class="dv">57</span>, <span class="dv">31</span>))</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true"></a><span class="co">&#39; Keypad:</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_DIV     = <span class="dv">0xFFDA</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_MUL     = <span class="dv">0xFFDB</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_MINUS   = <span class="dv">0xFFDC</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_PLUS    = <span class="dv">0xFFDD</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_ENTER   = <span class="dv">0xFFDE</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_HOME    = <span class="dv">0xFFD7</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_UP      = <span class="dv">0xFFD8</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_PGUP    = <span class="dv">0xFFD9</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_LEFT    = <span class="dv">0xFFD4</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_CENTER  = <span class="dv">0xFFD5</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_RIGHT   = <span class="dv">0xFFD6</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_<span class="kw">END </span>    = <span class="dv">0xFFD1</span></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_DOWN    = <span class="dv">0xFFD2</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_PGDN    = <span class="dv">0xFFD3</span></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_INS     = <span class="dv">0xFFD0</span></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true"></a><span class="dt">Const</span> DK_KP_DEL     = <span class="dv">0xFFDF</span></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true"></a><span class="co">&#39; Mouse:</span></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true"></a><span class="dt">Const</span> DK_MK_PUSH    = <span class="dv">0xFFC0</span></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true"></a><span class="dt">Const</span> DK_MK_DRAG    = <span class="dv">0xFFC1</span></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true"></a><span class="dt">Const</span> DK_MK_MOVE    = <span class="dv">0xFFC2</span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true"></a><span class="dt">Const</span> DK_MK_RELEASE = <span class="dv">0xFFC3</span></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true"></a><span class="dt">Const</span> DK_MK_WHEEL   = <span class="dv">0xFFC4</span></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true"></a><span class="dt">Const</span> DK_MK_FIRST   = DK_MK_PUSH</span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true"></a><span class="dt">Const</span> DK_MK_LAST    = DK_MK_WHEEL</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; DEFINEKEY demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-30</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;remember Etch-A-Sketch?</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;definekey key,sub</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;example: </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">definekey</span> <span class="dv">0xFF04</span>, moveleft   <span class="co">&#39;press left arrow</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">definekey</span> <span class="dv">0xFF05</span>, moveright  <span class="co">&#39;press right arrow</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">definekey</span> <span class="dv">0xFF09</span>, moveup     <span class="co">&#39;press up arror</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">definekey</span> <span class="dv">0xFF0A</span>, movedown   <span class="co">&#39;press down arrow</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">definekey</span> <span class="dv">99</span>, togglecolor    <span class="co">&#39;press c for color toggle black (erase), blue, red, white</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">definekey</span> <span class="dv">115</span>, togglestepper <span class="co">&#39;press s for stepper 1,5,10,50</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">definekey</span> <span class="dv">27</span>, quit           <span class="co">&#39;press esc to quit</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>colr=<span class="dv">15</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>stepper=<span class="dv">1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>tx=<span class="dt">xmax</span>/<span class="dv">2</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ty=<span class="dt">ymax</span>/<span class="dv">2</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">pset</span> tx,ty,<span class="dv">0</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">color</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">locate</span> <span class="dv">0</span>,<span class="dv">0</span>:? <span class="fu">spc</span>(<span class="dv">100</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">color</span> colr,<span class="dv">0</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">locate</span> <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>colr=<span class="dv">0</span> <span class="kw">then co</span>lor colr,<span class="dv">15</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  ?<span class="st">&quot;tx= &quot;</span>;tx;<span class="st">&quot; ty= &quot;</span>;ty;<span class="st">&quot; c= &quot;</span>;colr;<span class="st">&quot; s=&quot;</span>;stepper;</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>colr=<span class="dv">0</span> <span class="kw">then co</span>lor colr,<span class="dv">0</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  lc=(lc+<span class="dv">1</span>) <span class="kw">mod</span> <span class="dv">2</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>lc <span class="kw">then ps</span>et step <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">14</span> <span class="kw">else</span> <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span> <span class="dv">60</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>moveleft</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>tx-stepper&gt;=<span class="dv">0</span> <span class="kw">then tx</span>-=stepper:<span class="fu">line</span> step -stepper,<span class="dv">0</span> <span class="kw">else</span> <span class="fu">beep</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>moveright</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>tx+stepper&lt;=<span class="dt">xmax</span> <span class="kw">then tx</span>+=stepper:<span class="fu">line</span> step stepper,<span class="dv">0</span> <span class="kw">else</span> <span class="fu">beep</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>moveup</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>ty-stepper&gt;=<span class="dv">0</span> <span class="kw">then ty</span>-=stepper:<span class="fu">line</span> step <span class="dv">0</span>,-stepper <span class="kw">else</span> <span class="fu">beep</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>movedown</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pset</span> step <span class="dv">0</span>,<span class="dv">0</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>ty+stepper&lt;=<span class="dt">ymax</span> <span class="kw">then ty</span>+=stepper:<span class="fu">line</span> step <span class="dv">0</span>,stepper <span class="kw">else</span> <span class="fu">beep</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>togglecolor</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="kw">select case </span>colr</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="dv">0</span> : colr=<span class="dv">9</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="dv">9</span> : colr=<span class="dv">12</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="dv">12</span>: colr=<span class="dv">15</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="dv">15</span>: colr=<span class="dv">0</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end select</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>togglestepper</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="kw">select case </span>stepper</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="dv">1</span> : stepper=<span class="dv">5</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="dv">5</span> : stepper=<span class="dv">10</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="dv">10</span>: stepper=<span class="dv">50</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">case</span> <span class="dv">50</span>: stepper=<span class="dv">1</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end select</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>quit</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  <span class="kw">stop</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<h3
+id="example-4-this-example-is-outdated-and-just-a-reference-for-buttons-in-palm-os">Example
+4: This example is outdated and just a reference for buttons in PALM
+OS</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Note:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; * You may Include &quot;definekey_const.bas&quot; file in another file to make your code more clear.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; * Created using SmallBASIC version 0.12.2 (on Linux Mint 17.3).</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; * More keys might be included in future/other versions of SmallBASIC.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; * Values for DEFINEKEY cannot be used for INKEY.</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; * I could not verify all keys (especially CTRL &amp; ALT seems not to work).</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; * Key codes are from &quot;keymap.h&quot;: https://sourceforge.net/p/smallbasic/code/HEAD/tree/trunk/smallbasic/src/keymap.h</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Demo - add these lines to another BAS file:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; ------------------------------------------</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Include &quot;definekey_const.bas&quot;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Definekey DK_LEFT, left_arrow</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Sub left_arrow: i++: ? i; &quot; &quot;;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  End Sub</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  ? &quot;Press Left-Arrow key, or Ctrl+B to stop...&quot;: Pause</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  While 1: Wend</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; ------------------------------------------</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; definekey_const.bas - DEFINEKEY key codes (keymap.h; 30/4/2010)</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Note: bind a regular character with &#39;DEFINEKEY Asc(&quot;a&quot;), sub&#39;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> IS_PALM_OS = (<span class="fu">Left</span>(OSNAME, <span class="dv">1</span>) = <span class="st">&quot;P&quot;</span>) <span class="co">&#39; Else is_UNIX / is_Windows</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; PalmOS - H/W keys:</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PALM_PGUP  = <span class="dv">0xFF01</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PALM_PGDN  = <span class="dv">0xFF02</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PALM_BTN1  = <span class="dv">0xFF03</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PALM_BTN2  = <span class="dv">0xFF04</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PALM_BTN3  = <span class="dv">0xFF05</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PALM_BTN4  = <span class="dv">0xFF06</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PALM_FIND  = <span class="dv">0xFF07</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PALM_CALC  = <span class="dv">0xFF08</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_BREAK      = <span class="kw">Iff</span>(IS_PALM_OS, DK_PALM_BTN4, <span class="dv">0x3</span>) <span class="co">&#39; MemoPad, Ctrl+C</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_DELETE     = <span class="dv">127</span> <span class="co">&#39; (in keymap.h: DELETE = 8,  BACKSPACE = 127)</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_BACKSPACE  = <span class="dv">8</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_TAB        = <span class="dv">9</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_ENTER      = <span class="dv">13</span>  <span class="co">&#39; 13 is CR (in keymap.h: ENTER = &#39;\\n&#39;)</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Common with Handhelds (0xFF00 to 0xFF0F):</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PGUP       = <span class="dv">0xFF01</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PRIOR      = DK_PGUP</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_PGDN       = <span class="dv">0xFF02</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_NEXT       = DK_PGDN</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_LEFT       = <span class="dv">0xFF04</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_RIGHT      = <span class="dv">0xFF05</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_UP         = <span class="dv">0xFF09</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_DN         = <span class="dv">0xFF0A</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_DOWN       = DK_DN</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Common on PCs (0xFF10 to 0xFF1F):</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_INSERT     = <span class="dv">0xFF10</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_HOME       = <span class="dv">0xFF11</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_END        = <span class="dv">0xFF12</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Other application keys:</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_MENU       = <span class="dv">0xFF1F</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Function keys (16 codes), e.g. Definekey DK_FUNC(1):</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> DK_FUNC(x)      = <span class="dv">0xFFF0</span> + x   <span class="co">&#39; -- Verified with 1-12 (F1-F12)</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> DK_SFUNC(x)     = <span class="dv">0xFFE0</span> + x   <span class="co">&#39; ( ...is it for F13-F16 ? )</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Control keys, e.g. Definekey DK_CTRL(ASC(&quot;R&quot;)):</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> DK_CTRL(x)      = x - <span class="dv">64</span>   <span class="co">&#39; x must be a capital character</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Alt keys, e.g. Definekey DK_ALT(ASC(&quot;r&quot;)):</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> DK_ALT(x)       = <span class="dv">0xFF20</span> + (x - <span class="kw">Iff</span>(x &gt;= <span class="dv">97</span>, <span class="dv">57</span>, <span class="dv">31</span>))</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Keypad:</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_DIV     = <span class="dv">0xFFDA</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_MUL     = <span class="dv">0xFFDB</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_MINUS   = <span class="dv">0xFFDC</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_PLUS    = <span class="dv">0xFFDD</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_ENTER   = <span class="dv">0xFFDE</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_HOME    = <span class="dv">0xFFD7</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_UP      = <span class="dv">0xFFD8</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_PGUP    = <span class="dv">0xFFD9</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_LEFT    = <span class="dv">0xFFD4</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_CENTER  = <span class="dv">0xFFD5</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_RIGHT   = <span class="dv">0xFFD6</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_END     = <span class="dv">0xFFD1</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_DOWN    = <span class="dv">0xFFD2</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_PGDN    = <span class="dv">0xFFD3</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_INS     = <span class="dv">0xFFD0</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_KP_DEL     = <span class="dv">0xFFDF</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Mouse:</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_MK_PUSH    = <span class="dv">0xFFC0</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_MK_DRAG    = <span class="dv">0xFFC1</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_MK_MOVE    = <span class="dv">0xFFC2</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_MK_RELEASE = <span class="dv">0xFFC3</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_MK_WHEEL   = <span class="dv">0xFFC4</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_MK_FIRST   = DK_MK_PUSH</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DK_MK_LAST    = DK_MK_WHEEL</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using DEFINEKEY</div>
     <div class="linklist">
@@ -409,7 +419,7 @@ DEFINEKEY by submitting a <a href="https://github.com/smallbasic/smallbasic.gith
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

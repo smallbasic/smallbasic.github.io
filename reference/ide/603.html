@@ -2,8 +2,13 @@
 <blockquote>
 <p>EOF (fileN)</p>
 </blockquote>
-<p>Returns true if the file pointer is at end of the file. For COMx and SOCL VFS returns true if the connection is broken.</p>
-<h3 id="example-1-reading-data-from-a-file">Example 1: Reading data from a file</h3>
+<p>Returns true if the file pointer is at end of the file. For serial
+port (RS232) and TCP/IP socket connection <code>EOF</code> returns true
+if the connection is broken. For socket connection the return value
+of<code>EOF</code> will be updated every time data is recieved or
+send.</p>
+<h3 id="example-1-reading-data-from-a-file">Example 1: Reading data from
+a file</h3>
 <pre><code>&#39; create a text file
 open &quot;MyDemoFile.txt&quot; for output as #1
 
@@ -22,7 +27,8 @@ while(!eof(1))   &#39; eof works only without #
 wend
 
 close #1</code></pre>
-<h3 id="example-2-reading-from-a-tcpip-socket">Example 2: Reading from a TCP/IP socket</h3>
+<h3 id="example-2-reading-from-a-tcpip-socket">Example 2: Reading from a
+TCP/IP socket</h3>
 <pre><code>rem Print a date string like &#39;29 SEP 2018 09:31:49 ACST&#39;
 func get_time
   local today = julian(date)

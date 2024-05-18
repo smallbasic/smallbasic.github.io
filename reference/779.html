@@ -136,94 +136,104 @@
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><code>\\ \\</code></td>
-<td>Stores only the first n + 2 characters of a string expression, where n is the number of spaces between the two pairs of backslashes.</td>
+<td>Stores only the first n + 2 characters of a string expression, where
+n is the number of spaces between the two pairs of backslashes.</td>
 </tr>
 </tbody>
 </table>
-<p>When using <code>\\ \\</code>, literals can be inside the <code>\\</code> <code>\\</code>. These literals are inserted in the final string.</p>
+<p>When using <code>\\ \\</code>, literals can be inside the
+<code>\\</code> <code>\\</code>. These literals are inserted in the
+final string.</p>
 <h3 id="example-1">Example 1</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;####.##&quot;</span>,    <span class="dv">1920.64</span>)  <span class="co">&#39; output 1920.64</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#######&quot;</span>,    <span class="dv">1920.64</span>)  <span class="co">&#39; output    1921</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#,###.##&quot;</span>,   <span class="dv">1920.64</span>)  <span class="co">&#39; output 1,920.64</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#,###.00&quot;</span>,   <span class="dv">1920.6</span> )  <span class="co">&#39; output 1,920.60</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#,###&quot;</span>,      <span class="dv">1920.6</span> )  <span class="co">&#39; output 1,921</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;###,###.00&quot;</span>, <span class="dv">1920.6</span> )  <span class="co">&#39; output   1,920.60</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;00#,###.00&quot;</span>, <span class="dv">1920.6</span> )  <span class="co">&#39; output 001,920.60</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#####^&quot;</span>,     <span class="dv">1920.6</span> )  <span class="co">&#39; output 1,9E+3</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;+#,###.00&quot;</span>,  <span class="dv">1920.6</span> )  <span class="co">&#39; output +1,920.60</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;+#,###.00&quot;</span>, <span class="dv">-1920.6</span> )  <span class="co">&#39; output -1,920.60</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;-#,###.00&quot;</span>,  <span class="dv">1920.6</span> )  <span class="co">&#39; output  1,920.60</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;-#,###.00&quot;</span>, <span class="dv">-1920.6</span> )  <span class="co">&#39; output -1,920.60</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;!&quot;</span>,     <span class="st">&quot;Test&quot;</span>)        <span class="co">&#39; output T</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;\\\\&quot;</span>,  <span class="st">&quot;Test&quot;</span>)        <span class="co">&#39; output Te</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;\\ \\&quot;</span>, <span class="st">&quot;Test&quot;</span>)        <span class="co">&#39; output Tes</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;\\  X \\&quot;</span>,   <span class="st">&quot;abcde&quot;</span>)  <span class="co">&#39; output abcXde</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;\\ X Y \\&quot;</span>,  <span class="st">&quot;abcde&quot;</span>)  <span class="co">&#39; output abXcYde</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;&amp;\\ X Y \\&quot;</span>, <span class="st">&quot;abcde&quot;</span>)  <span class="co">&#39; output abcde</span></span></code></pre></div>
-<h3 id="example-2-printing-numbers-in-columns">Example 2: Printing numbers in columns</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">for </span>y = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="kw">for </span>x = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">5</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>        <span class="kw">print</span> <span class="fu">format</span>(<span class="st">&quot;#,###.00   &quot;</span>, (<span class="fu">rnd</span>*<span class="dv">200000</span> - <span class="dv">100000</span>)/<span class="dv">100</span>);</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="kw">next</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="kw">print</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">next</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;####.##&quot;</span>,    <span class="dv">1920.64</span>)  <span class="co">&#39; output 1920.64</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#######&quot;</span>,    <span class="dv">1920.64</span>)  <span class="co">&#39; output    1921</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#,###.##&quot;</span>,   <span class="dv">1920.64</span>)  <span class="co">&#39; output 1,920.64</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#,###.00&quot;</span>,   <span class="dv">1920.6</span> )  <span class="co">&#39; output 1,920.60</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#,###&quot;</span>,      <span class="dv">1920.6</span> )  <span class="co">&#39; output 1,921</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;###,###.00&quot;</span>, <span class="dv">1920.6</span> )  <span class="co">&#39; output   1,920.60</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;00#,###.00&quot;</span>, <span class="dv">1920.6</span> )  <span class="co">&#39; output 001,920.60</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;#####^&quot;</span>,     <span class="dv">1920.6</span> )  <span class="co">&#39; output 1,9E+3</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;+#,###.00&quot;</span>,  <span class="dv">1920.6</span> )  <span class="co">&#39; output +1,920.60</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;+#,###.00&quot;</span>, -<span class="dv">1920.6</span> )  <span class="co">&#39; output -1,920.60</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;-#,###.00&quot;</span>,  <span class="dv">1920.6</span> )  <span class="co">&#39; output  1,920.60</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;-#,###.00&quot;</span>, -<span class="dv">1920.6</span> )  <span class="co">&#39; output -1,920.60</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;!&quot;</span>,     <span class="st">&quot;Test&quot;</span>)        <span class="co">&#39; output T</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;\\\\&quot;</span>,  <span class="st">&quot;Test&quot;</span>)        <span class="co">&#39; output Te</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;\\ \\&quot;</span>, <span class="st">&quot;Test&quot;</span>)        <span class="co">&#39; output Tes</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;\\  X \\&quot;</span>,   <span class="st">&quot;abcde&quot;</span>)  <span class="co">&#39; output abcXde</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;\\ X Y \\&quot;</span>,  <span class="st">&quot;abcde&quot;</span>)  <span class="co">&#39; output abXcYde</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">FORMAT</span>(<span class="st">&quot;&amp;\\ X Y \\&quot;</span>, <span class="st">&quot;abcde&quot;</span>)  <span class="co">&#39; output abcde</span></span></code></pre></div>
+<h3 id="example-2-printing-numbers-in-columns">Example 2: Printing
+numbers in columns</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>y = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">for </span>x = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">5</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">print</span> <span class="fu">format</span>(<span class="st">&quot;#,###.00   &quot;</span>, (<span class="fu">rnd</span>*<span class="dv">200000</span> - <span class="dv">100000</span>)/<span class="dv">100</span>);</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">next</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span></code></pre></div>
 <h3 id="example-3">Example 3</h3>
-<p>PRINT USING and FORMAT use same or similar character codes, here are some practical examples of use, including the creating of a reusable money function that returns a flexible length string for a money amount (dollars and cents format).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39; PRINT USING is excellent for columns of numbers</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39; A problem with PRINT USING is that it needs a whole statement to itself,</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39; unlike PRINT that can print a list of expressions in a single statement (with ; , or +)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">&#39; another problem with USING, # is that they are place holders which is nice</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">&#39; for column of numbers but not in following:</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>currency = <span class="st">&quot;$-###,###,###,###,###,###.00&quot;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>bignumber = <span class="st">&quot;###,###,###,###,###,###&quot;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>onetrillion = <span class="dv">1000000000000</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>workers = <span class="dv">150000000</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>? <span class="st">&quot;First version:&quot;</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>? using currency; onetrillion;</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>? <span class="st">&quot; divided by &quot;</span>;</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>? <span class="kw">usg</span> bignumber; workers;  <span class="co">&#39;&lt;=== usg is short for using</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>? <span class="st">&quot; working people is &quot;</span>;</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>? <span class="kw">usg</span> currency; onetrillion / workers;</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>? <span class="st">&quot; per working person.&quot;</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>?:?</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">&#39; Yuck! we need to trim things up, FORMAT works nicely with TRIM</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>division = <span class="st">&quot;$ &quot;</span> + <span class="fu">trim</span>(<span class="fu">format</span>(bignumber, onetrillion / workers))</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>onetrillion1 = <span class="st">&quot;$ &quot;</span> + <span class="fu">trim</span>(<span class="fu">format</span>(bignumber, onetrillion))</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>workers1 = <span class="fu">trim</span>(<span class="fu">format</span>(bignumber, workers))</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>? <span class="st">&quot;Second version with trim:&quot;</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>? onetrillion1 + <span class="st">&quot; divided by &quot;</span> + workers1; <span class="st">&quot; working people is &quot;</span>; division; <span class="st">&quot; per working person.&quot;</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>?:?</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="co">&#39; lets use what we learned here and make a reusable function: money</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>? <span class="st">&quot;Third version as a function:&quot;</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>? money(onetrillion); <span class="st">&quot; divided by &quot;</span>; workers1; <span class="st">&quot; working people is &quot;</span> + money(onetrillion/workers) + <span class="st">&quot; per working person.&quot;</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>?:?</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="co">&#39; Print money as columns like in a table. We need to have the same length strings use RIGHT and SPACE</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a>? <span class="st">&quot;Money table:&quot;</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">50</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a>  <span class="kw">if </span><span class="fu">rnd</span> &gt; <span class="dv">.5</span> <span class="kw">then</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a>    posneg = <span class="dv">1</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a>  <span class="kw">else</span> </span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>    posneg = <span class="dv">-1</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>  <span class="kw">endif</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>  <span class="kw">print</span> <span class="fu">right</span>(<span class="fu">space</span>(<span class="dv">15</span>) + money(<span class="fu">rnd</span>*<span class="dv">10000000000</span>/<span class="dv">1000</span>*posneg), <span class="dv">20</span>);</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a>  <span class="kw">if </span>i <span class="kw">mod</span> <span class="dv">5</span>=<span class="dv">0</span> <span class="kw">then pr</span>int <span class="co">&#39;&lt;== after printing 5 numbers in one line use print to start next line</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a><span class="kw">func </span>money(dollarsandcents)</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a>  money = <span class="st">&quot;$ &quot;</span> + <span class="fu">trim</span>(<span class="fu">format</span>(<span class="st">&quot;###,###,###,###,###,###.00&quot;</span>, dollarsandcents))</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true"></a><span class="kw">end</span></span></code></pre></div>
+<p>PRINT USING and FORMAT use same or similar character codes, here are
+some practical examples of use, including the creating of a reusable
+money function that returns a flexible length string for a money amount
+(dollars and cents format).</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; USING FORMAT Money.bas 2016-03-06 SmallBASIC 0.12.2 [B+=MGA]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; PRINT USING is excellent for columns of numbers</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; A problem with PRINT USING is that it needs a whole statement to itself,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; unlike PRINT that can print a list of expressions in a single statement (with ; , or +)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; another problem with USING, # is that they are place holders which is nice</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; for column of numbers but not in following:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>currency = <span class="st">&quot;$-###,###,###,###,###,###.00&quot;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>bignumber = <span class="st">&quot;###,###,###,###,###,###&quot;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>onetrillion = <span class="dv">1000000000000</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>workers = <span class="dv">150000000</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot;First version:&quot;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>? using currency; onetrillion;</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot; divided by &quot;</span>;</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>? <span class="kw">usg</span> bignumber; workers;  <span class="co">&#39;&lt;=== usg is short for using</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot; working people is &quot;</span>;</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>? <span class="kw">usg</span> currency; onetrillion / workers;</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot; per working person.&quot;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>?:?</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Yuck! we need to trim things up, FORMAT works nicely with TRIM</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>division = <span class="st">&quot;$ &quot;</span> + <span class="fu">trim</span>(<span class="fu">format</span>(bignumber, onetrillion / workers))</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>onetrillion1 = <span class="st">&quot;$ &quot;</span> + <span class="fu">trim</span>(<span class="fu">format</span>(bignumber, onetrillion))</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>workers1 = <span class="fu">trim</span>(<span class="fu">format</span>(bignumber, workers))</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot;Second version with trim:&quot;</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>? onetrillion1 + <span class="st">&quot; divided by &quot;</span> + workers1; <span class="st">&quot; working people is &quot;</span>; division; <span class="st">&quot; per working person.&quot;</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>?:?</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; lets use what we learned here and make a reusable function: money</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot;Third version as a function:&quot;</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>? money(onetrillion); <span class="st">&quot; divided by &quot;</span>; workers1; <span class="st">&quot; working people is &quot;</span> + money(onetrillion/workers) + <span class="st">&quot; per working person.&quot;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>?:?</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Print money as columns like in a table. We need to have the same length strings use RIGHT and SPACE</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>? <span class="st">&quot;Money table:&quot;</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">50</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span><span class="fu">rnd</span> &gt; .<span class="dv">5</span> <span class="kw">then</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    posneg = <span class="dv">1</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    posneg = -<span class="dv">1</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="kw">endif</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> <span class="fu">right</span>(<span class="fu">space</span>(<span class="dv">15</span>) + money(<span class="fu">rnd</span>*<span class="dv">10000000000</span>/<span class="dv">1000</span>*posneg), <span class="dv">20</span>);</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>i <span class="kw">mod</span> <span class="dv">5</span>=<span class="dv">0</span> <span class="kw">then pr</span>int <span class="co">&#39;&lt;== after printing 5 numbers in one line use print to start next line</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>money(dollarsandcents)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  money = <span class="st">&quot;$ &quot;</span> + <span class="fu">trim</span>(<span class="fu">format</span>(<span class="st">&quot;###,###,###,###,###,###.00&quot;</span>, dollarsandcents))</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using FORMAT</div>
     <div class="linklist">
@@ -315,7 +325,7 @@ FORMAT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

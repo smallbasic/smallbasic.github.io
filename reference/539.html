@@ -73,240 +73,251 @@
       <a href="/pages/console.html">Console</a>
     </p>
   </div>
-<p>Returns the last key-code in keyboard buffer, or an empty string if there are no keys. Special key-codes like the function-keys are returned as 2-byte string.</p>
+<p>Returns the last key-code in keyboard buffer, or an empty string if
+there are no keys. Special key-codes like the function-keys are returned
+as 2-byte string.</p>
 <h3 id="example-1">Example 1</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">WHILE(</span><span class="dv">1</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  k = <span class="kw">INKEY</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="kw">IF </span><span class="fu">LEN</span>(k)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="kw">IF </span><span class="fu">LEN</span>(k)=<span class="dv">2</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>      ? <span class="st">&quot;H/W #&quot;</span>+<span class="fu">ASC</span>(<span class="fu">RIGHT</span>(k,<span class="dv">1</span>))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="kw">ELSE</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>      ? k; <span class="st">&quot; &quot;</span>; <span class="fu">ASC</span>(k)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    <span class="kw">FI</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="kw">FI</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="fu">SHOWPAGE</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="kw">WEND</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHILE(</span><span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  k = <span class="kw">INKEY</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">IF </span><span class="fu">LEN</span>(k)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">IF </span><span class="fu">LEN</span>(k)=<span class="dv">2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      ? <span class="st">&quot;H/W #&quot;</span>+<span class="fu">ASC</span>(<span class="fu">RIGHT</span>(k,<span class="dv">1</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ELSE</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      ? k; <span class="st">&quot; &quot;</span>; <span class="fu">ASC</span>(k)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FI</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FI</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">SHOWPAGE</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">WEND</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<p>The following program will return the keycode and a string for every pressed key. The string can be used in an if-statement to querry if the key was pressed. See example 3 how to use the string.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  k = <span class="kw">INKEY</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="kw">if </span><span class="fu">len</span>(k)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="kw">if </span><span class="fu">len</span>(k) == <span class="dv">2</span>        </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>      <span class="kw">print</span> <span class="st">&quot;2-Byte key code   : &quot;</span> + <span class="fu">asc</span>(<span class="fu">mid</span>(k,<span class="dv">1</span>,<span class="dv">1</span>)) + <span class="st">&quot;  &quot;</span> + <span class="fu">asc</span>(<span class="fu">mid</span>(k,<span class="dv">2</span>,<span class="dv">1</span>));</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>      <span class="kw">print</span> <span class="st">&quot; -&gt; s = chr(&quot;</span>;<span class="fu">asc</span>(<span class="fu">mid</span>(k,<span class="dv">1</span>,<span class="dv">1</span>));<span class="st">&quot;) + chr(&quot;</span>;<span class="fu">asc</span>(<span class="fu">mid</span>(k,<span class="dv">2</span>,<span class="dv">1</span>));<span class="st">&quot;)&quot;</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>      <span class="kw">if(</span><span class="fu">asc</span>(k) &gt; <span class="dv">37</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;Printable key code: &quot;</span>; <span class="fu">asc</span>(k); <span class="st">&quot; -&gt; s = \&quot;&quot;;k;&quot;</span>\<span class="st">&quot;&quot;</span> </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>      <span class="kw">else</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot;1-Byte key code   : &quot;</span>; <span class="fu">asc</span>(k);</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>        <span class="kw">print</span> <span class="st">&quot; -&gt; s = chr(&quot;</span>;<span class="fu">asc</span>(k);<span class="st">&quot;)&quot;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>      <span class="kw">endif</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="kw">endif</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>  <span class="kw">endif</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>  </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>  <span class="fu">showpage</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
-<h3 id="example-3-querry-if-a-key-was-pressed">Example 3: Querry if a key was pressed</h3>
+<p>The following program will return the keycode and a string for every
+pressed key. The string can be used in an if-statement to querry if the
+key was pressed. See example 3 how to use the string.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  k = <span class="kw">INKEY</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span><span class="fu">len</span>(k)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if </span><span class="fu">len</span>(k) == <span class="dv">2</span>        </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">print</span> <span class="st">&quot;2-Byte key code   : &quot;</span> + <span class="fu">asc</span>(<span class="fu">mid</span>(k,<span class="dv">1</span>,<span class="dv">1</span>)) + <span class="st">&quot;  &quot;</span> + <span class="fu">asc</span>(<span class="fu">mid</span>(k,<span class="dv">2</span>,<span class="dv">1</span>));</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">print</span> <span class="st">&quot; -&gt; s = chr(&quot;</span>;<span class="fu">asc</span>(<span class="fu">mid</span>(k,<span class="dv">1</span>,<span class="dv">1</span>));<span class="st">&quot;) + chr(&quot;</span>;<span class="fu">asc</span>(<span class="fu">mid</span>(k,<span class="dv">2</span>,<span class="dv">1</span>));<span class="st">&quot;)&quot;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">if(</span><span class="fu">asc</span>(k) &gt; <span class="dv">37</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">print</span> <span class="st">&quot;Printable key code: &quot;</span>; <span class="fu">asc</span>(k); <span class="st">&quot; -&gt; s = \&quot;&quot;;k;&quot;</span>\<span class="st">&quot;&quot;</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">else</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">print</span> <span class="st">&quot;1-Byte key code   : &quot;</span>; <span class="fu">asc</span>(k);</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">print</span> <span class="st">&quot; -&gt; s = chr(&quot;</span>;<span class="fu">asc</span>(k);<span class="st">&quot;)&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">endif</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">endif</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">endif</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">showpage</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<h3 id="example-3-querry-if-a-key-was-pressed">Example 3: Querry if a
+key was pressed</h3>
 <p>See example 2 to get the keycodes for the keys.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="dt">const</span> KeyUp = <span class="fu">chr</span>(<span class="dv">27</span>) + <span class="fu">chr</span>(<span class="dv">9</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="dt">const</span> KeyDown = <span class="fu">chr</span>(<span class="dv">27</span>) + <span class="fu">chr</span>(<span class="dv">10</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="dt">const</span> KeySpace = <span class="st">&quot; &quot;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="dt">const</span> KeyEsc = <span class="fu">chr</span>(<span class="dv">27</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="dt">const</span> KeyReturn = <span class="fu">chr</span>(<span class="dv">13</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  k = <span class="kw">INKEY</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>  <span class="kw">if </span><span class="fu">len</span>(k)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    <span class="kw">select case </span>k</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>        <span class="kw">case</span> KeyUp:     <span class="kw">print</span> <span class="st">&quot;Up&quot;</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>        <span class="kw">case</span> KeyDown:   <span class="kw">print</span> <span class="st">&quot;Down&quot;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>        <span class="kw">case</span> KeySpace:  <span class="kw">print</span> <span class="st">&quot;Space&quot;</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>        <span class="kw">case</span> KeyEsc:    <span class="kw">print</span> <span class="st">&quot;Esc&quot;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>        <span class="kw">case</span> KeyReturn: <span class="kw">print</span> <span class="st">&quot;Return&quot;</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>        <span class="kw">case</span> <span class="st">&quot;a&quot;</span>:       <span class="kw">print</span> <span class="st">&quot;a&quot;</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>        <span class="kw">case</span> <span class="st">&quot;A&quot;</span>:       <span class="kw">print</span> <span class="st">&quot;A&quot;</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>        <span class="kw">case</span> <span class="kw">else</span>:      <span class="kw">print</span> <span class="st">&quot;other key&quot;</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>    <span class="kw">end select</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>  <span class="kw">endif</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>  </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>  <span class="fu">showpage</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> KeyUp = <span class="fu">chr</span>(<span class="dv">27</span>) + <span class="fu">chr</span>(<span class="dv">9</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> KeyDown = <span class="fu">chr</span>(<span class="dv">27</span>) + <span class="fu">chr</span>(<span class="dv">10</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> KeySpace = <span class="st">&quot; &quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> KeyEsc = <span class="fu">chr</span>(<span class="dv">27</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> KeyReturn = <span class="fu">chr</span>(<span class="dv">13</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  k = <span class="kw">INKEY</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span><span class="fu">len</span>(k)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">select case </span>k</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> KeyUp:     <span class="kw">print</span> <span class="st">&quot;Up&quot;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> KeyDown:   <span class="kw">print</span> <span class="st">&quot;Down&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> KeySpace:  <span class="kw">print</span> <span class="st">&quot;Space&quot;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> KeyEsc:    <span class="kw">print</span> <span class="st">&quot;Esc&quot;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> KeyReturn: <span class="kw">print</span> <span class="st">&quot;Return&quot;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="st">&quot;a&quot;</span>:       <span class="kw">print</span> <span class="st">&quot;a&quot;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="st">&quot;A&quot;</span>:       <span class="kw">print</span> <span class="st">&quot;A&quot;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="kw">else</span>:      <span class="kw">print</span> <span class="st">&quot;other key&quot;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end select</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">endif</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">showpage</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
 <h3 id="example-4-input-form">Example 4: Input form</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; Key values:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="dt">Const</span> K_BKSP   = <span class="fu">Chr</span>(<span class="dv">0x08</span>)  <span class="co">&#39; BackSpace</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="dt">Const</span> K_TAB    = <span class="fu">Chr</span>(<span class="dv">0x09</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="dt">Const</span> K_ENTER  = <span class="fu">Chr</span>(<span class="dv">0x0D</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="dt">Const</span> K_ESC    = <span class="fu">Chr</span>(<span class="dv">0x1B</span>)  <span class="co">&#39; Escape</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="dt">Const</span> K_DELETE = <span class="fu">Chr</span>(<span class="dv">0x7F</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="dt">Const</span> K_PGUP   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x01</span>)  <span class="co">&#39; Page Up</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="dt">Const</span> K_PGDN   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x02</span>)  <span class="co">&#39; Page Down</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="dt">Const</span> K_LEFT   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x04</span>)  <span class="co">&#39; Arrow Left</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="dt">Const</span> K_RIGHT  = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x05</span>)  <span class="co">&#39; Arrow Right</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="dt">Const</span> K_UP     = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x09</span>)  <span class="co">&#39; Arrow Up</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="dt">Const</span> K_DOWN   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x0A</span>)  <span class="co">&#39; Arrow Down</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="dt">Const</span> K_INSERT = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x10</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="dt">Const</span> K_HOME   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x11</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="dt">Const</span> K_<span class="kw">END </span>   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x12</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="co">&#39; Edit string:</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="kw">Def</span> edit_char(txt, pos, char, ins_mode) = <span class="fu">Replace</span>(txt, pos, char, ins_mode = <span class="dv">0</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="kw">Def</span> delete_char(txt, pos) = <span class="fu">Replace</span>(txt, pos, <span class="st">&quot;&quot;</span>, <span class="dv">1</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">&#39; Initialize three demo fields:</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>f_lbl = [<span class="st">&quot;First Name:&quot;</span>, <span class="st">&quot;Last Name: &quot;</span>, <span class="st">&quot;Your Hobby:&quot;</span>] <span class="co">&#39; field label</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>f_row = [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>]     <span class="co">&#39; label row</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a>f_col = [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]     <span class="co">&#39; label column</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>f_len = [<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">20</span>]  <span class="co">&#39; variable length</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>f_var = [<span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>]  <span class="co">&#39; variable value</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="co">&#39; Index of fields:</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a><span class="dt">Const</span> MIN_IX = <span class="fu">Lbound</span>(f_lbl)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a><span class="dt">Const</span> MAX_IX = <span class="fu">Ubound</span>(f_lbl)</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a>ix = MIN_IX   <span class="co">&#39; Start on first field index</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a>ins_mode = <span class="dv">1</span>  <span class="co">&#39; Start in insert character mode</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a><span class="co">&#39; Main demo loop:</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a><span class="kw">While </span><span class="dt">True</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true"></a>  <span class="co">&#39; Update variables:</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true"></a>  eol = <span class="fu">Len</span>(f_var(ix)) + <span class="dv">1</span>                <span class="co">&#39; End Of Line</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true"></a>  <span class="kw">If </span>pos &gt; eol <span class="kw">Or</span> pos &lt; <span class="dv">1</span> <span class="kw">Then po</span>s = eol  <span class="co">&#39; Adjust cursor pos on new field</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true"></a>  <span class="co">&#39; Update screen:</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true"></a>  <span class="kw">For </span>i = MIN_IX <span class="kw">To</span> MAX_IX</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true"></a>    <span class="co">&#39; Print all fields:</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true"></a>    s  = <span class="fu">Cat</span>(<span class="dv">0</span>) + f_lbl(i) + <span class="st">&quot; &quot;</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true"></a>    s += <span class="fu">Cat</span>(<span class="dv">3</span>) + f_var(i) + <span class="fu">Spc</span>(f_len(i) - <span class="fu">Len</span>(f_var(i))) + <span class="st">&quot; &quot;</span> <span class="co">&#39; + eol</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true"></a>    <span class="fu">Locate</span> f_row(i), f_col(i)</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true"></a>    <span class="kw">Print</span> s + <span class="fu">Cat</span>(<span class="dv">0</span>);</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true"></a>    <span class="co">&#39; Print the cursor:</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true"></a>    <span class="kw">If </span>i = ix <span class="kw">Then</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true"></a>      <span class="kw">If Not</span> ins_mode <span class="kw">Then Co</span>lor <span class="dv">15</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true"></a>      <span class="fu">Locate</span> f_row(i), f_col(i) + <span class="fu">Len</span>(f_lbl(i)) + pos</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true"></a>      <span class="kw">Print</span> <span class="fu">Cat</span>(<span class="dv">2</span>) + <span class="fu">Mid</span>(f_var(i) + <span class="st">&quot; &quot;</span>, pos, <span class="dv">1</span>); <span class="co">&#39; (+ &quot; &quot; for eol)</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true"></a>    <span class="kw">Fi</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true"></a>  <span class="kw">Next </span>i</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true"></a>  <span class="co">&#39; Update status line:</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true"></a>  s = <span class="st">&quot;  (Esc=Stop)   |   &quot;</span> + <span class="kw">Iff</span>(ins_mode, <span class="st">&quot;Insert &quot;</span>, <span class="st">&quot;Replace&quot;</span>) + <span class="fu">Spc</span>(<span class="dv">3</span>)</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true"></a>  s += <span class="fu">Format</span>(<span class="st">&quot;| 00:&quot;</span>, ix) + <span class="kw">Iff</span>(pos = eol, <span class="st">&quot;EOL&quot;</span>, <span class="fu">Format</span>(<span class="st">&quot;000&quot;</span>, pos)) + <span class="fu">Spc</span>(<span class="dv">1</span>)</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true"></a>  <span class="fu">Locate</span> <span class="dv">0</span>, <span class="dv">0</span>: <span class="kw">Print</span> <span class="fu">Cat</span>(<span class="dv">0</span>) + <span class="fu">Cat</span>(<span class="dv">3</span>) + s;</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true"></a>  <span class="fu">Showpage</span> <span class="co">&#39; SHOWPAGE makes INKEY works smoother (using SB 0.12.2)</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true"></a>  <span class="co">&#39; Wait for a key:</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true"></a>  <span class="kw">Repeat</span>: key = <span class="kw">Inkey</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true"></a>  <span class="kw">Until </span>key &lt;&gt; <span class="st">&quot;&quot;</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true"></a>  <span class="co">&#39; Check key:</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true"></a>  <span class="kw">Select Case </span>key</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true"></a>  <span class="kw">Case</span> K_ESC:    <span class="kw">Stop</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true"></a>  <span class="kw">Case</span> K_INSERT: ins_mode = <span class="kw">Not</span> ins_mode</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true"></a>  <span class="kw">Case</span> K_ENTER, K_TAB: ix++: <span class="kw">If </span>ix &gt; MAX_IX <span class="kw">Then ix</span> = MIN_IX</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true"></a>  <span class="kw">Case</span> K_DOWN:   <span class="kw">If </span>ix &lt; MAX_IX <span class="kw">Then ix</span>++</span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true"></a>  <span class="kw">Case</span> K_UP:     <span class="kw">If </span>ix &gt; MIN_IX <span class="kw">Then ix</span>--</span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true"></a>  <span class="kw">Case</span> K_PGDN:   ix = MAX_IX</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true"></a>  <span class="kw">Case</span> K_PGUP:   ix = MIN_IX</span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true"></a>  <span class="kw">Case</span> K_HOME:   pos = <span class="dv">1</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true"></a>  <span class="kw">Case</span> K_END:    pos = eol</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true"></a>  <span class="kw">Case</span> K_LEFT:   <span class="kw">If </span>pos &gt; <span class="dv">1</span>   <span class="kw">Then po</span>s--</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true"></a>  <span class="kw">Case</span> K_RIGHT:  <span class="kw">If </span>pos &lt; eol <span class="kw">Then po</span>s++</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true"></a>  <span class="kw">Case</span> K_DELETE: <span class="kw">If </span>pos &lt; eol <span class="kw">Then f_</span>var(ix) = delete_char(f_var(ix), pos)</span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true"></a>  <span class="kw">Case</span> K_BKSP:   <span class="kw">If </span>pos &gt; <span class="dv">1</span>   <span class="kw">Then po</span>s--: f_var(ix) = delete_char(f_var(ix), pos)</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true"></a>  <span class="kw">Case</span> <span class="kw">Else</span></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true"></a>    <span class="kw">If </span><span class="fu">Len</span>(key) = <span class="dv">1</span> <span class="kw">And</span> <span class="fu">Asc</span>(key) &gt;= <span class="dv">32</span> <span class="kw">Then</span>            <span class="co">&#39; Regular character?</span></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true"></a>      ins = ins_mode <span class="kw">And</span> (<span class="fu">Len</span>(f_var(ix)) &lt; f_len(ix))  <span class="co">&#39; Insert mode</span></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true"></a>      rep = (<span class="kw">Not</span> ins_mode) <span class="kw">And</span> (pos &lt;= f_len(ix))      <span class="co">&#39; Replace mode</span></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true"></a>      <span class="kw">If </span>ins <span class="kw">Or</span> rep <span class="kw">Then</span></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true"></a>        f_var(ix) = edit_char(f_var(ix), pos, key, ins_mode)</span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true"></a>        pos++  <span class="co">&#39; Move cursor to next character</span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true"></a>      <span class="kw">Fi</span></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true"></a>    <span class="kw">Fi</span></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true"></a>  <span class="kw">End Select</span></span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true"></a><span class="kw">Wend</span></span></code></pre></div>
-<h3 id="example-5-a-basic-key-code-unit">Example 5: A basic key code UNIT</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">REM Purpose:   Special key values returned by INKEY.</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">REM            (Values returned by INKEY cannot be used for DEFINEKEY).</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">REM File name: key.bas</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">REM Unit name: key</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">REM Version:   1.0.0  24/05/2016</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">REM Author:    shian</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">&#39; --- Start demo code ------------------------------------</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">&#39;Import key</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="co">&#39;? &quot;Press Escape to stop...&quot;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="co">&#39;Repeat: k = Inkey</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="co">&#39;  Select Case k</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="co">&#39;  Case Key.ENTER    : ? &quot;Key.ENTER&quot;</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="co">&#39;  Case Key.TABK     : ? &quot;Key.TABK&quot;</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a><span class="co">&#39;  Case Key.CLICK    : ? &quot;Key.CLICK&quot;</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="co">&#39;  Case Key.FN(1)    : ? &quot;Key.FN(1)&quot;</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="co">&#39;  Case Key.FN(12)   : ? &quot;Key.FN(12)&quot;</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="co">&#39;  Case Key.CTRL(&quot;A&quot;): ? &quot;Key.CTRL(a)&quot;</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="co">&#39;  Case Key.ALT(&quot;A&quot;) : ? &quot;Key.ALT(a)&quot;</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a><span class="co">&#39;  Case Key.CTRL(Key.Enter) : ? &quot;Key.CTRL(Key.Enter)&quot;</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="co">&#39;  Case Key.ALT(Key.Enter)  : ? &quot;Key.ALT(Key.Enter)&quot;</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a><span class="co">&#39;  Case Key.SHIFT(Key.Enter): ? &quot;Key.SHIFT(Key.Enter)&quot;</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a><span class="co">&#39;  End Select</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="co">&#39;Until k = Key.ESC</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a><span class="co">&#39; --- End demo code ------------------------------------</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a><span class="pp">Unit</span> key</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a><span class="co">&#39; Useful Constants:</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a><span class="pp">Export</span> BKSP, TABK, ENTER, ESC, BLANK, DEL</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a><span class="pp">Export</span> PGUP, PGDN, LEFTK, RIGHTK, UP, DOWN </span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a><span class="pp">Export</span> INS, HOMEK, ENDK, CLICK</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a><span class="co">&#39; Useful Functions:</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a><span class="pp">Export</span> FN, CTRL, ALT, SHIFT</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a><span class="pp">Export</span> CTRL_ALT, ALT_SHIFT, CTRL_SHIFT  <span class="co">&#39; (used by system)</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a><span class="co">&#39; The left character of INKEY (Useful only for special cases):</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a><span class="pp">Export</span> CTRL_CHR, ALT_CHR, SHIFT_CHR</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a><span class="pp">Export</span> CTRL_ALT_CHR, ALT_SHIFT_CHR, CTRL_SHIFT_CHR</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true"></a><span class="dt">Const</span> CTRL_CHR       = <span class="fu">Chr</span>(<span class="dv">0x01</span>)    <span class="co">&#39; for Ctrl+Char</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true"></a><span class="dt">Const</span> ALT_CHR        = <span class="fu">Chr</span>(<span class="dv">0x02</span>)    <span class="co">&#39; for Alt+Char</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true"></a><span class="dt">Const</span> SHIFT_CHR      = <span class="fu">Chr</span>(<span class="dv">0x03</span>)    <span class="co">&#39; for Shift+Char</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true"></a><span class="dt">Const</span> CTRL_ALT_CHR   = <span class="fu">Chr</span>(<span class="dv">0x04</span>)    <span class="co">&#39; for Ctrl+Alt+Char   (used by system)</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true"></a><span class="dt">Const</span> ALT_SHIFT_CHR  = <span class="fu">Chr</span>(<span class="dv">0x05</span>)    <span class="co">&#39; for Alt+Shift+Char  (used by system)</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true"></a><span class="dt">Const</span> CTRL_SHIFT_CHR = <span class="fu">Chr</span>(<span class="dv">0x06</span>)    <span class="co">&#39; for Ctrl+Shift+Char (used by system)</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true"></a><span class="dt">Const</span> BKSP   = <span class="fu">Chr</span>(<span class="dv">0x08</span>)            <span class="co">&#39; BackSpace</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true"></a><span class="dt">Const</span> TABK   = <span class="fu">Chr</span>(<span class="dv">0x09</span>)            <span class="co">&#39; Tab key</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true"></a><span class="dt">Const</span> ENTER  = <span class="fu">Chr</span>(<span class="dv">0x0D</span>)</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true"></a><span class="dt">Const</span> ESC    = <span class="fu">Chr</span>(<span class="dv">0x1B</span>)            <span class="co">&#39; Escape</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true"></a><span class="dt">Const</span> BLANK  = <span class="fu">Chr</span>(<span class="dv">0x20</span>)            <span class="co">&#39; Space key</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true"></a><span class="dt">Const</span> DEL    = <span class="fu">Chr</span>(<span class="dv">0x7F</span>)            <span class="co">&#39; Delete</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true"></a><span class="dt">Const</span> PGUP   = ESC + <span class="fu">Chr</span>(<span class="dv">0x01</span>)      <span class="co">&#39; Page Up</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true"></a><span class="dt">Const</span> PGDN   = ESC + <span class="fu">Chr</span>(<span class="dv">0x02</span>)      <span class="co">&#39; Page Down</span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true"></a><span class="dt">Const</span> LEFTK  = ESC + <span class="fu">Chr</span>(<span class="dv">0x04</span>)      <span class="co">&#39; Arrow Left key</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true"></a><span class="dt">Const</span> RIGHTK = ESC + <span class="fu">Chr</span>(<span class="dv">0x05</span>)      <span class="co">&#39; Arrow Right key</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true"></a><span class="dt">Const</span> UP     = ESC + <span class="fu">Chr</span>(<span class="dv">0x09</span>)      <span class="co">&#39; Arrow Up</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true"></a><span class="dt">Const</span> DOWN   = ESC + <span class="fu">Chr</span>(<span class="dv">0x0A</span>)      <span class="co">&#39; Arrow Down</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true"></a><span class="dt">Const</span> INS    = ESC + <span class="fu">Chr</span>(<span class="dv">0x10</span>)      <span class="co">&#39; Insert</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true"></a><span class="dt">Const</span> HOMEK  = ESC + <span class="fu">Chr</span>(<span class="dv">0x11</span>)      <span class="co">&#39; Home key</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true"></a><span class="dt">Const</span> ENDK   = ESC + <span class="fu">Chr</span>(<span class="dv">0x12</span>)      <span class="co">&#39; End key</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true"></a><span class="dt">Const</span> CLICK  = ESC + <span class="fu">Chr</span>(<span class="dv">0xC0</span>)      <span class="co">&#39; Left Mouse Button Click</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true"></a><span class="kw">Def</span> FN(n)    = ESC + <span class="fu">Chr</span>(<span class="dv">0xF0</span> + n)  <span class="co">&#39; FN(1) is F1 (up to 12).</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true"></a><span class="kw">Def</span> CTRL(c)  = CTRL_CHR  + <span class="fu">Lcase</span>(c) <span class="co">&#39; Ctrl+a, Ctrl+Enter, etc</span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true"></a><span class="kw">Def</span> ALT(c)   = ALT_CHR   + <span class="fu">Lcase</span>(c) <span class="co">&#39; Alt+a, Alt+Enter, etc</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true"></a><span class="kw">Def</span> SHIFT(c) = SHIFT_CHR + c        <span class="co">&#39; Shift+Enter, Shift+Tab, etc</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true"></a></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true"></a><span class="co">&#39; These are system shortcuts - so it&#39;s advisable NOT to use them at all!</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true"></a><span class="co">&#39; (however, it&#39;s possible to detect them when not used by the system).</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true"></a><span class="kw">Def</span> CTRL_ALT(c)   = CTRL_ALT_CHR   + <span class="fu">Lcase</span>(c)  <span class="co">&#39; Ctrl+Alt+a, etc</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true"></a><span class="kw">Def</span> ALT_SHIFT(c)  = ALT_SHIFT_CHR  + <span class="fu">Lcase</span>(c)  <span class="co">&#39; Alt+Shift+a, etc</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true"></a><span class="kw">Def</span> CTRL_SHIFT(c) = CTRL_SHIFT_CHR + <span class="fu">Lcase</span>(c)  <span class="co">&#39; Ctrl+Shift+a, etc</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true"></a></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true"></a><span class="co">&#39; &#39; Use this code to test and print key codes as hexa:</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true"></a><span class="co">&#39; &#39; --------------------------------------------------</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true"></a><span class="co">&#39; Print &quot;Press Ctrl+B to stop...&quot;</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true"></a><span class="co">&#39; While 1: k = Inkey: l = Len(k)</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true"></a><span class="co">&#39;   If l Then</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true"></a><span class="co">&#39;     ? &quot;0x&quot;; Right(&quot;00&quot; + Hex(Asc(k)), 2);</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true"></a><span class="co">&#39;     If l = 2 Then ? Right(&quot;00&quot; + Hex(Asc(Mid(k, 2))), 2);</span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true"></a><span class="co">&#39;     Print</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true"></a><span class="co">&#39;   Fi</span></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true"></a><span class="co">&#39; Wend</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Key values:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_BKSP   = <span class="fu">Chr</span>(<span class="dv">0x08</span>)  <span class="co">&#39; BackSpace</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_TAB    = <span class="fu">Chr</span>(<span class="dv">0x09</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_ENTER  = <span class="fu">Chr</span>(<span class="dv">0x0D</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_ESC    = <span class="fu">Chr</span>(<span class="dv">0x1B</span>)  <span class="co">&#39; Escape</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_DELETE = <span class="fu">Chr</span>(<span class="dv">0x7F</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_PGUP   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x01</span>)  <span class="co">&#39; Page Up</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_PGDN   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x02</span>)  <span class="co">&#39; Page Down</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_LEFT   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x04</span>)  <span class="co">&#39; Arrow Left</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_RIGHT  = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x05</span>)  <span class="co">&#39; Arrow Right</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_UP     = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x09</span>)  <span class="co">&#39; Arrow Up</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_DOWN   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x0A</span>)  <span class="co">&#39; Arrow Down</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_INSERT = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x10</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_HOME   = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x11</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> K_END    = K_ESC + <span class="fu">Chr</span>(<span class="dv">0x12</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Edit string:</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> edit_char(txt, pos, char, ins_mode) = <span class="fu">Replace</span>(txt, pos, char, ins_mode = <span class="dv">0</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> delete_char(txt, pos) = <span class="fu">Replace</span>(txt, pos, <span class="st">&quot;&quot;</span>, <span class="dv">1</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Initialize three demo fields:</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>f_lbl = [<span class="st">&quot;First Name:&quot;</span>, <span class="st">&quot;Last Name: &quot;</span>, <span class="st">&quot;Your Hobby:&quot;</span>] <span class="co">&#39; field label</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>f_row = [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>]     <span class="co">&#39; label row</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>f_col = [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]     <span class="co">&#39; label column</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>f_len = [<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">20</span>]  <span class="co">&#39; variable length</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>f_var = [<span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>]  <span class="co">&#39; variable value</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Index of fields:</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> MIN_IX = <span class="fu">Lbound</span>(f_lbl)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> MAX_IX = <span class="fu">Ubound</span>(f_lbl)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>ix = MIN_IX   <span class="co">&#39; Start on first field index</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>ins_mode = <span class="dv">1</span>  <span class="co">&#39; Start in insert character mode</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Main demo loop:</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="kw">While </span><span class="dt">True</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; Update variables:</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  eol = <span class="fu">Len</span>(f_var(ix)) + <span class="dv">1</span>                <span class="co">&#39; End Of Line</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">If </span>pos &gt; eol <span class="kw">Or</span> pos &lt; <span class="dv">1</span> <span class="kw">Then po</span>s = eol  <span class="co">&#39; Adjust cursor pos on new field</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; Update screen:</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="kw">For </span>i = MIN_IX <span class="kw">To</span> MAX_IX</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; Print all fields:</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    s  = <span class="fu">Cat</span>(<span class="dv">0</span>) + f_lbl(i) + <span class="st">&quot; &quot;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    s += <span class="fu">Cat</span>(<span class="dv">3</span>) + f_var(i) + <span class="fu">Spc</span>(f_len(i) - <span class="fu">Len</span>(f_var(i))) + <span class="st">&quot; &quot;</span> <span class="co">&#39; + eol</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Locate</span> f_row(i), f_col(i)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">Print</span> s + <span class="fu">Cat</span>(<span class="dv">0</span>);</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; Print the cursor:</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">If </span>i = ix <span class="kw">Then</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>      <span class="kw">If Not</span> ins_mode <span class="kw">Then Co</span>lor <span class="dv">15</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Locate</span> f_row(i), f_col(i) + <span class="fu">Len</span>(f_lbl(i)) + pos</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>      <span class="kw">Print</span> <span class="fu">Cat</span>(<span class="dv">2</span>) + <span class="fu">Mid</span>(f_var(i) + <span class="st">&quot; &quot;</span>, pos, <span class="dv">1</span>); <span class="co">&#39; (+ &quot; &quot; for eol)</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">Fi</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Next </span>i</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; Update status line:</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  s = <span class="st">&quot;  (Esc=Stop)   |   &quot;</span> + <span class="kw">Iff</span>(ins_mode, <span class="st">&quot;Insert &quot;</span>, <span class="st">&quot;Replace&quot;</span>) + <span class="fu">Spc</span>(<span class="dv">3</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  s += <span class="fu">Format</span>(<span class="st">&quot;| 00:&quot;</span>, ix) + <span class="kw">Iff</span>(pos = eol, <span class="st">&quot;EOL&quot;</span>, <span class="fu">Format</span>(<span class="st">&quot;000&quot;</span>, pos)) + <span class="fu">Spc</span>(<span class="dv">1</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Locate</span> <span class="dv">0</span>, <span class="dv">0</span>: <span class="kw">Print</span> <span class="fu">Cat</span>(<span class="dv">0</span>) + <span class="fu">Cat</span>(<span class="dv">3</span>) + s;</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Showpage</span> <span class="co">&#39; SHOWPAGE makes INKEY works smoother (using SB 0.12.2)</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; Wait for a key:</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Repeat</span>: key = <span class="kw">Inkey</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Until </span>key &lt;&gt; <span class="st">&quot;&quot;</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; Check key:</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Select Case </span>key</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_ESC:    <span class="kw">Stop</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_INSERT: ins_mode = <span class="kw">Not</span> ins_mode</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_ENTER, K_TAB: ix++: <span class="kw">If </span>ix &gt; MAX_IX <span class="kw">Then ix</span> = MIN_IX</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_DOWN:   <span class="kw">If </span>ix &lt; MAX_IX <span class="kw">Then ix</span>++</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_UP:     <span class="kw">If </span>ix &gt; MIN_IX <span class="kw">Then ix</span>--</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_PGDN:   ix = MAX_IX</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_PGUP:   ix = MIN_IX</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_HOME:   pos = <span class="dv">1</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_END:    pos = eol</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_LEFT:   <span class="kw">If </span>pos &gt; <span class="dv">1</span>   <span class="kw">Then po</span>s--</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_RIGHT:  <span class="kw">If </span>pos &lt; eol <span class="kw">Then po</span>s++</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_DELETE: <span class="kw">If </span>pos &lt; eol <span class="kw">Then f_</span>var(ix) = delete_char(f_var(ix), pos)</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> K_BKSP:   <span class="kw">If </span>pos &gt; <span class="dv">1</span>   <span class="kw">Then po</span>s--: f_var(ix) = delete_char(f_var(ix), pos)</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Case</span> <span class="kw">Else</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    <span class="kw">If </span><span class="fu">Len</span>(key) = <span class="dv">1</span> <span class="kw">And</span> <span class="fu">Asc</span>(key) &gt;= <span class="dv">32</span> <span class="kw">Then</span>            <span class="co">&#39; Regular character?</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>      ins = ins_mode <span class="kw">And</span> (<span class="fu">Len</span>(f_var(ix)) &lt; f_len(ix))  <span class="co">&#39; Insert mode</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>      rep = (<span class="kw">Not</span> ins_mode) <span class="kw">And</span> (pos &lt;= f_len(ix))      <span class="co">&#39; Replace mode</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>      <span class="kw">If </span>ins <span class="kw">Or</span> rep <span class="kw">Then</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>        f_var(ix) = edit_char(f_var(ix), pos, key, ins_mode)</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>        pos++  <span class="co">&#39; Move cursor to next character</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>      <span class="kw">Fi</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="kw">Fi</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>  <span class="kw">End Select</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="kw">Wend</span></span></code></pre></div>
+<h3 id="example-5-a-basic-key-code-unit">Example 5: A basic key code
+UNIT</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">REM Language:  SmallBASIC 0.12.6 (Linux 32-bit)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">REM Purpose:   Special key values returned by INKEY.</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">REM            (Values returned by INKEY cannot be used for DEFINEKEY).</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">REM File name: key.bas</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">REM Unit name: key</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">REM Version:   1.0.0  24/05/2016</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">REM Author:    shian</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; --- Start demo code ------------------------------------</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;Import key</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;? &quot;Press Escape to stop...&quot;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;Repeat: k = Inkey</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Select Case k</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.ENTER    : ? &quot;Key.ENTER&quot;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.TABK     : ? &quot;Key.TABK&quot;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.CLICK    : ? &quot;Key.CLICK&quot;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.FN(1)    : ? &quot;Key.FN(1)&quot;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.FN(12)   : ? &quot;Key.FN(12)&quot;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.CTRL(&quot;A&quot;): ? &quot;Key.CTRL(a)&quot;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.ALT(&quot;A&quot;) : ? &quot;Key.ALT(a)&quot;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.CTRL(Key.Enter) : ? &quot;Key.CTRL(Key.Enter)&quot;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.ALT(Key.Enter)  : ? &quot;Key.ALT(Key.Enter)&quot;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  Case Key.SHIFT(Key.Enter): ? &quot;Key.SHIFT(Key.Enter)&quot;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  End Select</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;Until k = Key.ESC</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; --- End demo code ------------------------------------</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="pp">Unit</span> key</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Useful Constants:</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="pp">Export</span> BKSP, TABK, ENTER, ESC, BLANK, DEL</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="pp">Export</span> PGUP, PGDN, LEFTK, RIGHTK, UP, DOWN </span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="pp">Export</span> INS, HOMEK, ENDK, CLICK</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Useful Functions:</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="pp">Export</span> FN, CTRL, ALT, SHIFT</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="pp">Export</span> CTRL_ALT, ALT_SHIFT, CTRL_SHIFT  <span class="co">&#39; (used by system)</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; The left character of INKEY (Useful only for special cases):</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="pp">Export</span> CTRL_CHR, ALT_CHR, SHIFT_CHR</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="pp">Export</span> CTRL_ALT_CHR, ALT_SHIFT_CHR, CTRL_SHIFT_CHR</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> CTRL_CHR       = <span class="fu">Chr</span>(<span class="dv">0x01</span>)    <span class="co">&#39; for Ctrl+Char</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> ALT_CHR        = <span class="fu">Chr</span>(<span class="dv">0x02</span>)    <span class="co">&#39; for Alt+Char</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> SHIFT_CHR      = <span class="fu">Chr</span>(<span class="dv">0x03</span>)    <span class="co">&#39; for Shift+Char</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> CTRL_ALT_CHR   = <span class="fu">Chr</span>(<span class="dv">0x04</span>)    <span class="co">&#39; for Ctrl+Alt+Char   (used by system)</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> ALT_SHIFT_CHR  = <span class="fu">Chr</span>(<span class="dv">0x05</span>)    <span class="co">&#39; for Alt+Shift+Char  (used by system)</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> CTRL_SHIFT_CHR = <span class="fu">Chr</span>(<span class="dv">0x06</span>)    <span class="co">&#39; for Ctrl+Shift+Char (used by system)</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> BKSP   = <span class="fu">Chr</span>(<span class="dv">0x08</span>)            <span class="co">&#39; BackSpace</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> TABK   = <span class="fu">Chr</span>(<span class="dv">0x09</span>)            <span class="co">&#39; Tab key</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> ENTER  = <span class="fu">Chr</span>(<span class="dv">0x0D</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> ESC    = <span class="fu">Chr</span>(<span class="dv">0x1B</span>)            <span class="co">&#39; Escape</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> BLANK  = <span class="fu">Chr</span>(<span class="dv">0x20</span>)            <span class="co">&#39; Space key</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DEL    = <span class="fu">Chr</span>(<span class="dv">0x7F</span>)            <span class="co">&#39; Delete</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> PGUP   = ESC + <span class="fu">Chr</span>(<span class="dv">0x01</span>)      <span class="co">&#39; Page Up</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> PGDN   = ESC + <span class="fu">Chr</span>(<span class="dv">0x02</span>)      <span class="co">&#39; Page Down</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> LEFTK  = ESC + <span class="fu">Chr</span>(<span class="dv">0x04</span>)      <span class="co">&#39; Arrow Left key</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> RIGHTK = ESC + <span class="fu">Chr</span>(<span class="dv">0x05</span>)      <span class="co">&#39; Arrow Right key</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> UP     = ESC + <span class="fu">Chr</span>(<span class="dv">0x09</span>)      <span class="co">&#39; Arrow Up</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> DOWN   = ESC + <span class="fu">Chr</span>(<span class="dv">0x0A</span>)      <span class="co">&#39; Arrow Down</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> INS    = ESC + <span class="fu">Chr</span>(<span class="dv">0x10</span>)      <span class="co">&#39; Insert</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> HOMEK  = ESC + <span class="fu">Chr</span>(<span class="dv">0x11</span>)      <span class="co">&#39; Home key</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> ENDK   = ESC + <span class="fu">Chr</span>(<span class="dv">0x12</span>)      <span class="co">&#39; End key</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> CLICK  = ESC + <span class="fu">Chr</span>(<span class="dv">0xC0</span>)      <span class="co">&#39; Left Mouse Button Click</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> FN(n)    = ESC + <span class="fu">Chr</span>(<span class="dv">0xF0</span> + n)  <span class="co">&#39; FN(1) is F1 (up to 12).</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> CTRL(c)  = CTRL_CHR  + <span class="fu">Lcase</span>(c) <span class="co">&#39; Ctrl+a, Ctrl+Enter, etc</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> ALT(c)   = ALT_CHR   + <span class="fu">Lcase</span>(c) <span class="co">&#39; Alt+a, Alt+Enter, etc</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> SHIFT(c) = SHIFT_CHR + c        <span class="co">&#39; Shift+Enter, Shift+Tab, etc</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; These are system shortcuts - so it&#39;s advisable NOT to use them at all!</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; (however, it&#39;s possible to detect them when not used by the system).</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> CTRL_ALT(c)   = CTRL_ALT_CHR   + <span class="fu">Lcase</span>(c)  <span class="co">&#39; Ctrl+Alt+a, etc</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> ALT_SHIFT(c)  = ALT_SHIFT_CHR  + <span class="fu">Lcase</span>(c)  <span class="co">&#39; Alt+Shift+a, etc</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> CTRL_SHIFT(c) = CTRL_SHIFT_CHR + <span class="fu">Lcase</span>(c)  <span class="co">&#39; Ctrl+Shift+a, etc</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; &#39; Use this code to test and print key codes as hexa:</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; &#39; --------------------------------------------------</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Print &quot;Press Ctrl+B to stop...&quot;</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; While 1: k = Inkey: l = Len(k)</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;   If l Then</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;     ? &quot;0x&quot;; Right(&quot;00&quot; + Hex(Asc(k)), 2);</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;     If l = 2 Then ? Right(&quot;00&quot; + Hex(Asc(Mid(k, 2))), 2);</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;     Print</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;   Fi</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using INKEY</div>
     <div class="linklist">
@@ -387,7 +398,7 @@ INKEY by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

@@ -73,61 +73,91 @@
       <a href="/pages/data.html">Data</a>
     </p>
   </div>
-<p>Scans an array <code>A</code> for the key <code>key</code> and returns the position <code>idx</code> of the element. If the key is not found <code>idx</code> contains the value <code>(LBOUND(A)-1)</code>. In default-base arrays (starting with element zero) <code>-1</code> will be returned.</p>
-<p>The optional compare function <code>cmpfunc</code> takes 2 vars <code>var1</code> and <code>var2</code>. <code>var1</code> contains the value of the actuell element and <code>var2</code> is equal to <code>key</code>. The compare function must return <code>0</code> or <code>1</code> (<code>false</code> or <code>true</code>). When it returns <code>1</code>, the search will stop and the current element position is returned in <code>idx</code>.</p>
-<h3 id="example-1-1d-array-of-numbers">Example 1: 1D array of numbers</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">option</span> base <span class="dv">1</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>A = [<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>]         <span class="co">&#39; 1D array with 9 elements</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">SEARCH</span> A, <span class="dv">3</span>, ElementID          </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Element: &quot;</span>; ElementID    <span class="co">&#39; Output: Element: 6</span></span></code></pre></div>
-<h3 id="example-2-2d-array-of-numbers">Example 2: 2D array of numbers</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">option</span> base <span class="dv">1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>A = [<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">6</span>;<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>;<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>]         <span class="co">&#39; 2D matrix with 3x3 elements</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">SEARCH</span> A, <span class="dv">3</span>, ElementID</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Element: &quot;</span>; ElementID    <span class="co">&#39; Output: Element: 6</span></span></code></pre></div>
-<h3 id="example-3-get-the-element-position-of-the-maximum-value-of-an-1d-array">Example 3: Get the element position of the maximum value of an 1D array</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="pp">option</span> base <span class="dv">1</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>A = [<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>m = <span class="fu">max</span>(A)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="fu">SEARCH</span> A, m, ElementID</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; ElementID    <span class="co">&#39; Output: Element: 2</span></span></code></pre></div>
-<h3 id="example-4-1d-array-of-strings">Example 4: 1D array of strings</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="pp">option</span> base <span class="dv">1</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>A = [<span class="st">&quot;car&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;house&quot;</span>, <span class="st">&quot;paper&quot;</span>]</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="fu">SEARCH</span> A, <span class="st">&quot;house&quot;</span>, ElementID</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; ElementID        <span class="co">&#39; Output: Element: 3</span></span></code></pre></div>
-<h3 id="example-5-compare-function-find-first-element-greater-than-the-key">Example 5: Compare function, find first element greater than the key</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="pp">option</span> base <span class="dv">1</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">func </span>findgreater(x,y)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>    findgreater = !(x &gt; y)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>A = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="fu">search</span> A, <span class="dv">5</span>, ElementID <span class="kw">USE</span> findgreater(x,y)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; ElementID         <span class="co">&#39; Output: Element: 6</span></span></code></pre></div>
-<h3 id="example-6-compare-function-find-first-element-which-can-be-divided-by-the-key">Example 6: Compare function, find first element which can be divided by the key</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="pp">option</span> base <span class="dv">1</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">func </span>FindFirstDivider(x,y)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>    FindFirstDivider = ( (x <span class="kw">mod</span> y) &gt; <span class="dv">0</span> )</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>A = [<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="fu">search</span> A, <span class="dv">3</span>, ElementID <span class="kw">USE</span> FindFirstDivider(x,y)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; ElementID         <span class="co">&#39; Output: Element: 6</span></span></code></pre></div>
-<h3 id="example-7-compare-function-find-first-element-with-string-length-given-by-the-key">Example 7: Compare function, find first element with string length given by the key</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">func </span>FindFirstStringWithLenght(x,y)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>    FindFirstStringWithLenght = ( <span class="fu">len</span>(x) != y )</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>A = [<span class="st">&quot;car&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;house&quot;</span>, <span class="st">&quot;paper&quot;</span>]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="fu">SEARCH</span> A, <span class="dv">5</span>, ElementID <span class="kw">use</span> FindFirstStringWithLenght(x,y)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; elementID          <span class="co">&#39; Output: Element: 3</span></span></code></pre></div>
+<p>Scans an array <code>A</code> for the key <code>key</code> and
+returns the position <code>idx</code> of the element. If the key is not
+found <code>idx</code> contains the value <code>(LBOUND(A)-1)</code>. In
+default-base arrays (starting with element zero) <code>-1</code> will be
+returned.</p>
+<p>The optional compare function <code>cmpfunc</code> takes 2 vars
+<code>var1</code> and <code>var2</code>. <code>var1</code> contains the
+value of the actuell element and <code>var2</code> is equal to
+<code>key</code>. The compare function must return <code>0</code> or
+<code>1</code> (<code>false</code> or <code>true</code>). When it
+returns <code>1</code>, the search will stop and the current element
+position is returned in <code>idx</code>.</p>
+<h3 id="example-1-1d-array-of-numbers">Example 1: 1D array of
+numbers</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">option</span> base <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>]         <span class="co">&#39; 1D array with 9 elements</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">SEARCH</span> A, <span class="dv">3</span>, ElementID          </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Element: &quot;</span>; ElementID    <span class="co">&#39; Output: Element: 6</span></span></code></pre></div>
+<h3 id="example-2-2d-array-of-numbers">Example 2: 2D array of
+numbers</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">option</span> base <span class="dv">1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">6</span>;<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>;<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>]         <span class="co">&#39; 2D matrix with 3x3 elements</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">SEARCH</span> A, <span class="dv">3</span>, ElementID</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Element: &quot;</span>; ElementID    <span class="co">&#39; Output: Element: 6</span></span></code></pre></div>
+<h3
+id="example-3-get-the-element-position-of-the-maximum-value-of-an-1d-array">Example
+3: Get the element position of the maximum value of an 1D array</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">option</span> base <span class="dv">1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m = <span class="fu">max</span>(A)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">SEARCH</span> A, m, ElementID</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; ElementID    <span class="co">&#39; Output: Element: 2</span></span></code></pre></div>
+<h3 id="example-4-1d-array-of-strings">Example 4: 1D array of
+strings</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">option</span> base <span class="dv">1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>A = [<span class="st">&quot;car&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;house&quot;</span>, <span class="st">&quot;paper&quot;</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">SEARCH</span> A, <span class="st">&quot;house&quot;</span>, ElementID</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; ElementID        <span class="co">&#39; Output: Element: 3</span></span></code></pre></div>
+<h3
+id="example-5-compare-function-find-first-element-greater-than-the-key">Example
+5: Compare function, find first element greater than the key</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">option</span> base <span class="dv">1</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>findgreater(x,y)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    findgreater = !(x &gt; y)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span> A, <span class="dv">5</span>, ElementID <span class="kw">USE</span> findgreater(x,y)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; ElementID         <span class="co">&#39; Output: Element: 6</span></span></code></pre></div>
+<h3
+id="example-6-compare-function-find-first-element-which-can-be-divided-by-the-key">Example
+6: Compare function, find first element which can be divided by the
+key</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">option</span> base <span class="dv">1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>FindFirstDivider(x,y)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    FindFirstDivider = ( (x <span class="kw">mod</span> y) &gt; <span class="dv">0</span> )</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span> A, <span class="dv">3</span>, ElementID <span class="kw">USE</span> FindFirstDivider(x,y)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; ElementID         <span class="co">&#39; Output: Element: 6</span></span></code></pre></div>
+<h3
+id="example-7-compare-function-find-first-element-with-string-length-given-by-the-key">Example
+7: Compare function, find first element with string length given by the
+key</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>FindFirstStringWithLenght(x,y)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    FindFirstStringWithLenght = ( <span class="fu">len</span>(x) != y )</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>A = [<span class="st">&quot;car&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;house&quot;</span>, <span class="st">&quot;paper&quot;</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">SEARCH</span> A, <span class="dv">5</span>, ElementID <span class="kw">use</span> FindFirstStringWithLenght(x,y)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="st">&quot;Element: &quot;</span>; elementID          <span class="co">&#39; Output: Element: 3</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using SEARCH</div>
     <div class="linklist">
@@ -203,7 +233,7 @@ SEARCH by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

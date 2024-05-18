@@ -73,16 +73,20 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Returns the extents of the polyline <code>poly</code>. <code>xmin</code> and <code>xmax</code> are extents in x-direction and <code>ymin</code> and <code>ymax</code> are the extents in y-direction.</p>
+<p>Returns the extents of the polyline <code>poly</code>.
+<code>xmin</code> and <code>xmax</code> are extents in x-direction and
+<code>ymin</code> and <code>ymax</code> are the extents in
+y-direction.</p>
 <p>See DRAWPOLY on how to define a polyline.</p>
 <h3 id="example">Example</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>polygon = [ [<span class="dv">30</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">70</span>], [<span class="dv">120</span>,<span class="dv">90</span>], [<span class="dv">50</span>,<span class="dv">100</span>], [<span class="dv">30</span>,<span class="dv">50</span>]]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">polyext</span>(polygon, PolyXmin, PolyYmin, PolyXmax, PolyYmax)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">&#39; Draw polygon and a rectangle for indicating the extents</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">drawpoly</span> polygon <span class="fu">color</span> <span class="dv">12</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="fu">rect</span> PolyXmin, PolyYmin, PolyXmax, PolyYmax  <span class="fu">color</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>polygon = [ [<span class="dv">30</span>,<span class="dv">50</span>], [<span class="dv">100</span>,<span class="dv">70</span>], [<span class="dv">120</span>,<span class="dv">90</span>], [<span class="dv">50</span>,<span class="dv">100</span>], [<span class="dv">30</span>,<span class="dv">50</span>]]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">polyext</span>(polygon, PolyXmin, PolyYmin, PolyXmax, PolyYmax)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Draw polygon and a rectangle for indicating the extents</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">drawpoly</span> polygon <span class="fu">color</span> <span class="dv">12</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> PolyXmin, PolyYmin, PolyXmax, PolyYmax  <span class="fu">color</span> <span class="dv">5</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -163,6 +167,7 @@
       <a href="/reference/765.html">SUMSQ </a>&nbsp;
       <a href="/reference/766.html">TAN </a>&nbsp;
       <a href="/reference/767.html">TANH </a>&nbsp;
+      <a href="/reference/1802.html">TRANSPOSE </a>&nbsp;
     </div>
     <div class="subtitle">
       If there is insufficient information on this page and you wish learn more about POLYEXT,
@@ -188,7 +193,7 @@ POLYEXT by submitting a <a href="https://github.com/smallbasic/smallbasic.github
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

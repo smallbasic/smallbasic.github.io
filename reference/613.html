@@ -73,81 +73,99 @@
       <a href="/pages/graphics.html">Graphics</a>
     </p>
   </div>
-<p>Draws a circle (or an ellipse if the aspect is specified). The point <code>[x, y]</code> defines the center and <code>r</code> the radius of the circle in pixel. To set the aspect ration use <code>aspect</code>. An aspect ratio of <code>1</code> will draw a circle. <code>color</code> defines the line color of the circle. If <code>FILLED</code> is used, the circle will be filled with the color <code>color</code>. If STEP is used <code>x, y</code> are a step in pixel from the actual graphics cursor position.</p>
-<p>By default CIRCLE draws with anti-aliasing. For details, see: <a href="https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/">Fast, Antialiased Circles and Ellipses</a> To turn off anti-aliasing use <code>option predef antialias off</code></p>
-<h3 id="example-1-draw-a-filled-white-circle">Example 1: Draw a filled white circle</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">circle</span> <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">150</span> <span class="fu">COLOR</span> <span class="dv">15</span> FILLED</span></code></pre></div>
-<h3 id="example-2-draw-a-ellipse-with-aspect-ration-12">Example 2: Draw a ellipse with aspect ration 1:2</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">circle</span> <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">0.5</span></span></code></pre></div>
+<p>Draws a circle (or an ellipse if the aspect is specified). The point
+<code>[x, y]</code> defines the center and <code>r</code> the radius of
+the circle in pixel. To set the aspect ration use <code>aspect</code>.
+An aspect ratio of <code>1</code> will draw a circle. <code>color</code>
+defines the line color of the circle. If <code>FILLED</code> is used,
+the circle will be filled with the color <code>color</code>. If STEP is
+used <code>x, y</code> are a step in pixel from the actual graphics
+cursor position.</p>
+<p>By default CIRCLE draws with anti-aliasing. For details, see: <a
+href="https://yellowsplash.wordpress.com/2009/10/23/fast-antialiased-circles-and-ellipses-from-xiaolin-wus-concepts/">Fast,
+Antialiased Circles and Ellipses</a> To turn off anti-aliasing use
+<code>option predef antialias off</code></p>
+<h3 id="example-1-draw-a-filled-white-circle">Example 1: Draw a filled
+white circle</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle</span> <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">150</span> <span class="fu">COLOR</span> <span class="dv">15</span> FILLED</span></code></pre></div>
+<h3 id="example-2-draw-a-ellipse-with-aspect-ration-12">Example 2: Draw
+a ellipse with aspect ration 1:2</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle</span> <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">0.5</span></span></code></pre></div>
 <h3 id="example-3-draw-a-flower">Example 3: Draw a flower</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; Aspect ratio is relation between width-height of a circle,</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39; for example:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39; aspect = 1   = Perfect circle;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39; aspect = 1.5 = Stretch circle vertically (ellipse);</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39; aspect = 0.5 = Stretch circle horizontally (ellipse);</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">&#39; let&#39;s draw perfect circles for the flower:</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="dt">Const</span> ASPECT_RATIO = <span class="dv">1</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">&#39; define parameters for main circle:</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="dt">Const</span> CENTER = [<span class="dv">150</span>, <span class="dv">150</span>] <span class="co">&#39; [x, y] define the center point to draw a circle</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="dt">Const</span> RADIUS = <span class="dv">50</span>         <span class="co">&#39; radius in pixels (pixel is a single point)</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="dt">Const</span> TEXT = <span class="st">&quot;Smile!&quot;</span>     <span class="co">&#39; text to print in the middle of main circle</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">&#39; define parameters for leafs:</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="dt">Const</span> LEAF_RADIUS = <span class="dv">30</span>    <span class="co">&#39; using smaller circles for leafs</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">&#39; center point for straight leafs (distance from main circle&#39;s center):</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="dt">Const</span> LEAF_CENTER_STRAIGHT   = RADIUS + LEAF_RADIUS</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">&#39; rotate center point for transverse leafs (distance as above):</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="dt">Const</span> LEAF_CENTER_TRANSVERSE = LEAF_CENTER_STRAIGHT * <span class="fu">Sin</span>(<span class="fu">Rad</span>(<span class="dv">45</span>))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">&#39; Start the program:</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="kw">Print</span> <span class="st">&quot; Press any key to draw leaf by leaf...&quot;</span>;</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="kw">Pause</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="fu">Cls</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">&#39; draw one invisible point to set the &#39;current position&#39;:</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="fu">Pset</span> CENTER <span class="fu">Color</span> <span class="dv">0</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">&#39; let&#39;s use shorter variable names (easier to read):</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>a = ASPECT_RATIO</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>r = LEAF_RADIUS</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="co">&#39; draw the straight leafs (relative to the &#39;current position&#39;):</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>c = LEAF_CENTER_STRAIGHT</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="fu">Circle</span> Step <span class="dv">0</span>, -c, r, a <span class="fu">Color</span> <span class="dv">15</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; top</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="fu">Circle</span> Step <span class="dv">0</span>, +c, r, a <span class="fu">Color</span> <span class="dv">14</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; down</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="fu">Circle</span> Step -c, <span class="dv">0</span>, r, a <span class="fu">Color</span> <span class="dv">13</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; left</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="fu">Circle</span> Step +c, <span class="dv">0</span>, r, a <span class="fu">Color</span> <span class="dv">12</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; right</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="co">&#39; draw the transverse leafs (relative to the &#39;current position&#39;):</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>c = LEAF_CENTER_TRANSVERSE</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a><span class="fu">Circle</span> Step -c, -c, r, a <span class="fu">Color</span> <span class="dv">11</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; top-left</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="fu">Circle</span> Step +c, +c, r, a <span class="fu">Color</span>  <span class="dv">8</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; down-right</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="fu">Circle</span> Step +c, -c, r, a <span class="fu">Color</span> <span class="dv">10</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; top-right</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="fu">Circle</span> Step -c, +c, r, a <span class="fu">Color</span>  <span class="dv">9</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; down-left</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="co">&#39; draw the main circle:</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a><span class="fu">Circle</span> CENTER, RADIUS, ASPECT_RATIO <span class="fu">Color</span> <span class="dv">14</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a><span class="co">&#39; print text in the middle of main circle:</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a><span class="fu">At</span> CENTER(<span class="dv">0</span>) - (<span class="fu">Txtw</span>(TEXT) \ <span class="dv">2</span>), CENTER(<span class="dv">1</span>) - (<span class="fu">Txth</span>(TEXT) \ <span class="dv">2</span>)</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a><span class="fu">Color</span> <span class="dv">15</span>: <span class="kw">Print</span> TEXT;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Aspect ratio is relation between width-height of a circle,</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; for example:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; aspect = 1   = Perfect circle;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; aspect = 1.5 = Stretch circle vertically (ellipse);</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; aspect = 0.5 = Stretch circle horizontally (ellipse);</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; let&#39;s draw perfect circles for the flower:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> ASPECT_RATIO = <span class="dv">1</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; define parameters for main circle:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> CENTER = [<span class="dv">150</span>, <span class="dv">150</span>] <span class="co">&#39; [x, y] define the center point to draw a circle</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> RADIUS = <span class="dv">50</span>         <span class="co">&#39; radius in pixels (pixel is a single point)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> TEXT = <span class="st">&quot;Smile!&quot;</span>     <span class="co">&#39; text to print in the middle of main circle</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; define parameters for leafs:</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> LEAF_RADIUS = <span class="dv">30</span>    <span class="co">&#39; using smaller circles for leafs</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; center point for straight leafs (distance from main circle&#39;s center):</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> LEAF_CENTER_STRAIGHT   = RADIUS + LEAF_RADIUS</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; rotate center point for transverse leafs (distance as above):</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="dt">Const</span> LEAF_CENTER_TRANSVERSE = LEAF_CENTER_STRAIGHT * <span class="fu">Sin</span>(<span class="fu">Rad</span>(<span class="dv">45</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Start the program:</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot; Press any key to draw leaf by leaf...&quot;</span>;</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="kw">Pause</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">Cls</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; draw one invisible point to set the &#39;current position&#39;:</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">Pset</span> CENTER <span class="fu">Color</span> <span class="dv">0</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; let&#39;s use shorter variable names (easier to read):</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>a = ASPECT_RATIO</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>r = LEAF_RADIUS</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; draw the straight leafs (relative to the &#39;current position&#39;):</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>c = LEAF_CENTER_STRAIGHT</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> Step <span class="dv">0</span>, -c, r, a <span class="fu">Color</span> <span class="dv">15</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; top</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> Step <span class="dv">0</span>, +c, r, a <span class="fu">Color</span> <span class="dv">14</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; down</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> Step -c, <span class="dv">0</span>, r, a <span class="fu">Color</span> <span class="dv">13</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; left</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> Step +c, <span class="dv">0</span>, r, a <span class="fu">Color</span> <span class="dv">12</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; right</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; draw the transverse leafs (relative to the &#39;current position&#39;):</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>c = LEAF_CENTER_TRANSVERSE</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> Step -c, -c, r, a <span class="fu">Color</span> <span class="dv">11</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; top-left</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> Step +c, +c, r, a <span class="fu">Color</span>  <span class="dv">8</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; down-right</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> Step +c, -c, r, a <span class="fu">Color</span> <span class="dv">10</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; top-right</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> Step -c, +c, r, a <span class="fu">Color</span>  <span class="dv">9</span> FILLED: <span class="kw">Pause</span> <span class="co">&#39; down-left</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; draw the main circle:</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">Circle</span> CENTER, RADIUS, ASPECT_RATIO <span class="fu">Color</span> <span class="dv">14</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; print text in the middle of main circle:</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">At</span> CENTER(<span class="dv">0</span>) - (<span class="fu">Txtw</span>(TEXT) \ <span class="dv">2</span>), CENTER(<span class="dv">1</span>) - (<span class="fu">Txth</span>(TEXT) \ <span class="dv">2</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> <span class="dv">15</span>: <span class="kw">Print</span> TEXT;</span></code></pre></div>
 <h3 id="example-4-smiley-face">Example 4: Smiley Face</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; SmallBASIC 0.12.2 [B+=MGA] 2016-03-16</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">&#39; Smiley Face</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>cx = <span class="dt">xmax</span>/<span class="dv">2</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>cy = <span class="dt">ymax</span>/<span class="dv">2</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>rface = <span class="dv">250</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>reye = <span class="dv">50</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>xle = cx - <span class="dv">100</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>xre = cx + <span class="dv">100</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>dir = <span class="dv">1</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>  <span class="fu">cls</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>  <span class="fu">circle</span> cx, cy, rface, <span class="dv">1</span>, <span class="dv">14</span> filled</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>  <span class="fu">circle</span> xle, cy, reye, <span class="dv">1</span> - a, <span class="dv">9</span> filled</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>  <span class="fu">circle</span> xre, cy, reye, <span class="dv">1</span> - a, <span class="dv">9</span> filled</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>  <span class="fu">circle</span> cx, cy + <span class="dv">130</span> - a * <span class="dv">50</span>, <span class="dv">100</span> + a * <span class="dv">50</span>, <span class="dv">.21</span> + <span class="dv">2</span> * a, <span class="dv">12</span> filled</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>  <span class="fu">circle</span> cx, cy + <span class="dv">100</span> - a * <span class="dv">50</span>, <span class="dv">100</span> + a * <span class="dv">50</span>, <span class="dv">.21</span> + a, <span class="dv">14</span> filled</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>  <span class="fu">showpage</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>  <span class="fu">delay</span> <span class="dv">1</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>  a+= <span class="dv">.002</span> * dir</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>  <span class="kw">if </span>a = <span class="dv">.26</span> <span class="kw">then di</span>r = dir * <span class="dv">-1</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>  <span class="kw">if </span>a = <span class="dv">-.1</span> <span class="kw">then di</span>r = dir *-<span class="dv">1</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="kw">wend</span></span></code></pre></div>
-<h3 id="example-5-turn-off-anti-aliasing">Example 5: Turn off anti-aliasing</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="pp">option</span> predef antialias off</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; SmallBASIC 0.12.2 [B+=MGA] 2016-03-16</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Smiley Face</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cx = <span class="dt">xmax</span>/<span class="dv">2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>cy = <span class="dt">ymax</span>/<span class="dv">2</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>rface = <span class="dv">250</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>reye = <span class="dv">50</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>xle = cx - <span class="dv">100</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>xre = cx + <span class="dv">100</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>dir = <span class="dv">1</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cls</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circle</span> cx, cy, rface, <span class="dv">1</span>, <span class="dv">14</span> filled</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circle</span> xle, cy, reye, <span class="dv">1</span> - a, <span class="dv">9</span> filled</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circle</span> xre, cy, reye, <span class="dv">1</span> - a, <span class="dv">9</span> filled</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circle</span> cx, cy + <span class="dv">130</span> - a * <span class="dv">50</span>, <span class="dv">100</span> + a * <span class="dv">50</span>, .<span class="dv">21</span> + <span class="dv">2</span> * a, <span class="dv">12</span> filled</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circle</span> cx, cy + <span class="dv">100</span> - a * <span class="dv">50</span>, <span class="dv">100</span> + a * <span class="dv">50</span>, .<span class="dv">21</span> + a, <span class="dv">14</span> filled</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">showpage</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span> <span class="dv">1</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  a+= .<span class="dv">002</span> * dir</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>a = .<span class="dv">26</span> <span class="kw">then di</span>r = dir * -<span class="dv">1</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span>a = -.<span class="dv">1</span> <span class="kw">then di</span>r = dir *-<span class="dv">1</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<h3 id="example-5-turn-off-anti-aliasing">Example 5: Turn off
+anti-aliasing</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">option</span> predef antialias off</span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using CIRCLE</div>
     <div class="linklist">
@@ -237,7 +255,7 @@ CIRCLE by submitting a <a href="https://github.com/smallbasic/smallbasic.github.
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

@@ -73,42 +73,47 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Returns the length <code>l</code> of a file with the file handle <code>fileN</code> in bytes. For other devices, returns the number of available data.</p>
+<p>Returns the length <code>l</code> of a file with the file handle
+<code>fileN</code> in bytes. For other devices, returns the number of
+available data.</p>
 <h3 id="example-1-length-of-a-file">Example 1: Length of a file</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">&#39; create a text file</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;MyDemoFile.txt&quot;</span> <span class="kw">for output as</span> #<span class="dv">1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="fu">bputc</span> #<span class="dv">1</span>, i </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">&#39; open text file and print content byte by byte</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;MyDemoFile.txt&quot;</span> <span class="kw">for input as</span> #<span class="dv">1</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>FileLength = <span class="fu">LOF</span>(<span class="dv">1</span>)       <span class="co">&#39; lof works only without #</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">for </span>ii = <span class="dv">1</span> <span class="kw">to</span>  FileLength </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    c = <span class="fu">bgetc</span>(<span class="dv">1</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    <span class="kw">print</span> c</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
-<h3 id="example-2-get-available-data-for-a-socket-connection">Example 2: Get available data for a socket connection</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">open</span> <span class="st">&quot;SOCL:10000&quot;</span> <span class="kw">as</span> #<span class="dv">1</span>     <span class="co">&#39; Open socket at port 10000</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">while </span>(<span class="fu">eof</span>(<span class="dv">1</span>))              <span class="co">&#39; Loop until connection is closed</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    l = <span class="fu">lof</span>(<span class="dv">1</span>)              <span class="co">&#39; Querry how much data is in the queue</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="kw">if(</span>l) <span class="kw">then</span>              <span class="co">&#39; if data is available</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>        s = <span class="kw">INPUT</span>(l, #<span class="dv">1</span>)    <span class="co">&#39; get all data</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>        <span class="kw">print</span> s</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="kw">endif</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; create a text file</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">open</span> <span class="st">&quot;MyDemoFile.txt&quot;</span> <span class="kw">for output as</span> #<span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bputc</span> #<span class="dv">1</span>, i </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span> #<span class="dv">1</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; open text file and print content byte by byte</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">open</span> <span class="st">&quot;MyDemoFile.txt&quot;</span> <span class="kw">for input as</span> #<span class="dv">1</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>FileLength = <span class="fu">LOF</span>(<span class="dv">1</span>)       <span class="co">&#39; lof works only without #</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>ii = <span class="dv">1</span> <span class="kw">to</span>  FileLength </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    c = <span class="fu">bgetc</span>(<span class="dv">1</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> c</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
+<h3 id="example-2-get-available-data-for-a-socket-connection">Example 2:
+Get available data for a socket connection</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">open</span> <span class="st">&quot;SOCL:10000&quot;</span> <span class="kw">as</span> #<span class="dv">1</span>     <span class="co">&#39; Open socket at port 10000</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span>(<span class="fu">eof</span>(<span class="dv">1</span>))              <span class="co">&#39; Loop until connection is closed</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    l = <span class="fu">lof</span>(<span class="dv">1</span>)              <span class="co">&#39; Querry how much data is in the queue</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if(</span>l) <span class="kw">then</span>              <span class="co">&#39; if data is available</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        s = <span class="kw">INPUT</span>(l, #<span class="dv">1</span>)    <span class="co">&#39; get all data</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">print</span> s</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">endif</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span> #<span class="dv">1</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using LOF</div>
     <div class="linklist">
@@ -176,7 +181,7 @@ LOF by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

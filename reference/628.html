@@ -74,121 +74,129 @@
     </p>
   </div>
 <p>Returns the color of the pixel at <code>x</code>,<code>y</code>.</p>
-<p>If the y-argument is not specified, <code>x</code> specifies the following info-code:</p>
+<p>If the y-argument is not specified, <code>x</code> specifies the
+following info-code:</p>
 <ul>
 <li>0: returns the current graphics cursor X-position</li>
 <li>1: returns the current graphics cursor Y-position</li>
 </ul>
 <h3 id="example-1-get-color">Example 1: Get color</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">point</span>(<span class="dv">100</span>,<span class="dv">100</span>)        <span class="co">&#39; Output: -2038815</span></span></code></pre></div>
-<h3 id="example-2-get-graphics-cursor-position">Example 2: Get graphics cursor position</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>x = <span class="fu">point</span>(<span class="dv">0</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>y = <span class="fu">point</span>(<span class="dv">1</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Initial position: &quot;</span>; x, y     <span class="co">&#39; Output: 0,0</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="fu">line</span> STEP <span class="dv">50</span>,<span class="dv">50</span> STEP <span class="dv">50</span>,<span class="dv">50</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>x = <span class="fu">point</span>(<span class="dv">0</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>y = <span class="fu">point</span>(<span class="dv">1</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">print</span> <span class="st">&quot;Position after STEP: &quot;</span>; x, y  <span class="co">&#39; Output: 100,100</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">point</span>(<span class="dv">100</span>,<span class="dv">100</span>)        <span class="co">&#39; Output: -2038815</span></span></code></pre></div>
+<h3 id="example-2-get-graphics-cursor-position">Example 2: Get graphics
+cursor position</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x = <span class="fu">point</span>(<span class="dv">0</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y = <span class="fu">point</span>(<span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Initial position: &quot;</span>; x, y     <span class="co">&#39; Output: 0,0</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">line</span> STEP <span class="dv">50</span>,<span class="dv">50</span> STEP <span class="dv">50</span>,<span class="dv">50</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>x = <span class="fu">point</span>(<span class="dv">0</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>y = <span class="fu">point</span>(<span class="dv">1</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Position after STEP: &quot;</span>; x, y  <span class="co">&#39; Output: 100,100</span></span></code></pre></div>
 <h3 id="example-3">Example 3</h3>
-<p>This demonstrates saving a screen section and redrawing it at different places on screen, a tiling and a moving across the screen.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; POINT demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-07</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">for </span>objects = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">300</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="kw">if </span><span class="fu">rnd</span> &gt; <span class="dv">0.5</span> <span class="kw">then</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="fu">circle</span> <span class="fu">rnd</span>*<span class="dt">xmax</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dt">ymax</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dv">50</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dv">5</span>, <span class="fu">rnd</span>*<span class="dv">16</span>/<span class="dv">1</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="kw">else</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="fu">rect</span> <span class="fu">rnd</span>*<span class="dt">xmax</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dt">ymax</span>\<span class="dv">1</span> step <span class="fu">rnd</span>*<span class="dv">50</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dv">50</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dv">16</span>/<span class="dv">1</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  <span class="kw">end if </span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="fu">at</span> <span class="dv">0</span>, <span class="dt">ymax</span> - <span class="dv">2</span>*<span class="fu">txth</span>(<span class="st">&quot;Q&quot;</span>) : <span class="kw">print</span> <span class="st">&quot; press any...&quot;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="fu">showpage</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="kw">pause</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>xw = <span class="dv">350</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>yh = <span class="dv">250</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>bottle <span class="dv">0</span>, <span class="dv">0</span>, xw, yh</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="fu">cls</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="kw">for </span>y = <span class="dv">0</span> <span class="kw">to</span> <span class="dt">ymax</span> step yh</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>  <span class="kw">for </span>x = <span class="dv">0</span> <span class="kw">to</span> <span class="dt">xmax</span> step xw</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>    pour x, y, xw, yh</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    <span class="fu">showpage</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>  <span class="kw">next</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="fu">at</span> <span class="dv">0</span>, <span class="dt">ymax</span> - <span class="dv">2</span>*<span class="fu">txth</span>(<span class="st">&quot;Q&quot;</span>): <span class="kw">print</span> <span class="st">&quot; press any...&quot;</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="fu">showpage</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="kw">pause</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="fu">cls</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="kw">for </span>x = <span class="dv">0</span> <span class="kw">to</span> <span class="dt">xmax</span> step <span class="dv">25</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>  <span class="fu">cls</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>  pour x, <span class="dt">ymax</span>\<span class="dv">2</span> - yh\<span class="dv">2</span>, xw, yh</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>  <span class="fu">showpage</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>  <span class="fu">delay</span> <span class="dv">10</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="fu">at</span> <span class="dv">0</span>, <span class="dt">ymax</span> - <span class="dv">2</span>*<span class="fu">txth</span>(<span class="st">&quot;Q&quot;</span>) : <span class="kw">print</span> <span class="st">&quot;done, press any... &quot;</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="fu">showpage</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a><span class="kw">pause</span> </span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a><span class="kw">sub </span>bottle(xleft, ytop, xwidth, yheight)</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>  <span class="dt">local</span> x, y</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>  <span class="dt">dim</span> screensection(xwidth, yheight)</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a>  <span class="kw">for </span>y = ytop <span class="kw">to</span> (ytop + yheight - <span class="dv">1</span>)</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a>    <span class="kw">for </span>x = xleft <span class="kw">to</span> (xleft + xwidth - <span class="dv">1</span>)</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a>      screensection(x, y) = <span class="fu">POINT</span>(x, y)</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>    <span class="kw">next</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a>  <span class="kw">next</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true"></a></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true"></a><span class="kw">sub </span>pour(xoff, yoff, xwidth, yheight)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true"></a>  <span class="dt">local</span> x, y</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true"></a>  <span class="kw">for </span>y = <span class="dv">0</span> <span class="kw">to</span> yheight</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true"></a>    <span class="kw">for </span>x = <span class="dv">0</span> <span class="kw">to</span> xwidth</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true"></a>      colr = screensection(x, y)</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true"></a>      <span class="fu">pset</span> x + xoff, y + yoff, colr</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true"></a>    <span class="kw">next</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true"></a>  <span class="kw">next</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true"></a><span class="kw">end </span></span></code></pre></div>
-<h3 id="example-4-get-graphics-cursor-and-color">Example 4: Get graphics cursor and color</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&#39; Note: POINT(x, y) returns the color of the pixel at x,y. But it&#39;s</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">&#39;       also possible to use POINT(0) and POINT(1) to return the current</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">&#39;       X,Y graphics position...:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">&#39; Draw a little circle at the current graphics x,y position:</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">Sub </span>show_point</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>  <span class="dt">Local</span> x = <span class="fu">Point</span>(<span class="dv">0</span>) <span class="co">&#39; This is where the last graphics command left us...</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  <span class="dt">Local</span> y = <span class="fu">Point</span>(<span class="dv">1</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>  <span class="dt">Local</span> c</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>  c = <span class="fu">Point</span>(x, y)    <span class="co">&#39; Now we know also the color of that point...</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>  <span class="fu">Circle</span> x, y, <span class="dv">3</span> <span class="fu">Color</span> c FILLED <span class="co">&#39; (CIRCLE does not change current X,Y)</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="kw">End Sub</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="co">&#39; Draw a box and show the corners with a circle:</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="fu">Line</span> <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">360</span>, <span class="dv">50</span> <span class="fu">Color</span> <span class="dv">15</span>:     show_point</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="fu">Line</span> STEP <span class="dv">0</span>, +<span class="dv">40</span> <span class="fu">Color</span> <span class="dv">14</span>:         show_point</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="fu">Line</span> STEP -(<span class="dv">360</span> - <span class="dv">50</span>), <span class="dv">0</span> <span class="fu">Color</span> <span class="dv">15</span>: show_point</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="fu">Line</span> STEP <span class="dv">0</span>, <span class="dv">-40</span> <span class="fu">Color</span> <span class="dv">14</span>:         show_point</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="fu">Showpage</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">&#39; Print text inside the box and change its colors:</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>x = <span class="fu">Point</span>(<span class="dv">0</span>) + <span class="dv">45</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>y = <span class="fu">Point</span>(<span class="dv">1</span>) + <span class="dv">8</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a>text = <span class="st">&quot;That&#39;s the POINT !&quot;</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>x_dot = x + <span class="fu">Txtw</span>(text) - <span class="dv">6</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>y_dot = y + <span class="fu">Txth</span>(text) - <span class="dv">5</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="kw">For </span>b = <span class="dv">7</span> <span class="kw">To</span> <span class="dv">1</span> Step <span class="dv">-1</span>   <span class="co">&#39; b = Background color</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a>  c = b <span class="kw">Xor</span> (<span class="dv">16</span> - b)     <span class="co">&#39; c = Reversed Foreground color</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a>  <span class="fu">Color</span> c, b: <span class="fu">At</span> x, y: <span class="kw">Print</span> <span class="st">&quot;That&#39;s the POINT !&quot;</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a>  <span class="fu">Circle</span> x_dot, y_dot, <span class="dv">3</span> <span class="fu">Color</span> c FILLED <span class="co">&#39; Print a point under &#39;!&#39;</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a>  <span class="fu">Paint</span> x - <span class="dv">2</span>, y - <span class="dv">2</span>, b  <span class="co">&#39; Paint the rest of the box</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a>  <span class="kw">Pause</span> <span class="dv">1</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a>  <span class="fu">Showpage</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a><span class="kw">Next</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a><span class="kw">Pause</span></span></code></pre></div>
+<p>This demonstrates saving a screen section and redrawing it at
+different places on screen, a tiling and a moving across the screen.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; POINT demo.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-07</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>objects = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">300</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if </span><span class="fu">rnd</span> &gt; <span class="dv">0.5</span> <span class="kw">then</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">circle</span> <span class="fu">rnd</span>*<span class="dt">xmax</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dt">ymax</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dv">50</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dv">5</span>, <span class="fu">rnd</span>*<span class="dv">16</span>/<span class="dv">1</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rect</span> <span class="fu">rnd</span>*<span class="dt">xmax</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dt">ymax</span>\<span class="dv">1</span> step <span class="fu">rnd</span>*<span class="dv">50</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dv">50</span>\<span class="dv">1</span>, <span class="fu">rnd</span>*<span class="dv">16</span>/<span class="dv">1</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end if </span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">at</span> <span class="dv">0</span>, <span class="dt">ymax</span> - <span class="dv">2</span>*<span class="fu">txth</span>(<span class="st">&quot;Q&quot;</span>) : <span class="kw">print</span> <span class="st">&quot; press any...&quot;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">showpage</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">pause</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>xw = <span class="dv">350</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>yh = <span class="dv">250</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>bottle <span class="dv">0</span>, <span class="dv">0</span>, xw, yh</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cls</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>y = <span class="dv">0</span> <span class="kw">to</span> <span class="dt">ymax</span> step yh</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">for </span>x = <span class="dv">0</span> <span class="kw">to</span> <span class="dt">xmax</span> step xw</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    pour x, y, xw, yh</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">showpage</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">next</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="fu">at</span> <span class="dv">0</span>, <span class="dt">ymax</span> - <span class="dv">2</span>*<span class="fu">txth</span>(<span class="st">&quot;Q&quot;</span>): <span class="kw">print</span> <span class="st">&quot; press any...&quot;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">showpage</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">pause</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">cls</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>x = <span class="dv">0</span> <span class="kw">to</span> <span class="dt">xmax</span> step <span class="dv">25</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cls</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  pour x, <span class="dt">ymax</span>\<span class="dv">2</span> - yh\<span class="dv">2</span>, xw, yh</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">showpage</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span> <span class="dv">10</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">at</span> <span class="dv">0</span>, <span class="dt">ymax</span> - <span class="dv">2</span>*<span class="fu">txth</span>(<span class="st">&quot;Q&quot;</span>) : <span class="kw">print</span> <span class="st">&quot;done, press any... &quot;</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="fu">showpage</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="kw">pause</span> </span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>bottle(xleft, ytop, xwidth, yheight)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="dt">local</span> x, y</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dim</span> screensection(xwidth, yheight)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">for </span>y = ytop <span class="kw">to</span> (ytop + yheight - <span class="dv">1</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">for </span>x = xleft <span class="kw">to</span> (xleft + xwidth - <span class="dv">1</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>      screensection(x, y) = <span class="fu">POINT</span>(x, y)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">next</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="kw">next</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>pour(xoff, yoff, xwidth, yheight)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">local</span> x, y</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="kw">for </span>y = <span class="dv">0</span> <span class="kw">to</span> yheight</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">for </span>x = <span class="dv">0</span> <span class="kw">to</span> xwidth</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>      colr = screensection(x, y)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pset</span> x + xoff, y + yoff, colr</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">next</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">next</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="kw">end </span></span></code></pre></div>
+<h3 id="example-4-get-graphics-cursor-and-color">Example 4: Get graphics
+cursor and color</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Note: POINT(x, y) returns the color of the pixel at x,y. But it&#39;s</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;       also possible to use POINT(0) and POINT(1) to return the current</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;       X,Y graphics position...:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Draw a little circle at the current graphics x,y position:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">Sub </span>show_point</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Local</span> x = <span class="fu">Point</span>(<span class="dv">0</span>) <span class="co">&#39; This is where the last graphics command left us...</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Local</span> y = <span class="fu">Point</span>(<span class="dv">1</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Local</span> c</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  c = <span class="fu">Point</span>(x, y)    <span class="co">&#39; Now we know also the color of that point...</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Circle</span> x, y, <span class="dv">3</span> <span class="fu">Color</span> c FILLED <span class="co">&#39; (CIRCLE does not change current X,Y)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">End Sub</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Draw a box and show the corners with a circle:</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">Line</span> <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">360</span>, <span class="dv">50</span> <span class="fu">Color</span> <span class="dv">15</span>:     show_point</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">Line</span> STEP <span class="dv">0</span>, +<span class="dv">40</span> <span class="fu">Color</span> <span class="dv">14</span>:         show_point</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">Line</span> STEP -(<span class="dv">360</span> - <span class="dv">50</span>), <span class="dv">0</span> <span class="fu">Color</span> <span class="dv">15</span>: show_point</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">Line</span> STEP <span class="dv">0</span>, -<span class="dv">40</span> <span class="fu">Color</span> <span class="dv">14</span>:         show_point</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">Showpage</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Print text inside the box and change its colors:</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>x = <span class="fu">Point</span>(<span class="dv">0</span>) + <span class="dv">45</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>y = <span class="fu">Point</span>(<span class="dv">1</span>) + <span class="dv">8</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>text = <span class="st">&quot;That&#39;s the POINT !&quot;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>x_dot = x + <span class="fu">Txtw</span>(text) - <span class="dv">6</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>y_dot = y + <span class="fu">Txth</span>(text) - <span class="dv">5</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="kw">For </span>b = <span class="dv">7</span> <span class="kw">To</span> <span class="dv">1</span> Step -<span class="dv">1</span>   <span class="co">&#39; b = Background color</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  c = b <span class="kw">Xor</span> (<span class="dv">16</span> - b)     <span class="co">&#39; c = Reversed Foreground color</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Color</span> c, b: <span class="fu">At</span> x, y: <span class="kw">Print</span> <span class="st">&quot;That&#39;s the POINT !&quot;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Circle</span> x_dot, y_dot, <span class="dv">3</span> <span class="fu">Color</span> c FILLED <span class="co">&#39; Print a point under &#39;!&#39;</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Paint</span> x - <span class="dv">2</span>, y - <span class="dv">2</span>, b  <span class="co">&#39; Paint the rest of the box</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Pause</span> <span class="dv">1</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Showpage</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="kw">Next</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="kw">Pause</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using POINT</div>
     <div class="linklist">
@@ -278,7 +286,7 @@ POINT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

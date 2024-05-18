@@ -107,35 +107,45 @@
 </tbody>
 </table>
 <h3 id="example-1">Example 1</h3>
-<p>The NOT-operation as part of NAND performs a bitwise inversion on all bits of a number. This leads to the following (maybe unexpected) result:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span> <span class="dv">1</span> <span class="kw">NAND</span> <span class="dv">1</span>   <span class="co">&#39; Output: 11111111111111111111111111111110</span></span></code></pre></div>
-<h3 id="example-2-operate-nand-only-on-last-n-bits">Example 2: Operate NAND only on last n bits</h3>
-<p>If you want to operate NAND only on the last <code>n</code> bits of the numbers, you can use the following code:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>n = <span class="dv">4</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>a = 0b1101</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>b = 0b1001</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">bin</span>((a <span class="kw">NAND</span> b) <span class="kw">BAND</span> ((<span class="dv">1</span> <span class="kw">lshift</span> n ) - <span class="dv">1</span>)) </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; Output 110</span></span></code></pre></div>
+<p>The NOT-operation as part of NAND performs a bitwise inversion on all
+bits of a number. This leads to the following (maybe unexpected)
+result:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="dv">1</span> <span class="kw">NAND</span> <span class="dv">1</span>   <span class="co">&#39; Output: 11111111111111111111111111111110</span></span></code></pre></div>
+<h3 id="example-2-operate-nand-only-on-last-n-bits">Example 2: Operate
+NAND only on last n bits</h3>
+<p>If you want to operate NAND only on the last <code>n</code> bits of
+the numbers, you can use the following code:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n = <span class="dv">4</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a = <span class="dv">0</span>b1101</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>b = <span class="dv">0</span>b1001</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">bin</span>((a <span class="kw">NAND</span> b) <span class="kw">BAND</span> ((<span class="dv">1</span> <span class="kw">lshift</span> n ) - <span class="dv">1</span>)) </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output 110</span></span></code></pre></div>
 <h3 id="example-3-twos-complement">Example 3: Two’s complement</h3>
 <blockquote>
-<p>Two’s complement is a mathematical operation to reversibly convert a positive binary number into a negative binary number with equivalent negative value. (<a href="https://en.wikipedia.org/wiki/Two%27s_complement">Wikipedia</a>)</p>
+<p>Two’s complement is a mathematical operation to reversibly convert a
+positive binary number into a negative binary number with equivalent
+negative value. (<a
+href="https://en.wikipedia.org/wiki/Two%27s_complement">Wikipedia</a>)</p>
 </blockquote>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; Two&#39;s complement is the standard way of representing negative integers in binary. </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39; The sign is changed by inverting all of the bits and adding one.</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">Def</span> invsgn(n) = ((n <span class="kw">Nand</span> n) + <span class="dv">1</span>) - <span class="fu">Frac</span>(n)              <span class="co">&#39; invert the sign of n</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">While </span><span class="dt">True</span> <span class="kw">Do</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  <span class="kw">Input</span> <span class="st">&quot;Enter a number (Enter empty to stop) : &quot;</span>, n</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  <span class="kw">If </span><span class="fu">Isstring</span>(n) <span class="kw">Then</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="kw">Stop</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>  <span class="kw">Endif</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>  </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>  <span class="kw">Print</span> <span class="st">&quot;This is the number with inverted sign: &quot;</span>; invsgn(n)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>  <span class="kw">Print</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="kw">Wend</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Two&#39;s complement is the standard way of representing negative integers in binary. </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; The sign is changed by inverting all of the bits and adding one.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">Def</span> invsgn(n) = ((n <span class="kw">Nand</span> n) + <span class="dv">1</span>) - <span class="fu">Frac</span>(n)              <span class="co">&#39; invert the sign of n</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">While </span><span class="dt">True</span> <span class="kw">Do</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Input</span> <span class="st">&quot;Enter a number (Enter empty to stop) : &quot;</span>, n</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">If </span><span class="fu">Isstring</span>(n) <span class="kw">Then</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">Stop</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Endif</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Print</span> <span class="st">&quot;This is the number with inverted sign: &quot;</span>; invsgn(n)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Print</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">Wend</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using NAND</div>
     <div class="linklist">
@@ -237,7 +247,7 @@ NAND by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

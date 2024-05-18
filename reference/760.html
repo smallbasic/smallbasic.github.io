@@ -73,24 +73,30 @@
       <a href="/pages/math.html">Math</a>
     </p>
   </div>
-<p>Arithmetical mean (average). <code>var1</code> to <code>varN</code> can be single numbers or arrays.</p>
+<p>Arithmetical mean (average). <code>var1</code> to <code>varN</code>
+can be single numbers or arrays.</p>
 <h3 id="example-1-using-an-array">Example 1: Using an array</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>A = [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">14</span>]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">statmean</span>(A)         <span class="co">&#39; same as: sum(A) / len(A)</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">&#39; Output: 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">14</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">statmean</span>(A)         <span class="co">&#39; same as: sum(A) / len(A)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 5</span></span></code></pre></div>
 <h3 id="example-2-using-two-arrays">Example 2: Using two arrays</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>A = [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">14</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>B = [<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">7</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">statmean</span>(A, B)      <span class="co">&#39; Output: 6</span></span></code></pre></div>
-<h3 id="example-3-using-array-and-number">Example 3: Using array and number</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>A = [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">14</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>B = <span class="dv">5</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">statmean</span>(A, B)      <span class="co">&#39; Output: 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">14</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>B = [<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">7</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">statmean</span>(A, B)      <span class="co">&#39; Output: 6</span></span></code></pre></div>
+<h3 id="example-3-using-array-and-number">Example 3: Using array and
+number</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">14</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>B = <span class="dv">5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">statmean</span>(A, B)      <span class="co">&#39; Output: 5</span></span></code></pre></div>
 <h3 id="example-4-using-numbers">Example 4: Using numbers</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>A = <span class="dv">3</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>B = <span class="dv">5</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>C = <span class="dv">4</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">print</span> <span class="fu">statmean</span>(A, B, C)   <span class="co">&#39; Output: 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>A = <span class="dv">3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>B = <span class="dv">5</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>C = <span class="dv">4</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="fu">statmean</span>(A, B, C)   <span class="co">&#39; Output: 4</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Math</div>
     <div class="linklist">
@@ -171,6 +177,7 @@
       <a href="/reference/765.html">SUMSQ </a>&nbsp;
       <a href="/reference/766.html">TAN </a>&nbsp;
       <a href="/reference/767.html">TANH </a>&nbsp;
+      <a href="/reference/1802.html">TRANSPOSE </a>&nbsp;
     </div>
     <div class="subtitle">
       If there is insufficient information on this page and you wish learn more about STATMEAN,
@@ -196,7 +203,7 @@ STATMEAN by submitting a <a href="https://github.com/smallbasic/smallbasic.githu
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

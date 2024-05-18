@@ -73,7 +73,9 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Exits a multi line function definition, a loop, or a subprogram. By default (if no parameter is specified) exits from last command block (loop, for-loop or routine).</p>
+<p>Exits a multi line function definition, a loop, or a subprogram. By
+default (if no parameter is specified) exits from last command block
+(loop, for-loop or routine).</p>
 <ul>
 <li>FOR - Exit from the last FOR-NEXT loop</li>
 <li>LOOP - Exit from the last WHILE-WEND or REPEAT-UNTIL loop</li>
@@ -81,34 +83,38 @@
 <li>FUNC - Return from the current function</li>
 </ul>
 <h3 id="example-1-for">Example 1: for</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">100</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="kw">exit for</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">&#39; Output: 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">100</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">exit for</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 1</span></span></code></pre></div>
 <h3 id="example-2-while">Example 2: while</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">while(</span>i)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    i++</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="kw">exit</span> loop</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">wend</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; Output: 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span>i)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    i++</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">exit</span> loop</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 1</span></span></code></pre></div>
 <h3 id="example-3-sub">Example 3: sub</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">sub </span>MySub(a)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    <span class="kw">exit sub</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="kw">print</span> a</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>MySub(<span class="dv">10</span>)  <span class="co">&#39; No output, because print in MySub will not be reached</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>MySub(a)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">exit sub</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> a</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>MySub(<span class="dv">10</span>)  <span class="co">&#39; No output, because print in MySub will not be reached</span></span></code></pre></div>
 <h3 id="example-4-func">Example 4: func</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">func </span>MyFunc(a)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    <span class="kw">exit func</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="kw">return</span> a + <span class="dv">10</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">end</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">print</span> MyFunc(<span class="dv">10</span>)  <span class="co">&#39; Output: 0, because return command in MyFunc will not be reached</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>MyFunc(a)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">exit func</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> a + <span class="dv">10</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> MyFunc(<span class="dv">10</span>)  <span class="co">&#39; Output: 0, because return command in MyFunc will not be reached</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using EXIT</div>
     <div class="linklist">
@@ -236,7 +242,7 @@ EXIT by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

@@ -81,89 +81,115 @@
 <li>counter - A numeric variable to be used as the loop counter.</li>
 <li>start - A numeric expression; the starting value of counter.</li>
 <li>end - A numeric expression; the ending value of counter.</li>
-<li>incr - A numeric expression; the value by which counter is incremented or decremented with each iteration of the loop. The default value is 1.</li>
-<li>element - A variable to be used as the copy of the current element.</li>
+<li>incr - A numeric expression; the value by which counter is
+incremented or decremented with each iteration of the loop. The default
+value is 1.</li>
+<li>element - A variable to be used as the copy of the current
+element.</li>
 <li>array - An array or map variable</li>
 </ul>
-<h3 id="for-counter-start-to-end-step-incr-next">FOR counter = start TO end [STEP incr] … NEXT</h3>
-<p>SmallBASIC begins processing of the FOR/NEXT block by setting counter equal to start. Then, if ‘incr’ is positive and counter is not greater than end, the commands between the FOR and the NEXT are executed. When the NEXT is encountered, counter is increased by ‘incr’, and the process is repeated. Execution passes to the command following the NEXT if counter is greater than end.</p>
-<p>If increment is negative, execution of the FOR/NEXT loop is terminated whenever counter becomes less than end. FOR/NEXT loops may be nested to any level of complexity, but there must be a NEXT for each FOR.</p>
+<h3 id="for-counter-start-to-end-step-incr-next">FOR counter = start TO
+end [STEP incr] … NEXT</h3>
+<p>SmallBASIC begins processing of the FOR/NEXT block by setting counter
+equal to start. Then, if ‘incr’ is positive and counter is not greater
+than end, the commands between the FOR and the NEXT are executed. When
+the NEXT is encountered, counter is increased by ‘incr’, and the process
+is repeated. Execution passes to the command following the NEXT if
+counter is greater than end.</p>
+<p>If increment is negative, execution of the FOR/NEXT loop is
+terminated whenever counter becomes less than end. FOR/NEXT loops may be
+nested to any level of complexity, but there must be a NEXT for each
+FOR.</p>
 <h3 id="for-element-in-array-next">FOR element IN array … NEXT</h3>
-<p>The commands-block will be repeated for LEN(array) times. Each time the ‘element’ will holds the value of the current element of the array. FOR/NEXT loops may be nested to any level of complexity, but there must be a NEXT for each FOR.</p>
+<p>The commands-block will be repeated for LEN(array) times. Each time
+the ‘element’ will holds the value of the current element of the array.
+FOR/NEXT loops may be nested to any level of complexity, but there must
+be a NEXT for each FOR.</p>
 <h3 id="example-1">Example 1</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">9</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">&#39; Output 1 2 3 4 5 6 7 8 9</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">9</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output 1 2 3 4 5 6 7 8 9</span></span></code></pre></div>
 <h3 id="example-2">Example 2</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">9</span> Step <span class="dv">2</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; Output: 1 3 5 7 9</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">9</span> Step <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 1 3 5 7 9</span></span></code></pre></div>
 <h3 id="example-3">Example 3</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">9</span> <span class="kw">to</span> <span class="dv">1</span> Step <span class="dv">-1</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39; Output 9 8 7 6 5 4 3 2 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">9</span> <span class="kw">to</span> <span class="dv">1</span> Step -<span class="dv">1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output 9 8 7 6 5 4 3 2 1</span></span></code></pre></div>
 <h3 id="example-4">Example 4</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>a =  [<span class="dv">12</span>, <span class="dv">6</span>, <span class="dv">23</span>, <span class="dv">-4</span>]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">for </span>i <span class="kw">in</span> a</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">&#39; Output 12 6 23 -4</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a =  [<span class="dv">12</span>, <span class="dv">6</span>, <span class="dv">23</span>, -<span class="dv">4</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i <span class="kw">in</span> a</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output 12 6 23 -4</span></span></code></pre></div>
 <h3 id="example-5">Example 5</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>a =  [<span class="st">&quot;car&quot;</span>, <span class="st">&quot;tree&quot;</span>, <span class="st">&quot;house&quot;</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">for </span>i <span class="kw">in</span> a</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">&#39; Output car tree house</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a =  [<span class="st">&quot;car&quot;</span>, <span class="st">&quot;tree&quot;</span>, <span class="st">&quot;house&quot;</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i <span class="kw">in</span> a</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output car tree house</span></span></code></pre></div>
 <h3 id="example-6">Example 6</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>a = {x:<span class="dv">1</span>, s:<span class="st">&quot;test1&quot;</span>}</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>b = {x:<span class="dv">2</span>, s:<span class="st">&quot;test2&quot;</span>}</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>c = {x:<span class="dv">3</span>, s:<span class="st">&quot;test3&quot;</span>}</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>MapVar = [a,b,c]</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="kw">for </span>i <span class="kw">in</span> MapVar    </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>    <span class="kw">print</span> i.x, i.s</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">&#39; Output:   1 test1</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co">&#39;           2 test2</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="co">&#39;           3 test3</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a = {x:<span class="dv">1</span>, s:<span class="st">&quot;test1&quot;</span>}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b = {x:<span class="dv">2</span>, s:<span class="st">&quot;test2&quot;</span>}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>c = {x:<span class="dv">3</span>, s:<span class="st">&quot;test3&quot;</span>}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>MapVar = [a,b,c]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i <span class="kw">in</span> MapVar    </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i.x, i.s</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output:   1 test1</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;           2 test2</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;           3 test3</span></span></code></pre></div>
 <h3 id="example-7">Example 7</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>a = {x:<span class="dv">1</span>, y:<span class="dv">2</span>, s:<span class="st">&quot;test1&quot;</span>}</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">for </span>i <span class="kw">in</span> a</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>    <span class="kw">print</span> i + <span class="st">&quot; = &quot;</span> + a(i)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">&#39; Output:   y = 2</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co">&#39;           x = 1</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="co">&#39;           s = test1</span></span></code></pre></div>
-<h3 id="example-8-changing-counter-inside-the-loop">Example 8: Changing counter inside the loop</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>    i = i + <span class="dv">1</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">&#39; Output: 2 4 6 8 10</span></span></code></pre></div>
-<h3 id="example-8-changing-stop-parameter-inside-the-loop">Example 8: Changing stop parameter inside the loop</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>e = <span class="dv">10</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> e</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>    e = <span class="dv">5</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>    <span class="kw">print</span> i</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="kw">next</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">&#39; Output: 1 2 3 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a = {x:<span class="dv">1</span>, y:<span class="dv">2</span>, s:<span class="st">&quot;test1&quot;</span>}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i <span class="kw">in</span> a</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i + <span class="st">&quot; = &quot;</span> + a(i)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output:   y = 2</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;           x = 1</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;           s = test1</span></span></code></pre></div>
+<h3 id="example-8-changing-counter-inside-the-loop">Example 8: Changing
+counter inside the loop</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    i = i + <span class="dv">1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 2 4 6 8 10</span></span></code></pre></div>
+<h3 id="example-8-changing-stop-parameter-inside-the-loop">Example 8:
+Changing stop parameter inside the loop</h3>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>e = <span class="dv">10</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>i = <span class="dv">1</span> <span class="kw">to</span> e</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    e = <span class="dv">5</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> i</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 1 2 3 4 5</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using FOR</div>
     <div class="linklist">
@@ -291,7 +317,7 @@ FOR by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

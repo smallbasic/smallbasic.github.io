@@ -73,73 +73,78 @@
       <a href="/pages/language.html">Language</a>
     </p>
   </div>
-<p>Calculates the Modulus. Returns the remainder of <code>a/b</code> as integer. Equivalent syntax to % and MDL.</p>
+<p>Calculates the Modulus. Returns the remainder of <code>a/b</code> as
+integer. Equivalent syntax to % and MDL.</p>
 <h3 id="example-1">Example 1</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">print</span>  <span class="dv">5</span> <span class="kw">mod</span> <span class="dv">2</span>    <span class="co">&#39; Output 1</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">print</span> <span class="dv">12</span> <span class="kw">mod</span> <span class="dv">5</span>    <span class="co">&#39; Output 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span>  <span class="dv">5</span> <span class="kw">mod</span> <span class="dv">2</span>    <span class="co">&#39; Output 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="dv">12</span> <span class="kw">mod</span> <span class="dv">5</span>    <span class="co">&#39; Output 2</span></span></code></pre></div>
 <h3 id="example-2-ascii-table">Example 2: ASCII table</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&#39; LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">&#39; LOCATE row, column    : sets the next print location on screen, rows down, columns across</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">&#39; a MOD b               : returns the remainder of a/b as integer </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">&#39; CHR                   : returns the CHaRracter for the ASC number</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">&#39;                         for demo we will print a chart of CHR for ASC numbers 32-128</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">&#39; ASC(Character)        : is a number code for a print characters, 32 is the code for a space</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">&#39; ?                     : is shortcut for PRINT</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="co">&#39; RIGHT(string,n)       : returns right most n characters of string</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">&#39; STR(n)                : returns a number in string form</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">&#39; :                     : code statement seperator often used with LOCATE row, column : ? string</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="fu">LOCATE</span> <span class="dv">1</span>,<span class="dv">16</span> : <span class="kw">PRINT</span> <span class="st">&quot;ASC Table 30-129:&quot;</span>     <span class="co">&#39; locate print spot, print title for our app</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="kw">FOR </span>column = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span>                         <span class="co">&#39; print a header, 10 numbers plus + (to add to row value)</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="fu">LOCATE</span> <span class="dv">2</span>, column * <span class="dv">5</span> + <span class="dv">4</span> : <span class="kw">PRINT</span> <span class="st">&quot;+&quot;</span>; column</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">NEXT</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">FOR </span>row = <span class="dv">3</span> <span class="kw">to</span> <span class="dv">12</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    <span class="fu">LOCATE</span> row, <span class="dv">0</span> : ? <span class="fu">RIGHT</span>(<span class="st">&quot; &quot;</span> + <span class="fu">STR</span>(row * <span class="dv">10</span>) + <span class="st">&quot;:&quot;</span>, <span class="dv">4</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">NEXT</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="co">&#39;main table</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="kw">FOR </span>ASCnumber = <span class="dv">30</span> <span class="kw">to</span> <span class="dv">129</span>                   <span class="co">&#39; note ASC(32) = space so wont see anything in Table</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>    row = ASCnumber \ <span class="dv">10</span>                    <span class="co">&#39; \ rounds division down to integer</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>    column = (ASCnumber <span class="kw">MOD</span> <span class="dv">10</span>) * <span class="dv">5</span> + <span class="dv">5</span>     <span class="co">&#39; times 5 to space out the characters printed plus 5 for column labels</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    <span class="fu">LOCATE</span> row, column : ? <span class="fu">CHR</span>(ASCnumber)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="kw">NEXT</span></span></code></pre></div>
-<h3 id="example-2-prime-or-lowest-divisor-table">Example 2: Prime or lowest divisor table</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">&#39; more MOD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">&#39;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">&#39; n MOD m - returns the remainder of n divided by m, if 0 then m divides n perfectly</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">&#39; another way to do MOD in SmallBASIC is to use symbol %, n%m is same as n MOD m</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">&#39; MOD is great to tell if a number is divisible by another (leaves no remainders)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">&#39; a number not divisible by any number less to it other than 1, is called a prime number</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">&#39; here we will list first 100 numbers and tell if prime or give the lowest divisor</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">&#39;table setup: title header and row labels</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="fu">LOCATE</span> <span class="dv">0</span>,<span class="dv">0</span> : <span class="kw">PRINT</span> <span class="st">&quot;P=Prime or Lowest Divisor Table&quot;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="kw">FOR </span>column = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span>                         <span class="co">&#39; print a header, 10 numbers plus + (to add to row value)</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    <span class="fu">LOCATE</span> <span class="dv">2</span>, column * <span class="dv">2</span> + <span class="dv">7</span> : <span class="kw">PRINT</span> <span class="st">&quot;+&quot;</span>; column</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="kw">NEXT</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="kw">FOR </span>row=<span class="dv">3</span> <span class="kw">to</span> <span class="dv">12</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    <span class="fu">LOCATE</span> row, <span class="dv">0</span> : <span class="kw">PRINT</span> <span class="fu">RIGHT</span>(<span class="st">&quot;    &quot;</span>+<span class="fu">STR</span>(row * <span class="dv">10</span> - <span class="dv">30</span>) + <span class="st">&quot;:&quot;</span>, <span class="dv">6</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="kw">NEXT</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">&#39;main table data</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="kw">FOR </span>n= <span class="dv">1</span> <span class="kw">to</span> <span class="dv">99</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>    <span class="kw">IF </span>n = <span class="dv">1</span> <span class="kw">THEN</span> </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>        report = <span class="st">&quot; O&quot;</span>                       <span class="co">&#39; one is one, neither prime nor not prime</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    <span class="kw">ELSE</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>        report = <span class="st">&quot; P&quot;</span>                       <span class="co">&#39; letter code for Prime</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>        <span class="kw">FOR </span>i = <span class="dv">2</span> <span class="kw">TO</span> n - <span class="dv">1</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>            <span class="kw">IF </span>n % i = <span class="dv">0</span> <span class="kw">THEN</span>               <span class="co">&#39; &lt;== if n MOD i=0 or n%i=0, THEN i divides n perfectly</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>                report = <span class="st">&quot; &quot;</span> + <span class="fu">STR</span>(i)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>                <span class="kw">EXIT</span>                        <span class="co">&#39; we found lowest divisor get out of loop</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>            <span class="kw">END IF </span> </span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>        <span class="kw">NEXT</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>    <span class="kw">ENDIF</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>    row = n \ <span class="dv">10</span> + <span class="dv">3</span>                        <span class="co">&#39; n\10 is our number divided by 10 and rounded down, </span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>                                            <span class="co">&#39; call it the tens row offset 3 rows down for title and header and blank line</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>    column = n % <span class="dv">10</span> * <span class="dv">2</span> + <span class="dv">7</span>                 <span class="co">&#39; &lt;== use MOD to LOCATE the column (*2 column width + 7 row label offset) </span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>    <span class="fu">LOCATE</span> row, column : ? report           <span class="co">&#39; ? short for print</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a><span class="kw">NEXT</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a>?:? <span class="st">&quot;O=one is neither prime nor not prime&quot;</span>  <span class="co">&#39; ?:?&quot;...&quot; print blank line first</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; LOCATE MOD CHR ASC.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; LOCATE row, column    : sets the next print location on screen, rows down, columns across</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; a MOD b               : returns the remainder of a/b as integer </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; CHR                   : returns the CHaRracter for the ASC number</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;                         for demo we will print a chart of CHR for ASC numbers 32-128</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; ASC(Character)        : is a number code for a print characters, 32 is the code for a space</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; ?                     : is shortcut for PRINT</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; RIGHT(string,n)       : returns right most n characters of string</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; STR(n)                : returns a number in string form</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; :                     : code statement seperator often used with LOCATE row, column : ? string</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">LOCATE</span> <span class="dv">1</span>,<span class="dv">16</span> : <span class="kw">PRINT</span> <span class="st">&quot;ASC Table 30-129:&quot;</span>     <span class="co">&#39; locate print spot, print title for our app</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>column = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span>                         <span class="co">&#39; print a header, 10 numbers plus + (to add to row value)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">LOCATE</span> <span class="dv">2</span>, column * <span class="dv">5</span> + <span class="dv">4</span> : <span class="kw">PRINT</span> <span class="st">&quot;+&quot;</span>; column</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>row = <span class="dv">3</span> <span class="kw">to</span> <span class="dv">12</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">LOCATE</span> row, <span class="dv">0</span> : ? <span class="fu">RIGHT</span>(<span class="st">&quot; &quot;</span> + <span class="fu">STR</span>(row * <span class="dv">10</span>) + <span class="st">&quot;:&quot;</span>, <span class="dv">4</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;main table</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>ASCnumber = <span class="dv">30</span> <span class="kw">to</span> <span class="dv">129</span>                   <span class="co">&#39; note ASC(32) = space so wont see anything in Table</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    row = ASCnumber \ <span class="dv">10</span>                    <span class="co">&#39; \ rounds division down to integer</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    column = (ASCnumber <span class="kw">MOD</span> <span class="dv">10</span>) * <span class="dv">5</span> + <span class="dv">5</span>     <span class="co">&#39; times 5 to space out the characters printed plus 5 for column labels</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">LOCATE</span> row, column : ? <span class="fu">CHR</span>(ASCnumber)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span></code></pre></div>
+<h3 id="example-2-prime-or-lowest-divisor-table">Example 2: Prime or
+lowest divisor table</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; more MOD.bas  SmallBASIC 0.12.2 [B+=MGA] 2016-03-23</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; n MOD m - returns the remainder of n divided by m, if 0 then m divides n perfectly</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; another way to do MOD in SmallBASIC is to use symbol %, n%m is same as n MOD m</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; MOD is great to tell if a number is divisible by another (leaves no remainders)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; a number not divisible by any number less to it other than 1, is called a prime number</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; here we will list first 100 numbers and tell if prime or give the lowest divisor</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;table setup: title header and row labels</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">LOCATE</span> <span class="dv">0</span>,<span class="dv">0</span> : <span class="kw">PRINT</span> <span class="st">&quot;P=Prime or Lowest Divisor Table&quot;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>column = <span class="dv">0</span> <span class="kw">to</span> <span class="dv">9</span>                         <span class="co">&#39; print a header, 10 numbers plus + (to add to row value)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">LOCATE</span> <span class="dv">2</span>, column * <span class="dv">2</span> + <span class="dv">7</span> : <span class="kw">PRINT</span> <span class="st">&quot;+&quot;</span>; column</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>row=<span class="dv">3</span> <span class="kw">to</span> <span class="dv">12</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">LOCATE</span> row, <span class="dv">0</span> : <span class="kw">PRINT</span> <span class="fu">RIGHT</span>(<span class="st">&quot;    &quot;</span>+<span class="fu">STR</span>(row * <span class="dv">10</span> - <span class="dv">30</span>) + <span class="st">&quot;:&quot;</span>, <span class="dv">6</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;main table data</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>n= <span class="dv">1</span> <span class="kw">to</span> <span class="dv">99</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">IF </span>n = <span class="dv">1</span> <span class="kw">THEN</span> </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        report = <span class="st">&quot; O&quot;</span>                       <span class="co">&#39; one is one, neither prime nor not prime</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ELSE</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        report = <span class="st">&quot; P&quot;</span>                       <span class="co">&#39; letter code for Prime</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="kw">FOR </span>i = <span class="dv">2</span> <span class="kw">TO</span> n - <span class="dv">1</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            <span class="kw">IF </span>n % i = <span class="dv">0</span> <span class="kw">THEN</span>               <span class="co">&#39; &lt;== if n MOD i=0 or n%i=0, THEN i divides n perfectly</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                report = <span class="st">&quot; &quot;</span> + <span class="fu">STR</span>(i)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                <span class="kw">EXIT</span>                        <span class="co">&#39; we found lowest divisor get out of loop</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            <span class="kw">END IF </span> </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="kw">NEXT</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ENDIF</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    row = n \ <span class="dv">10</span> + <span class="dv">3</span>                        <span class="co">&#39; n\10 is our number divided by 10 and rounded down, </span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                                            <span class="co">&#39; call it the tens row offset 3 rows down for title and header and blank line</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    column = n % <span class="dv">10</span> * <span class="dv">2</span> + <span class="dv">7</span>                 <span class="co">&#39; &lt;== use MOD to LOCATE the column (*2 column width + 7 row label offset) </span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">LOCATE</span> row, column : ? report           <span class="co">&#39; ? short for print</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>?:? <span class="st">&quot;O=one is neither prime nor not prime&quot;</span>  <span class="co">&#39; ?:?&quot;...&quot; print blank line first</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using MOD</div>
     <div class="linklist">
@@ -267,7 +272,7 @@ MOD by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>

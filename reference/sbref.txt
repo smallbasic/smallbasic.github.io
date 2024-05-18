@@ -1,4 +1,4 @@
-SmallBASIC Language reference [19/11/2023]
+SmallBASIC Language reference [19/05/2024]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -21,10 +21,11 @@ ASEC ASECH ASIN ASINH ATAN ATAN2 ATANH ATN CEIL COS COSH COT COTH CSC CSCH DEG D
 EXPRSEQ FIX FLOOR FRAC INT INTERSECT INVERSE LINEQN LOG LOG10 M3APPLY M3IDENT M3ROTATE M3SCALE M3TRANS 
 MAX MIN POLYAREA POLYCENT POLYEXT POW PTDISTLN PTDISTSEG PTSIGN RAD RND ROOT ROUND SEC SECH SEGCOS SEGLEN 
 SEGSIN SEQ SGN SIN SINH SQR STATMEAN STATMEANDEV STATMEDIAN STATSPREADP STATSPREADS STATSTD SUM SUMSQ 
-TAN TANH ASC BCS BIN CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF LEFTOFLAST 
-LOWER LTRIM MID OCT REPLACE RIGHT RIGHTOF RIGHTOFLAST RINSTR RTRIM SINPUT SPACE SPC SPLIT SPRINT SQUEEZE 
-STR STRING TRANSLATE TRIM UCASE UPPER VAL CHAIN COMMAND CWD DELAY ENV ENV EXEC EXPORT FRE HOME IMPORT 
-INCLUDE MAXINT NIL OPTION PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON UNIT 
+TAN TANH TRANSPOSE ASC BCS BIN CBS CHOP CHR DISCLOSE ENCLOSE FORMAT HEX INSTR JOIN LCASE LEFT LEFTOF 
+LEFTOFLAST LOWER LTRIM MID OCT REPLACE RIGHT RIGHTOF RIGHTOFLAST RINSTR RTRIM SINPUT SPACE SPC SPLIT 
+SPRINT SQUEEZE STR STRING TRANSLATE TRIM UCASE UPPER VAL CHAIN COMMAND CWD DELAY ENV ENV EXEC EXPORT 
+FRE HOME IMPORT INCLUDE MAXINT NIL OPTION PAUSE PI PROGLINE RANDOMIZE RUN SBVER SELF STKDUMP TROFF TRON 
+UNIT 
 
 +========================================================================================+
 |                                     1. (Console) AT                                    |
@@ -373,27 +374,54 @@ Defining the input fields
 inputs is an array of type MAP, each element may contain the following
 attributes:
 
-  Attribute         Description
-  ----------------- -------------------------------------------------------
-  x                 X coordinate.
-  y                 Y coordinate.
-  width             Width.
-  height            Height.
-  value             The internal value associated with the input.
-  label             The display label for the input.
-  name              The name of the input.
-  type              The type of input, see below.
-  help              Listbox or single line text input help text.
-  backgroundColor   Background color.
-  color             Forground color.
-  isExit            Whether clicking the input exits the current program.
-  isExternal        Whether the link field opens in an external browser.
-  resizable         Whether the field can be resized.
-  visible           Whether the input field is visible.
-  selectedIndex     The selected item in a listbox or choice.
-  length            Length of a TEXT input field in number of characters.
-  noFocus           The input cannot receive focus.
-  onclick           SUB to invoke when clicked.
+  -----------------------------------------------------------------------
+  Attribute                             Description
+  ------------------------------------- ---------------------------------
+  x                                     X coordinate.
+
+  y                                     Y coordinate.
+
+  width                                 Width.
+
+  height                                Height.
+
+  value                                 The internal value associated
+                                        with the input.
+
+  label                                 The display label for the input.
+
+  name                                  The name of the input.
+
+  type                                  The type of input, see below.
+
+  help                                  Listbox or single line text input
+                                        help text.
+
+  backgroundColor                       Background color.
+
+  color                                 Forground color.
+
+  isExit                                Whether clicking the input exits
+                                        the current program.
+
+  isExternal                            Whether the link field opens in
+                                        an external browser.
+
+  resizable                             Whether the field can be resized.
+
+  visible                               Whether the input field is
+                                        visible.
+
+  selectedIndex                         The selected item in a listbox or
+                                        choice.
+
+  length                                Length of a TEXT input field in
+                                        number of characters.
+
+  noFocus                               The input cannot receive focus.
+
+  onclick                               SUB to invoke when clicked.
+  -----------------------------------------------------------------------
 
 The type attribute can be one of the following:
 
@@ -425,6 +453,13 @@ simply use print f.inputs[n].
 
 Example 1: Creating a push button using callback function
 
+When using buttons in combination with callback functions, the
+doEvents() function is not necessary. Without this function the
+execution of the program will not be blocked. In the following example a
+number will be incremented in a while loop and printed to the screen.
+When the button is pressed, the callback function is executed and will
+block the program until the callback function ends.
+
     button.type = "button"
     button.x = 120
     button.y = 120
@@ -437,13 +472,15 @@ Example 1: Creating a push button using callback function
     f = form(formMAP)
 
     while 1
-      f.doEvents()
+      ii++
+      locate 0,0: print ii
+      delay(100)  
     wend
 
     f.close()
 
     sub ButtonClicked()
-      at 0,0
+      locate 1,0
       Clicked++
       print "Button clicked " + Clicked + " times"
     end
@@ -3082,8 +3119,10 @@ Example 6: File list utility
 
 EOF (fileN)
 
-Returns true if the file pointer is at end of the file. For COMx and
-SOCL VFS returns true if the connection is broken.
+Returns true if the file pointer is at end of the file. For serial port
+(RS232) and TCP/IP socket connection EOF returns true if the connection
+is broken. For socket connection the return value ofEOF will be updated
+every time data is recieved or send.
 
 Example 1: Reading data from a file
 
@@ -3381,7 +3420,9 @@ input, sequential output.
 -   file - A string expression that follows OS file naming conventions.
 -   fileN - A file-handle (integer 1 to 256).
 
-File-mode
+Open a file
+
+open "test.txt" for INPUT as #1
 
   Expression   Description
   ------------ ---------------------------------------------
@@ -3394,33 +3435,44 @@ an empty file will be created. The files are always opened as shared.
 You can use FREEFILE to get the next unused file-handle. Use PRINT,
 INPUT, BGETC and BPUTC to read from or write to a file or device.
 
-Open RS232, socket, URL or image
-
-With OPEN you can also open a network connection. Depending on the kind
-of connection the following file names can be used:
-
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Connection Type                                   Example
-  ------------------------------------------------- ----------------------------------------------------------------------------------------------------------------
-  URL                                               open "http://api.duckduckgo.com/?q=Cars&format=json" as #1
-
-  Image                                             open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1
-
-  Socket                                            open "SOCL:192.168.178.76:8080" as #1
-
-  Serial Port (RS232)                               open "COM1:19200" as # 1
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-More information with examples can be found in the article “Network
-programming”.
-
-Open COM port (RS232)
+Open a COM port (RS232)
 
 You can open a connection to a device using the serial port with
 open "COMn:speed" AS #1, where n is the number of the port and speed is
 the baud rate. To open the first serial port with a baud rate of 19200
 use: open "COM1:19200" as #1. In Windows COM1 and in Linux /dev/ttys1
 would be opened.
+
+Open a TCP/IP socket
+
+You can open a connection to a device using a TCP/IP socket with
+open "SOCL:IP:PORT" AS #1, where IP is a valid host name or IP address
+and port is an open port.
+
+open "SOCL:192.168.178.76:8080" as #1
+
+If you omit the host name or IP address in the SOCL: string passed to
+the OPEN command, SmallBASIC will listen for connections from another
+host/process.
+
+open "SOCL:8080" as #1
+
+Open an image
+
+Use the prefix HTTP: with the OPEN command to open an image file over
+the network. You can then pass the file number to the IMAGE command.
+This returns an system object which can then be used to manipulate
+images in the graphical version of SmallBASIC.
+
+open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1
+
+Open a HTTP connection
+
+Use the prefix HTTP: with the OPEN command to open a network HTTP
+connection. You can then use the file number with the TLOAD command to
+read the data.
+
+open "http://api.duckduckgo.com/?q=Cars&format=json" as #1
 
 Example 1: Open a file:
 
@@ -3443,16 +3495,16 @@ Example 1: Open a file:
 
     close #1
 
-Example 2: Open a socket
+Example 2: Open a socket for listening (server)
 
     open "SOCL:10000" as #1     ' Open socket at port 10000
 
-    while (eof(1))              ' Loop until connection is closed
+    while (!eof(1))             ' Loop until connection is closed
 
         l = lof(1)              ' Querry how much data is in the queue
 
         if(l) then              ' if data is available
-            s = INPUT(l, #1)    ' get all data
+            s = INPUT(l, 1)     ' get all data
             print s
         endif
 
@@ -3460,22 +3512,70 @@ Example 2: Open a socket
 
     close #1
 
-Example 3: Open a COM port (RS232)
+Example 3: Open a socket as client
 
-    open "COM1:19200" as # 1    ' Open COM1  with 19200 bauds
+    open "SOCL:192.168.1.10:10000" as #1     ' Connect to server
 
-    while (eof(1))              ' Loop until connection is closed
+    print #1, "Hello world"                  ' Send string to server
+
+    close #1
+
+Example 4: Open a COM port (RS232)
+
+    open "COM1:19200" as #1    ' Open COM1  with 19200 bauds
+
+    while (!eof(1))             ' Loop until connection is closed
 
         l = lof(1)              ' Querry how much data is in the queue
 
         if(l) then              ' if data is available
-            s = INPUT(l, #1)    ' get all data
+            s = INPUT(l, 1)     ' get all data
             print s
         endif
 
     wend
 
     close #1
+
+Example 5: Open an image over network
+
+    ' open some random image I found on the net
+    open "http://img2.wikia.nocookie.net/__cb20150113215904/farmville/images/9/92/Lumberjack_Gnome-icon.png" as #1
+
+    i = image(#1)
+    i.show(100,50)
+
+Example 6: Connect to an HTTP server
+
+    print "DuckDuckGo Search"
+    while 1
+      print '<=== when cycle around need to isolate input prompt
+      input "(Just enter quits) Term? ", queryTerm
+      if trim(queryTerm)="" then ? "Cheers!":end  '<=== need a way out
+      url = "http://api.duckduckgo.com/?q=" + trim(queryTerm) + "&format=json"
+      open url as #1
+      if (eof(1)) then
+        throw "Connection failed: " + url
+      fi
+
+      dim results
+      tload #1, results
+      json = array(results)
+      num_results = len(json.RelatedTopics)
+      for i = 0 to num_results - 1
+        if (isarray(json.RelatedTopics(i).topics)) then
+          num_topics = len(json.RelatedTopics(i).Topics)
+          for t = 0 to num_topics - 1
+            print cat(1); "  "; json.RelatedTopics(i).Topics(t).FirstURL; cat(0)
+            print "  "; json.RelatedTopics(i).Topics(t).text
+          next t
+        else
+          print cat(1); "  "; json.RelatedTopics(i).FirstURL; cat(0)
+          print "  "; json.RelatedTopics(i).Text
+        endif
+      next i
+      Close #1  '<===== oh this helps!
+    wend
 
 +========================================================================================+
 |                                     74. (File) READ                                    |
@@ -10869,7 +10969,25 @@ Hyperbolic tangent.
     print b
 
 +========================================================================================+
-|                                    251. (String) ASC                                   |
+|                                  251. (Math) TRANSPOSE                                 |
++========================================================================================+
+
+TRANSPOSE (A)
+
+Calculates the transpose A of a 2D matrix or a vector M.
+
+Example 1: Transpose of a vetor
+
+    A = [1;2;3;4]
+    print transpose(A)   ' output: [1,2,3,4]
+
+Example 2: Transpose of a matrix
+
+    A = [1,2; 3,4; 5,6]
+    print transpose(A)   ' output: [1,3,5;2,4,6] 
+
++========================================================================================+
+|                                    252. (String) ASC                                   |
 +========================================================================================+
 
 ASC (s)
@@ -10902,7 +11020,7 @@ Example 2: Create an ASCII table.
     NEXT
 
 +========================================================================================+
-|                                    252. (String) BCS                                   |
+|                                    253. (String) BCS                                   |
 +========================================================================================+
 
 BCS (s)
@@ -10939,7 +11057,7 @@ Example
     ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    253. (String) BIN                                   |
+|                                    254. (String) BIN                                   |
 +========================================================================================+
 
 BIN (x)
@@ -10953,7 +11071,7 @@ Example
     print oct(16)       ' output: 20
 
 +========================================================================================+
-|                                    254. (String) CBS                                   |
+|                                    255. (String) CBS                                   |
 +========================================================================================+
 
 CBS (s)
@@ -10989,7 +11107,7 @@ Example
     ' Back conversion to basic style: BOLD      COLORFULL BG
 
 +========================================================================================+
-|                                    255. (String) CHOP                                  |
+|                                    256. (String) CHOP                                  |
 +========================================================================================+
 
 CHOP (source)
@@ -11002,7 +11120,7 @@ Example
     print chop(s)    ' Output: Tes
 
 +========================================================================================+
-|                                    256. (String) CHR                                   |
+|                                    257. (String) CHR                                   |
 +========================================================================================+
 
 CHR (x)
@@ -11073,7 +11191,7 @@ Example 3: Print ASCII table
     Data "rs" , "us"  ' 30..31
 
 +========================================================================================+
-|                                  257. (String) DISCLOSE                                |
+|                                  258. (String) DISCLOSE                                |
 +========================================================================================+
 
 DISCLOSE (str[, pairs [, ignore-pairs]])
@@ -11128,7 +11246,7 @@ Example 3: Disclose with ignore-pairs
     print disclose(s, "()", "[]")            ' Output: gh
 
 +========================================================================================+
-|                                  258. (String) ENCLOSE                                 |
+|                                  259. (String) ENCLOSE                                 |
 +========================================================================================+
 
 ENCLOSE (str[, pair])
@@ -11153,7 +11271,7 @@ Example 2: Enclose letters
     print enclose(test, "aB")   ' output: a10B
 
 +========================================================================================+
-|                                   259. (String) FORMAT                                 |
+|                                   260. (String) FORMAT                                 |
 +========================================================================================+
 
 FORMAT (format, val)
@@ -11286,7 +11404,7 @@ money function that returns a flexible length string for a money amount
     end
 
 +========================================================================================+
-|                                    260. (String) HEX                                   |
+|                                    261. (String) HEX                                   |
 +========================================================================================+
 
 HEX (x)
@@ -11300,7 +11418,7 @@ Example
     print oct(16)       ' output: 20
 
 +========================================================================================+
-|                                   261. (String) INSTR                                  |
+|                                   262. (String) INSTR                                  |
 +========================================================================================+
 
 INSTR ([start,] s1, s2)
@@ -11322,7 +11440,7 @@ Example 2: Get position using a starting point
     print instr(3, s1, s2)  ' Output: 7  (instead of 1)
 
 +========================================================================================+
-|                                    262. (String) JOIN                                  |
+|                                    263. (String) JOIN                                  |
 +========================================================================================+
 
 JOIN words(), delimiters, string
@@ -11343,7 +11461,7 @@ Example
     PRINT s                       ' Output: etc/temp/1/filename.ext
 
 +========================================================================================+
-|                                   263. (String) LCASE                                  |
+|                                   264. (String) LCASE                                  |
 +========================================================================================+
 
 LCASE (s)
@@ -11358,7 +11476,7 @@ Example
     print lcase(s)      ' Output: abc
 
 +========================================================================================+
-|                                    264. (String) LEFT                                  |
+|                                    265. (String) LEFT                                  |
 +========================================================================================+
 
 LEFT (s [,n])
@@ -11373,7 +11491,7 @@ Example
     print LEFT(s, 3)   ' Output: abc
 
 +========================================================================================+
-|                                   265. (String) LEFTOF                                 |
+|                                   266. (String) LEFTOF                                 |
 +========================================================================================+
 
 LEFTOF (s1, s2)
@@ -11389,7 +11507,7 @@ Example
     print LEFTOF(s1, s2)      ' Output: abc
 
 +========================================================================================+
-|                                 266. (String) LEFTOFLAST                               |
+|                                 267. (String) LEFTOFLAST                               |
 +========================================================================================+
 
 LEFTOFLAST (s1, s2)
@@ -11405,7 +11523,7 @@ Example
     print LEFTOFLAST(s1, s2)      ' Output: abcdef
 
 +========================================================================================+
-|                                   267. (String) LOWER                                  |
+|                                   268. (String) LOWER                                  |
 +========================================================================================+
 
 LOWER (s)
@@ -11418,7 +11536,7 @@ Example:
     print lower(s)   ' Output: test-string
 
 +========================================================================================+
-|                                   268. (String) LTRIM                                  |
+|                                   269. (String) LTRIM                                  |
 +========================================================================================+
 
 LTRIM (s)
@@ -11437,7 +11555,7 @@ Example:
     ' -test    -
 
 +========================================================================================+
-|                                    269. (String) MID                                   |
+|                                    270. (String) MID                                   |
 +========================================================================================+
 
 MID (s, start [,length])
@@ -11453,7 +11571,7 @@ Example
     print MID(s, 3, 1)      ' Output: c
 
 +========================================================================================+
-|                                    270. (String) OCT                                   |
+|                                    271. (String) OCT                                   |
 +========================================================================================+
 
 OCT (x)
@@ -11467,7 +11585,7 @@ Example:
     print oct(16)       ' output: 20
 
 +========================================================================================+
-|                                  271. (String) REPLACE                                 |
+|                                  272. (String) REPLACE                                 |
 +========================================================================================+
 
 REPLACE (source, pos, str [, len])
@@ -11537,7 +11655,7 @@ Example 2:
     ? lset("Create TEXT");               colors(Replace("", 1, TEXT))
 
 +========================================================================================+
-|                                   272. (String) RIGHT                                  |
+|                                   273. (String) RIGHT                                  |
 +========================================================================================+
 
 RIGHT (s[,n])
@@ -11554,7 +11672,7 @@ Example
     print right(s,10)   ' Output: abcdef
 
 +========================================================================================+
-|                                  273. (String) RIGHTOF                                 |
+|                                  274. (String) RIGHTOF                                 |
 +========================================================================================+
 
 RIGHTOF (s1, s2)
@@ -11573,7 +11691,7 @@ Example
     print rightof(s, "xx")  ' Output: 
 
 +========================================================================================+
-|                                274. (String) RIGHTOFLAST                               |
+|                                275. (String) RIGHTOFLAST                               |
 +========================================================================================+
 
 RIGHTOFLAST (s1, s2)
@@ -11592,7 +11710,7 @@ Example
     print rightoflast(s, "xx")  ' Output:
 
 +========================================================================================+
-|                                   275. (String) RINSTR                                 |
+|                                   276. (String) RINSTR                                 |
 +========================================================================================+
 
 RINSTR ([start,] s1, s2)
@@ -11607,7 +11725,7 @@ Example
     print rinstr(6, s, "ab")   ' Output: 0
 
 +========================================================================================+
-|                                   276. (String) RTRIM                                  |
+|                                   277. (String) RTRIM                                  |
 +========================================================================================+
 
 RTRIM (s)
@@ -11622,7 +11740,7 @@ Example
     print ">" + rtrim(s) + "<"    ' Output: >  abcd<
 
 +========================================================================================+
-|                                   277. (String) SINPUT                                 |
+|                                   278. (String) SINPUT                                 |
 +========================================================================================+
 
 SINPUT src; var [, delim] [,var [, delim]] ...
@@ -11653,7 +11771,7 @@ Example 2: Split string with complex delimiters
     print vif, vcond, vdo                       ' Output: if    x>1    y
 
 +========================================================================================+
-|                                   278. (String) SPACE                                  |
+|                                   279. (String) SPACE                                  |
 +========================================================================================+
 
 SPACE (n)
@@ -11689,7 +11807,7 @@ Example 2: Insert string into a buffer
     Wend
 
 +========================================================================================+
-|                                    279. (String) SPC                                   |
+|                                    280. (String) SPC                                   |
 +========================================================================================+
 
 SPC (n)
@@ -11726,7 +11844,7 @@ Example 2: Insert string into a buffer
     Wend
 
 +========================================================================================+
-|                                   280. (String) SPLIT                                  |
+|                                   281. (String) SPLIT                                  |
 +========================================================================================+
 
 SPLIT string, delimiters, words() [, pairs] [USE expr]
@@ -11783,7 +11901,7 @@ Example 3: Using “USE expr”
     ' 2 [filename1.ext]
 
 +========================================================================================+
-|                                   281. (String) SPRINT                                 |
+|                                   282. (String) SPRINT                                 |
 +========================================================================================+
 
 SPRINT var; [USING...;] ...
@@ -11804,7 +11922,7 @@ Example
     print s1     ' Output: a + b = 1000 + 2000 = 3000
 
 +========================================================================================+
-|                                  282. (String) SQUEEZE                                 |
+|                                  283. (String) SQUEEZE                                 |
 +========================================================================================+
 
 SQUEEZE (s)
@@ -11822,7 +11940,7 @@ Example:
     ' [Hi there]
 
 +========================================================================================+
-|                                    283. (String) STR                                   |
+|                                    284. (String) STR                                   |
 +========================================================================================+
 
 STR (n)
@@ -11835,7 +11953,7 @@ Example
     s = str(n)
 
 +========================================================================================+
-|                                   284. (String) STRING                                 |
+|                                   285. (String) STRING                                 |
 +========================================================================================+
 
 STRING ( count [,start | s] )
@@ -11851,7 +11969,7 @@ Example
     print string(4, 65)         ' Output: AAAA
 
 +========================================================================================+
-|                                 285. (String) TRANSLATE                                |
+|                                 286. (String) TRANSLATE                                |
 +========================================================================================+
 
 TRANSLATE (source, what [, with])
@@ -11873,7 +11991,7 @@ Example 2: Remove
     print s1 + " -> "; s2          ' Output: ab_cd_ef -> ab__ef
 
 +========================================================================================+
-|                                    286. (String) TRIM                                  |
+|                                    287. (String) TRIM                                  |
 +========================================================================================+
 
 TRIM(s)
@@ -11892,7 +12010,7 @@ Example
     ' ->test<-
 
 +========================================================================================+
-|                                   287. (String) UCASE                                  |
+|                                   288. (String) UCASE                                  |
 +========================================================================================+
 
 UCASE (s)
@@ -11908,7 +12026,7 @@ Example
     print ucase(s)      ' Output: ABC
 
 +========================================================================================+
-|                                   288. (String) UPPER                                  |
+|                                   289. (String) UPPER                                  |
 +========================================================================================+
 
 UPPER (s)
@@ -11924,7 +12042,7 @@ Example
     print upper(s)      ' Output: ABC
 
 +========================================================================================+
-|                                    289. (String) VAL                                   |
+|                                    290. (String) VAL                                   |
 +========================================================================================+
 
 VAL (s)
@@ -11943,7 +12061,7 @@ Example
     print val("seven")      ' Output: 0
 
 +========================================================================================+
-|                                   290. (System) CHAIN                                  |
+|                                   291. (System) CHAIN                                  |
 +========================================================================================+
 
 CHAIN source
@@ -12061,7 +12179,7 @@ Example 6: Creating an eval function
     ? eval("Rad((45 * 3) - 20) * 2")
 
 +========================================================================================+
-|                                  291. (System) COMMAND                                 |
+|                                  292. (System) COMMAND                                 |
 +========================================================================================+
 
 COMMAND
@@ -12123,7 +12241,7 @@ When “test.bas” is:
     ' Third parameter : fileName 
 
 +========================================================================================+
-|                                    292. (System) CWD                                   |
+|                                    293. (System) CWD                                   |
 +========================================================================================+
 
 CWD
@@ -12135,7 +12253,7 @@ Example
     print cwd
 
 +========================================================================================+
-|                                   293. (System) DELAY                                  |
+|                                   294. (System) DELAY                                  |
 +========================================================================================+
 
 DELAY ms
@@ -12150,7 +12268,7 @@ Example
     print "done"
 
 +========================================================================================+
-|                                    294. (System) ENV                                   |
+|                                    295. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -12229,7 +12347,7 @@ General suggestions using Environment Variables
     may be different then “sb1” on some systems (Linux for example).
 
 +========================================================================================+
-|                                    295. (System) ENV                                   |
+|                                    296. (System) ENV                                   |
 +========================================================================================+
 
 ENV expr
@@ -12309,7 +12427,7 @@ General suggestions using Environment Variables
     may be different then “sb1” on some systems (Linux for example).
 
 +========================================================================================+
-|                                    296. (System) EXEC                                  |
+|                                    297. (System) EXEC                                  |
 +========================================================================================+
 
 EXEC file
@@ -12337,7 +12455,7 @@ Example 2: Execute with parameters
     exec(enclose("shutdown -h now"))
 
 +========================================================================================+
-|                                   297. (System) EXPORT                                 |
+|                                   298. (System) EXPORT                                 |
 +========================================================================================+
 
 EXPORT thing
@@ -12365,7 +12483,7 @@ Example: Create an unit
     end
 
 +========================================================================================+
-|                                    298. (System) FRE                                   |
+|                                    299. (System) FRE                                   |
 +========================================================================================+
 
 FRE (x)
@@ -12419,7 +12537,7 @@ Example
     print "Free RAM: "; fre(-12)
 
 +========================================================================================+
-|                                    299. (System) HOME                                  |
+|                                    300. (System) HOME                                  |
 +========================================================================================+
 
 HOME
@@ -12437,7 +12555,7 @@ Example 2: Change working directory to home directory
     print cwd
 
 +========================================================================================+
-|                                   300. (System) IMPORT                                 |
+|                                   301. (System) IMPORT                                 |
 +========================================================================================+
 
 IMPORT
@@ -12456,7 +12574,7 @@ Example 1: Import raylib module
     import raylib as r
 
 +========================================================================================+
-|                                  301. (System) INCLUDE                                 |
+|                                  302. (System) INCLUDE                                 |
 +========================================================================================+
 
 INCLUDE source-file.bas
@@ -12492,7 +12610,7 @@ Create second file wich will include part1.bas.
     ' 5 4 3 2 1
 
 +========================================================================================+
-|                                   302. (System) MAXINT                                 |
+|                                   303. (System) MAXINT                                 |
 +========================================================================================+
 
 MAXINT
@@ -12505,7 +12623,7 @@ Example
     print MAXINT        ' Output 9223372036854775807
 
 +========================================================================================+
-|                                    303. (System) NIL                                   |
+|                                    304. (System) NIL                                   |
 +========================================================================================+
 
 NIL
@@ -12526,7 +12644,7 @@ Example 2
     ' Output: b is not set
 
 +========================================================================================+
-|                                   304. (System) OPTION                                 |
+|                                   305. (System) OPTION                                 |
 +========================================================================================+
 
 OPTION keyword
@@ -12566,7 +12684,7 @@ Used to pass parameters to the run-time environment.
   -----------------------------------------------------------------------
 
 +========================================================================================+
-|                                   305. (System) PAUSE                                  |
+|                                   306. (System) PAUSE                                  |
 +========================================================================================+
 
 PAUSE [secs]
@@ -12604,7 +12722,7 @@ Example 2
     wend
 
 +========================================================================================+
-|                                     306. (System) PI                                   |
+|                                     307. (System) PI                                   |
 +========================================================================================+
 
 PI
@@ -12617,7 +12735,7 @@ Example
     print cos(2*PI)     ' Output: 1
 
 +========================================================================================+
-|                                  307. (System) PROGLINE                                |
+|                                  308. (System) PROGLINE                                |
 +========================================================================================+
 
 PROGLINE
@@ -12632,7 +12750,7 @@ Returns the current program line number.
     ' 2
 
 +========================================================================================+
-|                                 308. (System) RANDOMIZE                                |
+|                                 309. (System) RANDOMIZE                                |
 +========================================================================================+
 
 RANDOMIZE [int]
@@ -12647,7 +12765,7 @@ Example:
     randomize 15
 
 +========================================================================================+
-|                                    309. (System) RUN                                   |
+|                                    310. (System) RUN                                   |
 +========================================================================================+
 
 RUN cmdstr
@@ -12721,7 +12839,7 @@ Example 1: Querry whether Linux or Windows is used
     print "Windows: " + IS_WINDOWS
 
 +========================================================================================+
-|                                   310. (System) SBVER                                  |
+|                                   311. (System) SBVER                                  |
 +========================================================================================+
 
 SBVER
@@ -12733,7 +12851,7 @@ Example
     print SBVER    ' Output: 12.26 Console Unix_64 Tue, 06 Jun 2023
 
 +========================================================================================+
-|                                    311. (System) SELF                                  |
+|                                    312. (System) SELF                                  |
 +========================================================================================+
 
 SELF
@@ -12790,7 +12908,7 @@ Example 2: Simple Class
     A.Decrement(4) : print A.GetX()
 
 +========================================================================================+
-|                                  312. (System) STKDUMP                                 |
+|                                  313. (System) STKDUMP                                 |
 +========================================================================================+
 
 STKDUMP
@@ -12798,7 +12916,7 @@ STKDUMP
 Display internal execution stack.
 
 +========================================================================================+
-|                                   313. (System) TROFF                                  |
+|                                   314. (System) TROFF                                  |
 +========================================================================================+
 
 TROFF
@@ -12821,7 +12939,7 @@ Example
     <2><3><3><3><3><3><5>
 
 +========================================================================================+
-|                                    314. (System) TRON                                  |
+|                                    315. (System) TRON                                  |
 +========================================================================================+
 
 TRON
@@ -12840,7 +12958,7 @@ Example
     ' Output: <2><3><3><3><3><3>
 
 +========================================================================================+
-|                                    315. (System) UNIT                                  |
+|                                    316. (System) UNIT                                  |
 +========================================================================================+
 
 UNIT name

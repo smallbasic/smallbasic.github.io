@@ -2,7 +2,9 @@
 <blockquote>
 <p>f = FORM(formMap)</p>
 </blockquote>
-<p>Creates a form object <code>f</code> from a MAP variable <code>formMap</code>. Form object <code>f</code> gives access to the following GUI elements:</p>
+<p>Creates a form object <code>f</code> from a MAP variable
+<code>formMap</code>. Form object <code>f</code> gives access to the
+following GUI elements:</p>
 <ul>
 <li>Push button</li>
 <li>Label</li>
@@ -12,9 +14,12 @@
 <li>Single or multi-line text input</li>
 <li>Image button</li>
 </ul>
-<p>In listboxes and dropdown listboxes press and hold mouse button to scroll through the items. Alternatively arrow keys can be used. Press return or space for selecting the highlighted item.</p>
+<p>In listboxes and dropdown listboxes press and hold mouse button to
+scroll through the items. Alternatively arrow keys can be used. Press
+return or space for selecting the highlighted item.</p>
 <h3 id="the-form-object">The form object</h3>
-<p><code>f = form(formMAP)</code> provides access to the following sub-commands of the form object <code>f</code>:</p>
+<p><code>f = form(formMAP)</code> provides access to the following
+sub-commands of the form object <code>f</code>:</p>
 <table>
 <colgroup>
 <col style="width: 29%" />
@@ -37,11 +42,14 @@
 </tr>
 <tr class="odd">
 <td>refresh(n)</td>
-<td><code>n = 1</code> copy the UI state into the FORM input variables <code>f.inputs</code>. <code>n = 0</code> update the UI state using the FORM input variables <code>f.inputs</code>.</td>
+<td><code>n = 1</code> copy the UI state into the FORM input variables
+<code>f.inputs</code>. <code>n = 0</code> update the UI state using the
+FORM input variables <code>f.inputs</code>.</td>
 </tr>
 </tbody>
 </table>
-<p>The form object <code>f</code> may contain the following properties:</p>
+<p>The form object <code>f</code> may contain the following
+properties:</p>
 <table>
 <thead>
 <tr class="header">
@@ -65,8 +73,13 @@
 </tbody>
 </table>
 <h3 id="defining-the-input-fields">Defining the input fields</h3>
-<p><code>inputs</code> is an array of type MAP, each element may contain the following attributes:</p>
+<p><code>inputs</code> is an array of type MAP, each element may contain
+the following attributes:</p>
 <table>
+<colgroup>
+<col style="width: 53%" />
+<col style="width: 46%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Attribute</th>
@@ -124,7 +137,8 @@
 </tr>
 <tr class="odd">
 <td>isExternal</td>
-<td>Whether the <code>link</code> field opens in an external browser.</td>
+<td>Whether the <code>link</code> field opens in an external
+browser.</td>
 </tr>
 <tr class="even">
 <td>resizable</td>
@@ -191,12 +205,29 @@
 </tr>
 </tbody>
 </table>
-<h3 id="change-or-read-the-gui-elements">Change or read the GUI elements</h3>
-<p>Once the GUI elements are rendered on screen they can be changed for example to respond to user input. By calling <code>f.refresh(1)</code> the current state of the GUI elements will be copied to <code>f</code>. The content of <code>f</code> is rendered to screen, when calling <code>f.refresh(0)</code>. <code>f.inputs</code> is an array of MAP variables. The first element of that array is the first GUI element added to <code>formMap.inputs</code>. For example the color of the first element can be changed:</p>
+<h3 id="change-or-read-the-gui-elements">Change or read the GUI
+elements</h3>
+<p>Once the GUI elements are rendered on screen they can be changed for
+example to respond to user input. By calling <code>f.refresh(1)</code>
+the current state of the GUI elements will be copied to <code>f</code>.
+The content of <code>f</code> is rendered to screen, when calling
+<code>f.refresh(0)</code>. <code>f.inputs</code> is an array of MAP
+variables. The first element of that array is the first GUI element
+added to <code>formMap.inputs</code>. For example the color of the first
+element can be changed:</p>
 <pre><code>f.inputs[0].color = 12
 f.refresh(0)</code></pre>
-<p>To get a list of all available elements of the n-th GUI element, you can simply use <code>print f.inputs[n]</code>.</p>
-<h3 id="example-1-creating-a-push-button-using-callback-function">Example 1: Creating a push button using callback function</h3>
+<p>To get a list of all available elements of the n-th GUI element, you
+can simply use <code>print f.inputs[n]</code>.</p>
+<h3
+id="example-1-creating-a-push-button-using-callback-function">Example 1:
+Creating a push button using callback function</h3>
+<p>When using buttons in combination with callback functions, the
+<code>doEvents()</code> function is not necessary. Without this function
+the execution of the program will not be blocked. In the following
+example a number will be incremented in a while loop and printed to the
+screen. When the button is pressed, the callback function is executed
+and will block the program until the callback function ends.</p>
 <pre><code>button.type = &quot;button&quot;
 button.x = 120
 button.y = 120
@@ -209,17 +240,21 @@ formMAP.inputs &lt;&lt; button
 f = form(formMAP)
 
 while 1
-  f.doEvents()
+  ii++
+  locate 0,0: print ii
+  delay(100)  
 wend
 
 f.close()
 
 sub ButtonClicked()
-  at 0,0
+  locate 1,0
   Clicked++
   print &quot;Button clicked &quot; + Clicked + &quot; times&quot;
-end</code></pre>
-<h3 id="example-2-creating-a-push-button-using-doevents-result">Example 2: Creating a push button using doEvents result</h3>
+end
+</code></pre>
+<h3 id="example-2-creating-a-push-button-using-doevents-result">Example
+2: Creating a push button using doEvents result</h3>
 <pre><code>button.type = &quot;button&quot;
 button.x = 120
 button.y = 120
@@ -257,7 +292,8 @@ while 1
 wend
 
 f.close()</code></pre>
-<h3 id="example-4-creating-a-link-to-an-external-website">Example 4: Creating a link to an external website</h3>
+<h3 id="example-4-creating-a-link-to-an-external-website">Example 4:
+Creating a link to an external website</h3>
 <pre><code>l.type = &quot;link&quot;
 l.x = 120
 l.y = 120
@@ -302,7 +338,8 @@ while 1
 wend
 
 f.close()</code></pre>
-<h3 id="example-6-creating-a-dropdown-listbox">Example 6: Creating a dropdown listbox</h3>
+<h3 id="example-6-creating-a-dropdown-listbox">Example 6: Creating a
+dropdown listbox</h3>
 <pre><code>l.type = &quot;choice&quot;
 l.x = 120
 l.y = 120
@@ -328,7 +365,8 @@ while 1
 wend
 
 f.close()</code></pre>
-<h3 id="example-7-creating-a-text-input-field">Example 7: Creating a text input field</h3>
+<h3 id="example-7-creating-a-text-input-field">Example 7: Creating a
+text input field</h3>
 <pre><code>t.type = &quot;text&quot;
 t.x = 120
 t.y = 120
@@ -363,8 +401,10 @@ sub OKButtonClicked()
    at 0,0
    print f.inputs[0].value   &#39; Text field is the first element added to the formMAP
 end</code></pre>
-<h3 id="example-8-image-button-using-callback-function">Example 8: Image button using callback function</h3>
-<p>In this example a callback function will be used. If you want to use the doEvents result instead, have a look at example 2.</p>
+<h3 id="example-8-image-button-using-callback-function">Example 8: Image
+button using callback function</h3>
+<p>In this example a callback function will be used. If you want to use
+the doEvents result instead, have a look at example 2.</p>
 <pre><code>&#39; Create a simple button and save it as png
 &#39; If you have already an image for you button,
 &#39; this part is not necessary.

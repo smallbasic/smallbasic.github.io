@@ -73,7 +73,11 @@
       <a href="/pages/date.html">Date</a>
     </p>
   </div>
-<p>Returns a formatted date string. The input date can be given as a date-string returned by DATE, as the integers <code>d</code> for day, <code>m</code> for month and <code>y</code> for year, or as a julian date. <code>format</code> is a string specifying the format of the date:</p>
+<p>Returns a formatted date string. The input date can be given as a
+date-string returned by DATE, as the integers <code>d</code> for day,
+<code>m</code> for month and <code>y</code> for year, or as a julian
+date. <code>format</code> is a string specifying the format of the
+date:</p>
 <table>
 <thead>
 <tr class="header">
@@ -126,10 +130,11 @@
 </table>
 <p>See also DATE and DATEDMY.</p>
 <h3 id="example">Example</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">DATEFMT</span>(<span class="st">&quot;ddd dd, mm/yy&quot;</span>, <span class="dv">23</span>, <span class="dv">11</span>, <span class="dv">2001</span>)            <span class="co">&#39; Output: Fri 23, 11/01</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">DATEFMT</span>(<span class="st">&quot;mm.dd.yy&quot;</span>     , <span class="st">&quot;23/11/2001&quot;</span>)            <span class="co">&#39; Output: 11.23.01</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">DATEFMT</span>(<span class="st">&quot;dd.mm.yyyy&quot;</span>   , DATE)                    <span class="co">&#39; Output: 19.10.2023</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">PRINT</span> <span class="fu">DATEFMT</span>(<span class="st">&quot;dddd&quot;</span>         , <span class="fu">JULIAN</span>(<span class="st">&quot;23/11/2001&quot;</span>))    <span class="co">&#39; Output: Friday</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">DATEFMT</span>(<span class="st">&quot;ddd dd, mm/yy&quot;</span>, <span class="dv">23</span>, <span class="dv">11</span>, <span class="dv">2001</span>)            <span class="co">&#39; Output: Fri 23, 11/01</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">DATEFMT</span>(<span class="st">&quot;mm.dd.yy&quot;</span>     , <span class="st">&quot;23/11/2001&quot;</span>)            <span class="co">&#39; Output: 11.23.01</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">DATEFMT</span>(<span class="st">&quot;dd.mm.yyyy&quot;</span>   , DATE)                    <span class="co">&#39; Output: 19.10.2023</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> <span class="fu">DATEFMT</span>(<span class="st">&quot;dddd&quot;</span>         , <span class="fu">JULIAN</span>(<span class="st">&quot;23/11/2001&quot;</span>))    <span class="co">&#39; Output: Friday</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Date</div>
     <div class="linklist">
@@ -168,7 +173,7 @@ DATEFMT by submitting a <a href="https://github.com/smallbasic/smallbasic.github
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 2.9.2.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
       | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
     </div>
   </div>
