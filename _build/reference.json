@@ -1483,6 +1483,13 @@
             "type": "function"
         },
         {
+            "help": "Transpose of a vector or a 2D matrix.",
+            "keyword": "TRANSPOSE",
+            "nodeID": "1802",
+            "signature": "TRANSPOSE (A)",
+            "type": "function"
+        },
+        {
             "help": "Returns the value of e raised to the power of x.",
             "keyword": "EXP",
             "nodeID": "730",
