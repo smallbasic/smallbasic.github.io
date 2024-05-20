@@ -23,7 +23,7 @@ A simple SmallBASIC version is available at [Github](https://github.com/smallbas
 The raylib plugin is included in the release version of SmallBASIC. SmallBASIC should find the plugin automatically.
 If you have problems loading the plugin, you can copy the library (libraylib.dll or libraylib.so) to the folder of your BASIC file.
 Additionally you need the file [raylibc.bas](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/raylibc.bas).
-If it is not found automatically, please copy it the folder of your BASIC file, too.
+If it is not found automatically, please copy it to the folder of your BASIC file, too.
 You have also the option to give the full path to the plugin or to raylibc.bas with the `ìmport` command.
 
 Since raylib uses its own window management, you cannot use it together with the SDL version of SmallBASIC (sbasicg.exe or sbasicg).
