@@ -19,6 +19,7 @@
 - [FLTK](/pages/fltk.html)
 - [Setup external editors](/pages/language_support.html)
 - [Distribute your program](/pages/distributiontool.html)
+- [SmallBASIC web server](/pages/sbasicw.html)
 
 ## Plugins
 

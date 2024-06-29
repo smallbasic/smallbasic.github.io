@@ -9,11 +9,13 @@ The SDL and FLTK versions of SmallBASIC come with an integrated editor. If you a
 Contents
 :::
 
-#. [Visual Studio Code](/pages/language_support_vscode.html)
+
 #. [Atom](/pages/language_support_atom.html)
 #. [Geany](/pages/language_support_geany.html)
-#. [Sublime Text](/pages/language_support_sublimetext.html)
-#. [KDE Kate](/pages/language_support_kdekate.html)
 #. [jEdit](/pages/language_support_jedit.html)
+#. [KDE Kate](/pages/language_support_kdekate.html)
 #. [Micro](/pages/language_support_micro.html)
+#. [nano](/pages/language_support_nano.html)
+#. [Sublime Text](/pages/language_support_sublimetext.html)
+#. [Visual Studio Code](/pages/language_support_vscode.html)
 :::
