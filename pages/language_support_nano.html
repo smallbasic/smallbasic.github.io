@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SmallBASIC | language_support</title>
+  <title>SmallBASIC | language_support_nano</title>
   <meta name="description" content="SmallBASIC | One more basic">
-  <link rel="canonical" href="/language_support.html">
-  <link rel="keywords" href="language_support">
+  <link rel="canonical" href="/language_support_nano.html">
+  <link rel="keywords" href="language_support_nano">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
   <script src="/clipboard.js"></script>
@@ -58,38 +58,61 @@
       </div>
       <div class="tabsRight">
         <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/language_support.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/language_support.markdown">View history</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/language_support_nano.markdown">View source</a></li>
+          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/language_support_nano.markdown">View history</a></li>
         </ul>
       </div>
     </div>
 <div class="article">
-<h1 id="language-support">Language Support</h1>
+<h1 id="smallbasic-in-nano">SmallBASIC in nano</h1>
 <blockquote>
-<p>Using your favorite text editor</p>
+<p>Using nano</p>
 </blockquote>
-<p>The SDL and FLTK versions of SmallBASIC come with an integrated
-editor. If you are more familiar with Visual Studio Code, Atom, Sublime
-Text, KDE Kate or Geany, you will find on the following pages
-instructions on how to setup syntax highlighting, code snippets and
-program execution directly from these editors.</p>
-<div class="contentsPanel">
-<div class="contentsHeader">
-<p>Contents</p>
-</div>
-<ol>
-<li><a href="/pages/language_support_atom.html">Atom</a></li>
-<li><a href="/pages/language_support_geany.html">Geany</a></li>
-<li><a href="/pages/language_support_jedit.html">jEdit</a></li>
-<li><a href="/pages/language_support_kdekate.html">KDE Kate</a></li>
-<li><a href="/pages/language_support_micro.html">Micro</a></li>
-<li><a href="/pages/language_support_nano.html">nano</a></li>
-<li><a href="/pages/language_support_sublimetext.html">Sublime
-Text</a></li>
-<li><a href="/pages/language_support_vscode.html">Visual Studio
-Code</a></li>
+<p><em>“GNU nano is a text editor for Unix-like computing systems or
+operating environments using a command line interface.” (<a
+href="https://en.wikipedia.org/wiki/GNU_nano">Wikipedia</a>)</em></p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/Joe7M/smallbasic.nano.syntaxcoloring/main/screenshot.png"
+alt="Example" />
+<figcaption aria-hidden="true">Example</figcaption>
+</figure>
+<h2 id="installation">Installation</h2>
+<ul>
+<li>Download the file <code>smallbasic.nanorc</code> from <a
+href="https://github.com/Joe7M/smallbasic.nano.syntaxcoloring">github</a></li>
+<li>Create the folder <code>~/.config/nano/syntax</code></li>
+<li>Copy the file “smallbasic.nanorc” into that folder</li>
+<li>Edit the nano configuration file -&gt;
+<code>nano ~/.config/nano/nanorc</code></li>
+<li>In the section <code>## === Syntax coloring ===</code> add
+<code>include "~/.config/nano/syntax/*.nanorc"</code></li>
+</ul>
+<h2 id="tweaking-nano">Tweaking nano</h2>
+<p>Depending on your Linux distribution the default nano settings are a
+little bit disappointing. But fortunately you can tweak nano quite a bit
+by activating some settings in <code>nanorc</code>. Just remove the
+comments for:</p>
+<ol type="1">
+<li><code>set autoindent</code></li>
+<li><code>set indicator</code></li>
+<li><code>set linenumbers</code></li>
+<li><code>set minibar</code></li>
+<li><code>set mouse</code></li>
+<li>Remove the comments in the section
+<code>### Paint the interface elements of nano</code> to make nano
+colorful.</li>
+<li><code>include "/usr/share/nano/*.nanorc"</code></li>
+<li>To get more common keyboard shortcuts like CTRL+C for copy uncomment
+all the commands in the section
+<code>## If you would like nano to have keybindings that are more "usual"</code></li>
 </ol>
-</div>
+<h2 id="a-useful-hint">A useful hint</h2>
+<p>If you use nano in a console you can suspend it by pressing
+<code>CTRL-Z</code>. After pressing <code>CTRL-Z</code> you are on the
+console and you can i.e. start the console version of SmallBASIC to test
+your program. After testing you can switch back to the suspended nano by
+executing the command <code>fg</code> in the console.</p>
 </div>
     <div class="pagefooter">
       This page was last edited on Sat, 29 Jun 2024 18:58:02 +0200
