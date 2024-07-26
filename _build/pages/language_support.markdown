@@ -11,6 +11,7 @@ Contents
 
 
 #. [Atom](/pages/language_support_atom.html)
+#. [ecode](/pages/language_support_ecode.html)
 #. [Geany](/pages/language_support_geany.html)
 #. [jEdit](/pages/language_support_jedit.html)
 #. [KDE Kate](/pages/language_support_kdekate.html)
