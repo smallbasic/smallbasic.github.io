@@ -140,7 +140,7 @@ The Retrogamecoding and Basicprogramming Forum is scheduled for closure on 4th o
 
 [Read more](/posts/2018-09-13.html)
 
-![](images/lsystem.png "Fun with lsystems")
+![](../images/lsystem.png "Fun with lsystems")
 
 [Samples](/pages/samples.html)
 
