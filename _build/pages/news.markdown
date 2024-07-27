@@ -6,7 +6,7 @@
 | July 18, 2024
 :::
 
-For details see: [Articel Language Support](https://smallbasic.github.io/pages/language_support.html)
+For details see: [Article Language Support](https://smallbasic.github.io/pages/language_support.html)
 
 ### Tutorial for SmallBASIC web server
 
@@ -14,7 +14,7 @@ For details see: [Articel Language Support](https://smallbasic.github.io/pages/l
 | June 30, 2024
 :::
 
-For details see: [Articel SBASICW](https://smallbasic.github.io/pages/sbasicw.html)
+For details see: [Article SBASICW](https://smallbasic.github.io/pages/sbasicw.html)
 
 
 ### Syntax highlighting for nano editor
@@ -23,7 +23,7 @@ For details see: [Articel SBASICW](https://smallbasic.github.io/pages/sbasicw.ht
 | June 30, 2024
 :::
 
-For details see: [Articel Language Support](https://smallbasic.github.io/pages/language_support.html)
+For details see: [Article Language Support](https://smallbasic.github.io/pages/language_support.html)
 
 ### SmallBASIC version 12.27 has been released for Windows, Linux and web browser
 
