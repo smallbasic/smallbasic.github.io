@@ -39,7 +39,7 @@ Just click on [Start online](/online/sbasic.html) to begin coding.
 
 SmallBASIC comes in three different flavors for the desktop. The SDL version offers a simple but efficient IDE and is perfect for working with graphics. The FLTK version has a great IDE. The console version doesn't offer an IDE and is text-only but works perfect with plugins like raylib or nuklear ([Downloads](/pages/download.html)).
 
-No matter which SmallBASIC version you prefer, external editors like Visual Studio Code, Geany, Sublime Text or KDE Kate can be setup for syntax highlighting or code execution ([Setup external editors](/language_support.html)).
+No matter which SmallBASIC version you prefer, external editors like Visual Studio Code, Geany, Sublime Text or KDE Kate can be setup for syntax highlighting or code execution ([Setup external editors](/pages/language_support.html)).
 
 Instructions on how to use the editor in the SDL and Android version can be found in the article [Android](/pages/android.html)
 
