@@ -28,6 +28,7 @@
 - [Clipboard: Copy and paste](/pages/plugins_clipboard.html)
 - [GIFenc: create animated GIFs](/pages/plugins_gifenc.html)
 - [PiGPIO: Use the GPIO pins of a Raspberry Pi](/pages/plugins_pigpio.html)
+- [IOIO: Drive hardware from Android](/pages/plugins_ioio.html)
 
 ## Units
 
