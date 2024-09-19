@@ -21,13 +21,14 @@ If an existing file is opened for output, the file will be deleted and an empty 
 The files are always opened as shared. You can use FREEFILE to get the next unused file-handle. Use PRINT,
 INPUT, BGETC and BPUTC to read from or write to a file or device.
 
-#### Open a COM port (RS232)
+### Open a COM port (RS232)
 
 You can open a connection to a device using the serial port with `open "COMn:speed" AS #1`, where `n` is the number of the port
 and `speed` is the baud rate. To open the first serial port with a baud rate of 19200 use: `open "COM1:19200" as #1`. In Windows
-COM1 and in Linux /dev/ttys1 would be opened.
+`COM1` and in Linux `/dev/ttys1` would be opened. Instead of `COMn` you can open in Linux every port starting with `/dev/tty`, for
+example `/dev/ttyUSB1` or `/dev/ttyACM1`.
 
-#### Open a TCP/IP socket
+### Open a TCP/IP socket
 
 You can open a connection to a device using a TCP/IP socket with `open "SOCL:IP:PORT" AS #1`, where `IP` is a valid host name or IP address
 and `port` is an open port.
@@ -105,7 +106,7 @@ close #1
 ### Example 4: Open a COM port (RS232)
 
 ```
-open "COM1:19200" as #1    ' Open COM1  with 19200 bauds
+open "COM1:19200" as #1     ' Open COM1  with 19200 bauds
 
 while (!eof(1))             ' Loop until connection is closed
 
@@ -113,6 +114,25 @@ while (!eof(1))             ' Loop until connection is closed
 
     if(l) then              ' if data is available
         s = INPUT(l, 1)     ' get all data
+        print s
+    endif
+
+wend
+
+close #1
+```
+
+```
+' Works only in Linux
+
+open "/dev/ttyACM1:19200" as #1     ' Open ttyACM1 with 19200 bauds
+
+while (!eof(1))                     ' Loop until connection is closed
+
+    l = lof(1)                      ' Querry how much data is in the queue
+
+    if(l) then                      ' if data is available
+        s = INPUT(l, 1)             ' get all data
         print s
     endif
 
