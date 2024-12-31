@@ -1,15 +1,9 @@
-
 '''HANGMAN.BAS by Eric Toft 
 ''
 ''Hang.dat file - just create a file called hang.dat
 ''Put one Phrase on each line.  You can use the program 
 ''to add more phrases, or use an external editor.
 ''
-''THE BAROSSA VALLEY
-''THE ADELAIDE HILLS
-''MT REMARKABLE
-''MCLEODS DAUGHTERS
-''FREELING REDLEGS
 
 LABEL START:
 CLS
@@ -49,7 +43,7 @@ END
 
 LABEL aPLAY:
   ''first-randomly pick a phrase
-  idx = CINT(UBOUND(FRAZE) * RND)
+  idx = INT(UBOUND(FRAZE) * RND)
   PHRASE$ = FRAZE(idx)
   PLAYGAME PHRASE$
   PRINT "Pause: return to continue                    "
@@ -95,8 +89,8 @@ FUNC COLLECTPEN
         adder = 13
         yy = 19
       FI
-      ch = 65 + (adder + CINT(xx / 15))
-      line cint(xx/15)*15,yy,(cint(xx/15)*15)+10,yy
+      ch = 65 + (adder + INT(xx / 15))
+      line int(xx/15)*15,yy,(int(xx/15)*15)+10,yy
       K$=string(1,ch)
     FI
     PEN OFF
@@ -217,8 +211,3 @@ LABEL hang:
 RETURN
 
 LABEL ENDIT:
-
-
-
-
-'
