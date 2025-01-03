@@ -1,4 +1,3 @@
-
 'Hangman v2.bas SmallBASIC 0.12.0 2015-11-20 MGA/B+ modified from:
 '''HANGMAN.BAS by Eric Toft 
 ''
@@ -13,6 +12,7 @@
 window 0,200,200,0    '<============== helps fit any screen
 cls
 randomize ticks
+
 if HangFile<>"" then
   tload Hangfile, fraze
   ct = ubound(fraze) 
@@ -85,8 +85,8 @@ FUNC COLLECTPEN
         adder = 13
         yy = 19
       FI
-      ch = 65 + (adder + CINT(xx / 15))
-      line cint(xx/15)*15,yy,(cint(xx/15)*15)+10,yy
+      ch = 65 + (adder + INT(xx / 15))
+      line int(xx/15)*15,yy,(int(xx/15)*15)+10,yy
       K$=string(1,ch)
     FI
     PEN OFF
