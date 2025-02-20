@@ -1,29 +1,5 @@
-Language reference
-==================
-
-BASIC is a very simple language and it is a perfect tool for calculations or utilities.
-Its name stands for (B)eginners (A)ll-purpose (S)ymbolic (I)nstruction (c)ode. It was developed by John
-Kemeny and Thomas Kurtz at Dartmouth College during the middle of 1960, and was one of the most
-popular languages for several decades.
-
-::: contentsPanel ::
-::: contentsHeader ::
-Contents
-:::
-
-#. [Console](/pages/console.html)
-#. [Data](/pages/data.html)
-#. [Date](/pages/date.html)
-#. [File](/pages/file.html)
-#. [Graphics](/pages/graphics.html)
-#. [Language](/pages/language.html)
-#. [Math](/pages/math.html)
-#. [String](/pages/string.html)
-#. [System](/pages/system.html)
-:::
-
-How to read the language reference syntax
------------------------------------------
+Language Reference Syntax
+=========================
 
 + Everything written inside of [] characters are optional values.
 + Everything written inside of { characters means you must select one of them.
@@ -56,18 +32,3 @@ but you must separate it with ',' or ';'. You can also repeat the last syntax mo
 ~~~
 FOO var [{,|;} var2 [...]]
 ~~~
-
-Searching this site
-----------------
-
-You can find:
-
-- Escape codes under Console or under Articles "Escape Codes"
-- ARRAY under Data
-- ISMAP under Data
-- ISREF under Data
-- STEP under Graphics
-- aspect under Graphics
-- FILLED under Graphics
-- COLOR under Graphics
-

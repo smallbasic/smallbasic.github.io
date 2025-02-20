@@ -13,77 +13,44 @@
   <script src="/clipboard.js"></script>
 </head>
   <body>
+<button onclick="topFunction()" id="BackToTopBtn" title="Go to top">&#11205;</button>
+<script src="/backtotop.js"></script>
 <div class="wrapAll clearfix">
-  <div class="sidebar">
+  <nav class="navigation">
     <div class="logo">
-      <a href="/"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+      <a href="/"><img src='/images/sb-logo.png' alt="logo"></a>
     </div>
-    <div class="navigation">
-      <h4>SmallBASIC</h4>
-      <ul>
-        <li><a href="/">Main page</a></li>
-        <li><a href="/pages/download.html">Download</a></li>
-        <li><a href="/pages/reference.html">Language reference</a></li>
-        <li><a href="/pages/samples.html">Code library</a></li>
-      </ul>
-      <hr class="menuSeparator"/>
-      <ul>
-        <li><a href="/pages/news.html">News</a></li>
-        <li><a href="/pages/articles.html">Articles</a></li>
-        <li><a href="/pages/community.html">Community</a></li>
-        <li><a href="/pages/changelog.html">Changelog</a></li>
-        <li><a href="/pages/screenshots.html">Screenshots</a></li>
-        <li><a href="/pages/links.html">Links</a></li>
-      </ul>
+    <div class="navlinks">
+      <a href="/pages/download.html">Download</a>
+      <a href="/pages/news.html">News</a>
+      <a href="/pages/community.html">Community</a>
+      <a href="/pages/articles.html">Resources</a>
+      <a href="/pages/reference.html">Language Reference</a>
+      <a href="/pages/guide.html">SmallBASIC Manual</a>
     </div>
-  </div>
+  </nav>
   <div class="mainsection">
     <div class="tabs clearfix">
-      <div class="tabsLeft">
-        <ul>
-          <li><a href="#" class="active">Article</a></li>
-          <li><a href="https://www.syntaxbomb.com/smallbasic">Discuss</a></li>
-        </ul>
-      </div>
-      <div id="simpleSearch">
-        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
-              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
-          <div id="submitSearch">
-            <button type="submit">&nbsp;</button>
-            <input type="hidden" class="js-site-search-type-field" name="type">
-            <input type="hidden" name="utf8" value="✓">
-            <input type="hidden" name="l" value="Visual Basic">
-            <input type="text" name="q" placeholder="Search" id="searchInput">
-          </div>
-        </form>
-      </div>
       <div class="tabsRight">
-        <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/index.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/index.markdown">View history</a></li>
-        </ul>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/index.markdown">Edit</a>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/index.markdown">History</a>
       </div>
     </div>
 <div class="article">
-<h1 id="welcome-to-smallbasic">Welcome to SmallBASIC</h1>
+<h1 id="smallbasic">SmallBASIC</h1>
 <blockquote>
-<p>one more basic</p>
-</blockquote>
 <p>SmallBASIC is a fast and easy to learn BASIC language interpreter
 ideal for everyday calculations, scripts and prototypes. SmallBASIC
 includes trigonometric, matrices and algebra functions, a built in IDE,
 a powerful string library, system, sound, graphic commands and
 communication via serial or sockets along with structured programming
 syntax.</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example for using functions in SmallBASIC</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s = AddStrings(<span class="st">&quot;My&quot;</span>, <span class="st">&quot;String&quot;</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> s</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>AddStrings(a, b)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> a + b</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+</blockquote>
+<p><img src="../images/sb_logo_text.png"
+style="display: block; margin-left: auto; margin-right: auto; padding-bottom:2em;" /></p>
+<p><a href="pages/download.html" class="LinkIndexPage">Download</a> <a
+href="https://smallbasic.github.io/online/sbasic.html"
+class="LinkIndexPage">Try online</a></p>
 <h2 id="programming-made-easy-for-all">Programming Made Easy for
 All</h2>
 <p>SmallBASIC is available for various operating systems, including
@@ -91,9 +58,11 @@ Windows, Linux, and Android. You can even build it from source to run on
 many other POSIX-compliant systems, such as Raspberry Pi OS for the
 Raspberry Pi. With its built-in Integrated Development Environment
 (IDE), you can write programs on your Android-powered tablet or mobile
-phone and run them instantly. If you want to get started, you can
-download SmallBASIC from our (<a
-href="/pages/download.html">Downloads</a>) page.</p>
+phone and run them instantly.</p>
+<p><img src="../images/os_logos_devices.png"
+style="display: block; margin-left: auto; margin-right: auto; padding-top:1em; padding-bottom:1em;" /></p>
+<p><a href="pages/screenshots.html"
+class="LinkIndexPage">Screenshots</a></p>
 <p>SmallBASIC makes it easy to bundle your program with all the
 necessary libraries, creating executable files for Windows (exe-files)
 or Linux (AppImage). For Android, you can create a signed package (pkg)
@@ -112,6 +81,8 @@ with graphics. The FLTK version has a great IDE. The console version
 doesn’t offer an IDE and is text-only but works perfect with plugins
 like raylib or nuklear (<a
 href="/pages/download.html">Downloads</a>).</p>
+<p><img src="../images/sb_versions.png"
+style="display: block; margin-left: auto; margin-right: auto; padding-top:1em; padding-bottom:1em;" /></p>
 <p>No matter which SmallBASIC version you prefer, external editors like
 Visual Studio Code, Geany, Sublime Text or KDE Kate can be setup for
 syntax highlighting or code execution (<a
@@ -123,17 +94,17 @@ href="/pages/android.html">Android</a></p>
 <p>Units are sets of functions, procedures and constants bundled in a
 BASIC-library and can be imported in your program. Units use their own
 namespace and therefore are separated from your program.</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example for importing the CSS color-name unit</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">Import</span> crgb <span class="kw">as</span> c</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> c.Black, c.Tomato</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot; Standard CSS Tomato background color &quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> c.Black, c.LightSteelBlue</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot; Standard CSS LightSteelBlue background color &quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">400</span> <span class="fu">COLOR</span> c.DeepPink filled</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example for importing the CSS color-name unit</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">Import</span> crgb <span class="kw">as</span> c</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> c.Black, c.Tomato</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot; Standard CSS Tomato background color &quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Color</span> c.Black, c.LightSteelBlue</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot; Standard CSS LightSteelBlue background color &quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">400</span> <span class="fu">COLOR</span> c.DeepPink filled</span></code></pre></div>
 <h2 id="plugins">Plugins</h2>
 <p>Plugins are libraries written in C which extent the functionality of
 SmallBASIC. SmallBASIC offers an API to write your own plugins. The
@@ -142,25 +113,25 @@ following plugins are part of the release version of SmallBASIC: raylib
 gifencoder and WebSockets. You can also import a plugin for the
 Raspberry Pi to use the GPIO ports and some additional hardware like
 displays or temperature sensors.</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example how to use raylib to open a window and print text.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> raylib <span class="kw">as</span> rl</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> raylibc <span class="kw">as</span> c</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenWidth = <span class="dv">800</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenHeight = <span class="dv">450</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>rl.InitWindow(screenWidth, screenHeight, <span class="st">&quot;raylib [core] example - basic window&quot;</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>rl.SetTargetFPS(<span class="dv">60</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span>(!rl.WindowShouldClose())</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    rl.BeginDrawing()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        rl.ClearBackground(c.RAYWHITE)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        rl.DrawText(<span class="st">&quot;Congrats! You created your first window!&quot;</span>, <span class="dv">190</span>, <span class="dv">200</span>, <span class="dv">20</span>, c.LIGHTGRAY)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    rl.EndDrawing()</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>rl.CloseWindow()</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Example how to use raylib to open a window and print text.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> raylib <span class="kw">as</span> rl</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> raylibc <span class="kw">as</span> c</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenWidth = <span class="dv">800</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenHeight = <span class="dv">450</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>rl.InitWindow(screenWidth, screenHeight, <span class="st">&quot;raylib [core] example - basic window&quot;</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>rl.SetTargetFPS(<span class="dv">60</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span>(!rl.WindowShouldClose())</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    rl.BeginDrawing()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        rl.ClearBackground(c.RAYWHITE)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        rl.DrawText(<span class="st">&quot;Congrats! You created your first window!&quot;</span>, <span class="dv">190</span>, <span class="dv">200</span>, <span class="dv">20</span>, c.LIGHTGRAY)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    rl.EndDrawing()</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>rl.CloseWindow()</span></code></pre></div>
 <h2 id="more-information">More information</h2>
 <p>Read more in the short <a href="/pages/guide.html">user guide</a> or
 in the <a href="/pages/vade.html">SmallBASIC handbook</a>. See the
@@ -173,8 +144,7 @@ articles in the <a href="/pages/articles.html">article section</a>.</p>
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
-      | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.12.1</a>
     </div>
   </div>
 </div>

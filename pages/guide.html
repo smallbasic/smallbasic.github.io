@@ -13,59 +13,31 @@
   <script src="/clipboard.js"></script>
 </head>
   <body>
+<button onclick="topFunction()" id="BackToTopBtn" title="Go to top">&#11205;</button>
+<script src="/backtotop.js"></script>
 <div class="wrapAll clearfix">
-  <div class="sidebar">
+  <nav class="navigation">
     <div class="logo">
-      <a href="/"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+      <a href="/"><img src='/images/sb-logo.png' alt="logo"></a>
     </div>
-    <div class="navigation">
-      <h4>SmallBASIC</h4>
-      <ul>
-        <li><a href="/">Main page</a></li>
-        <li><a href="/pages/download.html">Download</a></li>
-        <li><a href="/pages/reference.html">Language reference</a></li>
-        <li><a href="/pages/samples.html">Code library</a></li>
-      </ul>
-      <hr class="menuSeparator"/>
-      <ul>
-        <li><a href="/pages/news.html">News</a></li>
-        <li><a href="/pages/articles.html">Articles</a></li>
-        <li><a href="/pages/community.html">Community</a></li>
-        <li><a href="/pages/changelog.html">Changelog</a></li>
-        <li><a href="/pages/screenshots.html">Screenshots</a></li>
-        <li><a href="/pages/links.html">Links</a></li>
-      </ul>
+    <div class="navlinks">
+      <a href="/pages/download.html">Download</a>
+      <a href="/pages/news.html">News</a>
+      <a href="/pages/community.html">Community</a>
+      <a href="/pages/articles.html">Resources</a>
+      <a href="/pages/reference.html">Language Reference</a>
+      <a href="/pages/guide.html">SmallBASIC Manual</a>
     </div>
-  </div>
+  </nav>
   <div class="mainsection">
     <div class="tabs clearfix">
-      <div class="tabsLeft">
-        <ul>
-          <li><a href="#" class="active">Article</a></li>
-          <li><a href="https://www.syntaxbomb.com/smallbasic">Discuss</a></li>
-        </ul>
-      </div>
-      <div id="simpleSearch">
-        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
-              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
-          <div id="submitSearch">
-            <button type="submit">&nbsp;</button>
-            <input type="hidden" class="js-site-search-type-field" name="type">
-            <input type="hidden" name="utf8" value="✓">
-            <input type="hidden" name="l" value="Visual Basic">
-            <input type="text" name="q" placeholder="Search" id="searchInput">
-          </div>
-        </form>
-      </div>
       <div class="tabsRight">
-        <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/guide.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/guide.markdown">View history</a></li>
-        </ul>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/guide.markdown">Edit</a>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/guide.markdown">History</a>
       </div>
     </div>
 <div class="article">
-<h1 id="user-guide">User guide</h1>
+<h1 id="smallbasic-user-guide">SmallBASIC User Guide</h1>
 <blockquote>
 <p>SmallBASIC is a fast and easy to learn BASIC language interpreter
 ideal for everyday calculations, scripts and prototypes. SmallBASIC
@@ -78,736 +50,1375 @@ with structured programming syntax.</p>
 <p>Contents</p>
 </div>
 <ul>
-<li><a href="#ConstantsVariables">Constants and Variables</a></li>
-<li><a href="#Variable">Variable names</a></li>
-<li><a href="#About">About the dollar-symbol</a></li>
+<li><a href="#SourceCodeFormat">Source Code Format</a></li>
+<li><a href="#Comments">Comments</a></li>
+<li><a href="#NumberAndStrings">Numbers and Srings</a>
+<ul>
 <li><a href="#Integers">Integers</a></li>
 <li><a href="#Reals">Reals</a></li>
-<li><a href="#Strings">Strings</a></li>
+<li><a href="#Strings">String Literals</a></li>
+</ul></li>
+<li><a href="#ConstantsVariables">Variables and Constants</a>
+<ul>
+<li><a href="#Variable">Variable names</a></li>
+<li><a href="#AssigningValuesToVariables">Assigning Values to
+Variables</a></li>
 <li><a href="#Constants">Constants</a></li>
-<li><a href="#System">System Variables</a></li>
-<li><a href="#Operators">Operators</a></li>
-<li><a href="#Special">Special Characters</a></li>
-<li><a href="#Statement1">Statement OPTION keyword</a></li>
-<li><a href="#Run">Run-Time</a></li>
-<li><a href="#Statement2">Statement OPTION BASE</a></li>
-<li><a href="#Statement3">Statement OPTION MATCH</a></li>
-<li><a href="#Compile">Compile-Time</a></li>
-<li><a href="#Statement4">Statement OPTION PREDEF</a></li>
-<li><a href="#Meta">Meta-commands</a></li>
-<li><a href="#operator">The operator LIKE</a></li>
-<li><a href="#Single">Single-line Functions</a></li>
-<li><a href="#Units">Units</a></li>
-<li><a href="#pseudo">The pseudo-operators</a></li>
+</ul></li>
+<li><a href="#Arrays%7D">Arrays</a>
+<ul>
+<li><a href="#CreatingArrays">Creating Arrays</a></li>
+<li><a href="#AccessingElementsOfAnArray">Accessing Elements of an
+Array</a></li>
+<li><a href="#NestedArrays">Nested Arrays</a></li>
+<li><a href="#ArrayOperations">Array Operations</a></li>
+</ul></li>
+<li><a href="#Matrices">Matrices</a>
+<ul>
+<li><a href="#Creating2DMatrices">Creating 2D Matrices</a></li>
+<li><a href="#AccessingElementsOfA2DMatrix">Accessing Elements of a 2D
+Matrix</a></li>
+<li><a href="#MatrixOperations">2D Matrix Operations</a></li>
+<li><a href="#HigherDimensionalMatrices">Higher Dimensional
+Matrices</a></li>
+<li><a href="#RowAndColumnVectors">Row and Column Vectors</a></li>
+</ul></li>
+<li><a href="#Maps">Maps</a>
+<ul>
+<li><a href="#CreatingAMapVariable">Creating a Map Variable</a></li>
+<li><a href="#AccessingElementsOfAMapVariable">Accessing Elements of a
+Map Variable</a></li>
+<li><a href="#AddKeyValuePairs">Add Key-Value Pairs</a></li>
+<li><a href="#KeyValuePairsWithReferences">Key-Value Pairs with
+References</a></li>
+</ul></li>
+<li><a href="#Operators">Operators</a>
+<ul>
+<li><a href="#pseudo">Pseudo-operators</a></li>
+</ul></li>
+<li><a href="#SubroutinesAndFunctions">Subroutines and Functions</a>
+<ul>
+<li><a href="#SubroutinesAndFunctionsNames">Names</a></li>
+<li><a href="#DeclarationOfSubroutines">Declaration of
+Subroutines</a></li>
+<li><a href="#DeclarationOfFunctions">Declaration of Functions</a></li>
+<li><a href="#Parameters">Parameters</a></li>
+<li><a href="#ExitAFunctionOrSubroutine">Exit a function or
+subroutine</a></li>
+<li><a href="#SingleLineFunctions">Single-line Functions</a></li>
+<li><a href="#UsingLocalVariables">Using Local Variables</a></li>
+<li><a href="#NestedRoutines">Nested Routines</a></li>
+<li><a href="#DeclarationsInPalmOS">Declarations in PalmOS</a></li>
+</ul></li>
+<li><a href="#Expressions">Expressions</a></li>
+<li><a href="#Loops">Loops</a>
+<ul>
+<li><a href="#ForToNextLoop">FOR-TO-NEXT Loop</a></li>
+<li><a href="#ForInNextLoop">FOR-IN-NEXT Loop</a></li>
+<li><a href="#WhileWendLoop">WHILE-WEND Loop</a></li>
+<li><a href="#RepeatUntilLoop">REPEAT-UNTIL Loop</a></li>
+</ul></li>
+<li><a href="#Units">Units</a>
+<ul>
+<li><a href="#UnitsDeclaration">Declaration</a></li>
+<li><a href="#UnitsImport">Import</a></li>
+</ul></li>
+<li><a href="#Statement1">OPTION</a>
+<ul>
+<li><a href="#Statement2">OPTION BASE</a></li>
+<li><a href="#Statement3">OPTION MATCH</a></li>
+<li><a href="#Statement4">OPTION PREDEF</a></li>
+</ul></li>
+<li><a href="#Meta">Meta Commands</a></li>
 <li><a href="#use">The USE keyword</a></li>
 <li><a href="#do">The DO keyword</a></li>
-<li><a href="#Using">Using LOCAL variables</a></li>
 <li><a href="#Loops">Loops and variables</a></li>
 </ul>
 </div>
-<h3 id="ConstantsVariables">Constants and Variables</h3>
-<ul>
-<li>All user variables (include arrays) are ‘Variant’. That means the
-data-type is invisible to user.</li>
-<li>Arrays are always dynamic, even if you had declared their size, with
-dynamic size and type of elements.</li>
-</ul>
-<p>However, SmallBASIC uses, internally, 4 data-types</p>
-<ul>
-<li>Integer (32bit)</li>
-<li>Real (64bit)</li>
-<li>String (&lt;32KB on 16bit / 2GB on 32bit)</li>
-<li>Array (~2970 elements on 16bit / ~50M elements on 32bit)</li>
-</ul>
-<p>Conversions between those types are performed internally. In any case
-there are functions for the user to do it manually.</p>
-<h3 id="Variable">Variable names</h3>
-<p>Variable names can use any alphanumeric characters, extended
-characters (ASCII codes 128-255 for non-English languages) the symbol
-’_‘, and the symbol ’$‘. The first character of the name cannot be a
-digit nor ’$’.</p>
-<h3 id="About">About the dollar-symbol</h3>
-<p>The symbol ‘$’ is supported for compatibility. Since in SmallBASIC
-there are no data-types its use is meaningless.</p>
-<p>The dollar in function names will be ignored.</p>
-<p>The dollar in variable names will be count as part of the name (that
-means v and v$ are two different variables). It can be used only as the
-last character of the name, and only one allowed.</p>
-<p>The dollar in system variables names will be ignore it (that means
-COMMAND and COMMAND$ is the same)</p>
-<p>Example of variable names:</p>
-<pre><code>abc, a_c, _bc, ab2c, abc$ -&gt; valid names
-1cd, a$b, $abc            -&gt; invalid names</code></pre>
+<h2 id="SourceCodeFormat">Source Code Format</h2>
+<p>SmallBASIC files are plain text files in ASCII or UTF-8. A program
+consists of at least one line of text. Every line is terminated with a
+<code>CR</code> or <code>CR/LF</code>. Each line consist of one or more
+commands. Multiple commands in a line are separated by a colon
+<code>:</code>. If <code>&amp;</code> is the last character of a line,
+SmallBASIC will continue with the command in the next line.</p>
+<p>Spaces and tabs are ignored as long as the syntax is valid. Inside a
+string literal spaces and tabs are retained.</p>
+<p>A line can start with a line number. Line numbers can be in any
+order. Multiple lines can have the same line number. Commands like
+<code>GOTO</code> will go to the last line with the specified line
+number.</p>
+<h2 id="Comments">Comments</h2>
+<p>A comment is a piece of code which is ignored by SmallBASIC but gives
+the programmer helpful information about the source code. Comments can
+be created by placing text after a quotation mark <code>'</code> or
+after the command <code>REM</code>. Comments can be placed anywhere in
+the code but not inside a string. Starting with <code>'</code> or
+<code>REM</code> the rest of the line will be a comment.</p>
+<p>When using <code>REM</code> be aware that <code>REM</code> is a build
+in command and multiple commands need to be separated with a colon
+<code>:</code>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; This is a comment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">REM This is a comment</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>a = <span class="dv">1</span>  <span class="co">&#39; This is a comment</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>a = <span class="dv">1</span>  : <span class="co">REM This is a comment</span></span></code></pre></div>
+<h2 id="NumberAndStrings">Numbers and Strings</h2>
 <h3 id="Integers">Integers</h3>
-<p>This is the default data type. You can declare integers in decimal,
-hexadecimal, octal and binary form.</p>
-<pre><code>x = 256   &#39;
-x = 0x100 &#39; Hexadecimal form 1
-x = &amp;h100 &#39; Hexadecimal form 2
-x = 0o400 &#39; Octal form 1
-x = &amp;o400 &#39; Octal form 2
-x = 0b111 &#39; Binary form 1
-x = &amp;b111 &#39; Binary form 2</code></pre>
+<p>Integers are used to store numeric values without any fractional
+part. Integer is the default data type. You can declare integers in
+decimal, hexadecimal, octal and binary form. For hexadecimal the number
+starts with <code>0x</code> or <code>&amp;x</code>, for octal with
+<code>0o</code> or <code>&amp;o</code>, and for binary with
+<code>0b</code> or <code>&amp;b</code>.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">256</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">0x100</span> <span class="co">&#39; Hexadecimal form 1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;h100</span> <span class="co">&#39; Hexadecimal form 2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0o400</span> <span class="co">&#39; Octal form 1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;o400</span> <span class="co">&#39; Octal form 2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0b111</span> <span class="co">&#39; Binary form 1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;b111</span> <span class="co">&#39; Binary form 2</span></span></code></pre></div>
 <h3 id="Reals">Reals</h3>
-<p>Any number which out-bounds the limits or an ‘integer’ or had decimal
-digits will be converted automatically to real.</p>
-<pre><code>x = .25
-x = 1.2</code></pre>
-<p>Reals can be also written by using scientific notation. 1E+2 or
-1E-+2, 5E–2, 2.6E-0.25, etc</p>
-<h3 id="Strings">Strings</h3>
-<p>Strings may be appended to one another using the + operator.</p>
-<pre><code>b = &quot;Hello, &quot; + &quot;world!&quot;</code></pre>
-<pre><code>b = &quot;&quot;&quot;This is
-a string
-over several lines
-with line breaks&quot;&quot;&quot;</code></pre>
+<p>Floating point values are used to store numeric data which may have a
+fractional part. Any number which out-bounds the limits or an integer or
+has decimal digits will be converted automatically to real. Reals can be
+written in scientific notation.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1.2</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">.25</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1E2</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1.2E-2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2.6E-0.25</span></span></code></pre></div>
+<h3 id="Strings">String Literals</h3>
+<p>Strings are used to store sequences of characters. The characters of
+a string are enclosed with <code>"</code>. If a string spans more than
+one line, enclose the string with <code>"""</code>. The end of each line
+will be a line break in the string. Strings may be appended to one
+another using the <code>+</code> operator.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;This is a string&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Hello, &quot;</span> + <span class="st">&quot;world!&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;This is</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>a <span class="fu">string</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>over several lines</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>with <span class="fu">line</span> breaks<span class="st">&quot;&quot;&quot;</span></span></code></pre></div>
+<p>Strings can contain escape sequences. Escape sequences always start
+with the <code>\</code> character. The following escape sequences are
+supported:</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>\a</code></td>
+<td>beep</td>
+</tr>
+<tr class="even">
+<td><code>\t</code></td>
+<td>tab (20 px)</td>
+</tr>
+<tr class="odd">
+<td><code>\r</code></td>
+<td>return</td>
+</tr>
+<tr class="even">
+<td><code>\n</code></td>
+<td>next line</td>
+</tr>
+<tr class="odd">
+<td><code>\"</code></td>
+<td>quote <code>"</code></td>
+</tr>
+<tr class="even">
+<td><code>\\</code></td>
+<td>Backslash <code>\</code></td>
+</tr>
+<tr class="odd">
+<td><code>\e[K</code></td>
+<td>clear to end of line</td>
+</tr>
+<tr class="even">
+<td><code>\e[nG</code></td>
+<td>move to column <code>n</code></td>
+</tr>
+<tr class="odd">
+<td><code>\e[s</code></td>
+<td>save cursor position</td>
+</tr>
+<tr class="even">
+<td><code>\e[u</code></td>
+<td>restore cursor position</td>
+</tr>
+<tr class="odd">
+<td><code>\e[0m</code></td>
+<td>reset all attributes to their defaults</td>
+</tr>
+<tr class="even">
+<td><code>\e[1m</code></td>
+<td>set bold on</td>
+</tr>
+<tr class="odd">
+<td><code>\e[3m</code></td>
+<td>set italic on</td>
+</tr>
+<tr class="even">
+<td><code>\e[4m</code></td>
+<td>set underline on</td>
+</tr>
+<tr class="odd">
+<td><code>\e[7m</code></td>
+<td>reverse video</td>
+</tr>
+<tr class="even">
+<td><code>\e[21m</code></td>
+<td>set bold off</td>
+</tr>
+<tr class="odd">
+<td><code>\e[23m</code></td>
+<td>set italic off</td>
+</tr>
+<tr class="even">
+<td><code>\e[24m</code></td>
+<td>set underline off</td>
+</tr>
+<tr class="odd">
+<td><code>\e[27m</code></td>
+<td>set reverse off</td>
+</tr>
+<tr class="even">
+<td><code>\e[nm</code></td>
+<td><code>n</code>: foreground color 30 to 37, <code>m</code>:
+background color 40 to 47</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;String with line\nbreak&quot;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;\e[32m\e[47mGreen text on white background&quot;</span></span></code></pre></div>
+<p>In the console version of SmallBASIC (sbasic.exe or sbasic) most of
+the escape codes, for example <a
+href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Codes at
+wikipedia</a>, can be used in version 12.25 or later. Support of escape
+codes depends on the operating system and the terminal you are
+using.</p>
+<h2 id="ConstantsVariables">Variables and Constants</h2>
+<p>SmallBASIC uses, internally, 4 data-types:</p>
+<ul>
+<li>Integer (64bit)</li>
+<li>Real (64bit)</li>
+<li>String (&gt; 2GB)</li>
+<li>Array (&gt; 50M elements)</li>
+</ul>
+<p>However, all user variables (include arrays) are ‘Variant’. That
+means the data-type is invisible to users and might change during
+runtime. Arrays are always dynamic (size and number of elements), even
+if you had declared their size. Conversions between those types are
+performed internally. In any case there are functions for the user to do
+it manually.</p>
+<h3 id="Variable">Variable Names</h3>
+<p>Variable names can use any alphanumeric characters, extended
+characters (ASCII codes 128 - 255 for non-English languages), the symbol
+<code>_</code>, and the symbol <code>$</code>. The first character of
+the name cannot be a digit nor <code>$</code>.</p>
+<p>The symbol <code>$</code> is supported for compatibility. The dollar
+in variable names will be count as part of the name, that means
+<code>v</code> and <code>v$</code> are two different variables. It can
+be used only as the last character of the name, and only one is
+allowed.</p>
+<p>Variable names are case-insensitive.</p>
+<pre><code>abc, a_c, _bc, ab2c, abc$   -&gt; valid names
+1cd, a$b, $abc              -&gt; invalid names</code></pre>
+<h3 id="AssigningValuesToVariables">Assigning Values to Variables</h3>
+<p>Variables do not need to be declared. A variable will be initialized
+with <code>0</code> when used for the first time.</p>
+<p>Values are assigned to a variable using the <code>=</code> character.
+The value at the right of <code>=</code> will be assigned to the
+variable on the left side. Additionally the right side of <code>=</code>
+can be an expression or a function.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a = <span class="dv">256</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>b = <span class="dv">0x100</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>c = <span class="dv">0o400</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>d = <span class="dv">0b111</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>e = <span class="st">&quot;This is a string&quot;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>g = <span class="st">&quot;&quot;&quot;This is</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>a <span class="fu">string</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>over several lines</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>with <span class="fu">line</span> breaks<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>h = <span class="dv">1</span> + <span class="dv">1</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>i = h</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>j = <span class="dv">1</span> + h</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>k = <span class="st">&quot;Hello, &quot;</span> + <span class="st">&quot;world&quot;</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>l = k + <span class="st">&quot;!&quot;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>m = j &gt; h</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>n = h == j</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>o = <span class="fu">sin</span>(<span class="dv">0.5</span>)</span></code></pre></div>
+<p>For compatibility reasons, SmallBASIC support the assignment of
+values to a variable using the <code>LET</code> command.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">let</span> x = <span class="dv">20</span></span></code></pre></div>
 <h3 id="Constants">Constants</h3>
-<p>Constant variables can be declared by using the keyword CONST.</p>
-<pre><code>CONST my_pi = 3.14</code></pre>
-<h3 id="System">System Variables</h3>
-<p>System variables, are constant variables for the programmer. Those
-variables get values or modified at run-time by the SB’s subsystem.</p>
-<ul>
-<li>SBVER SmallBASIC Version (0xAABBCC)</li>
-<li>PI 3.14..</li>
-<li>XMAX Graphics display, maximum x (width-1)</li>
-<li>YMAX Graphics display, maximum y (height-1) value</li>
-<li>CWD Current Working Directory</li>
-<li>HOME User’s home directory</li>
-<li>COMMAND Command-line parameters</li>
-<li>TRUE The value 1</li>
-<li>FALSE The value 0</li>
-</ul>
-<h3 id="Operators">Operators</h3>
-<p>Sorted by priority</p>
+<p>Constants store values that don’t change during the execution of the
+program. Constant variables can be declared by using the keyword
+<code>CONST</code>. Assigning a value to a constant a second time will
+result in an error.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CONST</span> my_pi = <span class="dv">3.14</span></span></code></pre></div>
+<p>SmallBASIC predefines the following constants:</p>
 <table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Constant</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">( )</td>
-<td style="text-align: left;">Parenthesis</td>
+<td style="text-align: center;">PI</td>
+<td style="text-align: center;">3.14..</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">+, -</td>
-<td style="text-align: left;">Unary</td>
+<td style="text-align: center;">TRUE</td>
+<td style="text-align: center;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">~</td>
-<td style="text-align: left;">bitwise NOT</td>
+<td style="text-align: center;">FALSE</td>
+<td style="text-align: center;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NOT or !</td>
-<td style="text-align: left;">Logical NOT (NOT false = true)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">^</td>
-<td style="text-align: left;">Exponentiation</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">*, /, \</td>
-<td style="text-align: left;">Multiplication, Division, Integer
-Division</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">% or MOD</td>
-<td style="text-align: left;">Reminder (QB compatible: a=int(a),
-b=int(b), a-b*(a/b))</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MDL</td>
-<td style="text-align: left;">Modulus
-(a%b+b*(sgn(a)&lt;&gt;sgn(b)))</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">+, -</td>
-<td style="text-align: left;">Addition/Concatenation, Subtraction</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">=</td>
-<td style="text-align: left;">Equal</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">&lt;&gt; or !=</td>
-<td style="text-align: left;">Not Equal</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">&gt;, &lt;</td>
-<td style="text-align: left;">Less Than, Greater Than</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">=&gt;, =&lt;</td>
-<td style="text-align: left;">Less or Equal, Greater or Equal</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">&gt;=, &lt;=</td>
-<td style="text-align: left;">Less or Equal, Greater or Equal</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">IN</td>
-<td style="text-align: left;">belongs to … (see “The IN operator”)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">LIKE</td>
-<td style="text-align: left;">Regular expression match (see “The LIKE
-operator”)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AND or &amp;&amp;</td>
-<td style="text-align: left;">Logical AND</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">OR or</td>
-<td style="text-align: left;">Logical OR</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BAND or &amp;</td>
-<td style="text-align: left;">bitwise AND</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BOR or</td>
-<td style="text-align: left;">bitwise OR</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">EQV</td>
-<td style="text-align: left;">bitwise EQV</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">IMP</td>
-<td style="text-align: left;">bitwise IMP</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">XOR</td>
-<td style="text-align: left;">bitwise XOR</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NAND</td>
-<td style="text-align: left;">bitwise NAND</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NOR</td>
-<td style="text-align: left;">bitwise NOR</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">XNOR</td>
-<td style="text-align: left;">bitwise XNOR</td>
+<td style="text-align: center;">NIL</td>
+<td style="text-align: center;">nil (not set)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="Special">Special Characters</h3>
-<table>
-<tbody>
-<tr class="odd">
-<td>&amp;h or 0x</td>
-<td style="text-align: left;">Prefix for hexadecimal constant (0x1F,
-&amp;h3C)</td>
-</tr>
-<tr class="even">
-<td>&amp;o or 0o</td>
-<td style="text-align: left;">Prefix for octal constant (0o33,
-&amp;o33)</td>
-</tr>
-<tr class="odd">
-<td>&amp;b or 0b</td>
-<td style="text-align: left;">Prefix for binary constant (0b1010,
-&amp;b1110)</td>
-</tr>
-<tr class="even">
-<td>[,;]</td>
-<td style="text-align: left;">Array definition (function ARRAY())
-($1)</td>
-</tr>
-<tr class="odd">
-<td>&lt;&lt;</td>
-<td style="text-align: left;">Appends to an array (command APPEND)
-($1)</td>
-</tr>
-<tr class="even">
-<td>++</td>
-<td style="text-align: left;">Increase a value by 1 (x = x + 1)
-($1)</td>
-</tr>
-<tr class="odd">
-<td>–</td>
-<td style="text-align: left;">Decrease a value by 1 (x = x - 1)
-($1)</td>
-</tr>
-<tr class="even">
-<td>p=</td>
-<td style="text-align: left;">Another LET macro (x = x p …). Where p any
-character of -+/\*^%&amp;</td>
-</tr>
-<tr class="odd">
-<td>:</td>
-<td style="text-align: left;">Separates commands typed on the same
-line</td>
-</tr>
-<tr class="even">
-<td>&amp;</td>
-<td style="text-align: left;">Join code lines (if its the last character
-of the line). The result line its must not exceed the max. line
-size.</td>
-</tr>
-<tr class="odd">
-<td>#</td>
-<td style="text-align: left;">Meta-command (if its the first character
-of the line) or prefix for file handle</td>
-</tr>
-<tr class="even">
-<td>@</td>
-<td style="text-align: left;">The ‘at’ symbol can by used instead of
-BYREF ($1)</td>
-</tr>
-<tr class="odd">
-<td>’</td>
-<td style="text-align: left;">Remarks</td>
-</tr>
-</tbody>
-</table>
-<p><em>Pseudo operators</em>. These operators are replaced by compiler
-with a command or an expression.</p>
-<h3 id="Statement1">Statement OPTION keyword parameters</h3>
-<p>This special command is used to pass parameters to the
-SB-environment. There are two styles for that, the run-time (like BASE)
-which can change the value at run-time, and the compile-time (like
-PREDEF) which used only in compile-time and the value cannot be changed
-on run-time.</p>
-<h3 id="Run"><em>Run-Time</em></h3>
-<h3 id="Statement2">Statement OPTION BASE lower-bound</h3>
-<p>The <span class="code">OPTION BASE</span> statement sets the lowest
-allowable subscript of arrays to <em>lower-bound</em>. The default is
-zero. The <span class="code">OPTION BASE</span> statement can be used in
-any place in the source code but that is the wrong use of this except if
-we have a <em>good</em> reason. In most cases the <span
-class="code">OPTION BASE</span> must declared at first lines of the
-program before any <span class="code">DIM</span> declaration.</p>
-<h3 id="Statement3">Statement OPTION MATCH <span class="code">PCRE
-[CASELESS]|SIMPLE</span></h3>
-<p>Sets as default matching algorithm to (P)erl-(C)ompatible (R)egular
-(E)xpressions library or back to simple one. Matching-algorithm is used
-in <span class="code">LIKE</span> and <span
-class="code">FILES</span>.</p>
-<p>PRCE works only in systems with this library and it must be linked
-with. Also, there is no extra code on compiler which means that SB
-compiles the pattern every time it is used.</p>
-<h3 id="Compile"><em>Compile-Time</em></h3>
-<h3 id="Statement4">Statement OPTION PREDEF parameter</h3>
-<p>Sets parameters of the compiler. Where <span
-class="code">parameter</span></p>
-<ul>
-<li><p>QUIET Sets the quiet flag (-q option)</p></li>
-<li><p>COMMAND cmdstr Sets the <span class="code">COMMAND$</span> string
-to <span class="code">var</span> (useful for debug reasons)</p></li>
-<li><p>GRMODE [widthxheight[xbpp]] Sets the graphics mode flag (-g
-option) or sets the preferred screen resolution. Example: (Clie
-HiRes)</p>
-<pre><code>OPTION PREDEF GRMODE 320x320x16</code></pre></li>
-<li><p>TEXTMODE Sets the text mode flag (-g- option)</p></li>
-<li><p>CSTR Sets as default string style the C-style special character
-encoding (‘\’)</p></li>
-<li><p>ANTIALIAS off : Disable anti-aliasing for drawing commands like
-CIRCEL or LINE</p></li>
-</ul>
-<h3 id="Meta">Meta-commands</h3>
-<p>#!…</p>
-<p>Used by Unix to make source runs as a script executable</p>
-<p>#sec: section-name</p>
-<p>Used internally to store the section name. Sections names are used at
-limited OSes like PalmOS for multiple 32kB source code sections.</p>
-<p>#inc: file</p>
-<p>Used to include a SmallBASIC source file into the current BASIC
-code</p>
-<p>#unit-path: path</p>
-<p>Used to setup additional directories for searching for unit-files
-This meta does nothing more than to setting up the environment variable
-SB_UNIT_PATH. Directories on Unix must separated by ‘:’, and on
-DOS/Windows by ‘;’</p>
-<p>Examples</p>
-<pre><code>#inc:&quot;mylib.bas&quot;
-...
-MyLibProc &quot;Hi&quot;</code></pre>
-<h3 id="arrays-and-matrices">Arrays and Matrices</h3>
-<p>Define a 3x2 matrix</p>
-<p><code>A = [11, 12; 21, 22; 31, 32]</code></p>
-<p>That creates the array</p>
-<table>
-<tbody>
-<tr class="odd">
-<td>11</td>
-<td>12</td>
-</tr>
-<tr class="even">
-<td>21</td>
-<td>22</td>
-</tr>
-<tr class="odd">
-<td>31</td>
-<td>32</td>
-</tr>
-</tbody>
-</table>
-<p>The comma used to separate column items; the semi-colon used to
-separate rows. Values between columns can be omitted.</p>
-<pre><code>A = [ ; ; 1, 2 ; 3, 4, 5]</code></pre>
-<p>This creates the array</p>
-<table>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>2</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>4</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<p>Supported operators: Add/sub:</p>
-<pre><code>B = [1, 2; 3, 4]: C = [5, 6; 7, 8]
-A = B + C
-C = A - B</code></pre>
-<p>Equal:</p>
-<pre><code>bool=(A=B)</code></pre>
-<p>Unary:</p>
-<pre><code>A2 = -A</code></pre>
-<p>Multiplication:</p>
-<pre><code>A = [1, 2; 3, 4]: B = [5 ; 6]
+<h2 id="Arrays">Arrays</h2>
+<p>Arrays are used to store sequences of elements. Arrays are always
+dynamic. The allowed data-types of the elements can be integers, reals
+and strings and maps Data-types can be mixed in an array. Nested arrays
+are allowed.</p>
+<p>Arrays are a subclass of Matrices (see <a
+href="#Matrices">Matrices</a>). They are equivalent to a row vector.</p>
+<h3 id="CreatingArrays">Creating Arrays</h3>
+<p>Arrays can be created by assignment using the <code>=</code>
+operator, with the command <code>DIM</code>, or with
+<code>[]</code>.</p>
+<p><strong>By Assignment</strong></p>
+<p>To assign an array to a variable, the array elements are enclosed by
+square brackets <code>[</code> and <code>]</code>. The array elements
+are separated by a comma <code>,</code>. If no value for a element is
+given, SmallBASIC will set this element to <code>0</code>.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>A = [,<span class="dv">2</span>,,<span class="dv">4</span>]                       <span class="co">&#39; Equal to A = [0,2,0,4]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="st">&quot;A&quot;</span>, <span class="dv">2.2</span>]                  <span class="co">&#39; Array with elements of different data-type</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="st">&quot;A&quot;</span>, [<span class="dv">2</span>,<span class="dv">3</span>]]                <span class="co">&#39; Creates an nested array</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>S = [<span class="dv">1</span>, <span class="st">&quot;Small&quot;</span>, <span class="st">&quot;BASIC&quot;</span>]         <span class="co">&#39; Numbers and strings</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>M = [{x: <span class="dv">1</span>, y: <span class="dv">2</span>}, {x: <span class="dv">4</span>, y: <span class="dv">7</span>}]  <span class="co">&#39; Array of maps</span></span></code></pre></div>
+<p><strong>By DIM</strong></p>
+<p>Using the command <code>DIM A(n)</code> or <code>DIM A[n]</code>, an
+array <code>A</code> with <code>n + 1</code> elements will be created.
+Every element is set to <code>0</code>.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">DIM</span> A(<span class="dv">3</span>)    <span class="co">&#39; Array A with 4 elements</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">DIM</span> A[<span class="dv">3</span>]</span></code></pre></div>
+<p>When using the command <code>DIM A(lower TO upper)</code> it is also
+possible, to set the <code>lower</code> and <code>upper</code> element
+index of an array.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; One dimensional array of 7 elements, starting from 3</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; with elements A(3), A(4), ... , A(9)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">DIM</span> A(<span class="dv">3</span> <span class="kw">TO</span> <span class="dv">9</span>)</span></code></pre></div>
+<p><strong>Empty Array</strong></p>
+<p>The following example will create an empty array variable. If the
+variable already exist, it will be deleted and reinitialized as an
+array.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>A = []</span></code></pre></div>
+<h3 id="AccessingElementsOfAnArray">Accessing Elements of an Array</h3>
+<p>To access an element of an array, the array name is followed by
+<code>(i)</code> or <code>[i]</code>, where <code>i</code> is the
+element index. In SmallBASIC using default configuration, the first
+element of an array has the index <code>0</code>.</p>
+<p>Examples:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A(<span class="dv">1</span>)      <span class="co">&#39; Output: 2</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>A[<span class="dv">1</span>] = <span class="dv">5</span>        <span class="co">&#39; A = [1,5,3,4]</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>A(<span class="dv">0</span>) = A(<span class="dv">3</span>)     <span class="co">&#39; A = [4,5,3,4]</span></span></code></pre></div>
+<p>Accessing an element outside the bounds of the array will result in
+an error.</p>
+<h3 id="NestedArrays">Nested Arrays</h3>
+<p>In a nested array, one or more elements of this array are arrays.
+Nested arrays can be created by assignment with the <code>=</code>
+operator. There is no limit to the depth of nesting.</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>A = [[<span class="dv">1</span>,<span class="dv">2</span>] , [<span class="dv">3</span>,<span class="dv">4</span>]]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>A = [[<span class="dv">1</span>,<span class="dv">2</span>] , [<span class="dv">3</span>, [<span class="dv">4</span>, <span class="dv">5</span>]]]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>B = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>C = [<span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>B(<span class="dv">2</span>) = C      <span class="co">&#39; -&gt; B = [1, 2, [4, 5]]</span></span></code></pre></div>
+<p>To access an element of a nested array, a second (or third, etc) pair
+of parenthesis or square brackets can be used.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>, <span class="dv">2</span>, [<span class="dv">4</span>, <span class="dv">5</span>]]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> A[<span class="dv">2</span>][<span class="dv">0</span>]      <span class="co">&#39; Output: 4</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> A(<span class="dv">2</span>)(<span class="dv">1</span>)      <span class="co">&#39; Output: 5</span></span></code></pre></div>
+<h3 id="ArrayOperations">Array Operations</h3>
+<p>SmallBASIC supports basic array operations using the standard
+operators:</p>
+<p><strong>Element-wise Addition and Subtraction</strong></p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>B = [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>C = B + A</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>D = A - B</span></code></pre></div>
+<p><strong>Element-wise Multiplication</strong></p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>B = [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>C = A * B</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>D = <span class="dv">0.8</span> * A</span></code></pre></div>
+<p><strong>Equality</strong></p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>B = [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>e = A==B</span></code></pre></div>
+<p><strong>Unary</strong></p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">5</span>, <span class="dv">6</span>; <span class="dv">7</span>, <span class="dv">8</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>B = -A</span></code></pre></div>
+<p><strong>Append Elements</strong></p>
+<p>The pseudo-operator <code>&lt;&lt;</code> can be used to append
+elements to an array.</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; <span class="dv">1</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; <span class="dv">2</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; <span class="dv">3</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> A(<span class="dv">1</span>)    <span class="co">&#39; Output: 2</span></span></code></pre></div>
+<h2 id="Matrices">Matrices</h2>
+<h3 id="Creating2DMatrices">Creating 2D Matrices</h3>
+<p>A 2D matrix can be created by assignment using the <code>=</code>
+operator or with the command <code>DIM</code>.</p>
+<p><strong>By Assignment</strong></p>
+<p>To assign a matrix to a variable, the matrix elements are enclosed by
+square brackets <code>[</code> and <code>]</code>. The matrix elements
+of one row are separated by <code>,</code> and rows are separated by a
+semicolon <code>;</code>. If no value for a element is given, SmallBASIC
+will set this element to <code>0</code>.</p>
+<p>Examples 1:</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>M = [<span class="dv">11</span>, <span class="dv">12</span>; <span class="dv">21</span>, <span class="dv">22</span>; <span class="dv">31</span>, <span class="dv">32</span>]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Creates the 3x2 matrix</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  11  12</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  21  22</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  31  32</span></span></code></pre></div>
+<p>Example 2:</p>
+<pre><code>M = [ ; ; 1, 2 ; 3, 4, 5]
+
+&#39; Creates the 3x3 matrix
+&#39;  0  0  0
+&#39;  1  2  0
+&#39;  3  4  5</code></pre>
+<p><strong>By DIM</strong></p>
+<p>Using the command <code>DIM M(n,m)</code> or <code>DIM M[n,m]</code>,
+a matrix <code>M</code> with <code>n + 1</code> rows and
+<code>m + 1</code> elements per row will be created. Every element is
+set to <code>0</code>.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">DIM</span> M(<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Creates the 3x4 matrix</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  0  0  0</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  0  0  0</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  0  0  0</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  0  0  0</span></span></code></pre></div>
+<p>When using the command
+<code>DIM A(rlower TO rupper, elower TO eupper)</code> it is also
+possible, to set the <code>rlower</code> and <code>rupper</code> row
+index and <code>elower</code> and <code>eupper</code> element index of a
+matrix.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">DIM</span> M(<span class="dv">2</span> <span class="kw">to</span> <span class="dv">4</span>, <span class="dv">3</span> <span class="kw">to</span> <span class="dv">7</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Creates the 5x3 matrix</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  0  0  0  0  0</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  0  0  0  0  0</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  0  0  0  0  0</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; With elements M(2,3) to M(2,7), M(3,3) to M(3,7) and M(4,3) to M(4,7)</span></span></code></pre></div>
+<h3 id="AccessingElementsOfA2DMatrix">Accessing Elements of a 2D
+Matrix</h3>
+<p>To access an element of a matrix, the matrix name is followed by
+<code>(row, column)</code> or <code>[row, column]</code>, where
+<code>column</code> and <code>row</code> are the coordinates of the
+matrix element. In SmallBASIC using default configuration, the first
+element of a matrix has the index <code>(0, 0)</code>.</p>
+<p>Examples:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>M = [<span class="dv">1</span>,<span class="dv">2</span>;<span class="dv">3</span>,<span class="dv">4</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> M(<span class="dv">0</span>,<span class="dv">0</span>)      <span class="co">&#39; Output: 1</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>M[<span class="dv">1</span>,<span class="dv">0</span>] = <span class="dv">5</span>        <span class="co">&#39; M = [1,2;5,4]</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>M(<span class="dv">0</span>,<span class="dv">1</span>) = M(<span class="dv">0</span>,<span class="dv">0</span>)   <span class="co">&#39; M = [1,1,5,4]</span></span></code></pre></div>
+<p>Accessing an element outside the bounds of the matrix will result in
+an error.</p>
+<h3 id="MatrixOperations">2D Matrix Operations</h3>
+<p>SmallBASIC supports basic matrix operations using the standard
+operators:</p>
+<p><strong>Addition and Subtraction</strong></p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>, <span class="dv">2</span>; <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>B = [<span class="dv">5</span>, <span class="dv">6</span>; <span class="dv">7</span>, <span class="dv">8</span>]</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>C = B + A</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>D = A - B</span></code></pre></div>
+<p><strong>Multiplication</strong></p>
+<pre><code>A = [1, 2; 3, 4]
+B = [5 ; 6]
+
 C = A * B
 D = 0.8 * A</code></pre>
-<p>Inverse:</p>
-<pre><code>A = [ 1, -1, 1; 2, -1, 2; 3, 2, -1]
-? INVERSE(A)</code></pre>
-<p>Gauss-Jordan:</p>
-<pre><code>? &quot;Solve this:&quot;
-? &quot;  5x - 2y + 3z = -2&quot;
-? &quot; -2x + 7y + 5z =  7&quot;
-? &quot;  3x + 5y + 6z =  9&quot;
-?
-A = [ 5, -2, 3; -2, 7, 5; 3, 5, 6]
-B = [ -2; 7; 9]
-C = LinEqn(A, B)
-? &quot;[x;y;z] = &quot;; C</code></pre>
-<p>There is a problem with 1 dimension arrays, because 1-dim arrays does
-not specify how SmallBASIC must see them.</p>
-<p>DIM A(3)</p>
+<p><strong>Equality</strong></p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>, <span class="dv">2</span>; <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>B = [<span class="dv">5</span>, <span class="dv">6</span>; <span class="dv">7</span>, <span class="dv">8</span>]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>e = A==B</span></code></pre></div>
+<p><strong>Unary</strong></p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">5</span>, <span class="dv">6</span>; <span class="dv">7</span>, <span class="dv">8</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>B = -A</span></code></pre></div>
+<h3 id="HigherDimensionalMatrices">Higher Dimensional Matrices</h3>
+<p>Matrices with a dimension higher than two can be created with the
+command <code>DIM M(n1, n2, ..., ni)</code>, where <code>n1 + 1</code>
+to <code>ni + 1</code> are the number of elements of each dimension. To
+access an element, give the coordinates of that element in parenthesis
+or square brackets.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">DIM</span> M(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>)    <span class="co">&#39; Creates a 3x3x4 3D Matrix</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>M[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>] = <span class="dv">5</span></span></code></pre></div>
+<p>Equality is the only valid matrix operating for higher dimensional
+matrices.</p>
+<h3 id="RowAndColumnVectors">Row and Column Vectors</h3>
+<p><strong>By Assignment</strong></p>
+<p>To create a column vector, separate the elements by
+<code>;</code>.</p>
+<p>Example:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>v = [<span class="dv">1</span>;<span class="dv">2</span>;<span class="dv">3</span>]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Creates the column vector</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  1</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  2</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;  3</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> v(<span class="dv">1</span>,<span class="dv">0</span>)  <span class="co">&#39; Prints the value of the element in row 2 -&gt; 2</span></span></code></pre></div>
+<p><strong>By DIM</strong></p>
+<p>The command <code>DIM A(n)</code> creates a row vector with
+<code>n+1</code> elements. To create a column vector, use
+<code>DIM A(n, 0)</code>. The elements of the column vector can be
+access by <code>A(n,0)</code>, where <code>n</code> is the column index
+of the element.</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">DIM</span> A(<span class="dv">2</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Creates a row vector</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; 0  0  0</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="dt">DIM</span> B(<span class="dv">2</span>, <span class="dv">0</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Creates a column vector</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; 0</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; 0</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; 0</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> B(<span class="dv">1</span>,<span class="dv">0</span>)  <span class="co">&#39; Prints the value of the element in row 2</span></span></code></pre></div>
+<h2 id="Maps">Maps</h2>
+<p>Maps are complex data structures with key-value pairs. Elements of a
+map are addressed by keys. Allowed data-types are integers, reals,
+strings, arrays, maps and references. Elements of different data-types
+can be mixed in a map.</p>
+<h3 id="CreatingAMapVariable">Creating a Map Variable</h3>
+<p>Maps can be created by assignment using the <code>=</code> operator,
+with the command <code>ARRAY</code> and with <code>{}</code>.</p>
+<p><strong>By Assignment</strong></p>
+<p>To assign a map to a variable, key-value pairs are enclosed by curly
+brackets <code>{</code> and <code>}</code>. The key-value pairs are
+separated by comma <code>,</code>. A key-value pair consist of a key and
+a value. Key and value are separated by a colon <code>:</code>. The key
+is a string. It is not necessary to enclose the string with quotes. The
+value can be any data-type, array, map or reference. The order of
+key-value pairs is not relevant for maps.</p>
+<p>Additionally, a map variable can be created with the assignment
+<code>name.key = value</code>, where <code>name</code> is the name of
+the map variable, <code>key</code> is the name of the key and value any
+datatype supported by SmallBASIC.</p>
+<p>Examples of valid map assignments:</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>A = {x:<span class="dv">1</span>, y:<span class="dv">2</span>, z:<span class="dv">3</span>}</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>B = {<span class="st">&quot;x&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;y&quot;</span>:<span class="dv">2</span>, <span class="st">&quot;z&quot;</span>:<span class="dv">3</span>}</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>C = {<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">2</span>:<span class="dv">5</span>, Name: <span class="st">&quot;SmallBASIC&quot;</span>}</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>D = {ArrayData:[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], MapData:{node:<span class="dv">1</span>, value:<span class="dv">5</span>}}</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>E.x = <span class="dv">1</span></span></code></pre></div>
+<p><strong>By ARRAY</strong></p>
+<p>Using the command <code>M = ARRAY(JSONString)</code> will create a
+map variable from the string <code>JSONString</code>.</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>M = <span class="kw">ARRAY</span>(<span class="st">&quot;{x:1, y:2, z:3}&quot;</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>s = <span class="st">&quot;{1:10, 2:5, Name:\&quot;</span>SmallBASIC\<span class="st">&quot;}&quot;</span>   <span class="co">&#39; The quotation marks of the string SmallBASIC are escaped with \&quot;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>M = <span class="kw">ARRAY</span>(s)</span></code></pre></div>
+<p><strong>Empty Map</strong></p>
+<p>The following example will create an empty map variable. If the
+variable already exist, it will be deleted and reinitialized as a
+map.</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>A = {}</span></code></pre></div>
+<h3 id="AccessingElementsOfAMapVariable">Accessing Elements of a Map
+Variable</h3>
+<p>An element of a map variable can be accessed in the following three
+ways:</p>
+<ol type="1">
+<li><code>name.key</code></li>
+<li><code>name("key")</code> or <code>name["key"]</code></li>
+<li><code>s = "key" : name(s)</code> or
+<code>s = "key" : name[s]</code></li>
+</ol>
+<p>where <code>name</code> is the name of the map variable and
+<code>key</code> is the key of the key-value pair. The third option
+offers the possibility to access an element using a string-variable as
+the key.</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>A = {x:<span class="dv">1</span>, y:<span class="dv">2</span>, z:<span class="dv">3</span>}</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A.x</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A(<span class="st">&quot;x&quot;</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A[<span class="st">&quot;x&quot;</span>]</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>A.y = <span class="dv">3</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>A(<span class="st">&quot;y&quot;</span>) = <span class="dv">3</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>A[<span class="st">&quot;y&quot;</span>] = <span class="dv">3</span></span></code></pre></div>
+<p>To access elements of an array or a matrix inside a map, use
+additional parentheses <code>()</code> or square
+brackets<code>[]</code>.</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>A = {x:[<span class="dv">2</span>,<span class="dv">3</span>], y:[<span class="dv">1</span>,<span class="dv">2</span>;<span class="dv">3</span>,<span class="dv">4</span>]}</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A.x(<span class="dv">0</span>)        <span class="co">&#39; Output: 2</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A.x[<span class="dv">1</span>]        <span class="co">&#39; Output: 3</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A.y[<span class="dv">1</span>,<span class="dv">1</span>]      <span class="co">&#39; Output: 4</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>A.x(<span class="dv">0</span>) = <span class="dv">5</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>A.x[<span class="dv">1</span>] = <span class="dv">6</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>A.y[<span class="dv">1</span>,<span class="dv">1</span>] = <span class="dv">7</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A             <span class="co">&#39; Output: {&quot;y&quot;:[1,2;3,7],&quot;x&quot;:[5,6]}</span></span></code></pre></div>
+<p>To access a nested map variable, use a further <code>.</code> or
+<code>("key")</code>. Both notations can be mixed.</p>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>A = {x:{a:<span class="dv">1</span>, b:{c:<span class="dv">2</span>}}}</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A.x.a             <span class="co">&#39; Output: 1</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A.x.b.c           <span class="co">&#39; Output: 2</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A(<span class="st">&quot;x&quot;</span>)(<span class="st">&quot;a&quot;</span>)       <span class="co">&#39; Output: 1</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A(<span class="st">&quot;x&quot;</span>)(<span class="st">&quot;b&quot;</span>)(<span class="st">&quot;c&quot;</span>)  <span class="co">&#39; Output: 2</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A(<span class="st">&quot;x&quot;</span>)(<span class="st">&quot;b&quot;</span>).c     <span class="co">&#39; Output: 2</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>A.x.a = <span class="dv">3</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>A.x.b.c = <span class="dv">4</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A                 <span class="co">&#39; Output: {&quot;x&quot;:{&quot;a&quot;:3,&quot;b&quot;:{&quot;c&quot;:4</span><span class="re">}}}</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>A(<span class="st">&quot;x&quot;</span>)(<span class="st">&quot;a&quot;</span>) = <span class="dv">5</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>A(<span class="st">&quot;x&quot;</span>)(<span class="st">&quot;b&quot;</span>)(<span class="st">&quot;c&quot;</span>) = <span class="dv">6</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>A(<span class="st">&quot;x&quot;</span>)(<span class="st">&quot;b&quot;</span>).c = <span class="dv">7</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A                 <span class="co">&#39; Output: {&quot;x&quot;:{&quot;a&quot;:5,&quot;b&quot;:{&quot;c&quot;:7</span><span class="re">}}}</span><span class="co"> </span></span></code></pre></div>
+<p>Reading a non-existing element of a map will return <code>0</code>.
+Writing to a non-existing element will create a new key-value pair.</p>
+<h3 id="AddKeyValuePairs">Add Key-Value Pairs</h3>
+<p>Use dot-notation or parenthesis-notation with the <code>=</code>
+operator to add a new key-value pair to a map variable.</p>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>A = {a:<span class="dv">1</span>, b:<span class="dv">2</span>}</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>A.c = <span class="dv">3</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>A(<span class="st">&quot;d&quot;</span>) = <span class="dv">4</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>A.e = {x:<span class="dv">5</span>, y:<span class="dv">6</span>}</span></code></pre></div>
+<h3 id="KeyValuePairsWithReferences">Key-Value Pairs with
+References</h3>
+<p>The value of a key-value pair can be a reference to a function or
+subroutine.</p>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>A = {}</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>A.x = <span class="dv">1</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>A.Add = @Add</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>A.PrintBold = @PrintBold</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A     <span class="co">&#39; Output: {&quot;x&quot;:1,&quot;Add&quot;:func,&quot;PrintBold&quot;:func}</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Execute function and subroutine</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A.Add(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>A.PrintBold(<span class="st">&quot;Test&quot;</span>)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Define function and subroutine</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>Add(a,b)</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> a + b</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>PrintBold(s)</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> <span class="st">&quot;\e[1m&quot;</span>; s; <span class="st">&quot;\e[21m&quot;</span></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<p>Maps in combination with references can be used to create a pseudo
+object similar to object-oriented programming.</p>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>A = MyAddClass(<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A.Add()</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Definitions</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>MyAddClass(x,y)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">local</span> TempMap</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; Properties</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    TempMap.x = x</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    TempMap.y = y</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; Methods</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    TempMap.Add = @AddFunction</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; Functions and subroutines</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">func </span>AddFunction()</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="dt">self</span>.x + <span class="dt">self</span>.y</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> TempMap</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<h2 id="Operators">Operators</h2>
+<p>SmallBASIC supports the following operators, sorted by priority:</p>
 <table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1 2 3</td>
-<td></td>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operator</th>
+<th>Description</th>
 </tr>
-</tbody>
-</table>
-<p>or</p>
-<table>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: center;"><code>(</code>, <code>)</code></td>
+<td>Parenthesis</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: center;"><code>+</code>, <code>-</code></td>
+<td>Unary</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
-</tr>
-</tbody>
-</table>
-<p>And because this is not the same thing. (ex. for multiplication) So
-the default is columns DIM A(3) ’ or A(1,3)</p>
-<table>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>2</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-<p>For vertical arrays you must declare it as 2-dim arrays Nx1</p>
-<p>DIM A(3,1)</p>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: center;"><code>~</code></td>
+<td>bitwise NOT</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: center;"><code>NOT</code> or <code>!</code></td>
+<td>Logical NOT (NOT false = true)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: center;"><code>^</code></td>
+<td>Exponentiation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>*</code>, <code>/</code>,
+<code>\</code></td>
+<td>Multiplication, Division, Integer Division</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>%</code> or <code>MOD</code></td>
+<td>Reminder (QB compatible:
+<code>a = int(a), b = int(b), a - b*(a/b)</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>MDL</code></td>
+<td>Modulus (<code>a % b + b*(sgn(a) &lt;&gt; sgn(b))</code>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>+</code>, <code>-</code></td>
+<td>Addition/Concatenation, Subtraction</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>=</code> or <code>==</code></td>
+<td>Equal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&lt;&gt;</code> or
+<code>!=</code></td>
+<td>Not Equal</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&gt;</code>,
+<code>&lt;</code></td>
+<td>Less Than, Greater Than</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>=&gt;</code>,
+<code>=&lt;</code></td>
+<td>Less or Equal, Greater or Equal</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&gt;=</code>,
+<code>&lt;=</code></td>
+<td>Less or Equal, Greater or Equal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>IN</code></td>
+<td>belongs to</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>LIKE</code></td>
+<td>Regular expression match</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>AND</code> or
+<code>&amp;&amp;</code></td>
+<td>Logical AND</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>OR</code> or <code>||</code></td>
+<td>Logical OR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>BAND</code> or
+<code>&amp;</code></td>
+<td>bitwise AND</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>BOR</code> or <code>|</code></td>
+<td>bitwise OR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>EQV</code></td>
+<td>bitwise EQV</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>IMP</code></td>
+<td>bitwise IMP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>XOR</code></td>
+<td>bitwise XOR</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>NAND</code></td>
+<td>bitwise NAND</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>NOR</code></td>
+<td>bitwise NOR</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>XNOR</code></td>
+<td>bitwise XNOR</td>
 </tr>
 </tbody>
 </table>
-<p>Nested arrays are allowed</p>
-<pre><code>A = [[1,2] , [3,4]]
-B = [1, 2, 3]
-C = [4, 5]
-B(2) = C
-print B</code></pre>
-<p>This will be printed</p>
-<pre><code>[1, 2, [4, 5], 3]</code></pre>
-<p>You can access them by using a second (or third, etc) pair of
-parenthesis.</p>
-<pre><code>B(2)(1) = 16
-print B(2)(1)</code></pre>
-<p>Result: 16</p>
-<p><em>The operator IN</em></p>
-<p>IN operator is used to compare if the left-value belongs to
-right-value.</p>
-<pre><code>&#39; Using it with arrays
-print 1 in [2,3]        :REM FALSE
-print 1 in [1,2]        :REM TRUE
-print &quot;b&quot; in [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] :REM TRUE
-...
-&#39; Using it with strings
-print &quot;na&quot; in &quot;abcde&quot;   :REM FALSE
-print &quot;cd&quot; in &quot;abcde&quot;   :REM TRUE
-...
-&#39; Using it with number (true only if left = right)
-print 11 in 21          :REM FALSE
-print 11 in 11          :REM TRUE
-...
-&#39; special case
-&#39; auto-convert integers/reals
-print 12 in &quot;234567&quot;    :REM FALSE
-print 12 in &quot;341256&quot;    :REM TRUE</code></pre>
-<h3 id="operator">The operator LIKE</h3>
-<p>LIKE is a regular-expression operator. It is compares the left part
-of the expression with the pattern (right part). Since the original
-regular expression code is too big (for handhelds), I use only a subset
-of it, based on an excellent old stuff by J. Kercheval (match.c,
-public-domain, 1991). But there is an option to use PCRE
-(Perl-Compatible Regular Expression library) on systems that is
-supported (Linux); (see OPTION).</p>
-<p>The same code is used for filenames (FILES(), DIRWALK) too. In the
-pattern string:</p>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">*</td>
-<td style="text-align: left;">matches any sequence of characters (zero
-or more)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">?</td>
-<td style="text-align: left;">matches any character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">[SET]</td>
-<td style="text-align: left;">matches any character in the specified
-set,</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">[!SET]</td>
-<td style="text-align: left;">or [^SET] matches any character not in the
-specified set.</td>
-</tr>
-</tbody>
-</table>
-<p>A set is composed of characters or ranges; a range looks like
-character hyphen character (as in 0-9 or A-Z). [0-9a-zA-Z_] is the
-minimal set of characters allowed in the [..] pattern construct. To
-suppress the special syntactic significance of any of
-<code>[]*?!^-\\', and match the character exactly, precede it with a</code>\’.</p>
-<pre><code>? &quot;Hello&quot; LIKE &quot;*[oO]&quot; : REM TRUE
-? &quot;Hello&quot; LIKE &quot;He??o&quot; : REM TRUE
-? &quot;Hello&quot; LIKE &quot;hello&quot; : REM FALSE
-? &quot;Hello&quot; LIKE &quot;[Hh]*&quot; : REM TRUE</code></pre>
-<p><em>The pseudo-operator &lt;&lt;</em></p>
-<p>This operator can be used to append elements to an array.</p>
-<pre><code>A &lt;&lt; 1
-A &lt;&lt; 2
-A &lt;&lt; 3
-? A(1)</code></pre>
-<p><em>Syntax of procedure (SUB) statements</em></p>
-<pre><code> SUB name [([BYREF] par1 [, ...[BYREF] parN)]]
-  [LOCAL var[, var[, ...]]]
-  [EXIT SUB]
-  ...
-END</code></pre>
-<p><em>Syntax of function (FUNC) statements</em></p>
-<pre><code>FUNC name[([BYREF] par1 [, ...[BYREF] parN)]]
-  [LOCAL var[, var[, ...]]]
-  [EXIT FUNC]
-  ...
-  name=return-value
-END</code></pre>
-<p>On functions you must use the function’s name to return the value.
-That is, the function-name acts like a variable and it is the function’s
-returned value. The parameters are ‘by value’ by default. Passing
-parameters by value means the executor makes a copy of the parameter to
-stack. The value in caller’s code will not be changed.</p>
-<p>Use <span class="code">BYREF</span> keyword for passing parameters
-‘by reference’. Passing parameters by reference means the executor push
-the pointer of variable into the stack. The value in caller’s code will
-be the changed.</p>
-<pre><code>&#39; Passing &#39;x&#39; by value
-SUB F(x)
-  x=1
-END
-x=2
-F x
-? x:REM displays 2
-&gt; &#39; Passing &#39;x&#39; by reference
-SUB F(BYREF x)
-  x=1
-END
-x=2
-F x
-? x:REM displays 1</code></pre>
-<p>You can use the symbol @ instead of <span class="code">BYREF</span>.
-There is no difference between @ and <span
-class="code">BYREF</span>.</p>
-<pre><code> SUB F(@@x)
-  x=1
-END</code></pre>
-<p>On a multi-section (PalmOS) applications sub/funcs needs declaration
-on the main section.</p>
-<pre><code>sec:Main
-declare func f(x)
-#sec:another section
-func f(x)
-...
-end</code></pre>
-<p>Use the <span class="code">LOCAL</span> keyword for local variables.
-<span class="code">LOCAL</span> creates variables (dynamic) at routine’s
-code.</p>
-<pre><code>SUB MYPROC
-  LOCAL N:REM LOCAL VAR
-  N=2
-  ? N:REM displays 2
-END
-N=1:REM GLOBAL VAR
-MYPROC
-? N:REM displays 1</code></pre>
-<p>You can send arrays as parameters. When using arrays as parameters
-its better to use them as <span class="code">BYREF</span>; otherwise
-their data will be duplicated in memory space.</p>
-<pre><code>SUB FBR(BYREF tbl)
-  ? FRE(0)
-  ...
-END
-SUB FBV(tbl)
-  ? FRE(0)
-  ...
-END
-&#39; MAIN
-DIM dt(128)
-...
-? FRE(0)
-FBR dt
-? FRE(0)
-FBV dt
-? FRE(0)
-Passing &amp; returning arrays, using local arrays.
-func fill(a)
-  local b, i
-  dim b(16)
-  for i=0 to 16
-    b(i)=16-a(i)
-  next
-  fill=b
-end
-DIM v()
-v=fill(v)</code></pre>
-<h3 id="Single">Single-line Functions</h3>
-<p>There is also an alternative <span class="code">FUNC DEF</span>
-syntax (single-line functions). This is actually a macro for
-compatibility with the BASIC’s DEF FN command, but quite useful.</p>
-<pre><code>FUNC name[(par1[,...])] = expression
-or
-DEF name[(par1[,...])] = expression
-DEF MySin(x) = SIN(x)
-? MySin(pi/2)</code></pre>
-<p><em>Nested procedures and functions</em></p>
-<p>One nice feature, are the nested procedures/functions. The nested
-procedures/functions are visible only inside the “parent”
-procedure/function. There is no way to access a global procedure with
-the same name of a local.</p>
-<pre><code>FUNC f(x)
-    Rem Function: F/F1()
-    FUNC f1(x)
-        Rem Function: F/F1/F2()
-        FUNC f2(x)
-            f2=cos(x)
-        END
-        f1 = f2(x)/4
-    END
-    Rem Function: F/F3()
-    FUNC f3
-        f3=f1(pi/2)
-    END
-REM
-? f1(pi) : REM OK
-? f2(pi) : REM ERROR
-f = x + f1(pi) + f3 : REM OK
-END</code></pre>
-<h3 id="Units">Units</h3>
-<p>Units are a set of procedures, functions and/or variables that can be
-used by another SB program or SB unit. The main section of the unit
-(commands out of procedure or function bodies) is the initialization
-code.</p>
-<p>A unit declared by the use of <span class="code">UNIT</span>
-keyword.</p>
-<pre><code>UNIT MyUnit</code></pre>
-<p>The functions, procedure or variables which we want to be visible to
-another programs must be declared with the <span
-class="code">EXPORT</span> keyword.</p>
-<pre><code>UNIT MyUnit
-EXPORT MyF
-...
-FUNC MyF(x)
-...
-END</code></pre>
-<p>Keep file-name and unit-name the same. That helps the SB to
-automatically recompile the required units when it is needed. To link a
-program with a unit we use the <span class="code">IMPORT</span>
-keyword.</p>
-<pre><code>IMPORT MyUnit</code></pre>
-<p>To access a member of a unit we must use the unit-name, a point and
-the name of the member.</p>
-<pre><code>IMPORT MyUnit
-...
-PRINT MyUnit.MyF(1/1.6)
-Full example:
-file my_unit.bas:
-UNIT MyUnit
-EXPORT F, V
-REM a shared function
-FUNC F(x)
-    F = x*x
-END
-REM a non-shared function
-FUNC I(x)
-    I = x+x
-END
-REM Initialization code
-V=&quot;I am a shared variable&quot;
-L=&quot;I am invisible to the application&quot;
-PRINT &quot;Unit &#39;MyUnit&#39; initialized :)&quot;
-file my_app.bas:
-IMPORT MyUnit
-PRINT MyUnit.V
-PRINT MyUnit.F(2)</code></pre>
-<h3 id="pseudo">The pseudo-operators</h3>
-<p>++/–/p= The ++ and – operators are used to increase or decrease the
-value of a variable by 1.</p>
-<pre><code>x = 4
-x ++ : REM x &lt;- x + 1 = 5
-x -- : REM x &lt;- x - 1 = 4</code></pre>
-<p>The generic p= operators are used as in C Where p any character of
--+/\*^%&amp;|</p>
-<pre><code>x += 4 : REM x &lt;- x + 4
-x *= 4 : REM x &lt;- x * 4</code></pre>
-<p>All these pseudo-operators are not allowed inside of expressions</p>
-<pre><code>y = x ++ &#39; ERROR
-z = (y+=4)+5 &#39; ALSO ERROR</code></pre>
+<h3 id="pseudo">Pseudo-operators</h3>
+<p>These operators are replaced by the compiler with a command or an
+expression.</p>
+<p>The <code>++</code> and <code>--</code> operators are used to
+increase or decrease the value of a variable by 1.</p>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>x = <span class="dv">4</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>x++    <span class="co">&#39; x = x + 1 -&gt; 5</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>x--    <span class="co">&#39; x = x - 1 -&gt; 4</span></span></code></pre></div>
+<p>The generic <code>p=</code> operators are used to perform an
+operation <code>p</code> on a variable and store the result in the same
+variable. <code>p</code> is any character of
+<code>-+/\*^%&amp;|</code></p>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x += <span class="dv">4</span>      <span class="co">&#39; x = x + 4</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>x *= <span class="dv">4</span>      <span class="co">&#39; x = x * 4</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>x &amp;= <span class="dv">4</span>      <span class="co">&#39; x = x &amp; 4</span></span></code></pre></div>
+<p>All these pseudo-operators are not allowed inside of expressions.</p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>y = x++           <span class="co">&#39; -&gt; ERROR</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>z = (y+=<span class="dv">4</span>) + <span class="dv">5</span>    <span class="co">&#39; -&gt; ERROR</span></span></code></pre></div>
+<h2 id="Expressions">Expressions</h2>
+<p>Expressions are entities that are evaluated to determine their
+values. They are a combination of one or more constants, variables,
+functions, and operators. SmallBASIC evaluates an expression and returns
+a value. Order of evaluation is left-to-right and inside-out according
+to the priority of the operators used in the expression.</p>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>a = <span class="dv">1</span> + <span class="dv">1</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>b = <span class="dv">1</span> + a</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>c = <span class="fu">sin</span>(<span class="dt">pi</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>d = <span class="fu">sin</span>(x^<span class="dv">2</span>) + <span class="dv">2</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>e = a <span class="kw">AND</span> b</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>f = a <span class="kw">AND</span> (c <span class="kw">OR</span> d)</span></code></pre></div>
+<h2 id="SubroutinesAndFunctions">Subroutines and Functions</h2>
+<p>Subroutines and functions are blocks of code separated from the main
+program. These routines can be called from the main program or other
+subroutines and functions. When calling, program execution will jump to
+the start of the routine and execute the code of it. After finishing the
+routine, program execution will continue from the position of
+calling.</p>
+<p>Subroutines and functions can be defined at every position in the
+source code. These routines can be nested. If a routine is nested, it
+can only be called within the parent routine. Otherwise subroutines and
+functions have a global scope.</p>
+<h3 id="SubroutinesAndFunctionsNames">Names</h3>
+<p>Subroutine and function names can use any alphanumeric characters,
+extended characters (ASCII codes 128 - 255 for non-English languages),
+and the symbol <code>_</code>. The first character of the name cannot be
+a digit nor a <code>_</code>.</p>
+<p>Subroutine and function names are case-insensitive.</p>
+<pre><code>abc(), a_c(), ab2c()   -&gt; valid names
+1cd(), a$b(), _abc()   -&gt; invalid names</code></pre>
+<p>Subroutines and functions can not have the same name as build-in
+commands.</p>
+<h3 id="DeclarationOfSubroutines">Declaration of Subroutines</h3>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SUB </span>name</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; subroutine code here</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SUB </span>name()</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; subroutine code here</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="kw">SUB </span>name par1, ..., parN</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; subroutine code here</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="kw">SUB </span>name (par1, ..., parN)</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; subroutine code here</span></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
+<p>The definition of a subroutine starts with the keyword
+<code>SUB</code> and ends with the keyword <code>END</code>. It has a
+name <code>name</code>, can have parameters <code>par1</code> to
+<code>parN</code> and does not return a value. The parameters are
+separated with a comma <code>,</code>. The parameters can be optionally
+enclosed by parentheses.</p>
+<h3 id="DeclarationOfFunctions">Declaration of Functions</h3>
+<div class="sourceCode" id="cb49"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>name</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; function code here</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">RETURN</span> value</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>name()</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; function code here</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  name = value</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>name par1, ..., parN</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; function code here</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">RETURN</span> value</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>name (par1, ..., parN)</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; function code here</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>  name = value</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
+<p>The definition of a function starts with the keyword
+<code>FUNC</code> and ends with the keyword <code>END</code>. It has a
+name <code>name</code>, can have parameters <code>par1</code> to
+<code>parN</code> and must return a value <code>value</code>. The
+parameters are separated with a comma <code>,</code>. The parameters can
+be optionally enclosed by parentheses. To return a value, the keyword
+<code>RETURN</code> can be used or the assignment of a value to the
+function name. If <code>RETURN</code> is used, execution of the function
+will immediately stop, even if there are further commands until
+<code>END</code>.</p>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>MyFunction()</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    i = <span class="dv">1</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">Return</span> i</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    i = <span class="dv">2</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">Return</span> i</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> MyFunction()  <span class="co">&#39; Output: 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>MyFunction()</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    i = <span class="dv">1</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    MyFunction = i</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    i = <span class="dv">2</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    MyFunction = i</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> MyFunction()  <span class="co">&#39; Output: 2</span></span></code></pre></div>
+<h3 id="Parameters">Parameters</h3>
+<p><strong>Using Parameters</strong></p>
+<p>To use a parameters inside a function or subroutine, address the
+parameter by the name given in the routine declaration.</p>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>AddNumbers(a, b)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  c = a + b</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">RETURN</span> c</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
+<p><strong>By-Value and By-Reference</strong></p>
+<p>Parameters are ‘by value’ by default. Passing parameters by value
+means, that the function or subroutine receives a copy of the
+parameters.</p>
+<p>When using the keyword <code>BYREF</code> or the symbol
+<code>@</code> in the routine declaration before the parameter, a
+reference (pointer) to the parameter will be passed to the routine.
+‘by-reference’ parameters can be used to return values from a subroutine
+or function, because the variable in the calling subroutine or function
+will be changed.</p>
+<p>Passing array or map parameters as references will not result in
+creating a copy of the parameters in RAM. Thus, program execution will
+be faster and RAM will be saved.</p>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Passing the parameter by value</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SUB </span>F(a)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  a = <span class="dv">1</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>x = <span class="dv">2</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>F(x)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> x   <span class="co">&#39; Output 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Passing the parameter by reference</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SUB </span>F(<span class="dt">BYREF</span> a)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  a = <span class="dv">1</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>x = <span class="dv">2</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>F(x)</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> x    <span class="co">&#39; Output 1</span></span></code></pre></div>
+<h3 id="ExitAFunctionOrSubroutine">Exit a Function or Subroutine</h3>
+<p>Functions can be exited using <code>RETURN expression</code>, where
+<code>expression</code> is an expression to be evaluated. The evaluated
+value of the expression will be returned by the function. Alternatively
+the keywords <code>EXIT FUNC</code> can be used. In this case the return
+value of the function will be <code>0</code>. All commands following
+<code>RETURN expression</code> or <code>EXIT FUNC</code> will not be
+executed.</p>
+<p>Subroutines can be exited using the keywords <code>EXIT SUB</code>.
+All commands following <code>EXIT SUB</code> will not be executed.</p>
+<h3 id="SingleLineFunctions">Single-line Functions</h3>
+<pre><code>FUNC name(par1, ..., parN) = expression
+DEF  name(par1, ..., parN) = expression</code></pre>
+<p><code>FUNC</code> and <code>DEF</code> can be used to declare
+single-line functions. Declaration starts with the keyword
+<code>FUNC</code> or <code>DEF</code>, followed by the name of the
+routine. The parameter list must be enclosed by parentheses. After the
+closing parentheses an expression is assigned to the routine using the
+<code>=</code> operator.</p>
+<div class="sourceCode" id="cb56"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DEF</span> MyFunc(x) = <span class="fu">SIN</span>(x) + <span class="fu">COS</span>(x)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> MyFunc(<span class="dt">pi</span>/<span class="dv">2</span>)</span></code></pre></div>
+<h3 id="UsingLocalVariables">Using Local Variables</h3>
+<p>Variable are by default global variables. Global variables are
+accessible anywhere in the program. A usual problem is that a variable
+name may be used again in a function or subroutine:</p>
+<div class="sourceCode" id="cb57"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>i = <span class="dv">1</span> <span class="kw">TO</span> <span class="dv">10</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  a = F(i)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRINT</span> i</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>F(x)</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FOR </span>i = <span class="dv">1</span> <span class="kw">TO</span> <span class="dv">6</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">NEXT </span> </span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">RETURN</span> x</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
+<p>In this example, the result is a real mess, because the variable
+<code>i</code> of the main loop will always (except the first time) have
+the value 7 and the program will run endless! This problem can be solved
+by using the keyword <code>LOCAL</code> to declare the variable in the
+function body.</p>
+<div class="sourceCode" id="cb58"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>i = <span class="dv">1</span> <span class="kw">TO</span> <span class="dv">10</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    a = F(i)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRINT</span> i</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>F(x)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">LOCAL</span> i</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOR </span>i = <span class="dv">1</span> <span class="kw">TO</span> <span class="dv">6</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">NEXT </span> </span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RETURN</span> x</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
+<p>It is good practice to declare all local variables on the top of the
+routine. For compatibility reasons, the function and subroutine
+variables are not declared as ‘local’ by default.</p>
+<h3 id="NestedRoutines">Nested Routines</h3>
+<p>Nested subroutines and Functions are allowed in SmallBASIC. Nested
+subroutines and functions are visible only inside the parent routine.
+There is no way to access a global routine with the same name of a local
+routine.</p>
+<div class="sourceCode" id="cb59"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>f1(x)              <span class="co">&#39; f1 </span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FUNC </span>f2(x)          <span class="co">&#39; f2 nested in f1</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">FUNC </span>f3(x)      <span class="co">&#39; f3 nested in f2</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>            f3 = <span class="fu">cos</span>(x)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">END</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>        f2 = f3(x)/<span class="dv">4</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FUNC </span>f4             <span class="co">&#39; f4 nested in f1</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>        f4 = f2(<span class="dt">pi</span>/<span class="dv">2</span>)   <span class="co">&#39; f2 is visible for f4</span></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">END</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRINT</span> f2(<span class="dt">pi</span>)        <span class="co">&#39; Calling f2 inside f1 is valid</span></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39;PRINT f3(pi)       &#39; Calling f3 inside f1 is invalid,</span></span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>                        <span class="co">&#39; because f3 is only visible to f2</span></span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
+<h3 id="DeclarationsInPalmOS">Declarations in PalmOS</h3>
+<p>On a multi-section (PalmOS) applications subroutines and functions
+need to be declared in the main section.</p>
+<div class="sourceCode" id="cb60"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sec</span>:Main</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="kw">declare</span> <span class="kw">func </span>f(x)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="cn">#sec</span>:another section</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="kw">func </span>f(x)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; function code</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<h2 id="Loops">Loops</h2>
+<p>Loops are used to repeatably execute commands until a stop condition
+is reached. Inside a loop an unlimited amount of program lines can be
+placed. Loops can be nested and subroutines, functions and all build-in
+commands can be used.</p>
+<h3 id="ForToNextLoop">FOR-TO-NEXT Loop</h3>
+<p>A FOR-TO-NEXT-loop will continue until an index variable goes beyond
+a defined stop value. In the last loop, the index variable is set to the
+defined stop value. The index variable is updated automatically every
+cycle. The syntax of a FOR-TO-NEXT-loop is:</p>
+<div class="sourceCode" id="cb61"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>Index = StartExpr <span class="kw">TO</span> StopExpr STEP StepSize</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span></code></pre></div>
+<p>Where <code>Index</code> is the automatically updates index variable,
+<code>StartExpr</code> and <code>StopExpr</code> are expressions
+defining the start and stop value, and <code>StepSize</code> is an
+expression defining the step size of the FOR-loop. The FOR-loop ends
+with the Keyword <code>NEXT</code>.</p>
+<p>The expressions <code>Start</code>, <code>Stop</code> and
+<code>StepSize</code> are evaluated every cycle. It is allowed that
+these expressions change their value every cycle, i.e. they are changed
+inside the FOR-loop. To speed up a FOR-loop these expressions should be
+pre-calculated and assigned to variables, which are used in the
+loop.</p>
+<p>Defining a step size is optional. If <code>STEP</code> is not used,
+the step size is set to <code>1</code>.</p>
+<div class="sourceCode" id="cb62"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>i = <span class="dv">6</span> <span class="kw">to</span> <span class="dv">1</span> STEP -<span class="dv">2</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRINT</span> i</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: 6,4,2</span></span></code></pre></div>
+<p>The index variable after the end of the loop has a value
+larger/smaller than the stop condition, depending on the step size.</p>
+<p>Use <code>EXIT</code> or in case of nested loops
+<code>EXIT FOR</code> to end the loop before the stop condition is
+reached.</p>
+<h3 id="ForInNextLoop">FOR-IN-NEXT loop</h3>
+<p>A FOR-IN-NEXT loop loops until the last element of an array or map is
+reached. In every cycle the index variable is updated with the next
+value of the array or map. The array or map variable can change value
+and/or number of elements.</p>
+<div class="sourceCode" id="cb63"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>a =  [<span class="dv">12</span>, <span class="dv">6</span>, <span class="dv">23</span>, -<span class="dv">4</span>]</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>index <span class="kw">IN</span> a</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRINT</span> index</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="kw">NEXT</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output 12 6 23 -4</span></span></code></pre></div>
+<p>Use <code>EXIT</code> or in case of nested loops
+<code>EXIT FOR</code> to end the loop before the last element is
+reached.</p>
+<h3 id="WhileWendLoop">WHILE-WEND Loop</h3>
+<p>A WHILE-WEND loop continues executing as long as the expression
+<code>Expression</code> evaluates to <code>true</code>.</p>
+<div class="sourceCode" id="cb64"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHILE </span>Expression</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WEND</span></span></code></pre></div>
+<p>If <code>Expression</code> evaluates to <code>false</code> when
+starting the loop for the first time, the loop will not be entered and
+the code inside the loop will not be executed.</p>
+<div class="sourceCode" id="cb65"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHILE </span>index &lt; <span class="dv">10</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  index++</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRINT</span> index</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WEND</span></span></code></pre></div>
+<p>Use <code>EXIT</code> or in case of nested loops
+<code>EXIT LOOP</code> to exit the loop.</p>
+<h3 id="RepeatUntilLoop">REPEAT-UNTIL Loop</h3>
+<p>A REPEAT-UNTIL loop continues executing until the expression
+<code>Expression</code> evaluates to <code>true</code>. The code inside
+the loop will be executed at least one time.</p>
+<div class="sourceCode" id="cb66"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">REPEAT</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="kw">UNTIL </span>Expression</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">REPEAT</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  index++</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRINT</span> index</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UNTIL </span>index &gt; <span class="dv">10</span></span></code></pre></div>
+<p>Use <code>EXIT</code> or in case of nested loops
+<code>EXIT LOOP</code> to exit the loop.</p>
+<h2 id="conditions">Conditions</h2>
+<p>Conditions can be used to branch the program flow depending on the
+value of expressions.</p>
+<h3 id="if-then-elsif-else">IF-THEN-ELSIF-ELSE</h3>
+<div class="sourceCode" id="cb68"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">IF </span>expression_<span class="dv">1</span> <span class="kw">THEN</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ELSEIF</span> expression_<span class="dv">2</span> <span class="kw">THEN</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ELSE</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ENDIF</span></span></code></pre></div>
+<p>IF-THEN_ELSEIF-ELSE causes SmallBASIC to make a decision based on the
+value of an expression. <code>expression_1</code> and
+<code>expression_2</code> are expressions, which will be evaluated.
+<code>0</code> is equivalent to <code>FALSE</code>, while all other
+values are equivalent to <code>TRUE</code>.</p>
+<p>Each expression in the IF/ELSEIF construct is tested in order. As
+soon as an expression is found to be <code>TRUE</code>, then its
+corresponding commands are executed. If none of the expressions are
+<code>TRUE</code>, then the commands following the <code>ELSE</code>
+keyword are executed. If <code>ELSE</code> is not specified, then
+execution continues with the command following <code>ENDIF</code>.</p>
+<p><code>IF</code>, <code>ELSE</code>, <code>ELSEIF</code>, and
+<code>ENDIF</code> must all be the first keywords on their respective
+lines. <code>THEN</code> is optional, but if its used it must be the
+last keyword on its line. If anything other than a comment follows
+<code>THEN</code> on the same line, SmallBASIC interprets it as a
+single-line IF/THEN/ELSE construct. IF blocks may be nested.</p>
+<h3 id="single-line-if-then-else">Single-line IF-THEN-ELSE</h3>
+<div class="sourceCode" id="cb69"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">IF </span>expression <span class="kw">THEN co</span>mmand1 <span class="kw">ELSE</span> command2</span></code></pre></div>
+<p>Single-line IF-THE-ELSE causes SmallBASIC to make a decision based on
+the value of an expression <code>expression</code>. <code>0</code> is
+equivalent to <code>FALSE</code>, while all other values are equivalent
+to <code>TRUE</code>. <code>command1</code> and <code>comannd2</code>
+are any legal commands. Multiple Commands can be separated by a colon
+<code>:</code>. If instead of a command a number is specified, it is
+equivalent to a GOTO command with the specified numeric-label.</p>
+<h2 id="Units">Units</h2>
+<p>Units are a set of subroutines, functions and/or variables that can
+be used by another SmallBASIC program or SmallBASIC unit. An unit has
+its own namespace and therefore is independent of the program code.
+Every unit is saved in a separate file with the extension
+<code>.bas</code>. A unit source file can only contain one unit. Unit
+name must be identical to the file name, but without the
+<code>.bas</code> extension.</p>
+<h3 id="UnitsDeclaration">Declaration</h3>
+<p>An unit is declared by the use of the <code>UNIT</code> keyword
+followed by the name of the unit as the first command in the unit source
+file. The functions, subroutines and/or variables which should be
+accessible by another programs must be declared with the
+<code>EXPORT</code> keyword and defined in the unit source file.</p>
+<div class="sourceCode" id="cb70"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="pp">UNIT</span> MyUnitName</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="pp">EXPORT</span> MyFunction</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>MyFuntion(x)</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
+<p>Function, subroutines or variables which are not exported can only be
+used inside the unit source file.</p>
+<h3 id="UnitsImport">Import</h3>
+<p>To import an unit in a program use the <code>IMPORT</code> keyword
+followed by the unit name without the <code>.bas</code> extension. The
+namespace is identical to the unit name. If a different namespace is
+required specify the new namespace using
+<code>IMPORT UnitName AS NameSpace</code>.</p>
+<p>To access a member of a unit use the namespace followed by a point
+and the name of the member.</p>
+<div class="sourceCode" id="cb71"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="pp">IMPORT</span> MyUnit</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>MyUnit.MyFunction(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="pp">IMPORT</span> MyUnit <span class="kw">as</span> u</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>u.MyFunction(<span class="dv">1</span>)</span></code></pre></div>
+<h2 id="Statement1">OPTION</h2>
+<p>The <code>OPTION</code> command is used to pass parameters to the
+SB-environment. There are two styles for that, the run-time which can
+change the value at run-time, and the compile-time which used only in
+compile-time and the value cannot be changed on run-time.</p>
+<h3 id="Statement2">OPTION BASE</h3>
+<p>The <code>OPTION BASE LowerBound</code> statement sets the lowest
+allowable subscript of arrays to <code>LowerBound</code>. The default is
+zero. The <code>OPTION BASE</code> statement can be used in any place in
+the source code but in most cases the <code>OPTION BASE</code> must be
+declared in the first lines of the program before any <code>DIM</code>
+declaration.</p>
+<p>Use <code>OPTION BASE 1</code> to set the index of the first element
+of an array to <code>1</code>. This option is useful especially for
+beginners, because it makes counting elements more intuitive.</p>
+<div class="sourceCode" id="cb73"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="pp">OPTION</span> BASE <span class="dv">1</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> A[<span class="dv">1</span>]    <span class="co">&#39; Output 1</span></span></code></pre></div>
+<p><code>OPTION BASE</code> is a run-time option.</p>
+<h3 id="Statement3">OPTION MATCH</h3>
+<p><code>OPTION MATCH [PCRE [CASELESS]|SIMPLE]</code> sets the default
+matching algorithm to (P)erl-(C)ompatible (R)egular (E)xpressions
+library or back to simple. The matching-algorithm is used in
+<code>LIKE</code> and <code>FILES</code>. PRCE works only in systems
+with this library and SmallBASIC must be linked against it.</p>
+<p><code>OPTION MATCH</code> is a run-time option.</p>
+<h3 id="Statement4">OPTION PREDEF</h3>
+<p><code>OPTION PREDEF parameter</code> sets parameters of the compiler.
+Where <code>parameter</code> is</p>
+<ul>
+<li><code>QUIET</code>: Sets the quiet flag (-q option)</li>
+<li><code>COMMAND cmdstr</code>: Sets the <code>COMMAND</code> string to
+<code>cmdstr</code> (useful for debug reasons)</li>
+<li><code>GRMODE [widthxheight[xbpp]]</code>: Sets the graphics mode
+flag (-g option) or sets the preferred screen resolution. Example:
+<code>OPTION PREDEF GRMODE 320x320x16</code></li>
+<li><code>TEXTMODE</code>: Sets the text mode flag (-g- option)</li>
+<li><code>CSTR</code>: Sets as default string style the C-style special
+character encoding (<code>\</code>)</li>
+<li><code>ANTIALIAS on,off</code> : Enable/Disable anti-aliasing for
+drawing commands like <code>CIRCLE</code> or <code>LINE</code></li>
+</ul>
+<p><code>OPTION PREDEF</code> is a compile-time option.</p>
+<h2 id="Meta">Meta Commands</h2>
+<p>SmallBASIC uses the following meta commands:</p>
+<ul>
+<li><code>#!...</code>: Shebang; used by Linux to make source runs as a
+script executable</li>
+<li><code>#sec: SectionName</code>: Used internally to store the section
+name. Sections names are used at limited OSes like PalmOS for multiple
+32kB source code sections.</li>
+<li><code>#inc: FileName</code>: Used to include a SmallBASIC source
+file into the current BASIC code.</li>
+<li><code>#unit-path: path</code>: Used to setup additional directories
+for searching for unit-files This meta does nothing more than to setting
+up the environment variable SB_UNIT_PATH. Directories on Linux must be
+separated by <code>:</code>, and on DOS/Windows by <code>;</code></li>
+</ul>
+<div class="sourceCode" id="cb74"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>#!/usr/<span class="dt">local</span>/<span class="fu">bin</span>/sbasic</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="cn">#inc</span>:<span class="st">&quot;mylib.bas&quot;</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="cn">#unit</span>-path: C:\sbasic\units;C:\temp</span></code></pre></div>
 <h3 id="use">The USE keyword</h3>
 <p>This keyword is used on specific commands to passing a user-defined
 expression.</p>
@@ -823,35 +1434,6 @@ with WHILE and FOR-family commands.</p>
 WHILE i &lt; 4 DO i ++</code></pre>
 <p>Also, it can be used by IF command (instead of THEN), but is not
 suggested.</p>
-<h3 id="Using">Using LOCAL variables</h3>
-<p>When a variable is not declared it is by default a global variable. A
-usual problem is that name may be used again in a function or
-procedure.</p>
-<pre><code>FUNC F(x)
-  FOR i=1 TO 6
-    ...
-  NEXT
-END
-FOR i=1 TO 10
-  PRINT F(i)
-NEXT</code></pre>
-<p>In this example, the result is a real mess, because the <span
-class="code">var i</span> of the main loop will always (except the first
-time) have the value 6! This problem can be solved if we use the <span
-class="code">LOCAL</span> keyword to declare the <span
-class="code">var</span> in the function body.</p>
-<pre><code>FUNC F(x)
-  LOCAL i
-  FOR i=1 TO 6
-    ...
-  NEXT
-END
-FOR i=1 TO 10
-  PRINT F(i)
-NEXT</code></pre>
-<p>It is good to declare all local variables on the top of the function.
-For compatibility reasons, the func./proc. variables are not declared as
-‘local’ by default. That it is WRONG but as I said … compatibility.</p>
 <h3 id="Loops">Loops and variables</h3>
 <p>When we write loops it is much better to initialize the counters on
 the top of the loop instead of the top of the program or nowhere.</p>
@@ -882,8 +1464,7 @@ NEXT</code></pre>
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
-      | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.12.1</a>
     </div>
   </div>
 </div>

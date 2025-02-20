@@ -22,7 +22,6 @@ pandoc_options=--from markdown-tex_math_dollars --to html5 --syntax-definition=s
 pandoc_ide_options=--from markdown-tex_math_dollars --to html5
 bas = $(patsubst layouts/%.html, $(out)/%.bas, $(wildcard layouts/*.html))
 pages = $(patsubst pages/%.markdown, $(out)/pages3/%.html, $(wildcard pages/*.markdown))
-posts = $(patsubst posts/%.markdown, $(out)/posts3/%.html, $(wildcard posts/*.markdown))
 scripts = $(patsubst scripts/%.html, $(out)/scripts2/%.html, $(wildcard scripts/*.html))
 reference = $(patsubst reference/%.markdown, $(out)/reference3/%.html, $(wildcard reference/*.markdown))
 reference_txt = $(patsubst reference/%.markdown, $(out)/reference_txt/%.txt, $(wildcard reference/*.markdown))
@@ -65,18 +64,6 @@ $(out)/pages3/%.html: $(out)/pages2/%.html
 	$(mkdir)
 	$(sbasic) $(out)/sitepage.bas $< > $@
 
-$(out)/posts/%.html: posts/%.markdown
-	$(mkdir)
-	$(pandoc) $(pandoc_options) -o $@ $<
-
-$(out)/posts2/%.html: $(out)/posts/%.html $(bas)
-	$(mkdir)
-	$(sbasic) $(out)/article.bas $< > $@
-
-$(out)/posts3/%.html: $(out)/posts2/%.html
-	$(mkdir)
-	$(sbasic) $(out)/sitepage.bas $< > $@
-
 $(out)/scripts/%.bas: scripts/%.html $(bas) refindex.bas
 	$(mkdir)
 	$(sbasic) mkpage.bas $< > $@
@@ -100,15 +87,12 @@ $(out)/reference_ide/%.html: reference/%.markdown
 all: $(reference) $(reference_ide) $(out)/sbref.txt $(out)/sbasic_ref.csv $(pages) $(posts) $(scripts)
 	@mkdir -p ../reference/ide
 	@mkdir -p ../pages
-	@mkdir -p ../posts
 	@$(sbasic) deploy.bas
 	@cp $(out)/sbref.txt ../reference/
 	@cp $(out)/pages3/*.html ../pages
-	@cp $(out)/posts3/*.html ../posts
 	@cp $(out)/scripts2/*.html ../pages
 	@mv ../pages/index.html ../
 	@cp layouts/index.html ../pages
-	@cp layouts/index.html ../posts
 	@cp layouts/index.html ../samples
 	@cp layouts/index.html ../reference
 	@cp layouts/index.html ../reference/ide

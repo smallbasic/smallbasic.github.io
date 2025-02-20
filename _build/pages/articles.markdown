@@ -2,11 +2,12 @@
 
 ## Programming in SmallBASIC
 
-- [User guide](/pages/guide.html): brief description of SmallBASIC for advanced BASIC users
-- Programming SmallBASIC  by Gerard Thomas Lab&egrave;rnia: great starting point for all who want to learn programing in SmallBASIC
+- [SmallBASIC Manual](/pages/guide.html): Brief description of SmallBASIC for advanced BASIC users
+- Programming SmallBASIC by Gerard Thomas Lab&egrave;rnia: great starting point for all who want to learn programing in SmallBASIC
   - [English](/pages/course_gtl.html)
   - [Catalan](/docs/smallbasic.ca.pdf)
 - [Vademecum](/pages/vade.html): comprehensive tutorial for beginners and experts
+- [Code Library](/pages/samples.html): Huge collection of examples
 - [Escape codes](/pages/escape.html)
 - [TRY/CATCH](/pages/trycatch.html)
 - [Network programming](/pages/network.html)
@@ -38,6 +39,8 @@
 
 ## Miscellaneous
 
+- [Changelog](/pages/changelog.html)
 - [Android Changelog](/pages/android_changelog.html)
+- [Screenshots](/pages/screenshots.html)
 - [Contributing](/pages/contributing.html)
 

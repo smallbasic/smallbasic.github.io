@@ -13,55 +13,27 @@
   <script src="/clipboard.js"></script>
 </head>
   <body>
+<button onclick="topFunction()" id="BackToTopBtn" title="Go to top">&#11205;</button>
+<script src="/backtotop.js"></script>
 <div class="wrapAll clearfix">
-  <div class="sidebar">
+  <nav class="navigation">
     <div class="logo">
-      <a href="/"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+      <a href="/"><img src='/images/sb-logo.png' alt="logo"></a>
     </div>
-    <div class="navigation">
-      <h4>SmallBASIC</h4>
-      <ul>
-        <li><a href="/">Main page</a></li>
-        <li><a href="/pages/download.html">Download</a></li>
-        <li><a href="/pages/reference.html">Language reference</a></li>
-        <li><a href="/pages/samples.html">Code library</a></li>
-      </ul>
-      <hr class="menuSeparator"/>
-      <ul>
-        <li><a href="/pages/news.html">News</a></li>
-        <li><a href="/pages/articles.html">Articles</a></li>
-        <li><a href="/pages/community.html">Community</a></li>
-        <li><a href="/pages/changelog.html">Changelog</a></li>
-        <li><a href="/pages/screenshots.html">Screenshots</a></li>
-        <li><a href="/pages/links.html">Links</a></li>
-      </ul>
+    <div class="navlinks">
+      <a href="/pages/download.html">Download</a>
+      <a href="/pages/news.html">News</a>
+      <a href="/pages/community.html">Community</a>
+      <a href="/pages/articles.html">Resources</a>
+      <a href="/pages/reference.html">Language Reference</a>
+      <a href="/pages/guide.html">SmallBASIC Manual</a>
     </div>
-  </div>
+  </nav>
   <div class="mainsection">
     <div class="tabs clearfix">
-      <div class="tabsLeft">
-        <ul>
-          <li><a href="#" class="active">Article</a></li>
-          <li><a href="https://www.syntaxbomb.com/smallbasic">Discuss</a></li>
-        </ul>
-      </div>
-      <div id="simpleSearch">
-        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
-              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
-          <div id="submitSearch">
-            <button type="submit">&nbsp;</button>
-            <input type="hidden" class="js-site-search-type-field" name="type">
-            <input type="hidden" name="utf8" value="✓">
-            <input type="hidden" name="l" value="Visual Basic">
-            <input type="text" name="q" placeholder="Search" id="searchInput">
-          </div>
-        </form>
-      </div>
       <div class="tabsRight">
-        <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/1448-date-ticks.markdown">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/1448-date-ticks.markdown">View history</a></li>
-        </ul>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/reference/1448-date-ticks.markdown">Edit</a>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/reference/1448-date-ticks.markdown">History</a>
       </div>
     </div>
 <div class="article">
@@ -110,8 +82,8 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-
   <div class="lavenderBox">
     <div class="header">Code samples using TICKS</div>
     <div class="linklist">
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 4/2048.bas">2048.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 3/2048.bas">2048.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 4/2048.bas">2048.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 2/3d rotating cube with message.bas">3d rotating cube with message.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 1/3d_torus.bas">3d_torus.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 2/3dtorus.bas">3dtorus.bas </a>&nbsp;
@@ -119,8 +91,8 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/applications/analog clock.bas">analog clock.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 1/anball 1.0.bas">anball 1.0.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 4/Ball.bas">Ball.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 4/balls in 3d cube.bas">balls in 3d cube.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/misc/Other graphics/balls in 3d cube.bas">balls in 3d cube.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 4/balls in 3d cube.bas">balls in 3d cube.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/graphics 4/circ.bas">circ.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/mechanics/duty.bas">duty.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/system/evdemo.bas">evdemo.bas </a>&nbsp;
@@ -155,23 +127,6 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-
       <a href="/reference/1450.html">TIMESTAMP </a>&nbsp;
       <a href="/reference/579.html">WEEKDAY </a>&nbsp;
     </div>
-    <div class="subtitle">
-      If there is insufficient information on this page and you wish learn more about TICKS,
-      please send an email to smallbasic@gmail.com. You can help to improve information about
-TICKS by submitting a <a href="https://github.com/smallbasic/smallbasic.github.io/pulls">pull request</a>,
-      click View Source for details. Note, an offline language reference text file is also available - see the Download section.
-    </div>
-  </div>
-  <div class="categories">
-    <a href="/pages/console.html">Console </a>
-    <a href="/pages/data.html">Data </a>
-    <a href="/pages/date.html">Date </a>
-    <a href="/pages/file.html">File </a>
-    <a href="/pages/graphics.html">Graphics </a>
-    <a href="/pages/language.html">Language </a>
-    <a href="/pages/math.html">Math </a>
-    <a href="/pages/string.html">String </a>
-    <a href="/pages/system.html">System </a>
   </div>
 </div>
     <div class="pagefooter">
@@ -179,8 +134,7 @@ TICKS by submitting a <a href="https://github.com/smallbasic/smallbasic.github.i
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
-      | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.12.1</a>
     </div>
   </div>
 </div>

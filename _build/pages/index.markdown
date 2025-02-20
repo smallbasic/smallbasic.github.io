@@ -1,19 +1,13 @@
-# Welcome to SmallBASIC
+# SmallBASIC
 
-> one more basic
+> SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for everyday
+> calculations, scripts and prototypes. SmallBASIC includes trigonometric, matrices and
+> algebra functions, a built in IDE, a powerful string library, system, sound, graphic
+> commands and communication via serial or sockets along with structured programming syntax.
 
-SmallBASIC is a fast and easy to learn BASIC language interpreter ideal for everyday calculations, scripts and prototypes. SmallBASIC includes trigonometric, matrices and algebra functions, a built in IDE, a powerful string library, system, sound, graphic commands and communication via serial or sockets along with structured programming syntax.
+![](../images/sb_logo_text.png){ style="display: block; margin-left: auto; margin-right: auto; padding-bottom:2em;"}
 
-```smallbasic
-' Example for using functions in SmallBASIC
-
-s = AddStrings("My", "String")
-print s
-
-func AddStrings(a, b)
-    return a + b
-end
-```
+[Download](pages/download.html){.LinkIndexPage} [Try online](https://smallbasic.github.io/online/sbasic.html){.LinkIndexPage}
 
 ## Programming Made Easy for All
 
@@ -22,8 +16,11 @@ Windows, Linux, and Android. You can even build it from source to run
 on many other POSIX-compliant systems, such as Raspberry Pi OS for the
 Raspberry Pi. With its built-in Integrated Development Environment
 (IDE), you can write programs on your Android-powered tablet or mobile
-phone and run them instantly. If you want to get started, you can
-download SmallBASIC from our ([Downloads](/pages/download.html)) page.
+phone and run them instantly. 
+
+![](../images/os_logos_devices.png){ style="display: block; margin-left: auto; margin-right: auto; padding-top:1em; padding-bottom:1em;"}
+
+[Screenshots](pages/screenshots.html){.LinkIndexPage}
 
 SmallBASIC makes it easy to bundle your program with all the necessary
 libraries, creating executable files for Windows (exe-files) or Linux
@@ -38,6 +35,8 @@ Just click on [Start online](/online/sbasic.html) to begin coding.
 ## Editors, IDE and SmallBASIC versions
 
 SmallBASIC comes in three different flavors for the desktop. The SDL version offers a simple but efficient IDE and is perfect for working with graphics. The FLTK version has a great IDE. The console version doesn't offer an IDE and is text-only but works perfect with plugins like raylib or nuklear ([Downloads](/pages/download.html)).
+
+![](../images/sb_versions.png){ style="display: block; margin-left: auto; margin-right: auto; padding-top:1em; padding-bottom:1em;"}
 
 No matter which SmallBASIC version you prefer, external editors like Visual Studio Code, Geany, Sublime Text or KDE Kate can be setup for syntax highlighting or code execution ([Setup external editors](/pages/language_support.html)).
 
