@@ -38,14 +38,17 @@ and an empty file will be created. The files are always opened as
 shared. You can use FREEFILE to get the next unused file-handle. Use
 PRINT, INPUT, BGETC and BPUTC to read from or write to a file or
 device.</p>
-<h4 id="open-a-com-port-rs232">Open a COM port (RS232)</h4>
+<h3 id="open-a-com-port-rs232">Open a COM port (RS232)</h3>
 <p>You can open a connection to a device using the serial port with
 <code>open "COMn:speed" AS #1</code>, where <code>n</code> is the number
 of the port and <code>speed</code> is the baud rate. To open the first
 serial port with a baud rate of 19200 use:
-<code>open "COM1:19200" as #1</code>. In Windows COM1 and in Linux
-/dev/ttys1 would be opened.</p>
-<h4 id="open-a-tcpip-socket">Open a TCP/IP socket</h4>
+<code>open "COM1:19200" as #1</code>. In Windows <code>COM1</code> and
+in Linux <code>/dev/ttys1</code> would be opened. Instead of
+<code>COMn</code> you can open in Linux every port starting with
+<code>/dev/tty</code>, for example <code>/dev/ttyUSB1</code> or
+<code>/dev/ttyACM1</code>.</p>
+<h3 id="open-a-tcpip-socket">Open a TCP/IP socket</h3>
 <p>You can open a connection to a device using a TCP/IP socket with
 <code>open "SOCL:IP:PORT" AS #1</code>, where <code>IP</code> is a valid
 host name or IP address and <code>port</code> is an open port.</p>
@@ -110,7 +113,7 @@ print #1, &quot;Hello world&quot;                  &#39; Send string to server
 close #1</code></pre>
 <h3 id="example-4-open-a-com-port-rs232">Example 4: Open a COM port
 (RS232)</h3>
-<pre><code>open &quot;COM1:19200&quot; as #1    &#39; Open COM1  with 19200 bauds
+<pre><code>open &quot;COM1:19200&quot; as #1     &#39; Open COM1  with 19200 bauds
 
 while (!eof(1))             &#39; Loop until connection is closed
 
@@ -118,6 +121,22 @@ while (!eof(1))             &#39; Loop until connection is closed
 
     if(l) then              &#39; if data is available
         s = INPUT(l, 1)     &#39; get all data
+        print s
+    endif
+
+wend
+
+close #1</code></pre>
+<pre><code>&#39; Works only in Linux
+
+open &quot;/dev/ttyACM1:19200&quot; as #1     &#39; Open ttyACM1 with 19200 bauds
+
+while (!eof(1))                     &#39; Loop until connection is closed
+
+    l = lof(1)                      &#39; Querry how much data is in the queue
+
+    if(l) then                      &#39; if data is available
+        s = INPUT(l, 1)             &#39; get all data
         print s
     endif
 

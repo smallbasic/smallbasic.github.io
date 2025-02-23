@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language>
-<language name="smallbasic" version="1" kateversion="5.0" section="Sources" extensions="*.bas;*.BAS" casesensitive="no">
+<language name="SmallBASIC" version="1" kateversion="5.0" section="Sources" extensions="*.bas;*.BAS" casesensitive="no">
   <highlighting>
     <list name="preproc">    
       <item>INCLUDE</item>
@@ -9,7 +9,6 @@
       <item>OPTION</item>
       <item>UNIT</item>    
     </list>
-    
     <list name="keywords">
       <item>ACCESS</item>
       <item>AND</item>
@@ -80,7 +79,6 @@
       <item>XNOR</item>
       <item>XOR</item>
     </list>
-    
     <list name="Data Types">  
       <item>DIM</item>
       <item>LOCAL</item>
@@ -98,8 +96,7 @@
       <item>XMAX</item>
       <item>YMAX</item>
       <item>MAXINT</item>
-    </list>   
-    
+    </list>
     <list name="functions">
       <item>ABS</item>
       <item>ABSMAX</item>
@@ -350,18 +347,27 @@
          
         <keyword attribute="Functions" context="#stay" String="functions"/>
         <RegExpr attribute="Constant" context="#stay" String="\#+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"/>
-        <Float attribute="Number" context="#stay"/>
+        <RegExpr attribute="Number" context="#stay" String="\b0[xX][0-9a-fA-F]+"/>
+        <RegExpr attribute="Number" context="#stay" String="&amp;[hH][0-9a-fA-F]+"/>
+        <RegExpr attribute="Number" context="#stay" String="\b0[oO][0-7]+"/>
+        <RegExpr attribute="Number" context="#stay" String="&amp;[oO][0-7]+"/>        
+        <RegExpr attribute="Number" context="#stay" String="\b0[bB][01]+"/>
+        <RegExpr attribute="Number" context="#stay" String="&amp;[bB][01]+"/>
+        <RegExpr attribute="Number" context="#stay" String="(([1-9][0-9]*\.?[0-9]*)|(\.[0-9]+))([Ee][+-]?[0-9]+)?"/>
+        
         <Int attribute="Number" context="#stay"/>
+
         <DetectChar attribute="String" context="String" char="&quot;" />
         <RegExpr attribute="Region Marker" context="#stay" String="^\s*;+\s*BEGIN.*$" beginRegion="marker" column="0"/>
         <RegExpr attribute="Region Marker" context="#stay" String="^\s*;+\s*END.*$" endRegion="marker" column="0"/>
         <DetectChar attribute="Comment" context="Comment1" char="'"/>
-        <RegExpr attribute="Comment" context="Comment1" String="\b(rem)([.\s]|$)" insensitive="true"/>
+        <RegExpr attribute="Comment" context="Comment1" String="\b(rem)([.\s]|$)" insensitive="true"/>     
       </context>
       <context attribute="String" lineEndContext="#pop" name="String">
         <DetectChar attribute="String" context="#pop" char="&quot;"/>
       </context>
       <context attribute="Comment" lineEndContext="#pop" name="Comment1">
+        <IncludeRules context="##Comments" />
       </context>
     </contexts>
     <itemDatas>
@@ -381,4 +387,4 @@
     <keywords casesensitive="0" />
   </general>
 </language>
-<!-- // kate: space-indent on; indent-width 2; replace-tabs on; --> 
+<!-- // kate: space-indent on; indent-width 2; replace-tabs on; -->

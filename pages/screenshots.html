@@ -13,97 +13,129 @@
   <script src="/clipboard.js"></script>
 </head>
   <body>
+<button onclick="topFunction()" id="BackToTopBtn" title="Go to top">&#11205;</button>
+<script src="/backtotop.js"></script>
 <div class="wrapAll clearfix">
-  <div class="sidebar">
+  <nav class="navigation">
     <div class="logo">
-      <a href="/"><img src='/images/sb-desktop-128x128.png' alt="logo"></a>
+      <a href="/"><img src='/images/sb-logo.png' alt="logo"></a>
     </div>
-    <div class="navigation">
-      <h4>SmallBASIC</h4>
-      <ul>
-        <li><a href="/">Main page</a></li>
-        <li><a href="/pages/download.html">Download</a></li>
-        <li><a href="/pages/reference.html">Language reference</a></li>
-        <li><a href="/pages/samples.html">Code library</a></li>
-      </ul>
-      <hr class="menuSeparator"/>
-      <ul>
-        <li><a href="/pages/news.html">News</a></li>
-        <li><a href="/pages/articles.html">Articles</a></li>
-        <li><a href="/pages/community.html">Community</a></li>
-        <li><a href="/pages/changelog.html">Changelog</a></li>
-        <li><a href="/pages/screenshots.html">Screenshots</a></li>
-        <li><a href="/pages/links.html">Links</a></li>
-      </ul>
+    <div class="navlinks">
+      <a href="/pages/download.html">Download</a>
+      <a href="/pages/news.html">News</a>
+      <a href="/pages/community.html">Community</a>
+      <a href="/pages/articles.html">Resources</a>
+      <a href="/pages/reference.html">Language Reference</a>
+      <a href="/pages/guide.html">SmallBASIC Manual</a>
     </div>
-  </div>
+  </nav>
   <div class="mainsection">
     <div class="tabs clearfix">
-      <div class="tabsLeft">
-        <ul>
-          <li><a href="#" class="active">Article</a></li>
-          <li><a href="https://www.syntaxbomb.com/smallbasic">Discuss</a></li>
-        </ul>
-      </div>
-      <div id="simpleSearch">
-        <form action="https://github.com/smallbasic/smallbasic.github.io/search"
-              target="_github" accept-charset="UTF-8" method="get" style="display:inline">
-          <div id="submitSearch">
-            <button type="submit">&nbsp;</button>
-            <input type="hidden" class="js-site-search-type-field" name="type">
-            <input type="hidden" name="utf8" value="✓">
-            <input type="hidden" name="l" value="Visual Basic">
-            <input type="text" name="q" placeholder="Search" id="searchInput">
-          </div>
-        </form>
-      </div>
       <div class="tabsRight">
-        <ul>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/scripts/screenshots.html">View source</a></li>
-          <li><a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/scripts/screenshots.html">View history</a></li>
-        </ul>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/screenshots.markdown">Edit</a>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/screenshots.markdown">History</a>
       </div>
     </div>
 <div class="article">
-  <h1>Screenshots</h1>
-<p><img src=/images/screenshots/3dttt_mosync.png>
-<p><img src=/images/screenshots/3spiros.png>
-<p><img src=/images/screenshots/bb.gif>
-<p><img src=/images/screenshots/bowling.png>
-<p><img src=/images/screenshots/c_hex.png>
-<p><img src=/images/screenshots/c_spiro.png>
-<p><img src=/images/screenshots/calc-android.png>
-<p><img src=/images/screenshots/calendar.gif>
-<p><img src=/images/screenshots/chart1.gif>
-<p><img src=/images/screenshots/chart2.gif>
-<p><img src=/images/screenshots/chart3.gif>
-<p><img src=/images/screenshots/chess.jpeg>
-<p><img src=/images/screenshots/colours.png>
-<p><img src=/images/screenshots/fire.png>
-<p><img src=/images/screenshots/gold.png>
-<p><img src=/images/screenshots/matches-android.png>
-<p><img src=/images/screenshots/maze.png>
-<p><img src=/images/screenshots/mira.bas.png>
-<p><img src=/images/screenshots/mira.png>
-<p><img src=/images/screenshots/networking.png>
-<p><img src=/images/screenshots/sbasic.png>
-<p><img src=/images/screenshots/sbasicg.png>
-<p><img src=/images/screenshots/sbasici.png>
-<p><img src=/images/screenshots/sbhex.gif>
-<p><img src=/images/screenshots/sincostan-android.png>
-<p><img src=/images/screenshots/smallbasic_tetris.png>
-<p><img src=/images/screenshots/tic-tac-toe.gif>
-<p><img src=/images/screenshots/tree.gif>
-<p><img src=/images/screenshots/unxhex.gif>
-<p><img src=/images/screenshots/voxel.png>
+<h1 id="screenshots">Screenshots</h1>
+<h2 id="smallbasic-ide">SmallBASIC IDE</h2>
+<p><a href="/images/screenshots/sbasicg.png" class="screenshot"><img
+src="/images/screenshots/sbasicg.png" class="screenshot"
+alt="Desktop SDL" /></a> <a href="/images/screenshots/sbasici.png"
+class="screenshot"><img src="/images/screenshots/sbasici.png"
+class="screenshot" alt="Desktop FLTK" /></a> <a
+href="/images/screenshots/smallbasic_tetris.png" class="screenshot"><img
+src="/images/screenshots/smallbasic_tetris.png" class="screenshot"
+alt="Desktop FLTK" /></a></p>
+<h2 id="made-with-the-raylib-plugin">Made with the Raylib Plugin</h2>
+<p><a href="/images/screenshots/bugescape.png" class="screenshot"><img
+src="/images/screenshots/bugescape.png" class="screenshot"
+alt="Bug Escape" /></a> <a href="/images/screenshots/asteroids.png"
+class="screenshot"><img src="/images/screenshots/asteroids.png"
+class="screenshot" alt="Asteroids" /></a> <a
+href="/images/screenshots/weather.png" class="screenshot"><img
+src="/images/screenshots/weather.png" class="screenshot"
+alt="Weather" /></a> <a href="/images/screenshots/sbasic.png"
+class="screenshot"><img src="/images/screenshots/sbasic.png"
+class="screenshot" alt="raylib" /></a></p>
+<h2 id="games">Games</h2>
+<p><a href="/images/screenshots/bowling.png" class="screenshot"><img
+src="/images/screenshots/bowling.png" class="screenshot"
+alt="Bowling" /></a> <a href="/images/screenshots/blockexplosion.png"
+class="screenshot"><img src="/images/screenshots/blockexplosion.png"
+class="screenshot" alt="Block Explosion" /></a> <a
+href="/images/screenshots/matches-android.png" class="screenshot"><img
+src="/images/screenshots/matches-android.png" class="screenshot"
+alt="Matches" /></a> <a href="/images/screenshots/lander.png"
+class="screenshot"><img src="/images/screenshots/lander.png"
+class="screenshot" alt="Lander" /></a> <a
+href="/images/screenshots/3dttt_mosync.png" class="screenshot"><img
+src="/images/screenshots/3dttt_mosync.png" class="screenshot"
+alt="3dTikTakToe" /></a> <a href="/images/screenshots/chess.jpeg"
+class="screenshot"><img src="/images/screenshots/chess.jpeg"
+class="screenshot" alt="chess" /></a></p>
+<h2 id="math-and-fractals">Math and Fractals</h2>
+<p><a href="/images/screenshots/3spiros.png" class="screenshot"><img
+src="/images/screenshots/3spiros.png" class="screenshot"
+alt="3spiros" /></a> <a href="/images/screenshots/c_hex.png"
+class="screenshot"><img src="/images/screenshots/c_hex.png"
+class="screenshot" alt="c_hex" /></a> <a
+href="/images/screenshots/c_spiro.png" class="screenshot"><img
+src="/images/screenshots/c_spiro.png" class="screenshot"
+alt="c_spiro" /></a> <a href="/images/screenshots/calc-android.png"
+class="screenshot"><img src="/images/screenshots/calc-android.png"
+class="screenshot" alt="calc-android" /></a> <a
+href="/images/screenshots/chart1.gif" class="screenshot"><img
+src="/images/screenshots/chart1.gif" class="screenshot"
+alt="chart1" /></a> <a href="/images/screenshots/tree.gif"
+class="screenshot"><img src="/images/screenshots/tree.gif"
+class="screenshot" alt="tree" /></a> <a
+href="/images/screenshots/unxhex.gif" class="screenshot"><img
+src="/images/screenshots/unxhex.gif" class="screenshot"
+alt="unxhex" /></a> <a href="/images/screenshots/mira.png"
+class="screenshot"><img src="/images/screenshots/mira.png"
+class="screenshot" alt="mira" /></a> <a
+href="/images/screenshots/sincostan-android.png" class="screenshot"><img
+src="/images/screenshots/sincostan-android.png" class="screenshot"
+alt="sincostan-android" /></a></p>
+<h2 id="graphics-fun">Graphics Fun</h2>
+<p><a href="/images/screenshots/colours.png" class="screenshot"><img
+src="/images/screenshots/colours.png" class="screenshot"
+alt="colours" /></a> <a href="/images/screenshots/fire.png"
+class="screenshot"><img src="/images/screenshots/fire.png"
+class="screenshot" alt="fire" /></a> <a
+href="/images/screenshots/gold.png" class="screenshot"><img
+src="/images/screenshots/gold.png" class="screenshot" alt="gold" /></a>
+<a href="/images/screenshots/maze.png" class="screenshot"><img
+src="/images/screenshots/maze.png" class="screenshot" alt="maze" /></a>
+<a href="/images/screenshots/networking.png" class="screenshot"><img
+src="/images/screenshots/networking.png" class="screenshot"
+alt="networking" /></a> <a href="/images/screenshots/voxel.png"
+class="screenshot"><img src="/images/screenshots/voxel.png"
+class="screenshot" alt="voxel" /></a></p>
+<h2 id="made-with-the-nuklear-plugin">Made with the Nuklear Plugin</h2>
+<p><a href="/images/screenshots/androiddisttool.png"
+class="screenshot"><img src="/images/screenshots/androiddisttool.png"
+class="screenshot" alt="androiddisttool" /></a></p>
+<h2 id="smallbasic-web-server">SmallBASIC Web Server</h2>
+<p><a href="/images/screenshots/sbasicw.png" class="screenshot"><img
+src="/images/screenshots/sbasicw.png" class="screenshot"
+alt="sbasicw" /></a></p>
+<h2 id="palm">Palm</h2>
+<p><a href="/images/screenshots/bb.gif" class="screenshot"><img
+src="/images/screenshots/bb.gif" class="screenshot" alt="bb" /></a> <a
+href="/images/screenshots/calendar.gif" class="screenshot"><img
+src="/images/screenshots/calendar.gif" class="screenshot"
+alt="calendar" /></a> <a href="/images/screenshots/chart2.gif"
+class="screenshot"><img src="/images/screenshots/chart2.gif"
+class="screenshot" alt="chart2" /></a></p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 24 Jan 2021 09:04:45 +1000
+      This page was last edited on Sun, 18 Mar 2018 07:16:02 +1000
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.3</a>
-      | Template by <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.12.1</a>
     </div>
   </div>
 </div>

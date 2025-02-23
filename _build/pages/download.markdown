@@ -45,3 +45,7 @@
 
 [Offline help text](../reference/sbref.txt){target="_blank"}
 
+## Changelog
+
+- [Changelog](/pages/changelog.html)
+- [Android Changelog](/pages/android_changelog.html)
