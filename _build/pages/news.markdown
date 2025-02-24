@@ -1,5 +1,13 @@
 # News
 
+### Website refresh
+
+::: date
+| Feb 23, 2025
+:::
+
+Awesome work by J7M. For details see: [New SmallBASIC Website](https://www.syntaxbomb.com/smallbasic/new-smallbasic-website) discussion.
+
 ### Syntax highlighting for ecode editor by bprlhe
 
 ::: date
