@@ -69,6 +69,10 @@ a:hover {
   background-color: var(--LinkHoverColor);
 }
 
+a.active {
+  background-color: var(--HeadingColor);
+}
+
 .LinkIndexPage:first-child {
   margin-left: calc(50% - 85px);
 }

@@ -42,7 +42,7 @@
 - [Mailing List](https://sourceforge.net/projects/smallbasic/lists/smallbasic-public){target=_blank}
 - [Sourceforge Tickets](https://sourceforge.net/p/smallbasic/_list/tickets?source=navbar){target=_blank}
 
-## What About the Other "SmallBASIC?"
+## What about the other "SmallBASIC?"
 
 We noticed there's another version of [SmallBASIC](https://smallbasic-publicwebsite.azurewebsites.net){target=_blank}.
 Other than the naming coincidence, our version of SmallBASIC doesn't have anything to do with this other version.

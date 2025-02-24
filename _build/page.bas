@@ -13,6 +13,7 @@ export changesurl
 export lastedit
 export package
 export samples
+export section
 
 githost = "https://github.com/smallbasic/smallbasic.github.io"
 
@@ -20,6 +21,8 @@ jsonFile = translate(command, "/reference1/", "/data/")
 jsonFile = translate(jsonFile, "/reference2/", "/data/")
 jsonFile = translate(jsonFile, ".html", ".json")
 sourcefile = ""
+
+referencePages = ["console", "data", "date", "file", "graphics", "language", "math", "string", "system"]
 
 if (not exist(jsonFile)) then
   rem non reference page, could be either "pages", "scripts" or "posts"
@@ -48,6 +51,7 @@ if (not exist(jsonFile)) then
     endif
   endif
   samples = ""
+  section = iff(pagename in referencePages, "reference", pagename)
 else
   rem reference page
   tload jsonFile, s, 1
@@ -60,6 +64,7 @@ else
   samples = iff(isarray(item.samples), item.samples, [])
   sourcefile = item.nodeId + "-" + lower(item.package) + "-" + lower(item.keyword) + ".markdown"
   sourcefile = "reference/" + translate(sourcefile, " ", "")
+  section = "reference"
 endif
 
 lastedit = run("git log -1 --format=\"%cD\" -- " + sourcefile)
