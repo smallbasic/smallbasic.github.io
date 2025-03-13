@@ -5,7 +5,7 @@
 > algebra functions, a built in IDE, a powerful string library, system, sound, graphic
 > commands and communication via serial or sockets along with structured programming syntax.
 
-![](../images/sb_logo_text.png){ style="display: block; margin-left: auto; margin-right: auto; padding-bottom:2em;"}
+![](../images/sb-logo_text.png){ style="display: block; margin-left: auto; margin-right: auto; padding-top:2em; padding-bottom:2em;"}
 
 [Download](pages/download.html){.LinkIndexPage} [Try online](https://smallbasic.github.io/online/sbasic.html){.LinkIndexPage}
 
