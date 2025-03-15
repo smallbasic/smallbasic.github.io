@@ -46,12 +46,13 @@
       <a href="/pages/file.html">File</a>
     </p>
   </div>
-<p>Writes the array or string <code>var</code> to the text file
+<p>Writes array, map or string <code>var</code> to the text file
 <code>file</code>. Each array element is a text-line in the file. Every
 line of the string will be one line in the text file. Use
-<code>\n</code> in the string to separate lines.</p>
+<code>\n</code> in the string to separate lines. Maps will be saved as a
+json string.</p>
 <p>See TLOAD for loading data from a text-file.</p>
-<h3 id="example-1-save-an-array">Example 1: Save an array</h3>
+<h3 id="example-1">Example 1</h3>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Create an array with some data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; <span class="dv">1</span></span>
@@ -66,21 +67,49 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Load the file</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tload</span> <span class="st">&quot;myfile.txt&quot;</span>, B</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> B                         <span class="co">&#39; Output: [1,test,2,]</span></span></code></pre></div>
-<h3 id="example-2-save-a-string">Example 2: Save a string</h3>
+<h3 id="example-2-writing-maps-as-json-data">Example 2: Writing maps as
+json data</h3>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Create a string with some data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>A = <span class="st">&quot;line 1\nline 2\nline 3&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A                         <span class="co">&#39; Output: line 1</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                <span class="co">&#39;         line 2</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                <span class="co">&#39;         line 3 </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Save the string. This will create the file myfile.txt in</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; the same directory as your BASIC file</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tsave</span> <span class="st">&quot;myfile.txt&quot;</span>, A</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Load the file</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tload</span> <span class="st">&quot;myfile.txt&quot;</span>, B</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> B                         <span class="co">&#39; Output: [line 1,line 2,line 3]</span></span></code></pre></div>
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Create an array with some json data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; {name: <span class="st">&quot;Ben&quot;</span>, age: <span class="dv">20</span>}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; {name: <span class="st">&quot;Alice&quot;</span>, age: <span class="dv">22</span>}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Save the array. This will create the file myfile.txt in</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; the same directory as your BASIC file</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tsave</span> <span class="st">&quot;myfile.txt&quot;</span>, A</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Load the file</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tload</span> <span class="st">&quot;myfile.txt&quot;</span>, B</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Convert B to map variable</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">for </span>element <span class="kw">in</span> B</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    M &lt;&lt; <span class="kw">array</span>(element)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">next</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> M</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> M[<span class="dv">1</span>].age</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Output: </span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; [{&quot;age&quot;:20,&quot;name&quot;:&quot;Ben&quot;},{&quot;age&quot;:22,&quot;name&quot;:&quot;Alice&quot;},0]</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; 22</span></span></code></pre></div>
+<h3 id="example-3-write-a-string">Example 3: Write a string</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Create an array with some data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; <span class="dv">1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; <span class="st">&quot;test&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>A &lt;&lt; <span class="dv">2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> A                         <span class="co">&#39; Output: [1,test,2]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Save the array. This will create the file myfile.txt in</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; the same directory as your BASIC file</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tsave</span> <span class="st">&quot;myfile.txt&quot;</span>, A</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Load the file</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tload</span> <span class="st">&quot;myfile.txt&quot;</span>, B, <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;-&gt;&quot;</span>; B ; <span class="st">&quot;&lt;-&quot;</span>            <span class="co">&#39; Output: -&gt;1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                                <span class="co">&#39;         test</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                                <span class="co">&#39;         2</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                                <span class="co">&#39;         &lt;-</span></span></code></pre></div>
   <div class="lavenderBox">
     <div class="header">Code samples using TSAVE</div>
     <div class="linklist">
@@ -88,7 +117,7 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/code demos/form demo.bas">form demo.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 2/hangman v2.bas">hangman v2.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/games 1/hangman.bas">hangman.bas </a>&nbsp;
-      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/units section/properties.bas">properties.bas </a>&nbsp;
+      <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/units/properties.bas">properties.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/system/save as.bas">save as.bas </a>&nbsp;
       <a target="_github" href="https://raw.githubusercontent.com/smallbasic/smallbasic.samples/master/utilities/word_permutation.bas">word_permutation.bas </a>&nbsp;
     </div>
@@ -129,7 +158,7 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-
   </div>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 7 Sep 2023 15:59:56 +0200
+      This page was last edited on Thu, 13 Mar 2025 20:29:49 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with

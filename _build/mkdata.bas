@@ -2,7 +2,7 @@ rem
 rem reads reference.json to produce per page json data files
 rem
 
-const samplesPath = "/home/chrisws/src/smallbasic.samples/"
+const samplesPath = "/home/j7m/Programmieren/Basic/GIT/DickesDing/smallbasic.samples/"
 
 tload "reference.json", s, 1
 ref = array(s)

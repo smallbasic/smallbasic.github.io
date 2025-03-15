@@ -71,6 +71,7 @@ a:hover {
 
 a.active {
   background-color: var(--HeadingColor);
+  border-radius: 3px;
 }
 
 .LinkIndexPage:first-child {
@@ -428,12 +429,12 @@ ul {
 
 .logo {
   float: left;
-  width:10.5em;
-  min-width:10.5em;
-  margin-top:-25px;
-  margin-bottom: 20px;
+  width:6.5em;
+  min-width:6.5em;
+  margin-top:-27px;
+  margin-bottom: 0;
   padding-right: 0.5em;
-  margin-left:-20px;
+  margin-left:0;
 }
 
 .logo a {
@@ -513,7 +514,7 @@ div.articleRight ul{
   display: none;
   position: fixed;
   bottom: 5px;
-  right: 50%;
+  right: calc(50% - 25px);
   z-index: 99;
   border: none;
   outline: none;
@@ -581,16 +582,6 @@ span.user {
 .contentsPanel ul li span {
   display: inline-block;
   margin-right: 8px;
-}
-
-.contentsPanel ul li {
-}
-
-.contentsPanel ul {
-  padding: 0 0 5px 5px;
-}
-
-.contentsPanel ul li ul{
 }
 
 .contentsPanel ul li ul li {
@@ -771,10 +762,13 @@ a.screenshot {
 pre > code.sourceCode { white-space: pre; position: relative; border:0px;}
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
+.sourceCode { overflow: auto; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0;}
+pre.sourceCode { margin: 0; padding: 0.1em 0.1em 0.3em 0.5em;}
+pre > code.sourceCode a {
+  display: none;
+}
 @media screen {
     div.sourceCode { overflow: auto; }
     }

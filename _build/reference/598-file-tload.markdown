@@ -7,6 +7,8 @@ Loads a text file `file` into the array variable `var`. Each text-line is an arr
 - `0`: load into array (default)
 - `1`: load into string
 
+See TSAVE for writing variables to a file.
+
 ### Example 1
 
 ```
