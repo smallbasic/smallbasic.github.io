@@ -42,6 +42,22 @@
 <p><a href="/">Home</a> &gt; <a
 href="/pages/articles.html">Articles</a></p>
 </div>
+<p><strong>12.28 (22 March 2025)</strong></p>
+<ul>
+<li>Fix regressions with web-ui and GPS api handling.</li>
+<li>Fix issues with PLAY command.</li>
+<li>Fix web UI regression</li>
+<li>New App icon</li>
+<li>Implemented USB support for CDC/Serial communications</li>
+</ul>
+<pre><code>import android
+usb = android.openUsbSerial(0x16C0)
+while 1
+  input k
+  n = usb.send(k);
+  print &quot;sent &quot;; n
+  print usb.receive()
+wend</code></pre>
 <p><strong>12.27 (25 April 2024)</strong></p>
 <ul>
 <li>Add new function android.request</li>

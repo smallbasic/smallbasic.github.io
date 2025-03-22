@@ -5,6 +5,25 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.28 (22 March 2025)**
+
+- Fix regressions with web-ui and GPS api handling.
+- Fix issues with PLAY command.
+- Fix web UI regression
+- New App icon
+- Implemented USB support for CDC/Serial communications
+
+```
+import android
+usb = android.openUsbSerial(0x16C0)
+while 1
+  input k
+  n = usb.send(k);
+  print "sent "; n
+  print usb.receive()
+wend
+```
+
 **12.27 (25 April 2024)**
 
 - Add new function android.request
