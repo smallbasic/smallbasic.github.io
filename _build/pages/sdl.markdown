@@ -1,4 +1,20 @@
-# sbasicg (SDL)
+# SmallBASIC SDL Version
+
+The SDL version of SmallBASIC offers a simple but efficient IDE and is perfect for working with graphics. To start the SDL version please execute:
+
+- Windows: `sbasicg.exe`
+- Linux: `SmallBASIC-SDL_xx.xx-x86_64.AppImage` or `sbasicg` if built from source
+
+In the video below the basic steps of creating a file, opening it in the internal editor and executing
+the program are shown.
+
+<div class="video-container">
+<iframe width="1160" height="653" src="https://www.youtube.com/embed/2fW7usYY_CA" title="SmallBASIC &quot;Hello World&quot;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Please note, that at the first start of the SDL version of SmallBASIC, the editor is turned off. A mouse click on
+a file name will start the program immediately. If you want to edit the file, please turn on the editor by clicking
+on the three dots in the lower right corner and choosing the entry `Editor [OFF]` to enable the editor.
 
 ## Live mode
 
