@@ -15,8 +15,8 @@ the program are shown.
 <iframe width="1160" height="653" src="https://www.youtube.com/embed/2fW7usYY_CA" title="SmallBASIC &quot;Hello World&quot;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-Please note, that at the first start of the Android version of SmallBASIC, the editor is turned off. A mouse click on
-a program name will start it immediately. If you want to edit the file, please turn on the editor by clicking
+Please note, that at the first start of the Android version of SmallBASIC, the editor is turned off. A tap on
+a program name will start it immediately. If you want to edit the file, please turn on the editor by tapping
 on the three dots in the lower right corner and choosing the entry `Editor [OFF]` to enable the editor.
 
 ## Step-by-Step Guide
