@@ -11,6 +11,13 @@ syntax.
 Contents
 :::
 
+* [Getting Started](#GettingStarted)
+  * [SmallBASIC Versions](#SmallbasicVersions)
+  * [Windows](#Windows)
+  * [Linux](#Linux)
+  * [Android](#Android)
+  * [Build from Source](#BuildFromSource)
+  * [Using the IDE](#UsingtheIntegratedDevelopmentEnvironment)
 * [Source Code Format](#SourceCodeFormat)
 * [Comments](#Comments)
 * [Numbers and Srings](#NumberAndStrings)
@@ -37,6 +44,7 @@ Contents
   * [Accessing Elements of a Map Variable](#AccessingElementsOfAMapVariable)
   * [Add Key-Value Pairs](#AddKeyValuePairs)
   * [Key-Value Pairs with References](#KeyValuePairsWithReferences)
+  * [Maps as Pseudo Objects for OOP](#MapsAsPseudoObjectForOOP)
 * [Operators](#Operators)
   * [Pseudo-operators](#pseudo)
 * [Subroutines and Functions](#SubroutinesAndFunctions)
@@ -50,11 +58,16 @@ Contents
   * [Nested Routines](#NestedRoutines)
   * [Declarations in PalmOS](#DeclarationsInPalmOS)
 * [Expressions](#Expressions)
+  * [IF-THEN-ELSIF-ELSE](#IfThenElseifEndif)
+  * [Single-line IF-THEN-ELSE](#SingleLineIfThenElse)
+  * [Inline Version of IF](#InlineVersionOfIf)
+  * [SELECT CASE](#SelectCase)
 * [Loops](#Loops)
   * [FOR-TO-NEXT Loop](#ForToNextLoop)
   * [FOR-IN-NEXT Loop](#ForInNextLoop)
   * [WHILE-WEND Loop](#WhileWendLoop)
   * [REPEAT-UNTIL Loop](#RepeatUntilLoop)
+  * [The DO Keyword](#TheDoKeyword)
 * [Units](#Units)
   * [Declaration](#UnitsDeclaration)
   * [Import](#UnitsImport)
@@ -63,11 +76,64 @@ Contents
   * [OPTION MATCH](#Statement3)
   * [OPTION PREDEF](#Statement4)
 * [Meta Commands](#Meta)
-* [The USE keyword](#use)
-* [The DO keyword](#do)
-* [Loops and variables](#Loops)
+* [The USE Keyword](#TheUseKeyword)
+* [Exception Handling](#ExceptionHandling)
 
 :::
+
+## Getting Started {#GettingStarted}
+
+SmallBASIC is available for various operating systems, including
+Windows, Linux, and Android. It can be built from source to run
+on many other POSIX-compliant systems, such as Raspberry Pi OS. With
+its built-in Integrated Development Environment (IDE), you can write
+programs on your Android-powered tablet or mobile phone and run them
+instantly. 
+
+### SmallBASIC Versions {#SmallbasicVersions}
+
+SmallBASIC comes in three different flavors for the desktop. The SDL version offers a simple but
+efficient IDE and is perfect for working with graphics. The FLTK version has a great IDE. The
+console version doesn’t offer an IDE and is text-only but works perfect with plugins like raylib
+or nuklear. The Android version is similar to the SDL version and comes with an integrated IDE,
+too.
+
+### Windows {#Windows}
+
+Download the [latest release of SmallBASIC](https://smallbasic.github.io/pages/download.html).
+The different versions of SmallBASIC are included in the zip-file. Extract the zip-file to a
+location of your choice. Open the SmallBASIC folder and start one of the following programs:
+
+- sbasicg.exe: SDL
+- sbasici.exe: FLTK
+- sbasic.exe: Console
+
+### Linux {#Linux}
+
+Download the [latest release of SmallBASIC](https://smallbasic.github.io/pages/download.html).
+The different versions of SmallBASIC are provided as separate AppImages. Download an AppImage
+and copy it to a directory of your choice. Execute the AppImage. Depending of the Linux version
+you have to make the AppImage executable: `chmod u+x AppImageFile`, where `AppImageFile` is the
+filename of the AppImage.
+
+### Android {#Android}
+
+Download and install SmallBASIC for Android using 
+[Google Play](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic).
+
+### Build from Source {#BuildFromSource}
+
+Using Linux it is quite easy to build SmallBASIC from source. This has the advantage, that you
+don't need to use AppImages and you can use SmallBASIC on other devices like Raspberry Pi.
+Please follow the instructions on [Github](https://github.com/smallbasic/SmallBASIC).
+
+### Using the Integrated Development Environment {#UsingtheIntegratedDevelopmentEnvironment}
+
+Please read the separate articles for the different versions of SmallBASIC:
+
+- [SDL](https://smallbasic.github.io/pages/sdl.html)
+- [Android](https://smallbasic.github.io/pages/android.html)
+- [FLTK](https://smallbasic.github.io/pages/fltk.html)
 
 ## Source Code Format {#SourceCodeFormat}
 
@@ -776,6 +842,8 @@ sub PrintBold(s)
 end
 ```
 
+### Maps as Pseudo Objects for OOP {#MapsAsPseudoObjectForOOP}
+
 Maps in combination with references can be used to create a pseudo object
 similar to object-oriented programming.
 
@@ -899,13 +967,13 @@ scope.
 
 Subroutine and function names can use any alphanumeric characters, extended
 characters (ASCII codes 128 - 255 for non-English languages), and the symbol `_`.
-The first character of the name cannot be a digit nor a `_`.
+The first character of the name cannot be a digit.
 
 Subroutine and function names are case-insensitive.
 
 ```
-abc(), a_c(), ab2c()   -> valid names
-1cd(), a$b(), _abc()   -> invalid names
+abc(), a_c(), ab2c(), _abc()  -> valid names
+1cd(), a$b()                  -> invalid names
 ```
 
 Subroutines and functions can not have the same name as build-in commands.
@@ -1254,6 +1322,20 @@ UNTIL index > 10
 
 Use `EXIT` or in case of nested loops `EXIT LOOP` to exit the loop.
 
+### The DO Keyword {#TheDoKeyword}
+
+This keyword is used to declare single-line commands. It can be used with
+`WHILE` and `FOR`-family loops.
+
+```smallbasic
+FOR i = 1 to 10 DO PRINT i
+FOR f IN files("*.txt") DO PRINT f
+```
+
+```smallbasic
+WHILE i < 4 DO i++
+```
+
 ## Conditions {#Conditions}
 
 Conditions can be used to branch the program flow depending on the value of
@@ -1288,9 +1370,10 @@ on its line. If anything other than a comment follows `THEN` on the same line,
 SmallBASIC interprets it as a single-line IF-THEN-ELSE construct. IF blocks may
 be nested.
 
-Instead of `ELSEIF` and `ENDIF`, `ELIF` and `FI` can be used.
+Instead of `ELSEIF` and `ENDIF`, `ELIF` and `FI` can be used. Instead of `THEN`,
+`DO` can be used, but this is not suggested.
 
-### Single-line IF-THEN-ELSE
+### Single-line IF-THEN-ELSE {#SingleLineIfThenElse}
 
 ```smallbasic
 IF expression THEN command1 ELSE command2
@@ -1303,7 +1386,47 @@ Multiple commands can be separated by a colon `:`. If instead of a command a
 number is specified, it is equivalent to a GOTO command with the specified
 numeric-label.
 
+### Inline Version of IF {#InlineVersionOfIf}
 
+```smallbasic
+result = IFF (condition, return_value_true, return_value_false)
+```
+
+The command `IFF` will test the condition `condition`. If `condition` resolves to
+`true` then `return_value_true` will be returned otherwise `return_value_false`.
+
+```smallbasic
+x = 4
+ans = IFF(x <= 5, 0, 10)
+PRINT ans           ' Output: 0
+```
+
+See function reference [IFF](https://smallbasic.github.io/reference/638.html) for
+more information.
+
+### SELECT CASE {#SelectCase}
+
+```smallbasic
+SELECT CASE expr
+  CASE result1
+    ' do thinks
+  CASE result2
+    ' do thinks
+  CASE ELSE
+    ' do thinks
+END SELECT
+```
+
+`SELECT CASE` offers a more concise syntax to writing successive IF tests. `SELECT CASE`
+performs multiple tests on the expression `expr`. If the value of `expr` is equal to 
+`result1`, the case statement `result1` will be entered and the commands executed. An
+unlimited amount of case statements can be used. Once a case statement is fulfilled
+the select-case structure will be exited and all following case statements will not be
+tested anymore. If non of the case statements were entered the optional 'CASE ELSE'
+statements will be entered.
+
+See function reference [SELECT CASE](https://smallbasic.github.io/reference/655.html) for
+detailed information.
 
 ## Units {#Units}
 
@@ -1425,66 +1548,64 @@ SmallBASIC uses the following meta commands:
 #unit-path: C:\sbasic\units;C:\temp
 ```
 
+### The USE Keyword {#TheUseKeyword}
 
+The `USE` keyword is used on specific commands for passing a user-defined expression.
 
-### The USE keyword {#use}
-
-This keyword is used on specific commands to passing a user-defined expression.
-
-```
+```smallbasic
 SPLIT s," ",v USE TRIM(x)
 ```
 
-In that example, every element of V() will be 'trimmed'.
-Use the x variable to specify the parameter of the expression. If the expression needs more parameter, you can use also the names y and z
+In this example, every element of `v` will be trimmed. Use the `x` variable to
+specify the parameter of the expression. If the expression needs more parameter,
+you can use also the names `y` and `z`.
 
-### The DO keyword {#do}
+## Exception Handling {#ExceptionHandling}
 
-This keyword is used to declare single-line commands. It can be used with WHILE and FOR-family commands.
+Exception handling is supported for file handling, and accessing serial ports and
+network sockets. Exception handling is typically used with errors raised when
+calling a file system command that cannot be completed, for example attempting to
+open a non-existent file.
 
-```
-FOR f IN files("*.txt") DO PRINT f
-...
-WHILE i < 4 DO i ++
-```
-
-Also, it can be used by IF command (instead of THEN), but is not suggested.
-
-
-
-### Loops and variables {#Loops}
-
-When we write loops it is much better to initialize the counters on the top of the loop instead of the top of the program or nowhere.
-
-```
-i = 0
-REPEAT
-  ...
-  i = i + 1
-UNTIL i > 10
+```smallbasic
+TRY
+    ' do something
+CATCH err
+    print err
+    ' do something
+END TRY
 ```
 
-p.. Initializing variables at the top of the loop can make code more readable.
-
-## Loops and expressions
-
-```
-FOR-like (loops) commands evaluate both the "destination" and the exit-expression every time.
-FOR i=0 TO LEN(FILES("*.txt"))-1
-    PRINT i
-NEXT
-```
-
-In that example the 'destination' is the LEN(FILES("*.txt"))-1 For each value of i the destination will be evaluated. That is WRONG but it is supported by BASIC and many other languages.
-So, it is much better to be rewritten as
-
-```
-idest=LEN(FILES("*.txt"))-1
-FOR i=0 TO idest
-    PRINT i
-NEXT
+```smallbasic
+TRY
+    ' do something
+CATCH "Error 1"
+    ' do something
+CATCH "Error 2"
+    ' do something
+END TRY
 ```
 
-Of course, it is much faster too.
+The `TRY` statement introduces a try/catch block. A try/catch block consist of the
+following structure:
 
+`TRY`
 
+The `TRY` statement starts a block of commands which might create a run-time error.
+
+`CATCH [var | expr]`
+
+The `CATCH` statement is used to catch a run-time error of one of the commands in
+the try-block. 
+
+The `CATCH` statement has two modes. You can supply a variable argument to store the
+error string. Alternatively you can supply a string expression. When the raised error
+matches the string expression, the error will be caught. When using the expression
+mode, you can supply a succession of CATCH statements to handle various error messages
+separately.
+
+`END TRY`
+
+The `END TRY` statement marks the end of a try/catch block.
+
+For examples see the language reference [TRY](https://smallbasic.github.io/reference/1425.html).

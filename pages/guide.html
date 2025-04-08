@@ -50,6 +50,16 @@ with structured programming syntax.</p>
 <p>Contents</p>
 </div>
 <ul>
+<li><a href="#GettingStarted">Getting Started</a>
+<ul>
+<li><a href="#SmallbasicVersions">SmallBASIC Versions</a></li>
+<li><a href="#Windows">Windows</a></li>
+<li><a href="#Linux">Linux</a></li>
+<li><a href="#Android">Android</a></li>
+<li><a href="#BuildFromSource">Build from Source</a></li>
+<li><a href="#UsingtheIntegratedDevelopmentEnvironment">Using the
+IDE</a></li>
+</ul></li>
 <li><a href="#SourceCodeFormat">Source Code Format</a></li>
 <li><a href="#Comments">Comments</a></li>
 <li><a href="#NumberAndStrings">Numbers and Srings</a>
@@ -91,6 +101,8 @@ Map Variable</a></li>
 <li><a href="#AddKeyValuePairs">Add Key-Value Pairs</a></li>
 <li><a href="#KeyValuePairsWithReferences">Key-Value Pairs with
 References</a></li>
+<li><a href="#MapsAsPseudoObjectForOOP">Maps as Pseudo Objects for
+OOP</a></li>
 </ul></li>
 <li><a href="#Operators">Operators</a>
 <ul>
@@ -110,13 +122,20 @@ subroutine</a></li>
 <li><a href="#NestedRoutines">Nested Routines</a></li>
 <li><a href="#DeclarationsInPalmOS">Declarations in PalmOS</a></li>
 </ul></li>
-<li><a href="#Expressions">Expressions</a></li>
+<li><a href="#Expressions">Expressions</a>
+<ul>
+<li><a href="#IfThenElseifEndif">IF-THEN-ELSIF-ELSE</a></li>
+<li><a href="#SingleLineIfThenElse">Single-line IF-THEN-ELSE</a></li>
+<li><a href="#InlineVersionOfIf">Inline Version of IF</a></li>
+<li><a href="#SelectCase">SELECT CASE</a></li>
+</ul></li>
 <li><a href="#Loops">Loops</a>
 <ul>
 <li><a href="#ForToNextLoop">FOR-TO-NEXT Loop</a></li>
 <li><a href="#ForInNextLoop">FOR-IN-NEXT Loop</a></li>
 <li><a href="#WhileWendLoop">WHILE-WEND Loop</a></li>
 <li><a href="#RepeatUntilLoop">REPEAT-UNTIL Loop</a></li>
+<li><a href="#TheDoKeyword">The DO Keyword</a></li>
 </ul></li>
 <li><a href="#Units">Units</a>
 <ul>
@@ -130,11 +149,64 @@ subroutine</a></li>
 <li><a href="#Statement4">OPTION PREDEF</a></li>
 </ul></li>
 <li><a href="#Meta">Meta Commands</a></li>
-<li><a href="#use">The USE keyword</a></li>
-<li><a href="#do">The DO keyword</a></li>
-<li><a href="#Loops">Loops and variables</a></li>
+<li><a href="#TheUseKeyword">The USE Keyword</a></li>
+<li><a href="#ExceptionHandling">Exception Handling</a></li>
 </ul>
 </div>
+<h2 id="GettingStarted">Getting Started</h2>
+<p>SmallBASIC is available for various operating systems, including
+Windows, Linux, and Android. It can be built from source to run on many
+other POSIX-compliant systems, such as Raspberry Pi OS. With its
+built-in Integrated Development Environment (IDE), you can write
+programs on your Android-powered tablet or mobile phone and run them
+instantly.</p>
+<h3 id="SmallbasicVersions">SmallBASIC Versions</h3>
+<p>SmallBASIC comes in three different flavors for the desktop. The SDL
+version offers a simple but efficient IDE and is perfect for working
+with graphics. The FLTK version has a great IDE. The console version
+doesn’t offer an IDE and is text-only but works perfect with plugins
+like raylib or nuklear. The Android version is similar to the SDL
+version and comes with an integrated IDE, too.</p>
+<h3 id="Windows">Windows</h3>
+<p>Download the <a
+href="https://smallbasic.github.io/pages/download.html">latest release
+of SmallBASIC</a>. The different versions of SmallBASIC are included in
+the zip-file. Extract the zip-file to a location of your choice. Open
+the SmallBASIC folder and start one of the following programs:</p>
+<ul>
+<li>sbasicg.exe: SDL</li>
+<li>sbasici.exe: FLTK</li>
+<li>sbasic.exe: Console</li>
+</ul>
+<h3 id="Linux">Linux</h3>
+<p>Download the <a
+href="https://smallbasic.github.io/pages/download.html">latest release
+of SmallBASIC</a>. The different versions of SmallBASIC are provided as
+separate AppImages. Download an AppImage and copy it to a directory of
+your choice. Execute the AppImage. Depending of the Linux version you
+have to make the AppImage executable:
+<code>chmod u+x AppImageFile</code>, where <code>AppImageFile</code> is
+the filename of the AppImage.</p>
+<h3 id="Android">Android</h3>
+<p>Download and install SmallBASIC for Android using <a
+href="https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic">Google
+Play</a>.</p>
+<h3 id="BuildFromSource">Build from Source</h3>
+<p>Using Linux it is quite easy to build SmallBASIC from source. This
+has the advantage, that you don’t need to use AppImages and you can use
+SmallBASIC on other devices like Raspberry Pi. Please follow the
+instructions on <a
+href="https://github.com/smallbasic/SmallBASIC">Github</a>.</p>
+<h3 id="UsingtheIntegratedDevelopmentEnvironment">Using the Integrated
+Development Environment</h3>
+<p>Please read the separate articles for the different versions of
+SmallBASIC:</p>
+<ul>
+<li><a href="https://smallbasic.github.io/pages/sdl.html">SDL</a></li>
+<li><a
+href="https://smallbasic.github.io/pages/android.html">Android</a></li>
+<li><a href="https://smallbasic.github.io/pages/fltk.html">FLTK</a></li>
+</ul>
 <h2 id="SourceCodeFormat">Source Code Format</h2>
 <p>SmallBASIC files are plain text files in ASCII or UTF-8. A program
 consists of at least one line of text. Every line is terminated with a
@@ -788,6 +860,7 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb41
 <span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="kw">sub </span>PrintBold(s)</span>
 <span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> <span class="st">&quot;\e[1m&quot;</span>; s; <span class="st">&quot;\e[21m&quot;</span></span>
 <span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<h3 id="MapsAsPseudoObjectForOOP">Maps as Pseudo Objects for OOP</h3>
 <p>Maps in combination with references can be used to create a pseudo
 object similar to object-oriented programming.</p>
 <div class="sourceCode" id="cb42"><pre
@@ -989,10 +1062,10 @@ functions have a global scope.</p>
 <p>Subroutine and function names can use any alphanumeric characters,
 extended characters (ASCII codes 128 - 255 for non-English languages),
 and the symbol <code>_</code>. The first character of the name cannot be
-a digit nor a <code>_</code>.</p>
+a digit.</p>
 <p>Subroutine and function names are case-insensitive.</p>
-<pre><code>abc(), a_c(), ab2c()   -&gt; valid names
-1cd(), a$b(), _abc()   -&gt; invalid names</code></pre>
+<pre><code>abc(), a_c(), ab2c(), _abc()  -&gt; valid names
+1cd(), a$b()                  -&gt; invalid names</code></pre>
 <p>Subroutines and functions can not have the same name as build-in
 commands.</p>
 <h3 id="DeclarationOfSubroutines">Declaration of Subroutines</h3>
@@ -1279,18 +1352,26 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb67
 <span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UNTIL </span>index &gt; <span class="dv">10</span></span></code></pre></div>
 <p>Use <code>EXIT</code> or in case of nested loops
 <code>EXIT LOOP</code> to exit the loop.</p>
+<h3 id="TheDoKeyword">The DO Keyword</h3>
+<p>This keyword is used to declare single-line commands. It can be used
+with <code>WHILE</code> and <code>FOR</code>-family loops.</p>
+<div class="sourceCode" id="cb68"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>i = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span> <span class="kw">DO</span> <span class="kw">PRINT</span> i</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FOR </span>f <span class="kw">IN</span> <span class="fu">files</span>(<span class="st">&quot;*.txt&quot;</span>) <span class="kw">DO</span> <span class="kw">PRINT</span> f</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHILE </span>i &lt; <span class="dv">4</span> <span class="kw">DO</span> i++</span></code></pre></div>
 <h2 id="Conditions">Conditions</h2>
 <p>Conditions can be used to branch the program flow depending on the
 value of expressions.</p>
 <h3 id="IfThenElseifEndif">IF-THEN-ELSIF-ELSE</h3>
-<div class="sourceCode" id="cb68"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">IF </span>expression1 <span class="kw">THEN</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ELSEIF</span> expression2 <span class="kw">THEN</span></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ELSE</span></span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ENDIF</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">IF </span>expression1 <span class="kw">THEN</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ELSEIF</span> expression2 <span class="kw">THEN</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ELSE</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ENDIF</span></span></code></pre></div>
 <p>IF-THEN_ELSEIF-ELSE causes SmallBASIC to make a decision based on the
 value of an expression. <code>expression1</code> and
 <code>expression2</code> are expressions, which will be evaluated.
@@ -1310,10 +1391,12 @@ last keyword on its line. If anything other than a comment follows
 <code>THEN</code> on the same line, SmallBASIC interprets it as a
 single-line IF-THEN-ELSE construct. IF blocks may be nested.</p>
 <p>Instead of <code>ELSEIF</code> and <code>ENDIF</code>,
-<code>ELIF</code> and <code>FI</code> can be used.</p>
-<h3 id="single-line-if-then-else">Single-line IF-THEN-ELSE</h3>
-<div class="sourceCode" id="cb69"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">IF </span>expression <span class="kw">THEN co</span>mmand1 <span class="kw">ELSE</span> command2</span></code></pre></div>
+<code>ELIF</code> and <code>FI</code> can be used. Instead of
+<code>THEN</code>, <code>DO</code> can be used, but this is not
+suggested.</p>
+<h3 id="SingleLineIfThenElse">Single-line IF-THEN-ELSE</h3>
+<div class="sourceCode" id="cb71"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">IF </span>expression <span class="kw">THEN co</span>mmand1 <span class="kw">ELSE</span> command2</span></code></pre></div>
 <p>Single-line IF-THEN-ELSE causes SmallBASIC to make a decision based
 on the value of an expression <code>expression</code>. <code>0</code> is
 equivalent to <code>FALSE</code>, while all other values are equivalent
@@ -1321,6 +1404,42 @@ to <code>TRUE</code>. <code>command1</code> and <code>comannd2</code>
 are any legal commands. Multiple commands can be separated by a colon
 <code>:</code>. If instead of a command a number is specified, it is
 equivalent to a GOTO command with the specified numeric-label.</p>
+<h3 id="InlineVersionOfIf">Inline Version of IF</h3>
+<div class="sourceCode" id="cb72"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>result = <span class="kw">IFF</span> (condition, return_value_true, return_value_false)</span></code></pre></div>
+<p>The command <code>IFF</code> will test the condition
+<code>condition</code>. If <code>condition</code> resolves to
+<code>true</code> then <code>return_value_true</code> will be returned
+otherwise <code>return_value_false</code>.</p>
+<div class="sourceCode" id="cb73"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>x = <span class="dv">4</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>ans = <span class="kw">IFF</span>(x &lt;= <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> ans           <span class="co">&#39; Output: 0</span></span></code></pre></div>
+<p>See function reference <a
+href="https://smallbasic.github.io/reference/638.html">IFF</a> for more
+information.</p>
+<h3 id="SelectCase">SELECT CASE</h3>
+<div class="sourceCode" id="cb74"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT CASE </span>expr</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">CASE</span> result1</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; do thinks</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">CASE</span> result2</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; do thinks</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">CASE</span> <span class="kw">ELSE</span></span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; do thinks</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="kw">END SELECT</span></span></code></pre></div>
+<p><code>SELECT CASE</code> offers a more concise syntax to writing
+successive IF tests. <code>SELECT CASE</code> performs multiple tests on
+the expression <code>expr</code>. If the value of <code>expr</code> is
+equal to <code>result1</code>, the case statement <code>result1</code>
+will be entered and the commands executed. An unlimited amount of case
+statements can be used. Once a case statement is fulfilled the
+select-case structure will be exited and all following case statements
+will not be tested anymore. If non of the case statements were entered
+the optional ‘CASE ELSE’ statements will be entered.</p>
+<p>See function reference <a
+href="https://smallbasic.github.io/reference/655.html">SELECT CASE</a>
+for detailed information.</p>
 <h2 id="Units">Units</h2>
 <p>Units are a set of subroutines, functions and/or variables that can
 be used by another SmallBASIC program or SmallBASIC unit. An unit has
@@ -1335,14 +1454,14 @@ followed by the name of the unit as the first command in the unit source
 file. The functions, subroutines and/or variables which should be
 accessible by another programs must be declared with the
 <code>EXPORT</code> keyword and defined in the unit source file.</p>
-<div class="sourceCode" id="cb70"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="pp">UNIT</span> MyUnitName</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="pp">EXPORT</span> MyFunction</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>MyFuntion(x)</span>
-<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
-<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="pp">UNIT</span> MyUnitName</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="pp">EXPORT</span> MyFunction</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FUNC </span>MyFuntion(x)</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; some code</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END</span></span></code></pre></div>
 <p>Function, subroutines or variables which are not exported can only be
 used inside the unit source file.</p>
 <h3 id="UnitsImport">Import</h3>
@@ -1353,12 +1472,12 @@ required specify the new namespace using
 <code>IMPORT UnitName AS NameSpace</code>.</p>
 <p>To access a member of a unit use the namespace followed by a point
 and the name of the member.</p>
-<div class="sourceCode" id="cb71"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="pp">IMPORT</span> MyUnit</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>MyUnit.MyFunction(<span class="dv">1</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb72"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="pp">IMPORT</span> MyUnit <span class="kw">as</span> u</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>u.MyFunction(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="pp">IMPORT</span> MyUnit</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>MyUnit.MyFunction(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="pp">IMPORT</span> MyUnit <span class="kw">as</span> u</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>u.MyFunction(<span class="dv">1</span>)</span></code></pre></div>
 <h2 id="Statement1">OPTION</h2>
 <p>The <code>OPTION</code> command is used to pass parameters to the
 SB-environment. There are two styles for that, the run-time which can
@@ -1374,10 +1493,10 @@ declaration.</p>
 <p>Use <code>OPTION BASE 1</code> to set the index of the first element
 of an array to <code>1</code>. This option is useful especially for
 beginners, because it makes counting elements more intuitive.</p>
-<div class="sourceCode" id="cb73"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="pp">OPTION</span> BASE <span class="dv">1</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> A[<span class="dv">1</span>]    <span class="co">&#39; Output 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="pp">OPTION</span> BASE <span class="dv">1</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>A = [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="kw">PRINT</span> A[<span class="dv">1</span>]    <span class="co">&#39; Output 1</span></span></code></pre></div>
 <p><code>OPTION BASE</code> is a run-time option.</p>
 <h3 id="Statement3">OPTION MATCH</h3>
 <p><code>OPTION MATCH [PCRE [CASELESS]|SIMPLE]</code> sets the default
@@ -1418,52 +1537,61 @@ for searching for unit-files This meta does nothing more than to setting
 up the environment variable SB_UNIT_PATH. Directories on Linux must be
 separated by <code>:</code>, and on DOS/Windows by <code>;</code></li>
 </ul>
-<div class="sourceCode" id="cb74"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>#!/usr/<span class="dt">local</span>/<span class="fu">bin</span>/sbasic</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="cn">#inc</span>:<span class="st">&quot;mylib.bas&quot;</span></span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="cn">#unit</span>-path: C:\sbasic\units;C:\temp</span></code></pre></div>
-<h3 id="use">The USE keyword</h3>
-<p>This keyword is used on specific commands to passing a user-defined
-expression.</p>
-<pre><code>SPLIT s,&quot; &quot;,v USE TRIM(x)</code></pre>
-<p>In that example, every element of V() will be ‘trimmed’. Use the x
-variable to specify the parameter of the expression. If the expression
-needs more parameter, you can use also the names y and z</p>
-<h3 id="do">The DO keyword</h3>
-<p>This keyword is used to declare single-line commands. It can be used
-with WHILE and FOR-family commands.</p>
-<pre><code>FOR f IN files(&quot;*.txt&quot;) DO PRINT f
-...
-WHILE i &lt; 4 DO i ++</code></pre>
-<p>Also, it can be used by IF command (instead of THEN), but is not
-suggested.</p>
-<h3 id="Loops">Loops and variables</h3>
-<p>When we write loops it is much better to initialize the counters on
-the top of the loop instead of the top of the program or nowhere.</p>
-<pre><code>i = 0
-REPEAT
-  ...
-  i = i + 1
-UNTIL i &gt; 10</code></pre>
-<p>p.. Initializing variables at the top of the loop can make code more
-readable.</p>
-<h2 id="loops-and-expressions">Loops and expressions</h2>
-<pre><code>FOR-like (loops) commands evaluate both the &quot;destination&quot; and the exit-expression every time.
-FOR i=0 TO LEN(FILES(&quot;*.txt&quot;))-1
-    PRINT i
-NEXT</code></pre>
-<p>In that example the ‘destination’ is the LEN(FILES(“*.txt”))-1 For
-each value of i the destination will be evaluated. That is WRONG but it
-is supported by BASIC and many other languages. So, it is much better to
-be rewritten as</p>
-<pre><code>idest=LEN(FILES(&quot;*.txt&quot;))-1
-FOR i=0 TO idest
-    PRINT i
-NEXT</code></pre>
-<p>Of course, it is much faster too.</p>
+<div class="sourceCode" id="cb79"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>#!/usr/<span class="dt">local</span>/<span class="fu">bin</span>/sbasic</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="cn">#inc</span>:<span class="st">&quot;mylib.bas&quot;</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="cn">#unit</span>-path: C:\sbasic\units;C:\temp</span></code></pre></div>
+<h3 id="TheUseKeyword">The USE Keyword</h3>
+<p>The <code>USE</code> keyword is used on specific commands for passing
+a user-defined expression.</p>
+<div class="sourceCode" id="cb80"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>SPLIT s,<span class="st">&quot; &quot;</span>,v <span class="kw">USE</span> <span class="fu">TRIM</span>(x)</span></code></pre></div>
+<p>In this example, every element of <code>v</code> will be trimmed. Use
+the <code>x</code> variable to specify the parameter of the expression.
+If the expression needs more parameter, you can use also the names
+<code>y</code> and <code>z</code>.</p>
+<h2 id="ExceptionHandling">Exception Handling</h2>
+<p>Exception handling is supported for file handling, and accessing
+serial ports and network sockets. Exception handling is typically used
+with errors raised when calling a file system command that cannot be
+completed, for example attempting to open a non-existent file.</p>
+<div class="sourceCode" id="cb81"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TRY</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; do something</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CATCH</span> err</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> err</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; do something</span></span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="kw">END TRY</span></span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TRY</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; do something</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CATCH</span> <span class="st">&quot;Error 1&quot;</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; do something</span></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CATCH</span> <span class="st">&quot;Error 2&quot;</span></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39; do something</span></span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="kw">END TRY</span></span></code></pre></div>
+<p>The <code>TRY</code> statement introduces a try/catch block. A
+try/catch block consist of the following structure:</p>
+<p><code>TRY</code></p>
+<p>The <code>TRY</code> statement starts a block of commands which might
+create a run-time error.</p>
+<p><code>CATCH [var | expr]</code></p>
+<p>The <code>CATCH</code> statement is used to catch a run-time error of
+one of the commands in the try-block.</p>
+<p>The <code>CATCH</code> statement has two modes. You can supply a
+variable argument to store the error string. Alternatively you can
+supply a string expression. When the raised error matches the string
+expression, the error will be caught. When using the expression mode,
+you can supply a succession of CATCH statements to handle various error
+messages separately.</p>
+<p><code>END TRY</code></p>
+<p>The <code>END TRY</code> statement marks the end of a try/catch
+block.</p>
+<p>For examples see the language reference <a
+href="https://smallbasic.github.io/reference/1425.html">TRY</a>.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Thu, 20 Feb 2025 21:34:29 +0100
+      This page was last edited on Mon, 7 Apr 2025 22:04:07 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
