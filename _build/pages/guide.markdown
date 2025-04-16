@@ -47,6 +47,7 @@ Contents
   * [Maps as Pseudo Objects for OOP](#MapsAsPseudoObjectForOOP)
 * [Operators](#Operators)
   * [Pseudo-operators](#pseudo)
+* [Expressions](#Expressions)
 * [Subroutines and Functions](#SubroutinesAndFunctions)
   * [Names](#SubroutinesAndFunctionsNames)
   * [Declaration of Subroutines](#DeclarationOfSubroutines)
@@ -57,7 +58,7 @@ Contents
   * [Using Local Variables](#UsingLocalVariables)
   * [Nested Routines](#NestedRoutines)
   * [Declarations in PalmOS](#DeclarationsInPalmOS)
-* [Expressions](#Expressions)
+* [Conditions](#Conditions)
   * [IF-THEN-ELSIF-ELSE](#IfThenElseifEndif)
   * [Single-line IF-THEN-ELSE](#SingleLineIfThenElse)
   * [Inline Version of IF](#InlineVersionOfIf)
@@ -71,12 +72,15 @@ Contents
 * [Units](#Units)
   * [Declaration](#UnitsDeclaration)
   * [Import](#UnitsImport)
+* [Input and Output](#InputAndOutput)
+  * [Print on Screen](#PrintOnScreen)
+  * [Read Input from the Keyboard](#ReadInputFromKeyboard)
+* [The USE Keyword](#TheUseKeyword)
 * [OPTION](#Statement1)
   * [OPTION BASE](#Statement2)
   * [OPTION MATCH](#Statement3)
   * [OPTION PREDEF](#Statement4)
 * [Meta Commands](#Meta)
-* [The USE Keyword](#TheUseKeyword)
 * [Exception Handling](#ExceptionHandling)
 
 :::
@@ -100,7 +104,7 @@ too.
 
 ### Windows {#Windows}
 
-Download the [latest release of SmallBASIC](https://smallbasic.github.io/pages/download.html).
+Download the [latest release of SmallBASIC](/pages/download.html).
 The different versions of SmallBASIC are included in the zip-file. Extract the zip-file to a
 location of your choice. Open the SmallBASIC folder and start one of the following programs:
 
@@ -110,7 +114,7 @@ location of your choice. Open the SmallBASIC folder and start one of the followi
 
 ### Linux {#Linux}
 
-Download the [latest release of SmallBASIC](https://smallbasic.github.io/pages/download.html).
+Download the [latest release of SmallBASIC](pages/download.html).
 The different versions of SmallBASIC are provided as separate AppImages. Download an AppImage
 and copy it to a directory of your choice. Execute the AppImage. Depending of the Linux version
 you have to make the AppImage executable: `chmod u+x AppImageFile`, where `AppImageFile` is the
@@ -119,7 +123,10 @@ filename of the AppImage.
 ### Android {#Android}
 
 Download and install SmallBASIC for Android using 
-[Google Play](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic).
+[Google Play](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic). Files
+are stored in `/InternalMemory/SmallBASIC` or in case of an old Android version in 
+`/InternalMemory/Android/data/net.sourceforge.smallbasic/files`. For easy file transfer between
+Android and desktop, please read [SmallBASIC file transfer](/pages/android_file_transfer.html)
 
 ### Build from Source {#BuildFromSource}
 
@@ -131,9 +138,9 @@ Please follow the instructions on [Github](https://github.com/smallbasic/SmallBA
 
 Please read the separate articles for the different versions of SmallBASIC:
 
-- [SDL](https://smallbasic.github.io/pages/sdl.html)
-- [Android](https://smallbasic.github.io/pages/android.html)
-- [FLTK](https://smallbasic.github.io/pages/fltk.html)
+- [SDL](/pages/sdl.html)
+- [Android](/pages/android.html)
+- [FLTK](/pages/fltk.html)
 
 ## Source Code Format {#SourceCodeFormat}
 
@@ -1425,7 +1432,7 @@ the select-case structure will be exited and all following case statements will 
 tested anymore. If non of the case statements were entered the optional 'CASE ELSE'
 statements will be entered.
 
-See function reference [SELECT CASE](https://smallbasic.github.io/reference/655.html) for
+See function reference [SELECT CASE](/reference/655.html) for
 detailed information.
 
 ## Units {#Units}
@@ -1475,6 +1482,62 @@ MyUnit.MyFunction(1)
 IMPORT MyUnit as u
 u.MyFunction(1)
 ```
+
+## The USE Keyword {#TheUseKeyword}
+
+The `USE` keyword is used on specific commands for passing a user-defined expression.
+
+```smallbasic
+SPLIT s," ",v USE TRIM(x)
+```
+
+In this example, every element of `v` will be trimmed. Use the `x` variable to
+specify the parameter of the expression. If the expression needs more parameter,
+you can use also the names `y` and `z`.
+
+
+## Input and Output {#InputAndOutput}
+
+### Print on Screen {#PrintOnScreen}
+
+Use `PRINT` to print text on the screen at the current cursor location. When starting
+the BASIC program, the cursor is in the top left corner. After printing to the screen
+the cursor location will be updated. After execution of `PRINT`, if not otherwise
+specified, the cursor will be moved to the beginning of the next line. When printing
+to the last line of the screen, the screen will scroll up by one line.
+
+Basic usage of `PRINT`:
+
+```smallbasic
+PRINT 1                             ' Output: 1
+PRINT 1+1                           ' Output: 2
+PRINT cos(pi)                       ' Output: -1
+PRINT "Text"                        ' Output: Text
+```
+
+If `;` or `,` are used as last character of a print command, carriage return/line feed
+(new line) will be suppressed after printing.
+
+Please read the language reference of [PRINT](/reference/535.html)
+for a detailed description. The text cursor can be set using
+[LOCATE](/reference/530.html).
+
+### Read Input from the Keyboard {#ReadInputFromKeyboard}
+
+`INPUT` reads text from keyboard and stores it in a variable. `INPUT` can print a prompt
+on screen. After execution of `INPUT` the cursor will be moved to the beginning of the
+next line. `INPUT` will block execution of the program until the return-key is pressed.
+
+Basic usage of `INPUT`:
+
+```smallbasic
+INPUT "How old are you?", age
+PRINT age
+```
+
+For more information see language reference of [INPUT](/reference/527.html).
+[INKEY](/reference/539.html) and [DEFINEKEY](/reference/1015.html) allow to read from
+a keyboard without blocking the execution of the program.
 
 ## OPTION {#Statement1}
 
@@ -1547,18 +1610,6 @@ SmallBASIC uses the following meta commands:
 #inc:"mylib.bas"
 #unit-path: C:\sbasic\units;C:\temp
 ```
-
-### The USE Keyword {#TheUseKeyword}
-
-The `USE` keyword is used on specific commands for passing a user-defined expression.
-
-```smallbasic
-SPLIT s," ",v USE TRIM(x)
-```
-
-In this example, every element of `v` will be trimmed. Use the `x` variable to
-specify the parameter of the expression. If the expression needs more parameter,
-you can use also the names `y` and `z`.
 
 ## Exception Handling {#ExceptionHandling}
 

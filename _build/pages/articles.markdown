@@ -21,6 +21,7 @@
 - [Setup external editors](/pages/language_support.html)
 - [Distribute your program](/pages/distributiontool.html)
 - [SmallBASIC web server](/pages/sbasicw.html)
+- [SmallBASIC file transfer](/pages/android_file_transfer.html)
 
 ## Plugins
 
