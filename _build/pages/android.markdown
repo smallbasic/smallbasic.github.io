@@ -223,6 +223,84 @@ wend
 
 The code snippet demonstrates how to use REQUEST to interact with a specified endpoint, providing necessary data and token for authentication.
 
+## IoT Device Communication
+
+### USB Serial Support
+
+These functions allow you to connect, send, and receive data over a USB serial connection.
+
+&#128268; Open a USB Serial Connection
+
+```smallbasic
+const usb = android.openUsbSerial(vendorId, [baud], [timeout])
+```
+
+Parameters:
+
+- `vendorId`: (required) The USB device's Vendor ID.
+- `baud`: (optional) The baud rate for communication (default: 19200).
+- `timeout`: (optional) imeout in milliseconds for receive operations (default: 5000 ms).
+
+Returns:
+
+- A USB serial object to be used with other USB functions.
+
+&#10060; Close the USB Connection
+
+```smallbasic
+usb.close()
+```
+
+Closes the current USB connection. Always call this when you're done using the device.
+
+&#128203; Get Device Description
+
+```smallbasic
+usb.description()
+```
+
+Returns a string with details about the connected USB device, such as product name or manufacturer info (if available).
+
+&#128229; Receive Data
+
+```smallbasic
+dat = usb.receive()
+```
+
+Reads incoming data from the connected USB device.
+
+Returns:
+
+A string containing the received data, or an empty string if no data is received before timeout.
+
+&#128228; Send Data
+
+```smallbasic
+n = usb.send(dat)
+```
+
+Sends data to the connected USB device.
+
+Parameters:
+
+dat – The data to send as a string.
+
+Returns:
+
+The number of bytes successfully sent.
+
+&#128221; Example
+
+```
+import android
+usb = android.openUsbSerial(0x16C0)
+while 1
+  input k
+  n = usb.send(k);
+  print "sent "; n
+  print usb.receive()
+wend
+```
 
 ## How to edit and run a program
 

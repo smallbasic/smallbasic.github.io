@@ -52,10 +52,10 @@ the internal editor and executing the program are shown.</p>
 </iframe>
 </div>
 <p>Please note, that at the first start of the Android version of
-SmallBASIC, the editor is turned off. A mouse click on a program name
-will start it immediately. If you want to edit the file, please turn on
-the editor by clicking on the three dots in the lower right corner and
-choosing the entry <code>Editor [OFF]</code> to enable the editor.</p>
+SmallBASIC, the editor is turned off. A tap on a program name will start
+it immediately. If you want to edit the file, please turn on the editor
+by tapping on the three dots in the lower right corner and choosing the
+entry <code>Editor [OFF]</code> to enable the editor.</p>
 <h2 id="step-by-step-guide">Step-by-Step Guide</h2>
 <p><img src="/images/android_menu1.png"
 title="System Menu button" /></p>
@@ -235,6 +235,59 @@ wend</code></pre>
 <p>The code snippet demonstrates how to use REQUEST to interact with a
 specified endpoint, providing necessary data and token for
 authentication.</p>
+<h2 id="iot-device-communication">IoT Device Communication</h2>
+<h3 id="usb-serial-support">USB Serial Support</h3>
+<p>These functions allow you to connect, send, and receive data over a
+USB serial connection.</p>
+<p>🔌 Open a USB Serial Connection</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> usb = android.openUsbSerial(vendorId, [baud], [timeout])</span></code></pre></div>
+<p>Parameters:</p>
+<ul>
+<li><code>vendorId</code>: (required) The USB device’s Vendor ID.</li>
+<li><code>baud</code>: (optional) The baud rate for communication
+(default: 19200).</li>
+<li><code>timeout</code>: (optional) imeout in milliseconds for receive
+operations (default: 5000 ms).</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li>A USB serial object to be used with other USB functions.</li>
+</ul>
+<p>❌ Close the USB Connection</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>usb.<span class="fu">close</span>()</span></code></pre></div>
+<p>Closes the current USB connection. Always call this when you’re done
+using the device.</p>
+<p>📋 Get Device Description</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>usb.description()</span></code></pre></div>
+<p>Returns a string with details about the connected USB device, such as
+product name or manufacturer info (if available).</p>
+<p>📥 Receive Data</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dat = usb.receive()</span></code></pre></div>
+<p>Reads incoming data from the connected USB device.</p>
+<p>Returns:</p>
+<p>A string containing the received data, or an empty string if no data
+is received before timeout.</p>
+<p>📤 Send Data</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>n = usb.send(dat)</span></code></pre></div>
+<p>Sends data to the connected USB device.</p>
+<p>Parameters:</p>
+<p>dat – The data to send as a string.</p>
+<p>Returns:</p>
+<p>The number of bytes successfully sent.</p>
+<p>📝 Example</p>
+<pre><code>import android
+usb = android.openUsbSerial(0x16C0)
+while 1
+  input k
+  n = usb.send(k);
+  print &quot;sent &quot;; n
+  print usb.receive()
+wend</code></pre>
 <h2 id="how-to-edit-and-run-a-program">How to edit and run a
 program</h2>
 <h3 id="internal-editor">Internal editor:</h3>
@@ -304,7 +357,7 @@ href="#privacy-policy"></a></h2>
 <p><a href="privacy.html">Privacy Policy</a></p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Mon, 7 Apr 2025 22:04:07 +0200
+      This page was last edited on Mon, 7 Apr 2025 22:40:38 +0200
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
