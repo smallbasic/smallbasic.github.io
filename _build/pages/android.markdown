@@ -229,7 +229,7 @@ The code snippet demonstrates how to use REQUEST to interact with a specified en
 
 These functions allow you to connect, send, and receive data over a USB serial connection.
 
-&#128268; Open a USB Serial Connection
+#### &#128268; Open a USB Serial Connection
 
 ```smallbasic
 const usb = android.openUsbSerial(vendorId, [baud], [timeout])
@@ -245,7 +245,7 @@ Returns:
 
 - A USB serial object to be used with other USB functions.
 
-&#10060; Close the USB Connection
+#### &#10060; Close the USB Connection
 
 ```smallbasic
 usb.close()
@@ -253,7 +253,7 @@ usb.close()
 
 Closes the current USB connection. Always call this when you're done using the device.
 
-&#128203; Get Device Description
+#### &#128203; Get Device Description
 
 ```smallbasic
 usb.description()
@@ -261,7 +261,7 @@ usb.description()
 
 Returns a string with details about the connected USB device, such as product name or manufacturer info (if available).
 
-&#128229; Receive Data
+#### &#128229; Receive Data
 
 ```smallbasic
 dat = usb.receive()
@@ -273,7 +273,7 @@ Returns:
 
 A string containing the received data, or an empty string if no data is received before timeout.
 
-&#128228; Send Data
+#### &#128228; Send Data
 
 ```smallbasic
 n = usb.send(dat)
@@ -289,7 +289,7 @@ Returns:
 
 The number of bytes successfully sent.
 
-&#128221; Example
+#### &#128221; Example
 
 ```
 import android

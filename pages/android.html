@@ -239,7 +239,8 @@ authentication.</p>
 <h3 id="usb-serial-support">USB Serial Support</h3>
 <p>These functions allow you to connect, send, and receive data over a
 USB serial connection.</p>
-<p>🔌 Open a USB Serial Connection</p>
+<h4 id="open-a-usb-serial-connection">🔌 Open a USB Serial
+Connection</h4>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> usb = android.openUsbSerial(vendorId, [baud], [timeout])</span></code></pre></div>
 <p>Parameters:</p>
@@ -254,24 +255,24 @@ operations (default: 5000 ms).</li>
 <ul>
 <li>A USB serial object to be used with other USB functions.</li>
 </ul>
-<p>❌ Close the USB Connection</p>
+<h4 id="close-the-usb-connection">❌ Close the USB Connection</h4>
 <div class="sourceCode" id="cb16"><pre
 class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>usb.<span class="fu">close</span>()</span></code></pre></div>
 <p>Closes the current USB connection. Always call this when you’re done
 using the device.</p>
-<p>📋 Get Device Description</p>
+<h4 id="get-device-description">📋 Get Device Description</h4>
 <div class="sourceCode" id="cb17"><pre
 class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>usb.description()</span></code></pre></div>
 <p>Returns a string with details about the connected USB device, such as
 product name or manufacturer info (if available).</p>
-<p>📥 Receive Data</p>
+<h4 id="receive-data">📥 Receive Data</h4>
 <div class="sourceCode" id="cb18"><pre
 class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dat = usb.receive()</span></code></pre></div>
 <p>Reads incoming data from the connected USB device.</p>
 <p>Returns:</p>
 <p>A string containing the received data, or an empty string if no data
 is received before timeout.</p>
-<p>📤 Send Data</p>
+<h4 id="send-data">📤 Send Data</h4>
 <div class="sourceCode" id="cb19"><pre
 class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>n = usb.send(dat)</span></code></pre></div>
 <p>Sends data to the connected USB device.</p>
@@ -279,7 +280,7 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb19
 <p>dat – The data to send as a string.</p>
 <p>Returns:</p>
 <p>The number of bytes successfully sent.</p>
-<p>📝 Example</p>
+<h4 id="example">📝 Example</h4>
 <pre><code>import android
 usb = android.openUsbSerial(0x16C0)
 while 1
@@ -357,7 +358,7 @@ href="#privacy-policy"></a></h2>
 <p><a href="privacy.html">Privacy Policy</a></p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Mon, 7 Apr 2025 22:40:38 +0200
+      This page was last edited on Sun, 20 Apr 2025 08:02:09 +0930
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
