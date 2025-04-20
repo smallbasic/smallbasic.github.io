@@ -223,9 +223,9 @@ wend
 
 The code snippet demonstrates how to use REQUEST to interact with a specified endpoint, providing necessary data and token for authentication.
 
-## IoT Device Communication
+# IoT Device Communication
 
-### USB Serial Support
+## USB Serial Support
 
 These functions allow you to connect, send, and receive data over a USB serial connection.
 
@@ -301,6 +301,100 @@ while 1
   print usb.receive()
 wend
 ```
+
+## Bluetooth Support
+
+These functions allow you to connect to Bluetooth serial devices, send and receive data, and manage the connection within your SmallBASIC program.
+
+#### &#128268; Open a Bluetooth Serial Connection
+
+```smallbasic
+const bt = android.openBluetooth(deviceName)
+```
+
+Parameters:
+
+- `deviceName`: (required) The Bluetooth device name to connected with.
+
+Returns:
+
+- A Bluetooth object to be used with other Bluetooth functions.
+
+#### &#10060; Close the Bluetooth Connection
+
+```smallbasic
+bt.close()
+```
+
+Closes the current Bluetooth connection. 
+
+Tip: Always close the connection when you're done to free resources.
+
+#### &#128268; Check whether the Bluetooth Connection is open
+
+```smallbasic
+cn = bt.connected()
+```
+
+Returns true if the Bluetooth connection is currently open, otherwise false.
+
+#### &#128203; Get Device Description
+
+```smallbasic
+bt.description()
+```
+
+Returns a string with details about the Bluetooth connection inclusing name and address (if available).
+
+#### &#128229; Receive Data
+
+```smallbasic
+dat = bt.receive()
+```
+
+Reads incoming data from the connected Bluetooth device.
+
+Returns:
+
+A string containing the received data, or an empty string if no data is received before the timeout.
+
+#### &#128228; Send Data
+
+```smallbasic
+n = bt.send(dat)
+```
+
+Sends data to the connected Bluetooth device.
+
+Parameters:
+
+dat – The data to send as a string.
+
+Returns:
+
+The number of bytes successfully sent.
+
+#### &#128221; Example
+
+```
+import android
+
+bt = android.openBluetooth("TeensyBT")
+print "opened"
+print bt.description()
+for i = 0 to 1000
+  if bt.connected() then
+    n= bt.send(i)
+    delay 10
+    print bt.receive(); "   "; i
+  else
+    print "waiting..."
+    delay 3000
+  endif
+next
+```
+
+This example opens a connection to a device named "TeensyBT", then continuously sends and receives data in a loop.
 
 ## How to edit and run a program
 

@@ -235,8 +235,8 @@ wend</code></pre>
 <p>The code snippet demonstrates how to use REQUEST to interact with a
 specified endpoint, providing necessary data and token for
 authentication.</p>
-<h2 id="iot-device-communication">IoT Device Communication</h2>
-<h3 id="usb-serial-support">USB Serial Support</h3>
+<h1 id="iot-device-communication">IoT Device Communication</h1>
+<h2 id="usb-serial-support">USB Serial Support</h2>
 <p>These functions allow you to connect, send, and receive data over a
 USB serial connection.</p>
 <h4 id="open-a-usb-serial-connection">🔌 Open a USB Serial
@@ -289,6 +289,74 @@ while 1
   print &quot;sent &quot;; n
   print usb.receive()
 wend</code></pre>
+<h2 id="bluetooth-support">Bluetooth Support</h2>
+<p>These functions allow you to connect to Bluetooth serial devices,
+send and receive data, and manage the connection within your Smallbasic
+program.</p>
+<h4 id="open-a-bluetooth-serial-connection">🔌 Open a Bluetooth Serial
+Connection</h4>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> bt = android.openBluetooth(deviceName)</span></code></pre></div>
+<p>Parameters:</p>
+<ul>
+<li><code>deviceName</code>: (required) The Bluetooth device name to
+connected with.</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li>A Bluetooth object to be used with other Bluetooth functions.</li>
+</ul>
+<h4 id="close-the-bluetooth-connection">❌ Close the Bluetooth
+Connection</h4>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>bt.<span class="fu">close</span>()</span></code></pre></div>
+<p>Closes the current Bluetooth connection.</p>
+<p>Tip: Always close the connection when you’re done to free
+resources.</p>
+<h4 id="check-whether-the-bluetooth-connection-is-open">🔌 Check whether
+the Bluetooth Connection is open</h4>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cn = bt.connected()</span></code></pre></div>
+<p>Returns true if the Bluetooth connection is currently open, otherwise
+false.</p>
+<h4 id="get-device-description-1">📋 Get Device Description</h4>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bt.description()</span></code></pre></div>
+<p>Returns a string with details about the Bluetooth connection
+inclusing name and address (if available).</p>
+<h4 id="receive-data-1">📥 Receive Data</h4>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>dat = bt.receive()</span></code></pre></div>
+<p>Reads incoming data from the connected Bluetooth device.</p>
+<p>Returns:</p>
+<p>A string containing the received data, or an empty string if no data
+is received before the timeout.</p>
+<h4 id="send-data-1">📤 Send Data</h4>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>n = bt.send(dat)</span></code></pre></div>
+<p>Sends data to the connected Bluetooth device.</p>
+<p>Parameters:</p>
+<p>dat – The data to send as a string.</p>
+<p>Returns:</p>
+<p>The number of bytes successfully sent.</p>
+<h4 id="example-1">📝 Example</h4>
+<pre><code>import android
+
+bt = android.openBluetooth(&quot;TeensyBT&quot;)
+print &quot;opened&quot;
+print bt.description()
+for i = 0 to 1000
+  if bt.connected() then
+    n= bt.send(i)
+    delay 10
+    print bt.receive(); &quot;   &quot;; i
+  else
+    print &quot;waiting...&quot;
+    delay 3000
+  endif
+next</code></pre>
+<p>This example opens a connection to a device named “TeensyBT”, then
+continuously sends and receives data in a loop.</p>
 <h2 id="how-to-edit-and-run-a-program">How to edit and run a
 program</h2>
 <h3 id="internal-editor">Internal editor:</h3>
@@ -358,7 +426,7 @@ href="#privacy-policy"></a></h2>
 <p><a href="privacy.html">Privacy Policy</a></p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Sun, 20 Apr 2025 08:02:09 +0930
+      This page was last edited on Sun, 20 Apr 2025 09:34:07 +0930
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
