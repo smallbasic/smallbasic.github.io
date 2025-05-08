@@ -40,14 +40,18 @@
 <h1 id="smallbasic-file-transfer">SmallBASIC File Transfer</h1>
 <p>Easy file transfer between your Android device and your desktop using
 WIFI.</p>
-<h2 id="step-by-step-guide">Step-by-Step Guide</h2>
+<h2 id="file-transfer-in-the-browser">File Transfer in the Browser</h2>
+<p>On your Android device:</p>
 <ol type="1">
 <li>Enable WIFI on your mobile to access your home network.</li>
 <li>In the [setup]-screen, select a font, enable extensions and give a
 port number, for example 5432.</li>
 <li>Follow the instructions to restart SmallBASIC.</li>
 <li>Open the [about]-screen to display the device IP and token.</li>
-<li>On your desktop browser, enter http://device-ip:port. For example:
+</ol>
+<p>On your desktop browser:</p>
+<ol start="5" type="1">
+<li>Enter http://device-ip:port. For example:
 http://192.168.1.5:5432.</li>
 <li>You should see a login screen with “Enter your access token”.</li>
 <li>Enter the token as shown in the [about]-page.</li>
@@ -58,6 +62,33 @@ desktop and your mobile.</li>
 <iframe width="1158" height="651" src="https://www.youtube.com/embed/4Daj4YflyS0" title="SmallBASIC File Transfer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 </div>
+<h2 id="file-transfer-in-the-ide">File Transfer in the IDE</h2>
+<p>On your Android device:</p>
+<ol type="1">
+<li>Enable WIFI on your mobile to access your home network.</li>
+<li>In the [setup]-screen, select a font, enable extensions and give a
+port number, for example 5432.</li>
+<li>Follow the instructions to restart SmallBASIC.</li>
+<li>Open the [about]-screen to display the device IP and token.</li>
+</ol>
+<p>On your desktop:</p>
+<ol start="5" type="1">
+<li>Start the SDL or FLTK-version of SmallBASIC</li>
+<li>Navigate to the .bas file then click to begin editing.</li>
+<li>Press F3, then enter the address and port as shown in the Android
+[about]-screen (IP-Address:PORT), for example 192.168.1.5:5432</li>
+<li>Enter the token as shown in the [about]-page.</li>
+<li>Once the settings are successful, you can press F4 to upload your
+program.</li>
+</ol>
+<p>On your Android device:</p>
+<ol start="10" type="1">
+<li>If <code>EDITOR [ON]</code> in the three-dot menu, the uploaded
+program will be opened in the editor. If <code>EDITOR [OFF]</code>, the
+uploaded program will be executed.</li>
+</ol>
+<p>At first connection after restarting SmallBASIC on your Android
+device, you might need to give permission for web portal access.</p>
 </div>
     <div class="pagefooter">
       This page was last edited on Wed, 16 Apr 2025 21:04:07 +0200

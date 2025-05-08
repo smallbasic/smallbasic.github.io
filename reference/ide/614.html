@@ -4,7 +4,99 @@
 </blockquote>
 <p>Specifies the foreground color <code>foreground-color</code> and the
 optional background color <code>background-color</code>.</p>
-<p>See RGB and RGBF to create colors.</p>
+<p>Color can be either an index from the build in color palette (see
+table) or the return value of the commands <code>RGB</code> and
+<code>RGBF</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Index</th>
+<th style="text-align: left;">Color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: left;"><font style='color:#000000'>█</font>
+black</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><font style='color:#000080'>█</font>
+blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><font style='color:#008000'>█</font>
+green</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><font style='color:#008080'>█</font>
+cyan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><font style='color:#800000'>█</font>
+red</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><font style='color:#800080'>█</font>
+magenta</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><font style='color:#808000'>█</font>
+yellow</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><font style='color:#c0c0c0'>█</font>
+white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><font style='color:#808080'>█</font>
+gray</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><font style='color:#0000ff'>█</font>
+bright blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><font style='color:#00ff00'>█</font>
+bright green</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><font style='color:#00ffff'>█</font>
+bright cyan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">12</td>
+<td style="text-align: left;"><font style='color:#ff0000'>█</font>
+bright red</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">13</td>
+<td style="text-align: left;"><font style='color:#ff00ff'>█</font>
+bright magenta</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">14</td>
+<td style="text-align: left;"><font style='color:#ffff00'>█</font>
+bright yellow</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">15</td>
+<td style="text-align: left;"><font style='color:#ffffff'>█</font>
+bright white</td>
+</tr>
+</tbody>
+</table>
 <h3 id="example-1">Example 1</h3>
 <pre><code>color 14, 1
 print &quot;Yellow text on blue background&quot;</code></pre>
@@ -19,7 +111,16 @@ print &quot;Yellow text on blue background&quot;</code></pre>
   Color back, text &#39; reverse colors
   Print Using &quot; FG and BG COLOR: ##, ## &quot;; back, text
 Next</code></pre>
-<h3 id="example-3-assigning-rgb-colors-to-text">Example 3: Assigning
+<h3
+id="example-3-using-rgb-and-rgbf-to-draw-a-magenta-filled-rectangle-with-white-boarder">Example
+3: Using RGB and RGBF to draw a magenta filled rectangle with white
+boarder</h3>
+<pre><code>color rgb(255, 67, 133)
+rect 10, 10, 100, 100 filled  &#39; filling always with foreground color
+
+color rgbf(1, 1, 1)
+rect 10, 10, 100, 100</code></pre>
+<h3 id="example-4-assigning-rgb-colors-to-text">Example 4: Assigning
 RGB-colors to text</h3>
 <pre><code>Print &quot;Try color printing with some RGB shades&quot;
 Print
@@ -36,15 +137,6 @@ For shade = 0 To 10
   Print &quot;Here is reverse white to black on black to red.&quot;
   print
 Next</code></pre>
-<h3
-id="example-4-using-rgb-and-rgbf-to-draw-a-magenta-filled-rectangle-with-white-boarder">Example
-4: Using RGB and RGBF to draw a magenta filled rectangle with white
-boarder</h3>
-<pre><code>color rgb(255, 67, 133)
-rect 10, 10, 100, 100 filled  &#39; filling always with foreground color
-
-color rgbf(1, 1, 1)
-rect 10, 10, 100, 100</code></pre>
 <h3
 id="example-5-chart-of-the-16-smallbasic-standard-colors-and-their-numbers">Example
 5: Chart of the 16 SmallBASIC standard colors and their numbers</h3>

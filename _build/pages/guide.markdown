@@ -75,6 +75,7 @@ Contents
 * [Input and Output](#InputAndOutput)
   * [Print on Screen](#PrintOnScreen)
   * [Read Input from the Keyboard](#ReadInputFromKeyboard)
+  * [Draw Graphics on Screen](#DrawGraphicsOnScreen)
 * [The USE Keyword](#TheUseKeyword)
 * [OPTION](#Statement1)
   * [OPTION BASE](#Statement2)
@@ -1538,6 +1539,81 @@ PRINT age
 For more information see language reference of [INPUT](/reference/527.html).
 [INKEY](/reference/539.html) and [DEFINEKEY](/reference/1015.html) allow to read from
 a keyboard without blocking the execution of the program.
+
+### Draw Graphics on Screen {#DrawGraphicsOnScreen}
+
+In SmallBASIC graphics and text can be mixed on the same screen. The graphics screen consist
+of pixels. In standard configuration the top-left pixel has the coordinate `[0,0]`. The pixel
+left of `[0,0]` has the coordinate `[1,0]`. The pixel below `[0,0]` has the coordinate `[0,1]`.
+The bottom-right pixel has the coordinate given by the size of the window minus one. For a
+window size of 640 pixel in x- and 480 pixel in y-direction, the bottom-right pixel would have
+the coordinate `[639,479]`.
+
+A color can be assigned to every pixel. SmallBASIC supports two ways to specify a color. The easy
+way is to pick a color from a build in color palette of 16 colors by specifying the corresponding
+color index as listed in the following table.
+
+| Index | Color                                                     |
+|:-----:|:----------------------------------------------------------|
+| 0     | <font style='color:#000000'>&block;</font> black          |
+| 1     | <font style='color:#000080'>&block;</font> blue           |
+| 2     | <font style='color:#008000'>&block;</font> green          |
+| 3     | <font style='color:#008080'>&block;</font> cyan           |
+| 4     | <font style='color:#800000'>&block;</font> red            |
+| 5     | <font style='color:#800080'>&block;</font> magenta        |
+| 6     | <font style='color:#808000'>&block;</font> yellow         |
+| 7     | <font style='color:#c0c0c0'>&block;</font> white          |
+| 8     | <font style='color:#808080'>&block;</font> gray           |
+| 9     | <font style='color:#0000ff'>&block;</font> bright blue    |
+| 10    | <font style='color:#00ff00'>&block;</font> bright green   |
+| 11    | <font style='color:#00ffff'>&block;</font> bright cyan    |
+| 12    | <font style='color:#ff0000'>&block;</font> bright red     |
+| 13    | <font style='color:#ff00ff'>&block;</font> bright magenta |
+| 14    | <font style='color:#ffff00'>&block;</font> bright yellow  |
+| 15    | <font style='color:#ffffff'>&block;</font> bright white   |
+
+A slightly more complicated way is to compose a color by defining the red, green and blue
+component of the color using the command `RGB(r, g, b)`. Every color component has a value from
+0 to 255. To assign a color for the next drawing command use the command `COLOR foreground, background`.
+`foreground` and `background` are either a color index from 0 to 15 or the return value of the
+command `RGB`.
+
+SmallBASIC support a variety of basic drawing routines, like draw a point, a line or a rectangle.
+
+The following example sets colors and draws a line and a rectangle.
+
+```smallbasic
+COLOR 15,0             ' set foregound and background color using a color index
+CLS                    ' clear the screen using the background color
+LINE 0,0,50,50         ' draw a line
+COLOR RGB(128,45,200)  ' set foreground color using RGB values
+RECT 0,0,50,50         ' draw a rectangle
+```
+
+To specify “world” coordinates for the screen use the command `WINDOW(x1,x2,y2,y1)`. `WINDOW`
+allows you to redefine the corners of the display screen as a pair of “world” coordinates. The
+coordinates of the upper-left corner of the screen is given by [x1, y1], the lower-left corner
+by [x2, y2].The world space defined by WINDOW is disabled by a WINDOW command without parameters.
+
+`VIEW(x1,y1,x2,y2)` defines a viewport with starting point (upper left corner)) [x1,y1] and end
+point (lower right corner) [x2,y2]. Drawing outside the viewport is not possible.
+
+The `WINDOW` command can be used to setup several additional window parameters or to display GUI
+elements, for example:
+
+```Smallbasic
+' Display an alert
+w = window()
+w.alert("This is an alert", "title")
+```
+
+```Smallbasic
+w = window()
+w.setLocation(100, 100)   ' Set window screen location 
+w.setSize(800, 680)       ' Set window size
+```
+
+For more information about graphics commands please see [Graphics](/pages/graphics.html).
 
 ## OPTION {#Statement1}
 

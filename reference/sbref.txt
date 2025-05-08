@@ -1,5 +1,4 @@
-SmallBASIC Language reference [22/03/2025]
-
+SmallBASIC Language reference [08/05/2025]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -4088,7 +4087,27 @@ COLOR foreground-color [, background-color]
 Specifies the foreground color foreground-color and the optional
 background color background-color.
 
-See RGB and RGBF to create colors.
+Color can be either an index from the build in color palette (see table)
+or the return value of the commands RGB and RGBF.
+
+   Index  Color
+  ------- ------------------
+     0    █ black
+     1    █ blue
+     2    █ green
+     3    █ cyan
+     4    █ red
+     5    █ magenta
+     6    █ yellow
+     7    █ white
+     8    █ gray
+     9    █ bright blue
+    10    █ bright green
+    11    █ bright cyan
+    12    █ bright red
+    13    █ bright magenta
+    14    █ bright yellow
+    15    █ bright white
 
 Example 1
 
@@ -4107,7 +4126,15 @@ Example 2: Assigning SmallBASIC standard colors to text
       Print Using " FG and BG COLOR: ##, ## "; back, text
     Next
 
-Example 3: Assigning RGB-colors to text
+Example 3: Using RGB and RGBF to draw a magenta filled rectangle with white boarder
+
+    color rgb(255, 67, 133)
+    rect 10, 10, 100, 100 filled  ' filling always with foreground color
+
+    color rgbf(1, 1, 1)
+    rect 10, 10, 100, 100
+
+Example 4: Assigning RGB-colors to text
 
     Print "Try color printing with some RGB shades"
     Print
@@ -4124,14 +4151,6 @@ Example 3: Assigning RGB-colors to text
       Print "Here is reverse white to black on black to red."
       print
     Next
-
-Example 4: Using RGB and RGBF to draw a magenta filled rectangle with white boarder
-
-    color rgb(255, 67, 133)
-    rect 10, 10, 100, 100 filled  ' filling always with foreground color
-
-    color rgbf(1, 1, 1)
-    rect 10, 10, 100, 100
 
 Example 5: Chart of the 16 SmallBASIC standard colors and their numbers
 

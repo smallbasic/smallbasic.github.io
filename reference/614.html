@@ -48,7 +48,99 @@
   </div>
 <p>Specifies the foreground color <code>foreground-color</code> and the
 optional background color <code>background-color</code>.</p>
-<p>See RGB and RGBF to create colors.</p>
+<p>Color can be either an index from the build in color palette (see
+table) or the return value of the commands <code>RGB</code> and
+<code>RGBF</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Index</th>
+<th style="text-align: left;">Color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: left;"><font style='color:#000000'>█</font>
+black</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><font style='color:#000080'>█</font>
+blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><font style='color:#008000'>█</font>
+green</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><font style='color:#008080'>█</font>
+cyan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><font style='color:#800000'>█</font>
+red</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><font style='color:#800080'>█</font>
+magenta</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><font style='color:#808000'>█</font>
+yellow</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><font style='color:#c0c0c0'>█</font>
+white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><font style='color:#808080'>█</font>
+gray</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><font style='color:#0000ff'>█</font>
+bright blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><font style='color:#00ff00'>█</font>
+bright green</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><font style='color:#00ffff'>█</font>
+bright cyan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">12</td>
+<td style="text-align: left;"><font style='color:#ff0000'>█</font>
+bright red</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">13</td>
+<td style="text-align: left;"><font style='color:#ff00ff'>█</font>
+bright magenta</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">14</td>
+<td style="text-align: left;"><font style='color:#ffff00'>█</font>
+bright yellow</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">15</td>
+<td style="text-align: left;"><font style='color:#ffffff'>█</font>
+bright white</td>
+</tr>
+</tbody>
+</table>
 <h3 id="example-1">Example 1</h3>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span> <span class="dv">14</span>, <span class="dv">1</span></span>
@@ -65,34 +157,34 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Color</span> back, text <span class="co">&#39; reverse colors</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Print</span> Using <span class="st">&quot; FG and BG COLOR: ##, ## &quot;</span>; back, text</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">Next</span></span></code></pre></div>
-<h3 id="example-3-assigning-rgb-colors-to-text">Example 3: Assigning
-RGB-colors to text</h3>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot;Try color printing with some RGB shades&quot;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">For </span>shade = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">10</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  text = <span class="fu">rgb</span>(shade * <span class="dv">25</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  back = <span class="fu">rgb</span>(<span class="dv">255</span> - shade * <span class="dv">25</span>, <span class="dv">255</span> - shade * <span class="dv">25</span>, <span class="dv">255</span> - shade * <span class="dv">25</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Color</span> text, back</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Print</span> <span class="st">&quot;Here is black to red on white to black &quot;</span>; shade * <span class="dv">25</span>; <span class="st">&quot;,&quot;</span>; <span class="dv">255</span> - <span class="dv">25</span> * shade</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Color</span> back, text <span class="co">&#39; reverse colors</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Print</span> <span class="st">&quot;Here is reverse white to black on black to red.&quot;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">Next</span></span></code></pre></div>
 <h3
-id="example-4-using-rgb-and-rgbf-to-draw-a-magenta-filled-rectangle-with-white-boarder">Example
-4: Using RGB and RGBF to draw a magenta filled rectangle with white
+id="example-3-using-rgb-and-rgbf-to-draw-a-magenta-filled-rectangle-with-white-boarder">Example
+3: Using RGB and RGBF to draw a magenta filled rectangle with white
 boarder</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span> <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">67</span>, <span class="dv">133</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">100</span> filled  <span class="co">&#39; filling always with foreground color</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span> <span class="fu">rgbf</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">100</span></span></code></pre></div>
+<h3 id="example-4-assigning-rgb-colors-to-text">Example 4: Assigning
+RGB-colors to text</h3>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span> <span class="fu">rgb</span>(<span class="dv">255</span>, <span class="dv">67</span>, <span class="dv">133</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">100</span> filled  <span class="co">&#39; filling always with foreground color</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span> <span class="fu">rgbf</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span> <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">100</span></span></code></pre></div>
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot;Try color printing with some RGB shades&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">For </span>shade = <span class="dv">0</span> <span class="kw">To</span> <span class="dv">10</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  text = <span class="fu">rgb</span>(shade * <span class="dv">25</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  back = <span class="fu">rgb</span>(<span class="dv">255</span> - shade * <span class="dv">25</span>, <span class="dv">255</span> - shade * <span class="dv">25</span>, <span class="dv">255</span> - shade * <span class="dv">25</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Color</span> text, back</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Print</span> <span class="st">&quot;Here is black to red on white to black &quot;</span>; shade * <span class="dv">25</span>; <span class="st">&quot;,&quot;</span>; <span class="dv">255</span> - <span class="dv">25</span> * shade</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Color</span> back, text <span class="co">&#39; reverse colors</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Print</span> <span class="st">&quot;Here is reverse white to black on black to red.&quot;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">Next</span></span></code></pre></div>
 <h3
 id="example-5-chart-of-the-16-smallbasic-standard-colors-and-their-numbers">Example
 5: Chart of the 16 SmallBASIC standard colors and their numbers</h3>
