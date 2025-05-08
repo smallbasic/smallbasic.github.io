@@ -4,7 +4,27 @@
 
 Specifies the foreground color `foreground-color` and the optional background color `background-color`.
 
-See RGB and RGBF to create colors.
+Color can be either an index from the build in color palette (see table) or the return value of the
+commands `RGB` and `RGBF`.
+
+| Index | Color                                                     |
+|:-----:|:----------------------------------------------------------|
+| 0     | <font style='color:#000000'>&block;</font> black          |
+| 1     | <font style='color:#000080'>&block;</font> blue           |
+| 2     | <font style='color:#008000'>&block;</font> green          |
+| 3     | <font style='color:#008080'>&block;</font> cyan           |
+| 4     | <font style='color:#800000'>&block;</font> red            |
+| 5     | <font style='color:#800080'>&block;</font> magenta        |
+| 6     | <font style='color:#808000'>&block;</font> yellow         |
+| 7     | <font style='color:#c0c0c0'>&block;</font> white          |
+| 8     | <font style='color:#808080'>&block;</font> gray           |
+| 9     | <font style='color:#0000ff'>&block;</font> bright blue    |
+| 10    | <font style='color:#00ff00'>&block;</font> bright green   |
+| 11    | <font style='color:#00ffff'>&block;</font> bright cyan    |
+| 12    | <font style='color:#ff0000'>&block;</font> bright red     |
+| 13    | <font style='color:#ff00ff'>&block;</font> bright magenta |
+| 14    | <font style='color:#ffff00'>&block;</font> bright yellow  |
+| 15    | <font style='color:#ffffff'>&block;</font> bright white   |
 
 ### Example 1
 
@@ -27,7 +47,17 @@ For back = 0 To 7 Do
 Next
 ```
 
-### Example 3: Assigning RGB-colors to text
+### Example 3: Using RGB and RGBF to draw a magenta filled rectangle with white boarder
+
+```
+color rgb(255, 67, 133)
+rect 10, 10, 100, 100 filled  ' filling always with foreground color
+
+color rgbf(1, 1, 1)
+rect 10, 10, 100, 100
+```
+
+### Example 4: Assigning RGB-colors to text
 
 ```
 Print "Try color printing with some RGB shades"
@@ -45,16 +75,6 @@ For shade = 0 To 10
   Print "Here is reverse white to black on black to red."
   print
 Next
-```
-
-### Example 4: Using RGB and RGBF to draw a magenta filled rectangle with white boarder
-
-```
-color rgb(255, 67, 133)
-rect 10, 10, 100, 100 filled  ' filling always with foreground color
-
-color rgbf(1, 1, 1)
-rect 10, 10, 100, 100
 ```
 
 ### Example 5: Chart of the 16 SmallBASIC standard colors and their numbers
