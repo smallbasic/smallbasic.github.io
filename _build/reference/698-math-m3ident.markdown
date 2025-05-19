@@ -10,7 +10,7 @@ M = |0  1  0|
     |0  0  1|
 ```
 
-The Identy matrix can be used with M3TRANS, M3SCALE, M3ROTATE and M3APPLY to perform 2D transformations of a poly-line.
+The Identity matrix can be used with M3TRANS, M3SCALE, M3ROTATE and M3APPLY to perform 2D transformations of a poly-line.
 
 ### Example
 

@@ -2,7 +2,7 @@
 
 > lb = LBOUND (array [, dim])
 
-Returns the lower bound `lb` of an array `array`. `dim` can be used to specifiy, at which dimension the lower bound should be returned if `array` is a multi-dimensional array. If `dim` is not used the lower bound of the first dimension will be returned.
+Returns the lower bound `lb` of an array `array`. `dim` can be used to specify, at which dimension the lower bound should be returned if `array` is a multi-dimensional array. If `dim` is not used the lower bound of the first dimension will be returned.
 
 See UBOUND for upper bound of an array.
 

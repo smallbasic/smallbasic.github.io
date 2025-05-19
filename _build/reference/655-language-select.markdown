@@ -3,7 +3,7 @@
 > SELECT CASE expr
 
 Perform multiple tests on the expression `expr`. Offers a more concise syntax to writing successive IF tests.
-Once a case statement is fullfilled the select-case structure will be exited and all following case statements will not be tested anymore.
+Once a case statement is fulfilled the select-case structure will be exited and all following case statements will not be tested anymore.
 
 See also IF ... THEN ... ELIF ... ELSE ... FI structure.
 

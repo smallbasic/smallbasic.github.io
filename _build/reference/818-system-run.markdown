@@ -2,7 +2,7 @@
 
 > [s =] RUN cmdstr
 
-Loads a secondary copy of the system shell and executes a program or a shell command given by the string `cmdstr`. The execution of the calling BASIC program will be stoped and control returns to the BASIC program once the system command has completed. If RUN is called as a function, the return value `s` holds the text output of the executed command as a string. 
+Loads a secondary copy of the system shell and executes a program or a shell command given by the string `cmdstr`. The execution of the calling BASIC program will be stopped and control returns to the BASIC program once the system command has completed. If RUN is called as a function, the return value `s` holds the text output of the executed command as a string. 
 
 System commands, especially on Linux, are very powerful, and can add lots of valuable features to a SmallBASIC program. With system commands you can configure the COM port, send email (Linux at least), get lots of information about the environment, etc.
 

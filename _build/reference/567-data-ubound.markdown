@@ -2,7 +2,7 @@
 
 > ub = UBOUND (array [, dim])
 
-Returns the upper bound `ub` of an array `array`. `dim` can be used to specifiy, at which dimension the upper bound should be returned if `array` is a multi-dimensional array. If `dim` is not used the upper bound of the first dimension will be returned.
+Returns the upper bound `ub` of an array `array`. `dim` can be used to specify, at which dimension the upper bound should be returned if `array` is a multi-dimensional array. If `dim` is not used the upper bound of the first dimension will be returned.
 
 See LBOUND for lower bound of an array.
 

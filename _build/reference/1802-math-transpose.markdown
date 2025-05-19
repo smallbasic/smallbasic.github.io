@@ -4,7 +4,7 @@
 
 Calculates the transpose `A` of a 2D matrix or a vector `M`.
 
-### Example 1: Transpose of a vetor
+### Example 1: Transpose of a vector
 
 ```
 A = [1;2;3;4]

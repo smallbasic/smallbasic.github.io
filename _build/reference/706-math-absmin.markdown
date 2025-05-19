@@ -2,7 +2,7 @@
 
 > f = ABSMIN (var1 [, var2, ... , varN] )
 
-Returns the absolute minumum value of `var1` to `varN`. `var1` to `varN` can be numbers and arrays of numbers.
+Returns the absolute minimum value of `var1` to `varN`. `var1` to `varN` can be numbers and arrays of numbers.
 
 See ABSMAX for absolute maximum value.
 
