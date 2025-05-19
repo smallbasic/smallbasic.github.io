@@ -4,7 +4,7 @@
 
 Returns pen, mouse or tap data depending on `value`.
 
-| Value | Desription
+| Value | Description
 |:-----:|:-----------------------------------------------------|
 |0      | True (non zero) if there is a new pen or mouse event |
 |1      | x position of last pen down, tap, mouse button down  |

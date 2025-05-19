@@ -2,7 +2,7 @@
 
 > DEFINEKEY k, sub
 
-Binds a keycode `k` to a user defined sub routine `sub`. When the key is pressed, the coresponding sub routine will be called. To unbind the keycode definition pass `0` as the `sub` argument.
+Binds a keycode `k` to a user defined sub routine `sub`. When the key is pressed, the corresponding sub routine will be called. To unbind the keycode definition pass `0` as the `sub` argument.
 
 Keycodes for PC keyboard
 

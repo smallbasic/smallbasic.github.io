@@ -9,7 +9,7 @@ The nicely formated output of your program will not be messed up by the log mess
 
 ```
 logprint "Error message goes to stderr"
-print "Normal text goes to sdtout"
+print "Normal text goes to stdout"
 ```
 
 ### stderr with sbasicg (SDL-version)
@@ -38,7 +38,7 @@ with test.bas:
 
 ```
 logprint "Error message goes to stderr"
-print "Normal text goes to sdtout"
+print "Normal text goes to stdout"
 ```
 
 Afer running the program the file error.txt will appear with the content:

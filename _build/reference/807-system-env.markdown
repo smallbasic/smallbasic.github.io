@@ -6,11 +6,11 @@ Adds a variable to the current environment variable-table.
 
 ENV can be used as SUB for setting and deleting Environment Variables and ENV can be used as a FUNCtion for returning a particular Environmet Variable or the whole set of them into an array.
 
-### Example 1: Setting and getting Evironment Variables
+### Example 1: Setting and getting Environment Variables
 
 ```
 SB1 = 5
-SB2 = "My evironment variable"
+SB2 = "My environment variable"
 
 'Set Environmet Variables
 ENV("SB1=" + SB1)

@@ -2,7 +2,7 @@
 
 > s = CAT (x)
 
-Returns an escape code to format a string. The values of `x` are listed in teh followin table:
+Returns an escape code to format a string. The values of `x` are listed in the following table:
 
 | x  | format        |
 |---:|---------------|

@@ -4,7 +4,7 @@
 
 Returns a formatted date string. The input date can be given as a date-string returned by DATE, as the integers `d` for day, `m` for month and `y` for year, or as a julian date. `format` is a string specifying the format of the date: 
 
-| Format | Desription               |
+| Format | Description               |
 |--------| -------------------------|
 |D       | one or two digits of Day |
 |DD      | 2-digit day              |

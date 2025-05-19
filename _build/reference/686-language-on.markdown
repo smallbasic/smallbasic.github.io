@@ -11,7 +11,7 @@ n = 1       ' Change to 1,2,3 or other value
 
 ON n GOTO label1, label2, label3
 
-print "Nothing happend"
+print "Nothing happened"
 
 end
 
