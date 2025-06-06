@@ -2,7 +2,7 @@
 
 ## Forum
 
-- [SyntaxBomb / SmallBASIC](https://www.syntaxbomb.com/smallbasic)
+- [Discourse](https://smallbasic.discourse.group)
 
 ## Issues
 
@@ -37,6 +37,7 @@
 
 ## Archived
 
+- [SyntaxBomb / SmallBASIC](https://www.syntaxbomb.com/smallbasic)
 - [Google groups](https://groups.google.com/forum/#!forum/sbasic){target=_blank}
 - [Retrobasic](https://retrobasic.allbasic.info/index.php?PHPSESSID=pn2qric1ibenvcm6sc2ic49cra&board=22.0){target=_blank}
 - [Mailing List](https://sourceforge.net/projects/smallbasic/lists/smallbasic-public){target=_blank}

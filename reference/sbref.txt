@@ -1,4 +1,4 @@
-SmallBASIC Language reference [08/05/2025]
+SmallBASIC Language reference [07/06/2025]
 
 ░██████╗███╗░░░███╗░█████╗░██╗░░░░░██╗░░░░░██████╗░░█████╗░░██████╗██╗░█████╗░
 ██╔════╝████╗░████║██╔══██╗██║░░░░░██║░░░░░██╔══██╗██╔══██╗██╔════╝██║██╔══██╗
@@ -62,7 +62,7 @@ Example
 CAT (x)
 
 Returns an escape code to format a string. The values of x are listed in
-teh followin table:
+the following table:
 
      x format
   ---- ---------------
@@ -111,7 +111,7 @@ Example
 DEFINEKEY k,sub
 
 Binds a keycode k to a user defined sub routine sub. When the key is
-pressed, the coresponding sub routine will be called. To unbind the
+pressed, the corresponding sub routine will be called. To unbind the
 keycode definition pass 0 as the sub argument.
 
 Keycodes for PC keyboard
@@ -1028,9 +1028,9 @@ Example 5: A basic key code UNIT
 INPUT [prompt,|;] var[, var [, ...]]
 
 Reads text from keyboard and stores it in the variable var. The string
-prompt is printed on the screen. If promt is followed by a ;, a question
-mark and a space are printed additionally. If you want to input two or
-more variables, the input needs to be separated with ,.
+prompt is printed on the screen. If prompt is followed by a ;, a
+question mark and a space are printed additionally. If you want to input
+two or more variables, the input needs to be separated with ,.
 
 Example 1: Using a single var
 
@@ -1231,7 +1231,7 @@ messages.
 Example:
 
     logprint "Error message goes to stderr"
-    print "Normal text goes to sdtout"
+    print "Normal text goes to stdout"
 
 stderr with sbasicg (SDL-version)
 
@@ -1259,7 +1259,7 @@ Start the basic-file from a command line:
 with test.bas:
 
     logprint "Error message goes to stderr"
-    print "Normal text goes to sdtout"
+    print "Normal text goes to stdout"
 
 Afer running the program the file error.txt will appear with the
 content:
@@ -2085,7 +2085,7 @@ Example
 LBOUND (array [, dim])
 
 Returns the lower bound lb of an array array. dim can be used to
-specifiy, at which dimension the lower bound should be returned if array
+specify, at which dimension the lower bound should be returned if array
 is a multi-dimensional array. If dim is not used the lower bound of the
 first dimension will be returned.
 
@@ -2421,7 +2421,7 @@ Example 3: Swap arrays
 UBOUND (array [, dim])
 
 Returns the upper bound ub of an array array. dim can be used to
-specifiy, at which dimension the upper bound should be returned if array
+specify, at which dimension the upper bound should be returned if array
 is a multi-dimensional array. If dim is not used the upper bound of the
 first dimension will be returned.
 
@@ -2494,7 +2494,7 @@ date-string returned by DATE, as the integers d for day, m for month and
 y for year, or as a julian date. format is a string specifying the
 format of the date:
 
-  Format   Desription
+  Format   Description
   -------- --------------------------
   D        one or two digits of Day
   DD       2-digit day
@@ -5218,7 +5218,7 @@ PEN (0..14)
 Returns pen, mouse or tap data depending on value.
 
   -----------------------------------------------------------------------
-   Value   Desription
+   Value   Description
   -------- --------------------------------------------------------------
      0     True (non zero) if there is a new pen or mouse event
 
@@ -5342,7 +5342,7 @@ must be x.
 
 Example
 
-    ' Set wite background and drawing color to red
+    ' Set white background and drawing color to red
     color rgb(255,0,0), rgb(255,255,255)
     cls
 
@@ -7823,7 +7823,7 @@ Example 1: ON … GOTO
 
     ON n GOTO label1, label2, label3
 
-    print "Nothing happend"
+    print "Nothing happened"
 
     end
 
@@ -8052,7 +8052,7 @@ SELECT CASE expr
 
 Perform multiple tests on the expression expr. Offers a more concise
 syntax to writing successive IF tests. Once a case statement is
-fullfilled the select-case structure will be exited and all following
+fulfilled the select-case structure will be exited and all following
 case statements will not be tested anymore.
 
 See also IF … THEN … ELIF … ELSE … FI structure.
@@ -8725,7 +8725,7 @@ Example 3: ABSMAX of mixed parameters
 
 ABSMIN (...)
 
-Returns the absolute minumum value of var1 to varN. var1 to varN can be
+Returns the absolute minimum value of var1 to varN. var1 to varN can be
 numbers and arrays of numbers.
 
 See ABSMAX for absolute maximum value.
@@ -9713,7 +9713,7 @@ Creates a 3x3 Identity matrix M:
     M = |0  1  0|
         |0  0  1|
 
-The Identy matrix can be used with M3TRANS, M3SCALE, M3ROTATE and
+The Identity matrix can be used with M3TRANS, M3SCALE, M3ROTATE and
 M3APPLY to perform 2D transformations of a poly-line.
 
 Example
@@ -11051,7 +11051,7 @@ TRANSPOSE (A)
 
 Calculates the transpose A of a 2D matrix or a vector M.
 
-Example 1: Transpose of a vetor
+Example 1: Transpose of a vector
 
     A = [1;2;3;4]
     print transpose(A)   ' output: [1,2,3,4]
@@ -11572,7 +11572,7 @@ Example
 LEFTOF (s1, s2)
 
 Returns the left part of s1 at the position of the first occurrence of
-the string s2 in string s1. If s2 does not occure in string s1, an empty
+the string s2 in string s1. If s2 does not occur in string s1, an empty
 string will be returned.
 
 Example
@@ -11588,7 +11588,7 @@ Example
 LEFTOFLAST (s1, s2)
 
 Returns the left part of s1 at the position of the last occurrence of
-the string s2 in string s1. If s2 does not occure in s1, an empty string
+the string s2 in string s1. If s2 does not occur in s1, an empty string
 will be returned.
 
 Example
@@ -11753,7 +11753,7 @@ Example
 RIGHTOF (s1, s2)
 
 Returns the right part of string s1 at the position of the first
-occurrence of string s2 in s1. If s2 does not occure in s1 RIGHTOF
+occurrence of string s2 in s1. If s2 does not occur in s1 RIGHTOF
 returns an empty string.
 
 Example
@@ -11772,7 +11772,7 @@ Example
 RIGHTOFLAST (s1, s2)
 
 Returns the right part of string s1 at the position of the last
-occurrence of string s2 in s1. If s2 does not occure in s1 RIGHTOFLAST
+occurrence of string s2 in s1. If s2 does not occur in s1 RIGHTOFLAST
 returns an empty string.
 
 Example
@@ -12354,10 +12354,10 @@ ENV can be used as SUB for setting and deleting Environment Variables
 and ENV can be used as a FUNCtion for returning a particular Environmet
 Variable or the whole set of them into an array.
 
-Example 1: Setting and getting Evironment Variables
+Example 1: Setting and getting Environment Variables
 
     SB1 = 5
-    SB2 = "My evironment variable"
+    SB2 = "My environment variable"
 
     'Set Environmet Variables
     ENV("SB1=" + SB1)
@@ -12434,10 +12434,10 @@ ENV can be used as SUB for setting and deleting Environment Variables
 and ENV can be used as a FUNCtion for returning a particular Environmet
 Variable or the whole set of them into an array.
 
-Example 1: Setting and getting Evironment Variables
+Example 1: Setting and getting Environment Variables
 
     SB1 = 5
-    SB2 = "My evironment variable"
+    SB2 = "My environment variable"
 
     'Set Environmet Variables
     ENV("SB1=" + SB1)
@@ -12847,7 +12847,7 @@ RUN cmdstr
 
 Loads a secondary copy of the system shell and executes a program or a
 shell command given by the string cmdstr. The execution of the calling
-BASIC program will be stoped and control returns to the BASIC program
+BASIC program will be stopped and control returns to the BASIC program
 once the system command has completed. If RUN is called as a function,
 the return value s holds the text output of the executed command as a
 string.
