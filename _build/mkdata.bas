@@ -7,6 +7,9 @@ if (not ISDIR(samplesPath)) then
   throw "Sample path '" + samplesPath + "' not found. Usage: export SAMPLES=/home/path-to-samples-repo make"
 endif
 
+const samplesPathLen = len(samplesPath)
+if (right(samplesPathLen, 1) != "/") then samplesPathLen += 1
+
 tload "reference.json", s, 1
 ref = array(s)
 keywords = []
@@ -22,8 +25,7 @@ for package in ref
 next package
 
 ' create map from keyword to array of samples
-func walker(node)
-  local fileName = node.path + "/" + node.name
+sub mapKeywords(fileName)
   local found = {}
   local buffer, i, keyword
 
@@ -32,19 +34,42 @@ func walker(node)
     for keyword in keywords
       'have we already found keyword on another line
       if instr(upper(buffer(i)), keyword) != 0 && found[keyword] == 0 then
-        map[keyword] << enclose(mid(fileName, len(samplesPath)), "\"")
+        map[keyword] << enclose(mid(fileName, samplesPathLen), "\"")
         found[keyword] = 1
       endif
     next keyword
   next i
-  return 1
 end
 
-dirwalk samplesPath, "*.bas", use walker(x)
+sub walkSamples
+  local fileName
+  local samples = []
+
+  ' sort the entire folder by pathname
+  func sortFunc(l, r)
+    local f1 = lower(l)
+    local f2 = lower(r)
+    return iff(f1 == f2, 0, iff(f1 > f2, 1, -1))
+  end
+
+  func walker(node)
+    samples << node.path + "/" + node.name
+    return 1
+  end
+
+  dirwalk samplesPath, "*.bas", use walker(x)
+  sort samples use sortFunc(x, y)
+
+  for fileName in samples
+    mapKeywords(fileName)
+  next
+end
+
+walkSamples
 
 func sortFunc(l, r)
-  local f1 = lower(rightOf(l, "/"))
-  local f2 = lower(rightOf(r, "/"))
+  local f1 = lower(rightOfLast(l, "/"))
+  local f2 = lower(rightOfLast(r, "/"))
   return iff(f1 == f2, 0, iff(f1 > f2, 1, -1))
 end
 
