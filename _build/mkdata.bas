@@ -2,7 +2,10 @@ rem
 rem reads reference.json to produce per page json data files
 rem
 
-const samplesPath = "/home/j7m/Programmieren/Basic/GIT/DickesDing/smallbasic.samples/"
+const samplesPath = trim(env("SAMPLES"))
+if (not ISDIR(samplesPath)) then
+  throw "Sample path '" + samplesPath + "' not found. Usage: export SAMPLES=/home/path-to-samples-repo make"
+endif
 
 tload "reference.json", s, 1
 ref = array(s)
@@ -40,8 +43,8 @@ end
 dirwalk samplesPath, "*.bas", use walker(x)
 
 func sortFunc(l, r)
-  local f1 = lower(rightOfLast(l, "/"))
-  local f2 = lower(rightOfLast(r, "/"))
+  local f1 = lower(rightOf(l, "/"))
+  local f2 = lower(rightOf(r, "/"))
   return iff(f1 == f2, 0, iff(f1 > f2, 1, -1))
 end
 

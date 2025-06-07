@@ -24,11 +24,22 @@
               "system",
               "units",
               "utilities" ]
+  const samplesPath = trim(env("SAMPLES"))
+  func sortFunc(l, r)
+    local f1 = lower(l)
+    local f2 = lower(r)
+    return iff(f1 == f2, 0, iff(f1 > f2, 1, -1))
+  end
+  func sortedFiles(section)
+    local result = files(samplesPath + "/" + section + "/*.bas")
+    sort result use sortFunc(x, y)
+    return result
+  end
   for section in sections %}
   <div class="lavenderBox">
     <div class="header">{{ ucase(section) }}</div>
     <div class="linklist">
-      {% for filename in files("../../smallbasic.samples/" + section + "/*.bas") %}
+      {% for filename in sortedFiles(section) %}
       <a target="_github" href="{{ githost }}/master/{{ section + "/" + filename }}">{{ filename }} </a>&nbsp;
       {% next filename %}
     </div>
