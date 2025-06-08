@@ -4,7 +4,7 @@ rem
 
 const samplesPath = trim(env("SAMPLES"))
 if (not ISDIR(samplesPath)) then
-  throw "Sample path '" + samplesPath + "' not found. Usage: export SAMPLES=/home/path-to-samples-repo make"
+  throw "Sample path '" + samplesPath + "' not found. Usage: SAMPLES=/home/path-to-samples-repo make"
 endif
 
 const samplesPathLen = len(samplesPath)
