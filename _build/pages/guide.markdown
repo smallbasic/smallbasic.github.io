@@ -46,7 +46,8 @@ Contents
   * [Key-Value Pairs with References](#KeyValuePairsWithReferences)
   * [Maps as Pseudo Objects for OOP](#MapsAsPseudoObjectForOOP)
 * [Operators](#Operators)
-  * [Pseudo-operators](#pseudo)
+  * [Supported Operators](#SupportedOperators)
+  * [Pseudo-Operators](#PseudoOperators)
 * [Expressions](#Expressions)
 * [Subroutines and Functions](#SubroutinesAndFunctions)
   * [Names](#SubroutinesAndFunctionsNames)
@@ -54,13 +55,13 @@ Contents
   * [Declaration of Functions](#DeclarationOfFunctions)
   * [Parameters](#Parameters)
   * [Exit a function or subroutine](#ExitAFunctionOrSubroutine)
-  * [Single-line Functions](#SingleLineFunctions)
+  * [Single-Line Functions](#SingleLineFunctions)
   * [Using Local Variables](#UsingLocalVariables)
   * [Nested Routines](#NestedRoutines)
   * [Declarations in PalmOS](#DeclarationsInPalmOS)
 * [Conditions](#Conditions)
   * [IF-THEN-ELSIF-ELSE](#IfThenElseifEndif)
-  * [Single-line IF-THEN-ELSE](#SingleLineIfThenElse)
+  * [Single-Line IF-THEN-ELSE](#SingleLineIfThenElse)
   * [Inline Version of IF](#InlineVersionOfIf)
   * [SELECT CASE](#SelectCase)
 * [Loops](#Loops)
@@ -76,6 +77,10 @@ Contents
   * [Print on Screen](#PrintOnScreen)
   * [Read Input from the Keyboard](#ReadInputFromKeyboard)
   * [Draw Graphics on Screen](#DrawGraphicsOnScreen)
+  * [Basic File Read and Write](#BasicFileReadAndWrite)
+  * [Save Arrays and Maps to a File](#SaveArraysAndMapsToAFile)
+  * [Save Variables to a File](#SaveVariablesToAFile)
+  * [Binary Files](#BinaryFiles)
 * [The USE Keyword](#TheUseKeyword)
 * [OPTION](#Statement1)
   * [OPTION BASE](#Statement2)
@@ -881,6 +886,8 @@ end
 
 ## Operators {#Operators}
 
+### Supported Operators {#SupportedOperators}
+
 SmallBASIC supports the following operators, sorted by priority:
 
 | Operator      | Description                                                     |
@@ -912,7 +919,7 @@ SmallBASIC supports the following operators, sorted by priority:
 | `NOR`         | bitwise NOR                                                     |
 | `XNOR`        | bitwise XNOR                                                    |
 
-### Pseudo-operators {#pseudo}
+### Pseudo-Operators {#PseudoOperators}
 
 These operators are replaced by the compiler with a command or an expression.
 
@@ -1125,7 +1132,7 @@ the return value of the function will be `0`. All commands following
 Subroutines can be exited using the keywords `EXIT SUB`. All commands following
 `EXIT SUB` will not be executed.
 
-### Single-line Functions {#SingleLineFunctions}
+### Single-Line Functions {#SingleLineFunctions}
 
 ```
 FUNC name(par1, ..., parN) = expression
@@ -1381,7 +1388,7 @@ be nested.
 Instead of `ELSEIF` and `ENDIF`, `ELIF` and `FI` can be used. Instead of `THEN`,
 `DO` can be used, but this is not suggested.
 
-### Single-line IF-THEN-ELSE {#SingleLineIfThenElse}
+### Single-Line IF-THEN-ELSE {#SingleLineIfThenElse}
 
 ```smallbasic
 IF expression THEN command1 ELSE command2
@@ -1593,7 +1600,7 @@ RECT 0,0,50,50         ' draw a rectangle
 To specify “world” coordinates for the screen use the command `WINDOW(x1,x2,y2,y1)`. `WINDOW`
 allows you to redefine the corners of the display screen as a pair of “world” coordinates. The
 coordinates of the upper-left corner of the screen is given by [x1, y1], the lower-left corner
-by [x2, y2].The world space defined by WINDOW is disabled by a WINDOW command without parameters.
+by [x2, y2]. The world space defined by WINDOW is disabled by a WINDOW command without parameters.
 
 `VIEW(x1,y1,x2,y2)` defines a viewport with starting point (upper left corner)) [x1,y1] and end
 point (lower right corner) [x2,y2]. Drawing outside the viewport is not possible.
@@ -1614,6 +1621,132 @@ w.setSize(800, 680)       ' Set window size
 ```
 
 For more information about graphics commands please see [Graphics](/pages/graphics.html).
+
+## Basic File Read and Write {#BasicFileReadAndWrite}
+
+SmallBASIC supports various commands to read and write a file. Best suited for beginners are `PRINT` and `INPUT`. `PRINT` writes to a file in the same way as described in the section "Print on Screen". `INPUT` without additional parameters reads one line from a file. To read or write a file, the file needs first to be opened. This is done using the command `OPEN`:
+
+```smallbasic
+OPEN file for INPUT|OUTPUT|APPEND as #1
+```
+
+Using the command `OPEN`, a file with the file name `file` can be opened for reading (`INPUT`), for writing (`OUTPUT`), and writing to an existing file (`APPEND`). If you use the parameter `OUTPUT` and the file already exist, the file will be deleted. `#1` is a ID number you can chose freely, but it must start with `#`
+
+To write to a file, `PRINT` can be used:
+
+```smallbasic
+PRINT #1, "Hello world"
+```
+
+`PRINT` has the same syntax as the print command in section "Print on Screen". To tell `PRINT`, that the output should be written to a file, use the file ID number as the first parameter.
+
+With `INPUT`, data can be read from a file:
+
+```smallbasic
+INPUT #1, s
+```
+
+`INPUT` without additional parameters reads a line from file with the file ID `#1` into the variable `s`.
+
+```smallbasic
+IF EOF(1) THEN PRINT "End of file reached"
+```
+
+`EOF(FileID)` returns `1` if the end of the file is reached and no more data can be read from file. Please note, that in case of `EOF` the File ID is given without `#`.
+
+To close a file, use `CLOSE #1`.
+
+The following example writes the numbers 1 to 10 to a file and reads these numbers from a file and prints them on screen.
+
+```smallbasic
+' create a text file
+OPEN "MyDemoFile.txt" FOR OUTPUT AS #1
+
+FOR i = 1 TO 10
+    PRINT #1, i
+NEXT
+
+CLOSE #1
+
+' open text file and print content line by line
+OPEN "MyDemoFile.txt" FOR INPUT AS #1
+
+WHILE(!EOF(1))   ' eof works only without #
+    INPUT #1, c
+    PRINT c
+WEND
+
+CLOSE #1
+```
+
+### Save Arrays and Maps to a File {#SaveArraysAndMapsToAFile}
+
+`TLOAD` and `TSAVE` provide a simple way to store arrays, maps or strings in a file and read them. Using a map, json data can be created and written to a file.
+
+```smallbasic
+' Create an array with some data
+A << 1
+A << "test"
+A << 2
+PRINT A                         ' Output: [1,test,2]
+
+' Save the array. This will create the file myfile.txt in
+' the same directory as your BASIC file
+TSAVE "myfile.txt", A
+
+' Load the file
+TLOAD "myfile.txt", B
+PRINT B                         ' Output: [1,test,2,]
+```
+
+### Save Variables to a File {#SaveVariablesToAFile}
+
+With `READ` and `WRITE` numbers, strings and arrays can be read and written. The resulting file is a binary file. Viewing this file in a text editor will not show you anymore the context in a human readable form.
+
+```smallbasic
+a = 12.3
+b = "test"
+c = [1,2,3,4]
+
+' Write variables to file
+OPEN "text.bin" FOR OUTPUT AS #1
+WRITE #1, a, b, c
+CLOSE #1
+
+' Read variables from file
+OPEN "text.bin" FOR INPUT AS #1
+READ #1, a, b, c
+CLOSE #1
+
+PRINT a
+PRINT b
+PRINT c
+```
+
+### Binary Files {#BinaryFiles}
+
+`BGETC` and `BPUTC` can be used to read and write a byte from/to a binary file.
+
+```smallbasic
+' create a binary file
+OPEN "BinaryFile.txt" for output as #1
+
+FOR c = 0 TO 255
+    BPUTC #1, c
+NEXT
+
+CLOSE #1
+
+' open binary file and print content
+OPEN "BinaryFile.txt" FOR INPUT AS #1
+
+FOR i = 0 TO 255
+    c = BGETC(1)
+    PRINT CHR(c);
+NEXT
+
+CLOSE #1
+```
 
 ## OPTION {#Statement1}
 
