@@ -5,6 +5,14 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.28 (26 June 2025)**
+
+- Implemented experimental Bluetooth support
+- Updated SOUND to avoid clicks
+- Updated USB API to allow setting baud rate and timeout
+- Updated android.speak() to take additional non-string args
+- Update PEN(3) handling
+
 **12.28 (22 March 2025)**
 
 - Fix regressions with web-ui and GPS api handling.
