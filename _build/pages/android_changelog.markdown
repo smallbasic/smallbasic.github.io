@@ -5,7 +5,7 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
-**12.28 (26 June 2025)**
+**12.29 (26 June 2025)**
 
 - Implemented experimental Bluetooth support
 - Updated SOUND to avoid clicks
