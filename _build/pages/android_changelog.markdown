@@ -5,6 +5,12 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.30 (31 August 2025)**
+
+- Implemented a replacement editor keypad
+- Implemented editor find command
+- Updated editor help
+
 **12.29 (26 June 2025)**
 
 - Implemented experimental Bluetooth support
