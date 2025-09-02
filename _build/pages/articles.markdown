@@ -9,9 +9,7 @@
 - [Vademecum](/pages/vade.html): comprehensive tutorial for beginners and experts
 - [Code Library](/pages/samples.html): Huge collection of examples
 - [Escape codes](/pages/escape.html)
-- [TRY/CATCH](/pages/trycatch.html)
 - [Network programming](/pages/network.html)
-- [New features](/pages/features.html)
 
 ## Getting started
 

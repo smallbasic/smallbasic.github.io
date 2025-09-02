@@ -1,6 +1,6 @@
 # SmallBASIC-PiGPIO - Plugin to use the GPIO pins of a Raspberry Pi
 
-![Logo](https://joe7m.github.io/SmallBasicPIGPIO/images/logo_smallbasicpigpio.png)
+![](https://joe7m.github.io/SmallBasicPIGPIO/images/logo_smallbasicpigpio.png)
 
 SmallBASIC-PiGPIO is a plugin for SmallBASIC to use the GPIO connector of a Raspberry Pi.
 The following article will give you a short introduction to the plugin. Detailed information
@@ -8,7 +8,7 @@ is available on the [project website](https://joe7m.github.io/smallbasic.pigpio2
 
 ## Blinking LED
 
-In this example we will connect a LED to the Raspberry Pi and let it blink with a short#
+In this example we will connect a LED to the Raspberry Pi and let it blink with a short
 SmallBASIC program.
 
 ### Wiring

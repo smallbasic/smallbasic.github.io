@@ -28,7 +28,7 @@
 
 ## External Documentation
 
-- [Dartmouth BASIC spec circa 1964](http://www.bitsavers.org/pdf/dartmouth/BASIC_Oct64.pdf){target=_blank}
+- [Rosetta Code](https://rosettacode.org/wiki/Category:SmallBASIC)
 
 ## ECMA-55
 
