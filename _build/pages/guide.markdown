@@ -28,7 +28,7 @@ Contents
   * [Variable names](#Variable)
   * [Assigning Values to Variables](#AssigningValuesToVariables)
   * [Constants](#Constants)
-* [Arrays](#Arrays})
+* [Arrays](#Arrays)
   * [Creating Arrays](#CreatingArrays)
   * [Accessing Elements of an Array](#AccessingElementsOfAnArray)
   * [Nested Arrays](#NestedArrays)
@@ -56,8 +56,10 @@ Contents
   * [Parameters](#Parameters)
   * [Exit a function or subroutine](#ExitAFunctionOrSubroutine)
   * [Single-Line Functions](#SingleLineFunctions)
+  * [Short-circuit evaluation](#LogicalExpressionShortCircuitEvaluation)
   * [Using Local Variables](#UsingLocalVariables)
   * [Nested Routines](#NestedRoutines)
+  * [Function and Routine Pointers](#FunctionAndRoutinePointers)
   * [Declarations in PalmOS](#DeclarationsInPalmOS)
 * [Conditions](#Conditions)
   * [IF-THEN-ELSIF-ELSE](#IfThenElseifEndif)
@@ -73,6 +75,7 @@ Contents
 * [Units](#Units)
   * [Declaration](#UnitsDeclaration)
   * [Import](#UnitsImport)
+  * [Name Pathing](#NamePathing)
 * [Input and Output](#InputAndOutput)
   * [Print on Screen](#PrintOnScreen)
   * [Read Input from the Keyboard](#ReadInputFromKeyboard)
@@ -230,6 +233,15 @@ be appended to one another using the `+` operator.
 a string
 over several lines
 with line breaks"""
+```
+
+If the closing quote character is not present then the end of line marker is used
+to terminate the string definition, for example:
+
+```smallbasic
+a = "this is a string
+b = " and this is another string
+PRINT a;b
 ```
 
 Strings can contain escape sequences. Escape sequences always start with the `\`
@@ -511,6 +523,17 @@ A << 1
 A << 2
 A << 3
 PRINT A(1)    ' Output: 2
+```
+
+__IN Operator__
+
+When applied to arrays the `IN` operator returns the 1 based index
+position of the element, for example:
+
+```smallbasic
+a << "cat"
+a << "dog"
+PRINT "dog" IN a      ' Output: 2
 ```
 
 ## Matrices {#Matrices}
@@ -1146,7 +1169,25 @@ parentheses an expression is assigned to the routine using the `=` operator.
 
 ```smallbasic
 DEF MyFunc(x) = SIN(x) + COS(x)
-Print MyFunc(pi/2)
+PRINT MyFunc(PI/2)
+```
+
+### Logical expression short-circuit evaluation {#LogicalExpressionShortCircuitEvaluation}
+
+In the code fragment below, if A and B are both functions and the A function
+returns `TRUE`, then the B function is not called since the expression outcome
+will still be the same, the expression will evaluate to TRUE.
+
+```smallbasic
+IF (A OR B) ...
+```
+
+In the next code fragment, if C and D are both functions and the C function returns
+FALSE, then the D function is not called since the expression outcome will still
+be the same, the expression will evaluate to FALSE.
+
+```smallbasic
+IF (C AND D) ...
 ```
 
 ### Using Local Variables {#UsingLocalVariables}
@@ -1191,6 +1232,12 @@ It is good practice to declare all local variables on the top of the routine.
 For compatibility reasons, the function and subroutine variables are not
 declared as 'local' by default.
 
+Local variable can be declared and assigned on the same line:
+
+```smallbasic
+LOCAL foo = "foo"
+```
+
 ### Nested Routines {#NestedRoutines}
 
 Nested subroutines and Functions are allowed in SmallBASIC. Nested subroutines 
@@ -1216,6 +1263,30 @@ FUNC f1(x)              ' f1
                         ' because f3 is only visible to f2
 END
 ```
+
+### Function and Routine Pointers {#FunctionAndRoutinePointers}
+
+The `@` operator can be used to obtain the address of a routine or a function.
+The `CALL` command is then used to invoke the routine or function pointed to by
+the pointer variable.
+
+```smallbasic
+FUNC foo(s)
+ foo="foo!"+s
+END
+
+SUB bar
+ PRINT "in bar"
+END
+
+p = @foo
+PRINT CALL(@foo, "#")
+PRINT CALL(p, "%")
+pb = @bar
+CALL pb
+CALL @bar
+```
+
 
 ### Declarations in PalmOS {#DeclarationsInPalmOS}
 
@@ -1290,6 +1361,9 @@ NEXT
 
 ' Output 12 6 23 -4
 ```
+
+The index variable is only a copy of the array element. Changing the content of
+the index variable will not change the content of the array element.
 
 Use `EXIT` or in case of nested loops `EXIT FOR` to end the loop before the last
 element is reached.
@@ -1490,6 +1564,25 @@ MyUnit.MyFunction(1)
 IMPORT MyUnit as u
 u.MyFunction(1)
 ```
+
+### Name Pathing {#NamePathing}
+
+Units have the ability to include a path component in a unit name.
+
+```smallbasic
+import other.something.foo
+? foo.my_var
+```
+
+Then in the `foo.bas` file:
+
+```smallbasic
+Unit other.something.Foo
+export my_var
+```
+
+The unit file would be saved in `$UNITPATH/other/something`. If not defined,
+`$UNITPATH` is inferred from the host program directory.
 
 ## The USE Keyword {#TheUseKeyword}
 
