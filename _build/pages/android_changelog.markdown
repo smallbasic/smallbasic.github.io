@@ -5,6 +5,10 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.31 (04 October 2025)**
+
+- Implemented support for editing with the system editor
+
 **12.30 (31 August 2025)**
 
 - Implemented a replacement editor keypad
