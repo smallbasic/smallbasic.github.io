@@ -53,6 +53,15 @@ Causes SmallBASIC to make a decision based on the value of an expression.
 * expression - An expression; 0 is equivalent to FALSE, while all other values are equivalent to TRUE.
 * command - Any legal command or a numeric label. If a number is specified, it is equivalent to a GOTO command with the specified numeric-label.
 
+### Inline-IF
+
+```smallbasic
+result = IF (condition, return_value_true, return_value_false)
+```
+
+The function `IF` will test the condition `condition`. If `condition` resolves to
+`true` then `return_value_true` will be returned otherwise `return_value_false`.
+
 ### Example 1: Block-style IF
 
 ```
@@ -117,4 +126,12 @@ ELSEIF foo == 2
 ELSE
     PRINT "something else"
 ENDIF
+```
+
+### Example 5: Inline IF
+
+```
+x = 4
+ans = IF(x <= 5, 0, 10)
+PRINT ans           ' Output: 0
 ```
