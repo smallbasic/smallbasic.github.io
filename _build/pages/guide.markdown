@@ -32,6 +32,7 @@ Contents
   * [Creating Arrays](#CreatingArrays)
   * [Accessing Elements of an Array](#AccessingElementsOfAnArray)
   * [Nested Arrays](#NestedArrays)
+  * [Packed/Unpacked Assignment](#PackedUnpackedAssignment)
   * [Array Operations](#ArrayOperations)
 * [Matrices](#Matrices)
   * [Creating 2D Matrices](#Creating2DMatrices)
@@ -471,6 +472,22 @@ parenthesis or square brackets can be used.
 A = [1, 2, [4, 5]]
 PRINT A[2][0]      ' Output: 4
 PRINT A(2)(1)      ' Output: 5
+```
+
+### Packed/Unpacked Assignment {#PackedUnpackedAssignment}
+
+An array can be unpacked using the unpack assignment:
+
+```
+(var1,...,varN) = array[element1,...,elementN]
+```
+
+The number of variables must match the number of elements.
+
+```smallbasic
+v = [1,2,3]
+(x,y,z) = v
+PRINT x, y, z
 ```
 
 ### Array Operations {#ArrayOperations}
@@ -1362,6 +1379,13 @@ NEXT
 ' Output 12 6 23 -4
 ```
 
+The FOR-IN-NEXT loop also loops until the last character of a string is reached.
+
+```smallbasic
+s = "Test"
+FOR index IN s DO PRINT index
+```
+
 The index variable is only a copy of the array element. Changing the content of
 the index variable will not change the content of the array element.
 
@@ -1478,10 +1502,11 @@ numeric-label.
 ### Inline Version of IF {#InlineVersionOfIf}
 
 ```smallbasic
+result = IF (condition, return_value_true, return_value_false)
 result = IFF (condition, return_value_true, return_value_false)
 ```
 
-The command `IFF` will test the condition `condition`. If `condition` resolves to
+The functions `IF` and `IFF` will test the condition `condition`. If `condition` resolves to
 `true` then `return_value_true` will be returned otherwise `return_value_false`.
 
 ```smallbasic
@@ -1489,6 +1514,8 @@ x = 4
 ans = IFF(x <= 5, 0, 10)
 PRINT ans           ' Output: 0
 ```
+
+If `IF` is used with one parameter, the normal IF-statement is used.
 
 See function reference [IFF](https://smallbasic.github.io/reference/638.html) for
 more information.

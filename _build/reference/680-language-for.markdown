@@ -13,16 +13,21 @@ Defines a FOR/NEXT loop.
 - element - A variable to be used as the copy of the current element.
 - array - An array or map variable
 
+FOR/NEXT loops may be nested to any level of complexity, but there must be a NEXT for each FOR.
+
 ### FOR counter = start TO end [STEP incr] ... NEXT
 
 SmallBASIC begins processing of the FOR/NEXT block by setting counter equal to start. Then, if 'incr' is positive and counter is not greater than end, the commands between the FOR and the NEXT are executed. When the NEXT is encountered, counter is increased by 'incr', and the process is repeated. Execution passes to the command following the NEXT if counter is greater than end.
 
-If increment is negative, execution of the FOR/NEXT loop is terminated whenever counter becomes less than end. FOR/NEXT loops may be nested to any level of complexity, but there must be a NEXT for each FOR.
+If increment is negative, execution of the FOR/NEXT loop is terminated whenever counter becomes less than end.
 
 ### FOR element IN array ... NEXT
 
 The commands-block will be repeated for LEN(array) times. Each time the 'element' will holds the value of the current element of the array.
-FOR/NEXT loops may be nested to any level of complexity, but there must be a NEXT for each FOR.
+
+### FOR character IN string ... NEXT
+
+The commands-block will be repeated for LEN(string) times. Each time the 'character' will holds the value of the current character of the string.
 
 ### Example 1
 
@@ -133,4 +138,10 @@ next
 ' Output: 1 2 3 4 5
 ```
 
+### Example 9: FOR-IN with a string
+
+```
+s = "Test"
+FOR c IN s DO PRINT c
+```
 

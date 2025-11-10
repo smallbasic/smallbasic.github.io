@@ -35,7 +35,7 @@
 - [Nokia N770/N800](http://downloads.sourceforge.net/smallbasic/sbasic_0.9.7.2_armel.deb){target="_blank"}
 - [PalmOS5](http://downloads.sourceforge.net/smallbasic/SmallBASIC-PalmOS5-0.8.2b.zip){target="_blank"}
 - [eBookman](http://downloads.sourceforge.net/smallbasic/SmallBASIC_ebm_092j.zip){target="_blank"}
-- [Ohter releases on SourceForge](http://sourceforge.net/project/showfiles.php?group_id=22348){target="_blank"}
+- [Other releases on SourceForge](http://sourceforge.net/project/showfiles.php?group_id=22348){target="_blank"}
 
 ## Changelog
 
