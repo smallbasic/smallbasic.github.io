@@ -2,7 +2,7 @@
 
 > s = REPLACE (source, pos, str [, len])
 
-Writes the string `str` into string `source` at position `pos` and returns the new string. This function replaces `len` characters. The default value of `len` is the length of `str`.
+Writes the string `str` into string `source` at position `pos` and returns the new string. This function replaces `len` characters. The default value of `len` is the length of `str`. Instead of a string, a number can be passed as a parameter. The number will be interpreted as a string.
 
 ### Example 1:
 
@@ -11,6 +11,7 @@ print replace("abcdef", 3, "1")                 ' Output: ab1def
 print replace("abcdef", 3, "12")                ' Output: ab12ef
 print replace("abcdef", 3, "123")               ' Output: ab123f
 print replace("abcdef", 3, "1234")              ' Output: ab1234
+print replace("abcdef", 3, 1234)                ' Output: ab1234     <- number 1234 is interpreted as string "1234"
 print replace("abcdef", 3, "1234", 0)           ' Output: ab1234cdef <- inserted, no replacement
 print replace("abcdef", 3, "1234", 1)           ' Output: ab1234def  <- only c was replaced
 print replace("abcdef", 3, "1234", 2)           ' Output: ab1234ef   <- only cd was replaced
@@ -67,5 +68,4 @@ cls
 ? lset("Delete TEXT");               colors(Replace(TEXT, 1, "", Len_TEXT))
 ? lset("Create TEXT");               colors(Replace("", 1, TEXT))
 ```
-
 

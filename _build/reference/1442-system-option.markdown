@@ -14,3 +14,4 @@ Used to pass parameters to the run-time environment.
 | OPTION PREDEF GRMODE [WIDTHxHEIGHT[xBPP]] | Sets the graphics mode flag (-g option) or sets the preferred screen resolution. Example: `OPTION PREDEF GRMODE 320x320x16`
 | OPTION PREDEF TEXTMODE                    | Sets the text mode flag (-g- option) 
 | OPTION PREDEF CSTR                        | Sets as default string style the C-style special character encoding (`\`)
+| OPTION PREDEF AUTOLOCAL                   | All variables are local by default
