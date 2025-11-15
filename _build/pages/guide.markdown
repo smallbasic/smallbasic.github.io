@@ -1917,6 +1917,7 @@ with this library and SmallBASIC must be linked against it.
   (`\`)
 - `ANTIALIAS on,off` : Enable/Disable anti-aliasing for drawing commands like
   `CIRCLE` or `LINE`
+- `OPTION PREDEF AUTOLOCAL`: All variables are local by default
 
 `OPTION PREDEF` is a compile-time option.
 
