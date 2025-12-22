@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmallBASIC | teensy</title>
+  <meta name="description" content="SmallBASIC | One more basic">
+  <link rel="canonical" href="/teensy.html">
+  <link rel="keywords" href="teensy">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/images/sb-desktop-32x32.png">
+  <script src="/clipboard.js"></script>
+</head>
+  <body>
+<button onclick="topFunction()" id="BackToTopBtn" title="Go to top">&#11205;</button>
+<script src="/backtotop.js"></script>
+<div class="wrapAll clearfix">
+  <nav class="navigation">
+    <div class="logo">
+      <a href="/"><img src='/images/sb-logo.png?v=2' alt="logo"></a>
+    </div>
+    <div class="navlinks">
+      <a  href="/pages/download.html">Download</a>
+      <a  href="/pages/news.html">News</a>
+      <a  href="/pages/community.html">Community</a>
+      <a class='active' href="/pages/articles.html">Resources</a>
+      <a  href="/pages/reference.html">Language Reference</a>
+      <a  href="/pages/guide.html">SmallBASIC Manual</a>
+    </div>
+  </nav>
+  <div class="mainsection">
+    <div class="tabs clearfix">
+      <div class="tabsRight">
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/blob/master/_build/pages/teensy.markdown">Edit</a>
+          <a target="_github" href="https://github.com/smallbasic/smallbasic.github.io/commits/master/_build/pages/teensy.markdown">History</a>
+      </div>
+    </div>
+<div class="article">
+<h1 id="tennsy-user-guide">Tennsy User Guide</h1>
+<blockquote>
+<p>The Teensy is a complete USB-based microcontroller development
+system, in a very small footprint, capable of implementing many types of
+projects. All programming is done via the USB port. SmallBASIC runs on
+Teensy 4.0 and Teensy 4.1.</p>
+</blockquote>
+<div class="articleRight">
+<div class="articleRightInner">
+<p>Contents</p>
+</div>
+<ul>
+<li><a href="#Setup">Setup</a>
+<ul>
+<li><a href="#Windows">Windows</a></li>
+<li><a href="#Linux">Linux</a></li>
+</ul></li>
+<li><a href="#RunASmallBASICProgram">Run a SmallBASIC program</a></li>
+<li><a href="#SendAProgramToTheTeensy">Send a Program to the
+Teensy</a></li>
+<li><a href="#ReadOutputFromYourRunningProgram">Read Output From Your
+Running Program</a></li>
+<li><a href="#DebuggingTheTeensyCrashScreenLINUX">Debugging the Teensy
+Crash Screen (LINUX)</a></li>
+<li><a href="#TeensyCommandReference">Teensy Command Reference</a>
+<ul>
+<li><a href="#DigitalOutput">Digital Output</a></li>
+<li><a href="#DigitalInput">Digital Input</a></li>
+<li><a href="#AnalogOutput">Analog Output</a></li>
+<li><a href="#AnalogInput">Analog Input</a></li>
+<li><a href="#Serial">Serial</a></li>
+<li><a href="#I2C">I2C</a></li>
+<li><a href="#Ssd1306Oled">SSD1306 OLED</a></li>
+<li><a href="#MiscellaneousCommands">Miscellaneous Commands</a></li>
+<li><a href="#UnusedCommands">Unused Commands</a></li>
+</ul></li>
+<li><a href="#Examples">Examples</a></li>
+</ul>
+</div>
+<h2 id="Setup">Setup</h2>
+<p>Setup of your Teensy 4.0 or Teensy 4.1 is quite easy. First you have
+to install the SmallBASIC firmware on the Teensy and then you ready to
+transfer your first SmallBASIC program to the Teensy. It is not
+necessary to install the teensyduino package for the Arduino IDE.
+Depending on your operation system the installation procedure is
+slightly different. Please follow the links in the next sections to the
+official Teensy website.</p>
+<h3 id="Windows">Windows</h3>
+<ol type="1">
+<li>Install the <a
+href="https://www.pjrc.com/teensy/loader_win10.html">Teensy loader
+application for Windows</a>.</li>
+<li>Download the latest <a
+href="https://github.com/smallbasic/SmallBASIC/releases">SmallBASIC
+firmware</a> from Github.</li>
+<li>Connect the Teensy using USB and flash the firmware as described on
+the Teensy loader website.</li>
+</ol>
+<h3 id="Linux">Linux</h3>
+<ol type="1">
+<li>Install the <a
+href="https://www.pjrc.com/teensy/loader_linux.html">Teensy loader
+application for Linux</a>.</li>
+<li>Apply the udev rules as describe on the Teensy loader website.</li>
+<li>Download the latest <a
+href="https://github.com/smallbasic/SmallBASIC/releases">SmallBASIC
+firmware</a> from Github.</li>
+<li>Connect the Teensy using USB and flash the firmware as described on
+the Teensy loader website.</li>
+</ol>
+<h2 id="RunASmallBASICProgram">Run a SmallBASIC Program</h2>
+<p>SMALLBASIC for Teensy offers three ways to upload and run a program
+in the following order.</p>
+<ol type="1">
+<li>Format a SD card using FAT32. Rename your program to
+<code>MAIN.BAS</code> and copy it to the SD card.</li>
+<li>Include your program in the firmware: Replace <code>main.bas</code>
+in <code>src/platform/teensy</code> by your program and build the
+firmware.</li>
+<li>Send your program via USB-serial connection to the Teensy.</li>
+<li>Goto 3.</li>
+</ol>
+<p>When the Teensy starts up, it will check in the above indicated order
+for your program. If it finds a SD card and the SD card contains a file
+<code>MAIN.BAS</code>, it will execute it. Otherwise it will check, if a
+program was included in the firmware. If no program was included, the
+Teensy will switch to interactive mode and waits for a program upload
+via USB-serial.</p>
+<p>While your program is running, the Teensy will check continuously if
+data is available at the USB-serial port. If data is available for
+longer than one second, your running program will be terminated and the
+queued data of the USB-serial port will be interpreted as the new
+program. Once the upload is finished, the new program will be executed.
+If you are using the USB-serial port for communication, read the queued
+data within one second. Alternative, you can turn on/off this behavior
+during runtime.</p>
+<p>If an error occurred, for example a syntax error, execution will stop
+and you have to read the error message from the USB-serial port.</p>
+<p>If the execution of your program comes to an end, for example when
+reaching the end of the program or when <code>STOP</code> is called, the
+program will be terminated and the next step in the above list will be
+performed.</p>
+<h2 id="SendAProgramToTheTeensy">Send a Program to the Teensy</h2>
+<p>Using the USB serial connection you can send your program to the
+Teensy. You have to figure out, which serial port is used by the Teensy.
+In Windows it is one of the COM-Ports, in Linux usually
+<code>/dev/ttyACM0</code>.</p>
+<p>You can use a Serial Terminal of your choice, or in Linux
+<code>cat YourProgram.bas &gt; /dev/ttyACM0</code>.</p>
+<p>Alternatively, SmallBASIC comes with a simple <a
+href="https://github.com/smallbasic/SmallBASIC/blob/master/src/platform/teensy/samples/SerialTerminal.bas">Serial
+Terminal</a>. With the <code>F1</code> key you can specify the port, i.e
+<code>COM1</code> in Windows or <code>/dev/ttyACM0</code> in Linux. With
+<code>F2</code> the speed can be set. With <code>F3</code> you can
+choose a file for upload. <code>F4</code> saves the current display
+buffer. <code>F6</code> uploads the file. Pressing <code>F10</code> will
+end the serial monitor.</p>
+<h2 id="ReadOutputFromYourRunningProgram">Read Output From Your Running
+Program</h2>
+<p>The <code>PRINT</code> command can be used to print to the USB-serial
+port. To access the output, connect to the serial port using,
+i.e. <code>PUTTY</code> or any other serial-port monitor / terminal.
+Using Linux, the easiest way is to run <code>cat /dev/ttyACM0</code>.
+Alternatively, use the <a
+href="https://github.com/smallbasic/SmallBASIC/blob/master/src/platform/teensy/samples/SerialTerminal.bas">SmallBASIC
+Serial Terminal</a>.</p>
+<h2 id="DebuggingTheTeensyCrashScreenLINUX">Debugging the Teensy Crash
+Screen (LINUX)</h2>
+<p>To find the line that failed (but no stack) run:</p>
+<pre><code>arm-none-eabi-addr2line -e smallbasic.elf ADDRESS</code></pre>
+<p>Where <code>ADDRESS</code> is the address shown in the crash screen,
+for example <code>0x17D04</code></p>
+<h2 id="TeensyCommandReference">Teensy Command Reference</h2>
+<p>Before using any Teensy related commands, the Teensy module must be
+imported:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span></code></pre></div>
+<h3 id="DigitalOutput">Digital Output</h3>
+<blockquote>
+<p>OUT = OPENDIGITALOUTPUT(pin)</p>
+</blockquote>
+<p>Opens the pin <code>pin</code> for digital writing.
+<code>OPENDIGITALOUTPUT</code> returns the object <code>OUT</code> to
+access the pin.</p>
+<blockquote>
+<p>OUT.WRITE(state)</p>
+</blockquote>
+<p>Sets the signal level of the corresponding pin. If <code>state</code>
+is <code>0</code>, the pin will be set to low, otherwise to high.</p>
+<h4 id="example">Example</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> PIN2 = teensy.OPENDIGITALOUTPUT(<span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>PIN2.<span class="fu">WRITE</span>(<span class="dv">1</span>)</span></code></pre></div>
+<h3 id="DigitalInput">Digital Input</h3>
+<blockquote>
+<p>IN = OPENDIGITALINPUT(pin [,mode])</p>
+</blockquote>
+<p>Opens the pin <code>pin</code> for digital reading. <code>mode</code>
+specifies if the internal pullup resistor should be used. Default
+setting is to use the pullup resistor. <code>OPENDIGITALINPUT</code>
+returns the object <code>IN</code> to access the pin.</p>
+<blockquote>
+<p>S = IN.READ()</p>
+</blockquote>
+<p>Reads the current voltage state <code>S</code> of the corresponding
+pin. <code>READ</code> returns <code>0</code> if the signal is low or
+<code>1</code> if the signal is high.</p>
+<h4 id="example-1">Example</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> PIN2 = teensy.OPENDIGITALINPUT(<span class="dv">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> PIN2.<span class="fu">READ</span>()</span></code></pre></div>
+<h3 id="AnalogOutput">Analog Output</h3>
+<blockquote>
+<p>OUT = OPENANALOGOUTPUT(pin)</p>
+</blockquote>
+<p>Opens the pin <code>pin</code> for analog writing using Pulse Width
+Modulation (PWM). <code>OPENANALOGOUTPUT</code> returns the object
+<code>OUT</code> to access the pin.</p>
+<blockquote>
+<p>OUT.WRITE(value)</p>
+</blockquote>
+<p>Sets the signal level of the corresponding pin. <code>value</code>
+must be an integer. If <code>value = 0</code> the output voltage will be
+zero. The maximum value of <code>value</code> depends on the resolution.
+See table for more information.</p>
+<blockquote>
+<p>OUT.RESOLUTION(res)</p>
+</blockquote>
+<p>Sets the resolution of the PWM generator. <code>res</code> must be an
+integer value between 2 and 15. When changing the resolution, the
+frequency also needs to be adjusted. See table for more information.</p>
+<blockquote>
+<p>OUT.FREQUENCY(freg)</p>
+</blockquote>
+<p>Sets the PWM frequency in Hz. <code>freq</code> is a floating point
+number. See table for correct settings.</p>
+<blockquote>
+<p>Settings for resolution and frequency</p>
+</blockquote>
+<p>Setting according to <a
+href="https://www.pjrc.com/teensy/td_pulse.html">Teensy website</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Resolution</th>
+<th style="text-align: center;">PWM values</th>
+<th style="text-align: center;">Frequency in Hz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">0 - 32757</td>
+<td style="text-align: center;">4577.64</td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">0 - 16383</td>
+<td style="text-align: center;">9155.27</td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">0 - 8191</td>
+<td style="text-align: center;">18310.55</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">0 - 4095</td>
+<td style="text-align: center;">36621.09</td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">0 - 2047</td>
+<td style="text-align: center;">73242.19</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">0 - 1023</td>
+<td style="text-align: center;">146484.38</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0 - 511</td>
+<td style="text-align: center;">292968.75</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">0 - 255</td>
+<td style="text-align: center;">585937.5</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0 - 127</td>
+<td style="text-align: center;">1171875</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0 - 63</td>
+<td style="text-align: center;">2343750</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0 - 31</td>
+<td style="text-align: center;">4687500</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0 - 15</td>
+<td style="text-align: center;">9375000</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0 - 7</td>
+<td style="text-align: center;">18750000</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0 - 3</td>
+<td style="text-align: center;">37500000</td>
+</tr>
+</tbody>
+</table>
+<h4 id="examples">Examples</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; 8 bit PWM with built-in LED</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> BuiltInLED = teensy.openAnalogOutput(<span class="dv">13</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  brightness++</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if(</span>brightness &gt; <span class="dv">255</span>) <span class="kw">then br</span>ightness = <span class="dv">0</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> brightness</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  BuiltInLED.<span class="fu">write</span>(brightness)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span>(<span class="dv">10</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; 12 bit PWM with built-in LED</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; For frequency settings see https://www.pjrc.com/teensy/td_pulse.html</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> BuiltInLED = teensy.openAnalogOutput(<span class="dv">13</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>BuiltInLED.Frequency(<span class="dv">36621.09</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>BuiltInLED.Resolution(<span class="dv">12</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  brightness++</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if(</span>brightness &gt; <span class="dv">4095</span>) <span class="kw">then br</span>ightness = <span class="dv">0</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> brightness</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  BuiltInLED.<span class="fu">write</span>(brightness)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span>(<span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<h3 id="AnalogInput">Analog Input</h3>
+<blockquote>
+<p>IN = OPENANALOGINPUT(pin)</p>
+</blockquote>
+<p>Opens the pin <code>pin</code> for analog reading.
+<code>OPENANALOGINPUT</code> returns the object <code>IN</code> to
+access the pin. Default setting for resolution is 10 Bit.
+<strong>Setting resolution is currently not implemented.</strong></p>
+<blockquote>
+<p>V = IN.READ()</p>
+</blockquote>
+<p>Reads the current voltage <code>V</code> of the corresponding pin.
+<code>READ</code> returns an integer between <code>0</code> and a
+maximum number depending on the resolution setting. At 10 Bit
+<code>READ</code> returns 1023 at 3.3V.</p>
+<h4 id="example-2">Example</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> PIN14 = teensy.OPENANALOGINPUT(<span class="dv">14</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> PIN14.<span class="fu">READ</span>()</span></code></pre></div>
+<h3 id="Serial">Serial</h3>
+<blockquote>
+<p>SERIAL = OPENSERIAL([interface] [,speed])</p>
+</blockquote>
+<p>Opens a serial interface for serial communication. The optional
+parameter <code>interface</code> specifies, which serial interface
+should be used. <code>interface = 0</code> will use the USB serial port.
+<code>interface = 1</code> will use the first hardware serial port (RX1,
+TX1 on pins 0 and 1). <code>interface</code> must be between 0 and 7.
+Default value for <code>interface</code> is <code>0</code>.
+<strong>TODO:</strong> include interface 8 for Teensy 4.1.</p>
+<p>The optional parameter <code>speed</code> sets the transfer speed of
+the serial port. Default value for <code>interface &gt; 0</code> is
+<code>9600</code>. For <code>interface = 0</code> the speed is set by
+the operating system for USB-serial communication; either 12 or 480
+Mbit/sec.</p>
+<blockquote>
+<p>n = SERIAL.READY()</p>
+</blockquote>
+<p>Returns the number <code>n</code> of available bytes.</p>
+<blockquote>
+<p>s = SERIAL.RECEIVE([n])</p>
+</blockquote>
+<p>Reads <code>n</code> bytes from the serial interface and returns an
+1D array with length <code>n</code>. Every element of the array is one
+byte. If <code>n</code> is not given or <code>n = 0</code>,
+<code>RECEIVE</code> will read data until a <code>\n</code> (new line)
+is received. The data will be returned as a string. If a timeout occurs,
+less than <code>n</code> bytes or a shorter string will be returned.</p>
+<blockquote>
+<p>SERIAL.SEND(s)</p>
+</blockquote>
+<p>Sends the string <code>s</code>. <strong>TODO:</strong> Send an array
+of bytes.</p>
+<h4 id="examples-1">Examples</h4>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> usbSerial = teensy.openSerial()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> BuiltInLED = teensy.openDigitalOutput(<span class="dv">13</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>value = <span class="dv">0</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if(</span>usbSerial.ready()) <span class="kw">then</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    s = usbSerial.receive()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if(</span><span class="fu">len</span>(s) &gt; <span class="dv">0</span>) <span class="kw">then</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">select case </span>s</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="st">&quot;quit&quot;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>          usbSerial.send(<span class="st">&quot;Quit program\n&quot;</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>          <span class="co">&#39; print &quot;Quit program.&quot;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>          <span class="kw">stop</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="st">&quot;led&quot;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>          value = !value</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>          <span class="kw">print</span> <span class="st">&quot;LED: &quot;</span>; value</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>          BuiltInLED.<span class="fu">write</span>(value)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="kw">case</span> <span class="kw">else</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>          <span class="kw">print</span> s</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>      <span class="kw">end select</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">endif</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">delay</span>(<span class="dv">10</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">endif</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> usbSerial = teensy.openSerial()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> BuiltInLED = teensy.openDigitalOutput(<span class="dv">13</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>value = <span class="dv">0</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if(</span>usbSerial.ready()) <span class="kw">then</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    s = usbSerial.<span class="fu">read</span>(<span class="dv">2</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">print</span> s</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if(</span><span class="fu">len</span>(s) == <span class="dv">2</span>) <span class="kw">then</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">if(</span>s[<span class="dv">0</span>] == <span class="dv">81</span>) <span class="kw">then</span>     <span class="co">&#39; if first Byte is a Q</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>          <span class="kw">print</span> <span class="st">&quot;Quit program.&quot;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>          <span class="kw">stop</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">endif</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">endif</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">delay</span>(<span class="dv">50</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">endif</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  BuiltInLED.<span class="fu">write</span>(<span class="dv">1</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span>(<span class="dv">25</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  BuiltInLED.<span class="fu">write</span>(<span class="dv">0</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span>(<span class="dv">25</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<h3 id="I2C">I2C</h3>
+<p>For some I2C sensors SmallBASIC examples are already available.
+Please check <a
+href="https://github.com/smallbasic/SmallBASIC/tree/master/src/platform/teensy/samples">Github</a>.</p>
+<blockquote>
+<p>I2C = OPENI2C([interface, pinSDA, pin SCL)</p>
+</blockquote>
+<p>Opens I2C at interface <code>interface</code> using
+<code>pinSDA</code> for SDA and <code>pinSCL</code> for SCL. The default
+value for the optional parameter <code>interface</code> is
+<code>0</code>. The interface number and the corresponding pins are
+defined as follow:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Interface SmallBASIC</th>
+<th style="text-align: center;">Interface C</th>
+<th style="text-align: center;">SDA pin</th>
+<th style="text-align: center;">SCL pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">Wire</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">19</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Wire1</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">16</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Wire2</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">24</td>
+</tr>
+</tbody>
+</table>
+<p>Using the optional parameters <code>pinSDA</code> and
+<code>pinSCL</code> the alternative I2C pins can be set:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Board</th>
+<th style="text-align: center;">SDA</th>
+<th style="text-align: center;">SCL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Teensy 4.0</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">37</td>
+</tr>
+<tr>
+<td style="text-align: center;">Teensy 4.1</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">45</td>
+</tr>
+</tbody>
+</table>
+<p><code>OPENI2C</code> returns an I2C object <code>I2C</code> to access
+the interface.</p>
+<blockquote>
+<p>v = I2C.READ(address [, n, stop])</p>
+</blockquote>
+<p>Reads <code>n</code> bytes from address <code>address</code>.
+<code>address</code> must be a valid 7 Bit I2C address. Default value
+for <code>n</code> is <code>1</code>.</p>
+<p>The optional parameter <code>mode</code> can be <code>true</code> or
+<code>false</code>. <code>true</code> will send a stop message,
+releasing the bus after transmission. <code>false</code> will send a
+restart, keeping the connection active. Default value is
+<code>true</code>.</p>
+<p>If one bytes was read, <code>READ</code> will return an integer. If
+multiple bytes were read, an 1D array of integers will be returned.</p>
+<blockquote>
+<p>I2C.SEND(address, data [, stop])</p>
+</blockquote>
+<p>Sends <code>data</code> to the address <code>address</code>.
+<code>address</code> must be a valid 7 Bit I2C address.
+<code>data</code> can be:</p>
+<ul>
+<li>a single integer value from 0 to 255</li>
+<li>a string, where every character is interpreted as a byte</li>
+<li>a 1D array of integers with values from 0 to 255</li>
+</ul>
+<p>The optional parameter <code>stop</code> can be <code>true</code> or
+<code>false</code>. <code>true</code> will send a stop message,
+releasing the bus after transmission. <code>false</code> will send a
+restart, keeping the connection active. Default value is
+<code>true</code>.</p>
+<blockquote>
+<p>I2C.SETCLOCK(c)</p>
+</blockquote>
+<p>Sets the I2C clock speed to <code>c</code> in Hz. Allowed values are
+<code>100000</code>, <code>400000</code> and <code>1000000</code>.
+Default value is <code>100000</code> Hz.</p>
+<h4 id="example-3">Example</h4>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; BH1750 ambient light sensor</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> ADDRESS = <span class="dv">0x23</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot;Open I2C&quot;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> I2C = teensy.OpenI2C(<span class="dv">1</span>)   <span class="co">&#39; use I2C pins 16 and 17</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">Print</span> <span class="st">&quot;Opened&quot;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Power down</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>I2C.<span class="fu">Write</span>(ADDRESS, <span class="dv">0x00</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Power on</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>I2C.<span class="fu">Write</span>(ADDRESS, <span class="dv">0x01</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">delay</span>(<span class="dv">500</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">&#39; Send &quot;Continuously H-resolution mode&quot; instruction</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>I2C.<span class="fu">write</span>(ADDRESS, <span class="dv">0b00010000</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">delay</span>(<span class="dv">200</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39; Read H-resolution measurement result</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  d = I2C.<span class="fu">read</span>(ADDRESS, <span class="dv">2</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  ValueHighRes = ((d[<span class="dv">0</span>] <span class="kw">lshift</span> <span class="dv">8</span>) <span class="kw">BOR</span> d[<span class="dv">1</span>]) / <span class="dv">1.2</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  ii++  </span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> ii, <span class="st">&quot;High resolution: &quot;</span> + valueHighRes + <span class="st">&quot; lx&quot;</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span>(<span class="dv">100</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<h3 id="Ssd1306Oled">SSD1306 OLED</h3>
+<p>Currently only displays with 128x64 pixels are supported. The display
+must be connected to the interface 0 (SDA pin 18, SCL pin 19).</p>
+<p>To use the SSD1306 the following module must be imported:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> ssd1306</span></code></pre></div>
+<blockquote>
+<p>INIT()</p>
+</blockquote>
+<p>Initializes the display. Must be called before any other ssd1306
+command.</p>
+<blockquote>
+<p>CLEAR()</p>
+</blockquote>
+<p>Clears the display.</p>
+<blockquote>
+<p>DIM(value)</p>
+</blockquote>
+<p>Sets the display brightness. <code>value</code> must be in the range
+from 0 to 255.</p>
+<blockquote>
+<p>FLUSH()</p>
+</blockquote>
+<p>Updates the display and shows the result of the last drawing
+commands.</p>
+<blockquote>
+<p>DRAWCHAR(x, y, c, color, bg, size)</p>
+</blockquote>
+<p>Draws a single character <code>c</code> at position
+<code>[x,y]</code> with foreground color <code>color</code>, background
+color <code>bg</code> and scale factor <code>size</code>.</p>
+<blockquote>
+<p>DRAWCIRCLE(x, y, r [, color])</p>
+</blockquote>
+<p>Draws a circle at position <code>[x,y]</code> with radius
+<code>r</code> and color <code>color</code>. Default value for
+<code>color</code> is white.</p>
+<blockquote>
+<p>DRAWLINE(x0, y0, x1, y1 [, color])</p>
+</blockquote>
+<p>Draws a line from <code>[x0,y0]</code> to <code>[x1,y1]</code> with
+color <code>color</code>. Default value for <code>color</code> is
+white.</p>
+<blockquote>
+<p>DRAWPIXEL(x, y [, color])</p>
+</blockquote>
+<p>Draws a pixel at <code>[x,y]</code> with color <code>color</code>
+Default value for <code>color</code> is white.</p>
+<blockquote>
+<p>DRAWRECT(x, y, w, h [, color])</p>
+</blockquote>
+<p>Draws a rectangle with upper left corner at <code>[x,y]</code>, a
+width of <code>w</code>, a height of <code>h</code> and a color of
+<code>color</code>. Default value for <code>color</code> is white.</p>
+<blockquote>
+<p>DRAWROUNDRECT(x, y, w, h, r [, color])</p>
+</blockquote>
+<p>Draws a rectangle with rounded corners with upper left corner at
+<code>[x,y]</code>, a width of <code>w</code>, a height of
+<code>h</code>, a corner radius of <code>r</code> and a color of
+<code>color</code>. Default value for <code>color</code> is white.</p>
+<blockquote>
+<p>DRAWTRIANGLE(x0, y0, x1, y1, x2, y2 [, color])</p>
+</blockquote>
+<p>Draws a triangle with the corners <code>[x0,y0]</code>,
+<code>[x1,y1]</code>, <code>[x2,y2]</code> and color <code>color</code>.
+Default value for <code>color</code> is white.</p>
+<blockquote>
+<p>FILLCIRCLE(x, y, r [, color])</p>
+</blockquote>
+<p>Draws a filled circle at position <code>[x,y]</code> with radius
+<code>r</code> and color <code>color</code>. Default value for
+<code>color</code> is white.</p>
+<blockquote>
+<p>FILLRECT(x, y, w, h [, color])</p>
+</blockquote>
+<p>Draws a filled rectangle with upper left corner at
+<code>[x,y]</code>, a width of <code>w</code>, a height of
+<code>h</code> and a color of <code>color</code>. Default value for
+<code>color</code> is white.</p>
+<blockquote>
+<p>FILLROUNDRECT(x, y, w, h, r [, color])</p>
+</blockquote>
+<p>Draws a filled rectangle with rounded corners with upper left corner
+at <code>[x,y]</code>, a width of <code>w</code>, a height of
+<code>h</code>, a corner radius of <code>r</code> and a color of
+<code>color</code>. Default value for <code>color</code> is white.</p>
+<blockquote>
+<p>FILLSCREEN([color])</p>
+</blockquote>
+<p>Fills the screen with color <code>color</code>. Default value for
+<code>color</code> is black.</p>
+<blockquote>
+<p>FILLTRIANGLE(x0, y0, x1, y1, x2, y2 [, color])</p>
+</blockquote>
+<p>Draws a filled triangle with the corners <code>[x0,y0]</code>,
+<code>[x1,y1]</code>, <code>[x2,y2]</code> and color <code>color</code>.
+Default value for <code>color</code> is white.</p>
+<blockquote>
+<p>INVERTDISPLAY(i)</p>
+</blockquote>
+<p>Inverts the display according to the bool <code>i</code>.</p>
+<blockquote>
+<p>PRINT(s)</p>
+</blockquote>
+<p>Prints string <code>s</code>.</p>
+<blockquote>
+<p>SETROTATION(r)</p>
+</blockquote>
+<p>Sets the rotation of the display. Values for <code>r</code> can be
+<code>0</code>, <code>1</code>, <code>2</code>, and <code>3</code>.</p>
+<blockquote>
+<p>SETCURSOR(x ,y)</p>
+</blockquote>
+<p>Sets the cursor to poition <code>[x,y]</code> in pixel.</p>
+<blockquote>
+<p>SETTEXTSIZE(s)</p>
+</blockquote>
+<p>Sets the text scaling <code>s</code>.</p>
+<blockquote>
+<p>SETTEXTWRAP(w)</p>
+</blockquote>
+<p>Sets the text wrap. <code>w = 0</code> disables wrapping.</p>
+<blockquote>
+<p>SCROLLRIGHT(start, stop)</p>
+</blockquote>
+<p>Sets right-scrolling of the lines from <code>start</code> to
+<code>stop</code></p>
+<blockquote>
+<p>SCROLLLEFT(start, stop)</p>
+</blockquote>
+<p>Sets left-scrolling of the lines from <code>start</code> to
+<code>stop</code></p>
+<blockquote>
+<p>STOPSCROLL()</p>
+</blockquote>
+<p>Stops scrolling.</p>
+<h4 id="example-4">Example</h4>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> ssd1306 <span class="kw">as</span> display</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenWidth = <span class="dv">128</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenHeight = <span class="dv">64</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> out = teensy.openAnalogInput(<span class="dv">31</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>display.init()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>display.clear()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>display.setCursor(<span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>display.setRotation(<span class="dv">90</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>display.invertDisplay(<span class="dv">0</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>display.setTextSize(<span class="dv">1</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>display.<span class="kw">print</span>(<span class="fu">SBVER</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>display.<span class="dt">dim</span>(<span class="dv">10</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>display.drawCircle(screenWidth / <span class="dv">2</span>, screenHeight / <span class="dv">2</span>, <span class="dv">24</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>display.drawRect(<span class="dv">1</span>, <span class="dv">1</span>, screenWidth - <span class="dv">2</span>, screenHeight - <span class="dv">2</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>display.drawRoundRect(<span class="dv">2</span>, <span class="dv">2</span>, screenWidth - <span class="dv">4</span>, screenHeight - <span class="dv">4</span>, <span class="dv">20</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>display.scrollRight(<span class="dv">1</span>, <span class="dv">8</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">delay</span> <span class="dv">2000</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>display.scrollLeft(<span class="dv">1</span>, <span class="dv">8</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="fu">delay</span> <span class="dv">2000</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>display.stopScroll()</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  display.setCursor(<span class="dv">30</span>, <span class="dv">30</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  display.clear()</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  display.<span class="kw">print</span>(<span class="st">&quot;Temp: &quot;</span> + teensy.getTemp() + <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  display.flush()</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span> <span class="dv">1000</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<h3 id="MiscellaneousCommands">Miscellaneous Commands</h3>
+<blockquote>
+<p>t = GETTEMP()</p>
+</blockquote>
+<p>Returns the current CPU temperature.</p>
+<blockquote>
+<p>s = GETCPUSPEED()</p>
+</blockquote>
+<p>Returns current CPU speed.</p>
+<blockquote>
+<p>v = FREE()</p>
+</blockquote>
+<p>Returns current free RAM. <code>v</code> is an array. First element
+is the free stack, second element is the free heap.</p>
+<blockquote>
+<p>SETINTERACTIVE(b)</p>
+</blockquote>
+<p>Sets the interactive mode.</p>
+<p>While your program is running, the Teensy will check continuously if
+data is available at the USB-serial port. If data is available for
+longer than one second, your running program will be terminated and the
+queued data of the USB-serial port will be interpreted as the new
+program. Once the upload is finished, the new program will be executed.
+If you are using the USB-serial port for communication, read the queued
+data within one second. Alternative, you can turn off this behavior
+during runtime setting <code>b</code> to <code>false</code>. Setting
+<code>b</code> to <code>true</code> will enable interactive mode.</p>
+<h3 id="UnusedCommands">Unused Commands</h3>
+<p>The following procedures are currently not available on the
+Teensy:</p>
+<p>ARC, BEEP, BLOAD, BPUTC, BSAVE, CHART, CHDIR, CHMOD, CIRCLE, DIRWALK,
+DRAW, DRAWPOLY, CLOSE, COPY, KILL, LINEINPUT, LOCK, OPEN, READ, TLOAD,
+TSAVE, SEEK, WRITE, INTERSECT, LINE, M3APPLY, M3IDENT, M3ROTATE,
+M3SCALE, M3TRANSLATION, MKDIR, NOSOUND, PAINT, PLAY, PLOT, POLYEXT,
+PSET, RECT, RMDIR, SOUND, VIEW, WINDOW, AT, LOCATE, SHOWPAGE</p>
+<p>The following functions will return zero:</p>
+<p>ACCESS, EOF, EXISTS, LOF, READ, FREEFILE, WRITE, PSET, ENV, RUN,
+TEXTHEIGHT, TXTH, TEXTWIDTH, TXTW</p>
+<h3 id="Examples">Examples</h3>
+<p>More examples can be found at <a
+href="https://github.com/smallbasic/SmallBASIC/tree/master/src/platform/teensy/samples">Github</a>.</p>
+</div>
+    <div class="pagefooter">
+      This page was last edited on  |
+      <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
+      processed with
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.5</a>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

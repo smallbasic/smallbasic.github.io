@@ -16,6 +16,7 @@ Contents
   * [Windows](#Windows)
   * [Linux](#Linux)
   * [Android](#Android)
+  * [Teensy](#Teensy)
   * [Build from Source](#BuildFromSource)
   * [Using the IDE](#UsingtheIntegratedDevelopmentEnvironment)
 * [Source Code Format](#SourceCodeFormat)
@@ -137,6 +138,11 @@ Download and install SmallBASIC for Android using
 are stored in `/InternalMemory/SmallBASIC` or in case of an old Android version in 
 `/InternalMemory/Android/data/net.sourceforge.smallbasic/files`. For easy file transfer between
 Android and desktop, please read [SmallBASIC file transfer](/pages/android_file_transfer.html)
+
+### Teensy {#Teensy}
+
+SmallBASIC runs on the Teensy 4.0 and Teensy 4.1. For more information please read
+the [Teensy guide](/pages/teensy.html).
 
 ### Build from Source {#BuildFromSource}
 
