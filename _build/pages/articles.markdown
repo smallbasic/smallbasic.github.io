@@ -16,6 +16,7 @@
 - [Android](/pages/android.html)
 - [SDL](/pages/sdl.html)
 - [FLTK](/pages/fltk.html)
+- [Teensy](/pages/teensy.html)
 - [Setup external editors](/pages/language_support.html)
 - [Distribute your program](/pages/distributiontool.html)
 - [SmallBASIC web server](/pages/sbasicw.html)
