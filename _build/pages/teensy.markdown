@@ -1,4 +1,4 @@
-# Tennsy User Guide
+# Teensy User Guide
 
 > The Teensy is a complete USB-based microcontroller development system,
 in a very small footprint, capable of implementing many types of projects.

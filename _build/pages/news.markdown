@@ -1,5 +1,14 @@
 # News
 
+### SmallBASIC on Teensy MCU
+
+::: date
+| Dec 22, 2025
+:::
+
+SmallBASIC was ported to the Teensy 4.0 and 4.1. Have fun using SB on this fast
+and easy to use microcontroller. For details see our [Teensy guide](https://smallbasic.github.io/pages/teensy.html).
+
 ### Website refresh
 
 ::: date
