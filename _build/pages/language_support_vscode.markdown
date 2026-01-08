@@ -8,12 +8,12 @@ _In the Stack Overflow 2021 Developer Survey, Visual Studio Code was ranked the 
 developer environment tool, with 70% of 82,000 respondents reporting that they use it." 
 ([wikipedia](https://en.wikipedia.org/wiki/Visual_Studio_Code))_
 
-![Example](https://github.com/Joe7M/smallbasic.vscode.syntaxcoloring/raw/main/Screenshot.png)
+![Example](https://github.com/smallbasic/smallbasic.syntax-highlighting/raw/main/vscode/screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 
 The VSCode extension for syntax highlighting and code snippets can be downloaded from
-[Github](https://github.com/Joe7M/smallbasic.vscode.syntaxcoloring/releases) as a VSIX file. To install
+[Github](https://github.com/smallbasic/smallbasic.syntax-highlighting/tree/main/vscode) as a VSIX file. To install
 the extension please select this file in the VSCode extensions section
 (View -> Extensions -> ... (3 dots) -> Install from VSIX)
 

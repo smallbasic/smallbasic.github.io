@@ -18,5 +18,6 @@ Contents
 #. [Micro](/pages/language_support_micro.html)
 #. [nano](/pages/language_support_nano.html)
 #. [Sublime Text](/pages/language_support_sublimetext.html)
+#. [vim](/pages/language_support_vim.html)
 #. [Visual Studio Code](/pages/language_support_vscode.html)
 :::

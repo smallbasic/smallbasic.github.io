@@ -35,7 +35,7 @@ To start editing:
   git clone https://github.com/smallbasic/smallbasic.github.io.git
   git clone https://github.com/smallbasic/smallbasic.samples.git
   cd smallbasic.github.io/_build
-  export SAMPLE = PATH_TO_SMALLBASIC_SAMPLES
+  export SAMPLE=PATH_TO_SMALLBASIC_SAMPLES
   make clean
   make
   ```

@@ -5,11 +5,11 @@
 _"GNU nano is a text editor for Unix-like computing systems or operating environments using a command line interface. " ([Wikipedia](https://en.wikipedia.org/wiki/GNU_nano))_
 
 
-![Example](https://raw.githubusercontent.com/Joe7M/smallbasic.nano.syntaxcoloring/main/screenshot.png)
+![Example](https://github.com/smallbasic/smallbasic.syntax-highlighting/raw/main/nano/screenshot.png)
 
 ## Installation
 
-- Download the file `smallbasic.nanorc` from [github](https://github.com/Joe7M/smallbasic.nano.syntaxcoloring)
+- Download the file `smallbasic.nanorc` from [Github](https://github.com/smallbasic/smallbasic.syntax-highlighting/tree/main/nano)
 - Create the folder `~/.config/nano/syntax`
 - Copy the file "smallbasic.nanorc" into that folder
 - Edit the nano configuration file -> `nano ~/.config/nano/nanorc`

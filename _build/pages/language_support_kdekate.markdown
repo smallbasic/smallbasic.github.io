@@ -6,11 +6,11 @@ for software developers, it features syntax highlighting, code folding, customiz
 support, and extensibility" 
 ([wikipedia](https://en.wikipedia.org/wiki/Kate_(text_editor)))_
 
-![Example](https://raw.githubusercontent.com/Joe7M/smallbasic.kate.syntaxcoloring/main/screenshot.png)
+![Example](https://github.com/smallbasic/smallbasic.syntax-highlighting/raw/main/kate/screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 
-The file for syntax highlighting can be downloaded from [Github](https://github.com/Joe7M/smallbasic.kate.syntaxcoloring/)
+The file for syntax highlighting can be downloaded from [Github](https://github.com/smallbasic/smallbasic.syntax-highlighting/tree/main/kate)
 
 Copy the file "smallbasic.xml" into the folder "~/.local/share/org.kde.syntax-highlighting/syntax/".
 Most probably this folder does not exist. Please create it. Restart Kate and chose "SmallBASIC" for highlighting.
