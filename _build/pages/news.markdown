@@ -1,6 +1,6 @@
 # News
 
-### SmallBASIC on Teensy MCU
+### SmallBASIC syntax highlighting for vim
 
 ::: date
 | Jan 8, 2026
