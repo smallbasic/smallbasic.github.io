@@ -4,11 +4,11 @@
 
 _"jEdit is a free software text editor available under GPL-2.0-or-later. It is written in Java and runs on any operating system with Java support, including BSD, Linux, macOS and Windows. " ([wikipedia](https://en.wikipedia.org/wiki/JEdit))_
 
-![Example](https://raw.githubusercontent.com/Joe7M/smallbasic.jedit.syntaxcoloring/main/Screenshot.png)
+![Example](https://github.com/smallbasic/smallbasic.syntax-highlighting/raw/main/jedit/screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 
-- Download the file `smallbasic.xml` from [Github](https://github.com/Joe7M/smallbasic.jedit.syntaxcoloring)
+- Download the file `smallbasic.xml` from [Github](https://github.com/smallbasic/smallbasic.syntax-highlighting/tree/main/jedit)
 - Start jedit
 - Go to `Utilities -> Global Options -> Editing -> Edit Modes`
 - In the section `Add Mode` create a new mode:

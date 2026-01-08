@@ -4,8 +4,7 @@
 
 _"Micro is a modern and intuitive terminal-based text editor " ([micro](https://micro-editor.github.io/))_
 
-![Example](https://raw.githubusercontent.com/Joe7M/smallbasic.micro.syntaxcoloring/main/Screenshot.png)
-
+![Example](https://github.com/smallbasic/smallbasic.syntax-highlighting/raw/main/micro/screenshot.png)
 ## Setup Syntax Highlighting and Coloring
 
-Download the file `smallbasic.yaml` from [github](https://github.com/Joe7M/smallbasic.micro.syntaxcoloring) and copy it to `~/.config/micro/syntax/`.
+Download the file `smallbasic.yaml` from [github](https://github.com/smallbasic/smallbasic.syntax-highlighting/tree/main/micro) and copy it to `~/.config/micro/syntax/`.

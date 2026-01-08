@@ -3,6 +3,14 @@
 ### SmallBASIC on Teensy MCU
 
 ::: date
+| Jan 8, 2026
+:::
+
+SmallBASIC syntax highlighting for vim available. Big thanks to z9385pdi. For details see [SmallBASIC language support](https://smallbasic.github.io/pages/language_support_vim.html).
+
+### SmallBASIC on Teensy MCU
+
+::: date
 | Dec 22, 2025
 :::
 

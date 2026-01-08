@@ -11,11 +11,11 @@ separately by the user. Among the supported programming languages and markup lan
 C#, Java, JavaScript, PHP, HTML, LaTeX, CSS, Python, Perl, Ruby, Pascal, Haskell, Erlang, Vala and
 many others." ([wikipedia](https://en.wikipedia.org/wiki/Geany))_
 
-![Example](https://github.com/Joe7M/smallbasic.geany.syntaxcoloring/raw/main/Screenshot.png)
+![Example](https://github.com/smallbasic/smallbasic.syntax-highlighting/raw/main/geany/screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 
-Download the file "filetypes.freebasic" from [Gitub](https://github.com/Joe7M/smallbasic.geany.syntaxcoloring) and copy it to:
+Download the file "filetypes.freebasic" from [Gitub](https://github.com/smallbasic/smallbasic.syntax-highlighting/tree/main/geany) and copy it to:
 
 - Linux: ~/.config/geany/filedefs/
 - Windows: _"Installation directory of Geany"_\data\filedefs

@@ -12,7 +12,7 @@ _Atom was released from beta, as version 1.0, on 25 June 2015. Its developers ca
 for the 21st Century", as it is fully customizable in HTML, CSS, and JavaScript." 
 ([wikipedia](https://en.wikipedia.org/wiki/Atom_(text_editor)))_
 
-![Example](https://github.com/Joe7M/smallbasic.atom.syntaxcoloring/raw/main/Screenshot.png)
+![Example](https://github.com/smallbasic/smallbasic.syntax-highlighting/raw/main/atom/Screenshot.png)
 
 ## Setup Syntax Highlighting and Coloring
 

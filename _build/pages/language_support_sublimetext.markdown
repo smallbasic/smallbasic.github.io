@@ -9,11 +9,11 @@ regular-expressions, terminal output window, and more. It is proprietary softwar
 evaluation version is available." 
 ([wikipedia](https://en.wikipedia.org/wiki/Sublime_Text))_
 
-![Example](https://raw.githubusercontent.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/main/screenshot.png)
+![Example](https://github.com/smallbasic/smallbasic.syntax-highlighting/raw/main/sublimetext/screenshot.png)
 
 ## Installation
 
-The files for syntax highlighting can be downloaded from [Github](https://github.com/Joe7M/smallbasic.sublimetext.syntaxcoloring/).
+The files for syntax highlighting can be downloaded from [Github](https://github.com/smallbasic/smallbasic.syntax-highlighting/tree/main/sublimetext).
 
 Copy the files in the folder "package" to the User directory in the Sublime Text package folder.
 The Sublime Text package folder can be open within Sublime Text under Preferences -> Browse Packages.
