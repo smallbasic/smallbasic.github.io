@@ -1,6 +1,17 @@
 Changelog
 =========
 
+**12.33 (24 January 2026) **
+
+- SDL build released onto flathub
+- SDL updated to use modern desktop icon
+- SDL fix to reduce flicker when moving between screens
+- SDL updated editor keyword help system
+- SDL editor now has a toolbar
+- SDL now based on SDL 3.x
+- COMMON Fix bug with DELAY(0)
+- LINUX: LOF returns available bytes for serial connection
+
 **12.27 (26 April 2024) **
 
 - Add new function TRANSPOSE()

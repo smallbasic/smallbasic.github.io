@@ -7,17 +7,22 @@
 
 ## Android
 
-[Google Play](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}
+[Google Play - 12.31](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}
+
+## Linux
+
+- [SDL 64 bit Flatpak - 12.33](https://flathub.org/en/apps/io.github.smallbasic.SmallBASIC)
+- [SDL 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-SDL_12.27-x86_64.AppImage){target="_blank"}
+- [FLTK 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-FLTK_12.27-x86_64.AppImage){target="_blank"}
+- [Console 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-Console_12.27-x86_64.AppImage){target="_blank"}
 
 ## Windows
 
 [SmallBASIC 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/smallbasic_12.27.zip){target="_blank"}
 
-## Linux
+## Teensy MCU board
 
-- [SDL 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-SDL_12.27-x86_64.AppImage){target="_blank"}
-- [FLTK 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-FLTK_12.27-x86_64.AppImage){target="_blank"}
-- [Console 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-Console_12.27-x86_64.AppImage){target="_blank"}
+[SmallBASIC teensy firmware](https://github.com/smallbasic/SmallBASIC/releases/tag/Teensy_v1.0)
 
 ## Source code
 
