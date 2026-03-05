@@ -7,18 +7,15 @@
 
 ## Android
 
-[Google Play - 12.31](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}
+[Google Play - 12.33](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}
 
 ## Linux
 
-- [SDL 64 bit Flatpak - 12.33](https://flathub.org/en/apps/io.github.smallbasic.SmallBASIC)
-- [SDL 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-SDL_12.27-x86_64.AppImage){target="_blank"}
-- [FLTK 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-FLTK_12.27-x86_64.AppImage){target="_blank"}
-- [Console 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-Console_12.27-x86_64.AppImage){target="_blank"}
+[SDL Flatpak - 12.33](https://flathub.org/en/apps/io.github.smallbasic.SmallBASIC)
 
 ## Windows
 
-[SmallBASIC 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/smallbasic_12.27.zip){target="_blank"}
+[SmallBASIC 12.33](https://github.com/smallbasic/SmallBASIC/releases/download/v12_33_win/SmallBASIC_12.33_Win.zip){target="_blank"}
 
 ## Teensy MCU board
 
@@ -35,6 +32,9 @@
 
 ## Other releases
 
+- [SDL 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-SDL_12.27-x86_64.AppImage){target="_blank"}
+- [FLTK 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-FLTK_12.27-x86_64.AppImage){target="_blank"}
+- [Console 64 bit AppImage - 12.27](https://github.com/smallbasic/SmallBASIC/releases/download/12_27/SmallBASIC-Console_12.27-x86_64.AppImage){target="_blank"}
 - [Ubuntu 32 bit - 0.12.9](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.9/smallbasic_0.12.9_i386.deb){target="_blank"}
 - [Raspberry PI - 0.12.6](http://sourceforge.net/projects/smallbasic/files/Linux/0.12.6/smallbasic_0.12.6_armhf.deb){target="_blank"}
 - [Nokia N770/N800](http://downloads.sourceforge.net/smallbasic/sbasic_0.9.7.2_armel.deb){target="_blank"}

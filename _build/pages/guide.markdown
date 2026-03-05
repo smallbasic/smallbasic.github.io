@@ -125,11 +125,9 @@ location of your choice. Open the SmallBASIC folder and start one of the followi
 
 ### Linux {#Linux}
 
-Download the [latest release of SmallBASIC](pages/download.html).
-The different versions of SmallBASIC are provided as separate AppImages. Download an AppImage
-and copy it to a directory of your choice. Execute the AppImage. Depending of the Linux version
-you have to make the AppImage executable: `chmod u+x AppImageFile`, where `AppImageFile` is the
-filename of the AppImage.
+Download the [latest release of SmallBASIC](/pages/download.html).
+Currently only the SDL version of SmallBASIC is provided as a flatpak package. The other versions
+can be [build from source](https://github.com/smallbasic/SmallBASIC).
 
 ### Android {#Android}
 
