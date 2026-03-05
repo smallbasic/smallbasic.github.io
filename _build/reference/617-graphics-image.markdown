@@ -1,8 +1,17 @@
 # IMAGE
 
-> IMAGE [#handle | fileName | http://path-to-file.png | image-var | array of pixmap data]
+> IMAGE handle [, scale]
 
-The IMAGE statement provides access to extended support for image manipulation. There are two supported image formats: PNG and XPM (see below).
+The IMAGE statement provides access to extended support for image manipulation. There are two supported image formats: PNG and XPM. An optional scale factor `scale` can be provided. `scale` must be larger than zero. Values smaller than `1` will result in a down-scaling of the image. Values larger than `1` will upscale the image.
+
+`handle` can be:
+
+- File name
+- File handle
+- URL (http)
+- Image variable
+- Array
+- Pixmap array
 
 ### Image access
 
@@ -102,6 +111,15 @@ im << "@ xxx      xxx @"
 im << "@              @"
 im << "@@@@@@@@@@@@@@@@"
 i = Image(im)
+```
+
+Create via file name and scale
+
+```
+i1 = Image("circle.png", 2)    ' scale up by factor 2
+i1.show(0,0)
+i2 = Image("circle.png", 1/2)  ' scale down by factor 2
+i2.show(0,0)
 ```
 
 ### Show command

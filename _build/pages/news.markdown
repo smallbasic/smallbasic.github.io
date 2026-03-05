@@ -1,5 +1,15 @@
 # News
 
+### SmallBASIC version 12.33 has been released for Windows, Linux and Android
+
+::: date
+| March 5, 2026
+:::
+
+See [SmallBASIC download page](https://smallbasic.github.io/pages/download.html).
+
+Please report any issues to either the forum, email or github issues page.
+
 ### SmallBASIC syntax highlighting for vim
 
 ::: date
