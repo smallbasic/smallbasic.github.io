@@ -5,6 +5,15 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.33 (20 April 2026)**
+
+- Now displays non full-screen.
+- Updated file access Web portal.
+- Fixed a bug with DELAY(0).
+- Fixed flicker when moving between screens.
+- Fixed issue with back-button on some android versions.
+- Fix issue with graphics drawing while pausing.
+
 **12.31 (04 October 2025)**
 
 - Implemented support for editing with the system editor
