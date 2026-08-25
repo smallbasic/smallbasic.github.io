@@ -5,6 +5,11 @@ Android Changelog
 [Home](/) > [Articles](/pages/articles.html)
 :::
 
+**12.35 (06 August 2026)**
+
+- Fix availability of the showkeypad menu
+- Fix display issues related to non-full-screen changes
+
 **12.33 (20 April 2026)**
 
 - Now displays non full-screen.
