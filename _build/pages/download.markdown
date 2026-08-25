@@ -7,7 +7,7 @@
 
 ## Android
 
-[Google Play - 12.33](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}
+[Google Play - 12.35](https://play.google.com/store/apps/details?id=net.sourceforge.smallbasic){target="_blank"}
 
 ## Linux
 
