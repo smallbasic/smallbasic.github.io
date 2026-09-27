@@ -13,9 +13,9 @@ Contents
 * [Setup](#Setup)
   * [Windows](#Windows)
   * [Linux](#Linux)
-* [Run a SmallBASIC program](#RunASmallBASICProgram)
+* [Run a SmallBASIC Program](#RunASmallBASICProgram)
 * [Send a Program to the Teensy](#SendAProgramToTheTeensy)
-* [Read Output From Your Running Program](#ReadOutputFromYourRunningProgram)
+* [Read Output from your Running Program](#ReadOutputFromYourRunningProgram)
 * [Debugging the Teensy Crash Screen (LINUX)](#DebuggingTheTeensyCrashScreenLINUX)
 * [Teensy Command Reference](#TeensyCommandReference)
   * [Digital Output](#DigitalOutput)
@@ -24,6 +24,7 @@ Contents
   * [Analog Input](#AnalogInput)
   * [Serial](#Serial)
   * [I2C](#I2C)
+  * [FLASH and SD card](#flashandsdcard)
   * [SSD1306 OLED](#Ssd1306Oled)
   * [Miscellaneous Commands](#MiscellaneousCommands)
   * [Unused Commands](#UnusedCommands)
@@ -54,18 +55,19 @@ the next sections to the official Teensy website.
 
 ## Run a SmallBASIC Program {#RunASmallBASICProgram}
 
-SMALLBASIC for Teensy offers three ways to upload and run a program in the following order.
+SMALLBASIC for Teensy offers four ways to upload and run a program.
 
 1. Format a SD card using FAT32. Rename your program to `MAIN.BAS` and copy it to the SD card.
-2. Include your program in the firmware: Replace `main.bas` in `src/platform/teensy` by your program and build
+2. Upload your program as `MAIN.BAS` to the flash memory file system (i.e. use `console.bas`)
+3. Include your program in the firmware. Replace `main.bas` in `src/platform/teensy` by your program and build
    the firmware.
-3. Send your program via USB-serial connection to the Teensy.
-4. Goto 3.
+4. Send your program via USB-serial connection to the Teensy. In Linux use ` cat YourProgram.bas > /dev/ttyACM0`
+   Change `/dev/ttyACM0` to the USB-serial port of your Teensy.
 
 When the Teensy starts up, it will check in the above indicated order for your program. If it finds
-a SD card and the SD card contains a file `MAIN.BAS`, it will execute it. Otherwise it will check, if a program
-was included in the firmware. If no program was included, the Teensy will switch to interactive mode and waits
-for a program upload via USB-serial.
+a SD card and the SD card contains a file `MAIN.BAS`, it will execute it. Otherwise it will check flash for
+the file `MAIN.bas` and executes it. Otherwise it will check, if a program was included in the firmware. If no
+program was included, the Teensy will switch to interactive mode and waits for a program upload via USB-serial.
 
 While your program is running, the Teensy will check continuously if data is available at the USB-serial port.
 If data is available for longer than one second, your running program will be terminated and the queued data of the
@@ -77,7 +79,7 @@ If an error occurred, for example a syntax error, execution will stop and you ha
 the USB-serial port.
 
 If the execution of your program comes to an end, for example when reaching the end of the program or when `STOP` is
-called, the program will be terminated and the next step in the above list will be performed.
+called, the program is terminated and the teensy switches to interactive mode.
 
 ## Send a Program to the Teensy {#SendAProgramToTheTeensy}
 
@@ -423,6 +425,199 @@ while(1)
   delay(100)
 wend
 ```
+
+### Flash and SD card {#flashandsdcard}
+
+To access and manipulate files in flash memory or on sd-card the teensy file system library needs to be imported:
+
+```smallbasic
+import teensy
+fs = teensy.fs
+```
+
+File names can contain absolute pathes. If you want to access flash memory, the file name must start with
+`flash:`; for accessing the built in SD card the file name must start with `sd:`. A file name without
+`flash:` or `sd:` will access the corresponding file in flash memory.
+
+Examples for valid file names:
+
+1. `flash:test.txt`
+2. `flash:/dir/test.txt`
+3. `sd:test.txt`
+4. `sd:/dir/test.txt`
+5. `test.txt`
+6. `/dir/test.txt`
+
+> result = fs.QUICKFORMAT()
+
+Formats the flash file system. Returns `0`, if format was not successful.
+
+> result = fs.EXISTS(name)
+
+Checks if `name` exists. `name` can be a file or a directory. `EXISTS` returns `1` if the file or directory exists, otherwise `0`.
+
+> result = fs.MKDIR(name)
+
+Creates the directory `name`. Returns `0`, if creation of the directory was not successful.
+
+> result = fs.RENAME(OldName, NewName)
+
+Renames a file from `OldName` to `NewName`. If `NewName` contains an absolute path, the file will be moved. `RENAME` returns `0` if
+not successful.
+
+> result = fs.REMOVE(name)
+
+Removes the file or directoy `name`. A directory must be empty. `REMOVE` returns `0` if not successful.
+
+> result = fs.FREE()
+
+Returns an array with total size and used size.
+
+| Element   | Size             |
+|:---------:|:----------------:|
+| result[0] | total size flash |
+| result[1] | used size flash  |
+| result[2] | total size sd    |
+| result[3] | used size sd     |
+
+> file = fs.OPEN(FileName [,RWMode])
+
+Opens a file `FileName` for reading or writing defined by the optional parameter `RWMode` and returns a file-object `file`. 
+
+`RWMode` specifies read or write access:
+
+| RWMode        | Access |
+|:-------------:|:------:|
+| 0             | read   |
+| 1             | write  |
+| not specified | read   |
+
+Beside normal files also directories can be opened. When opening a file for writing, the file pointer will be positioned at the
+end of the file.
+
+The returned file-object `f` contains methods for file handling depending on file type and file access.
+
+```smallbasic
+import teensy
+const fs = teensy.fs
+
+const FS_READ  = 0
+const FS_WRITE = 1
+
+print "Open file for writing"
+file = fs.open("flash:/test.txt", FS_WRITE)
+```
+
+> result = file.getNextFilename()
+
+Returns the next file in a directory or `0` if there is no further file.
+
+```smallbasic
+import teensy
+fs = teensy.fs
+
+file = fs.open("flash:/")   ' Open root directory
+
+while(1)
+  s = ""
+  name = file.getNextFilename()
+  if(name == 0) then exit
+  file2 = fs.open(name)
+  if(file2.isDirectory()) then s = "/"
+  file2.close()
+  print name; s
+wend
+```
+
+> data = file.read([n])
+
+Reads data from a file:
+
+1. `read()` or `read(0)` -> read until `\n` and return data as string
+2. `read(1)`             -> read one byte and return as integer
+3. `read(n)`             -> read `n` bytes and return as integer array
+
+```smallbasic
+import teensy
+const fs = teensy.fs
+const FS_READ = 0
+
+file = fs.open("flash:/test.txt", FS_READ)
+while(file.available())
+  s = file.read()
+  print s
+wend
+```
+
+> n = file.available()
+
+Returns the number of available bytes `n` starting from the current file position.
+
+```smallbasic
+import teensy
+const fs = teensy.fs
+const FS_READ = 0
+
+file = fs.open("flash:/test.txt", FS_READ)
+while(file.available())
+  s = file.read()
+  print s
+wend
+```
+
+> file.write(data)
+
+Writes `data` to the file. `data` can be a string, an integer, or an array of integers. Integer values must range from
+`0` to `255` and will be written as bytes.
+
+```smallbasic
+import teensy
+const fs = teensy.fs
+const FS_WRITE = 1
+
+file = fs.open("flash:/test.txt", FS_WRITE)
+file.write("test\n")
+file.close()
+```
+
+> file.truncate()
+
+Removes content of a file (makes the file empty).
+
+```smallbasic
+import teensy
+const fs = teensy.fs
+const FS_WRITE = 1
+
+file = fs.open("flash:/test.txt", FS_WRITE)
+file.truncate()
+file.write("test\n")
+file.close()
+```
+
+> file.flush()
+
+Data might be buffered and writing to the file is triggered by the library. Use `flush` to force writing data to the file.
+
+> n = file.size()
+
+Returns the file size in bytes.
+
+> pos = file.position()
+
+Returns the current position of the file pointer.
+
+> file.seek(n)
+
+Sets the position of the file pointer.
+
+> result = file.isDirectory()
+
+Returns `1` if the file is a directory.
+
+> file.close()
+
+Closes a file and force writing of the file buffer.
 
 ### SSD1306 OLED {#Ssd1306Oled}
 

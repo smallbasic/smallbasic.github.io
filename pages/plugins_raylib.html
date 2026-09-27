@@ -68,16 +68,28 @@ libraylib.so) to the folder of your BASIC file. Additionally you need
 the file <a
 href="https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/raylibc.bas">raylibc.bas</a>.
 If it is not found automatically, please copy it to the folder of your
-BASIC file, too. You have also the option to give the full path to the
-plugin or to raylibc.bas with the <code>ìmport</code> command.</p>
+BASIC file, too.</p>
 <p>Since raylib uses its own window management, you cannot use it
-together with the SDL version of SmallBASIC (sbasicg.exe or sbasicg).
-Please use instead the console version (sbasic.exe or sbasic).</p>
-<p>In Linux call: <code>sbasic MyRaylibProgram.bas.</code></p>
-<p>or if you are using the AppImage:
-<code>SmallBASIC-Console_12.24-x86_64.AppImage MyRaylibProgram.bas</code></p>
-<p>If you are working in Windows, then start your program with:
-<code>sbasic.exe MyRaylibProgram.bas</code></p>
+together with the SDL or FLTK version of SmallBASIC (sbasicg.exe or
+sbasicg). Please use instead the console version (sbasic.exe or
+sbasic):</p>
+<ul>
+<li>Linux: <code>sbasic MyRaylibProgram.bas.</code></li>
+<li>AppImage:
+<code>SmallBASIC-Console_12.24-x86_64.AppImage MyRaylibProgram.bas</code></li>
+<li>Windows 11: <code>sbasic.exe MyRaylibProgram.bas</code></li>
+</ul>
+<p>If you are using the Linux Flatpak installation, you can start Raylib
+programs from the GUI (sbasicg).</p>
+<p>You can specify the module directory:</p>
+<ul>
+<li>Linux: <code>sbasic -m PATH_TO_DLL myprogram.bas</code></li>
+<li>Windows 11:
+<code>sbasic.exe -m PATH_TO_DLL myprogram.bas</code></li>
+</ul>
+<p><code>PATH_TO_DLL</code> can be an absolute path like
+<code>C:\myfolder</code> or a relative path like <code>./mydlls</code>.
+The relative path is relative to the location of you program.</p>
 <h2 id="examples">Examples</h2>
 <h3 id="core-examples">Core examples</h3>
 <ul>
@@ -353,7 +365,7 @@ vector3 = [0, 0, 0]</code></pre>
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.1.12.1</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.10.2</a>
     </div>
   </div>
 </div>

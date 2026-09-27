@@ -54,10 +54,10 @@ Teensy 4.0 and Teensy 4.1.</p>
 <li><a href="#Windows">Windows</a></li>
 <li><a href="#Linux">Linux</a></li>
 </ul></li>
-<li><a href="#RunASmallBASICProgram">Run a SmallBASIC program</a></li>
+<li><a href="#RunASmallBASICProgram">Run a SmallBASIC Program</a></li>
 <li><a href="#SendAProgramToTheTeensy">Send a Program to the
 Teensy</a></li>
-<li><a href="#ReadOutputFromYourRunningProgram">Read Output From Your
+<li><a href="#ReadOutputFromYourRunningProgram">Read Output from your
 Running Program</a></li>
 <li><a href="#DebuggingTheTeensyCrashScreenLINUX">Debugging the Teensy
 Crash Screen (LINUX)</a></li>
@@ -69,6 +69,7 @@ Crash Screen (LINUX)</a></li>
 <li><a href="#AnalogInput">Analog Input</a></li>
 <li><a href="#Serial">Serial</a></li>
 <li><a href="#I2C">I2C</a></li>
+<li><a href="#flashandsdcard">FLASH and SD card</a></li>
 <li><a href="#Ssd1306Oled">SSD1306 OLED</a></li>
 <li><a href="#MiscellaneousCommands">Miscellaneous Commands</a></li>
 <li><a href="#UnusedCommands">Unused Commands</a></li>
@@ -108,23 +109,27 @@ firmware</a> from Github.</li>
 the Teensy loader website.</li>
 </ol>
 <h2 id="RunASmallBASICProgram">Run a SmallBASIC Program</h2>
-<p>SMALLBASIC for Teensy offers three ways to upload and run a program
-in the following order.</p>
+<p>SMALLBASIC for Teensy offers four ways to upload and run a
+program.</p>
 <ol type="1">
 <li>Format a SD card using FAT32. Rename your program to
 <code>MAIN.BAS</code> and copy it to the SD card.</li>
-<li>Include your program in the firmware: Replace <code>main.bas</code>
+<li>Upload your program as <code>MAIN.BAS</code> to the flash memory
+file system (i.e. use <code>console.bas</code>)</li>
+<li>Include your program in the firmware. Replace <code>main.bas</code>
 in <code>src/platform/teensy</code> by your program and build the
 firmware.</li>
-<li>Send your program via USB-serial connection to the Teensy.</li>
-<li>Goto 3.</li>
+<li>Send your program via USB-serial connection to the Teensy. In Linux
+use <code>cat YourProgram.bas &gt; /dev/ttyACM0</code> Change
+<code>/dev/ttyACM0</code> to the USB-serial port of your Teensy.</li>
 </ol>
 <p>When the Teensy starts up, it will check in the above indicated order
 for your program. If it finds a SD card and the SD card contains a file
-<code>MAIN.BAS</code>, it will execute it. Otherwise it will check, if a
-program was included in the firmware. If no program was included, the
-Teensy will switch to interactive mode and waits for a program upload
-via USB-serial.</p>
+<code>MAIN.BAS</code>, it will execute it. Otherwise it will check flash
+for the file <code>MAIN.bas</code> and executes it. Otherwise it will
+check, if a program was included in the firmware. If no program was
+included, the Teensy will switch to interactive mode and waits for a
+program upload via USB-serial.</p>
 <p>While your program is running, the Teensy will check continuously if
 data is available at the USB-serial port. If data is available for
 longer than one second, your running program will be terminated and the
@@ -137,8 +142,7 @@ during runtime.</p>
 and you have to read the error message from the USB-serial port.</p>
 <p>If the execution of your program comes to an end, for example when
 reaching the end of the program or when <code>STOP</code> is called, the
-program will be terminated and the next step in the above list will be
-performed.</p>
+program is terminated and the teensy switches to interactive mode.</p>
 <h2 id="SendAProgramToTheTeensy">Send a Program to the Teensy</h2>
 <p>Using the USB serial connection you can send your program to the
 Teensy. You have to figure out, which serial port is used by the Teensy.
@@ -595,12 +599,241 @@ class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb10
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span>(<span class="dv">100</span>)</span>
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<h3 id="flashandsdcard">Flash and SD card</h3>
+<p>To access and manipulate files in flash memory or on sd-card the
+teensy file system library needs to be imported:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fs = teensy.fs</span></code></pre></div>
+<p>File names can contain absolute pathes. If you want to access flash
+memory, the file name must start with <code>flash:</code>; for accessing
+the built in SD card the file name must start with <code>sd:</code>. A
+file name without <code>flash:</code> or <code>sd:</code> will access
+the corresponding file in flash memory.</p>
+<p>Examples for valid file names:</p>
+<ol type="1">
+<li><code>flash:test.txt</code></li>
+<li><code>flash:/dir/test.txt</code></li>
+<li><code>sd:test.txt</code></li>
+<li><code>sd:/dir/test.txt</code></li>
+<li><code>test.txt</code></li>
+<li><code>/dir/test.txt</code></li>
+</ol>
+<blockquote>
+<p>result = fs.QUICKFORMAT()</p>
+</blockquote>
+<p>Formats the flash file system. Returns <code>0</code>, if format was
+not successful.</p>
+<blockquote>
+<p>result = fs.EXISTS(name)</p>
+</blockquote>
+<p>Checks if <code>name</code> exists. <code>name</code> can be a file
+or a directory. <code>EXISTS</code> returns <code>1</code> if the file
+or directory exists, otherwise <code>0</code>.</p>
+<blockquote>
+<p>result = fs.MKDIR(name)</p>
+</blockquote>
+<p>Creates the directory <code>name</code>. Returns <code>0</code>, if
+creation of the directory was not successful.</p>
+<blockquote>
+<p>result = fs.RENAME(OldName, NewName)</p>
+</blockquote>
+<p>Renames a file from <code>OldName</code> to <code>NewName</code>. If
+<code>NewName</code> contains an absolute path, the file will be moved.
+<code>RENAME</code> returns <code>0</code> if not successful.</p>
+<blockquote>
+<p>result = fs.REMOVE(name)</p>
+</blockquote>
+<p>Removes the file or directoy <code>name</code>. A directory must be
+empty. <code>REMOVE</code> returns <code>0</code> if not successful.</p>
+<blockquote>
+<p>result = fs.FREE()</p>
+</blockquote>
+<p>Returns an array with total size and used size.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Element</th>
+<th style="text-align: center;">Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">result[0]</td>
+<td style="text-align: center;">total size flash</td>
+</tr>
+<tr>
+<td style="text-align: center;">result[1]</td>
+<td style="text-align: center;">used size flash</td>
+</tr>
+<tr>
+<td style="text-align: center;">result[2]</td>
+<td style="text-align: center;">total size sd</td>
+</tr>
+<tr>
+<td style="text-align: center;">result[3]</td>
+<td style="text-align: center;">used size sd</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>file = fs.OPEN(FileName [,RWMode])</p>
+</blockquote>
+<p>Opens a file <code>FileName</code> for reading or writing defined by
+the optional parameter <code>RWMode</code> and returns a file-object
+<code>file</code>.</p>
+<p><code>RWMode</code> specifies read or write access:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">RWMode</th>
+<th style="text-align: center;">Access</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">read</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">write</td>
+</tr>
+<tr>
+<td style="text-align: center;">not specified</td>
+<td style="text-align: center;">read</td>
+</tr>
+</tbody>
+</table>
+<p>Beside normal files also directories can be opened. When opening a
+file for writing, the file pointer will be positioned at the end of the
+file.</p>
+<p>The returned file-object <code>f</code> contains methods for file
+handling depending on file type and file access.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> fs = teensy.fs</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> FS_READ  = <span class="dv">0</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> FS_WRITE = <span class="dv">1</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="st">&quot;Open file for writing&quot;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>file = fs.<span class="fu">open</span>(<span class="st">&quot;flash:/test.txt&quot;</span>, FS_WRITE)</span></code></pre></div>
+<blockquote>
+<p>result = file.getNextFilename()</p>
+</blockquote>
+<p>Returns the next file in a directory or <code>0</code> if there is no
+further file.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fs = teensy.fs</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>file = fs.<span class="fu">open</span>(<span class="st">&quot;flash:/&quot;</span>)   <span class="co">&#39; Open root directory</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span><span class="dv">1</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  s = <span class="st">&quot;&quot;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  name = file.getNextFilename()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if(</span>name == <span class="dv">0</span>) <span class="kw">then ex</span>it</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  file2 = fs.<span class="fu">open</span>(name)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if(</span>file2.isDirectory()) <span class="kw">then s </span>= <span class="st">&quot;/&quot;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  file2.<span class="fu">close</span>()</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> name; s</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<blockquote>
+<p>data = file.read([n])</p>
+</blockquote>
+<p>Reads data from a file:</p>
+<ol type="1">
+<li><code>read()</code> or <code>read(0)</code> -&gt; read until
+<code>\n</code> and return data as string</li>
+<li><code>read(1)</code> -&gt; read one byte and return as integer</li>
+<li><code>read(n)</code> -&gt; read <code>n</code> bytes and return as
+integer array</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> fs = teensy.fs</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> FS_READ = <span class="dv">0</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>file = fs.<span class="fu">open</span>(<span class="st">&quot;flash:/test.txt&quot;</span>, FS_READ)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span>file.available())</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  s = file.<span class="fu">read</span>()</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> s</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<blockquote>
+<p>n = file.available()</p>
+</blockquote>
+<p>Returns the number of available bytes <code>n</code> starting from
+the current file position.</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> fs = teensy.fs</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> FS_READ = <span class="dv">0</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>file = fs.<span class="fu">open</span>(<span class="st">&quot;flash:/test.txt&quot;</span>, FS_READ)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">while(</span>file.available())</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  s = file.<span class="fu">read</span>()</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> s</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<blockquote>
+<p>file.write(data)</p>
+</blockquote>
+<p>Writes <code>data</code> to the file. <code>data</code> can be a
+string, an integer, or an array of integers. Integer values must range
+from <code>0</code> to <code>255</code> and will be written as
+bytes.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> fs = teensy.fs</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> FS_WRITE = <span class="dv">1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>file = fs.<span class="fu">open</span>(<span class="st">&quot;flash:/test.txt&quot;</span>, FS_WRITE)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>file.<span class="fu">write</span>(<span class="st">&quot;test\n&quot;</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>file.<span class="fu">close</span>()</span></code></pre></div>
+<blockquote>
+<p>file.truncate()</p>
+</blockquote>
+<p>Removes content of a file (makes the file empty).</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> fs = teensy.fs</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> FS_WRITE = <span class="dv">1</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>file = fs.<span class="fu">open</span>(<span class="st">&quot;flash:/test.txt&quot;</span>, FS_WRITE)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>file.truncate()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>file.<span class="fu">write</span>(<span class="st">&quot;test\n&quot;</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>file.<span class="fu">close</span>()</span></code></pre></div>
+<blockquote>
+<p>file.flush()</p>
+</blockquote>
+<p>Data might be buffered and writing to the file is triggered by the
+library. Use <code>flush</code> to force writing data to the file.</p>
+<blockquote>
+<p>n = file.size()</p>
+</blockquote>
+<p>Returns the file size in bytes.</p>
+<blockquote>
+<p>pos = file.position()</p>
+</blockquote>
+<p>Returns the current position of the file pointer.</p>
+<blockquote>
+<p>file.seek(n)</p>
+</blockquote>
+<p>Sets the position of the file pointer.</p>
+<blockquote>
+<p>result = file.isDirectory()</p>
+</blockquote>
+<p>Returns <code>1</code> if the file is a directory.</p>
+<blockquote>
+<p>file.close()</p>
+</blockquote>
+<p>Closes a file and force writing of the file buffer.</p>
 <h3 id="Ssd1306Oled">SSD1306 OLED</h3>
 <p>Currently only displays with 128x64 pixels are supported. The display
 must be connected to the interface 0 (SDA pin 18, SCL pin 19).</p>
 <p>To use the SSD1306 the following module must be imported:</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> ssd1306</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> ssd1306</span></code></pre></div>
 <blockquote>
 <p>INIT()</p>
 </blockquote>
@@ -733,44 +966,44 @@ Default value for <code>color</code> is white.</p>
 </blockquote>
 <p>Stops scrolling.</p>
 <h4 id="example-4">Example</h4>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> ssd1306 <span class="kw">as</span> display</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenWidth = <span class="dv">128</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenHeight = <span class="dv">64</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> out = teensy.openAnalogInput(<span class="dv">31</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>display.init()</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>display.clear()</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>display.setCursor(<span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>display.setRotation(<span class="dv">90</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>display.invertDisplay(<span class="dv">0</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>display.setTextSize(<span class="dv">1</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>display.<span class="kw">print</span>(<span class="fu">SBVER</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>display.<span class="dt">dim</span>(<span class="dv">10</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>display.drawCircle(screenWidth / <span class="dv">2</span>, screenHeight / <span class="dv">2</span>, <span class="dv">24</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>display.drawRect(<span class="dv">1</span>, <span class="dv">1</span>, screenWidth - <span class="dv">2</span>, screenHeight - <span class="dv">2</span>)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>display.drawRoundRect(<span class="dv">2</span>, <span class="dv">2</span>, screenWidth - <span class="dv">4</span>, screenHeight - <span class="dv">4</span>, <span class="dv">20</span>)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>display.scrollRight(<span class="dv">1</span>, <span class="dv">8</span>)</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">delay</span> <span class="dv">2000</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>display.scrollLeft(<span class="dv">1</span>, <span class="dv">8</span>)</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="fu">delay</span> <span class="dv">2000</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>display.stopScroll()</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  display.setCursor(<span class="dv">30</span>, <span class="dv">30</span>)</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  display.clear()</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  display.<span class="kw">print</span>(<span class="st">&quot;Temp: &quot;</span> + teensy.getTemp() + <span class="st">&quot;c&quot;</span>)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  display.flush()</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span> <span class="dv">1000</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode smallbasic"><code class="sourceCode smallbasic"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> teensy</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span> ssd1306 <span class="kw">as</span> display</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenWidth = <span class="dv">128</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> screenHeight = <span class="dv">64</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> out = teensy.openAnalogInput(<span class="dv">31</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>display.init()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>display.clear()</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>display.setCursor(<span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>display.setRotation(<span class="dv">90</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>display.invertDisplay(<span class="dv">0</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>display.setTextSize(<span class="dv">1</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>display.<span class="kw">print</span>(<span class="fu">SBVER</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>display.<span class="dt">dim</span>(<span class="dv">10</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>display.drawCircle(screenWidth / <span class="dv">2</span>, screenHeight / <span class="dv">2</span>, <span class="dv">24</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>display.drawRect(<span class="dv">1</span>, <span class="dv">1</span>, screenWidth - <span class="dv">2</span>, screenHeight - <span class="dv">2</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>display.drawRoundRect(<span class="dv">2</span>, <span class="dv">2</span>, screenWidth - <span class="dv">4</span>, screenHeight - <span class="dv">4</span>, <span class="dv">20</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>display.scrollRight(<span class="dv">1</span>, <span class="dv">8</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="fu">delay</span> <span class="dv">2000</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>display.scrollLeft(<span class="dv">1</span>, <span class="dv">8</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>display.flush()</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="fu">delay</span> <span class="dv">2000</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>display.stopScroll()</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="kw">while </span><span class="dv">1</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  display.setCursor(<span class="dv">30</span>, <span class="dv">30</span>)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>  display.clear()</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>  display.<span class="kw">print</span>(<span class="st">&quot;Temp: &quot;</span> + teensy.getTemp() + <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>  display.flush()</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delay</span> <span class="dv">1000</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="kw">wend</span></span></code></pre></div>
 <h3 id="MiscellaneousCommands">Miscellaneous Commands</h3>
 <blockquote>
 <p>t = GETTEMP()</p>
@@ -814,11 +1047,11 @@ TEXTHEIGHT, TXTH, TEXTWIDTH, TXTW</p>
 href="https://github.com/smallbasic/SmallBASIC/tree/master/src/platform/teensy/samples">Github</a>.</p>
 </div>
     <div class="pagefooter">
-      This page was last edited on Mon, 22 Dec 2025 16:55:43 +0100
+      This page was last edited on Mon, 22 Dec 2025 17:11:15 +0100
  |
       <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="nofollow">Markdown</a>
       processed with
-      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.5</a>
+      <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="nofollow">pandoc 3.10.2</a>
     </div>
   </div>
 </div>
