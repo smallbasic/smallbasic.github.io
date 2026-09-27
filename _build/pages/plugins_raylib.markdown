@@ -24,16 +24,22 @@ The raylib plugin is included in the release version of SmallBASIC. SmallBASIC s
 If you have problems loading the plugin, you can copy the library (libraylib.dll or libraylib.so) to the folder of your BASIC file.
 Additionally you need the file [raylibc.bas](https://github.com/smallbasic/smallbasic.plugins/blob/master/raylib/samples/raylibc.bas).
 If it is not found automatically, please copy it to the folder of your BASIC file, too.
-You have also the option to give the full path to the plugin or to raylibc.bas with the `ìmport` command.
 
-Since raylib uses its own window management, you cannot use it together with the SDL version of SmallBASIC (sbasicg.exe or sbasicg).
-Please use instead the console version (sbasic.exe or sbasic).
+Since raylib uses its own window management, you cannot use it together with the SDL or FLTK version of SmallBASIC (sbasicg.exe or sbasicg).
+Please use instead the console version (sbasic.exe or sbasic):
 
-In Linux call: `sbasic MyRaylibProgram.bas.`
+- Linux: `sbasic MyRaylibProgram.bas.`
+- AppImage: `SmallBASIC-Console_12.24-x86_64.AppImage MyRaylibProgram.bas`
+- Windows 11: `sbasic.exe MyRaylibProgram.bas`
 
-or if you are using the AppImage: `SmallBASIC-Console_12.24-x86_64.AppImage MyRaylibProgram.bas`
+If you are using the Linux Flatpak installation, you can start Raylib programs from the GUI (sbasicg).
 
-If you are working in Windows, then start your program with: `sbasic.exe MyRaylibProgram.bas`
+You can specify the module directory:
+
+- Linux: `sbasic -m PATH_TO_DLL myprogram.bas`
+- Windows 11: `sbasic.exe -m PATH_TO_DLL myprogram.bas`
+
+`PATH_TO_DLL` can be an absolute path like `C:\myfolder` or a relative path like `./mydlls`. The relative path is relative to the location of you program.
 
 ## Examples
 
